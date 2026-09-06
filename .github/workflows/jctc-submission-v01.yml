@@ -31,15 +31,20 @@ jobs:
         run: |
           set -o pipefail
           python analysis/lint_jctc_submission_v01.py | tee submission/jctc_lint_stdout.txt
-      - name: Commit generated submission manuscript
+      - name: Lint JCTC Supporting Information
+        shell: bash
+        run: |
+          set -o pipefail
+          python analysis/lint_jctc_si_v01.py | tee submission/jctc_si_lint_stdout.txt
+      - name: Commit generated submission checks
         run: |
           git config user.name 'chatgpt-analysis-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add submission/JCTC_MANUSCRIPT_v0.1.md submission/JCTC_MANUSCRIPT_LINT_v0.1.md submission/jctc_build_stdout.txt submission/jctc_lint_stdout.txt
+          git add submission/JCTC_MANUSCRIPT_v0.1.md submission/JCTC_MANUSCRIPT_LINT_v0.1.md submission/JCTC_SI_LINT_v0.1.md submission/jctc_build_stdout.txt submission/jctc_lint_stdout.txt submission/jctc_si_lint_stdout.txt
           if git diff --cached --quiet; then
             echo 'No generated changes.'
           else
-            git commit -m 'Build and lint JCTC submission manuscript v0.1'
+            git commit -m 'Build and lint JCTC submission package v0.1'
             git pull --rebase origin submission/jctc-v0.1
             git push origin HEAD:submission/jctc-v0.1
           fi
