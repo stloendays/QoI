@@ -1,15 +1,60 @@
 section,metric,value,unit,ci_lo,ci_hi,n,denominator,source
-scope,successful_master_rows,6343.0,rows,,,6343,successful reconstructions,benchmark/master_benchmark_full.csv
-scope,development_materials,254.0,materials,,,254,development benchmark,benchmark/master_benchmark_full.csv
-scope,base_ladder_rows,4627.0,rows,,,4627,successful base-ladder reconstructions,benchmark/master_benchmark_full.csv
-scope,registered_exceptions,77.0,rows,,,77,failure registry,failure_registry.csv
-fixed_vs_resolved,resolved_greater_than_fixed_fraction,0.9969742813918305,fraction,,,4627,successful base-ladder rows,benchmark/master_benchmark_full.csv
-fixed_vs_resolved,pooled_median_resolved_over_fixed,52.80413907491485,x,,,4627,successful base-ladder rows; paired row ratio,benchmark/master_benchmark_full.csv
-bound_utilization,SPERR_median_realized_over_nominal,0.9999867524002072,ratio,,,1956,all successful master rows for codec,benchmark/master_benchmark_full.csv
-bound_utilization,SZ3_median_realized_over_nominal,0.9999987770000592,ratio,,,1937,all successful master rows for codec,benchmark/master_benchmark_full.csv
-bound_utilization,ZFP_median_realized_over_nominal,0.15752052367433345,ratio,,,2450,all successful master rows for codec,benchmark/master_benchmark_full.csv
-matched_realized_linf_complete_case,SZ3_over_ZFP_tau1e-3_0.10dex,1.8177277571028227,x,1.6751294441600808,2.0135778973104457,119,"A1-eligible, complete-case materials, nominal relative tolerance <=0.01",analysis_output/complete_case_failure_sensitivity.csv
-matched_realized_linf_complete_case,SPERR_over_ZFP_tau1e-3_0.10dex,2.002337939302898,x,1.7911904668550096,2.2504140567850213,115,"A1-eligible, complete-case materials, nominal relative tolerance <=0.01",analysis_output/complete_case_failure_sensitivity.csv
-resolvability,non_evaluable_fraction_tau_0.0001,0.7994,fraction,,,319,319-system stability corpus,stability/eligibility_summary_A1.csv
-resolvability,non_evaluable_fraction_tau_0.001,0.4138,fraction,,,319,319-system stability corpus,stability/eligibility_summary_A1.csv
-resolvability,non_evaluable_fraction_tau_0.01,0.0972,fraction,,,319,319-system stability corpus,stability/eligibility_summary_A1.csv
+scope,successful_master_rows,6343.0, rows,,,6343.0,successful reconstructions,benchmark/master_benchmark_full.csv
+scope,development_materials,254.0, materials,,,254.0,development benchmark,benchmark/master_benchmark_full.csv
+scope,base_ladder_rows,4627.0, rows,,,4627.0,successful base-ladder reconstructions,benchmark/master_benchmark_full.csv
+scope,registered_exceptions,77.0, rows,,,77.0,failure registry,failure_registry.csv
+fixed_vs_resolved,resolved_greater_than_fixed_fraction,0.9969742813918305, fraction,,,4627.0,successful base-ladder rows,benchmark/master_benchmark_full.csv
+fixed_vs_resolved,pooled_median_resolved_over_fixed,52.80413907491485,x,,,4627.0,successful base-ladder rows; paired row ratio,benchmark/master_benchmark_full.csv
+bound_utilization,SPERR_median_realized_over_nominal,0.9999867524002072, ratio,,,1956.0,all successful master rows for codec,benchmark/master_benchmark_full.csv
+bound_utilization,SZ3_median_realized_over_nominal,0.9999987770000592, ratio,,,1937.0,all successful master rows for codec,benchmark/master_benchmark_full.csv
+bound_utilization,ZFP_median_realized_over_nominal,0.15752052367433345, ratio,,,2450.0,all successful master rows for codec,benchmark/master_benchmark_full.csv
+matched_realized_linf_complete_case,SZ3_over_ZFP_tau1e-3_0.10dex,1.8177277571028227,x,1.6751294441600808,2.0135778973104457,119.0,A1-eligible complete-case materials; nominal relative tolerance <=0.01,analysis_output/complete_case_failure_sensitivity.csv
+matched_realized_linf_complete_case,SPERR_over_ZFP_tau1e-3_0.10dex,2.002337939302898,x,1.7911904668550096,2.2504140567850213,115.0,A1-eligible complete-case materials; nominal relative tolerance <=0.01,analysis_output/complete_case_failure_sensitivity.csv
+mechanism_attenuation,SZ3_M0_codec_multiplier,2.3352361071925194,x,2.151910891434493,2.534179132622174,,complete-case A1 tau=1e-3 model,analysis_output/complete_case_mechanism_attenuation.csv
+mechanism_attenuation,SPERR_M0_codec_multiplier,2.075975410805432,x,1.9098258240909711,2.2565795539601514,,complete-case A1 tau=1e-3 model,analysis_output/complete_case_mechanism_attenuation.csv
+mechanism_attenuation,SZ3_M1_codec_multiplier,0.9581751070055018,x,0.8328284659910192,1.1023873140461378,,complete-case A1 tau=1e-3 model,analysis_output/complete_case_mechanism_attenuation.csv
+mechanism_attenuation,SPERR_M1_codec_multiplier,0.9395474165472724,x,0.8220764880545421,1.0738043974833713,,complete-case A1 tau=1e-3 model,analysis_output/complete_case_mechanism_attenuation.csv
+mechanism_attenuation,reassignment_loglog_slope,0.88, beta,0.723,1.037,,complete-case A1 tau=1e-3 model,analysis_output/complete_case_failure_sensitivity.md
+mechanism_attenuation,reassignment_p_value,5.78e-28, p,,,,complete-case A1 tau=1e-3 model,analysis_output/complete_case_failure_sensitivity.md
+resolvability,non_evaluable_fraction_tau_0.0001,0.7994, fraction,,,319.0,319-system stability corpus,stability/eligibility_summary_A1.csv
+resolvability,non_evaluable_fraction_tau_0.001,0.4138, fraction,,,319.0,319-system stability corpus,stability/eligibility_summary_A1.csv
+resolvability,non_evaluable_fraction_tau_0.01,0.0972, fraction,,,319.0,319-system stability corpus,stability/eligibility_summary_A1.csv
+symmetry_sensitivity,symmetry_aware_non_evaluable_fraction_tau_0.0001,0.7987421383647799, fraction,,,318.0,stability corpus after removing known symmetry-equivalent relabelling case,paper_data_v03/fig4_symmetry_aware_resolvability_sensitivity.csv
+symmetry_sensitivity,symmetry_aware_non_evaluable_fraction_tau_0.001,0.4119496855345912, fraction,,,318.0,stability corpus after removing known symmetry-equivalent relabelling case,paper_data_v03/fig4_symmetry_aware_resolvability_sensitivity.csv
+symmetry_sensitivity,symmetry_aware_non_evaluable_fraction_tau_0.01,0.09433962264150944, fraction,,,318.0,stability corpus after removing known symmetry-equivalent relabelling case,paper_data_v03/fig4_symmetry_aware_resolvability_sensitivity.csv
+certified_frontier,SPERR_bulk_tau_0.0001_median_best_ratio,4.228142191859552,x,,,42.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_bulk_tau_0.0001_coverage,0.9047619047619048, fraction,,,42.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_bulk_tau_0.0001_median_best_ratio,6.328752559383995,x,,,42.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_bulk_tau_0.0001_coverage,0.8571428571428571, fraction,,,42.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_bulk_tau_0.0001_median_best_ratio,7.6252823426310385,x,,,42.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_bulk_tau_0.0001_coverage,1.0, fraction,,,42.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_slab_tau_0.0001_median_best_ratio,3.878422417640687,x,,,4.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_slab_tau_0.0001_coverage,0.25, fraction,,,4.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_slab_tau_0.0001_median_best_ratio,8.422915163246524,x,,,4.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_slab_tau_0.0001_coverage,0.5, fraction,,,4.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_slab_tau_0.0001_median_best_ratio,10.54656681334518,x,,,4.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_slab_tau_0.0001_coverage,1.0, fraction,,,4.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_bulk_tau_0.001_median_best_ratio,6.173813693153701,x,,,103.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_bulk_tau_0.001_coverage,0.9902912621359223, fraction,,,103.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_bulk_tau_0.001_median_best_ratio,12.911501498108237,x,,,103.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_bulk_tau_0.001_coverage,0.9902912621359223, fraction,,,103.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_bulk_tau_0.001_median_best_ratio,13.531291314600908,x,,,103.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_bulk_tau_0.001_coverage,0.9902912621359223, fraction,,,103.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_slab_tau_0.001_median_best_ratio,5.096185360655501,x,,,40.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_slab_tau_0.001_coverage,0.875, fraction,,,40.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_slab_tau_0.001_median_best_ratio,14.1467943206105,x,,,40.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_slab_tau_0.001_coverage,0.85, fraction,,,40.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_slab_tau_0.001_median_best_ratio,15.261278344177242,x,,,40.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_slab_tau_0.001_coverage,1.0, fraction,,,40.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_bulk_tau_0.01_median_best_ratio,11.510742267135877,x,,,168.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_bulk_tau_0.01_coverage,0.9583333333333334, fraction,,,168.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_bulk_tau_0.01_median_best_ratio,51.77969414519157,x,,,168.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_bulk_tau_0.01_coverage,0.9523809523809523, fraction,,,168.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_bulk_tau_0.01_median_best_ratio,30.01965330038169,x,,,168.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_bulk_tau_0.01_coverage,0.9880952380952381, fraction,,,168.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_slab_tau_0.01_median_best_ratio,8.097571180519235,x,,,61.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SPERR_slab_tau_0.01_coverage,0.7704918032786885, fraction,,,61.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_slab_tau_0.01_median_best_ratio,67.75170239138666,x,,,61.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,SZ3_slab_tau_0.01_coverage,0.7704918032786885, fraction,,,61.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_slab_tau_0.01_median_best_ratio,40.451044529674256,x,,,61.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
+certified_frontier,ZFP_slab_tau_0.01_coverage,0.9672131147540983, fraction,,,61.0,Protocol-A1 admitted best-certified table,benchmark/best_certified_a1.csv
