@@ -3,14 +3,24 @@
 Branch: `submission/jctc-v0.1`  
 Scientific source: `paper/MANUSCRIPT_CHATGPT_v0.3.1.md` from the conditionally frozen analysis branch.
 
+## Current integrity status
+
+- **JCTC manuscript lint:** 37/37 passed, 0 failed.
+- **Supporting Information lint:** 34/34 passed, 0 failed.
+- Reference numbering is unique and contiguous (1–15); all numerical citations resolve and no duplicate DOI entries are present.
+- The full per-atom mechanism table remains unavailable, but neither the manuscript nor the SI claims that it is available or required for the current representative-set mechanism claim.
+
 ## Primary files
 
 - `JCTC_MANUSCRIPT_v0.1.md` — JCTC-targeted full manuscript generated from the scientific freeze.
 - `JCTC_MANUSCRIPT_LINT_v0.1.md` — automated journal-targeted scientific/editorial/reference checks.
-- `COVER_LETTER_JCTC_v0.1.md` — cover-letter draft; author details and declarations remain to be confirmed.
+- `SUPPORTING_INFORMATION_TEXT_JCTC_v0.1.md` — populated SI text containing the current robustness, probe-validation, matching, mechanism, negative-control, and certified-frontier results.
+- `JCTC_SI_LINT_v0.1.md` — automated SI number/semantics/scope checks.
+- `SUPPORTING_INFORMATION_DRAFT_JCTC_v0.1.md` — assembly scaffold retained as a structural planning record.
+- `COVER_LETTER_JCTC_v0.1.md` — JCTC cover-letter draft; author details and declarations remain to be confirmed.
 - `TOC_GRAPHIC_BRIEF_JCTC_v0.1.md` — design brief for the required graphical summary.
-- `SUPPORTING_INFORMATION_DRAFT_JCTC_v0.1.md` — review-ready SI assembly scaffold, including all robustness and mechanism sections.
 - `DATA_SOFTWARE_AVAILABILITY_JCTC_v0.1.md` — JCTC/JCIM 2026 reproducibility-policy draft and archive plan.
+- `REFERENCE_AUDIT_JCTC_v0.1.md` — verified core bibliography plus submission-day checks for 2026 accepted/in-press work.
 - `JCTC_SUBMISSION_METADATA_v0.1.md` — ACS Publishing Center metadata worksheet for authors, affiliations, ORCIDs, funding, conflicts, and disclosures.
 - `JCTC_SUBMISSION_CHECKLIST_v0.1.md` — scientific, administrative, figure, reference, reproducibility, and submission-day checklist.
 - `JCTC_REQUIREMENTS_SNAPSHOT_20260906.md` — dated snapshot of the current JCTC/ACS author requirements used to prepare this package.
@@ -53,9 +63,9 @@ If the file becomes available before submission, it should update only Figure 3 
 
 1. final author order, affiliations, corresponding author, ORCIDs, funding, and conflict/disclosure information;
 2. final original TOC graphic;
-3. assembled review-ready Supporting Information file;
-4. final manuscript format with figures embedded near first discussion;
-5. immutable archived data/software release with a persistent DOI;
+3. SI converted from the populated text draft into a review-ready formatted file with final supplementary figures/tables;
+4. main manuscript converted into a review-ready ACS Fast Format file with final figures embedded near first discussion;
+5. immutable archived data/software release with a persistent DOI and exact submission commit/tag;
 6. submission-day reference, figure, and metadata QA.
 
 The unavailable per-atom file is not itself a blocker unless the final paper is broadened to make an atom-level claim that requires it.
