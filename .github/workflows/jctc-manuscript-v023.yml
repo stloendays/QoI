@@ -1,0 +1,41 @@
+name: JCTC manuscript v0.2.3
+
+on:
+  push:
+    branches:
+      - submission/jctc-v0.1
+    paths:
+      - 'submission/RUN_JCTC_MANUSCRIPT_V023.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: submission/jctc-v0.1
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build manuscript v0.2.3
+        run: python analysis/build_jctc_manuscript_v023.py
+      - name: Lint manuscript v0.2.3
+        run: python analysis/lint_jctc_manuscript_v023.py
+      - name: Cross-document audit
+        run: python analysis/lint_jctc_crossdoc_v02.py
+      - name: Commit generated manuscript and audits
+        run: |
+          git config user.name 'chatgpt-analysis-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add submission/JCTC_MANUSCRIPT_v0.2.3.md submission/JCTC_MANUSCRIPT_v0.2.3_LINT.md submission/JCTC_CROSSDOC_LINT_v0.2.md
+          if git diff --cached --quiet; then
+            echo 'No generated changes.'
+          else
+            git commit -m 'Build JCTC manuscript v0.2.3 and cross-document audit'
+            git pull --rebase origin submission/jctc-v0.1
+            git push origin HEAD:submission/jctc-v0.1
+          fi
