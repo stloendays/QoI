@@ -66,7 +66,7 @@ Across the 4,627-row base ladder, finite resolved/fixed understatement ratios ha
 ## 5. Can conventional descriptors predict A.1 resolvability?
 
 - τ=0.0001: dev 5-fold AUROC 0.643 ± 0.094; external AUROC **0.409**, balanced accuracy 0.484; eligibility prevalence dev/ext 18.1%/27.7%.
-- τ=0.001: dev 5-fold AUROC 0.637 ± 0.048; external AUROC **0.387**, balanced accuracy 0.430; eligibility prevalence dev/ext 56.3%/67.7%.
+- τ=0.001: dev 5-fold AUROC 0.636 ± 0.048; external AUROC **0.387**, balanced accuracy 0.430; eligibility prevalence dev/ext 56.3%/67.7%.
 - τ=0.01: dev 5-fold AUROC 0.472 ± 0.109; external AUROC **0.398**, balanced accuracy 0.338; eligibility prevalence dev/ext 90.2%/90.8%.
 
 ## 6. Protocol A.1 probe validation
