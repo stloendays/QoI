@@ -1,0 +1,39 @@
+name: ChatGPT statistical post-processing
+
+on:
+  push:
+    branches:
+      - analysis/chatgpt-postprocess-20260906
+    paths-ignore:
+      - 'analysis_output/**'
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: analysis/chatgpt-postprocess-20260906
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install analysis dependencies
+        run: python -m pip install --disable-pip-version-check pandas numpy scipy scikit-learn statsmodels
+      - name: Run post-processing
+        run: |
+          mkdir -p analysis_output
+          python analysis/chatgpt_postprocess.py | tee analysis_output/workflow_stdout.txt
+      - name: Commit reproducible outputs to analysis branch
+        run: |
+          git config user.name 'chatgpt-analysis-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis_output
+          if git diff --cached --quiet; then
+            echo 'No output changes.'
+          else
+            git commit -m 'Add statistical post-processing outputs'
+            git push origin HEAD:analysis/chatgpt-postprocess-20260906
+          fi
