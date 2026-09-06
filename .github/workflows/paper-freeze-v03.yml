@@ -29,17 +29,19 @@ jobs:
         run: python analysis/global_conservation_negative_control.py | tee global_conservation_negative_control_stdout.txt
       - name: Build integrated manuscript v0.3.1
         run: python analysis/build_manuscript_v031.py | tee build_manuscript_v031_stdout.txt
+      - name: Lint scientific claims and references
+        run: python analysis/manuscript_lint_v031.py | tee manuscript_lint_v031_stdout.txt
       - name: Generate numeric main-figure drafts
         run: python analysis/make_numeric_figures_v03.py | tee figures_v03_stdout.txt
       - name: Commit generated outputs
         run: |
           git config user.name 'chatgpt-analysis-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add paper_data_v03 figures_v03 paper/MANUSCRIPT_CHATGPT_v0.3.1.md paper_freeze_v03_stdout.txt global_conservation_negative_control_stdout.txt build_manuscript_v031_stdout.txt figures_v03_stdout.txt
+          git add paper_data_v03 figures_v03 paper/MANUSCRIPT_CHATGPT_v0.3.1.md paper_freeze_v03_stdout.txt global_conservation_negative_control_stdout.txt build_manuscript_v031_stdout.txt manuscript_lint_v031_stdout.txt figures_v03_stdout.txt
           if git diff --cached --quiet; then
             echo 'No output changes.'
           else
-            git commit -m 'Generate paper freeze v0.3.1 manuscript, registry, negative control and figures'
+            git commit -m 'Generate and lint paper freeze v0.3.1 outputs'
             git pull --rebase origin analysis/paper-freeze-v03-20260906
             git push origin HEAD:analysis/paper-freeze-v03-20260906
           fi
