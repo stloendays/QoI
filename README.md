@@ -65,7 +65,7 @@ status with the retracted numbers: `paper/CLAIM_EVIDENCE_MATRIX.md`.
 
 Rows for a (material, codec, tolerance) that failed inside the Bader solver
 are absent from the master table and present in `failure_registry.csv`
-(`category = bader_solver_failure`, 75 such entries, almost all ZFP at loose
+(`category = bader_solver_failure`, 76 such entries, almost all ZFP at loose
 tolerance on slabs). A material excluded at a threshold is present in the
 master table with `eligible_A1_at_{τ} = False` and listed in
 `stability/eligibility_by_threshold_A1.csv` with status
