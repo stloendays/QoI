@@ -106,6 +106,16 @@ jobs:
             --aggregate-dir validation/formal_external_all65 \
             --output-dir validation/formal_external_confirmatory63
 
+      - name: Generate pre-specified external validation report
+        if: always()
+        id: report
+        continue-on-error: true
+        run: |
+          python validation/generate_external_rate_fidelity_report.py \
+            --confirmatory-dir validation/formal_external_confirmatory63 \
+            --all65-dir validation/formal_external_all65 \
+            --output validation/formal_external_confirmatory63/EXTERNAL_RATE_FIDELITY_REPORT.md
+
       - name: Print headline aggregate outputs
         if: always()
         run: |
@@ -126,12 +136,16 @@ jobs:
           echo
           echo '=== ALL65 EXTERNAL_SUMMARY_A1 ==='
           cat validation/formal_external_all65/external_summary_a1.csv || true
+          echo
+          echo '=== PRE-SPECIFIED REPORT ==='
+          cat validation/formal_external_confirmatory63/EXTERNAL_RATE_FIDELITY_REPORT.md || true
 
       - name: Enforce aggregate validation status
         if: always()
         run: |
           test "${{ steps.all65.outcome }}" = "success"
           test "${{ steps.confirmatory63.outcome }}" = "success"
+          test "${{ steps.report.outcome }}" = "success"
 
       - name: Upload external benchmark outputs
         if: always()
