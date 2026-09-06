@@ -42,18 +42,12 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.12.14'
 
-      - name: Install frozen scientific stack
+      - name: Install frozen external E2E scientific stack
         run: |
           python -m pip install --upgrade pip
-          python -m pip install \
-            numpy \
-            baderkit==0.10.2 \
-            pysz==1.0.3 \
-            zfpy==1.0.1 \
-            hdf5plugin==7.0.0 \
-            h5py
+          python -m pip install -r validation/requirements-external-e2e.txt
 
       - name: Run frozen external shard
         run: |
