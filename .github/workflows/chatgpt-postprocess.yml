@@ -26,6 +26,7 @@ jobs:
         run: |
           mkdir -p analysis_output
           python analysis/chatgpt_postprocess.py | tee analysis_output/workflow_stdout.txt
+          python analysis/stability_qualified_structure_effect.py | tee analysis_output/stability_qualified_stdout.txt
       - name: Commit reproducible outputs to analysis branch
         run: |
           git config user.name 'chatgpt-analysis-bot'
