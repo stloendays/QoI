@@ -32,16 +32,16 @@ required = {
     "NON_EVALUABLE semantics": "NON_EVALUABLE_BADER_UNSTABLE",
     "SZ3 DOI": "10.1109/TBDATA.2022.3201176",
     "SPERR DOI": "10.1109/IPDPS54959.2023.00104",
+    "predictability caveat": "do not establish that Bader resolvability is fundamentally unpredictable",
 }
 for name, token in required.items():
     check(name, token in text, f"required token: {token}")
 
-# Provisional text must be gone.
+# Provisional/positive-overclaim text must be gone.
 forbidden = {
     "placeholder reference": "reference to be replaced",
     "software placeholder": "[software/method reference",
     "generic first-to-show claim": "first to show that pointwise",
-    "fundamental unpredictability claim": "fundamentally unpredictable",
     "intrinsic Bader floor claim": "intrinsic Bader floor",
 }
 for name, token in forbidden.items():
@@ -69,7 +69,8 @@ check(
     "1e-4 slab frontier must be descriptive",
 )
 
-# Detect common dangerous prose patterns, allowing explicit negations.
+# Detect common dangerous prose patterns. These are human-review flags only because a phrase
+# can appear safely inside an explicit negation (e.g. 'not universally superior').
 danger_patterns = [
     (r"\bcausal codec effect\b", "causal codec effect"),
     (r"\buniversally (?:best|superior)\b", "universal codec winner"),
@@ -77,7 +78,6 @@ danger_patterns = [
 ]
 for pattern, label in danger_patterns:
     hits = [m.group(0) for m in re.finditer(pattern, text, flags=re.IGNORECASE)]
-    # These phrases are only acceptable if used in an explicit negation/caveat; flag for human review rather than fail.
     check(f"danger phrase review: {label}", len(hits) == 0, f"hits={hits}")
 
 # Basic reference ordering check for the opening [1-3] names.
