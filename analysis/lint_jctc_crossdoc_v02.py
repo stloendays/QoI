@@ -24,7 +24,9 @@ for m in re.finditer(r'\b(?:Fig\.|Figure)\s*([1-6])',man.split('## References',1
 add('main first figure mentions ordered',first==[1,2,3,4,5,6],f'first={first}')
 
 for n in range(1,7):
-    add(f'Figure {n} cited in main',bool(re.search(rf'\b(?:Fig\.|Figure)\s*{n}\b',man)),f'figure={n}')
+    # Allow either a whole-figure citation (Figure 6) or panel citations (Fig. 3a).
+    pat=rf'\b(?:Fig\.|Figure)\s*{n}(?:[a-z])?(?!\d)'
+    add(f'Figure {n} cited in main',bool(re.search(pat,man)),f'figure={n}')
 
 # Expected panel definitions in captions.
 expected_panels={1:[],2:['a','b','c'],3:['a','b','c'],4:['a','b','c','d'],5:['a','b','c','d'],6:[]}
