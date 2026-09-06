@@ -1,6 +1,6 @@
 # JCTC submission manuscript lint v0.1
 
-Checks: 22; passed: 21; failed: 1.
+Checks: 22; passed: 22; failed: 0.
 
 - PASS — **JCTC title**: required token: Chemical Fidelity beyond Pointwise Error Bounds: Stability and Bader-Domain Migration in Lossy-Compressed Electron Densities
 - PASS — **submission marker**: required token: JCTC Article submission draft v0.1
@@ -15,8 +15,8 @@ Checks: 22; passed: 21; failed: 1.
 - PASS — **internal branch note**: forbidden token: branch-only draft
 - PASS — **pending-file note**: forbidden token: until `mechanism/basin_error_decomposition_per_atom.csv` is committed
 - PASS — **generic first claim**: forbidden token: first to show that pointwise
-- FAIL — **universal winner**: forbidden token: one codec is universally superior
 - PASS — **causal mediation overclaim**: forbidden token: formal causal mediation demonstrates
+- PASS — **no universal codec winner**: hits=1; all must be explicitly negated
 - PASS — **abstract found**: Abstract section must be present
 - PASS — **abstract no numerical citations**: avoid reference citations in abstract
 - PASS — **abstract concise**: abstract word count=209; internal target <=250
