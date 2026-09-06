@@ -17,7 +17,7 @@ The manuscript uses a forward scientific narrative: question -> evidence -> mech
 
 ## Current integrity status
 
-- **Main manuscript v0.2.3 lint:** 28/28 passed.
+- **Main manuscript v0.2.3 lint:** 30/30 passed.
 - **Supporting Information v0.2 lint:** 25/25 passed.
 - **Manuscript–caption–SI cross-document lint:** 48/48 passed.
 - References are numbered 1–20, numerical citations resolve, and DOI entries are unique.
