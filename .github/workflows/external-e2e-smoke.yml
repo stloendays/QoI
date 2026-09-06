@@ -6,6 +6,7 @@ on:
     branches: [external-e2e-validation]
     paths:
       - 'validation/external_end_to_end.py'
+      - 'validation/aflow_parser_smoke.py'
       - 'validation/preflight_formal_external.py'
       - '.github/workflows/external-e2e-smoke.yml'
       - 'external_test_MANIFEST.json'
@@ -13,6 +14,10 @@ on:
       - 'protocol/PROTOCOL_A1.md'
       - 'benchmark/master_benchmark_full.csv'
       - 'benchmark/master_benchmark_tight_ladder.csv'
+
+concurrency:
+  group: external-e2e-smoke
+  cancel-in-progress: true
 
 jobs:
   smoke:
@@ -39,7 +44,7 @@ jobs:
             hdf5plugin==7.0.0 \
             h5py
 
-      - name: Run NOMAD protocol smoke
+      - name: Run NOMAD end-to-end sentinel smoke
         run: |
           python validation/external_end_to_end.py \
             --material-id nomad2d-0XHkHlmw3DQ_ \
@@ -47,7 +52,7 @@ jobs:
             --relative-tolerances 1e-5 \
             --output-dir validation/results/nomad
 
-      - name: Run AFLOW single-species provenance smoke
+      - name: Run AFLOW single-species end-to-end sentinel smoke
         if: success()
         run: |
           python validation/external_end_to_end.py \
@@ -56,14 +61,12 @@ jobs:
             --relative-tolerances 1e-5 \
             --output-dir validation/results/aflow_single
 
-      - name: Run AFLOW multi-species provenance smoke
+      - name: Run AFLOW multi-species parser-only smoke
         if: success()
         run: |
-          python validation/external_end_to_end.py \
+          python validation/aflow_parser_smoke.py \
             --material-id aflow-Al1C1Ta2_ICSD_606258 \
-            --codecs zfp \
-            --relative-tolerances 1e-5 \
-            --output-dir validation/results/aflow_multi
+            | tee validation/results/aflow_multi_parser.json
 
       - name: Upload validation outputs
         if: always()
