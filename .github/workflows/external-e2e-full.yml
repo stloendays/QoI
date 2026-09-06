@@ -57,6 +57,15 @@ jobs:
             --shard-index ${{ matrix.shard }} \
             --output-dir validation/formal_shard_${{ matrix.shard }}
 
+      - name: Archive exact runtime environment
+        if: always()
+        run: |
+          mkdir -p validation/formal_shard_${{ matrix.shard }}
+          python --version > validation/formal_shard_${{ matrix.shard }}/python_version.txt
+          python -m pip freeze | sort > validation/formal_shard_${{ matrix.shard }}/pip_freeze.txt
+          sha256sum validation/requirements-external-e2e.txt > validation/formal_shard_${{ matrix.shard }}/requirements_sha256.txt
+          git rev-parse HEAD > validation/formal_shard_${{ matrix.shard }}/git_commit.txt
+
       - name: Upload shard outputs
         if: always()
         uses: actions/upload-artifact@v4
