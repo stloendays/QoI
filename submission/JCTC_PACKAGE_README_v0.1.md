@@ -42,7 +42,8 @@ Writing conventions are defined in `WRITING_README.md`. The main rule is to writ
 - `TOC_GRAPHIC_BRIEF_JCTC_v0.1.md` — design brief for the graphical summary.
 - `JCTC_FIGURE_ASSEMBLY_PLAN_v0.1.md` — six-figure production map and data-source lock.
 - `DATA_SOFTWARE_AVAILABILITY_JCTC_v0.1.md` — reproducibility-policy draft and archival plan.
-- `REFERENCE_AUDIT_JCTC_v0.1.md` — reference audit record; update again immediately before formal submission for 2026 accepted/in-press work.
+- `REFERENCE_AUDIT_JCTC_v0.2.md` — expanded 19-reference audit plus submission-day checks for accepted/in-press 2026 work.
+- `REFERENCE_AUDIT_JCTC_v0.1.md` — previous audit retained as an editorial record.
 - `JCTC_SUBMISSION_METADATA_v0.1.md` — ACS Publishing Center metadata worksheet.
 - `JCTC_SUBMISSION_CHECKLIST_v0.1.md` — scientific, administrative, figure, reference, reproducibility, and submission-day checklist.
 - `JCTC_REQUIREMENTS_SNAPSHOT_20260906.md` — dated snapshot of the JCTC/ACS requirements used for preparation.
