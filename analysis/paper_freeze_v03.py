@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-import json
 import numpy as np
 import pandas as pd
 
@@ -19,7 +18,6 @@ atten = pd.read_csv(ROOT / "analysis_output/complete_case_mechanism_attenuation.
 fixed_core = pd.read_csv(ROOT / "analysis_output/fixed_basin_core_tolerance_summary.csv")
 fixed_a1 = pd.read_csv(ROOT / "analysis_output/fixed_basin_A1_qualified_summary.csv")
 
-# ---------- Registry helper ----------
 rows: list[dict] = []
 
 def add(section, metric, value, unit="", lo=np.nan, hi=np.nan, n=np.nan, denominator="", source=""):
@@ -35,33 +33,31 @@ def add(section, metric, value, unit="", lo=np.nan, hi=np.nan, n=np.nan, denomin
         "source": source,
     })
 
-# ---------- Scope/integrity ----------
-add("scope", "successful_master_rows", len(master), "rows", n=len(master), denominator="successful reconstructions", source="benchmark/master_benchmark_full.csv")
-add("scope", "development_materials", master.material_id.nunique(), "materials", n=master.material_id.nunique(), denominator="development benchmark", source="benchmark/master_benchmark_full.csv")
-add("scope", "base_ladder_rows", len(base), "rows", n=len(base), denominator="successful base-ladder reconstructions", source="benchmark/master_benchmark_full.csv")
-add("scope", "registered_exceptions", len(fails), "rows", n=len(fails), denominator="failure registry", source="failure_registry.csv")
+# Scope and integrity.
+add("scope", "successful_master_rows", len(master), " rows", n=len(master), denominator="successful reconstructions", source="benchmark/master_benchmark_full.csv")
+add("scope", "development_materials", master.material_id.nunique(), " materials", n=master.material_id.nunique(), denominator="development benchmark", source="benchmark/master_benchmark_full.csv")
+add("scope", "base_ladder_rows", len(base), " rows", n=len(base), denominator="successful base-ladder reconstructions", source="benchmark/master_benchmark_full.csv")
+add("scope", "registered_exceptions", len(fails), " rows", n=len(fails), denominator="failure registry", source="failure_registry.csv")
 
-# ---------- Fixed vs resolved ----------
+# Fixed versus re-derived Bader metric.
 valid = base[base.Bader_error_resolved_e.notna() & base.Bader_error_fixed_e.notna()].copy()
 frac_gt = float((valid.Bader_error_resolved_e > valid.Bader_error_fixed_e).mean())
 ratio = valid.Bader_error_resolved_e.astype(float) / valid.Bader_error_fixed_e.astype(float)
-add("fixed_vs_resolved", "resolved_greater_than_fixed_fraction", frac_gt, "fraction", n=len(valid), denominator="successful base-ladder rows", source="benchmark/master_benchmark_full.csv")
+add("fixed_vs_resolved", "resolved_greater_than_fixed_fraction", frac_gt, " fraction", n=len(valid), denominator="successful base-ladder rows", source="benchmark/master_benchmark_full.csv")
 add("fixed_vs_resolved", "pooled_median_resolved_over_fixed", float(np.median(ratio)), "x", n=len(valid), denominator="successful base-ladder rows; paired row ratio", source="benchmark/master_benchmark_full.csv")
-
-# Figure 2 compact data: core tolerance summaries plus A1-qualified summaries.
 fixed_core.to_csv(OUT / "fig2_fixed_vs_resolved_core_tolerances.csv", index=False)
 fixed_a1.to_csv(OUT / "fig2_fixed_vs_resolved_A1_qualified.csv", index=False)
 
-# ---------- Bound utilization ----------
+# Bound utilization.
 bu = (
     master.groupby("codec", as_index=False)["realized_Linf_over_nominal"]
     .agg(median="median", q25=lambda s: s.quantile(.25), q75=lambda s: s.quantile(.75), q05=lambda s: s.quantile(.05), q95=lambda s: s.quantile(.95), n="count")
 )
 bu.to_csv(OUT / "fig5_bound_utilization.csv", index=False)
 for _, r in bu.iterrows():
-    add("bound_utilization", f"{str(r.codec).upper()}_median_realized_over_nominal", float(r["median"]), "ratio", n=int(r.n), denominator="all successful master rows for codec", source="benchmark/master_benchmark_full.csv")
+    add("bound_utilization", f"{str(r.codec).upper()}_median_realized_over_nominal", float(r["median"]), " ratio", n=int(r.n), denominator="all successful master rows for codec", source="benchmark/master_benchmark_full.csv")
 
-# ---------- Primary complete-case matched result ----------
+# Conservative complete-case matched result at the central 1e-3 e contract.
 cc_primary = complete[(complete.method == "0.10dex_mutual_nearest") & np.isclose(complete.tau_e, 1e-3)].copy()
 cc_primary.to_csv(OUT / "fig5_complete_case_primary_tau1e-3.csv", index=False)
 for _, r in cc_primary.iterrows():
@@ -69,34 +65,40 @@ for _, r in cc_primary.iterrows():
         "matched_realized_linf_complete_case",
         f"{r.codec_a}_over_{r.codec_b}_tau1e-3_0.10dex",
         float(r.median_qoi_ratio), "x", float(r.ci_lo), float(r.ci_hi), int(r.n_materials),
-        "A1-eligible, complete-case materials, nominal relative tolerance <=0.01",
+        "A1-eligible complete-case materials; nominal relative tolerance <=0.01",
         "analysis_output/complete_case_failure_sensitivity.csv",
     )
 
-# ---------- Mechanism attenuation ----------
+# Complete-case mechanism attenuation.
 atten.to_csv(OUT / "fig3_complete_case_mechanism_attenuation.csv", index=False)
 for _, r in atten.iterrows():
-    codec = str(r.get("codec", ""))
-    model = str(r.get("model", ""))
-    if "multiplicative" in atten.columns:
-        add("mechanism_attenuation", f"{codec}_{model}_multiplier", float(r.multiplicative), "x", float(r.ci_lo) if "ci_lo" in atten.columns else np.nan, float(r.ci_hi) if "ci_hi" in atten.columns else np.nan, int(r.n_rows) if "n_rows" in atten.columns else np.nan, "complete-case A1 tau=1e-3 model", "analysis_output/complete_case_mechanism_attenuation.csv")
+    add(
+        "mechanism_attenuation",
+        f"{str(r.codec)}_{str(r.model)}_codec_multiplier",
+        float(r.effect), "x", float(r.ci_lo), float(r.ci_hi),
+        denominator="complete-case A1 tau=1e-3 model",
+        source="analysis_output/complete_case_mechanism_attenuation.csv",
+    )
+# Reassignment slope is recorded in the complete-case report, generated from the same model set.
+add("mechanism_attenuation", "reassignment_loglog_slope", 0.880, " beta", 0.723, 1.037, denominator="complete-case A1 tau=1e-3 model", source="analysis_output/complete_case_failure_sensitivity.md")
+add("mechanism_attenuation", "reassignment_p_value", 5.78e-28, " p", denominator="complete-case A1 tau=1e-3 model", source="analysis_output/complete_case_failure_sensitivity.md")
 
-# ---------- QoI resolvability ----------
+# QoI resolvability.
 elig.to_csv(OUT / "fig4_resolvability_summary.csv", index=False)
 for tau in [1e-4, 1e-3, 1e-2]:
     r = elig[(np.isclose(elig.threshold_e, tau)) & (elig.stratum == "overall")].iloc[0]
-    add("resolvability", f"non_evaluable_fraction_tau_{tau:g}", float(r.frac_non_evaluable_a1), "fraction", n=int(r.n), denominator="319-system stability corpus", source="stability/eligibility_summary_A1.csv")
+    add("resolvability", f"non_evaluable_fraction_tau_{tau:g}", float(r.frac_non_evaluable_a1), " fraction", n=int(r.n), denominator="319-system stability corpus", source="stability/eligibility_summary_A1.csv")
 
-# Symmetry-aware sensitivity: one known external bulk case is a symmetry-equivalent basin permutation.
+# Symmetry-aware sensitivity: one known external-bulk case is a symmetry-equivalent basin permutation.
 sym_mid = "aflow-Al8Cu4U1_ICSD_601801"
 sym_mask = fails.material_id.astype(str).eq(sym_mid) & fails.category.astype(str).eq("basin_relabelling_symmetry_equivalent")
 assert sym_mask.any(), "Known symmetry-equivalent relabelling registry row not found"
 sa = []
 for tau in [1e-4, 1e-3, 1e-2]:
     r = elig[(np.isclose(elig.threshold_e, tau)) & (elig.stratum == "overall")].iloc[0]
-    # The registered floor is above all three contracts, so removing this one known relabelling case removes one non-evaluable item.
     n2 = int(r.n) - 1
     ne2 = int(r.non_evaluable) - 1
+    f2 = ne2 / n2
     sa.append({
         "threshold_e": tau,
         "primary_n": int(r.n),
@@ -104,19 +106,20 @@ for tau in [1e-4, 1e-3, 1e-2]:
         "primary_frac_non_evaluable": float(r.frac_non_evaluable_a1),
         "symmetry_aware_n": n2,
         "symmetry_aware_non_evaluable": ne2,
-        "symmetry_aware_frac_non_evaluable": ne2 / n2,
-        "absolute_fraction_change": ne2 / n2 - float(r.frac_non_evaluable_a1),
+        "symmetry_aware_frac_non_evaluable": f2,
+        "absolute_fraction_change": f2 - float(r.frac_non_evaluable_a1),
     })
+    add("symmetry_sensitivity", f"symmetry_aware_non_evaluable_fraction_tau_{tau:g}", f2, " fraction", n=n2, denominator="stability corpus after removing known symmetry-equivalent relabelling case", source="paper_data_v03/fig4_symmetry_aware_resolvability_sensitivity.csv")
 pd.DataFrame(sa).to_csv(OUT / "fig4_symmetry_aware_resolvability_sensitivity.csv", index=False)
 
-# ---------- Certified compression frontier ----------
+# Certified compression frontier.
 best["codec"] = best.codec.astype(str).str.upper()
 front = []
 for (tau, domain, codec), g in best.groupby(["threshold_e", "domain", "codec"], dropna=False):
     cert = g[g.status.astype(str).eq("CERTIFIED")]
     noncert = g[~g.status.astype(str).eq("CERTIFIED")]
     ratios = cert.ratio.dropna().astype(float)
-    front.append({
+    row = {
         "threshold_e": tau,
         "domain": domain,
         "codec": codec,
@@ -127,15 +130,17 @@ for (tau, domain, codec), g in best.groupby(["threshold_e", "domain", "codec"], 
         "median_best_certified_ratio": float(ratios.median()) if len(ratios) else np.nan,
         "q25_best_certified_ratio": float(ratios.quantile(.25)) if len(ratios) else np.nan,
         "q75_best_certified_ratio": float(ratios.quantile(.75)) if len(ratios) else np.nan,
-    })
+    }
+    front.append(row)
+    add("certified_frontier", f"{codec}_{domain}_tau_{tau:g}_median_best_ratio", row["median_best_certified_ratio"], "x", n=len(g), denominator="Protocol-A1 admitted best-certified table", source="benchmark/best_certified_a1.csv")
+    add("certified_frontier", f"{codec}_{domain}_tau_{tau:g}_coverage", row["certification_fraction_among_rows"], " fraction", n=len(g), denominator="Protocol-A1 admitted best-certified table", source="benchmark/best_certified_a1.csv")
 front = pd.DataFrame(front).sort_values(["threshold_e", "domain", "codec"])
 front.to_csv(OUT / "fig6_certified_compression_frontier.csv", index=False)
 
-# ---------- Headline registry ----------
+# Headline registry.
 reg = pd.DataFrame(rows)
 reg.to_csv(OUT / "HEADLINE_NUMBER_REGISTRY_v03.csv", index=False)
 
-# Human-readable mirror.
 lines = [
     "# Headline number registry v0.3",
     "",
