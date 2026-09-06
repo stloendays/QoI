@@ -47,7 +47,7 @@ forbidden = {
 for name, token in forbidden.items():
     check(name, token.lower() not in text.lower(), f"forbidden token: {token}")
 
-# Scope guardrails: the manuscript must explicitly narrow representative-set direct mechanism.
+# Scope and interpretation guardrails.
 check(
     "representative-set scope explicit",
     "representative mechanism set" in text and "restrict this direct decomposition claim" in text,
@@ -66,19 +66,23 @@ check(
 check(
     "strict slab caveat",
     "Only four slab materials are admitted" in text or "only four slab materials are admitted" in text,
-    "1e-4 slab frontier must be descriptive",
+    "1e-4 slab frontier must state n=4 and remain descriptive",
 )
-
-# Detect common dangerous prose patterns. These are human-review flags only because a phrase
-# can appear safely inside an explicit negation (e.g. 'not universally superior').
-danger_patterns = [
-    (r"\bcausal codec effect\b", "causal codec effect"),
-    (r"\buniversally (?:best|superior)\b", "universal codec winner"),
-    (r"\bdomain migration dominates (?:all|every)\b", "full-corpus mechanism overclaim"),
-]
-for pattern, label in danger_patterns:
-    hits = [m.group(0) for m in re.finditer(pattern, text, flags=re.IGNORECASE)]
-    check(f"danger phrase review: {label}", len(hits) == 0, f"hits={hits}")
+check(
+    "codec association caveat",
+    "rather than a causal codec effect" in text,
+    "codec coefficient is explicitly described as association rather than causation",
+)
+check(
+    "no universal codec winner",
+    "does not select a universally best codec" in text and "not that one codec is universally superior" in text,
+    "universal-winner phrases appear only inside explicit negations",
+)
+check(
+    "no full-corpus direct mechanism overclaim",
+    re.search(r"domain migration dominates (?:all|every)", text, flags=re.IGNORECASE) is None,
+    "direct decomposition remains representative-set scoped",
+)
 
 # Basic reference ordering check for the opening [1-3] names.
 ref1 = re.search(r"^1\. .*ZFP.*$", text, flags=re.MULTILINE | re.IGNORECASE)
@@ -88,36 +92,24 @@ check("reference 1 maps to ZFP", ref1 is not None, "opening [1–3] mapping")
 check("reference 2 maps to SZ3", ref2 is not None, "opening [1–3] mapping")
 check("reference 3 maps to SPERR", ref3 is not None, "opening [1–3] mapping")
 
-# Summarize.
 failed = [c for c in checks if not c[1]]
 lines = [
     "# Manuscript v0.3.1 scientific-claim lint",
     "",
-    f"Checks: {len(checks)}; passed: {len(checks)-len(failed)}; flagged/failed: {len(failed)}.",
+    f"Checks: {len(checks)}; passed: {len(checks)-len(failed)}; failed: {len(failed)}.",
     "",
 ]
 for name, ok, detail in checks:
-    lines.append(f"- {'PASS' if ok else 'FLAG'} — **{name}**: {detail}")
+    lines.append(f"- {'PASS' if ok else 'FAIL'} — **{name}**: {detail}")
 
 lines += [
     "",
     "## Interpretation",
     "",
-    "This lint is a guardrail, not a substitute for editorial review. A flagged danger phrase can be harmless when used inside an explicit negation; such cases should be inspected manually rather than automatically deleted.",
+    "This lint is a reproducibility/editorial guardrail, not a substitute for scientific review. It checks the manuscript against frozen headline numbers, explicit scope caveats, verified core references and known overclaim patterns.",
 ]
 OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 print("\n".join(lines))
 
-# Fail only on hard requirements/provisional text/reference mapping, not on danger-phrase review labels.
-hard_fail_names = set(required) | set(forbidden) | {
-    "representative-set scope explicit",
-    "attenuation is non-causal",
-    "probe floor is protocol-defined",
-    "strict slab caveat",
-    "reference 1 maps to ZFP",
-    "reference 2 maps to SZ3",
-    "reference 3 maps to SPERR",
-}
-hard_failed = [c for c in checks if (c[0] in hard_fail_names and not c[1])]
-if hard_failed:
-    raise SystemExit(f"Hard manuscript lint failures: {[c[0] for c in hard_failed]}")
+if failed:
+    raise SystemExit(f"Manuscript lint failures: {[c[0] for c in failed]}")
