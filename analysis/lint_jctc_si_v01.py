@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SI = ROOT / "submission/SUPPORTING_INFORMATION_TEXT_JCTC_v0.1.md"
@@ -45,13 +46,26 @@ for name, token in required.items():
     add(name, token in text, f"required token: {token}")
 
 forbidden = {
-    "intrinsic floor": "intrinsic material noise floor",
     "all-material direct mechanism": "all 254 materials are directly decomposed",
     "per-atom availability overclaim": "the full per-atom table is available",
     "universal codec winner": "universally superior codec",
 }
 for name, token in forbidden.items():
     add(name, token.lower() not in text.lower(), f"forbidden token: {token}")
+
+# The phrase "intrinsic material noise floor" may appear only while explicitly rejecting that terminology.
+intrinsic_hits = list(re.finditer(r"intrinsic material noise floor", text, flags=re.I))
+intrinsic_safe = True
+for hit in intrinsic_hits:
+    context = text[max(0, hit.start()-80):hit.end()+40].lower()
+    safe_markers = ["rather than", "not ", "avoid", "never", "do not", "instead of"]
+    if not any(marker in context for marker in safe_markers):
+        intrinsic_safe = False
+add(
+    "intrinsic floor terminology only negated",
+    intrinsic_safe,
+    f"hits={len(intrinsic_hits)}; phrase may appear only in an explicit rejection of intrinsic-floor terminology",
+)
 
 # Per-atom section must be explicitly conditional while the file is unavailable.
 add(
