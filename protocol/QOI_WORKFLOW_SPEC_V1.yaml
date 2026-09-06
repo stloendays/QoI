@@ -157,18 +157,36 @@ frozen_sampling_policy:
 
 external_validation:
   corpus_manifest: external_test_MANIFEST.json
-  expected_systems: 65
-  strata:
-    AFLOW_bulk: 37
-    NOMAD_2D: 28
-  frozen_preflight_invariants:
-    expected_external_systems: 65
-    expected_AFLOW_bulk: 37
-    expected_NOMAD_2D: 28
+  analysis_plan: protocol/EXTERNAL_RATE_FIDELITY_ANALYSIS_PLAN.md
+  rate_fidelity_split: validation/external_rate_fidelity_split.json
+  descriptive_full_corpus:
+    n: 65
+    strata:
+      AFLOW_bulk: 37
+      NOMAD_2D: 28
     eligible_A1_counts:
       0.0001: 18
       0.001: 44
       0.01: 59
+    role: full_row_release_and_descriptive_rate_fidelity_summary
+  implementation_sentinels:
+    n: 2
+    material_ids:
+      - aflow-Ni1_ICSD_181716
+      - nomad2d-0XHkHlmw3DQ_
+    reason: rate_fidelity_outputs_inspected_during_harness_validation
+  primary_confirmatory_cohort:
+    n: 63
+    strata:
+      AFLOW_bulk: 36
+      NOMAD_2D: 27
+    eligible_A1_counts:
+      0.0001: 16
+      0.001: 42
+      0.01: 57
+    definition: frozen_65_minus_two_implementation_sentinels
+    selection_after_outcome_inspection: forbidden
+  frozen_preflight_invariants:
     development_master_rows: 6343
     development_base_rows: 4627
     development_tight_rows: 1716
@@ -176,15 +194,17 @@ external_validation:
     development_tight_materials: 143
   execution:
     preflight:
-      role: frozen_input_and_sampling_policy_integrity_check
+      role: frozen_input_sampling_and_confirmatory_split_integrity_check
     smoke:
-      role: regression_and_protocol_closure
+      role: regression_parser_and_protocol_closure
     frozen_pilot:
-      role: full_ladder_two_stratum_check
+      role: full_ladder_two_sentinel_implementation_check
     full:
-      role: untouched_end_to_end_external_rate_fidelity_validation
+      role: run_all_65_then_build_primary_confirmatory_63_summary
       sharding: 8
-  aggregate_outputs:
+  all65_output_dir: formal_external_all65
+  confirmatory63_output_dir: formal_external_confirmatory63
+  aggregate_outputs_per_analysis_set:
     - formal_external_e2e_rows.csv
     - material_audit.csv
     - formal_external_e2e_failures.csv
@@ -201,6 +221,7 @@ reproducibility_record:
     - stability_floor_sha256
     - protocol_A1_sha256
     - master_benchmark_sha256
+    - rate_fidelity_split_sha256
   software_versions_required:
     - python
     - numpy
@@ -214,8 +235,10 @@ claim_guardrails:
   permitted_before_full_external_success:
     - empirically_stress_tested_workflow
     - externally_validated_stability_qualification
-  permitted_after_full_external_success:
-    - end_to_end_external_rate_fidelity_evaluation_on_frozen_65_system_corpus
-  avoid_without_broader_qoi_evidence:
+  permitted_after_confirmatory_external_success:
+    - end_to_end_rate_fidelity_evaluation_on_prespecified_63_system_confirmatory_cohort
+    - complete_65_system_external_row_release_with_two_implementation_sentinels_flagged
+  prohibited_wording:
+    - all_65_were_untouched_rate_fidelity_confirmation_data
     - universal_standard
     - universally_validated_workflow
