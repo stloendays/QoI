@@ -22,20 +22,22 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install dependencies
-        run: python -m pip install --disable-pip-version-check pandas numpy matplotlib
+        run: python -m pip install --disable-pip-version-check pandas numpy matplotlib statsmodels tabulate
       - name: Generate headline registry and figure data
         run: python analysis/paper_freeze_v03.py | tee paper_freeze_v03_stdout.txt
+      - name: Run global-conservation negative control
+        run: python analysis/global_conservation_negative_control.py | tee global_conservation_negative_control_stdout.txt
       - name: Generate numeric main-figure drafts
         run: python analysis/make_numeric_figures_v03.py | tee figures_v03_stdout.txt
       - name: Commit generated outputs
         run: |
           git config user.name 'chatgpt-analysis-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add paper_data_v03 figures_v03 paper_freeze_v03_stdout.txt figures_v03_stdout.txt
+          git add paper_data_v03 figures_v03 paper_freeze_v03_stdout.txt global_conservation_negative_control_stdout.txt figures_v03_stdout.txt
           if git diff --cached --quiet; then
             echo 'No output changes.'
           else
-            git commit -m 'Generate paper freeze v0.3 registry and numeric figure drafts'
+            git commit -m 'Generate paper freeze v0.3 registry, negative control and figures'
             git pull --rebase origin analysis/paper-freeze-v03-20260906
             git push origin HEAD:analysis/paper-freeze-v03-20260906
           fi
