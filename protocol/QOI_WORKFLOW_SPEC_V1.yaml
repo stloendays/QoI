@@ -22,6 +22,7 @@ stages:
       - parser_provenance
       - finite_source_values
     failure_verdict: PIPELINE_FAILURE
+    failure_granularity: material
 
   - id: input_quality_diagnostics
     purpose: record source-field conditions without attributing them to the codec
@@ -90,14 +91,49 @@ stages:
       - NON_EVALUABLE_BADER_UNSTABLE
       - PIPELINE_FAILURE
 
+  - id: failure_accounting
+    material_level:
+      examples:
+        - provenance_failure
+        - parser_failure
+        - original_grid_audit_failure
+        - original_bader_failure
+      effect: hard_validation_failure
+      registry: formal_external_e2e_failures.csv
+    row_level:
+      unit: material_x_codec_x_tolerance
+      examples:
+        - codec_failure
+        - reconstructed_grid_audit_failure
+        - bader_solver_failure
+        - topology_diagnostic_failure
+      effect: >-
+        failed row is not a pass and is not present in the successful rate-fidelity
+        table; successful rows for the same material remain valid
+      hard_fail_shard: false
+      registry: formal_external_e2e_row_failures.csv
+      schema_compatible_with: failure_registry.csv
+
   - id: rate_fidelity
     primary_metric:
       name: Certified_Compression_Ratio
       abbreviation: CCR
+      relationship_to_release: formal_name_for_existing_best_certified_ratio
       definition: >-
         For material i, codec c and scientific tolerance tau, CCR is the maximum
         compression_ratio among retained codec settings certified at tau.
-    paired_comparison_unit: material
+    inferential_unit: material
+    summary:
+      - certification_fraction_among_admitted_materials
+      - median_CCR
+      - deterministic_bootstrap_95pct_CI
+      - CCR_quantiles
+    paired_comparison:
+      unit: material
+      no_CCR_semantics:
+        one_codec_has_CCR: codec_with_CCR_wins
+        neither_codec_has_CCR: tie
+      effect_size: median_log2_CCR_ratio_where_both_CCR_exist
 
 frozen_sampling_policy:
   development_reference_table: benchmark/master_benchmark_full.csv
@@ -109,6 +145,7 @@ frozen_sampling_policy:
       metric: Bader_error_resolved_e
       threshold_e: 0.05
       retain_boundary_row: true
+      failed_row_triggers_stop: false
   tight_ladder:
     relative_tolerance_lt: 1.0e-5
     applies_if: stability_floor_A1_e < 0.001
@@ -116,6 +153,7 @@ frozen_sampling_policy:
     tuning_after_manifest_freeze: forbidden
     tolerance_values_source: frozen_development_master_table
     material_failures: retained_as_PIPELINE_FAILURE
+    row_failures: retained_and_not_counted_as_passes
 
 external_validation:
   corpus_manifest: external_test_MANIFEST.json
@@ -123,7 +161,22 @@ external_validation:
   strata:
     AFLOW_bulk: 37
     NOMAD_2D: 28
+  frozen_preflight_invariants:
+    expected_external_systems: 65
+    expected_AFLOW_bulk: 37
+    expected_NOMAD_2D: 28
+    eligible_A1_counts:
+      0.0001: 18
+      0.001: 44
+      0.01: 59
+    development_master_rows: 6343
+    development_base_rows: 4627
+    development_tight_rows: 1716
+    development_materials: 254
+    development_tight_materials: 143
   execution:
+    preflight:
+      role: frozen_input_and_sampling_policy_integrity_check
     smoke:
       role: regression_and_protocol_closure
     frozen_pilot:
@@ -135,7 +188,10 @@ external_validation:
     - formal_external_e2e_rows.csv
     - material_audit.csv
     - formal_external_e2e_failures.csv
+    - formal_external_e2e_row_failures.csv
     - best_certified_external.csv
+    - external_summary_a1.csv
+    - pairwise_external.csv
     - external_codec_summary.csv
     - summary.json
 
