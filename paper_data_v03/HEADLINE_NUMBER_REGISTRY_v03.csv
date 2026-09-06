@@ -1,0 +1,15 @@
+section,metric,value,unit,ci_lo,ci_hi,n,denominator,source
+scope,successful_master_rows,6343.0,rows,,,6343,successful reconstructions,benchmark/master_benchmark_full.csv
+scope,development_materials,254.0,materials,,,254,development benchmark,benchmark/master_benchmark_full.csv
+scope,base_ladder_rows,4627.0,rows,,,4627,successful base-ladder reconstructions,benchmark/master_benchmark_full.csv
+scope,registered_exceptions,77.0,rows,,,77,failure registry,failure_registry.csv
+fixed_vs_resolved,resolved_greater_than_fixed_fraction,0.9969742813918305,fraction,,,4627,successful base-ladder rows,benchmark/master_benchmark_full.csv
+fixed_vs_resolved,pooled_median_resolved_over_fixed,52.80413907491485,x,,,4627,successful base-ladder rows; paired row ratio,benchmark/master_benchmark_full.csv
+bound_utilization,SPERR_median_realized_over_nominal,0.9999867524002072,ratio,,,1956,all successful master rows for codec,benchmark/master_benchmark_full.csv
+bound_utilization,SZ3_median_realized_over_nominal,0.9999987770000592,ratio,,,1937,all successful master rows for codec,benchmark/master_benchmark_full.csv
+bound_utilization,ZFP_median_realized_over_nominal,0.15752052367433345,ratio,,,2450,all successful master rows for codec,benchmark/master_benchmark_full.csv
+matched_realized_linf_complete_case,SZ3_over_ZFP_tau1e-3_0.10dex,1.8177277571028227,x,1.6751294441600808,2.0135778973104457,119,"A1-eligible, complete-case materials, nominal relative tolerance <=0.01",analysis_output/complete_case_failure_sensitivity.csv
+matched_realized_linf_complete_case,SPERR_over_ZFP_tau1e-3_0.10dex,2.002337939302898,x,1.7911904668550096,2.2504140567850213,115,"A1-eligible, complete-case materials, nominal relative tolerance <=0.01",analysis_output/complete_case_failure_sensitivity.csv
+resolvability,non_evaluable_fraction_tau_0.0001,0.7994,fraction,,,319,319-system stability corpus,stability/eligibility_summary_A1.csv
+resolvability,non_evaluable_fraction_tau_0.001,0.4138,fraction,,,319,319-system stability corpus,stability/eligibility_summary_A1.csv
+resolvability,non_evaluable_fraction_tau_0.01,0.0972,fraction,,,319,319-system stability corpus,stability/eligibility_summary_A1.csv
