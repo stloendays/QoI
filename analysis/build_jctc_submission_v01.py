@@ -91,6 +91,33 @@ if old_avail not in text:
     raise RuntimeError("Expected data/code availability paragraph not found")
 text = text.replace(old_avail, new_avail, 1)
 
+# Upgrade 2026 related-work bibliography records that now have final/accepted metadata.
+old_ref8 = "8. Li, Y. et al. pMSz: A Distributed Parallel Algorithm for Correcting Morse-Smale Segmentations for Lossy Compression. *IPDPS* (2026)."
+new_ref8 = (
+    "8. Li, Y.; Xia, M.; Liang, X.; Wang, B.; Underwood, R.; Di, S.; Sharma, H.; Beniwal, D.; Cappello, F.; Guo, H. "
+    "pMSz: A Distributed Parallel Algorithm for Correcting Extrema and Morse-Smale Segmentations in Lossy Compression. "
+    "In *2026 IEEE International Parallel and Distributed Processing Symposium (IPDPS)* (2026). DOI: 10.1109/IPDPS65963.2026.00025."
+)
+old_ref10 = "10. Liu, Y. et al. TOPIQ: Statistical Error Propagation for Quantity-of-Interest Prediction under Lossy Compression. *SC 2026*, accepted; arXiv:2608.26912 (2026)."
+new_ref10 = (
+    "10. Liu, Y.; Jiang, B.; Yang, T.; Di, S.; Underwood, R.; Jin, S. TOPIQ: Statistical Error Propagation for Quantity-of-Interest Prediction under Lossy Compression. "
+    "Accepted at *SC 2026*; arXiv:2608.26912 (2026). DOI: 10.48550/arXiv.2608.26912."
+)
+old_ref11 = "11. Liu, G. et al. FZ-VIS: A Visual Analytics Framework for Quantities-of-Interest-Aware Scientific Lossy Compression. *IEEE VIS / IEEE TVCG*, accepted (2026); arXiv:2608.08386."
+new_ref11 = (
+    "11. Liu, G.; Li, Y.; Ren, C.; Underwood, R.; Liang, X.; Wang, B.; Di, S.; Cappello, F.; Guo, H. "
+    "FZ-VIS: A Visual Analytics Framework for Quantities-of-Interest-Aware Scientific Lossy Compression. "
+    "Accepted at *IEEE VIS 2026 / IEEE Trans. Vis. Comput. Graph.*; arXiv:2608.08386 (2026). DOI: 10.48550/arXiv.2608.08386."
+)
+for old, new, label in [
+    (old_ref8, new_ref8, "pMSz"),
+    (old_ref10, new_ref10, "TOPIQ"),
+    (old_ref11, new_ref11, "FZ-VIS"),
+]:
+    if old not in text:
+        raise RuntimeError(f"Expected {label} reference not found")
+    text = text.replace(old, new, 1)
+
 # Add the recent JCTC electron-density integration paper as reference 15.
 ref15 = (
     "15. Gong, J.; Zhao, Z.; Tang, B. Z. Bridging Machine Learning and Electron Density Theory with Adaptive Real-Space Integration. "
@@ -117,6 +144,9 @@ required = [
     "2.00-fold",
     "41.4%",
     "10.1021/acs.jctc.6c01124",
+    "10.1109/IPDPS65963.2026.00025",
+    "10.48550/arXiv.2608.26912",
+    "10.48550/arXiv.2608.08386",
     "field-dependent analysis",
     "## Data and Software Availability",
     "[15]",
