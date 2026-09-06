@@ -44,6 +44,19 @@ if disc_anchor not in text:
     raise RuntimeError("Discussion insertion anchor not found")
 text = text.replace(disc_anchor, disc_insert, 1)
 
+# Make the very small strict-slab stratum explicit rather than saying only that it is 'small'.
+slab_old = (
+    "At \\(10^{-4}\\) e, ZFP leads the bulk ratio at 7.6x compared with 6.3x for SZ3 and 4.2x for SPERR. "
+    "The slab sample at this strictest contract is small and is therefore treated descriptively."
+)
+slab_new = (
+    "At \\(10^{-4}\\) e, ZFP leads the bulk ratio at 7.6x compared with 6.3x for SZ3 and 4.2x for SPERR. "
+    "Only four slab materials are admitted at this strictest contract, so the slab frontier is treated descriptively rather than as a population-level ranking."
+)
+if slab_old not in text:
+    raise RuntimeError("Strict-slab wording anchor not found")
+text = text.replace(slab_old, slab_new, 1)
+
 # Replace the provisional SZ3/SPERR references. v0.3 reference 2 was an older SZ-family paper;
 # keep that historical paper out of the opening [1–3] method citation and use the SZ3 paper instead.
 old_ref2 = (
@@ -84,6 +97,7 @@ for forbidden in [
 # Ensure critical new evidence appears exactly once in the integrated draft.
 assert "2.34 to 2.58" in text
 assert "p=5.25×10^-28" in text
+assert "Only four slab materials are admitted" in text
 assert "10.1109/TBDATA.2022.3201176" in text
 assert "10.1109/IPDPS54959.2023.00104" in text
 
