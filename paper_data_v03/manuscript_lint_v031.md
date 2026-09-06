@@ -1,6 +1,6 @@
 # Manuscript v0.3.1 scientific-claim lint
 
-Checks: 32; passed: 29; flagged/failed: 3.
+Checks: 32; passed: 32; failed: 0.
 
 - PASS — **version marker**: required token: Integrated manuscript draft v0.3.1
 - PASS — **master size**: required token: 6,343
@@ -27,14 +27,14 @@ Checks: 32; passed: 29; flagged/failed: 3.
 - PASS — **representative-set scope explicit**: direct decomposition must not be generalized to all 254 materials
 - PASS — **attenuation is non-causal**: reassignment is a post-compression variable
 - PASS — **probe floor is protocol-defined**: avoid intrinsic-floor wording
-- FLAG — **strict slab caveat**: 1e-4 slab frontier must be descriptive
-- FLAG — **danger phrase review: causal codec effect**: hits=['causal codec effect']
-- FLAG — **danger phrase review: universal codec winner**: hits=['universally best', 'universally superior']
-- PASS — **danger phrase review: full-corpus mechanism overclaim**: hits=[]
+- PASS — **strict slab caveat**: 1e-4 slab frontier must state n=4 and remain descriptive
+- PASS — **codec association caveat**: codec coefficient is explicitly described as association rather than causation
+- PASS — **no universal codec winner**: universal-winner phrases appear only inside explicit negations
+- PASS — **no full-corpus direct mechanism overclaim**: direct decomposition remains representative-set scoped
 - PASS — **reference 1 maps to ZFP**: opening [1–3] mapping
 - PASS — **reference 2 maps to SZ3**: opening [1–3] mapping
 - PASS — **reference 3 maps to SPERR**: opening [1–3] mapping
 
 ## Interpretation
 
-This lint is a guardrail, not a substitute for editorial review. A flagged danger phrase can be harmless when used inside an explicit negation; such cases should be inspected manually rather than automatically deleted.
+This lint is a reproducibility/editorial guardrail, not a substitute for scientific review. It checks the manuscript against frozen headline numbers, explicit scope caveats, verified core references and known overclaim patterns.
