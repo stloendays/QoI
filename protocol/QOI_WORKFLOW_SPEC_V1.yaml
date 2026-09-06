@@ -1,0 +1,165 @@
+workflow_spec_version: 1
+name: QoI-qualified scientific data approximation workflow
+status: draft-framework
+case_study:
+  scientific_field: electronic_charge_density
+  downstream_qoi: atom_resolved_Bader_charge
+  qoi_unit: electron
+
+principle:
+  statement: >-
+    Approximation quality is certified against a downstream scientific quantity
+    only after that quantity is shown to be numerically stable at the requested
+    scientific tolerance.
+
+stages:
+  - id: provenance_gate
+    purpose: verify source identity and parser provenance
+    required_checks:
+      - source_sha256
+      - source_byte_count
+      - grid_shape_against_manifest
+      - parser_provenance
+      - finite_source_values
+    failure_verdict: PIPELINE_FAILURE
+
+  - id: input_quality_diagnostics
+    purpose: record source-field conditions without attributing them to the codec
+    diagnostics:
+      - source_density_min
+      - source_density_max
+      - source_has_negative_density
+      - bader_solver_warnings
+    effect_on_codec_verdict: none_by_default
+
+  - id: intrinsic_qoi_stability
+    protocol: Protocol_A1
+    perturbation:
+      distribution: uniform
+      amplitude: material_float32_roundtrip_Linf
+      seeds: [20260905, 1, 2, 3, 4]
+      aggregation: max_over_seeds_and_atoms
+    bader:
+      implementation: baderkit
+      method: ongrid
+      basins_rederived: true
+    thresholds_e: [0.0001, 0.001, 0.01]
+
+  - id: eligibility
+    rule: stability_floor_A1_e < tau_e
+    ineligible_verdict: NON_EVALUABLE_BADER_UNSTABLE
+    semantics: neither_pass_nor_fail
+
+  - id: algorithm_perturbation
+    codecs:
+      ZFP:
+        mode: fixed_accuracy
+      SZ3:
+        mode: ABS_INTERP_LORENZO
+      SPERR:
+        mode: absolute_single_chunk
+    required_audits:
+      - nominal_tolerance_relative
+      - nominal_tolerance_absolute
+      - realized_Linf
+      - realized_Linf_over_nominal
+      - bound_respected
+      - compression_ratio
+      - bits_per_value
+
+  - id: qoi_re_evaluation
+    diagnostics:
+      fixed_basin:
+        description: integrate reconstructed field over original atom domains
+        metric: Bader_error_fixed_e
+        role: mechanism_diagnostic_not_headline_contract
+      resolved_basin:
+        description: recompute Bader basins from reconstructed field
+        metric: Bader_error_resolved_e
+        role: certification_contract
+    topology_diagnostics:
+      - atom_domain_migration_fraction
+      - vacuum_mask_change_fraction
+      - bader_maxima_count_changed
+
+  - id: certification
+    rule: eligible_A1_at_tau AND Bader_error_resolved_e < tau_e
+    verdicts:
+      - CERTIFIED
+      - NOT_CERTIFIED
+      - NON_EVALUABLE_BADER_UNSTABLE
+      - PIPELINE_FAILURE
+
+  - id: rate_fidelity
+    primary_metric:
+      name: Certified_Compression_Ratio
+      abbreviation: CCR
+      definition: >-
+        For material i, codec c and scientific tolerance tau, CCR is the maximum
+        compression_ratio among retained codec settings certified at tau.
+    paired_comparison_unit: material
+
+frozen_sampling_policy:
+  development_reference_table: benchmark/master_benchmark_full.csv
+  base_ladder:
+    applies_to: all_materials
+    lower_relative_boundary: 1.0e-5
+    direction: tight_to_loose
+    early_stop:
+      metric: Bader_error_resolved_e
+      threshold_e: 0.05
+      retain_boundary_row: true
+  tight_ladder:
+    relative_tolerance_lt: 1.0e-5
+    applies_if: stability_floor_A1_e < 0.001
+  external_policy:
+    tuning_after_manifest_freeze: forbidden
+    tolerance_values_source: frozen_development_master_table
+    material_failures: retained_as_PIPELINE_FAILURE
+
+external_validation:
+  corpus_manifest: external_test_MANIFEST.json
+  expected_systems: 65
+  strata:
+    AFLOW_bulk: 37
+    NOMAD_2D: 28
+  execution:
+    smoke:
+      role: regression_and_protocol_closure
+    frozen_pilot:
+      role: full_ladder_two_stratum_check
+    full:
+      role: untouched_end_to_end_external_rate_fidelity_validation
+      sharding: 8
+  aggregate_outputs:
+    - formal_external_e2e_rows.csv
+    - material_audit.csv
+    - formal_external_e2e_failures.csv
+    - best_certified_external.csv
+    - external_codec_summary.csv
+    - summary.json
+
+reproducibility_record:
+  hashes_required:
+    - external_manifest_sha256
+    - stability_floor_sha256
+    - protocol_A1_sha256
+    - master_benchmark_sha256
+  software_versions_required:
+    - python
+    - numpy
+    - baderkit
+    - pysz
+    - zfpy
+    - hdf5plugin
+    - h5py
+
+claim_guardrails:
+  permitted_before_full_external_success:
+    - empirically_stress_tested_workflow
+    - externally_validated_stability_qualification
+  permitted_after_full_external_success:
+    - end_to_end_external_rate_fidelity_evaluation_on_frozen_65_system_corpus
+  avoid_without_broader_qoi_evidence:
+    - universal_standard
+    - universally_validated_workflow
