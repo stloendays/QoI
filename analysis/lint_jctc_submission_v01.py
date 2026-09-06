@@ -31,11 +31,19 @@ forbidden = {
     "internal branch note": "branch-only draft",
     "pending-file note": "until `mechanism/basin_error_decomposition_per_atom.csv` is committed",
     "generic first claim": "first to show that pointwise",
-    "universal winner": "one codec is universally superior",
     "causal mediation overclaim": "formal causal mediation demonstrates",
 }
 for name, token in forbidden.items():
     add(name, token.lower() not in text.lower(), f"forbidden token: {token}")
+
+# Universal-winner wording is acceptable only as an explicit negation/caveat.
+winner_hits = [m.start() for m in re.finditer(r"one codec is universally superior", text, flags=re.I)]
+winner_ok = True
+for pos in winner_hits:
+    context = text[max(0, pos-45):pos+60].lower()
+    if "not that one codec is universally superior" not in context and "not one codec is universally superior" not in context:
+        winner_ok = False
+add("no universal codec winner", winner_ok, f"hits={len(winner_hits)}; all must be explicitly negated")
 
 m = re.search(r"## Abstract\n(.*?)\n## Introduction", text, flags=re.S)
 abstract = m.group(1).strip() if m else ""
