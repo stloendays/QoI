@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/external-e2e-preflight.yml'
       - 'validation/preflight_formal_external.py'
+      - 'validation/preflight_confirmatory_split.py'
+      - 'validation/external_rate_fidelity_split.json'
       - 'validation/aggregate_formal_external.py'
       - 'validation/test_aggregate_semantics.py'
       - 'external_test_MANIFEST.json'
@@ -23,7 +25,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify frozen external benchmark invariants
+      - name: Verify frozen 65-system benchmark invariants
         run: python validation/preflight_formal_external.py
+      - name: Verify frozen confirmatory 65/2/63 split
+        run: python validation/preflight_confirmatory_split.py
       - name: Verify material-level aggregation semantics
         run: python validation/test_aggregate_semantics.py
