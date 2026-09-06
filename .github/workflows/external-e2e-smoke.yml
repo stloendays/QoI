@@ -61,12 +61,12 @@ jobs:
             --relative-tolerances 1e-5 \
             --output-dir validation/results/aflow_single
 
-      - name: Run AFLOW multi-species parser-only smoke
+      - name: Run fractional-formula AFLOW parser-only smoke
         if: success()
         run: |
           python validation/aflow_parser_smoke.py \
-            --material-id aflow-Al1C1Ta2_ICSD_606258 \
-            | tee validation/results/aflow_multi_parser.json
+            --material-id aflow-B0.667N0.667_ICSD_162872 \
+            | tee validation/results/aflow_fractional_parser.json
 
       - name: Upload validation outputs
         if: always()
