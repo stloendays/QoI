@@ -101,6 +101,27 @@ jobs:
             --aggregate-dir validation/formal_external_all65 \
             --output-dir validation/formal_external_confirmatory63
 
+      - name: Print headline aggregate outputs
+        if: always()
+        run: |
+          echo '=== ALL65 SUMMARY ==='
+          cat validation/formal_external_all65/summary.json || true
+          echo
+          echo '=== CONFIRMATORY63 METADATA ==='
+          cat validation/formal_external_confirmatory63/confirmatory_metadata.json || true
+          echo
+          echo '=== CONFIRMATORY63 SUMMARY ==='
+          cat validation/formal_external_confirmatory63/summary.json || true
+          echo
+          echo '=== CONFIRMATORY63 EXTERNAL_SUMMARY_A1 ==='
+          cat validation/formal_external_confirmatory63/external_summary_a1.csv || true
+          echo
+          echo '=== CONFIRMATORY63 PAIRWISE ==='
+          cat validation/formal_external_confirmatory63/pairwise_external.csv || true
+          echo
+          echo '=== ALL65 EXTERNAL_SUMMARY_A1 ==='
+          cat validation/formal_external_all65/external_summary_a1.csv || true
+
       - name: Enforce aggregate validation status
         if: always()
         run: |
