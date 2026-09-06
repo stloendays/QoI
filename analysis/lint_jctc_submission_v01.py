@@ -23,6 +23,9 @@ required = {
     "resolvability result": "41.4%",
     "MARGR DOI": "10.1021/acs.jctc.6c01124",
     "MARGR citation number": "[15]",
+    "pMSz DOI": "10.1109/IPDPS65963.2026.00025",
+    "TOPIQ arXiv DOI": "10.48550/arXiv.2608.26912",
+    "FZ-VIS arXiv DOI": "10.48550/arXiv.2608.08386",
     "chemistry framing": "field-dependent analysis",
     "data/software heading": "## Data and Software Availability",
     "repository URL": "https://github.com/stloendays/QoI",
@@ -36,6 +39,7 @@ forbidden = {
     "generic first claim": "first to show that pointwise",
     "causal mediation overclaim": "formal causal mediation demonstrates",
     "deprecated availability heading": "## Data and code availability",
+    "old pMSz short title": "pMSz: A Distributed Parallel Algorithm for Correcting Morse-Smale Segmentations for Lossy Compression. *IPDPS*",
 }
 for name, token in forbidden.items():
     add(name, token.lower() not in text.lower(), f"forbidden token: {token}")
@@ -68,7 +72,7 @@ add("non-evaluable semantics", "NON_EVALUABLE_BADER_UNSTABLE" in text, "unstable
 add("protocol-defined floor", "Protocol-A.1 numerical stability floor" in text, "stability floor remains protocol-defined")
 add("association not causation", "association rather than a causal codec effect" in text, "codec coefficient remains associative")
 
-# Reference integrity: numbering must be unique and contiguous, and the MARGR paper must be number 15.
+# Reference integrity: numbering must be unique and contiguous, and MARGR must be number 15.
 ref_match = re.search(r"## References\n(.*)$", text, flags=re.S)
 ref_text = ref_match.group(1) if ref_match else ""
 ref_numbers = [int(x) for x in re.findall(r"(?m)^(\d+)\.\s", ref_text)]
@@ -85,12 +89,16 @@ add(
     bool(re.search(r"(?m)^15\. .*Bridging Machine Learning and Electron Density Theory", ref_text)),
     "MARGR should follow existing reference 14 rather than duplicate it",
 )
+add(
+    "pMSz full record",
+    bool(re.search(r"(?m)^8\. .*Correcting Extrema and Morse-Smale Segmentations.*10\.1109/IPDPS65963\.2026\.00025", ref_text)),
+    "pMSz title and DOI should match the final IPDPS 2026 record",
+)
 
 # All simple numerical bracket citations in the manuscript must refer to an existing reference number.
 body = text.split("## References", 1)[0]
 cited_nums: set[int] = set()
 for bracket in re.findall(r"\[([0-9,–\- ]+)\]", body):
-    # Expand comma-separated integers and simple ranges such as 1–3.
     for part in re.split(r",\s*", bracket):
         part = part.strip()
         mrange = re.fullmatch(r"(\d+)\s*[–-]\s*(\d+)", part)
@@ -101,6 +109,13 @@ for bracket in re.findall(r"\[([0-9,–\- ]+)\]", body):
             cited_nums.add(int(part))
 missing_citations = sorted(n for n in cited_nums if n not in set(ref_numbers))
 add("all numerical citations resolve", not missing_citations, f"unresolved={missing_citations}")
+
+# DOI strings in the bibliography should not be duplicated accidentally.
+dois = re.findall(r"DOI:\s*([^\.\s]+(?:\.[^\s]+)*)", ref_text, flags=re.I)
+# Normalize trailing punctuation that may be captured by the permissive regex.
+dois = [d.rstrip(".,;)") for d in dois]
+dup_dois = sorted({d for d in dois if dois.count(d) > 1})
+add("no duplicate DOI entries", not dup_dois, f"duplicates={dup_dois}")
 
 failed = [x for x in checks if not x[1]]
 lines = [
