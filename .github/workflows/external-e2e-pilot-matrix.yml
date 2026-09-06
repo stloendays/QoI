@@ -1,0 +1,72 @@
+name: External E2E Sentinel Matrix Diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [external-e2e-validation]
+    paths:
+      - '.github/workflows/external-e2e-pilot-matrix.yml'
+
+concurrency:
+  group: external-e2e-sentinel-matrix
+  cancel-in-progress: true
+
+jobs:
+  diagnostic:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: aflow_ni_zfp
+            material: aflow-Ni1_ICSD_181716
+            codec: zfp
+          - label: aflow_ni_sz3
+            material: aflow-Ni1_ICSD_181716
+            codec: sz3
+          - label: aflow_ni_sperr
+            material: aflow-Ni1_ICSD_181716
+            codec: sperr
+          - label: nomad2d_zfp
+            material: nomad2d-0XHkHlmw3DQ_
+            codec: zfp
+          - label: nomad2d_sz3
+            material: nomad2d-0XHkHlmw3DQ_
+            codec: sz3
+          - label: nomad2d_sperr
+            material: nomad2d-0XHkHlmw3DQ_
+            codec: sperr
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install frozen external E2E scientific stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r validation/requirements-external-e2e.txt
+      - name: Run one sentinel-codec frozen staged ladder
+        run: |
+          python validation/formal_external_e2e.py \
+            --material-id '${{ matrix.material }}' \
+            --codecs '${{ matrix.codec }}' \
+            --output-dir 'validation/matrix/${{ matrix.label }}'
+      - name: Print diagnostic summary
+        if: always()
+        run: |
+          echo '=== SUMMARY ==='
+          cat 'validation/matrix/${{ matrix.label }}/summary.json' || true
+          echo
+          echo '=== MATERIAL AUDIT ==='
+          cat 'validation/matrix/${{ matrix.label }}/material_audit.csv' || true
+          echo
+          echo '=== ROW FAILURES ==='
+          cat 'validation/matrix/${{ matrix.label }}/formal_external_e2e_row_failures.csv' || true
+      - name: Upload diagnostic outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-sentinel-${{ matrix.label }}
+          path: validation/matrix/${{ matrix.label }}
+          if-no-files-found: error
