@@ -49,12 +49,13 @@ if old_intro_open not in text:
 text = text.replace(old_intro_open, new_intro_open, 1)
 
 # Insert the closest JCTC electron-density fidelity work and explicitly distinguish the present problem.
+# Existing v0.3.1 reference 14 is Brehm & Thomas (2018), so MARGR is reference 15.
 anchor = (
     "Compression can therefore alter a Bader charge through two channels: density values can change inside an otherwise fixed basin, and the basin assignment itself can change. "
     "The second contribution is a domain error. If an evaluation reuses the original basins when scoring a reconstructed density, it suppresses this channel by construction and no longer reproduces the analysis that would be performed on the decompressed field."
 )
 insert = anchor + "\n\n" + (
-    "Recent work on machine-learned electron densities has independently highlighted a downstream-fidelity gap caused by real-space integration and grid discretization, and has addressed that problem through adaptive real-space integration [14]. "
+    "Recent work on machine-learned electron densities has independently highlighted a downstream-fidelity gap caused by real-space integration and grid discretization, and has addressed that problem through adaptive real-space integration [15]. "
     "The present setting is complementary but distinct: the electron density is a controlled lossy reconstruction of an existing electronic-structure field, and the dominant error channel studied here arises because the integration domains themselves are re-derived from that perturbed field. "
     "This distinction makes the partitioning operation part of the fidelity contract rather than a fixed numerical quadrature step."
 )
@@ -77,13 +78,26 @@ if old_here not in text:
     raise RuntimeError("Expected final Introduction paragraph not found")
 text = text.replace(old_here, new_here, 1)
 
-# Add the recent JCTC electron-density integration paper without renumbering frozen existing references.
-ref14 = (
-    "14. Gong, J.; Zhao, Z.; Tang, B. Z. Bridging Machine Learning and Electron Density Theory with Adaptive Real-Space Integration. "
+# Replace the internal development-oriented availability paragraph with a JCTC-policy-facing statement.
+old_avail = (
+    "## Data and code availability\n\n"
+    "The frozen data release, Protocol A.1, archived Protocol A, failure registry, provenance records, benchmark tables and claim–evidence matrix are stored in the `stloendays/QoI` repository. Reviewer-facing statistical post-processing is isolated from the frozen `main` branch. `analysis/chatgpt-postprocess-20260906` contains the realized-L∞, complete-case and mechanism-attenuation audits; `analysis/paper-freeze-v03-20260906` contains the manuscript statistical plan, machine-generated headline-number registry, figure-data exports, global-conservation negative control and verified core bibliography."
+)
+new_avail = (
+    "## Data and Software Availability\n\n"
+    "The benchmark data, Protocol A.1 stability measurements, failure registry, provenance metadata, mechanism data used in the manuscript, supplementary sensitivity tables, and statistical analysis scripts are maintained in the project repository at https://github.com/stloendays/QoI. A versioned archival release with a persistent identifier will be frozen before formal submission so that the published record maps to an immutable data-and-software snapshot. Source URLs, checksums, and licensing metadata for the underlying material fields are recorded in `materials_metadata.csv`."
+)
+if old_avail not in text:
+    raise RuntimeError("Expected data/code availability paragraph not found")
+text = text.replace(old_avail, new_avail, 1)
+
+# Add the recent JCTC electron-density integration paper as reference 15.
+ref15 = (
+    "15. Gong, J.; Zhao, Z.; Tang, B. Z. Bridging Machine Learning and Electron Density Theory with Adaptive Real-Space Integration. "
     "*J. Chem. Theory Comput.* (2026). DOI: 10.1021/acs.jctc.6c01124."
 )
 if "10.1021/acs.jctc.6c01124" not in text:
-    text = text.rstrip() + "\n" + ref14 + "\n"
+    text = text.rstrip() + "\n" + ref15 + "\n"
 
 # Submission guardrails.
 for token in [
@@ -104,6 +118,8 @@ required = [
     "41.4%",
     "10.1021/acs.jctc.6c01124",
     "field-dependent analysis",
+    "## Data and Software Availability",
+    "[15]",
 ]
 for token in required:
     if token not in text:
