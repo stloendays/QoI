@@ -84,6 +84,8 @@ jobs:
           path: validation/shards
 
       - name: Aggregate all 65 systems descriptively
+        id: all65
+        continue-on-error: true
         run: |
           python validation/aggregate_formal_external.py \
             --input-root validation/shards \
@@ -91,10 +93,19 @@ jobs:
             --expect-full
 
       - name: Build primary 63-system confirmatory rate-fidelity summary
+        if: always()
+        id: confirmatory63
+        continue-on-error: true
         run: |
           python validation/build_confirmatory_external.py \
             --aggregate-dir validation/formal_external_all65 \
             --output-dir validation/formal_external_confirmatory63
+
+      - name: Enforce aggregate validation status
+        if: always()
+        run: |
+          test "${{ steps.all65.outcome }}" = "success"
+          test "${{ steps.confirmatory63.outcome }}" = "success"
 
       - name: Upload external benchmark outputs
         if: always()
