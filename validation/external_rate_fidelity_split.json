@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "frozen": true,
+  "frozen_date": "2026-09-07",
+  "purpose": "Separate implementation sentinels whose rate-fidelity outputs were inspected during harness validation from the untouched confirmatory rate-fidelity cohort before the corpus-scale run.",
+  "full_frozen_corpus": {
+    "n": 65,
+    "strata": {
+      "bulk": 37,
+      "vacuum2d": 28
+    }
+  },
+  "implementation_sentinels": [
+    {
+      "material_id": "aflow-Ni1_ICSD_181716",
+      "domain": "bulk",
+      "role": "AFLOW pre-VASP5 provenance/parser and end-to-end implementation sentinel",
+      "rate_fidelity_inspected_before_full": true
+    },
+    {
+      "material_id": "nomad2d-0XHkHlmw3DQ_",
+      "domain": "vacuum2d",
+      "role": "NOMAD 2D parsing/Bader/codec end-to-end implementation sentinel",
+      "rate_fidelity_inspected_before_full": true
+    }
+  ],
+  "confirmatory_rate_fidelity_cohort": {
+    "definition": "all records in external_test_MANIFEST.json except the two implementation sentinels",
+    "n": 63,
+    "strata": {
+      "bulk": 36,
+      "vacuum2d": 27
+    },
+    "expected_A1_eligible_counts": {
+      "1e-4": 16,
+      "1e-3": 42,
+      "1e-2": 57
+    }
+  },
+  "reporting_policy": {
+    "all_65": "Run and release row-level results for completeness; treat rate-fidelity summaries as descriptive because two implementation sentinels were inspected before the corpus-scale run.",
+    "confirmatory_63": "Primary external rate-fidelity generalization statistics and manuscript headline external comparisons.",
+    "stability_validation": "Unchanged. Protocol A.1 stability was already evaluated on the frozen 65-system corpus under the separately documented stability-validation protocol."
+  },
+  "selection_policy": "The two exclusions are determined solely by prior rate-fidelity inspection during implementation validation, not by whether their codec results were favorable or unfavorable. No additional material may be moved between sets after this file is frozen."
+}
