@@ -24,6 +24,33 @@ The resolved-basin Bader error is the certification metric. The fixed-basin
 error is retained as a mechanism diagnostic and must not replace the resolved
 metric in headline certification.
 
+## External populations: 65 descriptive, 63 confirmatory
+
+The frozen external manifest contains **65 systems**: 37 AFLOW bulk and 28 NOMAD
+2D. All 65 remain in the corpus-scale run and the complete row-level table is
+released.
+
+Two systems were used as implementation sentinels and their rate–fidelity outputs
+were inspected before the corpus-scale run:
+
+- `aflow-Ni1_ICSD_181716` — AFLOW provenance/parser + E2E sentinel;
+- `nomad2d-0XHkHlmw3DQ_` — NOMAD 2D + three-codec E2E sentinel.
+
+They therefore remain in the **all-65 descriptive analysis**, but are excluded
+from the primary untouched rate–fidelity confirmation set. The primary
+confirmatory cohort was frozen before corpus-scale execution as the remaining
+**63 systems = 36 bulk + 27 vacuum2d**. Its expected Protocol A.1 eligible counts
+are **16 / 42 / 57** at `1e-4 / 1e-3 / 1e-2 e`.
+
+The split is machine-readable in `external_rate_fidelity_split.json` and the
+pre-specified analysis is in
+`../protocol/EXTERNAL_RATE_FIDELITY_ANALYSIS_PLAN.md`. No additional material may
+be moved between descriptive and confirmatory sets after that freeze.
+
+This split applies only to the new rate–fidelity analysis. The previously
+completed Protocol A.1 stability validation on the frozen 65-system corpus is a
+separate analysis and is unchanged.
+
 ## Verdict and failure semantics
 
 - `CERTIFIED`: Protocol A.1 eligible and a retained codec setting has
@@ -35,32 +62,45 @@ metric in headline certification.
   audit, or original-Bader failure prevents the material from entering the
   benchmark. This is a hard validation failure.
 - row-level failure: one `(material, codec, tolerance)` execution fails after the
-  material has entered the benchmark (for example a Bader solver failure at a
-  loose ZFP tolerance). The failed row is absent from the rate–fidelity table and
-  is written to `formal_external_e2e_row_failures.csv`. It is never counted as a
-  pass and does **not** erase successful rows for the same material.
+  material has entered the benchmark. The failed row is absent from the successful
+  rate–fidelity table and is written to `formal_external_e2e_row_failures.csv`.
+  It is never counted as a pass and does **not** erase successful rows for the
+  same material.
 
 This row-level behavior intentionally matches the released development
 `failure_registry.csv` semantics.
 
 ## Files
 
-- `external_end_to_end.py` — low-level external E2E harness; also used by smoke tests.
-- `formal_external_e2e.py` — formal driver that reproduces the frozen staged
-  tolerance policy and development row-failure semantics.
+- `external_end_to_end.py` — low-level external E2E harness; used by the two
+  implementation-sentinel smoke paths.
+- `aflow_parser_smoke.py` — parser/provenance-only multi-species AFLOW check. It
+  performs no codec round trip and no Bader calculation, so it does not create a
+  rate–fidelity observation on a confirmatory material.
+- `formal_external_e2e.py` — formal driver reproducing the frozen staged tolerance
+  policy and development row-failure semantics.
 - `aggregate_formal_external.py` — merges shards, audits corpus coverage and
   computes material-level certification, CCR, development-shaped summaries and
   pairwise codec comparisons.
-- `preflight_formal_external.py` — verifies frozen corpus/stability/ladder
-  invariants before formal computation is allowed to start.
+- `build_confirmatory_external.py` — removes only the two pre-frozen sentinel IDs
+  from the all-65 aggregate and re-runs the **same** aggregator for the 63-system
+  confirmatory cohort.
+- `preflight_formal_external.py` — verifies frozen 65-system corpus/stability/
+  ladder invariants.
+- `preflight_confirmatory_split.py` — verifies the frozen 65/2/63 split and
+  16/42/57 confirmatory eligibility denominators.
+- `test_aggregate_semantics.py` — synthetic test of eligibility, no-certification,
+  row-failure, CCR and pairwise denominator semantics.
+- `test_confirmatory_postprocessor.py` — synthetic all65 -> confirmatory63
+  postprocessing contract test.
 
 Machine-readable workflow semantics are in
-`protocol/QOI_WORKFLOW_SPEC_V1.yaml`.
+`../protocol/QOI_WORKFLOW_SPEC_V1.yaml`.
 
 ## Frozen staged tolerance policy
 
 The exact tolerance values are recovered from
-`benchmark/master_benchmark_full.csv`; they are not re-entered or tuned from
+`../benchmark/master_benchmark_full.csv`; they are not re-entered or tuned from
 external outcomes.
 
 1. Base ladder: all external materials.
@@ -69,6 +109,8 @@ external outcomes.
 3. Base ladder runs from tight to loose and stops after the first **successful**
    retained point with `Bader_error_resolved_e >= 0.05 e`, including that boundary
    point. A failed row does not establish the early-stop condition.
+4. No tolerance is added, removed or chosen after inspecting corpus-scale external
+   rate–fidelity outcomes.
 
 ## Statistical unit
 
@@ -90,59 +132,82 @@ with a CCR beats one without a CCR; two codecs without a CCR tie. The median
 `log2(CCR_a/CCR_b)` effect size is reported only for materials where both CCRs
 exist.
 
+The **63-system confirmatory summary is primary** for external rate–fidelity
+generalization. The corresponding all-65 summary is descriptive and is retained
+for completeness and auditability.
+
 ## GitHub Actions layers
 
 ### `External E2E Preflight`
 
-Cheap integrity CI. It verifies frozen invariants including 65 external systems
-(37 AFLOW bulk + 28 NOMAD 2D), A.1 eligibility counts, the 6,343-row development
-master table, base/tight row counts and tolerance ladders, and the historical
-codec-bound contract.
+Cheap integrity CI. It verifies:
+
+- the frozen 65-system corpus (37 bulk + 28 NOMAD 2D);
+- A.1 full-corpus eligibility counts 18 / 44 / 59;
+- the 6,343-row development master table and base/tight policy;
+- the frozen 65/2/63 rate–fidelity split and confirmatory counts 16 / 42 / 57;
+- material-level aggregation semantics;
+- the all65 -> confirmatory63 postprocessor.
 
 ### `External E2E Smoke`
 
-Regression/protocol closure. One NOMAD 2D system and one AFLOW bulk system at a
-single debug tolerance. Preflight runs first; then the test exercises both the
-NOMAD analysis path and AFLOW pre-VASP5 provenance/parser path.
+Regression/protocol closure. The two already-declared implementation sentinels
+exercise the NOMAD and AFLOW E2E paths. A separate multi-species AFLOW check is
+**parser-only** and intentionally does not compute rate–fidelity.
 
 ### `External E2E Frozen Pilot`
 
-One frozen AFLOW bulk + one frozen NOMAD 2D system across the complete staged
-frozen tolerance policy and all three codecs. Its purpose is to validate formal
-sampling, row-failure isolation, early stopping, aggregation, CCR and pairwise
-logic before a corpus-scale run.
+The two implementation sentinels are run across the complete staged frozen
+policy and all three codecs. Its purpose is to validate formal sampling,
+row-failure isolation, early stopping, aggregation, CCR and pairwise logic before
+corpus-scale execution. Pilot results are not part of the 63-system confirmatory
+population.
 
 ### `External E2E Full`
 
-Eight shards over the frozen 65-system corpus, gated by preflight and followed by
-mandatory coverage/failure/bound auditing and material-level aggregation. The
-full workflow is not triggered by ordinary code pushes.
+Eight shards run all 65 frozen systems. The aggregate job then produces:
+
+1. `formal_external_all65/` — complete 65-system descriptive result set;
+2. `formal_external_confirmatory63/` — primary 63-system confirmatory result set,
+   derived solely by removing the two pre-frozen sentinel IDs and invoking the
+   same aggregator.
+
+The full workflow is not triggered by ordinary code pushes.
 
 ## Formal aggregate outputs
 
-- `formal_external_e2e_rows.csv` — successful retained row-level benchmark table.
+Each analysis set contains:
+
+- `formal_external_e2e_rows.csv` — successful retained row-level benchmark table;
 - `material_audit.csv` — one row per selected material, including row attempts,
-  row failures and early-stop boundaries.
-- `formal_external_e2e_failures.csv` — hard material-level pipeline failures.
+  row failures and early-stop boundaries;
+- `formal_external_e2e_failures.csv` — hard material-level pipeline failures;
 - `formal_external_e2e_row_failures.csv` — explicit failed
-  `(material, codec, tolerance)` attempts, using the development failure-registry
-  schema.
+  `(material, codec, tolerance)` attempts;
 - `best_certified_external.csv` — complete `material x codec x tau` table with
-  eligibility, status, row-failure flags and CCR when certified.
-- `external_summary_a1.csv` — development-compatible material-level summary:
-  admitted/non-evaluable/certified counts, certification fraction, median CCR,
-  deterministic bootstrap 95% CI and quantiles.
+  eligibility, status, row-failure flags and CCR when certified;
+- `external_summary_a1.csv` — development-compatible material-level summary;
 - `pairwise_external.csv` — material-level codec win/tie/loss fractions and
-  median log2 CCR ratio, analogous to `benchmark/pairwise_a1.csv`.
-- `external_codec_summary.csv` — compact view of the same certification/CCR summary.
-- `summary.json` — corpus coverage, hard/row-level failures, codec-bound audit,
-  A.1 eligible counts and input-quality flags.
+  median log2 CCR ratio;
+- `external_codec_summary.csv` — compact certification/CCR summary;
+- `summary.json` — coverage, failures, codec-bound audit, eligibility counts and
+  input-quality flags.
+
+The confirmatory directory also contains `confirmatory_metadata.json`, including
+the frozen split SHA-256 and the two excluded sentinel IDs.
 
 ## Claim boundary
 
-Until the full frozen 65-system run completes successfully, the correct claim is
-that the workflow has been internally benchmarked, stress-tested, and externally
-validated for the stability-qualification component. A successful full run
-supports the narrower statement that the complete rate–fidelity workflow was
-evaluated end-to-end on the frozen untouched 65-system external corpus. It does
-not by itself establish a universal standard for other QoIs or scientific fields.
+Before the corpus-scale run succeeds, the defensible claim remains that the
+workflow has been internally benchmarked, stress-tested, and externally validated
+for the stability-qualification component.
+
+After a successful confirmatory run, defensible wording is:
+
+> The complete chemistry-aware rate–fidelity workflow was evaluated end-to-end
+> on a pre-specified 63-system confirmatory cohort drawn from the frozen external
+> corpus, with two previously inspected systems retained separately as
+> implementation sentinels.
+
+Do **not** describe all 65 systems as untouched rate–fidelity confirmation data,
+and do not call this Bader-charge case study a universal standard.
