@@ -76,3 +76,5 @@ nomad-6x45-ylTvOvZ,dev_slab,slab,base,ZFP,0.01,zfp@0.01,bader_solver_failure,Ind
 nomad-7OdXN2bFHmUg,dev_slab,slab,base,ZFP,0.03,zfp@0.03,bader_solver_failure,IndexError: index 3 is out of bounds for axis 1 with size 3
 nomad-8Hl4JATTj5Fp,dev_slab,slab,base,ZFP,0.03,zfp@0.03,bader_solver_failure,IndexError: index 3 is out of bounds for axis 1 with size 3
 nomad-8ZPelCNdN_TR,dev_slab,slab,base,ZFP,0.03,zfp@0.03,bader_solver_failure,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1038991,dev_bulk,bulk,base,ZFP,0.01,mech_atom:zfp@0.01,bader_solver_failure,IndexError: index 3 is out of bounds for axis 0 with size 3
+nomad-4TmN2lwz6DHx,dev_slab,slab,base,ZFP,0.01,mech_atom:zfp@0.01,bader_solver_failure,IndexError: index 3 is out of bounds for axis 1 with size 3
