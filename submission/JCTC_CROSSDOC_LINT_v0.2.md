@@ -1,0 +1,52 @@
+# JCTC cross-document lint v0.2
+
+Checks: 48; passed: 48; failed: 0.
+
+- PASS — **caption figures 1-6 exactly once**: captions=[1, 2, 3, 4, 5, 6]
+- PASS — **main first figure mentions ordered**: first=[1, 2, 3, 4, 5, 6]
+- PASS — **Figure 1 cited in main**: figure=1
+- PASS — **Figure 2 cited in main**: figure=2
+- PASS — **Figure 3 cited in main**: figure=3
+- PASS — **Figure 4 cited in main**: figure=4
+- PASS — **Figure 5 cited in main**: figure=5
+- PASS — **Figure 6 cited in main**: figure=6
+- PASS — **Figure 2a panel captioned**: Figure 2a
+- PASS — **Figure 2b panel captioned**: Figure 2b
+- PASS — **Figure 2c panel captioned**: Figure 2c
+- PASS — **Figure 3a panel captioned**: Figure 3a
+- PASS — **Figure 3b panel captioned**: Figure 3b
+- PASS — **Figure 3c panel captioned**: Figure 3c
+- PASS — **Figure 4a panel captioned**: Figure 4a
+- PASS — **Figure 4b panel captioned**: Figure 4b
+- PASS — **Figure 4c panel captioned**: Figure 4c
+- PASS — **Figure 4d panel captioned**: Figure 4d
+- PASS — **Figure 5a panel captioned**: Figure 5a
+- PASS — **Figure 5b panel captioned**: Figure 5b
+- PASS — **Figure 5c panel captioned**: Figure 5c
+- PASS — **Figure 5d panel captioned**: Figure 5d
+- PASS — **caption clean: Data:**: Data:
+- PASS — **caption clean: .csv**: .csv
+- PASS — **caption clean: will be upgraded**: will be upgraded
+- PASS — **caption clean: when the full table is released**: when the full table is released
+- PASS — **caption clean: formal causal mediation**: formal causal mediation
+- PASS — **caption clean: reviewer**: reviewer
+- PASS — **SI sections S1-S12 contiguous**: S=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+- PASS — **SI clean: reviewer-facing**: reviewer-facing
+- PASS — **SI clean: Remaining SI assembly tasks**: Remaining SI assembly tasks
+- PASS — **SI clean: If the full per-atom table becomes available before submission**: If the full per-atom table becomes available before submission
+- PASS — **SI has bibliography**: references
+- PASS — **99.7 direction in main**: 99.7%
+- PASS — **99.7 direction in captions**: 99.7%
+- PASS — **99.7 direction in SI**: 99.7%
+- PASS — **domain share in main**: 0.995
+- PASS — **domain share in captions**: 0.995
+- PASS — **domain share in SI**: 0.995
+- PASS — **SZ3 complete case in main**: 1.82
+- PASS — **SZ3 complete case in captions**: 1.82
+- PASS — **SZ3 complete case in SI**: 1.82
+- PASS — **SPERR complete case in main**: 2.00
+- PASS — **SPERR complete case in captions**: 2.00
+- PASS — **SPERR complete case in SI**: 2.00
+- PASS — **central non-evaluable in main**: 41.4%
+- PASS — **central non-evaluable in captions**: 41.4%
+- PASS — **central non-evaluable in SI**: 41.4%
