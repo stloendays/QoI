@@ -38,22 +38,27 @@ Evidence files:
 - `analysis_output/reviewer_stress_tests.md`
 - `analysis_output/complete_case_failure_sensitivity.md`
 
-## B. Existing Claim 2 — fixed-basin evaluation is biased
-**Status: CONFIRMED, strengthened.**
+## B. Existing Claim 2 — fixed-basin evaluation systematically understates re-derived error
+**Status: CONFIRMED, wording refined after denominator audit.**
 
-Across all 4,627 successful base-ladder rows:
-- resolved error > fixed-basin error in 99.7% of rows;
-- median resolved/fixed ratio 52.8x overall;
-- SPERR 100.1x, SZ3 8.0x, ZFP 106.9x.
+Use the denominator-robust directional statement as the headline:
+- across all 4,627 successful base-ladder rows, **re-derived error exceeds fixed-basin error in 99.70%**.
 
-This is stronger and more transparent than saying only “9–11x smaller,” but manuscript denominators must state that these are successful base-ladder rows and ratios use finite values.
+The multiplicative understatement is real but strongly codec- and tolerance-dependent, so do not reduce it to one universal factor. The pooled row-level median is 52.8x and is not an artefact of machine-zero denominators: it remains 52.6x if the fixed-error denominator is floored at 1e-6 e, and the material-balanced median is 59.5x. However, core-rung effects vary substantially:
+- nominal 1e-4: SPERR 133.0x, SZ3 9.0x, ZFP 224.2x;
+- nominal 1e-3: SPERR 35.3x, SZ3 2.9x, ZFP 70.7x;
+- nominal 1e-2: SPERR 10.3x, SZ3 1.7x, ZFP 30.4x.
 
-Evidence: `analysis_output/reviewer_stress_tests.md`.
+A.1-qualified exact-rung results show the same heterogeneity. Therefore Figure 2 should show the distribution/stratification, while the abstract/main claim should emphasize the 99.7% direction rather than imply a codec-invariant multiplier.
+
+Evidence:
+- `analysis_output/fixed_basin_ratio_robustness.md`
+- `analysis_output/reviewer_stress_tests.md`
 
 ## C. Existing Claim 4 — domain migration dominates
 
 ### Narrow claim
-> In the preregistered/representative 12-material mechanism set, movement of the re-derived Bader domains dominates the measured maximum-atom charge error.
+> In the representative 12-material mechanism set, movement of the re-derived Bader domains dominates the measured maximum-atom charge error.
 
 **Status: CONFIRMED for the representative mechanism set.**
 
@@ -70,7 +75,7 @@ Use the bounded dominance definition; do not use `|domain|/|total|` as a dominan
 
 **Status: NOT ESTABLISHED.**
 
-The 12-material mechanism set is intentionally representative rather than exhaustive. Keep general wording conditional until the per-atom table lands and its selection/generalization limits are explicit.
+The 12-material mechanism set is intentionally representative rather than exhaustive. Keep general wording conditional even after the per-atom table lands; many atom rows do not convert 12 materials into a 254-material mechanism sample.
 
 ## D. New mechanism-consistency claim — basin reassignment explains the codec-associated residual statistically
 
@@ -87,7 +92,7 @@ Complete-case version removing all 20 low-tolerance failure-affected materials:
 - reassignment coefficient = 0.880 [0.723,1.037], p=5.78e-28.
 
 Safe wording:
-> The approximately twofold codec-associated residual is almost completely attenuated after conditioning on the amount of basin reassignment, consistent with basin migration mediating the link between codec-specific reconstruction structure and Bader-charge error.
+> The approximately twofold codec-associated residual is almost completely attenuated after conditioning on the amount of basin reassignment, consistent with basin migration linking codec-specific reconstruction structure to Bader-charge error.
 
 Required caveat:
 - `frac_voxels_reassigned` is a post-compression variable and is not randomized.
@@ -116,6 +121,7 @@ These failures are non-random across codecs, so successful-row analysis alone co
 
 - “This is the first work to show pointwise bounds do not preserve QoIs.”
 - “The ~6–12x same-nominal gap is caused by spatial error structure.”
+- “Fixed-basin evaluation always understates error by ~53x.”
 - “Codec identity causally doubles Bader error.”
 - “Basin migration dominates every material in the corpus.”
 - “Bader resolvability is fundamentally unpredictable.”
