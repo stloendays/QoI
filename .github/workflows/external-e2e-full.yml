@@ -20,8 +20,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify frozen corpus, A.1 floors and development sampling policy
+      - name: Verify frozen 65-system corpus and development sampling policy
         run: python validation/preflight_formal_external.py
+      - name: Verify frozen 65/2/63 rate-fidelity reporting split
+        run: python validation/preflight_confirmatory_split.py
+      - name: Verify material-level aggregation semantics
+        run: python validation/test_aggregate_semantics.py
 
   shard:
     needs: preflight
@@ -79,17 +83,25 @@ jobs:
           pattern: external-e2e-shard-*
           path: validation/shards
 
-      - name: Aggregate frozen external benchmark
+      - name: Aggregate all 65 systems descriptively
         run: |
           python validation/aggregate_formal_external.py \
             --input-root validation/shards \
-            --output-dir validation/formal_external_aggregate \
+            --output-dir validation/formal_external_all65 \
             --expect-full
 
-      - name: Upload aggregate benchmark
+      - name: Build primary 63-system confirmatory rate-fidelity summary
+        run: |
+          python validation/build_confirmatory_external.py \
+            --aggregate-dir validation/formal_external_all65 \
+            --output-dir validation/formal_external_confirmatory63
+
+      - name: Upload external benchmark outputs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: external-e2e-full-aggregate
-          path: validation/formal_external_aggregate
+          path: |
+            validation/formal_external_all65
+            validation/formal_external_confirmatory63
           if-no-files-found: error
