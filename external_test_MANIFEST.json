@@ -1,0 +1,1172 @@
+{
+  "frozen": true,
+  "created": "2026-09-04",
+  "purpose": "Strict external test. Never used for hypothesis generation, metric debugging, algorithm development or parameter tuning. Scored once under results/stability/FROZEN_PROTOCOL.md.",
+  "primary_question": "Does the bulk-stable / slab-unstable Bader stability behaviour reproduce on data untouched by development?",
+  "n_records": 65,
+  "n_bulk": 37,
+  "n_vacuum2d": 28,
+  "records": [
+    {
+      "material_id": "aflow-Al1Li1O6Si2_ICSD_159530",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCLC/Al1Li1O6Si2_ICSD_159530/CHGCAR.static.xz",
+      "source_bytes": 900292,
+      "sha256": "c320a4944acd1a93bf127a950abe4abfe50e244a33ecc12f59ba839106351e98",
+      "formula": "Al2Li2O12Si4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        70,
+        70,
+        56
+      ],
+      "spacegroup_relax": 15,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-B6Co21Mn2_ICSD_613157",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/FCC/B6Co21Mn2_ICSD_613157/CHGCAR.static.xz",
+      "source_bytes": 8127872,
+      "sha256": "89fd8a21b727993d6cb8b630752ea1046729560dfcad61a53fd0dce679690f5d",
+      "formula": "B6Co21Mn2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        108,
+        108,
+        108
+      ],
+      "spacegroup_relax": 225,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Ca1O4U1_ICSD_246962",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/RHL/Ca1O4U1_ICSD_246962/CHGCAR.static.xz",
+      "source_bytes": 1022116,
+      "sha256": "ca9edf3341b85f5e2cf619db5a2d68501985069748ed12387767877e67dda00c",
+      "formula": "Ca1O4U1",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        70,
+        70,
+        70
+      ],
+      "spacegroup_relax": 166,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "nomad2d--B4E6JXJAJsP",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "-B4E6JXJAJsPFR5X0kjhbiyR4wTj",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/-B4E6JXJAJsPFR5X0kjhbiyR4wTj/raw/CHGCAR.gz",
+      "file_name": "mp-1023939/CHGCAR.gz",
+      "source_bytes": 9535830,
+      "sha256": "2877a87e479ddb31bdece877257309128bb757d73991af1560463dbd0a7dc65d",
+      "formula": "Mo2S4",
+      "ngrid": [
+        48,
+        48,
+        324
+      ],
+      "cell_c_angstrom": 21.670535,
+      "vacuum_fraction": 0.35911645876200277,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d--GTGzWfdnZfM",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "-GTGzWfdnZfMnWgJJ3eY-uk6oCoh",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/-GTGzWfdnZfMnWgJJ3eY-uk6oCoh/raw/CHGCAR.relax1.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-12-09-08-37-05-088670/launcher_2018-03-20-18-22-24-648938/launcher_2018-03-20-19-52-54-723652/CHGCAR.relax1.gz",
+      "source_bytes": 11580587,
+      "sha256": "9f0a5164924b65df27aed5f297e9fd5d9dba5cbc41ffd066d05cd9e3f39f54b7",
+      "formula": "Bi2Se2",
+      "ngrid": [
+        64,
+        64,
+        252
+      ],
+      "cell_c_angstrom": 18.171891651625923,
+      "vacuum_fraction": 0.46638222346230157,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "aflow-Cs1In3_ICSD_102867",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCT/Cs1In3_ICSD_102867/CHGCAR.static.xz",
+      "source_bytes": 3631180,
+      "sha256": "24fe0c3fa53b3afe6211d6fbb9307006e4ebe8403eb0f13616908f8259943d71",
+      "formula": "Cs3In9",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        96,
+        96,
+        96
+      ],
+      "spacegroup_relax": 119,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-F2Mn1_ICSD_63569",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/TET/F2Mn1_ICSD_63569/CHGCAR.static.xz",
+      "source_bytes": 233000,
+      "sha256": "41f2ba205c6feb569d914cb29ead62434258576381d12db0015cafd4c759d951",
+      "formula": "F4Mn2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        54,
+        54,
+        36
+      ],
+      "spacegroup_relax": 136,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Ce1O4Sr2_ICSD_86768",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/ORC/Ce1O4Sr2_ICSD_86768/CHGCAR.static.xz",
+      "source_bytes": 309504,
+      "sha256": "cf3274f63241690ee669842c4543215a4d607c329b4e2e49a5bb7768db6578af",
+      "formula": "Ce2O8Sr4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        40,
+        70,
+        120
+      ],
+      "spacegroup_relax": 55,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Ca3O12Sc2Si3_ICSD_156537",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCC/Ca3O12Sc2Si3_ICSD_156537/CHGCAR.static.xz",
+      "source_bytes": 5664308,
+      "sha256": "21af0d3fcc6fc7795e80839cc279cf7df2009ebae9eded6eb4b6121f15493705",
+      "formula": "Ca12O48Sc8Si12",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        120,
+        120,
+        120
+      ],
+      "spacegroup_relax": 230,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-O2Si1_ICSD_170531",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCLC/O2Si1_ICSD_170531/CHGCAR.static.xz",
+      "source_bytes": 4950772,
+      "sha256": "800dfeca2a085fb2348e01d9c8448adaa06ad04ea4df3a52c54202a21376ab63",
+      "formula": "O16Si8",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        140,
+        128,
+        64
+      ],
+      "spacegroup_relax": 70,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-B0.667N0.667_ICSD_162872",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/B0.667N0.667_ICSD_162872/CHGCAR.static.xz",
+      "source_bytes": 2398152,
+      "sha256": "23ea1abbfec468572d2a0f0c0671eb38f81dbcad568f3bc365cfaa867aa824d3",
+      "formula": "B2N2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        56,
+        56,
+        168
+      ],
+      "spacegroup_relax": 187,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-O7V2Zr1_ICSD_84883",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/CUB/O7V2Zr1_ICSD_84883/CHGCAR.static.xz",
+      "source_bytes": 1076684,
+      "sha256": "1014c2fa7828294ebf1af554f70f5ebd18f191bee8b1478855ea5c92d0602385",
+      "formula": "O28V8Zr4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        96,
+        96,
+        96
+      ],
+      "spacegroup_relax": 205,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-C1_ICSD_290661",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/C1_ICSD_290661/CHGCAR.static.xz",
+      "source_bytes": 146004,
+      "sha256": "2fb6e7c1cd3e8fdc4b696e5ac7ba7bd9a303e689b1e3feb64d4b30a48bd20056",
+      "formula": "C4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        28,
+        28,
+        96
+      ],
+      "spacegroup_relax": 194,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Au2Ge2Nd1_ICSD_164730",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCT/Au2Ge2Nd1_ICSD_164730/CHGCAR.static.xz",
+      "source_bytes": 2446172,
+      "sha256": "c091fd9839d607ebbf0769ca48f82676233be2599f4d29a859ed12b98ed192ea",
+      "formula": "Au2Ge2Nd1",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        72,
+        72,
+        72
+      ],
+      "spacegroup_relax": 139,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-B6H2O13Sr3_ICSD_262541",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/TRI/B6H2O13Sr3_ICSD_262541/CHGCAR.static.xz",
+      "source_bytes": 21166192,
+      "sha256": "b60545704344f1fe9f44d30af5b4ec208b9efaf0d05be4655d4e46115d6e89a5",
+      "formula": "B12H4O26Sr6",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        140,
+        140,
+        240
+      ],
+      "spacegroup_relax": 2,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Al7Cu16H9Zr6_ICSD_76304",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/FCC/Al7Cu16H9Zr6_ICSD_76304/CHGCAR.static.xz",
+      "source_bytes": 3994412,
+      "sha256": "818138fafa6d3bd58f534106d0f929f98f4ba226ad17a3b95d9943ef30932241",
+      "formula": "Al7Cu16H9Zr6",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        108,
+        108,
+        108
+      ],
+      "spacegroup_relax": 225,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Al1C1Ta2_ICSD_606258",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Al1C1Ta2_ICSD_606258/CHGCAR.static.xz",
+      "source_bytes": 401464,
+      "sha256": "a5f190502f8918488e237c16f70d1cd1cfe2dd2cca6af8ac5513577dfe07ed52",
+      "formula": "Al2C2Ta4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        36,
+        36,
+        160
+      ],
+      "spacegroup_relax": 194,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Cr1Sb1_ICSD_626687",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cr1Sb1_ICSD_626687/CHGCAR.static.xz",
+      "source_bytes": 403016,
+      "sha256": "ae47ce64b15a506e84e27de522359d7ae3a6dd6abeb2cbecaaedd8cf86eb92eb",
+      "formula": "Cr2Sb2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        40,
+        40,
+        64
+      ],
+      "spacegroup_relax": 194,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-H3Ni1Zr1_ICSD_658750",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/ORCC/H3Ni1Zr1_ICSD_658750/CHGCAR.static.xz",
+      "source_bytes": 331328,
+      "sha256": "85fd0854f6bc31e93829d21faccd6849a0f1d5f6cdb67e146da0f1b0c5f42d1b",
+      "formula": "H6Ni2Zr2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        64,
+        64,
+        50
+      ],
+      "spacegroup_relax": 63,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Al1Pd2_ICSD_58115",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/ORC/Al1Pd2_ICSD_58115/CHGCAR.static.xz",
+      "source_bytes": 160780,
+      "sha256": "eb4f25c31771770fb80e58a9afe21c48b79edcc6fad42f9cb40919ebbc2779ef",
+      "formula": "Al4Pd8",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        40,
+        54,
+        80
+      ],
+      "spacegroup_relax": 62,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Cu1Sb1Se2_ICSD_30358",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/ORC/Cu1Sb1Se2_ICSD_30358/CHGCAR.static.xz",
+      "source_bytes": 717000,
+      "sha256": "cb8f74ef1eab741ab05ad0fe4da0367ec39420c3e20f5dbbc7e9bb6262c6aa1b",
+      "formula": "Cu4Sb4Se8",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        48,
+        80,
+        180
+      ],
+      "spacegroup_relax": 62,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Mo3Na1O16P3_ICSD_66877",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/TRI/Mo3Na1O16P3_ICSD_66877/CHGCAR.static.xz",
+      "source_bytes": 60401724,
+      "sha256": "5691b57d4049c319fbd87762e757556b733419398dd8b7e58329a6ac863e2178",
+      "formula": "Mo6Na2O32P6",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        140,
+        280,
+        160
+      ],
+      "spacegroup_relax": 2,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-H4Si1_ICSD_159307",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCL/H4Si1_ICSD_159307/CHGCAR.static.xz",
+      "source_bytes": 331364,
+      "sha256": "8fe17de2267e1d034e2eb6627822df0358d048afa9ca3b0ef4be161cd01f8c58",
+      "formula": "H16Si4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        40,
+        64,
+        64
+      ],
+      "spacegroup_relax": 14,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Ni1_ICSD_181716",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/FCC/Ni1_ICSD_181716/CHGCAR.static.xz",
+      "source_bytes": 125792,
+      "sha256": "f982166bd63abc4133218541bb9b72d7073a78847e5131be9e042e9aad37ef16",
+      "formula": "Ni1",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        28,
+        28,
+        28
+      ],
+      "spacegroup_relax": 225,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Er2O3_ICSD_419435",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCLC/Er2O3_ICSD_419435/CHGCAR.static.xz",
+      "source_bytes": 2008692,
+      "sha256": "3c896fa57f7418193cae9e946672a496ba13de44a53d5f0556f47e845fcb7fe6",
+      "formula": "Er6O9",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        80,
+        80,
+        96
+      ],
+      "spacegroup_relax": 12,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Al2Ba2Ga1.33_ICSD_415931",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Al2Ba2Ga1.33_ICSD_415931/CHGCAR.static.xz",
+      "source_bytes": 1864000,
+      "sha256": "d2b3dc41987fd4fbb15cd1c199b83395bd0bb99187cf69eb945fb4b2530bcc37",
+      "formula": "Al6Ba6Ga4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        72,
+        72,
+        180
+      ],
+      "spacegroup_relax": 194,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/CHGCAR.static.xz",
+      "source_bytes": 2437424,
+      "sha256": "eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983",
+      "formula": "Cl2O24Pb10V6",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        120,
+        120,
+        80
+      ],
+      "spacegroup_relax": 176,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-B1Ni2_ICSD_75792",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCT/B1Ni2_ICSD_75792/CHGCAR.static.xz",
+      "source_bytes": 540012,
+      "sha256": "76cdec612b566e72484abba3550bc925c0831fa09c3f2fb6ada7a93ed3e4ae90",
+      "formula": "B2Ni4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        56,
+        56,
+        56
+      ],
+      "spacegroup_relax": 140,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Ba1C1Si1_ICSD_168412",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/ORC/Ba1C1Si1_ICSD_168412/CHGCAR.static.xz",
+      "source_bytes": 783492,
+      "sha256": "022452068585e7a65aa2e3c9d610069c7178971f43d32f8732ba09055b0c3ff7",
+      "formula": "Ba8C8Si8",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        70,
+        98,
+        126
+      ],
+      "spacegroup_relax": 62,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Cu1Hf1Hg2_ICSD_102969",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/FCC/Cu1Hf1Hg2_ICSD_102969/CHGCAR.static.xz",
+      "source_bytes": 560148,
+      "sha256": "2a7e0e7a596a8ba7a1fb0ded401739f3a2acc0d9cab42c5e3f0f1d4859eaeb89",
+      "formula": "Cu1Hf1Hg2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        56,
+        56,
+        56
+      ],
+      "spacegroup_relax": 216,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-B1C1F6K1_ICSD_1194",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCL/B1C1F6K1_ICSD_1194/CHGCAR.static.xz",
+      "source_bytes": 3197708,
+      "sha256": "f1ba0a20ec8a0a1e7eb183e6906ec255bfa845e470b91e644e564639f163a7c6",
+      "formula": "B4C4F24K4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        240,
+        70,
+        90
+      ],
+      "spacegroup_relax": 14,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-As4Ge2Sr3_ICSD_16454",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCL/As4Ge2Sr3_ICSD_16454/CHGCAR.static.xz",
+      "source_bytes": 3812508,
+      "sha256": "443baa440f7c6cb6c0f871bf01a63861102e301913a36a137bae3c39855f8a39",
+      "formula": "As16Ge8Sr12",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        224,
+        90,
+        90
+      ],
+      "spacegroup_relax": 14,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Al8Cu4U1_ICSD_601801",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCT/Al8Cu4U1_ICSD_601801/CHGCAR.static.xz",
+      "source_bytes": 3837960,
+      "sha256": "22923c24a66d5de531e672776f05b2a343bdbd60d659bd303aed1f9921c1690b",
+      "formula": "Al8Cu4U1",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        84,
+        84,
+        84
+      ],
+      "spacegroup_relax": 139,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Al1N1Ti2_ICSD_184882",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Al1N1Ti2_ICSD_184882/CHGCAR.static.xz",
+      "source_bytes": 299180,
+      "sha256": "df0af8690008304059b323d47eaefeab5abc7a01465b49e0d5a72aaa32015b05",
+      "formula": "Al2N2Ti4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        32,
+        32,
+        150
+      ],
+      "spacegroup_relax": 194,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Na10Sn12Yb1_ICSD_172210",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCC/Na10Sn12Yb1_ICSD_172210/CHGCAR.static.xz",
+      "source_bytes": 8450268,
+      "sha256": "5c6c56da5859cdd5e23773997bae6840ee1ff27335ef9f952109e0fbe132e267",
+      "formula": "Na10Sn12Yb1",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        140,
+        140,
+        140
+      ],
+      "spacegroup_relax": 217,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Pa1_ICSD_648329",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCT/Pa1_ICSD_648329/CHGCAR.static.xz",
+      "source_bytes": 97084,
+      "sha256": "bfdcde6aae94d9c497c8e37ffe021e8e917b4b6955ebe7761a499eeacfc81efd",
+      "formula": "Pa1",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        32,
+        32,
+        32
+      ],
+      "spacegroup_relax": 139,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Cl1H2Nd1O2_ICSD_20047",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCL/Cl1H2Nd1O2_ICSD_20047/CHGCAR.static.xz",
+      "source_bytes": 982992,
+      "sha256": "f84f677a5e1518357e3f1a889e27165b127f96d63f4f28a20bcf31e64c6a0305",
+      "formula": "Cl2H4Nd2O4",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        42,
+        70,
+        80
+      ],
+      "spacegroup_relax": 11,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Pt5Se4_ICSD_87926",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/MCL/Pt5Se4_ICSD_87926/CHGCAR.static.xz",
+      "source_bytes": 584232,
+      "sha256": "b4c16fe4b60132935f39fbb15d3a0d0d3c8dbe7cde1ae98fc04cc9f625201f9d",
+      "formula": "Pt10Se8",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        42,
+        60,
+        108
+      ],
+      "spacegroup_relax": 14,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "aflow-Co2Nd1_ICSD_154732",
+      "domain": "bulk",
+      "source": "AFLOW ICSD_WEB",
+      "url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/BCT/Co2Nd1_ICSD_154732/CHGCAR.static.xz",
+      "source_bytes": 506208,
+      "sha256": "1d0764f8489f4a5ae44d74bc72f68148fbf687a1dc93a748c195e3b235d9f72a",
+      "formula": "Co4Nd2",
+      "species_source": "AFLUX API (file has no species line)",
+      "ngrid": [
+        54,
+        54,
+        54
+      ],
+      "spacegroup_relax": 227,
+      "license": "AFLOW consortium terms; see aflow.org"
+    },
+    {
+      "material_id": "nomad2d--oZxTxEUsVxM",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "-oZxTxEUsVxMWD6M2fUqrvEAb1Wj",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/-oZxTxEUsVxMWD6M2fUqrvEAb1Wj/raw/CHGCAR.relax1.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-26-22-25-05-917364/CHGCAR.relax1.gz",
+      "source_bytes": 14382448,
+      "sha256": "2748fb9f283de7296e6f39306560ee38416611a213b603f09e9187abe8c0405d",
+      "formula": "Mo1W1S4",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 22.382670000002705,
+      "vacuum_fraction": 0.3636233790391156,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d--poJgwk5QnYH",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "-poJgwk5QnYHsg3C_a0RxriAeQU_",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/-poJgwk5QnYHsg3C_a0RxriAeQU_/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-27-01-07-42-331118/CHGCAR.gz",
+      "source_bytes": 11940846,
+      "sha256": "22779503673af67e4bfac77c929719ba0642a9500f89c45263c49a532d699866",
+      "formula": "Te2Mo1W1Se2",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 24.428945,
+      "vacuum_fraction": 0.35591052827380953,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-01AsrYzXZ0cy",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "01AsrYzXZ0cygF_rmSpP-xRQ_73W",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/01AsrYzXZ0cygF_rmSpP-xRQ_73W/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_6/block_2019-12-20-03-50-09-463422/launcher_2019-12-20-06-33-23-496136/CHGCAR.gz",
+      "source_bytes": 14556985,
+      "sha256": "4b99c0f8424f3f4da7d35c87ce4aea677e9127fa72bdf5dcda072fe0ceb22c6d",
+      "formula": "Mo1W1Se4",
+      "ngrid": [
+        56,
+        56,
+        360
+      ],
+      "cell_c_angstrom": 23.619322,
+      "vacuum_fraction": 0.3475065547052154,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-03AViAQBOpvV",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "03AViAQBOpvVpyVJLjDA6mlbIQEz",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/03AViAQBOpvVpyVJLjDA6mlbIQEz/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-27-00-02-51-026165/CHGCAR.gz",
+      "source_bytes": 11840935,
+      "sha256": "8ce7bc14eca2deb02d29e39d206c06081c6b75b9fcf5badd16997da7c2459ed4",
+      "formula": "Te4W2",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 25.05413,
+      "vacuum_fraction": 0.349587784332483,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-06Maeq8yNQaK",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "06Maeq8yNQaK567BzN-XQWSn61WK",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/06Maeq8yNQaK567BzN-XQWSn61WK/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_7/block_2019-12-20-03-50-09-463422/launcher_2019-12-20-06-29-29-533062/CHGCAR.gz",
+      "source_bytes": 10406738,
+      "sha256": "1790de9499341f86efecf9f27336de8acfdad9ebe6f3e0cbd8c945d7e6d24890",
+      "formula": "W2Se2S2",
+      "ngrid": [
+        48,
+        48,
+        360
+      ],
+      "cell_c_angstrom": 23.022902,
+      "vacuum_fraction": 0.36212263695987656,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-0J6F9ROgTdMT",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "0J6F9ROgTdMT-PeqfQrVeZXEbNzh",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/0J6F9ROgTdMT-PeqfQrVeZXEbNzh/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-26-23-51-01-202312/CHGCAR.gz",
+      "source_bytes": 8704146,
+      "sha256": "81f167fcc3bece3c1177944fc7170f661ac6ead969d7ef0f4179ae33196e66c7",
+      "formula": "Mo2Se2S2",
+      "ngrid": [
+        48,
+        48,
+        360
+      ],
+      "cell_c_angstrom": 22.986058,
+      "vacuum_fraction": 0.36210816936728396,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-0KKvLZ7KNaqG",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "0KKvLZ7KNaqGXLLWm4BSut3PBBur",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/0KKvLZ7KNaqGXLLWm4BSut3PBBur/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-12-09-08-37-05-088670/launcher_2018-03-21-22-05-25-206962/launcher_2018-03-21-23-14-12-179269/CHGCAR.gz",
+      "source_bytes": 9339840,
+      "sha256": "8894e3d9ea8fdda19c2530252fe9255f0511f1e746cfde9e5cf3297ad0041fd7",
+      "formula": "Sn2S2",
+      "ngrid": [
+        64,
+        64,
+        168
+      ],
+      "cell_c_angstrom": 11.041095273297573,
+      "vacuum_fraction": 0.3024408249627976,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-0XHkHlmw3DQ_",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "0XHkHlmw3DQ_31aktyiWvSeDvnl-",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/0XHkHlmw3DQ_31aktyiWvSeDvnl-/raw/CHGCAR.relax1.gz",
+      "file_name": "nomad_upload_thread_0/block_2016-09-14-21-21-57-007032/launcher_2017-04-13-02-40-20-742486/CHGCAR.relax1.gz",
+      "source_bytes": 5187557,
+      "sha256": "3eb04eb71d6b60186279aa91c40a10c899bcfb5bc55dd463710af55c6b3f38a6",
+      "formula": "Cd1S1",
+      "ngrid": [
+        64,
+        64,
+        108
+      ],
+      "cell_c_angstrom": 5.92118,
+      "vacuum_fraction": 0.16594102647569445,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-0a2YWO4Ir7mi",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "0a2YWO4Ir7mi7qV-Uy7e-O7Sw5rB",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/0a2YWO4Ir7mi7qV-Uy7e-O7Sw5rB/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-12-09-08-37-05-088670/launcher_2018-03-20-17-22-09-538428/launcher_2018-03-20-19-17-47-986832/CHGCAR.gz",
+      "source_bytes": 5855156,
+      "sha256": "980ecb85953c9c92dea524ab14c0e6345133017df111bd7c93ade082a6eaa918",
+      "formula": "Co1O2",
+      "ngrid": [
+        48,
+        48,
+        196
+      ],
+      "cell_c_angstrom": 13.017649407871223,
+      "vacuum_fraction": 0.5020062712585034,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-0qZgP0AV8Gk8",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "0qZgP0AV8Gk8lnWgOObvzOua0BsH",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/0qZgP0AV8Gk8lnWgOObvzOua0BsH/raw/CHGCAR.relax1.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-25-20-51-08-634679/CHGCAR.relax1.gz",
+      "source_bytes": 14615402,
+      "sha256": "8746d27c853e9640e23dbc633669c81c6673535a3570b5c4aab9074cd4d9bc83",
+      "formula": "Te2Mo1W1S2",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 23.872279000370494,
+      "vacuum_fraction": 0.35920642671130953,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-1M5XVUL3-6vX",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "1M5XVUL3-6vXIKYtq7JB0BCUEE0u",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/1M5XVUL3-6vXIKYtq7JB0BCUEE0u/raw/CHGCAR",
+      "file_name": "work/mxr180067/Projects/Data_NOMAD/Dielectric_Monolayers/DFT2_CdBr2_Mono/CHGCAR",
+      "source_bytes": 6993691,
+      "sha256": "17844b07388dc89f5e22ce5ef1c9fd6aac072c6389336bbeeeaa377adfdc85c9",
+      "formula": "Cd1Br2",
+      "ngrid": [
+        40,
+        40,
+        240
+      ],
+      "cell_c_angstrom": 23.104826,
+      "vacuum_fraction": 0.6536484375,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-1_3Aeqri4-hc",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "1_3Aeqri4-hcws2iWMWA2GEShRwr",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/1_3Aeqri4-hcws2iWMWA2GEShRwr/raw/CHGCAR.relax1.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-26-22-25-50-139887/CHGCAR.relax1.gz",
+      "source_bytes": 13230846,
+      "sha256": "1d039b79f28767222fc4e2bed6e2bc8599720cd8488af886f85c1df1fe7266e8",
+      "formula": "Mo2Se4",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 25.451423,
+      "vacuum_fraction": 0.3800547074298469,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-25gGmM0frydq",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "25gGmM0frydq2fdaovXHZkFYYEEX",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/25gGmM0frydq2fdaovXHZkFYYEEX/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-26-23-18-32-973821/CHGCAR.gz",
+      "source_bytes": 8463819,
+      "sha256": "ad447d1aecc7d5655b33acae46bf448d1c1321b2437c59d72ec455b817c674c7",
+      "formula": "W2Se2S2",
+      "ngrid": [
+        48,
+        48,
+        360
+      ],
+      "cell_c_angstrom": 23.022902,
+      "vacuum_fraction": 0.3621841242283951,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-2A-QzAIQ7zUi",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "2A-QzAIQ7zUiADWeKc64Q397ACnj",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/2A-QzAIQ7zUiADWeKc64Q397ACnj/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-04-23-22-42-13-343616/launcher_2017-04-27-01-07-19-771123/CHGCAR.gz",
+      "source_bytes": 5602848,
+      "sha256": "9bc39f14e8c5fbdc1502399a7a49fa42c7fb89050b36279ed128c5be0cb8bd3d",
+      "formula": "W1S2",
+      "ngrid": [
+        48,
+        48,
+        256
+      ],
+      "cell_c_angstrom": 17.101201,
+      "vacuum_fraction": 0.5445726182725694,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-2H4rlyMxb2Lt",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "2H4rlyMxb2LtDEefbeGEhgyG0d1H",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/2H4rlyMxb2LtDEefbeGEhgyG0d1H/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_7/block_2019-12-20-03-50-09-463422/launcher_2019-12-20-06-42-22-537429/CHGCAR.gz",
+      "source_bytes": 15297980,
+      "sha256": "24476bee47c239afdf84e15643b2488aa853bc5ced2cdeb6438df582ed3d0048",
+      "formula": "Te2Mo2Se2",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 24.365285,
+      "vacuum_fraction": 0.3551075215242347,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-2KcZ7wrCEYsv",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "2KcZ7wrCEYsvXHZxhY0ox1MnW5oQ",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/2KcZ7wrCEYsvXHZxhY0ox1MnW5oQ/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2019-10-07-17-45-10-161893/launcher_2019-10-08-05-15-48-391265/CHGCAR.gz",
+      "source_bytes": 10570303,
+      "sha256": "0c11840c47f8345bb0f08dbdf7c820bb5eef49361896735e2c5f13af0d8c7636",
+      "formula": "Zr1F4",
+      "ngrid": [
+        64,
+        64,
+        300
+      ],
+      "cell_c_angstrom": 19.585596,
+      "vacuum_fraction": 0.6849690755208333,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-2OB-b56O56z1",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "2OB-b56O56z1by2lEUzpMdQPnitm",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/2OB-b56O56z1by2lEUzpMdQPnitm/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_6/block_2019-12-20-03-50-09-463422/launcher_2019-12-20-05-36-03-407517/CHGCAR.gz",
+      "source_bytes": 10287262,
+      "sha256": "e03642baa522c6d11bad15bc2b847577b47870c6d7990bb662c8005d1b238944",
+      "formula": "Sn1Ge1",
+      "ngrid": [
+        64,
+        64,
+        192
+      ],
+      "cell_c_angstrom": 12.586198,
+      "vacuum_fraction": 0.5282681783040365,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-36OeWXGAtZ8e",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "36OeWXGAtZ8e3Lc0H3APasGehLhY",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/36OeWXGAtZ8e3Lc0H3APasGehLhY/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_3/block_2018-09-19-02-49-31-847130/launcher_2018-05-04-18-06-59-350202/CHGCAR.gz",
+      "source_bytes": 31720562,
+      "sha256": "00771a8b63419be325993faec59220f003dce425e7f34e104f7b76c25842eb80",
+      "formula": "Te2W2S2",
+      "ngrid": [
+        72,
+        72,
+        480
+      ],
+      "cell_c_angstrom": 23.962194000060844,
+      "vacuum_fraction": 0.3588175958076132,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-3Api7db6z5lU",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "3Api7db6z5lUx0XHZoN_cz5cZrqr",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/3Api7db6z5lUx0XHZoN_cz5cZrqr/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_1/block_2019-12-20-03-50-09-463422/launcher_2019-12-20-08-41-34-782731/CHGCAR.gz",
+      "source_bytes": 8950802,
+      "sha256": "b37e75c3c65b3fe0d58b09528ffd0c9c9af6d0c9446efb619a005b882f797940",
+      "formula": "V1S2",
+      "ngrid": [
+        48,
+        56,
+        420
+      ],
+      "cell_c_angstrom": 28.14962,
+      "vacuum_fraction": 0.7014810090702948,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-3I6dBXihz7G1",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "3I6dBXihz7G1zW-1JJhYAYzj7cig",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/3I6dBXihz7G1zW-1JJhYAYzj7cig/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_1/block_2019-10-07-17-45-10-161893/launcher_2019-10-08-01-07-03-423703/CHGCAR.gz",
+      "source_bytes": 5122169,
+      "sha256": "7702da99471d808bfe84e72e9ae940a9f5904cf35e7dabe8e70c31829072a6d9",
+      "formula": "Cd1S1",
+      "ngrid": [
+        64,
+        64,
+        96
+      ],
+      "cell_c_angstrom": 5.92118,
+      "vacuum_fraction": 0.1648585001627604,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-3h-SYwcAlhgZ",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "3h-SYwcAlhgZvBEYfKYz_AJKufhf",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/3h-SYwcAlhgZvBEYfKYz_AJKufhf/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_9/block_2019-12-20-03-50-09-463422/launcher_2019-12-20-06-54-39-570448/CHGCAR.gz",
+      "source_bytes": 14811252,
+      "sha256": "16f68956a4302aa6147eb5b9fb123cbec93d6a53a15322428a4367c07272d3f4",
+      "formula": "Te4Mo1W1",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 25.048577,
+      "vacuum_fraction": 0.34840195843962585,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-3l4MNOykb4O5",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "3l4MNOykb4O5LmNOovXpaBWj0A7U",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/3l4MNOykb4O5LmNOovXpaBWj0A7U/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_5/block_2019-10-07-17-45-10-161893/launcher_2019-10-08-04-29-52-795313/CHGCAR.gz",
+      "source_bytes": 14938224,
+      "sha256": "8380c7b89104a974201787949a591e49bd7a5e44af4162c7a0e7a5fa458c416b",
+      "formula": "Te4W2",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 25.05413,
+      "vacuum_fraction": 0.3489317602040816,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-4-v5dMHX5BhP",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "4-v5dMHX5BhPJ-bLVRS1vRzUj4_4",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/4-v5dMHX5BhPJ-bLVRS1vRzUj4_4/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_5/block_2019-10-07-17-45-10-161893/launcher_2019-10-08-04-13-56-741654/CHGCAR.gz",
+      "source_bytes": 15131098,
+      "sha256": "8229dcfb8ac50322d9d0bfd286b2b7ddeb34c3396bea793e6c3765d10e56eb5e",
+      "formula": "Te2W2Se2",
+      "ngrid": [
+        56,
+        56,
+        384
+      ],
+      "cell_c_angstrom": 24.474129,
+      "vacuum_fraction": 0.35590056335034015,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-48ChW422P29g",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "48ChW422P29gl1JQkf32WkWDIO3I",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/48ChW422P29gl1JQkf32WkWDIO3I/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_1/block_2019-09-28-21-28-04-044675/launcher_2019-09-29-11-15-23-119072/CHGCAR.gz",
+      "source_bytes": 7840255,
+      "sha256": "4a4fc31cebdc219de328a795370dd46701468937ae1917e5ec39817a869e51a2",
+      "formula": "Pb2S2",
+      "ngrid": [
+        64,
+        64,
+        168
+      ],
+      "cell_c_angstrom": 11.312144976437759,
+      "vacuum_fraction": 0.3263666062127976,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-4VDDyQdQUYnl",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "4VDDyQdQUYnliXDOv1MLADmDWx6S",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/4VDDyQdQUYnliXDOv1MLADmDWx6S/raw/CHGCAR.gz",
+      "file_name": "nomad_upload_thread_0/block_2017-12-09-08-37-05-088670/launcher_2018-03-21-22-06-19-930873/launcher_2018-03-22-01-26-55-864631/CHGCAR.gz",
+      "source_bytes": 14012981,
+      "sha256": "19395102d1cf8926658c2e72d65d7c5948d5e53843d8943433e1f92cb9425871",
+      "formula": "La2Se2",
+      "ngrid": [
+        64,
+        64,
+        256
+      ],
+      "cell_c_angstrom": 17.1520778648592,
+      "vacuum_fraction": 0.49138832092285156,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    },
+    {
+      "material_id": "nomad2d-54HlfCLZu2_8",
+      "domain": "vacuum2d",
+      "source": "NOMAD structural_type=2D",
+      "entry_id": "54HlfCLZu2_89VEGy5le1i1kjUwf",
+      "url": "https://nomad-lab.eu/prod/v1/api/v1/entries/54HlfCLZu2_89VEGy5le1i1kjUwf/raw/CHGCAR.relax1.xz",
+      "file_name": "nomad/fairdi/external/aflowlib/LIB2_LIB/AFLOWDATA_LIB2_LIB_CRb_sv_715.AB/CHGCAR.relax1.xz",
+      "source_bytes": 777328,
+      "sha256": "f8cb9a01219186773ac3e3bd5565c10292db731f3b4e5d28f98b18208b51fc25",
+      "formula": "X01X11",
+      "ngrid": [
+        64,
+        64,
+        96
+      ],
+      "cell_c_angstrom": 6.56672619482,
+      "vacuum_fraction": 0.23671976725260416,
+      "license": "NOMAD default CC BY 4.0; verify per upload"
+    }
+  ]
+}
