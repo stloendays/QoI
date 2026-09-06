@@ -28,6 +28,7 @@ jobs:
           python analysis/chatgpt_postprocess.py | tee analysis_output/workflow_stdout.txt
           python analysis/stability_qualified_structure_effect.py | tee analysis_output/stability_qualified_stdout.txt
           python analysis/reviewer_stress_tests.py | tee analysis_output/reviewer_stress_tests_stdout.txt
+          python analysis/complete_case_failure_sensitivity.py | tee analysis_output/complete_case_failure_sensitivity_stdout.txt
       - name: Commit reproducible outputs to analysis branch
         run: |
           git config user.name 'chatgpt-analysis-bot'
