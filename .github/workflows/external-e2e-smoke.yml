@@ -47,14 +47,23 @@ jobs:
             --relative-tolerances 1e-5 \
             --output-dir validation/results/nomad
 
-      - name: Run AFLOW provenance smoke
+      - name: Run AFLOW single-species provenance smoke
         if: success()
         run: |
           python validation/external_end_to_end.py \
             --material-id aflow-Ni1_ICSD_181716 \
             --codecs zfp \
             --relative-tolerances 1e-5 \
-            --output-dir validation/results/aflow
+            --output-dir validation/results/aflow_single
+
+      - name: Run AFLOW multi-species provenance smoke
+        if: success()
+        run: |
+          python validation/external_end_to_end.py \
+            --material-id aflow-Al1C1Ta2_ICSD_606258 \
+            --codecs zfp \
+            --relative-tolerances 1e-5 \
+            --output-dir validation/results/aflow_multi
 
       - name: Upload validation outputs
         if: always()
