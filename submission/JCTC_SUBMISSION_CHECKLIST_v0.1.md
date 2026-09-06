@@ -5,11 +5,13 @@
 ## A. Scientific package
 
 - [x] Manuscript scientific content conditionally frozen as v0.3.1.
+- [x] JCTC-targeted manuscript generated as `submission/JCTC_MANUSCRIPT_v0.1.md`.
 - [x] Core headline numbers centralized in `paper_data_v03/HEADLINE_NUMBER_REGISTRY_v03.md`.
 - [x] Realized-L∞ matching, complete-case sensitivity, mechanism attenuation, symmetry sensitivity, and global-conservation negative control completed.
-- [x] Scientific-claim lint: 32/32 passed, 0 failed.
-- [ ] Pending per-atom mechanism table: `mechanism/basin_error_decomposition_per_atom.csv`.
-- [ ] After the per-atom table lands, update only Figure 3 / direct-mechanism wording unless a preregistered check materially fails.
+- [x] Scientific-freeze lint: 32/32 passed, 0 failed.
+- [x] JCTC-targeted lint includes title, abstract, scientific semantics, reference integrity, and citation-resolution checks.
+- [ ] Pending optional/final mechanism extension: `mechanism/basin_error_decomposition_per_atom.csv`.
+- [ ] If the per-atom table lands before submission, update only Figure 3 / direct-mechanism wording unless the preregistered check materially fails.
 
 ## B. JCTC positioning
 
@@ -20,69 +22,134 @@
 - [x] Explicitly discuss the 2026 JCTC MARGR electron-density fidelity paper (DOI 10.1021/acs.jctc.6c01124).
 - [x] Avoid claims of being first to show that pointwise error does not preserve a QoI.
 
-## C. Files to submit
+## C. ACS Fast Format / initial manuscript
+
+Current ACS initial-submission rules allow Fast Format. For the review-ready file:
+
+- [x] Standard original-research sections are clearly identified.
+- [ ] Embed all final figures/tables near their first discussion in the manuscript.
+- [x] References include titles and complete bibliographic information; exact production typography is not required for initial Fast Format submission.
+- [ ] Ensure author names and affiliations in the manuscript exactly match ACS Publishing Center metadata.
+- [ ] Remove all internal drafting notes/placeholders from the upload version.
+- [ ] Produce final Word or LaTeX/PDF review-ready manuscript.
+
+## D. Files to submit
 
 - [ ] Main manuscript in final ACS-compatible Word or LaTeX/PDF form.
-- [ ] Supporting Information PDF with S1–S13 structure and all final supplementary captions/tables.
+- [ ] Supporting Information as a **separate file**; scaffold now exists at `submission/SUPPORTING_INFORMATION_DRAFT_JCTC_v0.1.md`.
 - [ ] Table-of-Contents graphical summary — required by JCTC.
-- [ ] Separate high-resolution/vector figure files as requested by the submission system.
-- [ ] Cover letter.
-- [ ] Data/code availability statement checked against repository visibility and release plan.
-- [ ] Funding statement.
-- [ ] Author contribution / CRediT statement if requested in the submission workflow.
-- [ ] Competing interests / conflict-of-interest declaration.
-- [ ] ORCID identifiers for authors where available.
+- [ ] Separate high-resolution/vector figure files retained for revision/production and uploaded if requested by the portal.
+- [x] Cover-letter draft prepared.
+- [x] Data and Software Availability draft prepared.
+- [x] Submission metadata worksheet prepared.
+- [ ] Funding statement confirmed.
+- [ ] Author contribution / CRediT statement completed if requested/used.
+- [ ] Competing-interest declaration confirmed.
+- [ ] ORCID identifiers collected.
 
-## D. Current JCTC/ACS procedural checks
+## E. TOC graphic
 
-- [x] Submission route: ACS Publishing Center.
-- [x] JCTC currently requires a graphical summary for the Table of Contents.
-- [x] Current peer-review model is single-anonymous; ACS also offers an optional transparent peer-review pathway.
-- [x] If preparing the manuscript in Word, use U.S. Letter as the original page size per the current ACS author-information page.
-- [ ] Re-check the live JCTC Author Guidelines on the actual submission day for file-format, TOC dimensions, and any changed metadata requirements.
+- [x] JCTC requires a graphical summary for the Table of Contents.
+- [x] Working canvas fixed at **3.25 in × 1.75 in**.
+- [x] Design brief prepared at `submission/TOC_GRAPHIC_BRIEF_JCTC_v0.1.md`.
+- [ ] Create original final artwork.
+- [ ] Mark/designate as **For Table of Contents Only** according to the live ACS portal instructions.
+- [ ] Check legibility at final size and on a phone without zooming.
+- [ ] Confirm accepted file format/resolution in the live submission portal on submission day.
 
-## E. Main manuscript QA before upload
+## F. Data and software reproducibility
 
-- [ ] Title contains no unnecessary jargon and foregrounds chemical fidelity / Bader-domain migration.
-- [ ] Abstract contains no reference citations and reports quantitative results consistently with the frozen registry.
-- [ ] All acronyms are defined at first occurrence.
-- [ ] Every figure is cited in numerical order.
-- [ ] Figure axes/units remain legible at final size.
-- [ ] Figure 3 wording matches the final per-atom audit.
-- [ ] Strictest slab result explicitly remains descriptive because only four slab materials are admitted at 10^-4 e.
-- [ ] `NON_EVALUABLE_BADER_UNSTABLE` is never counted as codec failure.
-- [ ] Stability floor is always described as protocol-defined / probe-defined, not intrinsic.
-- [ ] Reassignment regression is described as attenuation / mechanism-consistent evidence, not causal mediation.
-- [ ] Same-nominal comparisons are never interpreted as pure spatial-structure effects.
+The 2026 JCTC/JCIM reproducibility policy is now a first-class submission requirement for this project.
 
-## F. Reference QA
+- [x] Dedicated Data and Software Availability draft prepared: `submission/DATA_SOFTWARE_AVAILABILITY_JCTC_v0.1.md`.
+- [x] Data/code package inventory defined.
+- [ ] Decide exact public-release timing before formal submission.
+- [ ] Freeze exact submission commit.
+- [ ] Create immutable Git release/tag.
+- [ ] Deposit the submitted scientific snapshot in Zenodo or equivalent persistent repository.
+- [ ] Insert persistent DOI into manuscript and cover-letter/package metadata.
+- [ ] Verify archive contains all data/code actually required for the submitted claims.
+- [ ] Record manuscript, SI, figure, and TOC-graphic hashes in a submission manifest.
+
+Preferred route:
+
+`submission commit -> immutable release/tag -> persistent archive DOI -> formal ACS submission`
+
+## G. Main manuscript QA before upload
+
+- [x] Title foregrounds chemical fidelity and Bader-domain migration.
+- [x] Abstract contains no literature citations and is currently ~209 words.
+- [x] Same-nominal comparisons are not interpreted as pure spatial-structure effects.
+- [x] Reassignment regression is described as attenuation / mechanism-consistent evidence, not causal mediation.
+- [x] Stability floor is described as protocol-defined / probe-defined, not intrinsic.
+- [x] `NON_EVALUABLE_BADER_UNSTABLE` is not counted as a codec failure.
+- [x] Strictest slab result states that only four slab materials are admitted at 10^-4 e and remains descriptive.
+- [ ] All acronyms defined at first occurrence in the formatted version.
+- [ ] Every figure cited in numerical order after final figure assembly.
+- [ ] Figure axes/units legible at final single/double-column size.
+- [ ] Figure 3 wording matches the final available mechanism data.
+- [ ] Final Data and Software Availability section contains active archive DOI rather than a future-release statement.
+
+## H. Reference QA
 
 - [x] ZFP primary method reference verified.
 - [x] SZ3 primary method reference verified: DOI 10.1109/TBDATA.2022.3201176.
 - [x] SPERR primary method reference verified: DOI 10.1109/IPDPS54959.2023.00104.
 - [x] Recent JCTC MARGR reference verified: DOI 10.1021/acs.jctc.6c01124.
-- [ ] Convert final bibliography to the JCTC/ACS numerical reference style used by the submission manuscript.
-- [ ] Verify every DOI programmatically or manually before submission.
-- [ ] Ensure cited titles and year/volume/page or article information match the final published records.
+- [x] MARGR assigned a unique reference number after the existing Brehm & Thomas reference.
+- [x] Automated lint checks bibliography numbering uniqueness/continuity and that numerical citations resolve.
+- [ ] Verify every DOI against final published records before upload.
+- [ ] Ensure year/volume/page/article information is final for 2026 in-press/accepted papers.
+- [ ] Final ACS/JCTC production styling can be deferred until revision/acceptance if Fast Format is used.
 
-## G. Cover-letter checks
+## I. Cover letter
 
+- [x] JCTC-specific scientific pitch prepared.
+- [x] Public-release wording corrected so the letter does not claim the currently private repository is already released.
 - [ ] Insert final corresponding-author name, affiliation, postal address, and email.
 - [ ] Confirm all authors have approved submission.
 - [ ] Confirm manuscript is not under consideration elsewhere.
-- [ ] Confirm any related manuscripts/preprints are disclosed if applicable.
-- [ ] Keep the pitch focused on electronic-structure methodology and field-derived chemical domains.
+- [ ] Confirm related manuscripts/preprints are disclosed if applicable.
+- [ ] Confirm competing-interest statement.
 
-## H. Repository / reproducibility
+## J. Administrative metadata
 
-- [x] Frozen `main` remains distinct from editorial/statistical submission branches.
-- [x] JCTC submission work is isolated on `submission/jctc-v0.1`.
-- [ ] Decide whether the repository will be public at submission, at acceptance, or linked through an archival release/DOI.
-- [ ] Create an immutable release/tag for the exact submitted data/code state.
-- [ ] Record submitted manuscript hash and figure hashes in a submission manifest.
+Worksheet: `submission/JCTC_SUBMISSION_METADATA_v0.1.md`.
 
-## I. Final go/no-go
+- [ ] final author order
+- [ ] affiliations
+- [ ] corresponding author
+- [ ] ORCIDs
+- [ ] funding/grant numbers
+- [ ] CRediT roles
+- [ ] conflict statement
+- [ ] preprint/related-work disclosure
+- [ ] suggested reviewers after conflict screening
+- [ ] reviewer exclusions only if justified
 
-**GO for JCTC formatting and submission preparation now.**
+## K. Current JCTC/ACS procedural checks
 
-The temporarily unavailable per-atom table is not a blocker for JCTC-specific writing, cover-letter preparation, TOC design, bibliography cleanup, SI assembly, or figure polishing. It is a blocker only for freezing the final Figure 3 atom-level mechanism panel and any wording that explicitly depends on that table.
+- [x] Submission route: ACS Publishing Center.
+- [x] JCTC requires a graphical summary for the Table of Contents.
+- [x] ACS initial submission supports Fast Format.
+- [x] Figures should be embedded in the manuscript when possible.
+- [x] Supporting Information is submitted separately.
+- [x] References may use any complete style at initial submission but must include titles.
+- [x] Author names/affiliations must match ACS Publishing Center metadata.
+- [x] 2026 JCTC/JCIM policy calls for Data and Software Availability and submission-time reproducibility materials whenever possible.
+- [ ] Re-check live JCTC Author Guidelines and ACS Publishing Center immediately before formal upload.
+
+## L. Final go/no-go
+
+**GO for JCTC manuscript/SI/figure/TOC preparation now.**
+
+The temporarily unavailable per-atom table is not a blocker for preparing or even scientifically supporting the current manuscript because the direct decomposition claim is explicitly restricted to the representative 12-material mechanism set. It becomes a submission blocker only if the final manuscript or Figure 3 is rewritten to make a claim that requires the missing atom-level table.
+
+**Current true blockers to clicking Submit:**
+
+1. final author/affiliation/funding/conflict metadata;
+2. final TOC graphic;
+3. assembled review-ready SI;
+4. final manuscript file with embedded figures;
+5. immutable public/persistent data-software archive and DOI;
+6. final reference/figure/submission-day QA.
