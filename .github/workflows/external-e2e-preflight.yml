@@ -1,0 +1,25 @@
+name: External E2E Preflight
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [external-e2e-validation]
+    paths:
+      - '.github/workflows/external-e2e-preflight.yml'
+      - 'validation/preflight_formal_external.py'
+      - 'external_test_MANIFEST.json'
+      - 'stability/stability_floor_A1.csv'
+      - 'benchmark/master_benchmark_full.csv'
+      - 'benchmark/master_benchmark_tight_ladder.csv'
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen external benchmark invariants
+        run: python validation/preflight_formal_external.py
