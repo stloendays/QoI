@@ -34,6 +34,7 @@ required={
     'Fig2b matching':'(Fig. 2b)',
     'Fig3a fixed vs rederived':'(Fig. 3a)',
     'Fig3b ratio':'(Fig. 3b)',
+    'Fig3 long-form narrative':'Figure 3 therefore reports both the directional 99.7% result and stratified multiplicative ratios',
     'Fig4a resolvability':'(Fig. 4a)',
     'Fig4d predictability':'(Fig. 4d)',
     'Fig5a mechanism':'(Fig. 5a)',
@@ -45,8 +46,14 @@ required={
 }
 for n,t in required.items(): add(n,t in text,t)
 
-for t in ['## Limitations','reviewer-facing','we deliberately restrict','a limitation of this work']:
-    add(f'clean voice: {t}',t.lower() not in text.lower(),t)
+for t in [
+    '## Limitations',
+    'reviewer-facing',
+    'we deliberately restrict',
+    'a limitation of this work',
+    'Figure 2 therefore reports both the directional 99.7% result',
+]:
+    add(f'clean/renumbered: {t}',t.lower() not in text.lower(),t)
 
 refsec=text.split('## References',1)[1]
 refs=[int(x) for x in re.findall(r'(?m)^(\d+)\. ',refsec)]
