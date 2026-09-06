@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - analysis/chatgpt-postprocess-20260906
-    paths-ignore:
-      - 'analysis_output/**'
+    paths:
+      - 'analysis/RUN_REVIEWER_STRESS_TESTS_20260906.txt'
 
 permissions:
   contents: write
@@ -36,6 +36,7 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No output changes.'
           else
-            git commit -m 'Add statistical post-processing outputs'
+            git commit -m 'Add reviewer stress-test outputs'
+            git pull --rebase origin analysis/chatgpt-postprocess-20260906
             git push origin HEAD:analysis/chatgpt-postprocess-20260906
           fi
