@@ -9,6 +9,8 @@ on:
       - '.github/workflows/external-e2e-smoke.yml'
       - 'external_test_MANIFEST.json'
       - 'stability/stability_floor_A1.csv'
+      - 'protocol/PROTOCOL_A1.md'
+      - 'benchmark/master_benchmark_full.csv'
 
 jobs:
   smoke:
@@ -32,13 +34,22 @@ jobs:
             hdf5plugin==7.0.0 \
             h5py
 
-      - name: Run external NOMAD 2D end-to-end smoke
+      - name: Run NOMAD protocol smoke
         run: |
           python validation/external_end_to_end.py \
             --material-id nomad2d-0XHkHlmw3DQ_ \
             --codecs zfp,sz3,sperr \
             --relative-tolerances 1e-5 \
-            --output-dir validation/results
+            --output-dir validation/results/nomad
+
+      - name: Run AFLOW provenance smoke
+        if: success()
+        run: |
+          python validation/external_end_to_end.py \
+            --material-id aflow-Ni1_ICSD_181716 \
+            --codecs zfp \
+            --relative-tolerances 1e-5 \
+            --output-dir validation/results/aflow
 
       - name: Upload validation outputs
         if: always()
