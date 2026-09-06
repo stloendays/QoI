@@ -10,7 +10,9 @@ on:
       - 'validation/preflight_confirmatory_split.py'
       - 'validation/external_rate_fidelity_split.json'
       - 'validation/aggregate_formal_external.py'
+      - 'validation/build_confirmatory_external.py'
       - 'validation/test_aggregate_semantics.py'
+      - 'validation/test_confirmatory_postprocessor.py'
       - 'external_test_MANIFEST.json'
       - 'stability/stability_floor_A1.csv'
       - 'benchmark/master_benchmark_full.csv'
@@ -31,3 +33,5 @@ jobs:
         run: python validation/preflight_confirmatory_split.py
       - name: Verify material-level aggregation semantics
         run: python validation/test_aggregate_semantics.py
+      - name: Verify all65 to confirmatory63 postprocessing
+        run: python validation/test_confirmatory_postprocessor.py
