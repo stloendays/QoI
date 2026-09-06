@@ -43,5 +43,12 @@ final = {
 for a,b in final.items():
     text = text.replace(a,b)
 
+# Long-form narrative reference in the fixed-vs-re-derived section follows the same old-Fig2 -> new-Fig3 mapping.
+text = text.replace(
+    "Figure 2 therefore reports both the directional 99.7% result and stratified multiplicative ratios",
+    "Figure 3 therefore reports both the directional 99.7% result and stratified multiplicative ratios",
+    1,
+)
+
 out.write_text(text, encoding="utf-8")
 print(f"Built {out.relative_to(ROOT)}")
