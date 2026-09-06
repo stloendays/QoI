@@ -26,6 +26,8 @@ jobs:
         run: python validation/preflight_confirmatory_split.py
       - name: Verify material-level aggregation semantics
         run: python validation/test_aggregate_semantics.py
+      - name: Verify all65 to confirmatory63 postprocessing
+        run: python validation/test_confirmatory_postprocessor.py
 
   shard:
     needs: preflight
