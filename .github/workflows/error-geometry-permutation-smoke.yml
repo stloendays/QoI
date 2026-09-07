@@ -26,12 +26,12 @@ jobs:
       - name: Select first preregistered material
         id: select
         run: |
-          material=$(python mechanism/residual_spatial_permutation.py --list-materials | python -c 'import json,sys; x=json.load(sys.stdin); print(x[0])')
+          material=$(python mechanism/residual_spatial_permutation_v2.py --list-materials | python -c 'import json,sys; x=json.load(sys.stdin); print(x[0])')
           echo "material=$material" >> "$GITHUB_OUTPUT"
           echo "Smoke material: $material"
       - name: Run full five-seed intervention on one material
         run: |
-          python mechanism/residual_spatial_permutation.py \
+          python mechanism/residual_spatial_permutation_v2.py \
             --material-id "${{ steps.select.outputs.material }}" \
             --output-dir mechanism/permutation_smoke
       - uses: actions/upload-artifact@v4
