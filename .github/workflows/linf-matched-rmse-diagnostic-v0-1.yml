@@ -1,0 +1,33 @@
+name: L-inf Matched RMSE Diagnostic v0.1
+
+on:
+  push:
+    branches: [external-e2e-validation]
+    paths:
+      - 'mechanism/LINF_MATCHED_RMSE_DIAGNOSTIC_TRIGGER'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen benchmark blob
+        run: test "$(git hash-object benchmark/master_benchmark_full.csv)" = "633c7b2ee1b9b800382a5d0d9cfbdc9e1dc793b7"
+      - name: Run frozen diagnostic
+        run: python mechanism/linf_matched_rmse_diagnostic.py
+      - name: Show report
+        run: cat mechanism/linf_matched_rmse_diagnostic_v0_1/LINF_MATCHED_RMSE_DIAGNOSTIC_REPORT.md
+      - name: Commit evidence
+        run: |
+          set -eu
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mechanism/linf_matched_rmse_diagnostic_v0_1/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record L-inf-matched RMSE balance diagnostic'
+          git push
