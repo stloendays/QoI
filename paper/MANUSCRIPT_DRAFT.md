@@ -79,9 +79,7 @@ Protocol A.1 measures the numerical resolvability of atom-resolved Bader charge 
 Five perturbations are generated with the pre-specified seeds \(\{20260905,1,2,3,4\}\),
 
 \[
-\rho_i^{(s)} = \rho_i + u_i^{(s)},
-\qquad
-u_i^{(s)} \sim U(-\epsilon_i^{32},+\epsilon_i^{32}).
+\rho_i^{(s)} = \rho_i + u_i^{(s)}, \qquad u_i^{(s)} \sim U(-\epsilon_i^{32},+\epsilon_i^{32}).
 \]
 
 The Bader partition is re-derived after every perturbation, and the stability floor is
