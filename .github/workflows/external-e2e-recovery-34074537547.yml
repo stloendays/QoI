@@ -1,0 +1,176 @@
+name: External E2E Recovery 34074537547
+
+on:
+  push:
+    branches: [external-e2e-validation]
+    paths:
+      - 'validation/EXTERNAL_RECOVERY_34074537547_TRIGGER'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover-material:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {slot: 00, material: aflow-Ca1O4U1_ICSD_246962}
+          - {slot: 01, material: aflow-B0.667N0.667_ICSD_162872}
+          - {slot: 02, material: aflow-H3Ni1Zr1_ICSD_658750}
+          - {slot: 03, material: aflow-Cl1O12Pb5V3_ICSD_203074}
+          - {slot: 04, material: aflow-Na10Sn12Yb1_ICSD_172210}
+          - {slot: 05, material: nomad2d-03AViAQBOpvV}
+          - {slot: 06, material: nomad2d-1_3Aeqri4-hc}
+          - {slot: 07, material: nomad2d-3I6dBXihz7G1}
+          - {slot: 08, material: aflow-Au2Ge2Nd1_ICSD_164730}
+          - {slot: 09, material: aflow-B1C1F6K1_ICSD_1194}
+          - {slot: 10, material: aflow-B6H2O13Sr3_ICSD_262541}
+          - {slot: 11, material: aflow-Co2Nd1_ICSD_154732}
+          - {slot: 12, material: aflow-Cs1In3_ICSD_102867}
+          - {slot: 13, material: aflow-Cu1Hf1Hg2_ICSD_102969}
+          - {slot: 14, material: aflow-F2Mn1_ICSD_63569}
+          - {slot: 15, material: aflow-H4Si1_ICSD_159307}
+          - {slot: 16, material: aflow-Mo3Na1O16P3_ICSD_66877}
+          - {slot: 17, material: aflow-Pt5Se4_ICSD_87926}
+          - {slot: 18, material: nomad2d-0KKvLZ7KNaqG}
+          - {slot: 19, material: nomad2d-0XHkHlmw3DQ_}
+          - {slot: 20, material: nomad2d-2H4rlyMxb2Lt}
+          - {slot: 21, material: nomad2d-2KcZ7wrCEYsv}
+          - {slot: 22, material: nomad2d-4-v5dMHX5BhP}
+          - {slot: 23, material: nomad2d-48ChW422P29g}
+    steps:
+      - name: Checkout frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install pinned external E2E environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r validation/requirements-external-e2e.txt
+
+      - name: Re-run one frozen-corpus material without semantic changes
+        run: |
+          python validation/formal_external_e2e.py \
+            --material-id '${{ matrix.material }}' \
+            --codecs zfp,sz3,sperr \
+            --output-dir 'validation/recovery_${{ matrix.slot }}'
+
+      - name: Archive recovery environment
+        if: always()
+        run: |
+          mkdir -p 'validation/recovery_${{ matrix.slot }}'
+          python --version > 'validation/recovery_${{ matrix.slot }}/python_version.txt'
+          python -m pip freeze | sort > 'validation/recovery_${{ matrix.slot }}/pip_freeze.txt'
+          sha256sum validation/requirements-external-e2e.txt > 'validation/recovery_${{ matrix.slot }}/requirements_sha256.txt'
+          git rev-parse HEAD > 'validation/recovery_${{ matrix.slot }}/git_commit.txt'
+          printf '%s\n' '${{ matrix.material }}' > 'validation/recovery_${{ matrix.slot }}/requested_material.txt'
+
+      - name: Upload recovered material output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-e2e-recovery-${{ matrix.slot }}
+          path: validation/recovery_${{ matrix.slot }}
+          if-no-files-found: error
+
+  aggregate-recovery:
+    needs: recover-material
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+
+      - name: Download original run artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: external-e2e-shard-*
+          path: validation/recovery_inputs/original
+          merge-multiple: false
+          github-token: ${{ github.token }}
+          repository: stloendays/QoI
+          run-id: 34074537547
+
+      - name: Exclude superseded original shards 2, 5, and 6
+        run: |
+          rm -rf validation/recovery_inputs/original/external-e2e-shard-2
+          rm -rf validation/recovery_inputs/original/external-e2e-shard-5
+          rm -rf validation/recovery_inputs/original/external-e2e-shard-6
+
+      - name: Download recovery artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: external-e2e-recovery-*
+          path: validation/recovery_inputs/recovered
+          merge-multiple: false
+
+      - name: Aggregate all 65 descriptively
+        id: all65
+        continue-on-error: true
+        run: |
+          python validation/aggregate_formal_external.py \
+            --input-root validation/recovery_inputs \
+            --output-dir validation/formal_external_all65 \
+            --expect-full
+
+      - name: Build primary 63-system confirmatory summary
+        id: confirmatory
+        if: always()
+        continue-on-error: true
+        run: |
+          python validation/build_confirmatory_external.py \
+            --aggregate-dir validation/formal_external_all65 \
+            --output-dir validation/formal_external_confirmatory63
+
+      - name: Generate pre-specified external rate-fidelity report
+        id: report
+        if: always()
+        continue-on-error: true
+        run: |
+          python validation/generate_external_rate_fidelity_report.py \
+            --confirmatory-dir validation/formal_external_confirmatory63 \
+            --all65-dir validation/formal_external_all65 \
+            --output validation/formal_external_confirmatory63/EXTERNAL_RATE_FIDELITY_REPORT.md
+
+      - name: Write recovery execution status
+        if: always()
+        run: |
+          mkdir -p validation/recovery_status
+          cat > validation/recovery_status/status.txt <<EOF
+          original_run=34074537547
+          frozen_code_sha=893f931b3045b0b628329db81999c2f439d4e830
+          all65=${{ steps.all65.outcome }}
+          confirmatory=${{ steps.confirmatory.outcome }}
+          report=${{ steps.report.outcome }}
+          EOF
+
+      - name: Upload recovered aggregate outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-e2e-recovery-aggregate
+          path: |
+            validation/formal_external_all65
+            validation/formal_external_confirmatory63
+            validation/recovery_status
+          if-no-files-found: warn
+
+      - name: Enforce recovered aggregate validation status
+        if: always()
+        run: |
+          test '${{ steps.all65.outcome }}' = 'success'
+          test '${{ steps.confirmatory.outcome }}' = 'success'
+          test '${{ steps.report.outcome }}' = 'success'
