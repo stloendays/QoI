@@ -1,6 +1,5 @@
 name: Matched realized-Linf V1
 
-# Execution touch: 2026-09-07
 on:
   workflow_dispatch:
   push:
@@ -8,6 +7,7 @@ on:
       - 'analysis/matched-realized-linf-v1'
     paths:
       - 'analysis/matched_realized_linf_v1.py'
+      - 'figures/R/figure6_matched_realized_linf.R'
       - '.github/workflows/matched-realized-linf-v1.yml'
       - 'benchmark/master_benchmark_full.csv'
 
@@ -17,7 +17,7 @@ permissions:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout analysis branch
         uses: actions/checkout@v4
@@ -34,18 +34,38 @@ jobs:
       - name: Run matched realized-Linf analysis
         run: python analysis/matched_realized_linf_v1.py
 
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install figure dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::scales
+            any::patchwork
+
+      - name: Render Figure 6
+        run: Rscript figures/R/figure6_matched_realized_linf.R
+
       - name: Print report
         run: |
           echo '--- REPORT.md ---'
           cat analysis/matched_realized_linf_v1/REPORT.md
           echo '--- matching diagnostics ---'
           cat analysis/matched_realized_linf_v1/matching_diagnostics.csv
+          echo '--- rendered figure ---'
+          ls -lh figures/R/rendered/figure6_matched_realized_linf_R.*
 
       - name: Upload analysis outputs
         uses: actions/upload-artifact@v4
         with:
           name: matched-realized-linf-v1
-          path: analysis/matched_realized_linf_v1/
+          path: |
+            analysis/matched_realized_linf_v1/
+            figures/R/rendered/figure6_matched_realized_linf_R.png
+            figures/R/rendered/figure6_matched_realized_linf_R.pdf
           if-no-files-found: error
 
       - name: Commit reproducible results to branch
@@ -53,9 +73,11 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add analysis/matched_realized_linf_v1/
+          git add figures/R/rendered/figure6_matched_realized_linf_R.png
+          git add figures/R/rendered/figure6_matched_realized_linf_R.pdf
           if git diff --cached --quiet; then
             echo 'No analysis-result changes to commit.'
           else
-            git commit -m 'Run matched realized-Linf V1 analysis'
+            git commit -m 'Render matched realized-Linf analysis and Figure 6'
             git push origin HEAD:analysis/matched-realized-linf-v1
           fi
