@@ -1,0 +1,27 @@
+name: Error Geometry Provenance Diagnostic
+
+on:
+  push:
+    branches: [external-e2e-validation]
+    paths:
+      - 'mechanism/GEOMETRY_PROVENANCE_DIAGNOSTIC_TRIGGER'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned benchmark environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r validation/requirements-external-e2e.txt
+      - name: Compare released and reconstructed per-atom provenance
+        run: python mechanism/permutation_provenance_diagnostic.py
