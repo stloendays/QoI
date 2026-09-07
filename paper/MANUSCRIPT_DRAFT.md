@@ -217,7 +217,7 @@ A pointwise bound constrains the amplitude of the reconstruction error at every 
 
 This mechanism connects the chemical result to topology- and order-aware compression. TopoSZ preserves topological structures under error-bounded compression [5], later methods preserve or correct Morse-Smale structures [7,8], and recent local-order-preserving compression explicitly protects neighboring value order and critical points [9]. Bader analysis supplies a chemically explicit target for this class of structure because its atom assignments depend on local ascent through the density field.
 
-The implication for compressor design is specific: preserving the discrete relations that determine field-derived integration domains is more closely aligned with Bader fidelity than minimizing pointwise amplitude alone. The present study establishes the evaluation target and mechanism; it does not require a new codec to demonstrate that distinction.
+The implication for compressor design is specific: preserving the discrete relations that determine field-derived integration domains is more closely aligned with Bader fidelity than minimizing pointwise amplitude alone. The contribution here is the evaluation target and mechanism, which provides a direct criterion for future codec design.
 
 ## 6. Robustness, failure regimes, rate-fidelity, and implications
 
