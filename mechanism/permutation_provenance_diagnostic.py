@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Diagnose unshuffled provenance mismatch without changing scientific semantics."""
 from __future__ import annotations
-import csv, hashlib, json, sys, tempfile
+import csv, hashlib, importlib.metadata, sys, tempfile
 from pathlib import Path
 import numpy as np
 
@@ -24,11 +24,39 @@ def per_atom_expected():
     return sorted(rows, key=lambda r: int(r["atom_index"]))
 
 
+def master_rows():
+    path = ROOT / "benchmark" / "master_benchmark_full.csv"
+    with path.open(newline="") as f:
+        rows = []
+        for r in csv.DictReader(f):
+            if r["material_id"] != MID or r["codec"].upper() != CODEC:
+                continue
+            try:
+                tol = float(r["nominal_tolerance_relative"])
+            except ValueError:
+                continue
+            if abs(tol - TOL) < 1e-15:
+                rows.append(r)
+        return rows
+
+
 def digest_array(a):
     return hashlib.sha256(np.ascontiguousarray(a, dtype=np.float64).tobytes()).hexdigest()
 
 
 def main():
+    print("package_versions", {name: importlib.metadata.version(name) for name in ["baderkit", "zfpy", "numpy", "pymatgen"]})
+    mrows = master_rows()
+    print("released_master_rows_at_operating_point", len(mrows))
+    for r in mrows:
+        keys = [
+            "material_id", "corpus", "codec", "nominal_tolerance_relative",
+            "nominal_tolerance_absolute", "realized_Linf", "rmse",
+            "compression_ratio", "Bader_error_fixed_e", "Bader_error_resolved_e",
+            "bader_maxima_count_changed", "bound_respected",
+        ]
+        print("master_row", {k: r.get(k, "") for k in keys})
+
     record = perm.source_record(MID)
     expected = per_atom_expected()
     with tempfile.TemporaryDirectory(prefix="qoi_prov_diag_") as td:
@@ -41,8 +69,12 @@ def main():
         ptp = float(np.ptp(field))
         recon, compressed_bytes, mode = core.codec_roundtrip("zfp", field, TOL*ptp, work)
         recon = np.asarray(recon, dtype=np.float64)
-        resolved = core.run_bader(core.clone_grid_with_total(grid, recon))
-        q1 = np.asarray(resolved["charges"], dtype=np.float64)
+        q_repeats = []
+        for repeat in range(3):
+            resolved = core.run_bader(core.clone_grid_with_total(grid, recon))
+            q_repeats.append(np.asarray(resolved["charges"], dtype=np.float64))
+        q1 = q_repeats[0]
+        print("repeat_bader_max_pairwise_charge_diff", max(float(np.max(np.abs(a-b))) for a in q_repeats for b in q_repeats))
         print("source_sha", sha, "bytes", nbytes)
         print("shape", field.shape, "npoints", field.size, "min", float(field.min()), "max", float(field.max()), "ptp", ptp, "sum", float(field.sum()))
         print("field_sha256_float64", digest_array(field))
