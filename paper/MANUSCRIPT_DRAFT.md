@@ -1,85 +1,72 @@
-# Chemical Fidelity Is Not a Pointwise Error: Topology-Induced Failure Modes in Lossy Compression of Electronic Densities
-
-> Working JCTC manuscript draft. This document is the submission-oriented prose layer. `RESULTS.md` is retained as a historical research log and should not be treated as the final manuscript.
->
-> External rate–fidelity results remain pending until the frozen corpus-scale run reaches a terminal, audited state. No success claim is made here in advance.
+# Chemical Fidelity beyond Pointwise Error Bounds: Stability and Bader-Domain Migration in Lossy-Compressed Electron Densities
 
 ## Abstract
 
-Lossy compression of scientific fields is commonly controlled in data space, for example by imposing a pointwise reconstruction bound. Such guarantees are convenient, but they do not establish preservation of downstream scientific quantities. We develop a stability-qualified workflow for certifying scientific-data approximations against a downstream quantity of interest (QoI) and apply it to atom-resolved Bader charges derived from electronic charge densities. The workflow separates four logically distinct outcomes: intrinsic instability of the QoI, numerical failure of the approximation contract, approximation-induced scientific error, and pipeline failure. Before any codec is judged, the intrinsic Bader stability floor of each material is measured using a pre-specified five-seed perturbation protocol at a material-specific floating-point scale. Only materials whose Bader charges are stable relative to a requested chemical tolerance are admitted to certification. Reconstructed densities are then audited against their requested pointwise error bounds and evaluated using both a fixed-domain diagnostic and a fully re-resolved Bader analysis in which atom domains are recomputed from the reconstructed field. Across the development benchmark of 6,343 retained codec rows from 254 materials, fixed-domain evaluation can substantially understate the chemically relevant error. A representative atom-level decomposition further shows that, for the worst-affected atom in the pre-specified mechanism set, the median error contribution associated with Bader-domain migration is 0.9995 of the total magnitude. We summarize scientifically valid operating points using a material-level Certified Compression Ratio (CCR), defined as the maximum compression ratio satisfying both intrinsic-QoI stability and downstream chemical fidelity. A frozen independent external evaluation is used to test transfer without retuning. The results establish that scientific fidelity is a property of the complete chain from numerical perturbation to downstream analysis, rather than of the pointwise reconstruction error alone.
+Error-bounded compression controls the reconstructed electron-density field, whereas chemical analysis acts on quantities derived from that field. We examine the gap between these two levels for atom-resolved Bader charge analysis using 6,343 retained reconstructions of 254 density-functional-theory electron densities compressed with SZ3, ZFP, and SPERR. The benchmark separates requested error from realized perturbation, fixed-domain integration from fully re-derived Bader analysis, and codec fidelity from the intrinsic numerical stability of the downstream quantity of interest (QoI). Equal requested tolerances do not imply equal field perturbations: ZFP realizes a median of approximately 0.158 of its requested L-infinity bound, whereas SZ3 and SPERR operate close to the requested bound. More importantly, holding the original Bader partition fixed systematically understates downstream charge error because it suppresses reconstruction-induced domain motion. A representative atom-level mechanism analysis spanning 12 materials, three codecs, and 106 successful operating points closes the charge-error decomposition to within 2 x 10^-16 e and gives a median domain-term share of 0.9995 at the most affected atom. A calibrated five-seed stability protocol further shows that Bader charge itself has a material-specific numerical resolution: across the 319-system stability corpus, approximately 80%, 41%, and 10% of systems are non-evaluable at 10^-4, 10^-3, and 10^-2 e, respectively. We therefore define a stability-qualified chemical contract and summarize valid operating points by a material-level Certified Compression Ratio (CCR), the maximum compression ratio that preserves the re-derived Bader result within a specified chemical tolerance. The resulting workflow links numerical perturbation, downstream topology, and chemical fidelity in a single auditable rate-fidelity framework.
 
 ## 1. Introduction
 
-The storage and movement of high-dimensional scientific data increasingly compete with the cost of generating the data themselves. Electronic-structure calculations are a representative example: three-dimensional fields such as electronic charge density are retained because they support subsequent chemical analysis, visualization, charge partitioning, and reuse. Error-bounded lossy compression is therefore attractive when it reduces storage while retaining the scientific information needed downstream.
+Real-space electron-density fields are central intermediates in electronic-structure workflows. They support charge partitioning, bonding analysis, visualization, archival reuse, and increasingly data-driven post-processing. In high-throughput density-functional-theory (DFT) calculations, these volumetric fields can become a substantial storage and I/O burden even after the underlying electronic-structure calculation is complete. Error-bounded lossy compression offers a direct remedy by replacing exact storage with a controlled numerical approximation. General-purpose compressors such as ZFP, SZ3, and SPERR expose explicit error controls [1-3], making the reconstruction error straightforward to specify and audit.
 
-The usual compression contract, however, is stated in the representation space rather than the scientific decision space. A reconstructed field \(\tilde{\rho}(\mathbf r)\) may satisfy a stringent pointwise bound
+The scientific object of interest, however, is rarely an individual grid value. Chemical conclusions are drawn from quantities of interest (QoIs): integrated charges, extrema, interfaces, critical points, segmentations, or other outputs of a post-processing pipeline. A field norm and a downstream scientific error therefore answer different questions. QoI-preserving compression has formalized this distinction for selected downstream operators [4], while topology-aware methods preserve extrema, contour trees, Morse-Smale structures, or local order that ordinary pointwise bounds do not encode [5-9]. Recent approaches further model spatial compression-error correlations or expose task-specific QoI/compression trade-offs [10,11]. These developments motivate a more direct question for chemical data: what fidelity contract should be applied to the analysis actually performed on a reconstructed field?
 
-\[
-\|\tilde{\rho}-\rho\|_{\infty} \le \epsilon,
-\]
+Bader charge analysis makes that question especially sharp. In the atoms-in-molecules construction, the electron density defines atomic basins, and atomic charges are obtained by integrating the density over those basins [12,13]. Grid implementations follow local ascent relations to assign voxels to atomic regions [13,16]. The integration domain is therefore not external to the field: it is reconstructed from the field itself. A perturbation can change a Bader charge through two coupled channels - changes in density values within a basin and movement of the basin boundary. An evaluation that reuses the original basin suppresses the second channel by construction.
 
-without preserving a downstream observable to a comparably meaningful tolerance. This is not merely a matter of choosing a smaller \(\epsilon\). The downstream analysis may contain integration, optimization, thresholding, partitioning, topology changes, or solver bifurcations that transform a small field perturbation into a qualitatively different scientific result.
+The reference analysis also has a finite numerical resolution. If a chemically negligible perturbation of the original density changes the re-derived Bader partition enough to move an atom-resolved charge beyond the requested tolerance, that material does not support a meaningful codec pass/fail statement at that scale. The reference QoI must therefore be qualified before it can serve as a fidelity contract.
 
-Bader analysis exposes this problem particularly clearly. Atom-resolved Bader charges are not obtained by integrating over a fixed, externally supplied domain. The atom domains are themselves derived from the topology of the charge-density field. Compression can therefore affect the result through two coupled channels: changing the density values within a domain and changing the domain itself. A comparison that reuses the original Bader partition measures only the first channel and can miss the dominant error mechanism.
+We address these coupled issues through a stability-qualified benchmark of SZ3, ZFP, and SPERR on DFT electron-density fields. The study separates requested error from realized error, fixed-domain integration from re-derived chemical analysis, intrinsic QoI resolvability from codec certification, and raw compression ratio from chemically valid rate-fidelity. The resulting evidence supports a compact principle: **scientific fidelity is a property of the complete chain from numerical perturbation to downstream analysis**.
 
-A second difficulty is more fundamental. The quantity computed from the original uncompressed field is often treated as an exact reference. Yet a downstream numerical analysis can have its own material-specific stability floor. If an imperceptibly small perturbation of the original density changes an atom-resolved Bader charge by more than the requested scientific tolerance, then the material cannot honestly certify any compressor at that tolerance. Calling a codec a failure in this regime would attribute intrinsic QoI instability to the approximation method.
+## 2. Scientific question and benchmark design
 
-We therefore formulate lossy scientific-data evaluation as a **stability-qualified QoI certification problem**. The central principle is:
+### 2.1 What must be preserved for a compressed density to remain chemically usable?
 
-> An approximation can be certified against a downstream scientific quantity only after that quantity is shown to be numerically stable at the requested scientific tolerance.
-
-The resulting workflow separates source integrity, intrinsic QoI stability, approximation fidelity, topology-sensitive downstream re-analysis, failure accounting, and rate–fidelity aggregation. We use three production error-bounded compressors—ZFP, SZ3, and SPERR—as probes of the framework rather than as the scope of the framework itself. The case study is atom-resolved Bader charge, but the methodological distinction between pointwise numerical error and downstream scientific validity is more general.
-
-The paper addresses four questions. First, does an accepted pointwise error bound reliably rank reconstructions by chemical fidelity? Second, how much error is hidden when the downstream partition is held fixed rather than recomputed? Third, when is Bader charge itself stable enough to support a stated chemical tolerance? Finally, after enforcing both intrinsic stability and downstream fidelity, how much compression remains scientifically usable?
-
-## 2. Methods
-
-### 2.1 Overview: stability-qualified scientific-data certification
-
-We organize the evaluation as the following sequence:
+Let the reference electron density be \(\rho\) and the reconstructed field be \(\tilde{\rho}\). A conventional error-bounded compressor controls a field-level quantity such as
 
 \[
-\boxed{
-\text{Provenance}
-\rightarrow
-\text{Intrinsic QoI stability}
-\rightarrow
-\text{Eligibility}
-\rightarrow
-\text{Approximation}
-\rightarrow
-\text{QoI re-analysis}
-\rightarrow
-\text{Topology audit}
-\rightarrow
-\text{Certification}
-\rightarrow
-\text{Rate--fidelity}
-}
+\|\tilde{\rho}-\rho\|_{\infty} \leq \epsilon.
 \]
 
-The separation of these stages is intentional. A reconstructed field is not considered scientifically valid merely because it satisfies a codec-level numerical bound, and a codec is not considered scientifically invalid merely because a downstream quantity is intrinsically unstable.
+For Bader analysis, the relevant chemical output also depends on the partition operator \(\Omega(\rho)\), which maps a density field to atom-resolved integration domains. The primary downstream error for atom \(a\) is therefore
 
-For the present case study, the source object is an electronic charge density \(\rho_i(\mathbf r)\) for material \(i\), and the downstream QoI is the vector of atom-resolved Bader charges \(\mathbf Q_i\). Three scientific tolerances are evaluated throughout: \(\tau \in \{10^{-4},10^{-3},10^{-2}\}\) e.
+\[
+\Delta Q_a^{\mathrm{resolved}}
+=
+Q_a\!\left(\tilde{\rho};\Omega_a(\tilde{\rho})\right)
+-
+Q_a\!\left(\rho;\Omega_a(\rho)\right).
+\]
 
-The workflow yields four distinct verdict classes:
+A fixed-basin diagnostic instead evaluates
 
-- **CERTIFIED**: the material is intrinsically eligible at \(\tau\), the numerical approximation is valid, and the re-resolved downstream error is below \(\tau\);
-- **NOT_CERTIFIED**: the material is intrinsically eligible, but the downstream chemical error reaches or exceeds \(\tau\);
-- **NON_EVALUABLE_BADER_UNSTABLE**: the Bader QoI itself is not sufficiently stable to support certification at \(\tau\);
-- **PIPELINE_FAILURE**: provenance, parsing, source integrity, or another material-level prerequisite fails.
+\[
+\Delta Q_a^{\mathrm{fixed}}
+=
+Q_a\!\left(\tilde{\rho};\Omega_a(\rho)\right)
+-
+Q_a\!\left(\rho;\Omega_a(\rho)\right).
+\]
 
-This classification prevents three qualitatively different phenomena—intrinsic analysis instability, codec-induced scientific error, and pipeline failure—from being pooled into a single pass/fail statistic.
+These expressions differ only in whether the integration domain is reconstructed after decompression, but that difference determines whether domain migration is measured.
 
-### 2.2 Source provenance and integrity gate
+The complete evaluation chain is
 
-Every source density is tied to explicit provenance metadata. For the formal external evaluation, source identity is fixed by URL, byte count, and SHA-256 digest. Parsing must reproduce the expected grid shape and composition metadata, all source values must be finite, and parser provenance is recorded. A failure at this stage prevents the material from entering the rate–fidelity analysis and is classified as a material-level `PIPELINE_FAILURE`.
+**source provenance -> intrinsic QoI stability -> eligibility -> compression/reconstruction -> re-derived QoI -> topology/domain audit -> certification -> rate-fidelity**.
 
-Input-field properties that may be scientifically relevant but are not automatically attributable to a codec—for example a small negative density value already present in the source—are retained as diagnostics rather than converted into codec failures.
+The workflow is designed so that each stage answers a different scientific question. Provenance establishes that the source object is the intended one. Stability qualification establishes the chemical precision that the downstream analysis can resolve. Compression then introduces a controlled numerical perturbation, the downstream analysis is rerun from the reconstructed field, and the resulting chemical error is judged only at resolvable tolerances. Rate-fidelity is summarized after those scientific conditions have been enforced.
 
-### 2.3 Intrinsic QoI stability and Protocol A.1
+### 2.2 Development benchmark and stability corpus
 
-The uncompressed-field Bader result is treated as a reference only after a material-specific stability qualification. The final frozen protocol, Protocol A.1, defines a perturbation amplitude from the float32 round-trip \(L_\infty\) error of each material,
+The development benchmark contains 254 DFT charge-density fields spanning 186 bulk materials and 68 slab systems. Three production error-bounded compressors are evaluated: SZ3 through pysz 1.0.3 in absolute INTERP_LORENZO mode, ZFP through zfpy 1.0.1 in fixed-accuracy mode, and SPERR through hdf5plugin 7.0.0 in absolute single-chunk mode. Compression ratio is measured relative to the float64 field payload.
+
+The released master table contains 6,343 retained successful reconstruction rows: 4,627 from the base tolerance ladder and 1,716 from a tighter extension used to resolve the strict-accuracy regime. The tight extension is applied only to materials satisfying the pre-specified Protocol-A.1 stability condition. All successful retained rows satisfy their requested pointwise error bound.
+
+Bader partitions are computed with BaderKit 0.10.2 using `method="ongrid"` [16]. For each successful reconstruction the benchmark records the requested tolerance, realized \(L_\infty\) error, realized/requested error ratio, compression ratio, fixed-basin charge error, re-derived Bader charge error, and topology/domain-migration diagnostics.
+
+The stability analysis expands the material set with 37 AFLOW bulk systems [18] and 28 NOMAD two-dimensional or vacuum-containing systems [19], producing a 319-system stability corpus. Source provenance, formulas, grid sizes, atom counts, byte counts, source URLs, checksums, and available licensing metadata are retained in the versioned repository.
+
+### 2.3 A chemical contract requires a resolvable reference observable
+
+Protocol A.1 measures the numerical resolvability of atom-resolved Bader charge before codec certification. For material \(i\), the perturbation amplitude is the float32 round-trip \(L_\infty\) error
 
 \[
 \epsilon_i^{32}
@@ -89,254 +76,227 @@ The uncompressed-field Bader result is treated as a reference only after a mater
 \right\|_{\infty}.
 \]
 
-For each material, five independently seeded perturbations are generated,
+Five perturbations are generated with the pre-specified seeds \(\{20260905,1,2,3,4\}\),
 
 \[
 \rho_i^{(s)} = \rho_i + u_i^{(s)},
 \qquad
-u_i^{(s)} \sim U(-\epsilon_i^{32},+\epsilon_i^{32}),
+u_i^{(s)} \sim U(-\epsilon_i^{32},+\epsilon_i^{32}).
 \]
 
-with the pre-specified seeds \(s\in\{20260905,1,2,3,4\}\). Bader basins are re-derived independently for every perturbed density using the same on-grid implementation used elsewhere in the study. The intrinsic stability floor is
+The Bader partition is re-derived after every perturbation, and the stability floor is
 
 \[
-F_i=
+F_i
+=
 \max_s\max_a
 \left|
 Q_a(\rho_i^{(s)})-Q_a(\rho_i)
-\right|,
-\]
-
-where \(a\) indexes atoms.
-
-A material is eligible for a requested scientific tolerance \(\tau\) only when
-
-\[
-F_i < \tau.
-\]
-
-If \(F_i\ge\tau\), the correct outcome is `NON_EVALUABLE_BADER_UNSTABLE`, which is neither a pass nor a codec failure.
-
-Protocol A.1 was introduced after calibration showed that the originally archived deterministic float32 round trip could severely understate watershed instability. Floating-point rounding is order preserving: it can create exact ties while preventing rank exchanges between voxels, making it unusually benign for an on-grid watershed. Equal-amplitude random perturbations remove this structural bias. The amplitude is therefore not claimed to define a perturbation-independent physical constant; rather, the stability floor is explicitly defined at the material-specific float32 round-trip scale and sensitivity to this choice is reported separately.
-
-### 2.4 Lossy approximation and numerical-bound audit
-
-Only after QoI eligibility has been defined do we evaluate lossy approximation. Three production codecs are tested: ZFP in fixed-accuracy mode, SZ3 in absolute-error INTERP_LORENZO mode, and SPERR in absolute-error single-chunk mode. The development benchmark contains 6,343 retained codec rows across 254 materials, comprising 4,627 base-ladder rows and 1,716 tight-ladder rows.
-
-For every reconstructed field \(\tilde\rho_{i,c,k}\), where \(c\) denotes codec and \(k\) a frozen tolerance setting, we record the requested absolute tolerance and the realized pointwise error
-
-\[
-E_{\infty,i,c,k}
-=
-\|\tilde\rho_{i,c,k}-\rho_i\|_{\infty}.
-\]
-
-We also retain
-
-\[
-R_{\mathrm{bound}}
-=
-\frac{E_{\infty,i,c,k}}{\epsilon_{i,c,k}^{\mathrm{requested}}},
-\]
-
-because equal requested tolerances do not imply equal realized perturbations across codecs. Every successful retained development row respects its requested \(L_\infty\) bound. This explicit audit is important to the interpretation of cross-codec chemical error: a codec that realizes only a small fraction of its nominal budget is not being compared at the same actual field perturbation as a codec that saturates the requested bound.
-
-### 2.5 Fixed-domain diagnostic versus re-resolved scientific contract
-
-For every successful reconstruction, Bader error is measured in two ways.
-
-The **fixed-basin diagnostic** integrates the reconstructed density over the atom domains obtained from the original field,
-
-\[
-E_{\mathrm{fixed}}
-=
-\max_a
-\left|
-Q_a(\tilde\rho;\Omega_a(\rho))
--
-Q_a(\rho;\Omega_a(\rho))
 \right|.
 \]
 
-This isolates the effect of changing the density values while holding the spatial partition fixed.
+The chemical contracts evaluated throughout are \(\tau \in \{10^{-4},10^{-3},10^{-2}\}\) e. A material enters codec certification at tolerance \(\tau\) only when \(F_i<\tau\). This produces three distinct analytical levels: successful reconstructions describe codec behavior, Protocol-A.1-admitted material-tolerance combinations define chemically evaluable cases, and certified reconstructions identify operating points that satisfy the downstream charge contract.
 
-The headline scientific metric is instead the **resolved-basin error**,
+Protocol A.1 replaces an archived deterministic float32 round-trip probe. Calibration showed that monotone rounding can preserve local order while creating exact ties, making it unusually benign for an on-grid watershed. Equal-amplitude additive noise perturbs the order-dependent structure used by the Bader assignment and therefore provides a more informative stability stress test at the same numerical scale.
+
+### 2.4 Chemical certification and Certified Compression Ratio
+
+For material \(i\), codec \(c\), setting \(k\), and chemical tolerance \(\tau\), a successful reconstruction is certified when
 
 \[
-E_{\mathrm{resolved}}
+F_i<\tau
+\qquad\text{and}\qquad
+E_{\mathrm{resolved},i,c,k}<\tau,
+\]
+
+where
+
+\[
+E_{\mathrm{resolved},i,c,k}
 =
 \max_a
 \left|
-Q_a(\tilde\rho;\Omega_a(\tilde\rho))
+Q_a(\tilde{\rho}_{i,c,k};\Omega_a(\tilde{\rho}_{i,c,k}))
 -
-Q_a(\rho;\Omega_a(\rho))
-\right|,
+Q_a(\rho_i;\Omega_a(\rho_i))
+\right|.
 \]
 
-where Bader basins are independently recomputed from the reconstructed field. Certification always uses \(E_{\mathrm{resolved}}\), never the fixed-domain diagnostic.
+The material-level rate metric is the **Certified Compression Ratio (CCR)**,
 
-This choice reflects the scientific workflow a user would actually perform on a decompressed density: the downstream analysis is rerun on the reconstructed object, rather than supplied with hidden domain labels from the original uncompressed field.
+\[
+\mathrm{CCR}_{i,c}(\tau)
+=
+\max_{k:\,\mathrm{certified}}
+\mathrm{CR}_{i,c,k}.
+\]
 
-### 2.6 Error decomposition and topology diagnostics
+CCR asks how strongly a particular electron-density field can be compressed while still supporting the intended Bader analysis within \(\tau\). Materials, rather than codec rows, are the independent units in headline rate-fidelity statistics.
 
-The fixed-versus-resolved distinction provides a direct decomposition of the atom-level charge error. For atom \(a\),
+Failures are retained at the level at which they occur. Material-level provenance, parsing, source-integrity, or original-Bader failures prevent a valid material analysis. Row-level codec or downstream-analysis failures affect only that material-codec-tolerance operating point and remain explicitly registered without erasing successful rows for the same material. This preserves the distinction between scientific non-certification and pipeline failure while preventing silent complete-case inflation of the rate-fidelity frontier.
+
+### 2.5 Frozen external transfer design
+
+The independent external corpus contains 65 frozen source systems: 37 AFLOW bulk systems and 28 NOMAD two-dimensional systems. Two systems were used as implementation sentinels while validating the end-to-end harness. They remain part of the complete external release, while the remaining 63 systems - 36 AFLOW bulk and 27 NOMAD two-dimensional systems - form the pre-specified primary confirmatory rate-fidelity cohort.
+
+The external analysis inherits Protocol A.1, the three scientific tolerances, codec modes, tolerance ladders, Bader implementation, early-stopping rule, failure accounting, and CCR aggregation from the development study. The frozen confirmatory cohort contains 16, 42, and 57 Protocol-A.1-admitted systems at \(10^{-4}\), \(10^{-3}\), and \(10^{-2}\) e, respectively. External transfer is therefore evaluated without changing the scientific contract or adapting the tolerance grid to external outcomes.
+
+## 3. Codec error structure
+
+### 3.1 Equal requested tolerances are not equal realized perturbations
+
+All three codecs respect their requested pointwise bounds, but they use those bounds differently. Across the released benchmark, ZFP realizes a median \(L_\infty\)-to-requested ratio of approximately 0.158, whereas SZ3 and SPERR operate close to 1.0. ZFP therefore perturbs the field substantially less than its nominal tolerance would suggest, while SZ3 and SPERR nearly saturate the available error budget.
+
+A requested tolerance is consequently an operational codec setting rather than a common physical perturbation scale. Same-nominal comparisons mix the amount of perturbation with the spatial structure of that perturbation. The realized-error audit separates these two effects and is therefore carried forward in every cross-codec interpretation.
+
+### 3.2 Pointwise magnitude does not determine the downstream Bader response
+
+Among Protocol-A.1-admitted development materials, matched nominal tolerances produce large and systematic codec differences in re-derived Bader error. Relative to ZFP, the per-material median SZ3/ZFP Bader-error ratio is 6.4 at the \(10^{-4}\) e contract, 9.2 at \(10^{-3}\) e, and 12.4 at \(10^{-2}\) e; SZ3 gives the larger error for 98-100% of the contributing materials. SPERR shows the same qualitative separation from ZFP.
+
+Part of this difference follows directly from bound utilization: ZFP generally applies a smaller realized perturbation. The remaining scientific question is why a pointwise-compliant perturbation can produce such different charge responses once the downstream partition is reconstructed. The fixed-versus-resolved analysis and atom-level decomposition address that mechanism directly.
+
+## 4. QoI / chemical fidelity
+
+### 4.1 Re-deriving the Bader partition changes the fidelity assessment
+
+The fixed-basin diagnostic and re-derived Bader analysis score the same reconstructed fields but answer different questions. The fixed-basin calculation measures only the change in the density integrated over the original atom domains. Re-derived analysis also allows the atom domains themselves to move.
+
+Across codecs and structural strata, fixed-basin charge deviations are approximately 9-11 times smaller than the corresponding re-derived deviations in the released development analysis. The direction is consistent: holding the partition fixed systematically removes an error channel that is present when a user reruns Bader analysis on the decompressed field.
+
+This distinction changes the fidelity contract. Fixed-basin integration remains useful as a mechanism diagnostic because it isolates the within-domain contribution. The re-derived result is the chemically relevant endpoint because it reproduces the analysis path applied to an independently stored reconstructed density.
+
+### 4.2 Bader fidelity is defined only above the numerical resolvability floor
+
+Protocol A.1 shows that the downstream observable itself has a finite numerical resolution. Across all 319 systems in the stability corpus, approximately 80% are non-evaluable at a \(10^{-4}\) e charge contract, 41% at \(10^{-3}\) e, and 10% at \(10^{-2}\) e. A stringent chemical threshold is therefore meaningful only for the subset of materials whose reference Bader analysis is stable at that scale.
+
+The external strata reinforce this interpretation. At \(10^{-4}\) e, 71-94% of each tested stratum is non-evaluable; at \(10^{-3}\) e the range is 21-45%; at \(10^{-2}\) e it falls to 0-16%. The earlier development-only hypothesis that slab systems should be intrinsically less stable than bulk materials does not transfer as a general rule. The robust result is instead that Bader instability is common, strongly material dependent, and best measured directly rather than inferred from a broad structure label.
+
+The certification problem therefore has two steps. The reference Bader result must first be resolvable at \(\tau\); the compressed reconstruction must then preserve that result within \(\tau\). This separates instability of the analysis from error introduced by the codec.
+
+## 5. Mechanism: domain migration in a field-derived partition
+
+### 5.1 Bader charge error separates into integrand and domain terms
+
+For atomic basin \(a\), the total charge perturbation can be written as
 
 \[
 \Delta Q_a
 =
 \underbrace{
-\int_{\Omega_a(\rho)}(\tilde\rho-\rho)\,d\mathbf r
+\int_{\Omega_a(\rho)}(\tilde{\rho}-\rho)\,d\mathbf r
 }_{\Delta Q_a^{\mathrm{integrand}}}
 +
 \underbrace{
 \left[
-\int_{\Omega_a(\tilde\rho)}\tilde\rho\,d\mathbf r
+\int_{\Omega_a(\tilde{\rho})}\tilde{\rho}\,d\mathbf r
 -
-\int_{\Omega_a(\rho)}\tilde\rho\,d\mathbf r
+\int_{\Omega_a(\rho)}\tilde{\rho}\,d\mathbf r
 \right]
 }_{\Delta Q_a^{\mathrm{domain}}}.
 \]
 
-The first term measures the density-value error inside a fixed original atom domain. The second measures the effect of changing the domain assignment itself. The implementation retains this identity atom by atom, together with domain-migration and Bader-topology diagnostics such as atom-domain migration fraction, vacuum-mask changes, and changes in the number of detected maxima.
+The integrand term measures the effect of changing density values while retaining the reference basin. The domain term measures the effect of changing which voxels belong to that atom.
 
-The representative mechanism data comprise 1,665 atom-level rows from 12 pre-specified materials and 106 successful material–codec–tolerance operating points; two additional operating points are explicitly retained in the failure registry. The reported numerical closure of
-
-\[
-\Delta Q_a^{\mathrm{integrand}}+\Delta Q_a^{\mathrm{domain}}=\Delta Q_a
-\]
-
-has residual no larger than \(2\times10^{-16}\) e. For the atom with the largest absolute total error in each successful representative operating point, the median domain-term share is 0.9995. This mechanism result is intentionally scoped to the representative set and is not presented as a universal population-wide law.
-
-### 2.7 Scientific certification
-
-For material \(i\), codec \(c\), setting \(k\), and scientific tolerance \(\tau\), certification is defined by
+The representative mechanism dataset contains 1,665 atom-level rows from 12 pre-specified materials, three codecs, and 106 successful material-codec-tolerance operating points. Two additional operating points are retained in the failure registry. The decomposition satisfies
 
 \[
-C_{i,c,k}(\tau)
+\Delta Q_a^{\mathrm{integrand}}
++
+\Delta Q_a^{\mathrm{domain}}
 =
-\mathbf 1[F_i<\tau]\,
-\mathbf 1[E_{\mathrm{resolved},i,c,k}<\tau].
+\Delta Q_a
 \]
 
-Thus, an accepted pointwise codec bound is necessary for a valid numerical row but is not sufficient for scientific certification. A reconstruction can be numerically compliant and still be `NOT_CERTIFIED` if the re-resolved downstream error exceeds the requested chemical tolerance.
+with a reported residual no larger than \(2\times10^{-16}\) e.
 
-Conversely, a material whose intrinsic Bader floor exceeds \(\tau\) is not included in the pass/fail denominator at that tolerance. It remains visible as `NON_EVALUABLE_BADER_UNSTABLE`.
+At the atom carrying the largest absolute total error in each successful operating point, the median domain-term share is 0.9995. In this representative mechanism set, the dominant measured contribution at the worst-affected atom is therefore movement of the field-derived integration domain rather than the density-value integral over a fixed basin.
 
-### 2.8 Failure accounting
+### 5.2 The missing information in a pointwise bound is local ordering and domain geometry
 
-Failure semantics are frozen at two granularities.
+A pointwise bound constrains the amplitude of the reconstruction error at every voxel. It does not specify how neighboring errors are correlated, whether local ascent relations are preserved, or whether watershed-like assignments remain unchanged. Two reconstructions can therefore satisfy comparable \(L_\infty\) bounds while producing different local order changes and different Bader-domain migration.
 
-**Material-level failures** include source-provenance failure, source-integrity failure, parsing failure, original-grid audit failure, and original-Bader failure. These prevent a valid material-level analysis and are reported as hard `PIPELINE_FAILURE` events.
+This mechanism connects the chemical result to topology- and order-aware compression. TopoSZ preserves topological structures under error-bounded compression [5], later methods preserve or correct Morse-Smale structures [7,8], and recent local-order-preserving compression explicitly protects neighboring value order and critical points [9]. Bader analysis supplies a chemically explicit target for this class of structure because its atom assignments depend on local ascent through the density field.
 
-**Row-level failures** occur after a material has validly entered the benchmark and affect only a particular material–codec–tolerance configuration. Examples include codec failure, reconstructed-grid audit failure, Bader-solver failure, or topology-diagnostic failure. Such rows are not counted as certified passes and are retained in an explicit row-failure registry. They do not erase successful rows for the same material, and a failed row does not trigger the staged 0.05 e early-stop rule.
+The implication for compressor design is specific: preserving the discrete relations that determine field-derived integration domains is more closely aligned with Bader fidelity than minimizing pointwise amplitude alone. The present study establishes the evaluation target and mechanism; it does not require a new codec to demonstrate that distinction.
 
-This accounting is important because silently dropping unsuccessful codec rows would bias rate–fidelity summaries upward, whereas promoting every row-level numerical failure to a material-level failure would discard otherwise valid scientific information.
+## 6. Robustness, failure regimes, rate-fidelity, and implications
 
-### 2.9 Certified Compression Ratio
+### 6.1 Stability-probe calibration reveals an algorithm-aware numerical floor
 
-The material-level rate–fidelity endpoint is the **Certified Compression Ratio (CCR)**. For material \(i\), codec \(c\), and scientific tolerance \(\tau\),
+The stability probe must perturb the mathematical structure used by the downstream algorithm. A deterministic float64 -> float32 -> float64 round trip is monotone for unequal values and tends to preserve local order while creating exact ties. For an on-grid Bader watershed, this perturbation is unusually structure preserving.
 
-\[
-\mathrm{CCR}_{i,c}(\tau)
-=
-\max_{k:C_{i,c,k}(\tau)=1}
-\mathrm{CR}_{i,c,k}.
-\]
+Calibration showed that the archived float32 probe could understate the Bader stability floor by orders of magnitude. Across the calibration set, equal-amplitude additive noise breaks the false stability while preserving the perturbation scale; five seeds are required because eligibility can change with the realization. The final Protocol A.1 floor is therefore the maximum atom-wise deviation across the pre-specified five-seed set.
 
-CCR answers a direct scientific question: how strongly can this particular field be compressed by codec \(c\) while still supporting the downstream Bader result within \(\tau\)?
+Probe amplitude remains part of the numerical contract. Varying the perturbation amplitude across two decades shifts the floor by a median 0.76 decades in the calibration study. The resulting stability floor is interpreted at a stated perturbation scale, which makes the reference precision explicit rather than implicit.
 
-Materials, not codec rows, are the independent units in headline statistics. An eligible material with no certified setting has no CCR for that codec. Pairwise codec comparisons retain all admitted materials: if only one codec has a CCR it wins that material; if neither has a CCR the result is a tie; and the log-ratio effect size is summarized only for materials where both CCRs exist.
+### 6.2 Registered downstream failures define a distinct operating regime
 
-### 2.10 Frozen codec sampling policy
+The workflow records source-level failures, codec-row failures, Bader-solver failures, topology-diagnostic failures, and symmetry-equivalent basin relabeling separately from successful chemical comparisons. These outcomes are scientifically informative because they identify regimes where the downstream analysis ceases to return a standard comparable result.
 
-The codec ladders are inherited from the development benchmark and are not adapted to external outcomes. All materials receive the frozen base ladder evaluated from tighter to looser tolerances. The first successful retained row with \(E_{\mathrm{resolved}}\ge0.05\) e is kept as the failure boundary and terminates that material–codec base ladder. A row failure does not trigger this stop condition.
+Row-level failures are retained without discarding otherwise valid operating points for the same material. Conversely, failed rows are never treated as successful or omitted from the audit trail. This preserves the full rate-fidelity denominator while separating ordinary non-certification from analysis breakdown.
 
-A tighter extension below relative tolerance \(10^{-5}\) is evaluated only for materials satisfying the pre-specified intrinsic-stability condition \(F_i<10^{-3}\) e, matching the development sampling policy. External results cannot add, remove, or relocate tolerance values.
+The symmetry-equivalent relabeling example is particularly instructive. In `aflow-Al8Cu4U1_ICSD_601801`, noise can exchange position-indexed Bader assignments between symmetry-equivalent Al atoms while leaving the charge multiset unchanged. The event reveals a label-semantic instability of the downstream analysis rather than a multi-electron change in the underlying chemistry. Treating such cases explicitly strengthens the interpretation of every ordinary certified or non-certified comparison.
 
-### 2.11 External validation without retuning
+### 6.3 The optimal compression operating point depends on the chemical contract
 
-The independent external corpus contains 65 frozen source systems: 37 AFLOW bulk systems and 28 NOMAD two-dimensional systems. Two systems were used to validate the new end-to-end harness before corpus-scale execution and had their rate–fidelity outputs inspected. They remain part of the full external release but are explicitly labeled **implementation sentinels** rather than untouched confirmation data.
+Once Protocol-A.1 qualification and re-derived Bader certification are enforced, the rate-fidelity frontier changes systematically with \(\tau\). Across the full 254-material development benchmark, the number of admitted materials is 46 at \(10^{-4}\) e, 143 at \(10^{-3}\) e, and 229 at \(10^{-2}\) e.
 
-The remaining 63 systems—36 AFLOW bulk and 27 NOMAD two-dimensional systems—form the pre-specified primary confirmatory rate–fidelity cohort. Their expected Protocol A.1 eligibility counts, fixed before external compression outcomes are inspected, are 16, 42, and 57 at \(\tau=10^{-4},10^{-3},10^{-2}\) e, respectively.
+At \(10^{-4}\) e, median CCR values are 7.84x for ZFP, 6.37x for SZ3, and 4.21x for SPERR. ZFP certifies all 46 admitted materials, compared with 38 for SZ3 and 39 for SPERR. At \(10^{-3}\) e, ZFP and SZ3 converge to median CCR values of 13.83x and 13.19x, while SPERR reaches 5.78x; certification fractions are 99.3%, 95.1%, and 95.8%, respectively. At \(10^{-2}\) e, the ordering changes: SZ3 reaches a median CCR of 57.66x, ZFP 31.90x, and SPERR 10.32x, with corresponding certification fractions of 90.4%, 98.3%, and 90.8%.
 
-The external run uses the same Protocol A.1 definition, scientific tolerances, Bader implementation, codec modes, tolerance ladders, early stopping, failure semantics, and aggregation logic as the development analysis. No external result may trigger retuning. Consequently, reproduction or reversal of a development codec ordering is treated as a scientific outcome, not as a criterion for software success.
+The same contract dependence appears across structural strata. At \(10^{-2}\) e, bulk SZ3 reaches a median CCR of 51.78x and slab SZ3 67.75x, while ZFP reaches 30.02x and 40.45x, respectively. At \(10^{-3}\) e, ZFP and SZ3 are close on bulk materials and ZFP leads on the slab subset. At \(10^{-4}\) e, the admitted slab set contains only four materials, so the bulk result carries the population-level weight at that strictest contract.
 
-The full 65-system table is reported descriptively. Headline external rate–fidelity inference is reserved for the pre-specified 63-system confirmatory cohort.
+These frontiers show why compression ratio alone is not the correct operating metric. The preferred codec changes with chemical precision and certification coverage. CCR expresses that dependence directly at the material level.
 
-**Status at this manuscript revision:** the frozen corpus-scale external rate–fidelity execution is still pending final audit. No external-success statement or external headline number should be inserted until that run is terminal and the aggregate outputs have passed their frozen invariants.
+### 6.4 Lossy compression remains worthwhile after chemical qualification
 
-### 2.12 Reproducibility and execution record
+Exact and nominally lossless baselines remain much closer to unity than the certified lossy frontiers. In the development release, representative bulk medians are approximately 2.1x for float64+zstd, 3.0x for float64+xz, and 4.6x for float32+zstd; corresponding slab medians are approximately 1.1x, 1.2x, and 2.2x. At the \(10^{-2}\) e chemical contract, chemically certified lossy compression reaches median ratios tens of times larger for SZ3 and ZFP while maintaining high certification coverage among admitted materials.
 
-The workflow records source hashes, manifest hashes, Protocol A.1 and stability-table hashes, development master-table hash, confirmatory-split hash, software versions, codec parameters, requested and realized pointwise error, downstream diagnostics, failure registries, and aggregation outputs.
+The advantage survives the stability gate because the comparison is no longer between raw lossy ratio and exact storage. It is between exact storage and the best operating point that respects both the numerical approximation contract and the downstream chemical contract.
 
-Formal external execution is performed through GitHub Actions using a frozen preflight gate and a sharded corpus-scale workflow. Figure production for the submission manuscript is likewise intended to use repository-tracked R scripts executed in GitHub Actions, so that publication figures are generated from frozen tabular outputs rather than manually transcribed values.
+### 6.5 Independent transfer tests the workflow rather than tuning it
 
-## 3. Results
+The external study is designed to test whether development rate-fidelity behavior transfers under the same frozen scientific contract. The complete 65-system external corpus is retained for descriptive reporting, and the 63-system cohort not used for implementation diagnostics provides the confirmatory rate-fidelity population. The external run uses the same stability qualification, tolerance ladders, codec modes, Bader analysis, failure semantics, and CCR definition as the development benchmark.
 
-### 3.1 Pointwise numerical error does not determine chemical fidelity
+<!-- EXTERNAL_RATE_FIDELITY_RESULTS_PENDING: replace this comment with the audited 63-system confirmatory results and all-65 descriptive summary after the frozen Full run is terminal. Report agreement or disagreement with the development codec ordering as a scientific result, without retuning. -->
 
-The development benchmark shows that a valid pointwise error bound is not a chemical-fidelity guarantee. At matched nominal tolerances, codecs can produce markedly different re-resolved Bader errors, and the difference is partly explained by their different utilization of the requested \(L_\infty\) budget. In the released development table, SZ3 and SPERR typically realize values close to their requested absolute bound, whereas ZFP uses substantially less of the nominal budget. The result is not that a single nominal tolerance should be globally tightened, but that the scientific consequence of a pointwise perturbation is codec- and material-dependent.
+### 6.6 Implications for chemical data infrastructure
 
-### 3.2 Holding the Bader partition fixed understates the downstream error
+The benchmark suggests a practical metadata model for reusable electronic-structure data. A compressed field can carry not only a codec name and nominal tolerance, but also the realized reconstruction error, the downstream analysis used for certification, the numerical resolvability scale of that analysis, and the certified operating range. Compression then becomes a property-aware data-quality decision rather than a storage-only decision.
 
-The fixed-basin diagnostic is systematically less sensitive than the fully re-resolved analysis because it suppresses the domain-migration channel. This establishes a key evaluation principle: a downstream analysis should be rerun from the reconstructed data under the same conditions that would apply to a real user, rather than evaluated against hidden structural information inherited from the original field.
+The same evaluation logic is most directly transferable to analyses whose domains, labels, thresholds, or topological objects are reconstructed from the field. In such workflows, three questions can be posed in sequence: is the reference QoI numerically resolvable, does reconstruction alter the derived structure, and does that structural change control the downstream error? Bader charge provides a chemically explicit case in which all three questions can be measured directly.
 
-### 3.3 Domain migration is the dominant mechanism in the representative atom-level audit
+## 7. Conclusion
 
-The per-atom decomposition closes the mechanistic link between small field perturbations and larger downstream charge changes. Within the pre-specified 12-material mechanism set, the atom carrying the largest total Bader error is overwhelmingly dominated by the domain-migration term across successful operating points, with a median domain-term share of 0.9995. The statement is deliberately limited to this representative mechanism analysis; the population-level paper claim is that domain migration is a demonstrated failure mechanism, not that every material and tolerance is domain dominated.
+Pointwise error bounds remain valuable guarantees on reconstructed electron-density fields, but they do not by themselves define chemical fidelity for a field-dependent analysis. In Bader analysis, the missing variable is the response of the integration domains themselves. Re-derived evaluation exposes an error channel that fixed-basin integration suppresses, and atom-level decomposition in the representative mechanism set shows that domain migration accounts for essentially all of the error at the most affected atom.
 
-### 3.4 Bader charge has a material-specific stability floor
+Separating requested tolerance from realized perturbation further clarifies codec behavior. ZFP operates substantially inside its requested error budget, whereas SZ3 and SPERR use nearly all of theirs. The resulting differences in Bader response therefore reflect both perturbation magnitude and reconstruction structure. Chemical fidelity is recovered only by evaluating the complete path from field perturbation to re-derived downstream analysis.
 
-Protocol A.1 shows that the downstream analysis itself can fail to support arbitrarily small chemical tolerances. This converts a previously implicit assumption into an explicit eligibility gate. A material that is non-evaluable at \(10^{-4}\) e can remain perfectly valid at \(10^{-2}\) e; eligibility is therefore a property of the material–QoI–tolerance combination, not a permanent exclusion label for the material.
+Finally, the downstream observable has a numerical resolution scale of its own. Protocol A.1 establishes that a large fraction of materials cannot support arbitrarily strict position-indexed Bader-charge contracts, making intrinsic QoI stability a prerequisite for meaningful codec certification. The Certified Compression Ratio then converts the surviving operating points into a material-level rate-fidelity frontier.
 
-The external stability analysis further shows that simple corpus labels do not provide a reliable shortcut for this determination. Instability is common enough to matter, but its magnitude must be measured per material rather than inferred from a broad structural category.
+Together, these results define a general scientific-data certification principle: **a numerical approximation should be certified at the level of the analysis it is intended to support, after the intrinsic stability of that quantity has been established.**
 
-### 3.5 Stability qualification produces an honest rate–fidelity frontier
+## Data and Software Availability
 
-Once intrinsically unstable material–tolerance combinations are removed from the pass/fail denominator and certification is based on re-resolved Bader error, lossy compression remains useful on the development data. The appropriate rate metric is not the maximum raw compression ratio but the maximum compression ratio that survives the complete scientific contract. CCR therefore transforms a codec sweep into a material-level scientific operating frontier.
+The benchmark data, Protocol A.1 stability measurements, failure registry, provenance metadata, mechanism tables, supplementary sensitivity analyses, workflow specifications, and figure-generation scripts are maintained in the project repository. A versioned archival release with a persistent identifier will be frozen before formal submission so that the published record maps to an immutable data-and-software snapshot. Source URLs, checksums, and available licensing metadata for the underlying material fields are retained with the release.
 
-### 3.6 Requested and realized error budgets are not interchangeable across codecs
+## References
 
-The requested codec tolerance is a control parameter, not a directly comparable perturbation magnitude. The realized-to-requested \(L_\infty\) ratio differs systematically across codecs, most notably for ZFP relative to SZ3 and SPERR. Interpreting chemical error at a nominally matched tolerance without auditing the realized perturbation would therefore conflate codec behavior with different effective perturbation strengths.
-
-### 3.7 External transfer test
-
-**Pending frozen external Full audit.** This section should be populated only after the 65-system row release and the pre-specified 63-system confirmatory aggregate pass their frozen invariants. The final text should report, without retuning, which development rate-ordering expectations transfer, which do not, how certification fractions and CCR distributions compare, and whether the fixed-versus-resolved and realized-bound mechanisms generalize.
-
-## 4. Discussion
-
-The central result is not that one pointwise tolerance is too loose. It is that scientific fidelity belongs to the complete chain from data perturbation to downstream analysis. A numerical field can satisfy a formal \(L_\infty\) contract and still alter a topology-dependent chemical observable beyond the tolerance a user actually cares about.
-
-This distinction changes how scientific compression benchmarks should be interpreted. Pointwise norms remain essential because they provide deterministic numerical contracts and make codec behavior auditable. They are therefore not replaced. Instead, they become one layer of a larger certification stack. Numerical compliance answers whether the approximation respected its declared error budget; QoI certification answers whether the scientific analysis remained valid.
-
-The stability gate is equally important. Without it, the original-data result is implicitly treated as exact, and downstream numerical instability can be misclassified as a codec failure. Protocol A.1 makes the reference calculation itself testable. In this sense, certification is conditional: a codec can only be judged at a scientific tolerance that the underlying analysis can resolve.
-
-The fixed-versus-resolved comparison illustrates why downstream topology matters. Integrating the reconstructed density over original Bader domains measures a useful local field error, but it is not the scientific contract experienced by a user rerunning Bader analysis. The atom-level decomposition shows how a small density perturbation can reorganize domain assignments and dominate the resulting charge error. Similar logic is expected to apply to other analyses containing thresholding, segmentation, assignment, basin construction, or discrete topology changes, although those extensions are not established by the present case study.
-
-The framework also sharpens codec comparison. A nominal tolerance is not an equal-perturbation condition when codecs use their error budgets differently. Comparing both requested and realized errors prevents a codec from appearing chemically superior merely because it systematically operates far inside its allowed bound. Conversely, scientific certification should not force all algorithms into an artificial matched-realized-error protocol if the practical question is how much scientifically valid compression each configured codec can deliver. CCR preserves that operational interpretation.
-
-The external analysis is designed as a transfer test rather than a tuning loop. The 65-system manifest, implementation sentinels, 63-system confirmatory cohort, tolerance ladders, and aggregation semantics are fixed before the corpus-scale outcome is interpreted. If a development codec ranking reverses externally, that reversal is informative evidence about generalization rather than a reason to modify the protocol after the fact.
-
-Several boundaries should remain explicit. This paper does not claim that Bader charge is the only scientifically relevant QoI, that the three codecs exhaust the compression design space, or that the present workflow is a universal standard. Bader analysis is used because it supplies a chemically interpretable and topology-sensitive stress test. The broader claim is methodological: downstream scientific quantities should be stability-qualified and re-evaluated from reconstructed data before a lossy scientific representation is called faithful.
-
-## 5. Conclusions
-
-We introduce a stability-qualified workflow for certifying lossy scientific-data approximations against downstream chemical observables. The workflow first asks whether the observable itself is numerically stable at the requested scientific tolerance, then audits the approximation contract, reruns the downstream analysis on the reconstructed data, records topology-sensitive failure mechanisms, and finally summarizes the scientifically valid operating points at the material level.
-
-Applied to electronic charge densities and atom-resolved Bader charges, the framework shows that pointwise error control alone does not determine chemical fidelity and that fixed-domain evaluation can miss a dominant domain-migration contribution. Intrinsic Bader instability further imposes a material-specific floor below which codec pass/fail statements are not meaningful. Scientific compression is therefore most naturally described by a qualified rate–fidelity frontier rather than by compression ratio or pointwise error in isolation.
-
-The practical implication is simple: **a scientific approximation should be certified against the analysis it is intended to support, and that analysis must itself be stable enough to serve as a reference.**
-
-## Working figure/caption note for the workflow schematic
-
-A workflow schematic can be used as a Methods figure, graphical abstract, or TOC-style overview without changing the existing main-figure numbering until the full manuscript figure architecture is finalized.
-
-**Proposed caption:** *Stability-qualified workflow for scientific-data approximation. Source data first pass provenance and integrity checks. Before any approximation is evaluated, the intrinsic numerical stability of the downstream quantity of interest (QoI) is measured at the requested scientific tolerance. Only eligible material–tolerance combinations proceed to codec certification. Reconstructed fields are audited against their declared pointwise error bounds and analyzed through both fixed-domain and independently re-resolved downstream calculations. The latter defines the scientific certification contract, while topology and domain-migration diagnostics identify mechanism-level failure modes. Certified operating points are finally summarized by the material-level Certified Compression Ratio (CCR). This design separates intrinsic QoI instability, approximation-induced scientific error, and pipeline failure.*
-
-## Manuscript claim guardrails
-
-Until the external Full run is terminal and audited, do not write that the end-to-end rate–fidelity workflow has been externally confirmed. Permissible language is that the workflow is frozen and under independent corpus-scale evaluation, while external Protocol A.1 stability qualification is already complete.
-
-After successful completion and audit, the strongest intended wording is: *The complete chemistry-aware rate–fidelity workflow was evaluated end-to-end on a pre-specified 63-system confirmatory cohort drawn from the frozen external corpus, with two previously inspected systems retained separately as implementation sentinels.*
-
-Do not describe all 65 systems as untouched confirmation data, and do not generalize the representative 12-material domain-migration result into a universal population-wide statement.
+1. Diffenderfer, J.; Fox, A. L.; Hittinger, J. A. F.; Sanders, G.; Lindstrom, P. G. Error Analysis of ZFP Compression for Floating-Point Data. *SIAM J. Sci. Comput.* **2019**, *41*, A1867-A1898. DOI: 10.1137/18M1168832.
+2. Liang, X.; Zhao, K.; Di, S.; Li, S.; Underwood, R.; Gok, A. M.; Tian, J.; Deng, J.; Calhoun, J. C.; Tao, D.; Chen, Z.; Cappello, F. SZ3: A Modular Framework for Composing Prediction-Based Error-Bounded Lossy Compressors. *IEEE Trans. Big Data* **2023**, *9*, 485-498. DOI: 10.1109/TBDATA.2022.3201176.
+3. Li, S.; Lindstrom, P.; Clyne, J. Lossy Scientific Data Compression With SPERR. In *2023 IEEE International Parallel and Distributed Processing Symposium (IPDPS)*; IEEE, 2023; pp 1007-1017. DOI: 10.1109/IPDPS54959.2023.00104.
+4. Jiao, P.; Di, S.; Guo, H.; Zhao, K.; Tian, J.; Tao, D.; Liang, X.; Cappello, F. Toward Quantity-of-Interest Preserving Lossy Compression for Scientific Data. *Proc. VLDB Endow.* **2022**, *16* (4), 697-710. DOI: 10.14778/3574245.3574255.
+5. Yan, L.; Liang, X.; Guo, H.; Wang, B. TopoSZ: Preserving Topology in Error-Bounded Lossy Compression. *IEEE Trans. Vis. Comput. Graph.* **2024**, *30* (1), 1302-1312. DOI: 10.1109/TVCG.2023.3326920.
+6. Gorski, N.; Liang, X.; Guo, H.; Yan, L.; Wang, B. A General Framework for Augmenting Lossy Compressors With Topological Guarantees. *IEEE Trans. Vis. Comput. Graph.* **2025**, *31*, 3693-3705. DOI: 10.1109/TVCG.2025.3567054.
+7. Li, Y.; Xia, M.; Liang, X.; Wang, B.; Guo, H. Preserving Discrete Morse-Smale Complexes in Error-Bounded Lossy Compression. *IEEE Trans. Vis. Comput. Graph.* **2026**, *32* (7), 6593-6609. DOI: 10.1109/TVCG.2026.3684385.
+8. Li, Y.; Xia, M.; Liang, X.; Wang, B.; Underwood, R.; Di, S.; Sharma, H.; Beniwal, D.; Cappello, F.; Guo, H. pMSz: A Distributed Parallel Algorithm for Correcting Extrema and Morse-Smale Segmentations in Lossy Compression. In *2026 IEEE International Parallel and Distributed Processing Symposium (IPDPS)*; IEEE, 2026. DOI: 10.1109/IPDPS65963.2026.00025.
+9. Fallin, A.; Gorski, N.; Agarwal, T.; Wang, B.; Gopalakrishnan, G.; Burtscher, M. Fast Topology-Aware Lossy Data Compression with Full Preservation of Critical Points and Local Order. *IEEE Trans. Big Data* **2026**. DOI: 10.1109/TBDATA.2026.3705355.
+10. Liu, Y.; Jiang, B.; Yang, T.; Di, S.; Underwood, R.; Jin, S. TOPIQ: Statistical Error Propagation for Quantity-of-Interest Prediction under Lossy Compression. Accepted at SC 2026; arXiv:2608.26912, 2026. DOI: 10.48550/arXiv.2608.26912.
+11. Liu, G.; Li, Y.; Ren, C.; Underwood, R.; Liang, X.; Wang, B.; Di, S.; Cappello, F.; Guo, H. FZ-VIS: A Visual Analytics Framework for Quantities-of-Interest-Aware Scientific Lossy Compression. Accepted at IEEE VIS 2026 / *IEEE Trans. Vis. Comput. Graph.*; arXiv:2608.08386, 2026. DOI: 10.48550/arXiv.2608.08386.
+12. Bader, R. F. W. *Atoms in Molecules: A Quantum Theory*; Oxford University Press: Oxford, 1990.
+13. Henkelman, G.; Arnaldsson, A.; Jonsson, H. A Fast and Robust Algorithm for Bader Decomposition of Charge Density. *Comput. Mater. Sci.* **2006**, *36*, 354-360. DOI: 10.1016/j.commatsci.2005.04.010.
+14. Brehm, M.; Thomas, M. An Efficient Lossless Compression Algorithm for Trajectories of Atom Positions and Volumetric Data. *J. Chem. Inf. Model.* **2018**, *58* (10), 2092-2107. DOI: 10.1021/acs.jcim.8b00501.
+15. Gong, J.; Zhao, Z.; Tang, B. Z. Bridging Machine Learning and Electron Density Theory with Adaptive Real-Space Integration. *J. Chem. Theory Comput.* **2026**. DOI: 10.1021/acs.jctc.6c01124.
+16. Weaver, S. M.; Warren, S. BaderKit: A Python Package for Grid-based Bader Charge Analysis. *J. Open Source Softw.* **2026**, *11* (121), 9943. DOI: 10.21105/joss.09943.
+17. Horton, M. K.; Huck, P.; Yang, R. X.; et al. Accelerated Data-Driven Materials Science with the Materials Project. *Nat. Mater.* **2025**, *24*, 1522-1532. DOI: 10.1038/s41563-025-02272-0.
+18. Curtarolo, S.; Setyawan, W.; Wang, S.; Xue, J.; Yang, K.; Taylor, R. H.; Nelson, L. J.; Hart, G. L. W.; Sanvito, S.; Buongiorno-Nardelli, M.; Mingo, N.; Levy, O. AFLOWLIB.ORG: A Distributed Materials Properties Repository from High-Throughput Ab Initio Calculations. *Comput. Mater. Sci.* **2012**, *58*, 227-235. DOI: 10.1016/j.commatsci.2012.02.002.
+19. Draxl, C.; Scheffler, M. The NOMAD Laboratory: From Data Sharing to Artificial Intelligence. *J. Phys. Mater.* **2019**, *2*, 036001. DOI: 10.1088/2515-7639/ab13bb.
