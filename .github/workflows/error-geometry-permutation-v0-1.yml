@@ -23,7 +23,7 @@ jobs:
       - id: select
         name: Freeze selected representative bulk materials from released tables
         run: |
-          materials=$(python mechanism/residual_spatial_permutation_v2.py --list-materials)
+          materials=$(python mechanism/residual_spatial_permutation_v3.py --list-materials)
           echo "materials=$materials" >> "$GITHUB_OUTPUT"
           echo "$materials"
 
@@ -47,7 +47,7 @@ jobs:
           python -m pip install -r validation/requirements-external-e2e.txt
       - name: Run preregistered five-seed residual permutation
         run: |
-          python mechanism/residual_spatial_permutation_v2.py \
+          python mechanism/residual_spatial_permutation_v3.py \
             --material-id "${{ matrix.material }}" \
             --output-dir "mechanism/permutation_shards/${{ matrix.material }}"
       - uses: actions/upload-artifact@v4
@@ -71,11 +71,13 @@ jobs:
           merge-multiple: false
       - name: Aggregate at material level
         run: |
-          python mechanism/residual_spatial_permutation_v2.py \
+          python mechanism/residual_spatial_permutation_v3.py \
             --aggregate-root mechanism/permutation_downloads \
             --output-dir mechanism/geometry_permutation_v0_1
-      - name: Show final report
-        run: cat mechanism/geometry_permutation_v0_1/RESIDUAL_SPATIAL_PERMUTATION_REPORT.md
+      - name: Show final report and reconciliation
+        run: |
+          cat mechanism/geometry_permutation_v0_1/RESIDUAL_SPATIAL_PERMUTATION_REPORT.md
+          cat mechanism/geometry_permutation_v0_1/LEGACY_BASELINE_RECONCILIATION.json
       - name: Commit final evidence
         run: |
           set -eu
