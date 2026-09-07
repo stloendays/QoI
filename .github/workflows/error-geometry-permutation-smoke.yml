@@ -26,14 +26,19 @@ jobs:
       - name: Select first preregistered material
         id: select
         run: |
-          material=$(python mechanism/residual_spatial_permutation_v2.py --list-materials | python -c 'import json,sys; x=json.load(sys.stdin); print(x[0])')
+          materials=$(python mechanism/residual_spatial_permutation_v3.py --list-materials)
+          echo "Preregistered material set: $materials"
+          material=$(printf '%s' "$materials" | python -c 'import json,sys; x=json.load(sys.stdin); print(x[0])')
           echo "material=$material" >> "$GITHUB_OUTPUT"
           echo "Smoke material: $material"
       - name: Run full five-seed intervention on one material
         run: |
-          python mechanism/residual_spatial_permutation_v2.py \
+          python mechanism/residual_spatial_permutation_v3.py \
             --material-id "${{ steps.select.outputs.material }}" \
             --output-dir mechanism/permutation_smoke
+      - name: Show provenance reconciliation
+        if: always()
+        run: cat mechanism/permutation_smoke/baseline_reconciliation.csv || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
