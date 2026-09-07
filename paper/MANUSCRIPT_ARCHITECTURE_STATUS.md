@@ -6,7 +6,7 @@ Updated: 2026-09-07
 
 The scientific architecture of the JCTC manuscript is substantially complete. The development evidence chain is closed through the benchmark, Protocol A.1 stability qualification, lossless/lossy comparison, sensitivity analyses, and the representative per-atom mechanism decomposition. The only remaining primary scientific gate is the frozen corpus-scale external rate–fidelity validation now running on the 65-system external corpus, with the pre-specified 63-system confirmatory cohort used for headline external rate–fidelity claims.
 
-The manuscript prose and figure map still contain stale status text from earlier stages. Those documentation artifacts must be refreshed after the external Full run reaches a terminal state; they are not evidence gaps.
+A submission-oriented working draft now exists at `paper/MANUSCRIPT_DRAFT.md`. It replaces the old chronological Stage-0/Stage-1 logic with the final methodological sequence: provenance → intrinsic QoI stability → eligibility → approximation → downstream re-analysis → topology audit → certification → rate–fidelity. `RESULTS.md` is retained as a historical research log rather than silently rewritten or treated as the final manuscript.
 
 ## Evidence backbone
 
@@ -82,6 +82,8 @@ The current narrative spine is stable:
 6. Requested pointwise error and realized perturbation differ systematically by codec, so nominal tolerance alone is not an equal-perturbation comparison.
 7. Independent external validation tests which development conclusions transfer without retuning.
 
+The new manuscript draft expresses this as a general scientific-data certification framework rather than as a narrow three-codec benchmark. Bader charge is presented as the topology-sensitive chemical case study, not as a claim of universal coverage of downstream QoIs.
+
 ## Remaining work before a submission-ready manuscript
 
 ### Scientific gate
@@ -93,10 +95,11 @@ Only one primary gate remains: finish and audit the frozen external Full run, th
 These are not new experiments:
 
 - refresh `paper/CLAIM_EVIDENCE_MATRIX.md` using the atom-level mechanism dataset and completed external run;
-- refresh `paper/FIGURE_MAP.md` because the tight ladder and per-atom mechanism data are already present;
-- replace stale Stage-0/Stage-1 narrative in `RESULTS.md` with the final Protocol A.1 story;
-- finalize figure scripts and captions against the release paths;
-- write the JCTC Introduction, Methods, Results and Discussion around the frozen evidence chain;
+- update the external-status portions of `paper/FIGURE_MAP.md` after the Full run;
+- fill the pending external-transfer Results subsection in `paper/MANUSCRIPT_DRAFT.md` only after aggregate audit;
+- finalize figure scripts and captions against release paths, using R in GitHub Actions for submission figures;
+- add and verify literature citations in the Introduction/Discussion without changing the frozen scientific claims;
+- perform a final JCTC-style compression pass on wording, Methods redundancy, figure references and Supporting Information cross-references;
 - keep limitations integrated into the relevant Results/Discussion sections rather than requiring a standalone limitations section.
 
 ## Release-builder warning
@@ -105,8 +108,9 @@ The local `build_release_package.py` was reported to regenerate `benchmark/`, `s
 
 - `protocol/EXTERNAL_RATE_FIDELITY_ANALYSIS_PLAN.md`
 - `protocol/QOI_WORKFLOW_SPEC_V1.yaml`
+- `paper/MANUSCRIPT_DRAFT.md`
 - this manuscript status record and the final external-validation documentation.
 
 ## Bottom line
 
-The project is no longer in a data-discovery phase. It is in the final evidence-lock and manuscript-integration phase. Development benchmark, QoI qualification, mechanism, rate–fidelity and supporting controls are available; external corpus-scale rate–fidelity validation is the final primary scientific dependency.
+The project is no longer in a data-discovery phase. It is in the final evidence-lock and manuscript-integration phase. Development benchmark, QoI qualification, mechanism, rate–fidelity and supporting controls are available; the submission-oriented workflow prose is now drafted; external corpus-scale rate–fidelity validation remains the final primary scientific dependency.
