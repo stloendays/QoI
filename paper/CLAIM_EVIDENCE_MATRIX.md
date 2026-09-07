@@ -5,7 +5,7 @@ Status vocabulary is restricted to **CONFIRMED**, **PROVISIONAL**, **FALSIFIED**
 permitted. Every claim names the data file that supports it; a claim with no
 data file cannot leave PENDING.
 
-Last updated: 2026-09-06 (master table + tight rungs complete; all statistics under Protocol A.1).
+Last updated: 2026-09-07 (Claim 1 restated after within-material matching on realized L∞).
 
 **Correction of record (2026-09-04).** An earlier statement that bulk crystals
 show "0% above 1e-3" came from a 10-material pilot and is **false on the full
@@ -23,9 +23,17 @@ probe-dependent number below is restated under A.1, with the archived A value
 kept in brackets and marked *archived*. Codec rows of the master table are
 probe-independent and unaffected.
 
+**Correction of record (2026-09-07).** Equal nominal tolerance is not equal
+pointwise distortion across codecs. At the same requested tolerance ZFP realizes
+a median L∞ only 0.170x that of SZ3 and 0.170x that of SPERR, while SZ3/SPERR is
+1.00x. The earlier 6–12x ZFP/SZ3 resolved-Bader gap at matched nominal tolerance
+therefore mixes realized-distortion magnitude with error-field structure. Claim 1
+is restated using within-material matching on `realized_Linf`; the matched-nominal
+numbers remain descriptive but are no longer used as causal evidence.
+
 | # | Claim | Evidence | Dataset | Figure | Status | Remaining risk |
 |---|---|---|---|---|---|---|
-| 1 | Pointwise error bounds do not control chemical fidelity | Full master table, A.1-admitted materials, matched nominal tolerance: SZ3's re-derived Bader error exceeds ZFP's by a per-material median **6.4x** (1e-4, n=140), **9.2x** (1e-3, n=130), **12.4x** (1e-2, n=29); SZ3 worse on 98-100 % of materials; SPERR 6.8-8.9x worse than ZFP. Bulk and slab agree | `results/honest_benchmark/rate_chemical_master.csv` (254 materials, 4627 rows) | F6 | **CONFIRMED** | The pilot's 8.9-22x is superseded by 6-12x; direction and near-universality are not in doubt |
+| 1 | Scalar pointwise L∞ magnitude does not determine chemical fidelity | Equal nominal tolerance is confounded: ZFP/SZ3 realized-L∞ ratio **0.170x**, ZFP/SPERR **0.170x**, SZ3/SPERR **1.00x**. After within-material matching on `log10(realized_Linf)` (primary 0.10-dex caliper), re-derived Bader error remains **0.557x** for ZFP/SZ3 (95% material-bootstrap CI 0.525–0.598), **0.601x** for ZFP/SPERR (0.534–0.662), and **1.033x** for SZ3/SPERR (0.976–1.072). The ZFP residual remains ~0.56–0.60x from 0.05–0.30 dex. At τ=0.01 e among jointly A.1-eligible pairs, ZFP certification exceeds SZ3 by **+14.9 pp** and SPERR by **+17.0 pp** at the primary caliper | `analysis/matched_realized_linf_v1/equal_nominal_diagnostics.csv`, `analysis/matched_realized_linf_v1/matched_effects_summary.csv`, `analysis/matched_realized_linf_v1/matched_pairs_primary_0p10dex.csv` | F6 | **CONFIRMED** (restated) | Matching controls the scalar L∞ magnitude, not every norm or spatial statistic of the error field. The residual therefore supports an error-*structure* contribution beyond L∞, but should not be attributed to one specific geometric statistic without further decomposition |
 | 2 | Fixed-basin evaluation is systematically biased | Same operating points scored both ways: fixed-basin deviation is 9-11x smaller across all codecs and both strata | `results/verify/primary_claim.jsonl`, `results/adaptive/boundary.jsonl` | F2 | **CONFIRMED** | Magnitude may shift with corpus; direction is not in doubt |
 | 3 | Codec ranking reverses between the two metrics | On the full table the *best* codec at matched tolerance is ZFP under **both** metrics (fixed: 170/171 at 1e-3; resolved: 164/171); the winner changes in only 4 % (1e-3) and 2 % (1e-2) of materials. What does change is the order of the two worse codecs: the full 3-codec order differs between metrics in 44 % (1e-3) and 16 % (1e-2) of materials | `results/honest_benchmark/rate_chemical_master.csv` | F2 | **FALSIFIED** (as stated) | The 10-material pilot's "SPERR best under fixed basins, worst under re-derived" was a sampling artefact. The surviving, weaker statement — the fixed-basin metric mis-orders the non-winning codecs in a large minority of materials — is folded into claim 2 |
 | 4 | Domain migration dominates tight-tolerance error | At 1e-4 the domain term is 0.00911 e against an integrand term of 0.00041 e, i.e. 100% of the total; at 1e-3 it is 65% | `results/adaptive/boundary.jsonl` (6 materials) | F3 | **PROVISIONAL** | 6 materials. Needs the representative-case matrix of Task 4 |
@@ -44,7 +52,8 @@ probe-independent and unaffected.
 
 | Retracted | Why |
 |---|---|
-| "SZ3 leaves 200x more chemical error than ZFP" | Fixed-basin metric; the full-table figure is 6-12x |
+| "SZ3 leaves 200x more chemical error than ZFP" | Fixed-basin metric; the full-table figure is much smaller |
+| "The 6–12x matched-nominal ZFP/SZ3 resolved-Bader gap directly measures codec error geometry" | Equal nominal tolerance gives strongly unequal realized L∞; ZFP realizes ~0.17x the perturbation of SZ3/SPERR. The matched-realized residual is ~1.7–1.8x in the inverse SZ3/ZFP direction and is the appropriate evidence for structure beyond scalar L∞ |
 | "SPERR ranks best under fixed basins and worst under re-derived basins" (pilot, claim 3) | 10-material sampling artefact; on 254 materials ZFP is best under both metrics |
 | "SPERR is the strongest generic baseline" | Ranking reversed by the metric error |
 | Any "compression ratio at equal chemical fidelity" of 130-600x | Inflated 10-20x by the fixed-basin metric |

@@ -2,9 +2,8 @@
 
 Scientific logic first; no styling work until the evidence behind each panel is
 frozen. Every figure names the data file it is generated from. A figure with no
-data file is not yet a figure. Updated 2026-09-06: every data-bearing panel now
-has its file; statuses are DATA-READY (file frozen, figure not drawn) or
-PENDING (file still being produced).
+data file is not yet a figure. Updated 2026-09-07: Figure 6 now controls the
+*realized* L∞ rather than treating equal nominal tolerance as equal distortion.
 
 **Working title:** *Chemical Fidelity Is Not a Pointwise Error: Topology-Induced
 Failure Modes in Lossy Compression of Electronic Densities*
@@ -92,13 +91,32 @@ while the ratio keeps dropping.
 
 ---
 
-## Figure 6 — Pointwise error is not chemical error
+## Figure 6 — Equal nominal tolerance conflates distortion magnitude with error structure
 
-Points binned by nominal tolerance; `dQ_resolved` spread across codecs within a
-bin. Per-material SZ3/ZFP error ratio at matched tolerance: 6.4x (1e-4), 9.2x
-(1e-3), 12.4x (1e-2); SZ3 worse on 98-100 %.
+(a) Equal-nominal diagnostic: ZFP realizes only **0.170x** the L∞ of SZ3 and
+**0.170x** the L∞ of SPERR at the same requested absolute tolerance, whereas
+SZ3/SPERR is **1.00x**. (b) Within-material matching on `log10(realized_Linf)`,
+without replacement: at the primary 0.10-dex caliper, resolved Bader error is
+**0.557x** for ZFP/SZ3 (95% material-bootstrap CI 0.525–0.598), **0.601x** for
+ZFP/SPERR (0.534–0.662), and **1.033x** for SZ3/SPERR (0.976–1.072). The ZFP
+residual stays near 0.56–0.60x from 0.05 to 0.30 dex. (c) Compression-ratio
+effects on the same matches: ZFP/SZ3 0.326x, ZFP/SPERR 2.67x, SZ3/SPERR 3.58x
+at 0.10 dex. (d) Protocol-A.1 certification at τ=0.01 e: ZFP exceeds SZ3 by
+**+14.9 pp** and SPERR by **+17.0 pp** among jointly eligible pairs, while
+SZ3/SPERR is statistically indistinguishable.
 
-*Data:* `results/honest_benchmark/rate_chemical_master.csv`. *Status:* DATA-READY.
+**Interpretation:** the old 6–12x matched-*nominal* ZFP/SZ3 chemical-error gap
+was substantially inflated by unequal realized distortion. The gap contracts
+to about 1.8x after actual L∞ is controlled, but does not vanish. Therefore the
+defensible claim is that **scalar L∞ magnitude is insufficient**; the structure
+of the error field contributes beyond its maximum amplitude.
+
+*Data:* `analysis/matched_realized_linf_v1/equal_nominal_diagnostics.csv`,
+`analysis/matched_realized_linf_v1/matched_effects_summary.csv`,
+`analysis/matched_realized_linf_v1/matched_pairs_primary_0p10dex.csv`.
+*Figure script:* `figures/R/figure6_matched_realized_linf.R`.
+*Rendered:* `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf}`.
+*Status:* **DATA-READY / RENDERED**.
 
 ---
 
