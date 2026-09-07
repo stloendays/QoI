@@ -1,0 +1,42 @@
+name: Error Geometry Permutation Smoke
+
+on:
+  push:
+    branches: [external-e2e-validation]
+    paths:
+      - 'mechanism/GEOMETRY_PERMUTATION_SMOKE_TRIGGER'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned benchmark environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r validation/requirements-external-e2e.txt
+      - name: Select first preregistered material
+        id: select
+        run: |
+          material=$(python mechanism/residual_spatial_permutation.py --list-materials | python -c 'import json,sys; x=json.load(sys.stdin); print(x[0])')
+          echo "material=$material" >> "$GITHUB_OUTPUT"
+          echo "Smoke material: $material"
+      - name: Run full five-seed intervention on one material
+        run: |
+          python mechanism/residual_spatial_permutation.py \
+            --material-id "${{ steps.select.outputs.material }}" \
+            --output-dir mechanism/permutation_smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: geometry-permutation-smoke
+          path: mechanism/permutation_smoke
+          if-no-files-found: warn
