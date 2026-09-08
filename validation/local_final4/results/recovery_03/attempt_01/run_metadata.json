@@ -1,0 +1,90 @@
+{
+  "formal_external_protocol": "frozen_staged_v2_row_failure_isolation",
+  "manifest_sha256": "3ed655fff8c8ada7a385e082662afab4086da51cefa6d659856f2c0b0c47a75b",
+  "stability_floor_sha256": "1642efe7688ff172d3a0a949685315c5b5afe6d58f836b21670819c137bbb161",
+  "protocol_A1_sha256": "1218e8b2f9947078b4cd853ce404ca261b767668b0f0fd3618ce4093f0cf4cb6",
+  "master_benchmark_sha256": "ee07236394f3d3a6f7735d77d83873790ec2617b5b856237749856c2a515433c",
+  "base_split_relative": 1e-05,
+  "tight_eligibility_tau_e": 0.001,
+  "early_stop_resolved_Bader_error_e": 0.05,
+  "row_failure_semantics": "record_and_continue; never silently count as pass",
+  "material_failure_semantics": "hard pipeline failure",
+  "base_ladders": {
+    "zfp": [
+      1e-05,
+      3e-05,
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1
+    ],
+    "sz3": [
+      1e-05,
+      3e-05,
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03
+    ],
+    "sperr": [
+      1e-05,
+      3e-05,
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1
+    ]
+  },
+  "tight_ladders": {
+    "zfp": [
+      1e-07,
+      3e-07,
+      1e-06,
+      3e-06
+    ],
+    "sz3": [
+      1e-07,
+      3e-07,
+      1e-06,
+      3e-06
+    ],
+    "sperr": [
+      1e-07,
+      3e-07,
+      1e-06,
+      3e-06
+    ]
+  },
+  "codecs": [
+    "zfp",
+    "sz3",
+    "sperr"
+  ],
+  "selected_materials": [
+    "aflow-Cl1O12Pb5V3_ICSD_203074"
+  ],
+  "shard_count": 1,
+  "shard_index": 0,
+  "packages": {
+    "numpy": "2.4.6",
+    "baderkit": "0.10.2",
+    "pysz": "1.0.3",
+    "zfpy": "1.0.1",
+    "hdf5plugin": "7.0.0",
+    "h5py": "3.16.0"
+  },
+  "bader": {
+    "method": "ongrid",
+    "vacuum_tol": 0.001,
+    "persistence_tol": 0.5,
+    "nna_cutoff": false
+  }
+}

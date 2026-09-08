@@ -1,0 +1,51 @@
+{
+  "slot": "03",
+  "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+  "attempt": 1,
+  "start": "2026-09-08T05:21:47.173908+00:00",
+  "command": [
+    "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+    "validation/formal_external_e2e.py",
+    "--material-id",
+    "aflow-Cl1O12Pb5V3_ICSD_203074",
+    "--codecs",
+    "zfp,sz3,sperr",
+    "--output-dir",
+    "D:\\Research\\QoI-final4-local\\results\\recovery_03\\attempt_01"
+  ],
+  "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+  "status": "FAILED",
+  "end": "2026-09-08T05:22:53.915358+00:00",
+  "elapsed_seconds": 66.75,
+  "exit_code": 2,
+  "summary": {
+    "n_materials_selected": 1,
+    "n_materials_complete": 0,
+    "n_material_failures": 1,
+    "n_row_failures": 0,
+    "n_rows_retained": 0,
+    "all_codec_bounds_respected": false,
+    "n_tight_eligible_materials": 0,
+    "n_certified_at_1e-4": 0,
+    "n_certified_at_1e-3": 0,
+    "n_certified_at_1e-2": 0,
+    "n_maxima_count_changes": 0,
+    "median_realized_Linf_over_nominal_by_codec": {
+      "ZFP": null,
+      "SZ3": null,
+      "SPERR": null
+    },
+    "material_failure_ids": [
+      "aflow-Cl1O12Pb5V3_ICSD_203074"
+    ],
+    "row_failure_ids": []
+  },
+  "material_failures": [
+    {
+      "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+      "error_type": "HTTPError",
+      "error": "HTTP Error 500: INTERNAL SERVER ERROR"
+    }
+  ],
+  "bader_row_failures": 0
+}

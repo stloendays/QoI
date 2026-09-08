@@ -1,0 +1,254 @@
+[
+  {
+    "path": ".github/workflows/external-e2e-full.yml",
+    "match": false
+  },
+  {
+    "path": ".github/workflows/external-e2e-pilot-matrix.yml",
+    "match": false
+  },
+  {
+    "path": ".github/workflows/external-e2e-pilot.yml",
+    "match": false
+  },
+  {
+    "path": ".github/workflows/external-e2e-preflight.yml",
+    "match": false
+  },
+  {
+    "path": ".github/workflows/external-e2e-smoke.yml",
+    "match": false
+  },
+  {
+    "path": "README.md",
+    "match": false
+  },
+  {
+    "path": "RESULTS.md",
+    "match": false
+  },
+  {
+    "path": "benchmark/best_certified_a1.csv",
+    "match": false
+  },
+  {
+    "path": "benchmark/lossless_baselines.jsonl",
+    "match": false
+  },
+  {
+    "path": "benchmark/master_benchmark_base_ladder.csv",
+    "match": false
+  },
+  {
+    "path": "benchmark/master_benchmark_full.csv",
+    "match": false
+  },
+  {
+    "path": "benchmark/master_benchmark_tight_ladder.csv",
+    "match": false
+  },
+  {
+    "path": "benchmark/pairwise_a1.csv",
+    "match": false
+  },
+  {
+    "path": "benchmark/summary_a1.csv",
+    "match": false
+  },
+  {
+    "path": "external_test_MANIFEST.json",
+    "match": false
+  },
+  {
+    "path": "failure_registry.csv",
+    "match": false
+  },
+  {
+    "path": "figures/R/figure2_fixed_vs_resolved.R",
+    "match": false
+  },
+  {
+    "path": "figures/R/figure3_certification_landscape.R",
+    "match": false
+  },
+  {
+    "path": "figures/R/figure4_stability_protocol.R",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/README.md",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/figure2_fixed_vs_resolved.py",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/figure3_certification_landscape.py",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/figure4_stability_floor.py",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/figure5_realized_error_budget.py",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/figure6_pointwise_vs_chemical.py",
+    "match": false
+  },
+  {
+    "path": "figures/drafts/figure7_error_structure_mechanism.py",
+    "match": false
+  },
+  {
+    "path": "materials_metadata.csv",
+    "match": false
+  },
+  {
+    "path": "mechanism/basin_error_decomposition_per_atom.csv",
+    "match": false
+  },
+  {
+    "path": "mechanism/basin_error_decomposition_summary.csv",
+    "match": false
+  },
+  {
+    "path": "paper/CLAIM_EVIDENCE_MATRIX.md",
+    "match": false
+  },
+  {
+    "path": "paper/FIGURE_MAP.md",
+    "match": false
+  },
+  {
+    "path": "paper/PROBE_VALIDATION.md",
+    "match": false
+  },
+  {
+    "path": "protocol/EXTERNAL_BASELINES.md",
+    "match": false
+  },
+  {
+    "path": "protocol/EXTERNAL_RATE_FIDELITY_ANALYSIS_PLAN.md",
+    "match": false
+  },
+  {
+    "path": "protocol/PROTOCOL_A1.md",
+    "match": false
+  },
+  {
+    "path": "protocol/PROTOCOL_A_archived.md",
+    "match": false
+  },
+  {
+    "path": "protocol/QOI_WORKFLOW_SPEC_V1.yaml",
+    "match": false
+  },
+  {
+    "path": "protocol/VALIDATION_REPORT.md",
+    "match": false
+  },
+  {
+    "path": "stability/eligibility_by_threshold_A1.csv",
+    "match": false
+  },
+  {
+    "path": "stability/eligibility_by_threshold_A_archived.csv",
+    "match": false
+  },
+  {
+    "path": "stability/eligibility_summary_A1.csv",
+    "match": false
+  },
+  {
+    "path": "stability/probe_calibration.csv",
+    "match": false
+  },
+  {
+    "path": "stability/stability_floor_A1.csv",
+    "match": false
+  },
+  {
+    "path": "stability/stability_floor_A1_per_seed.csv",
+    "match": false
+  },
+  {
+    "path": "stability/stability_floor_A_archived_float32.csv",
+    "match": false
+  },
+  {
+    "path": "supplement/S1_S3_sensitivity.csv",
+    "match": false
+  },
+  {
+    "path": "supplement/S2_floor_relative.csv",
+    "match": false
+  },
+  {
+    "path": "supplement/S4_amplitude_sensitivity.csv",
+    "match": false
+  },
+  {
+    "path": "validation/EXTERNAL_ENVIRONMENT.md",
+    "match": false
+  },
+  {
+    "path": "validation/FULL_EXTERNAL_TRIGGER",
+    "match": false
+  },
+  {
+    "path": "validation/README.md",
+    "match": false
+  },
+  {
+    "path": "validation/aflow_parser_smoke.py",
+    "match": false
+  },
+  {
+    "path": "validation/aggregate_formal_external.py",
+    "match": false
+  },
+  {
+    "path": "validation/build_confirmatory_external.py",
+    "match": false
+  },
+  {
+    "path": "validation/external_end_to_end.py",
+    "match": false
+  },
+  {
+    "path": "validation/external_rate_fidelity_split.json",
+    "match": false
+  },
+  {
+    "path": "validation/formal_external_e2e.py",
+    "match": false
+  },
+  {
+    "path": "validation/generate_external_rate_fidelity_report.py",
+    "match": false
+  },
+  {
+    "path": "validation/preflight_confirmatory_split.py",
+    "match": false
+  },
+  {
+    "path": "validation/preflight_formal_external.py",
+    "match": false
+  },
+  {
+    "path": "validation/requirements-external-e2e.txt",
+    "match": false
+  },
+  {
+    "path": "validation/test_aggregate_semantics.py",
+    "match": false
+  },
+  {
+    "path": "validation/test_confirmatory_postprocessor.py",
+    "match": false
+  }
+]

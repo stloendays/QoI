@@ -1,0 +1,895 @@
+2026-09-08 13:23:52 INFO     Loading                                           
+                             D:\Research\QoI-final4-local\temp\qoi_formal_e2e_9
+                             sv6miu3\CHGCAR                                    
+                    INFO     Time: 0.22                                        
+                    INFO     Data type set as charge from data range           
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+2026-09-08 13:23:53 INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 1.39                                        
+                    INFO     Initializing Labels                               
+2026-09-08 13:24:48 INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 55.03                                       
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+2026-09-08 13:24:51 INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 2.94                                        
+                    INFO     Cleaning labels                                   
+2026-09-08 13:24:52 INFO     Locating potential saddle points                  
+2026-09-08 13:25:21 INFO     Saddle Location Complete                          
+                    INFO     Time: 28.88                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 29.5                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 88.87                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.58                                        
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:25:22 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 4.713878193636888, "early_stop_boundary": false, "fixed_error_e": 8.51058601369914e-09, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.17337853655884955, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 4.6296296296296296e-06, "rel_tol": 1e-07, "resolved_error_e": 1.0118099999623098e-05}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.22                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.32                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 5.53860355393728, "early_stop_boundary": false, "fixed_error_e": 4.974777567667843e-08, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.22166406032056543, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 1.521164021164021e-05, "rel_tol": 3e-07, "resolved_error_e": 1.313579999973058e-05}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:25:23 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.23                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.32                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 6.055314820302926, "early_stop_boundary": false, "fixed_error_e": 6.970972954434274e-08, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.13033777211689393, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 3.108465608465608e-05, "rel_tol": 1e-06, "resolved_error_e": 3.234340000002334e-05}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.08                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 7.3698935947240924, "early_stop_boundary": false, "fixed_error_e": 2.5405689640933815e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.17801039737751922, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 8.531746031746032e-05, "rel_tol": 3e-06, "resolved_error_e": 2.6500099999715587e-05}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.25                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:25:24 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.08                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 9.247367069098381, "early_stop_boundary": false, "fixed_error_e": 1.0738736868631804e-06, "ladder": "base", "linf_over_nominal": 0.22120521888123038, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.00023677248677248677, "rel_tol": 1e-05, "resolved_error_e": 0.0001912764999998373}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.25                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.07                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.08                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.34                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "zfp", "compression_ratio": 10.484128194816181, "early_stop_boundary": false, "fixed_error_e": 2.1748013603328786e-06, "ladder": "base", "linf_over_nominal": 0.14160786301264847, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.00046825396825396823, "rel_tol": 3e-05, "resolved_error_e": 0.00010195619999997518}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.27                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.12                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.13                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.42                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 13.88774076217244, "early_stop_boundary": false, "fixed_error_e": 8.173241769604545e-06, "ladder": "base", "linf_over_nominal": 0.1666831657170378, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.0015052910052910052, "rel_tol": 0.0001, "resolved_error_e": 0.0007591470999996908}
+2026-09-08 13:25:25 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.29                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.47                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.48                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.78                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 19.143844722148366, "early_stop_boundary": false, "fixed_error_e": 3.4377769791760215e-05, "ladder": "base", "linf_over_nominal": 0.24147567543370077, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.004587301587301587, "rel_tol": 0.0003, "resolved_error_e": 0.003116755399999782}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     36 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+2026-09-08 13:25:26 INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.28                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.7                                         
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.71                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.01                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 22.873394550928097, "early_stop_boundary": false, "fixed_error_e": 4.744662539835076e-05, "ladder": "base", "linf_over_nominal": 0.13251030247732135, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.007651455026455026, "rel_tol": 0.001, "resolved_error_e": 0.005039105000000266}
+2026-09-08 13:25:27 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     1004 on-grid Maxima Found                         
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.46                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.23                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:25:29 INFO     Saddle Location Complete                          
+                    INFO     Time: 1.69                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 1.71                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 2.42                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 33.7545206947359, "early_stop_boundary": false, "fixed_error_e": 0.0003005741058199618, "ladder": "base", "linf_over_nominal": 0.137331729691501, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.01901521164021164, "rel_tol": 0.003, "resolved_error_e": 0.011277075599999797}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     29061 on-grid Maxima Found                        
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+2026-09-08 13:25:31 INFO     Initialization Complete. Reduced to 45 Maxima.    
+                    INFO     Time: 2.2                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:25:32 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.29                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:25:48 INFO     Saddle Location Complete                          
+                    INFO     Time: 16.29                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 16.3                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 18.81                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 51.92486005700745, "early_stop_boundary": false, "fixed_error_e": 0.0011747060502642626, "ladder": "base", "linf_over_nominal": 0.14202879084388434, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.04625727513227513, "rel_tol": 0.01, "resolved_error_e": 0.014899451400000263}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     87605 on-grid Maxima Found                        
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+2026-09-08 13:26:17 INFO     Initialization Complete. Reduced to 48 Maxima.    
+                    INFO     Time: 28.65                                       
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.29                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:27:55 INFO     Saddle Location Complete                          
+                    INFO     Time: 97.86                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 97.87                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 126.84                                      
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "zfp", "compression_ratio": 64.93450719347219, "early_stop_boundary": true, "fixed_error_e": 0.002258577679894458, "ladder": "base", "linf_over_nominal": 0.08616555942002099, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.08547619047619047, "rel_tol": 0.03, "resolved_error_e": 0.08871387259999963}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:27:56 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 5.677593781683001, "early_stop_boundary": false, "fixed_error_e": 1.24710034299369e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999985383989962, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 5.1587301587301586e-05, "rel_tol": 1e-07, "resolved_error_e": 2.5625200000156667e-05}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 7.250411941601096, "early_stop_boundary": false, "fixed_error_e": 7.209736425650703e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999979910410687, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.00017394179894179894, "rel_tol": 3e-07, "resolved_error_e": 5.054940000004393e-05}
+2026-09-08 13:27:57 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.36                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 9.8031190711026, "early_stop_boundary": false, "fixed_error_e": 3.5036655932074723e-06, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999975220611115, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.0005224867724867725, "rel_tol": 1e-06, "resolved_error_e": 0.00022194579999990083}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:27:58 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.23                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.11                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.13                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.38                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 13.190739001992352, "early_stop_boundary": false, "fixed_error_e": 1.8535481008719046e-05, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.999998946714319, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.0011686507936507935, "rel_tol": 3e-06, "resolved_error_e": 0.0005002585999998033}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.27                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.28                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.55                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 19.40212082375605, "early_stop_boundary": false, "fixed_error_e": 7.938463332557433e-05, "ladder": "base", "linf_over_nominal": 0.9999991364707334, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.0031276455026455026, "rel_tol": 1e-05, "resolved_error_e": 0.0008638499999999993}
+2026-09-08 13:27:59 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     37 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.27                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.46                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.47                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.77                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 27.50409855635316, "early_stop_boundary": false, "fixed_error_e": 0.0003145715567036689, "ladder": "base", "linf_over_nominal": 0.9999991577981886, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.007394179894179894, "rel_tol": 3e-05, "resolved_error_e": 0.004359501200000615}
+2026-09-08 13:28:00 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     103 on-grid Maxima Found                          
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.11                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:01 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.61                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.64                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.0                                         
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 44.98845162514087, "early_stop_boundary": false, "fixed_error_e": 0.00117513236652389, "ladder": "base", "linf_over_nominal": 0.9999986170679411, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.01720238095238095, "rel_tol": 0.0001, "resolved_error_e": 0.010003538500000353}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     351 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 53 Maxima.    
+                    INFO     Time: 0.33                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:02 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.78                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.79                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.4                                         
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 84.49877750611248, "early_stop_boundary": false, "fixed_error_e": 0.003629133011316732, "ladder": "base", "linf_over_nominal": 0.9999979682400446, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.034869708994708995, "rel_tol": 0.0003, "resolved_error_e": 0.018365284200000165}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     730 on-grid Maxima Found                          
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+2026-09-08 13:28:03 INFO     Initialization Complete. Reduced to 204 Maxima.   
+                    INFO     Time: 0.33                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:04 INFO     Saddle Location Complete                          
+                    INFO     Time: 1.12                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 1.14                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.75                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sz3", "compression_ratio": 141.95516958103508, "early_stop_boundary": false, "fixed_error_e": 0.014754264970153308, "ladder": "base", "linf_over_nominal": 0.999993620556419, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.07481613756613757, "rel_tol": 0.001, "resolved_error_e": 0.036088085200000286}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     1081 on-grid Maxima Found                         
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 350 Maxima.   
+                    INFO     Time: 0.38                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:28:05 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.58                                        
+                    INFO     Cleaning labels                                   
+2026-09-08 13:28:06 INFO     Locating potential saddle points                  
+2026-09-08 13:28:20 INFO     Saddle Location Complete                          
+                    INFO     Time: 14.12                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 14.65                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 15.62                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.82                                        
+{"codec": "sz3", "compression_ratio": 282.3529411764706, "early_stop_boundary": true, "fixed_error_e": 0.055692573455939254, "ladder": "base", "linf_over_nominal": 0.9999971022783831, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.15762896825396824, "rel_tol": 0.003, "resolved_error_e": 0.07413481990000026}
+2026-09-08 13:28:21 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 3.7098069741058786, "early_stop_boundary": false, "fixed_error_e": 1.0094882085809331e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999956247248967, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 4.1005291005291e-05, "rel_tol": 1e-07, "resolved_error_e": 1.5122499999797867e-05}
+2026-09-08 13:28:22 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.07                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.33                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 4.085993682518696, "early_stop_boundary": false, "fixed_error_e": 3.370666394886257e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.999995602655455, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.00012169312169312169, "rel_tol": 3e-07, "resolved_error_e": 5.845120000014248e-05}
+2026-09-08 13:28:23 INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.06                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.07                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.34                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 4.592523632740867, "early_stop_boundary": false, "fixed_error_e": 8.646384150878816e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999915567577737, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.0004431216931216931, "rel_tol": 1e-06, "resolved_error_e": 0.00019374309999964368}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:28:24 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.25                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.11                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.11                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.39                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 5.183176615371958, "early_stop_boundary": false, "fixed_error_e": 3.7016042115922687e-06, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.999994630822757, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.001136904761904762, "rel_tol": 3e-06, "resolved_error_e": 0.0002317868000005774}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     32 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:28:25 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.27                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.42                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.42                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 0.71                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 6.029020643015786, "early_stop_boundary": false, "fixed_error_e": 6.928207278988907e-06, "ladder": "base", "linf_over_nominal": 0.9999882720451235, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.003381613756613757, "rel_tol": 1e-05, "resolved_error_e": 0.00036878360000036636}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     37 on-grid Maxima Found                           
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:28:26 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.27                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:27 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.88                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.89                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.18                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 7.074226154167366, "early_stop_boundary": false, "fixed_error_e": 2.4000267377033424e-05, "ladder": "base", "linf_over_nominal": 0.9999960377196359, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.008088624338624338, "rel_tol": 3e-05, "resolved_error_e": 0.004260444500000293}
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     201 on-grid Maxima Found                          
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 32 Maxima.    
+                    INFO     Time: 0.29                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:28:28 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.3                                         
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:30 INFO     Saddle Location Complete                          
+                    INFO     Time: 2.11                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 2.12                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 2.73                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 8.795242309071039, "early_stop_boundary": false, "fixed_error_e": 8.957008580523507e-05, "ladder": "base", "linf_over_nominal": 0.9999894745022065, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.017904761904761906, "rel_tol": 0.0001, "resolved_error_e": 0.008988396099999463}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     2170 on-grid Maxima Found                         
+                    INFO     Time: 0.01                                        
+                    INFO     Initializing Labels                               
+2026-09-08 13:28:31 INFO     Initialization Complete. Reduced to 49 Maxima.    
+                    INFO     Time: 0.47                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.26                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:36 INFO     Saddle Location Complete                          
+                    INFO     Time: 5.34                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 5.35                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 6.1                                         
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 11.262160871253279, "early_stop_boundary": false, "fixed_error_e": 0.0002629597271210926, "ladder": "base", "linf_over_nominal": 0.9999819257559652, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.03220899470899471, "rel_tol": 0.0003, "resolved_error_e": 0.018327070899999853}
+2026-09-08 13:28:37 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     8934 on-grid Maxima Found                         
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+2026-09-08 13:28:39 INFO     Initialization Complete. Reduced to 370 Maxima.   
+                    INFO     Time: 1.99                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+                    INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.25                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:28:51 INFO     Saddle Location Complete                          
+                    INFO     Time: 12.24                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 12.25                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 14.51                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 15.200734903254913, "early_stop_boundary": false, "fixed_error_e": 0.0015019959265600846, "ladder": "base", "linf_over_nominal": 0.9999846437941088, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.058637566137566134, "rel_tol": 0.001, "resolved_error_e": 0.01614202570000023}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     17974 on-grid Maxima Found                        
+                    INFO     Time: 0.0                                         
+                    INFO     Initializing Labels                               
+2026-09-08 13:28:56 INFO     Initialization Complete. Reduced to 1655 Maxima.  
+                    INFO     Time: 4.99                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 13:28:57 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.3                                         
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 13:29:25 INFO     Saddle Location Complete                          
+                    INFO     Time: 27.93                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 27.94                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 33.24                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.01                                        
+{"codec": "sperr", "compression_ratio": 20.153382972590666, "early_stop_boundary": true, "fixed_error_e": 0.0031063583056480937, "ladder": "base", "linf_over_nominal": 0.9999359417560935, "material": "aflow-B1C1F6K1_ICSD_1194", "migration_fraction": 0.1134589947089947, "rel_tol": 0.003, "resolved_error_e": 0.056144450400000157}
+{"summary": {"all_codec_bounds_respected": true, "material_failure_ids": [], "median_realized_Linf_over_nominal_by_codec": {"SPERR": 0.9999905156299902, "SZ3": 0.9999982647200325, "ZFP": 0.15435597828046108}, "n_certified_at_1e-2": 22, "n_certified_at_1e-3": 17, "n_certified_at_1e-4": 8, "n_material_failures": 0, "n_materials_complete": 1, "n_materials_selected": 1, "n_maxima_count_changes": 8, "n_row_failures": 0, "n_rows_retained": 32, "n_tight_eligible_materials": 1, "row_failure_ids": []}}

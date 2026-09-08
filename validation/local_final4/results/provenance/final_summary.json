@@ -1,0 +1,64 @@
+[
+  {
+    "slot": "03",
+    "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+    "status": "FAILED",
+    "total_elapsed_seconds": 108.56200000003446,
+    "final_attempt_elapsed_seconds": 14.73399999999674,
+    "successful_rows": 0,
+    "row_failures": 0,
+    "bader_row_failures": 0,
+    "material_failures": 1,
+    "retries": 2,
+    "errors": [
+      {
+        "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+        "error_type": "HTTPError",
+        "error": "HTTP Error 500: INTERNAL SERVER ERROR"
+      }
+    ],
+    "verification_error": null
+  },
+  {
+    "slot": "09",
+    "material_id": "aflow-B1C1F6K1_ICSD_1194",
+    "status": "SUCCESS",
+    "total_elapsed_seconds": 350.625,
+    "final_attempt_elapsed_seconds": 350.625,
+    "successful_rows": 32,
+    "row_failures": 0,
+    "bader_row_failures": 0,
+    "material_failures": 0,
+    "retries": 0,
+    "errors": [],
+    "verification_error": null
+  },
+  {
+    "slot": "10",
+    "material_id": "aflow-B6H2O13Sr3_ICSD_262541",
+    "status": "SUCCESS",
+    "total_elapsed_seconds": 10539.907000000007,
+    "final_attempt_elapsed_seconds": 10539.907000000007,
+    "successful_rows": 35,
+    "row_failures": 0,
+    "bader_row_failures": 0,
+    "material_failures": 0,
+    "retries": 0,
+    "errors": [],
+    "verification_error": null
+  },
+  {
+    "slot": "16",
+    "material_id": "aflow-Mo3Na1O16P3_ICSD_66877",
+    "status": "SUCCESS",
+    "total_elapsed_seconds": 6626.343999999983,
+    "final_attempt_elapsed_seconds": 6626.343999999983,
+    "successful_rows": 30,
+    "row_failures": 0,
+    "bader_row_failures": 0,
+    "material_failures": 0,
+    "retries": 0,
+    "errors": [],
+    "verification_error": null
+  }
+]

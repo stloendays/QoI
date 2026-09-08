@@ -1,0 +1,935 @@
+2026-09-08 16:25:40 INFO     Loading                                           
+                             D:\Research\QoI-final4-local\temp\qoi_formal_e2e_i
+                             pvcvhfr\CHGCAR                                    
+2026-09-08 16:25:41 INFO     Time: 1.43                                        
+                    INFO     Data type set as charge from data range           
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+2026-09-08 16:25:42 INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.29                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.13                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:43 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.29                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.34                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.38                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 2.1                                         
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.04                                        
+2026-09-08 16:25:44 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:45 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.08                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.11                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.13                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.24                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 6.313587601531286, "early_stop_boundary": false, "fixed_error_e": 9.152048896510223e-09, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.1573085404286719, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 5.899234693877551e-06, "rel_tol": 1e-07, "resolved_error_e": 1.390629999953319e-05}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+2026-09-08 16:25:46 INFO     Finding Roots                                     
+2026-09-08 16:25:47 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.14                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.11                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.13                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.31                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 7.616882470240481, "early_stop_boundary": false, "fixed_error_e": 3.004751114588089e-08, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.22163368761441024, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 1.7059948979591835e-05, "rel_tol": 3e-07, "resolved_error_e": 3.975909999986982e-05}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:48 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.08                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.11                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.12                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.24                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 9.407247420206383, "early_stop_boundary": false, "fixed_error_e": 1.1920909148699366e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.24898727814943872, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 6.951530612244898e-05, "rel_tol": 1e-06, "resolved_error_e": 6.20506999995385e-05}
+2026-09-08 16:25:49 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:50 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.2                                         
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.12                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.14                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.37                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 10.562354435026869, "early_stop_boundary": false, "fixed_error_e": 2.2385618780873529e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.1717208407472693, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0001484375, "rel_tol": 3e-06, "resolved_error_e": 0.00015452740000032605}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+2026-09-08 16:25:51 INFO     Finding Roots                                     
+2026-09-08 16:25:52 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.14                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.16                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.44                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 13.640921023156073, "early_stop_boundary": false, "fixed_error_e": 6.471504452321142e-07, "ladder": "base", "linf_over_nominal": 0.211438128870231, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.000500797193877551, "rel_tol": 1e-05, "resolved_error_e": 0.0005984667000005217}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:53 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 16:25:54 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.18                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.2                                         
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.48                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 15.674788132945796, "early_stop_boundary": false, "fixed_error_e": 2.108666360634004e-06, "ladder": "base", "linf_over_nominal": 0.12840781704503185, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0009676339285714286, "rel_tol": 3e-05, "resolved_error_e": 0.0009895535000001843}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:55 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 0.98                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 16:25:56 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.61                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.63                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.65                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 21.284104791638388, "early_stop_boundary": false, "fixed_error_e": 7.017130752906553e-06, "ladder": "base", "linf_over_nominal": 0.15329890171882818, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0027158801020408163, "rel_tol": 0.0001, "resolved_error_e": 0.0011749274000010246}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     107 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.12                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:25:57 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.2                                         
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 16:25:59 INFO     Saddle Location Complete                          
+                    INFO     Time: 1.71                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 1.73                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 3.08                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 29.7807279944541, "early_stop_boundary": false, "fixed_error_e": 2.5990889995775035e-05, "ladder": "base", "linf_over_nominal": 0.1971435479585877, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0076165497448979595, "rel_tol": 0.0003, "resolved_error_e": 0.002873803199999969}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     1101 on-grid Maxima Found                         
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 16:26:00 INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.52                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:26:01 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.25                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 16:26:05 INFO     Saddle Location Complete                          
+                    INFO     Time: 4.36                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 4.38                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 6.18                                        
+                    INFO     Assigning Atom Properties                         
+2026-09-08 16:26:06 INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "zfp", "compression_ratio": 35.667369929541024, "early_stop_boundary": false, "fixed_error_e": 5.551396170311307e-05, "ladder": "base", "linf_over_nominal": 0.11690525708929342, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.012076530612244897, "rel_tol": 0.001, "resolved_error_e": 0.005263338299998921}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     43019 on-grid Maxima Found                        
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 16:26:21 INFO     Initialization Complete. Reduced to 45 Maxima.    
+                    INFO     Time: 14.92                                       
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 16:26:22 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 16:27:15 INFO     Saddle Location Complete                          
+                    INFO     Time: 52.68                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 52.71                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 68.91                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "zfp", "compression_ratio": 51.93084718818308, "early_stop_boundary": false, "fixed_error_e": 0.00026377338852157095, "ladder": "base", "linf_over_nominal": 0.1175134309425808, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.032166454081632656, "rel_tol": 0.003, "resolved_error_e": 0.028330072200000167}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     368993 on-grid Maxima Found                       
+                    INFO     Time: 0.03                                        
+                    INFO     Initializing Labels                               
+2026-09-08 17:13:33 INFO     Initialization Complete. Reduced to 51823 Maxima. 
+                    INFO     Time: 2778.25                                     
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+2026-09-08 17:13:34 INFO     Finding Roots                                     
+2026-09-08 17:13:35 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.62                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:27 INFO     Saddle Location Complete                          
+                    INFO     Time: 3291.47                                     
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 3291.61                                     
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 6071.67                                     
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.24                                        
+{"codec": "zfp", "compression_ratio": 76.94855782796992, "early_stop_boundary": true, "fixed_error_e": 0.0009763166030607451, "ladder": "base", "linf_over_nominal": 0.1181300011802489, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0838419961734694, "rel_tol": 0.01, "resolved_error_e": 0.12353865830000021}
+2026-09-08 18:08:28 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:30 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.16                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.12                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.14                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.35                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 9.626449406462323, "early_stop_boundary": false, "fixed_error_e": 6.475667237992866e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999998350555871, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.00014110331632653062, "rel_tol": 1e-07, "resolved_error_e": 0.0001454615000007209}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:08:31 INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:32 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.12                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.14                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.43                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 12.939962863626986, "early_stop_boundary": false, "fixed_error_e": 2.7067162111649168e-06, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999999428989338, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0003525191326530612, "rel_tol": 3e-07, "resolved_error_e": 0.00023822580000043558}
+2026-09-08 18:08:33 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:34 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.23                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.21                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.23                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.49                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 18.48018047051241, "early_stop_boundary": false, "fixed_error_e": 1.3904188093327718e-05, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999998941653228, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0009331951530612244, "rel_tol": 1e-06, "resolved_error_e": 0.0007465390999996657}
+2026-09-08 18:08:35 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:36 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.24                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:37 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.43                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.45                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.73                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 28.16561444161344, "early_stop_boundary": false, "fixed_error_e": 4.9555731245654044e-05, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999995166189002, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.002090561224489796, "rel_tol": 3e-06, "resolved_error_e": 0.0008230289000001889}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     48 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:38 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.27                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:39 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.64                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.67                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.99                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 46.75136873725835, "early_stop_boundary": false, "fixed_error_e": 0.00018290996045333685, "ladder": "base", "linf_over_nominal": 0.9999997075563736, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.005024234693877551, "rel_tol": 1e-05, "resolved_error_e": 0.0022131347999998496}
+2026-09-08 18:08:40 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     144 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 44 Maxima.    
+                    INFO     Time: 0.21                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:41 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.3                                         
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:42 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.89                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.91                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 2.46                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 81.01540513353753, "early_stop_boundary": false, "fixed_error_e": 0.0005528487393506865, "ladder": "base", "linf_over_nominal": 0.9999999124354503, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.010576052295918367, "rel_tol": 3e-05, "resolved_error_e": 0.003377676199999513}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     172 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:08:43 INFO     Initialization Complete. Reduced to 43 Maxima.    
+                    INFO     Time: 0.32                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:44 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.19                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:45 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.85                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.87                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 2.42                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "sz3", "compression_ratio": 162.29888924110003, "early_stop_boundary": false, "fixed_error_e": 0.0020045485934323537, "ladder": "base", "linf_over_nominal": 0.9999966418249919, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.016764030612244896, "rel_tol": 0.0001, "resolved_error_e": 0.0057537553000006625}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     334 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:08:46 INFO     Initialization Complete. Reduced to 97 Maxima.    
+                    INFO     Time: 0.48                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:47 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.43                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:48 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.9                                         
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.92                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 2.87                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sz3", "compression_ratio": 330.32910459061077, "early_stop_boundary": false, "fixed_error_e": 0.004962912961642196, "ladder": "base", "linf_over_nominal": 0.9999916473287035, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.032560905612244895, "rel_tol": 0.0003, "resolved_error_e": 0.01784364150000073}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+2026-09-08 18:08:49 INFO     585 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 210 Maxima.   
+                    INFO     Time: 0.49                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:50 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.34                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:52 INFO     Saddle Location Complete                          
+                    INFO     Time: 1.39                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 1.42                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 3.28                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "sz3", "compression_ratio": 707.3019453058923, "early_stop_boundary": false, "fixed_error_e": 0.01630887421430849, "ladder": "base", "linf_over_nominal": 0.9999835497116475, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.06719882015306122, "rel_tol": 0.001, "resolved_error_e": 0.025605554700000255}
+                    WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     843 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:08:53 INFO     Initialization Complete. Reduced to 387 Maxima.   
+                    INFO     Time: 0.51                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:08:54 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.4                                         
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:08:56 INFO     Saddle Location Complete                          
+                    INFO     Time: 1.96                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 1.98                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 3.93                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "sz3", "compression_ratio": 1450.1734104046243, "early_stop_boundary": true, "fixed_error_e": 0.044189121893860595, "ladder": "base", "linf_over_nominal": 0.9999951857524564, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.12832079081632652, "rel_tol": 0.003, "resolved_error_e": 0.06253806389999994}
+2026-09-08 18:08:59 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:00 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.37                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.13                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.15                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.56                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sperr", "compression_ratio": 4.187004281715894, "early_stop_boundary": false, "fixed_error_e": 8.840792364850358e-08, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999929236746573, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.00010889668367346938, "rel_tol": 1e-07, "resolved_error_e": 0.00010741689999971271}
+2026-09-08 18:09:02 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:03 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.26                                        
+                    INFO     Cleaning labels                                   
+2026-09-08 18:09:04 INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.12                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.14                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.44                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sperr", "compression_ratio": 4.670755315199652, "early_stop_boundary": false, "fixed_error_e": 3.099256167260478e-07, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999925099018913, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0003730867346938775, "rel_tol": 3e-07, "resolved_error_e": 0.0002295637000004902}
+2026-09-08 18:09:06 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.0                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:07 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.04                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+                    INFO     Saddle Location Complete                          
+                    INFO     Time: 0.33                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.35                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.43                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sperr", "compression_ratio": 5.34887965191347, "early_stop_boundary": false, "fixed_error_e": 1.1375644248801109e-06, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999892407897957, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0011605548469387755, "rel_tol": 1e-06, "resolved_error_e": 0.00037555609999984085}
+2026-09-08 18:09:09 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     40 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:10 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.07                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:09:11 INFO     Saddle Location Complete                          
+                    INFO     Time: 0.76                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 0.78                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 1.89                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "sperr", "compression_ratio": 6.178560091102238, "early_stop_boundary": false, "fixed_error_e": 3.017160510765393e-06, "ladder": "tight_A1_eligible_1e-3", "linf_over_nominal": 0.9999934764478837, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.0029756058673469387, "rel_tol": 3e-06, "resolved_error_e": 0.0008861748000006386}
+2026-09-08 18:09:12 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     47 on-grid Maxima Found                           
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+                    INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.01                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+2026-09-08 18:09:13 INFO     Finding Roots                                     
+2026-09-08 18:09:14 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.06                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:09:16 INFO     Saddle Location Complete                          
+                    INFO     Time: 2.3                                         
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 2.32                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 3.43                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sperr", "compression_ratio": 7.466042274440738, "early_stop_boundary": false, "fixed_error_e": 1.0741528187807603e-05, "ladder": "base", "linf_over_nominal": 0.9999956738194204, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.007364955357142857, "rel_tol": 1e-05, "resolved_error_e": 0.0019876132000007374}
+2026-09-08 18:09:17 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     473 on-grid Maxima Found                          
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:09:18 INFO     Initialization Complete. Reduced to 40 Maxima.    
+                    INFO     Time: 0.43                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:19 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.08                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:09:25 INFO     Saddle Location Complete                          
+                    INFO     Time: 6.01                                        
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 6.03                                        
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 7.58                                        
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sperr", "compression_ratio": 9.127464525476807, "early_stop_boundary": false, "fixed_error_e": 2.0882492483664805e-05, "ladder": "base", "linf_over_nominal": 0.9999942494753293, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.01476578443877551, "rel_tol": 3e-05, "resolved_error_e": 0.007690200599999031}
+2026-09-08 18:09:26 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     4966 on-grid Maxima Found                         
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:09:27 INFO     Initialization Complete. Reduced to 114 Maxima.   
+                    INFO     Time: 1.15                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:28 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.11                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:09:48 INFO     Saddle Location Complete                          
+                    INFO     Time: 19.65                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 19.67                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 21.98                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.02                                        
+{"codec": "sperr", "compression_ratio": 11.554269905589623, "early_stop_boundary": false, "fixed_error_e": 9.371433624671965e-05, "ladder": "base", "linf_over_nominal": 0.9999926761797419, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.02790593112244898, "rel_tol": 0.0001, "resolved_error_e": 0.01901954779999926}
+2026-09-08 18:09:49 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     21401 on-grid Maxima Found                        
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:09:56 INFO     Initialization Complete. Reduced to 1020 Maxima.  
+                    INFO     Time: 7.2                                         
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:09:57 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.18                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:10:50 INFO     Saddle Location Complete                          
+                    INFO     Time: 52.52                                       
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 52.54                                       
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 60.95                                       
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.04                                        
+{"codec": "sperr", "compression_ratio": 14.358222425966131, "early_stop_boundary": false, "fixed_error_e": 0.0003174447941649561, "ladder": "base", "linf_over_nominal": 0.9999937582349298, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.046555484693877554, "rel_tol": 0.0003, "resolved_error_e": 0.03183770579999923}
+2026-09-08 18:10:51 WARNING  The charge grid used to detect vacuum has values  
+                             below 0. This typically results from too low of a 
+                             grid density and can cause incorrect partitions.  
+                             Check results carefully.                          
+                    INFO     Beginning Bader Algorithm Using 'ongrid' Method   
+                    INFO     Finding on-grid Maxima                            
+                    INFO     55597 on-grid Maxima Found                        
+                    INFO     Time: 0.02                                        
+                    INFO     Initializing Labels                               
+2026-09-08 18:11:08 INFO     Initialization Complete. Reduced to 1649 Maxima.  
+                    INFO     Time: 16.6                                        
+                    INFO     Running Basin Assignment Algorithm                
+                    INFO     Calculating Steepest Neighbors                    
+                    INFO     Finding Roots                                     
+2026-09-08 18:11:09 INFO     Assigning Charges and Volumes                     
+                    INFO     Calculating basin charges and volumes             
+                    INFO     Basin Assignment Complete                         
+                    INFO     Time: 1.06                                        
+                    INFO     Cleaning labels                                   
+                    INFO     Locating potential saddle points                  
+2026-09-08 18:15:32 INFO     Saddle Location Complete                          
+                    INFO     Time: 263.11                                      
+                    INFO     Cleaning complete                                 
+                    INFO     Time: 263.14                                      
+                    INFO     Bader Algorithm Complete                          
+                    INFO     Time: 280.84                                      
+                    INFO     Assigning Atom Properties                         
+                    INFO     Atom Assignment Finished                          
+                    INFO     Time: 0.03                                        
+{"codec": "sperr", "compression_ratio": 18.67517748974142, "early_stop_boundary": true, "fixed_error_e": 0.0009669597899906179, "ladder": "base", "linf_over_nominal": 0.9999884047375026, "material": "aflow-Mo3Na1O16P3_ICSD_66877", "migration_fraction": 0.2021844706632653, "rel_tol": 0.001, "resolved_error_e": 0.9648571751000006}
+{"summary": {"all_codec_bounds_respected": true, "material_failure_ids": [], "median_realized_Linf_over_nominal_by_codec": {"SPERR": 0.9999929236746573, "SZ3": 0.9999996120876369, "ZFP": 0.1573085404286719}, "n_certified_at_1e-2": 22, "n_certified_at_1e-3": 14, "n_certified_at_1e-4": 0, "n_material_failures": 0, "n_materials_complete": 1, "n_materials_selected": 1, "n_maxima_count_changes": 10, "n_row_failures": 0, "n_rows_retained": 30, "n_tight_eligible_materials": 1, "row_failure_ids": []}}

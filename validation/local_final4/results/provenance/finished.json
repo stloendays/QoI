@@ -1,0 +1,287 @@
+{
+  "finished_at": "2026-09-08T10:15:33.390192+00:00",
+  "results": [
+    {
+      "slot": "03",
+      "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+      "attempt": 1,
+      "start": "2026-09-08T05:21:47.173908+00:00",
+      "command": [
+        "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+        "validation/formal_external_e2e.py",
+        "--material-id",
+        "aflow-Cl1O12Pb5V3_ICSD_203074",
+        "--codecs",
+        "zfp,sz3,sperr",
+        "--output-dir",
+        "D:\\Research\\QoI-final4-local\\results\\recovery_03\\attempt_01"
+      ],
+      "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+      "status": "FAILED",
+      "end": "2026-09-08T05:22:53.915358+00:00",
+      "elapsed_seconds": 66.75,
+      "exit_code": 2,
+      "summary": {
+        "n_materials_selected": 1,
+        "n_materials_complete": 0,
+        "n_material_failures": 1,
+        "n_row_failures": 0,
+        "n_rows_retained": 0,
+        "all_codec_bounds_respected": false,
+        "n_tight_eligible_materials": 0,
+        "n_certified_at_1e-4": 0,
+        "n_certified_at_1e-3": 0,
+        "n_certified_at_1e-2": 0,
+        "n_maxima_count_changes": 0,
+        "median_realized_Linf_over_nominal_by_codec": {
+          "ZFP": null,
+          "SZ3": null,
+          "SPERR": null
+        },
+        "material_failure_ids": [
+          "aflow-Cl1O12Pb5V3_ICSD_203074"
+        ],
+        "row_failure_ids": []
+      },
+      "material_failures": [
+        {
+          "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+          "error_type": "HTTPError",
+          "error": "HTTP Error 500: INTERNAL SERVER ERROR"
+        }
+      ],
+      "bader_row_failures": 0
+    },
+    {
+      "slot": "03",
+      "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+      "attempt": 2,
+      "start": "2026-09-08T05:22:54.008640+00:00",
+      "command": [
+        "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+        "validation/formal_external_e2e.py",
+        "--material-id",
+        "aflow-Cl1O12Pb5V3_ICSD_203074",
+        "--codecs",
+        "zfp,sz3,sperr",
+        "--output-dir",
+        "D:\\Research\\QoI-final4-local\\results\\recovery_03\\attempt_02"
+      ],
+      "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+      "status": "FAILED",
+      "end": "2026-09-08T05:23:21.092298+00:00",
+      "elapsed_seconds": 27.07800000003772,
+      "exit_code": 2,
+      "summary": {
+        "n_materials_selected": 1,
+        "n_materials_complete": 0,
+        "n_material_failures": 1,
+        "n_row_failures": 0,
+        "n_rows_retained": 0,
+        "all_codec_bounds_respected": false,
+        "n_tight_eligible_materials": 0,
+        "n_certified_at_1e-4": 0,
+        "n_certified_at_1e-3": 0,
+        "n_certified_at_1e-2": 0,
+        "n_maxima_count_changes": 0,
+        "median_realized_Linf_over_nominal_by_codec": {
+          "ZFP": null,
+          "SZ3": null,
+          "SPERR": null
+        },
+        "material_failure_ids": [
+          "aflow-Cl1O12Pb5V3_ICSD_203074"
+        ],
+        "row_failure_ids": []
+      },
+      "material_failures": [
+        {
+          "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+          "error_type": "HTTPError",
+          "error": "HTTP Error 500: INTERNAL SERVER ERROR"
+        }
+      ],
+      "bader_row_failures": 0
+    },
+    {
+      "slot": "03",
+      "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+      "attempt": 3,
+      "start": "2026-09-08T05:23:21.159435+00:00",
+      "command": [
+        "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+        "validation/formal_external_e2e.py",
+        "--material-id",
+        "aflow-Cl1O12Pb5V3_ICSD_203074",
+        "--codecs",
+        "zfp,sz3,sperr",
+        "--output-dir",
+        "D:\\Research\\QoI-final4-local\\results\\recovery_03\\attempt_03"
+      ],
+      "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+      "status": "FAILED",
+      "end": "2026-09-08T05:23:35.892519+00:00",
+      "elapsed_seconds": 14.73399999999674,
+      "exit_code": 2,
+      "summary": {
+        "n_materials_selected": 1,
+        "n_materials_complete": 0,
+        "n_material_failures": 1,
+        "n_row_failures": 0,
+        "n_rows_retained": 0,
+        "all_codec_bounds_respected": false,
+        "n_tight_eligible_materials": 0,
+        "n_certified_at_1e-4": 0,
+        "n_certified_at_1e-3": 0,
+        "n_certified_at_1e-2": 0,
+        "n_maxima_count_changes": 0,
+        "median_realized_Linf_over_nominal_by_codec": {
+          "ZFP": null,
+          "SZ3": null,
+          "SPERR": null
+        },
+        "material_failure_ids": [
+          "aflow-Cl1O12Pb5V3_ICSD_203074"
+        ],
+        "row_failure_ids": []
+      },
+      "material_failures": [
+        {
+          "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+          "error_type": "HTTPError",
+          "error": "HTTP Error 500: INTERNAL SERVER ERROR"
+        }
+      ],
+      "bader_row_failures": 0
+    },
+    {
+      "slot": "09",
+      "material_id": "aflow-B1C1F6K1_ICSD_1194",
+      "attempt": 1,
+      "start": "2026-09-08T05:23:35.947657+00:00",
+      "command": [
+        "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+        "validation/formal_external_e2e.py",
+        "--material-id",
+        "aflow-B1C1F6K1_ICSD_1194",
+        "--codecs",
+        "zfp,sz3,sperr",
+        "--output-dir",
+        "D:\\Research\\QoI-final4-local\\results\\recovery_09\\attempt_01"
+      ],
+      "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+      "status": "SUCCESS",
+      "end": "2026-09-08T05:29:26.578372+00:00",
+      "elapsed_seconds": 350.625,
+      "exit_code": 0,
+      "summary": {
+        "n_materials_selected": 1,
+        "n_materials_complete": 1,
+        "n_material_failures": 0,
+        "n_row_failures": 0,
+        "n_rows_retained": 32,
+        "all_codec_bounds_respected": true,
+        "n_tight_eligible_materials": 1,
+        "n_certified_at_1e-4": 8,
+        "n_certified_at_1e-3": 17,
+        "n_certified_at_1e-2": 22,
+        "n_maxima_count_changes": 8,
+        "median_realized_Linf_over_nominal_by_codec": {
+          "ZFP": 0.15435597828046108,
+          "SZ3": 0.9999982647200325,
+          "SPERR": 0.9999905156299902
+        },
+        "material_failure_ids": [],
+        "row_failure_ids": []
+      },
+      "material_failures": [],
+      "bader_row_failures": 0
+    },
+    {
+      "slot": "10",
+      "material_id": "aflow-B6H2O13Sr3_ICSD_262541",
+      "attempt": 1,
+      "start": "2026-09-08T05:29:26.742737+00:00",
+      "command": [
+        "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+        "validation/formal_external_e2e.py",
+        "--material-id",
+        "aflow-B6H2O13Sr3_ICSD_262541",
+        "--codecs",
+        "zfp,sz3,sperr",
+        "--output-dir",
+        "D:\\Research\\QoI-final4-local\\results\\recovery_10\\attempt_01"
+      ],
+      "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+      "status": "SUCCESS",
+      "end": "2026-09-08T08:25:06.655421+00:00",
+      "elapsed_seconds": 10539.907000000007,
+      "exit_code": 0,
+      "summary": {
+        "n_materials_selected": 1,
+        "n_materials_complete": 1,
+        "n_material_failures": 0,
+        "n_row_failures": 0,
+        "n_rows_retained": 35,
+        "all_codec_bounds_respected": true,
+        "n_tight_eligible_materials": 1,
+        "n_certified_at_1e-4": 7,
+        "n_certified_at_1e-3": 17,
+        "n_certified_at_1e-2": 27,
+        "n_maxima_count_changes": 10,
+        "median_realized_Linf_over_nominal_by_codec": {
+          "ZFP": 0.16970685628647314,
+          "SZ3": 0.9999993894034692,
+          "SPERR": 0.9999890132467603
+        },
+        "material_failure_ids": [],
+        "row_failure_ids": []
+      },
+      "material_failures": [],
+      "bader_row_failures": 0
+    },
+    {
+      "slot": "16",
+      "material_id": "aflow-Mo3Na1O16P3_ICSD_66877",
+      "attempt": 1,
+      "start": "2026-09-08T08:25:06.850174+00:00",
+      "command": [
+        "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+        "validation/formal_external_e2e.py",
+        "--material-id",
+        "aflow-Mo3Na1O16P3_ICSD_66877",
+        "--codecs",
+        "zfp,sz3,sperr",
+        "--output-dir",
+        "D:\\Research\\QoI-final4-local\\results\\recovery_16\\attempt_01"
+      ],
+      "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+      "status": "SUCCESS",
+      "end": "2026-09-08T10:15:33.196163+00:00",
+      "elapsed_seconds": 6626.343999999983,
+      "exit_code": 0,
+      "summary": {
+        "n_materials_selected": 1,
+        "n_materials_complete": 1,
+        "n_material_failures": 0,
+        "n_row_failures": 0,
+        "n_rows_retained": 30,
+        "all_codec_bounds_respected": true,
+        "n_tight_eligible_materials": 1,
+        "n_certified_at_1e-4": 0,
+        "n_certified_at_1e-3": 14,
+        "n_certified_at_1e-2": 22,
+        "n_maxima_count_changes": 10,
+        "median_realized_Linf_over_nominal_by_codec": {
+          "ZFP": 0.1573085404286719,
+          "SZ3": 0.9999996120876369,
+          "SPERR": 0.9999929236746573
+        },
+        "material_failure_ids": [],
+        "row_failure_ids": []
+      },
+      "material_failures": [],
+      "bader_row_failures": 0
+    }
+  ]
+}

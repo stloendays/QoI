@@ -1,0 +1,43 @@
+{
+  "slot": "10",
+  "material_id": "aflow-B6H2O13Sr3_ICSD_262541",
+  "attempt": 1,
+  "start": "2026-09-08T05:29:26.742737+00:00",
+  "command": [
+    "D:\\Research\\QoI-final4-local\\venv\\Scripts\\python.exe",
+    "validation/formal_external_e2e.py",
+    "--material-id",
+    "aflow-B6H2O13Sr3_ICSD_262541",
+    "--codecs",
+    "zfp,sz3,sperr",
+    "--output-dir",
+    "D:\\Research\\QoI-final4-local\\results\\recovery_10\\attempt_01"
+  ],
+  "scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+  "status": "SUCCESS",
+  "end": "2026-09-08T08:25:06.655421+00:00",
+  "elapsed_seconds": 10539.907000000007,
+  "exit_code": 0,
+  "summary": {
+    "n_materials_selected": 1,
+    "n_materials_complete": 1,
+    "n_material_failures": 0,
+    "n_row_failures": 0,
+    "n_rows_retained": 35,
+    "all_codec_bounds_respected": true,
+    "n_tight_eligible_materials": 1,
+    "n_certified_at_1e-4": 7,
+    "n_certified_at_1e-3": 17,
+    "n_certified_at_1e-2": 27,
+    "n_maxima_count_changes": 10,
+    "median_realized_Linf_over_nominal_by_codec": {
+      "ZFP": 0.16970685628647314,
+      "SZ3": 0.9999993894034692,
+      "SPERR": 0.9999890132467603
+    },
+    "material_failure_ids": [],
+    "row_failure_ids": []
+  },
+  "material_failures": [],
+  "bader_row_failures": 0
+}
