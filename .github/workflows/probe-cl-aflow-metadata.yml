@@ -1,0 +1,86 @@
+name: Probe Cl AFLOW metadata recovery
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/probe-cl-aflow-metadata.yml
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+
+      - name: Probe exact source and AFLOW metadata-bearing files
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json, lzma, re, urllib.request
+
+          base='https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074'
+          source=base+'/CHGCAR.static.xz'
+          expected='eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983'
+          ua='Mozilla/5.0 (X11; Linux x86_64) Chrome/152 Safari/537.36'
+
+          def get(url, timeout=45):
+              req=urllib.request.Request(url, headers={'User-Agent':ua,'Accept':'*/*'})
+              with urllib.request.urlopen(req, timeout=timeout) as r:
+                  return r.read(), getattr(r,'status',200), r.geturl()
+
+          blob,status,final=get(source)
+          print('SOURCE',status,len(blob),hashlib.sha256(blob).hexdigest(),final)
+          assert hashlib.sha256(blob).hexdigest()==expected
+          raw=lzma.decompress(blob).decode('utf-8','replace')
+          print('=== CHGCAR FIRST 12 LINES ===')
+          for i,line in enumerate(raw.splitlines()[:12],1): print(f'{i:02d}: {line}')
+
+          names=[
+            'aflowlib.out','aflowlib.json','aflowlib.json.xz','aflow.in','aflow.in.xz',
+            'CONTCAR.relax','POSCAR.bands','OUTCAR.static.xz',
+            'Cl1O12Pb5V3_ICSD_203074_structure_relax.json',
+            'Cl1O12Pb5V3_ICSD_203074_structure_relax1.json',
+            'Cl1O12Pb5V3_ICSD_203074_sconv.cif',
+            'Cl1O12Pb5V3_ICSD_203074_sprim.cif',
+          ]
+          pats=re.compile(r'(?i)(species|composition|titel|vrhfin|ions per type|Cl|Pb|\bV\b|\bO\b)')
+          for name in names:
+              url=base+'/'+name
+              print('\n===',name,'===')
+              try:
+                  b,s,f=get(url)
+                  print('HTTP',s,'bytes',len(b),'final',f,'sha',hashlib.sha256(b).hexdigest())
+                  if name.endswith('.xz'):
+                      try: text=lzma.decompress(b).decode('utf-8','replace')
+                      except Exception as e:
+                          print('decompress_error',repr(e)); text=b.decode('utf-8','replace')
+                  else:
+                      text=b.decode('utf-8','replace')
+                  hits=[]
+                  for line in text.splitlines():
+                      if pats.search(line):
+                          hits.append(line[:1000])
+                          if len(hits)>=40: break
+                  print('\n'.join(hits) if hits else text[:2500])
+              except Exception as e:
+                  print('ERROR',type(e).__name__,e)
+
+          # Try likely REST/AFLUX metadata routes as transport-only alternatives.
+          queries=[
+            base+'/?species', base+'/?composition', base+'/?compound', base+'/?auid',
+            'https://aflow.org/API/aflux/?compound(Cl1O12Pb5V3),species,composition,aurl,auid',
+            'https://aflow.org/API/aflux/?species(Cl,O,Pb,V),compound(Cl1O12Pb5V3),species,composition,aurl,auid',
+            'https://aflowlib.duke.edu/search/API/?compound(Cl1O12Pb5V3),species,composition,aurl,auid',
+          ]
+          for url in queries:
+              print('\n=== QUERY',url,'===')
+              try:
+                  b,s,f=get(url)
+                  print('HTTP',s,'bytes',len(b),'final',f)
+                  print(b[:5000].decode('utf-8','replace'))
+              except Exception as e:
+                  print('ERROR',type(e).__name__,e)
+          PY
