@@ -1,0 +1,18 @@
+# Scientific-critical environment used by the validated external E2E smoke.
+#
+# These pins freeze the external validation environment from the successful
+# 2026-09-07 smoke. They do NOT assert that unrecorded development runs used the
+# same NumPy/h5py/transitive versions. Every formal run also records its complete
+# installed package versions in run_metadata.json.
+
+numpy==2.4.6
+baderkit==0.10.2
+pysz==1.0.3
+zfpy==1.0.1
+hdf5plugin==7.0.0
+h5py==3.16.0
+numba==0.65.1
+llvmlite==0.47.0
+pymatgen==2025.10.7
+scipy==1.18.1
+pandas==2.3.3

@@ -1,0 +1,31 @@
+{
+  "accepted": true,
+  "issues": [],
+  "cases": [
+    {
+      "material_id": "mp-631399",
+      "rows": 21,
+      "roundtrip": {
+        "field_exact": true,
+        "lattice_max_difference": 0.0,
+        "frac_max_difference": 0.0,
+        "same_atom_order": true
+      },
+      "pbs_job_id": "1356157.stdct-mgmt-02",
+      "accounting_tolerance_e": 9.999999999999999e-06
+    },
+    {
+      "material_id": "nomad-FPTBoTAPMQA8",
+      "rows": 21,
+      "roundtrip": {
+        "field_exact": true,
+        "lattice_max_difference": 0.0,
+        "frac_max_difference": 0.0,
+        "same_atom_order": true
+      },
+      "pbs_job_id": "1356157.stdct-mgmt-02",
+      "accounting_tolerance_e": 6.8e-05
+    }
+  ],
+  "criterion": "Input identity, executable success and electron accounting only. No acceptance gate on the size or direction of scientific effects."
+}

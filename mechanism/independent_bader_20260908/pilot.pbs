@@ -1,0 +1,24 @@
+#!/bin/bash
+#PBS -N qoi_bader_pilot
+#PBS -P CFP03-CF-126
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=02:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-mechanism-20260908/logs/pilot_attempt3.pbs.log
+set -e
+cd /scratch/junbotong/qoi-mechanism-20260908
+set +e
+source /etc/profile
+set -e
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+venv/bin/python --version
+venv/bin/python run_study.py --pilot --material mp-631399 > logs/pilot_attempt3_bulk.log 2>&1 &
+bulk=$!
+venv/bin/python run_study.py --pilot --material nomad-FPTBoTAPMQA8 > logs/pilot_attempt3_slab.log 2>&1 &
+slab=$!
+rc=0
+wait "$bulk" || rc=1
+wait "$slab" || rc=1
+exit "$rc"

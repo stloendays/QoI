@@ -1,0 +1,12 @@
+{
+  "n_rows": 1560,
+  "n_unique": 1560,
+  "n_expected": 1560,
+  "n_missing": 0,
+  "n_failures": 2,
+  "failure_status_counts": {
+    "SOLVER_FAILURE": 2
+  },
+  "missing": [],
+  "interpretation_scope": "Exploratory deliberately stratified development panel; sentinel separate, no population-prevalence inference, no frozen-table updates."
+}
