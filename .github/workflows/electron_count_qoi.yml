@@ -1,0 +1,157 @@
+name: Electron-count QoI negative control
+
+on:
+  push:
+    paths:
+      - '.github/workflows/electron_count_qoi.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Analyze electron-count fidelity
+        run: |
+          python - <<'PY'
+          import csv, math, statistics, os
+          from collections import defaultdict
+
+          src='benchmark/master_benchmark_full.csv'
+          outdir='analysis/electron_count_qoi'
+          os.makedirs(outdir, exist_ok=True)
+
+          def f(x):
+              try: return float(x)
+              except: return float('nan')
+          def finite(x): return math.isfinite(x)
+          def q(vals,p):
+              vals=sorted(v for v in vals if finite(v))
+              if not vals: return float('nan')
+              if len(vals)==1: return vals[0]
+              x=(len(vals)-1)*p
+              lo=int(math.floor(x)); hi=int(math.ceil(x))
+              if lo==hi: return vals[lo]
+              return vals[lo]*(hi-x)+vals[hi]*(x-lo)
+          def med(vals): return q(vals,0.5)
+          def fmt(x):
+              if not finite(x): return 'NA'
+              return f'{x:.6g}'
+
+          rows=[]
+          with open(src,newline='') as fh:
+              r=csv.DictReader(fh)
+              for row in r:
+                  row['_ne']=f(row.get('electron_count_abs_dev',''))
+                  row['_bader']=f(row.get('Bader_error_resolved_e',''))
+                  row['_linf']=f(row.get('realized_Linf',''))
+                  row['_nomrel']=f(row.get('nominal_tolerance_relative',''))
+                  row['_ratio']=f(row.get('compression_ratio',''))
+                  if finite(row['_ne']): rows.append(row)
+
+          # Global and codec summaries.
+          groups=defaultdict(list)
+          groups[('ALL','ALL')]=rows
+          for row in rows:
+              groups[(row['codec'],'ALL')].append(row)
+              groups[(row['codec'],row.get('ladder',''))].append(row)
+
+          summary=[]
+          for (codec,ladder),g in sorted(groups.items()):
+              ne=[x['_ne'] for x in g]
+              bad=[x['_bader'] for x in g if finite(x['_bader'])]
+              summary.append({
+                  'codec':codec,'ladder':ladder,'n':len(g),
+                  'electron_dev_median_e':fmt(med(ne)),
+                  'electron_dev_p95_e':fmt(q(ne,.95)),
+                  'electron_dev_p99_e':fmt(q(ne,.99)),
+                  'electron_dev_max_e':fmt(max(ne)),
+                  'bader_error_median_e':fmt(med(bad)) if bad else 'NA',
+              })
+
+          with open(outdir+'/summary_by_codec.csv','w',newline='') as fh:
+              w=csv.DictWriter(fh,fieldnames=list(summary[0].keys())); w.writeheader(); w.writerows(summary)
+
+          # Summaries by codec and nominal relative tolerance.
+          tol_groups=defaultdict(list)
+          for row in rows:
+              tol_groups[(row['codec'], row.get('ladder',''), row.get('nominal_tolerance_relative',''))].append(row)
+          tolout=[]
+          for (codec,ladder,tol),g in sorted(tol_groups.items(), key=lambda z:(z[0][0],z[0][1],f(z[0][2]))):
+              ne=[x['_ne'] for x in g]
+              lin=[x['_linf'] for x in g if finite(x['_linf'])]
+              bad=[x['_bader'] for x in g if finite(x['_bader'])]
+              tolout.append({
+                  'codec':codec,'ladder':ladder,'nominal_tolerance_relative':tol,'n':len(g),
+                  'realized_Linf_median':fmt(med(lin)) if lin else 'NA',
+                  'electron_dev_median_e':fmt(med(ne)),
+                  'electron_dev_p95_e':fmt(q(ne,.95)),
+                  'electron_dev_max_e':fmt(max(ne)),
+                  'bader_error_median_e':fmt(med(bad)) if bad else 'NA',
+              })
+          with open(outdir+'/summary_by_tolerance.csv','w',newline='') as fh:
+              w=csv.DictWriter(fh,fieldnames=list(tolout[0].keys())); w.writeheader(); w.writerows(tolout)
+
+          # Decoupling: globally conserved electron count while Bader fails useful charge thresholds.
+          electron_thresholds=[1e-6,1e-5,1e-4,1e-3]
+          bader_thresholds=[1e-4,1e-3,1e-2]
+          dec=[]
+          for codec in ['ALL']+sorted(set(x['codec'] for x in rows)):
+              g=rows if codec=='ALL' else [x for x in rows if x['codec']==codec]
+              for ne_thr in electron_thresholds:
+                  ne_ok=[x for x in g if x['_ne'] < ne_thr and finite(x['_bader'])]
+                  for b_thr in bader_thresholds:
+                      sep=[x for x in ne_ok if x['_bader'] >= b_thr]
+                      dec.append({
+                          'codec':codec,'electron_threshold_e':ne_thr,'bader_threshold_e':b_thr,
+                          'n_with_electron_count_preserved':len(ne_ok),
+                          'n_bader_failed_despite_electron_preservation':len(sep),
+                          'fraction_bader_failed':fmt(len(sep)/len(ne_ok) if ne_ok else float('nan')),
+                      })
+          with open(outdir+'/electron_bader_decoupling.csv','w',newline='') as fh:
+              w=csv.DictWriter(fh,fieldnames=list(dec[0].keys())); w.writeheader(); w.writerows(dec)
+
+          # Rank correlations on log scale, using Pearson on logs for sensitivity diagnostics.
+          def corr(xs,ys):
+              z=[(x,y) for x,y in zip(xs,ys) if finite(x) and finite(y)]
+              if len(z)<3:return float('nan')
+              xs=[x for x,y in z]; ys=[y for x,y in z]
+              mx=sum(xs)/len(xs); my=sum(ys)/len(ys)
+              num=sum((x-mx)*(y-my) for x,y in zip(xs,ys))
+              den=(sum((x-mx)**2 for x in xs)*sum((y-my)**2 for y in ys))**0.5
+              return num/den if den else float('nan')
+          eps=1e-30
+          cors=[]
+          for codec in ['ALL']+sorted(set(x['codec'] for x in rows)):
+              g=rows if codec=='ALL' else [x for x in rows if x['codec']==codec]
+              ln=[math.log10(max(x['_ne'],eps)) for x in g]
+              ll=[math.log10(max(x['_linf'],eps)) for x in g]
+              lb=[math.log10(max(x['_bader'],eps)) for x in g if finite(x['_bader'])]
+              pair=[x for x in g if finite(x['_bader'])]
+              cors.append({
+                  'codec':codec,'n':len(g),
+                  'pearson_log_electron_vs_log_Linf':fmt(corr([math.log10(max(x['_ne'],eps)) for x in g],[math.log10(max(x['_linf'],eps)) for x in g])),
+                  'pearson_log_electron_vs_log_Bader':fmt(corr([math.log10(max(x['_ne'],eps)) for x in pair],[math.log10(max(x['_bader'],eps)) for x in pair])),
+              })
+          with open(outdir+'/correlations.csv','w',newline='') as fh:
+              w=csv.DictWriter(fh,fieldnames=list(cors[0].keys())); w.writeheader(); w.writerows(cors)
+
+          # Human-readable report with pre-specified go/no-go interpretation.
+          all_ne=[x['_ne'] for x in rows]
+          dmap={(d['codec'],float(d['electron_threshold_e']),float(d['bader_threshold_e'])):d for d in dec}
+          key=dmap[('ALL',1e-4,1e-3)]
+          report=f'''# Electron-count QoI negative-control study\n\n## Purpose\nTest whether preservation of the global linear observable, total electron count, is sufficient to imply preservation of the topology-dependent Bader charge QoI. It is deliberately treated as a negative control, not as a second headline property.\n\n## Dataset\n- Reconstruction rows analysed: **{len(rows)}**\n- Materials/codecs/tolerances: frozen `benchmark/master_benchmark_full.csv`\n- QoI: `electron_count_abs_dev` already recorded for every successful reconstruction.\n\n## Global electron-count fidelity\n- median |Delta N|: **{fmt(med(all_ne))} e**\n- 95th percentile: **{fmt(q(all_ne,.95))} e**\n- 99th percentile: **{fmt(q(all_ne,.99))} e**\n- maximum: **{fmt(max(all_ne))} e**\n\n## Key decoupling test\nUsing a deliberately loose definition of globally preserved electron count, **|Delta N| < 1e-4 e**, there are **{key['n_with_electron_count_preserved']}** reconstruction rows with a finite re-solved Bader result. Among them, **{key['n_bader_failed_despite_electron_preservation']}** have Bader error >= 1e-3 e, i.e. **{key['fraction_bader_failed']}** of globally charge-conserving rows still fail the 1e-3 e local charge criterion.\n\n## Interpretation rule\nThis control is manuscript-worthy only if electron count is substantially more stable than re-solved Bader charge and there is a non-negligible population satisfying global conservation while violating the local Bader criterion. In that case the supported statement is:\n\n> Global electron-number conservation is not a sufficient certificate of downstream chemical fidelity.\n\nIt does **not** support a claim that electron count itself is a difficult QoI.\n\nSee `summary_by_codec.csv`, `summary_by_tolerance.csv`, `electron_bader_decoupling.csv`, and `correlations.csv` for the full audit trail.\n'''
+          open(outdir+'/RESULTS.md','w').write(report)
+          print(report)
+          PY
+      - name: Commit analysis outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analysis/electron_count_qoi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "analysis: electron-count QoI negative-control results"
+          git push
