@@ -1,0 +1,213 @@
+name: Recover missing Cl external system (exact-byte only)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/recover-missing-cl-exact-byte.yml
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: validation/requirements-external-e2e.txt
+
+      - name: Install frozen external E2E requirements
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r validation/requirements-external-e2e.txt
+
+      - name: Probe canonical AFLOW and transport mirrors; accept exact frozen bytes only
+        id: probe
+        shell: bash
+        run: |
+          mkdir -p recovery_transport
+          python - <<'PY'
+          import hashlib, json, os, time, urllib.parse, urllib.request
+          from pathlib import Path
+
+          original = 'https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/CHGCAR.static.xz'
+          expected_sha = 'eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983'
+          expected_n = 2437424
+          path = '/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/CHGCAR.static.xz'
+          candidates = [
+              original,
+              'http://aflowlib.duke.edu' + path,
+              'https://aflowlib.org' + path,
+              'http://aflowlib.org' + path,
+              'https://aflow.org' + path,
+              'https://www.aflow.org' + path,
+              'https://aflow.duke.edu' + path,
+              'https://aflow.dev.materials.duke.edu' + path,
+          ]
+          uas = [
+              'QoI-external-e2e/0.2 (research validation)',
+              'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/152 Safari/537.36',
+          ]
+          attempts = []
+          selected = None
+          out = Path('recovery_transport/source_CHGCAR.static.xz')
+
+          def try_url(url, ua, timeout=45):
+              req = urllib.request.Request(url, headers={'User-Agent': ua, 'Accept': '*/*'})
+              t0 = time.time()
+              try:
+                  with urllib.request.urlopen(req, timeout=timeout) as r:
+                      blob = r.read()
+                      status = getattr(r, 'status', 200)
+                      final = r.geturl()
+                  sha = hashlib.sha256(blob).hexdigest()
+                  rec = {'url': url, 'final_url': final, 'status': status, 'bytes': len(blob), 'sha256': sha, 'seconds': time.time()-t0, 'error': None}
+                  attempts.append(rec)
+                  if len(blob) == expected_n and sha == expected_sha:
+                      out.write_bytes(blob)
+                      return rec
+              except Exception as e:
+                  attempts.append({'url': url, 'status': None, 'bytes': None, 'sha256': None, 'seconds': time.time()-t0, 'error': f'{type(e).__name__}: {e}'})
+              return None
+
+          for url in candidates:
+              for ua in uas:
+                  for _ in range(2):
+                      hit = try_url(url, ua)
+                      if hit:
+                          selected = hit
+                          break
+                      time.sleep(3)
+                  if selected:
+                      break
+              if selected:
+                  break
+
+          # Archival fallback is permitted only if the archived payload is byte-for-byte
+          # identical to the frozen source (same size and SHA-256).
+          if selected is None:
+              cdx = 'https://web.archive.org/cdx/search/cdx?' + urllib.parse.urlencode({
+                  'url': original,
+                  'output': 'json',
+                  'filter': 'statuscode:200',
+                  'fl': 'timestamp,original',
+                  'collapse': 'digest',
+                  'limit': '25',
+              })
+              try:
+                  req = urllib.request.Request(cdx, headers={'User-Agent': uas[1]})
+                  with urllib.request.urlopen(req, timeout=45) as r:
+                      rows = json.loads(r.read().decode('utf-8'))
+                  for row in rows[1:]:
+                      ts, archived_original = row[0], row[1]
+                      snap = f'https://web.archive.org/web/{ts}id_/{archived_original}'
+                      hit = try_url(snap, uas[1], timeout=60)
+                      if hit:
+                          selected = hit
+                          break
+              except Exception as e:
+                  attempts.append({'url': cdx, 'status': None, 'bytes': None, 'sha256': None, 'seconds': 0, 'error': f'{type(e).__name__}: {e}'})
+
+          report = {
+              'material_id': 'aflow-Cl1O12Pb5V3_ICSD_203074',
+              'frozen_original_url': original,
+              'expected_bytes': expected_n,
+              'expected_sha256': expected_sha,
+              'selected': selected,
+              'attempts': attempts,
+              'scientific_semantics_changed': False,
+              'acceptance_rule': 'payload accepted only if byte count and SHA-256 exactly match frozen manifest',
+          }
+          Path('recovery_transport/transport_probe.json').write_text(json.dumps(report, indent=2))
+          print(json.dumps(report, indent=2))
+          if selected is None:
+              raise SystemExit('No exact-byte copy of the frozen AFLOW source could be recovered')
+          PY
+
+      - name: Run frozen formal E2E with transport-only cache shim
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os, sys, urllib.parse
+          from pathlib import Path
+
+          ROOT = Path.cwd()
+          sys.path.insert(0, str(ROOT / 'validation'))
+          import external_end_to_end as core
+          import formal_external_e2e as formal
+
+          original_file = 'https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/CHGCAR.static.xz'
+          original_entry = original_file.rsplit('/', 1)[0].rstrip('/')
+          cached = (ROOT / 'recovery_transport/source_CHGCAR.static.xz').read_bytes()
+          original_fetch = core.fetch_bytes
+          path_prefix = '/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074'
+          mirror_bases = [
+              'https://aflowlib.duke.edu',
+              'http://aflowlib.duke.edu',
+              'https://aflowlib.org',
+              'http://aflowlib.org',
+              'https://aflow.org',
+              'https://www.aflow.org',
+              'https://aflow.duke.edu',
+              'https://aflow.dev.materials.duke.edu',
+          ]
+
+          def transport_fetch(url: str, timeout: int = 180) -> bytes:
+              if url == original_file:
+                  return cached
+              if url.startswith(original_entry + '/') or url == original_entry:
+                  suffix = url[len(original_entry):]
+                  errors = []
+                  for base in mirror_bases:
+                      candidate = base + path_prefix + suffix
+                      try:
+                          return original_fetch(candidate, timeout=min(timeout, 60))
+                      except Exception as exc:
+                          errors.append(f'{candidate}: {type(exc).__name__}: {exc}')
+                  raise RuntimeError('AFLOW metadata transport failed across mirrors: ' + ' | '.join(errors))
+              return original_fetch(url, timeout=timeout)
+
+          core.fetch_bytes = transport_fetch
+          sys.argv = [
+              'formal_external_e2e.py',
+              '--material-id', 'aflow-Cl1O12Pb5V3_ICSD_203074',
+              '--codecs', 'zfp,sz3,sperr',
+              '--output-dir', 'validation/formal_results_cl_exact_byte_recovery',
+          ]
+          raise SystemExit(formal.main())
+          PY
+
+      - name: Verify frozen source identity and result presence
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p = Path('recovery_transport/source_CHGCAR.static.xz')
+          if p.exists():
+              print('source_bytes', p.stat().st_size)
+              print('source_sha256', hashlib.sha256(p.read_bytes()).hexdigest())
+          out = Path('validation/formal_results_cl_exact_byte_recovery')
+          if out.exists():
+              for f in sorted(out.iterdir()):
+                  print(f.name, f.stat().st_size)
+          PY
+
+      - name: Upload transport audit and formal results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-e2e-cl-exact-byte-recovery
+          path: |
+            recovery_transport/transport_probe.json
+            validation/formal_results_cl_exact_byte_recovery/
+          if-no-files-found: warn
+          retention-days: 90
