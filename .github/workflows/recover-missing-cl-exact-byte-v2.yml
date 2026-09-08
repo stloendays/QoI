@@ -1,0 +1,180 @@
+name: Recover missing Cl external system v2 (verified AFLOW metadata)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/recover-missing-cl-exact-byte-v2.yml
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: validation/requirements-external-e2e.txt
+
+      - name: Install frozen external E2E requirements
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r validation/requirements-external-e2e.txt
+
+      - name: Recover exact frozen density and independently verify AFLOW species metadata
+        shell: bash
+        run: |
+          mkdir -p recovery_transport
+          python - <<'PY'
+          import hashlib, json, lzma, re, urllib.request
+          from pathlib import Path
+
+          base='https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074'
+          source_url=base+'/CHGCAR.static.xz'
+          aflowlib_url=base+'/aflowlib.json'
+          outcar_url=base+'/OUTCAR.static.xz'
+          expected_sha='eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983'
+          expected_bytes=2437424
+          ua='Mozilla/5.0 (X11; Linux x86_64) Chrome/152 Safari/537.36'
+
+          def get(url):
+              req=urllib.request.Request(url, headers={'User-Agent':ua,'Accept':'*/*'})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return r.read()
+
+          source=get(source_url)
+          source_sha=hashlib.sha256(source).hexdigest()
+          assert len(source)==expected_bytes, (len(source), expected_bytes)
+          assert source_sha==expected_sha, (source_sha, expected_sha)
+          Path('recovery_transport/source_CHGCAR.static.xz').write_bytes(source)
+
+          raw=lzma.decompress(source).decode('utf-8','strict')
+          lines=raw.splitlines()
+          chgcar_counts=[int(x) for x in lines[5].split()]
+
+          aflowlib_blob=get(aflowlib_url)
+          aflowlib=json.loads(aflowlib_blob.decode('utf-8'))
+          species=[str(x) for x in aflowlib['species']]
+          composition=[int(x) for x in aflowlib['composition']]
+          assert composition==chgcar_counts, (composition, chgcar_counts)
+          assert len(species)==len(composition)
+
+          outcar_blob=get(outcar_url)
+          outcar=lzma.decompress(outcar_blob).decode('utf-8','replace')
+          potcar=[]
+          for m in re.finditer(r'^\s*POTCAR:\s+PAW_PBE\s+([^\s]+)', outcar, re.M):
+              token=m.group(1)
+              elem=re.match(r'([A-Z][a-z]?)', token).group(1)
+              if elem not in potcar:
+                  potcar.append(elem)
+              if len(potcar)==len(species):
+                  break
+          m=re.search(r'ions per type\s*=\s*([0-9\s]+)', outcar)
+          assert m, 'ions per type missing from OUTCAR'
+          outcar_counts=[int(x) for x in m.group(1).split()]
+          assert potcar==species, (potcar, species)
+          assert outcar_counts==composition, (outcar_counts, composition)
+
+          audit={
+              'material_id':'aflow-Cl1O12Pb5V3_ICSD_203074',
+              'frozen_scientific_commit':'893f931b3045b0b628329db81999c2f439d4e830',
+              'frozen_source_url':source_url,
+              'source_bytes':len(source),
+              'source_sha256':source_sha,
+              'source_identity_gate':'PASS',
+              'aflow_rest_property_endpoint_status':'known HTTP 500 from prior recovery attempt',
+              'metadata_fallback':'AFLOW same-entry aflowlib.json, independently cross-checked against OUTCAR.static.xz and CHGCAR atom-count line',
+              'aflowlib_json_url':aflowlib_url,
+              'aflowlib_json_sha256':hashlib.sha256(aflowlib_blob).hexdigest(),
+              'outcar_static_url':outcar_url,
+              'outcar_static_sha256':hashlib.sha256(outcar_blob).hexdigest(),
+              'species':species,
+              'composition':composition,
+              'chgcar_counts':chgcar_counts,
+              'outcar_species_order':potcar,
+              'outcar_counts':outcar_counts,
+              'metadata_crosscheck':'PASS',
+              'scientific_parameters_changed':False,
+              'codec_ladder_changed':False,
+              'protocol_A1_changed':False,
+              'bader_settings_changed':False,
+          }
+          Path('recovery_transport/metadata_recovery_audit.json').write_text(json.dumps(audit,indent=2))
+          Path('recovery_transport/aflow_species.json').write_text(json.dumps({'species':species,'composition':composition}))
+          print(json.dumps(audit,indent=2))
+          PY
+
+      - name: Run byte-identical frozen formal E2E with metadata transport shim only
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+
+          ROOT=Path.cwd()
+          sys.path.insert(0,str(ROOT/'validation'))
+          import external_end_to_end as core
+          import formal_external_e2e as formal
+
+          base='https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074'
+          source_url=base+'/CHGCAR.static.xz'
+          species_url=base+'/?species'
+          composition_url=base+'/?composition'
+          source=(ROOT/'recovery_transport/source_CHGCAR.static.xz').read_bytes()
+          meta=json.loads((ROOT/'recovery_transport/aflow_species.json').read_text())
+          original_fetch=core.fetch_bytes
+
+          def transport_fetch(url: str, timeout: int=180) -> bytes:
+              if url==source_url:
+                  return source
+              if url==species_url:
+                  return json.dumps(meta['species']).encode('utf-8')
+              if url==composition_url:
+                  return json.dumps(meta['composition']).encode('utf-8')
+              return original_fetch(url,timeout=timeout)
+
+          core.fetch_bytes=transport_fetch
+          sys.argv=[
+              'formal_external_e2e.py',
+              '--material-id','aflow-Cl1O12Pb5V3_ICSD_203074',
+              '--codecs','zfp,sz3,sperr',
+              '--output-dir','validation/formal_results_cl_verified_metadata_recovery',
+          ]
+          raise SystemExit(formal.main())
+          PY
+
+      - name: Validate formal output
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          out=Path('validation/formal_results_cl_verified_metadata_recovery')
+          if not out.exists():
+              print('formal output directory absent')
+              raise SystemExit(0)
+          for p in sorted(out.iterdir()): print(p.name,p.stat().st_size)
+          s=out/'summary.json'
+          if s.exists(): print('SUMMARY',s.read_text())
+          a=out/'material_audit.csv'
+          if a.exists(): print('AUDIT',a.read_text())
+          PY
+
+      - name: Upload full recovery audit and formal results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-e2e-cl-verified-metadata-recovery
+          path: |
+            recovery_transport/
+            validation/formal_results_cl_verified_metadata_recovery/
+          if-no-files-found: warn
+          retention-days: 90
