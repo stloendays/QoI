@@ -1,0 +1,220 @@
+name: Finalize frozen external confirmatory 63
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/finalize-external-confirmatory63.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Check out local recovery results branch
+        uses: actions/checkout@v4
+        with:
+          ref: external-final4-local-recovery-20260908
+          path: local_recovery
+          fetch-depth: 1
+
+      - name: Assemble the exact 65-system input set
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$GITHUB_WORKSPACE/work"
+          input="$work/all65_inputs"
+          mkdir -p "$input/artifacts" "$input/local" "$work/downloads"
+
+          # These are the already-successful GitHub Actions artifacts used to build
+          # the 59-system primary package, plus the two frozen implementation sentinels.
+          # Original unaffected shards from run 34074537547:
+          artifact_ids=(
+            10008038325
+            10002335699
+            10002317628
+            10002414287
+            10003302698
+            # Successful one-material recoveries from run 34113606495:
+            10015415772
+            10016336305
+            10015412185
+            10015421716
+            10015712983
+            10016754346
+            10016988136
+            10015390274
+            10015425778
+            10015555553
+            10015447865
+            10015517453
+            10015466505
+            10015429038
+            10016126333
+            10016042972
+            10015737224
+            10015782462
+            10015972511
+            # NOMAD implementation sentinel recovery-19:
+            10016469091
+            # Final Cl recovery from run 34221538118:
+            10055168501
+          )
+
+          for id in "${artifact_ids[@]}"; do
+            zip="$work/downloads/${id}.zip"
+            dir="$input/artifacts/${id}"
+            echo "Downloading artifact ${id}"
+            gh api -H 'Accept: application/vnd.github+json' \
+              "/repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}/zip" > "$zip"
+            mkdir -p "$dir"
+            unzip -q "$zip" -d "$dir"
+          done
+
+          # The three locally completed primary systems are immutable on this result branch.
+          for slot in 09 10 16; do
+            src="$GITHUB_WORKSPACE/local_recovery/validation/local_final4/results/recovery_${slot}/attempt_01"
+            test -f "$src/formal_external_e2e_rows.csv"
+            mkdir -p "$input/local/recovery_${slot}"
+            cp -a "$src/." "$input/local/recovery_${slot}/"
+          done
+
+          # Sanity-check the final Cl recovery identity before aggregation.
+          cl_audit=$(find "$input/artifacts/10055168501" -name metadata_recovery_audit.json -print -quit)
+          test -n "$cl_audit"
+          python - "$cl_audit" <<'PY'
+          import json, sys
+          p=json.load(open(sys.argv[1]))
+          assert p['material_id']=='aflow-Cl1O12Pb5V3_ICSD_203074'
+          assert p['frozen_scientific_commit']=='893f931b3045b0b628329db81999c2f439d4e830'
+          assert p['source_sha256']=='eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983'
+          assert p['source_bytes']==2437424
+          assert p['source_identity_gate']=='PASS'
+          assert p['metadata_crosscheck']=='PASS'
+          assert p['scientific_parameters_changed'] is False
+          assert p['codec_ladder_changed'] is False
+          assert p['protocol_A1_changed'] is False
+          assert p['bader_settings_changed'] is False
+          PY
+
+      - name: Run frozen 65-system aggregate and frozen 63-system builder
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$GITHUB_WORKSPACE/work"
+          python "$GITHUB_WORKSPACE/frozen/validation/aggregate_formal_external.py" \
+            --input-root "$work/all65_inputs" \
+            --output-dir "$work/formal_external_all65" \
+            --expect-full
+
+          python "$GITHUB_WORKSPACE/frozen/validation/build_confirmatory_external.py" \
+            --aggregate-dir "$work/formal_external_all65" \
+            --output-dir "$work/formal_external_confirmatory63"
+
+      - name: Enforce final confirmatory gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, json, pathlib
+          root=pathlib.Path('work')
+          all65=json.loads((root/'formal_external_all65/summary.json').read_text())
+          c63=json.loads((root/'formal_external_confirmatory63/summary.json').read_text())
+          meta=json.loads((root/'formal_external_confirmatory63/confirmatory_metadata.json').read_text())
+
+          assert int(all65['n_materials_observed']) == 65, all65
+          assert int(all65['n_materials_complete']) == 65, all65
+          assert int(c63['n_materials_observed']) == 63, c63
+          assert int(c63['n_materials_complete']) == 63, c63
+          assert c63['eligible_A1_counts_completed_materials'] == {'1e-4':16,'1e-3':42,'1e-2':57}, c63
+          assert meta['status'] == 'PASS', meta
+          assert int(meta['confirmatory_n']) == 63, meta
+
+          rows=list(csv.DictReader(open(root/'formal_external_confirmatory63/formal_external_e2e_rows.csv', newline='')))
+          violations=[r for r in rows if str(r.get('bound_respected','')).lower() not in {'true','1','yes'}]
+          assert not violations, f'bound violations: {len(violations)}'
+          print(json.dumps({'all65':all65,'confirmatory63':c63,'metadata':meta}, indent=2))
+          PY
+
+      - name: Stage final auditable outputs into the repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="$GITHUB_WORKSPACE/repo/validation/final_external_confirmatory63_20260908"
+          rm -rf "$dest"
+          mkdir -p "$dest/all65" "$dest/confirmatory63" "$dest/cl_recovery"
+          cp -a "$GITHUB_WORKSPACE/work/formal_external_all65/." "$dest/all65/"
+          cp -a "$GITHUB_WORKSPACE/work/formal_external_confirmatory63/." "$dest/confirmatory63/"
+
+          clroot="$GITHUB_WORKSPACE/work/all65_inputs/artifacts/10055168501"
+          clformal=$(find "$clroot" -type d -name formal_results_cl_verified_metadata_recovery -print -quit)
+          claudit=$(find "$clroot" -name metadata_recovery_audit.json -print -quit)
+          clspecies=$(find "$clroot" -name aflow_species.json -print -quit)
+          test -n "$clformal" && test -n "$claudit" && test -n "$clspecies"
+          cp -a "$clformal/." "$dest/cl_recovery/"
+          cp "$claudit" "$dest/cl_recovery/metadata_recovery_audit.json"
+          cp "$clspecies" "$dest/cl_recovery/aflow_species.json"
+
+          cat > "$dest/SOURCE_PROVENANCE.md" <<'EOF'
+          # Frozen external confirmatory finalization provenance
+
+          Finalization date: 2026-09-08
+
+          Scientific implementation remained frozen at `893f931b3045b0b628329db81999c2f439d4e830`.
+
+          The final input set is the frozen 65-system corpus. The primary confirmatory cohort is the pre-frozen 63-system subset defined by `validation/external_rate_fidelity_split.json`; the two implementation sentinels are excluded only from the primary rate-fidelity summary, not from the 65-system completeness audit.
+
+          Sources combined here:
+
+          - the previously successful GitHub Actions outputs that formed the 59-system primary package;
+          - local recovery branch `external-final4-local-recovery-20260908`, commit `bcc6cf61b1ef7cc126a60c17ddb779f7e74cf147`, for `aflow-B1C1F6K1_ICSD_1194`, `aflow-B6H2O13Sr3_ICSD_262541`, and `aflow-Mo3Na1O16P3_ICSD_66877`;
+          - GitHub Actions run `34221538118`, artifact `10055168501`, for `aflow-Cl1O12Pb5V3_ICSD_203074`.
+
+          The Cl recovery used the exact frozen CHGCAR bytes (2,437,424 bytes; SHA-256 `eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983`). The broken AFLOW property endpoint was replaced only at the transport layer by metadata from the same AFLOW entry (`aflowlib.json`), cross-checked against `OUTCAR.static.xz` and the CHGCAR atom-count line. No codec, Bader, Protocol A.1, tolerance-ladder, certification, or early-stop semantics were changed.
+
+          Aggregation and confirmatory filtering were run with the byte-frozen `aggregate_formal_external.py` and `build_confirmatory_external.py` from commit `893f931...`.
+          EOF
+
+      - name: Commit final results to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/repo"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/final_external_confirmatory63_20260908
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'Finalize frozen 63-system external confirmatory audit'
+            git push origin HEAD:main
+          fi
+
+      - name: Upload final audit bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-confirmatory63-final-20260908
+          path: |
+            work/formal_external_all65/
+            work/formal_external_confirmatory63/
+            repo/validation/final_external_confirmatory63_20260908/SOURCE_PROVENANCE.md
+          retention-days: 90
