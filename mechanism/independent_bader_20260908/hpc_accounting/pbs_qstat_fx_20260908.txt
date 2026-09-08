@@ -1,0 +1,84 @@
+Job Id: 1356159.stdct-mgmt-02
+    Job_Name = qoi_bader_mechanism
+    Job_Owner = junbotong@vanda.nus.edu.sg
+    resources_used.cpupercent = 728
+    resources_used.cput = 03:12:21
+    resources_used.mem = 6221716kb
+    resources_used.ncpus = 36
+    resources_used.ngpus = 0
+    resources_used.vmem = 11447472kb
+    resources_used.walltime = 00:54:15
+    job_state = F
+    queue = batch_cpu
+    server = stdct-mgmt-02
+    Checkpoint = u
+    ctime = Tue Sep  8 18:52:44 2026
+    Error_Path = vanda.nus.edu.sg:/scratch/junbotong/qoi-mechanism-20260908/qoi
+	_bader_mechanism.e1356159
+    exec_host = CN-079/0*36
+    exec_vnode = (CN-079[0]:ncpus=36:mem=250gb)
+    Hold_Types = n
+    Join_Path = oe
+    Keep_Files = oed
+    Mail_Points = a
+    mtime = Tue Sep  8 19:47:04 2026
+    Output_Path = stdct-login-01.stdct.loc:/scratch/junbotong/qoi-mechanism-202
+	60908/logs/production.pbs.log
+    Priority = 0
+    qtime = Tue Sep  8 18:52:44 2026
+    Rerunable = True
+    Resource_List.am_job_cache = {"job.queue_charge_rate": 1.0,
+	 "job.ncpus": 36.0, "job.walltime": 172800, "job.ngpus": 0,
+	 "am_cloud_enabled": false}
+    Resource_List.mem = 250gb
+    Resource_List.mpiprocs = 36
+    Resource_List.ncpus = 36
+    Resource_List.ngpus = 0
+    Resource_List.nodect = 1
+    Resource_List.place = free
+    Resource_List.queue_charge_rate = 1
+    Resource_List.select = 1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+    Resource_List.walltime = 48:00:00
+    stime = Tue Sep  8 18:52:48 2026
+    obittime = Tue Sep  8 19:47:04 2026
+    session_id = 3752497
+    jobdir = /home/svu/junbotong
+    substate = 92
+    Variable_List = PBS_O_HOME=/home/svu/junbotong,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=junbotong,
+	PBS_O_PATH=/home/svu/junbotong/software/miniconda3/condabin:/home/svu/
+	junbotong/.local/bin:/home/svu/junbotong/bin:/cm/shared/apps/apptainer/
+	1.4.1/bin:/cm/local/apps/environment-modules/4.5.3//bin:/usr/local/bin:
+	/usr/bin:/usr/local/sbin:/usr/sbin:/opt/am/python/bin:/sbin:/usr/sbin:/
+	cm/local/apps/environment-modules/4.5.3/bin:/opt/pbs/bin,
+	PBS_O_SHELL=/bin/bash,PBS_O_INTERACTIVE_AUTH_METHOD=resvport,
+	PBS_O_HOST=stdct-login-01.stdct.loc,
+	PBS_O_WORKDIR=/scratch/junbotong/qoi-mechanism-20260908,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=auto
+    comment = Job run at Tue Sep 08 at 18:52 on (CN-079[0]:ncpus=36:mem=250gb) 
+	and finished
+    etime = Tue Sep  8 18:52:44 2026
+    run_count = 1
+    Stageout_status = 1
+    Exit_status = 0
+    Submit_arguments = production.pbs
+    history_timestamp = 1788868024
+    project = CFP03-CF-126
+    Submit_Host = vanda.nus.edu.sg
+
+====
+    resources_used.cpupercent = 121
+    resources_used.cput = 00:01:58
+    resources_used.mem = 695612kb
+    resources_used.ncpus = 36
+    resources_used.ngpus = 0
+    resources_used.vmem = 1596872kb
+    resources_used.walltime = 00:01:42
+	 "job.ncpus": 36.0, "job.walltime": 7200, "job.ngpus": 0,
+    Resource_List.walltime = 02:00:00
+    Exit_status = 0
+====
+    resources_used.walltime = 00:01:52
+    Exit_status = 0
+    resources_used.walltime = 00:00:01
+    Exit_status = 1

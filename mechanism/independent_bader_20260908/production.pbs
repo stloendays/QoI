@@ -1,0 +1,27 @@
+#!/bin/bash
+#PBS -N qoi_bader_mechanism
+#PBS -P CFP03-CF-126
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=48:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-mechanism-20260908/logs/production.pbs.log
+set -e
+cd /scratch/junbotong/qoi-mechanism-20260908
+set +e
+source /etc/profile
+set -e
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f PILOT_ACCEPTED
+venv/bin/python --version
+venv/bin/python -c 'import json; print("\n".join(r["material_id"] for r in json.load(open("panel.json"))))' > material_ids.txt
+pids=()
+while read -r material; do
+  venv/bin/python run_study.py --material "$material" > "logs/production_${material}.log" 2>&1 &
+  pids+=("$!")
+done < material_ids.txt
+rc=0
+for pid in "${pids[@]}"; do wait "$pid" || rc=1; done
+venv/bin/python summarize.py production
+exit "$rc"
