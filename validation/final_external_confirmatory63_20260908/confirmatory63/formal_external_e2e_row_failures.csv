@@ -1,0 +1,4 @@
+material_id,corpus,domain,ladder,codec,nominal_tolerance_relative,stage,category,detail
+aflow-Cl1O12Pb5V3_ICSD_203074,external,bulk,base,ZFP,0.1,zfp@0.1:resolved_bader,bader_solver_failure,IndexError: index 3 is out of bounds for axis 2 with size 3
+nomad2d-1_3Aeqri4-hc,external,vacuum2d,base,ZFP,0.03,zfp@0.03:resolved_bader,bader_solver_failure,IndexError: index 3 is out of bounds for axis 0 with size 3
+nomad2d-1_3Aeqri4-hc,external,vacuum2d,base,ZFP,0.1,zfp@0.1:resolved_bader,bader_solver_failure,IndexError: index 4 is out of bounds for axis 1 with size 3

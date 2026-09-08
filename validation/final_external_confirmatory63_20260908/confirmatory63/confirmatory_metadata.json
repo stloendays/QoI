@@ -1,0 +1,23 @@
+{
+  "analysis_role": "primary_confirmatory_external_rate_fidelity",
+  "confirmatory_n": 63,
+  "excluded_implementation_sentinels": [
+    "aflow-Ni1_ICSD_181716",
+    "nomad2d-0XHkHlmw3DQ_"
+  ],
+  "split_file": "validation/external_rate_fidelity_split.json",
+  "split_sha256": "c101db48f9ebff1b18418edea51326664d09fddc9bd271a4318cf6b7aa3ad357",
+  "source_full_aggregate_dir": "/home/runner/work/QoI/QoI/work/formal_external_all65",
+  "filtered_counts": {
+    "rows": 1689,
+    "materials": 63,
+    "material_failures": 0,
+    "row_failures": 3
+  },
+  "expected_A1_eligible_counts": {
+    "1e-4": 16,
+    "1e-3": 42,
+    "1e-2": 57
+  },
+  "status": "PASS"
+}

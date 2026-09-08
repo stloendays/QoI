@@ -1,0 +1,49 @@
+{
+  "material_id": "aflow-Cl1O12Pb5V3_ICSD_203074",
+  "frozen_scientific_commit": "893f931b3045b0b628329db81999c2f439d4e830",
+  "frozen_source_url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/CHGCAR.static.xz",
+  "source_bytes": 2437424,
+  "source_sha256": "eb5872d5229ab8e3f7360c0add9e8619cf357bff1e11a7e494b68f2d5c36e983",
+  "source_identity_gate": "PASS",
+  "aflow_rest_property_endpoint_status": "known HTTP 500 from prior recovery attempt",
+  "metadata_fallback": "AFLOW same-entry aflowlib.json, independently cross-checked against OUTCAR.static.xz and CHGCAR atom-count line",
+  "aflowlib_json_url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/aflowlib.json",
+  "aflowlib_json_sha256": "ba56cf486a21a66929f5d41e61d0211c056add29b3ee89d25c3fddc69eeae9ca",
+  "outcar_static_url": "https://aflowlib.duke.edu/AFLOWDATA/ICSD_WEB/HEX/Cl1O12Pb5V3_ICSD_203074/OUTCAR.static.xz",
+  "outcar_static_sha256": "58ea821fb1ebeff6f44cbe5a83dabbb3727a467ab333dfa749c7c92f80ea6ae2",
+  "species": [
+    "Cl",
+    "O",
+    "Pb",
+    "V"
+  ],
+  "composition": [
+    2,
+    24,
+    10,
+    6
+  ],
+  "chgcar_counts": [
+    2,
+    24,
+    10,
+    6
+  ],
+  "outcar_species_order": [
+    "Cl",
+    "O",
+    "Pb",
+    "V"
+  ],
+  "outcar_counts": [
+    2,
+    24,
+    10,
+    6
+  ],
+  "metadata_crosscheck": "PASS",
+  "scientific_parameters_changed": false,
+  "codec_ladder_changed": false,
+  "protocol_A1_changed": false,
+  "bader_settings_changed": false
+}
