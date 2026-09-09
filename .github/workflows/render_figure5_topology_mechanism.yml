@@ -1,0 +1,62 @@
+name: Render Figure 5 topology mechanism
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'figures/R/figure5_topology_mechanism.R'
+      - '.github/workflows/render_figure5_topology_mechanism.yml'
+      - 'benchmark/master_benchmark_full.csv'
+      - 'mechanism/basin_error_decomposition_summary.csv'
+      - 'mechanism/basin_error_decomposition_per_atom.csv'
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::tidyr
+            any::scales
+            any::patchwork
+            any::svglite
+
+      - name: Render Figure 5
+        run: Rscript figures/R/figure5_topology_mechanism.R
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: figure5-topology-mechanism
+          path: |
+            figures/R/rendered/figure5_topology_mechanism_R.png
+            figures/R/rendered/figure5_topology_mechanism_R.pdf
+            figures/R/rendered/figure5_topology_mechanism_R.svg
+
+      - name: Commit rendered outputs
+        shell: bash
+        run: |
+          test -f figures/R/rendered/figure5_topology_mechanism_R.svg
+          test -f figures/R/rendered/figure5_topology_mechanism_R.png
+          test -f figures/R/rendered/figure5_topology_mechanism_R.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            figures/R/rendered/figure5_topology_mechanism_R.svg \
+            figures/R/rendered/figure5_topology_mechanism_R.png \
+            figures/R/rendered/figure5_topology_mechanism_R.pdf
+          if git diff --cached --quiet; then
+            echo "Rendered Figure 5 outputs unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render Figure 5 topology mechanism"
+          git push
