@@ -27,7 +27,7 @@ jobs:
           import numpy as np
           import pandas as pd
           import zfpy
-          from monty.serialization import loadfn
+          from monty.json import MontyDecoder
 
           outdir='analysis/hartree_potential_pilot'
           cachedir='.cache/hartree_pilot'
@@ -38,7 +38,6 @@ jobs:
           z=bench[(bench.codec=='ZFP') & (bench.system_type=='bulk')].copy()
           z=z[np.isfinite(z['nominal_tolerance_absolute']) & np.isfinite(z['Bader_error_resolved_e'])]
 
-          # Prefer small bulk grids so the pilot is reproducible and inexpensive.
           counts=(z[['material_id','npoints']].drop_duplicates().sort_values('npoints'))
           mids=[]
           for mid in counts.material_id:
@@ -47,7 +46,6 @@ jobs:
                   mids.append(mid)
               if len(mids)>=12: break
 
-          # For each material choose three rows spanning tight/intermediate/loose realized perturbation.
           selected=[]
           for mid in mids:
               g=z[z.material_id==mid].sort_values('realized_Linf')
@@ -67,26 +65,74 @@ jobs:
                   raise RuntimeError(f'SHA mismatch {mid}: {h} != {expected}')
               return fn
 
+          def find_density_dict(x):
+              if isinstance(x,dict):
+                  # Typical parsed CHGCAR layouts: {'data': {'total': ...}, 'structure': ...}
+                  if 'data' in x and isinstance(x['data'],dict) and 'total' in x['data']:
+                      try:
+                          a=np.asarray(x['data']['total'],dtype=np.float64)
+                          if a.ndim==3: return x
+                      except Exception: pass
+                  if 'total' in x:
+                      try:
+                          a=np.asarray(x['total'],dtype=np.float64)
+                          if a.ndim==3: return {'data':x}
+                      except Exception: pass
+                  for v in x.values():
+                      r=find_density_dict(v)
+                      if r is not None: return r
+              elif isinstance(x,list):
+                  for v in x:
+                      r=find_density_dict(v)
+                      if r is not None: return r
+              return None
+
+          def find_structure(x):
+              if hasattr(x,'lattice') and hasattr(x.lattice,'matrix'):
+                  return x
+              if isinstance(x,dict):
+                  if 'structure' in x:
+                      try:
+                          s=MontyDecoder().process_decoded(x['structure'])
+                          if hasattr(s,'lattice'): return s
+                      except Exception: pass
+                  # Monty-encoded Structure itself
+                  if x.get('@class')=='Structure':
+                      try:
+                          s=MontyDecoder().process_decoded(x)
+                          if hasattr(s,'lattice'): return s
+                      except Exception: pass
+                  for v in x.values():
+                      r=find_structure(v)
+                      if r is not None: return r
+              elif isinstance(x,list):
+                  for v in x:
+                      r=find_structure(v)
+                      if r is not None: return r
+              return None
+
           def load_density(path):
-              obj=loadfn(path)
-              # Materials Project parsed charge-density JSON is Monty-decoded to ChargeDensity/Chgcar-like object.
-              data=np.asarray(obj.data['total'],dtype=np.float64)
-              lattice=np.asarray(obj.structure.lattice.matrix,dtype=np.float64)
+              with gzip.open(path,'rt') as fh:
+                  raw=json.load(fh)
+              d=find_density_dict(raw)
+              if d is None:
+                  raise RuntimeError('Could not locate a 3D total-density array; top-level keys='+str(list(raw)[:20] if isinstance(raw,dict) else type(raw)))
+              data=np.asarray(d['data']['total'],dtype=np.float64)
+              s=find_structure(d)
+              if s is None: s=find_structure(raw)
+              if s is None:
+                  raise RuntimeError('Could not locate/decode structure/lattice; density container keys='+str(list(d.keys())))
+              lattice=np.asarray(s.lattice.matrix,dtype=np.float64)
               return data,lattice
 
           def poisson_potential(field,lattice):
-              # Periodic electronic Hartree potential with G=0 fixed to zero (gauge).
-              # Absolute density scale cancels in the normalized potential-error metrics below.
               nx,ny,nz=field.shape
-              rec=2*np.pi*np.linalg.inv(lattice).T  # reciprocal basis vectors, 1/Angstrom
+              rec=2*np.pi*np.linalg.inv(lattice).T
               ix=np.fft.fftfreq(nx)*nx; iy=np.fft.fftfreq(ny)*ny; iz=np.fft.fftfreq(nz)*nz
               F=np.fft.fftn(field)
               V=np.zeros_like(F,dtype=np.complex128)
-              # Slice over x to limit peak memory from a full 3D G-vector tensor.
+              gy,gz=np.meshgrid(iy,iz,indexing='ij')
               for a,kx in enumerate(ix):
-                  gy, gz=np.meshgrid(iy,iz,indexing='ij')
-                  Gx=kx*rec[:,0][None,None,:] if False else None
-                  # Cartesian G components from integer reciprocal coordinates.
                   G0=kx*rec[:,0]
                   Gcart=(G0[:,None,None] + rec[:,1,None,None]*gy[None,:,:] + rec[:,2,None,None]*gz[None,:,:])
                   g2=np.sum(Gcart*Gcart,axis=0)
@@ -95,7 +141,6 @@ jobs:
               return np.fft.ifftn(V).real
 
           records=[]
-          pot_cache={}
           for mid in mids:
               path=download(mid)
               rho,lattice=load_density(path)
@@ -112,26 +157,21 @@ jobs:
                   drm=float(np.sqrt(np.mean(dv**2)))
                   dmx=float(np.max(np.abs(dv)))
                   records.append({
-                      'material_id':mid,
-                      'formula':r.formula,
-                      'npoints':int(r.npoints),
+                      'material_id':mid,'formula':r.formula,'npoints':int(r.npoints),
                       'nominal_tolerance_relative':float(r.nominal_tolerance_relative),
-                      'nominal_tolerance_absolute':tol,
-                      'master_realized_Linf':float(r.realized_Linf),
+                      'nominal_tolerance_absolute':tol,'master_realized_Linf':float(r.realized_Linf),
                       'reproduced_realized_Linf':linf,
                       'Linf_reproduction_ratio':linf/max(float(r.realized_Linf),1e-30),
                       'compression_ratio_master':float(r.compression_ratio),
                       'Bader_error_resolved_e':float(r.Bader_error_resolved_e),
-                      'potential_rel_RMSE':drm/vscale,
-                      'potential_rel_Linf':dmx/vscale,
+                      'potential_rel_RMSE':drm/vscale,'potential_rel_Linf':dmx/vscale,
                   })
-                  print(mid, 'tol',tol,'Linf ratio',records[-1]['Linf_reproduction_ratio'],'Vrel',records[-1]['potential_rel_RMSE'],'Bader',records[-1]['Bader_error_resolved_e'])
+                  print(mid,'tol',tol,'Linf ratio',records[-1]['Linf_reproduction_ratio'],'Vrel',records[-1]['potential_rel_RMSE'],'Bader',records[-1]['Bader_error_resolved_e'])
 
           df=pd.DataFrame(records)
           df.to_csv(outdir+'/pilot_rows.csv',index=False)
-
-          # Only interpret rows whose reconstructed Linf agrees with the frozen benchmark to within 5%.
           valid=df[(df.Linf_reproduction_ratio>=0.95)&(df.Linf_reproduction_ratio<=1.05)].copy()
+
           def pearson_log(a,b):
               a=np.asarray(a,float); b=np.asarray(b,float)
               mask=np.isfinite(a)&np.isfinite(b)&(a>0)&(b>0)
@@ -139,9 +179,7 @@ jobs:
               return float(np.corrcoef(np.log10(a[mask]),np.log10(b[mask]))[0,1])
 
           summary={
-              'n_materials_attempted':len(mids),
-              'n_rows':len(df),
-              'n_reproduction_valid':len(valid),
+              'n_materials_attempted':len(mids),'n_rows':len(df),'n_reproduction_valid':len(valid),
               'median_Linf_reproduction_ratio':float(df.Linf_reproduction_ratio.median()),
               'median_potential_rel_RMSE':float(valid.potential_rel_RMSE.median()) if len(valid) else float('nan'),
               'p95_potential_rel_RMSE':float(valid.potential_rel_RMSE.quantile(.95)) if len(valid) else float('nan'),
@@ -152,21 +190,18 @@ jobs:
           }
           pd.DataFrame([summary]).to_csv(outdir+'/summary.csv',index=False)
 
-          # A smooth QoI should be approximately monotone with perturbation within each material.
           mono=[]
           for mid,g in valid.groupby('material_id'):
               g=g.sort_values('reproduced_realized_Linf')
-              v=np.asarray(g.potential_rel_RMSE)
-              b=np.asarray(g.Bader_error_resolved_e)
+              v=np.asarray(g.potential_rel_RMSE); b=np.asarray(g.Bader_error_resolved_e)
               mono.append({'material_id':mid,'n':len(g),
                            'potential_monotone':bool(np.all(np.diff(v)>=-1e-15)),
                            'bader_monotone':bool(np.all(np.diff(b)>=-1e-15)),
                            'potential_dynamic_range':float(v.max()/max(v.min(),1e-30)),
                            'bader_dynamic_range':float(b.max()/max(b.min(),1e-30))})
-          md=pd.DataFrame(mono)
-          md.to_csv(outdir+'/monotonicity.csv',index=False)
+          pd.DataFrame(mono).to_csv(outdir+'/monotonicity.csv',index=False)
 
-          report=f'''# Hartree-potential QoI pilot (ZFP)\n\n## Design\nA 12-material bulk pilot re-generates ZFP reconstructions directly from the public source densities and compares the periodic electronic Hartree potential of the reconstruction against the original. The G=0 component is fixed to zero, so only physically meaningful spatial potential variation is compared.\n\nThe primary potential metric is normalized RMS error: `RMS(V_recon - V_orig) / RMS(V_orig)`. Bader errors are taken from the frozen master table for the exact same material/tolerance rows.\n\n## Reproduction gate\nRows are interpreted only when regenerated ZFP `realized_Linf` agrees with the frozen benchmark within 5%.\n\n- attempted materials: **{summary['n_materials_attempted']}**\n- attempted rows: **{summary['n_rows']}**\n- reproduction-valid rows: **{summary['n_reproduction_valid']}**\n- median regenerated/frozen Linf ratio: **{summary['median_Linf_reproduction_ratio']:.6g}**\n\n## Pilot results on reproduction-valid rows\n- median relative Hartree-potential RMSE: **{summary['median_potential_rel_RMSE']:.6g}**\n- 95th percentile relative Hartree-potential RMSE: **{summary['p95_potential_rel_RMSE']:.6g}**\n- median re-solved Bader error: **{summary['median_Bader_error_e']:.6g} e**\n- corr(log potential error, log realized Linf): **{summary['corr_log_Verr_vs_log_Linf']:.4f}**\n- corr(log Bader error, log realized Linf): **{summary['corr_log_Bader_vs_log_Linf']:.4f}**\n- corr(log potential error, log Bader error): **{summary['corr_log_Verr_vs_log_Bader']:.4f}**\n\n## Go/no-go rule\nExpand this QoI beyond the pilot only if (i) the reconstruction gate passes for most rows, and (ii) Hartree-potential error exhibits a reproducible, smooth relationship with realized perturbation that is materially different from the topology-sensitive Bader response. Otherwise this extension should not enter the manuscript.\n'''
+          report=f'''# Hartree-potential QoI pilot (ZFP)\n\n## Design\nA 12-material bulk pilot re-generates ZFP reconstructions directly from the public source densities and compares the periodic electronic Hartree potential of the reconstruction against the original. The G=0 component is fixed to zero.\n\nThe primary metric is `RMS(V_recon - V_orig) / RMS(V_orig)`. Bader errors come from the frozen master table for the same material/tolerance rows.\n\n## Reproduction gate\nRows are interpreted only when regenerated ZFP `realized_Linf` agrees with the frozen benchmark within 5%.\n\n- attempted materials: **{summary['n_materials_attempted']}**\n- attempted rows: **{summary['n_rows']}**\n- reproduction-valid rows: **{summary['n_reproduction_valid']}**\n- median regenerated/frozen Linf ratio: **{summary['median_Linf_reproduction_ratio']:.6g}**\n\n## Pilot results\n- median relative Hartree-potential RMSE: **{summary['median_potential_rel_RMSE']:.6g}**\n- 95th percentile relative Hartree-potential RMSE: **{summary['p95_potential_rel_RMSE']:.6g}**\n- median re-solved Bader error: **{summary['median_Bader_error_e']:.6g} e**\n- corr(log potential error, log realized Linf): **{summary['corr_log_Verr_vs_log_Linf']:.4f}**\n- corr(log Bader error, log realized Linf): **{summary['corr_log_Bader_vs_log_Linf']:.4f}**\n- corr(log potential error, log Bader error): **{summary['corr_log_Verr_vs_log_Bader']:.4f}**\n\n## Go/no-go rule\nExpand only if the reconstruction gate passes for most rows and Hartree-potential error shows a reproducible, smooth perturbation relationship materially different from Bader. Otherwise omit this extension from the manuscript.\n'''
           open(outdir+'/RESULTS.md','w').write(report)
           print(report)
           PY
