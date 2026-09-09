@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: qoi-formal-figure-writeback
+  cancel-in-progress: false
+
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -48,15 +52,18 @@ jobs:
       - name: Commit rendered outputs
         shell: bash
         run: |
+          set -euo pipefail
+          tmp=$(mktemp -d)
+          cp figures/R/rendered/figure7_external_confirmation_R.{png,pdf,svg} "$tmp"/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            figures/R/rendered/figure7_external_confirmation_R.png \
-            figures/R/rendered/figure7_external_confirmation_R.pdf \
-            figures/R/rendered/figure7_external_confirmation_R.svg
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp"/figure7_external_confirmation_R.* figures/R/rendered/
+          git add figures/R/rendered/figure7_external_confirmation_R.{png,pdf,svg}
           if git diff --cached --quiet; then
             echo "Figure 7 outputs unchanged."
             exit 0
           fi
           git commit -m "figure: render Figure 7 formal outputs"
-          git push
+          git push origin HEAD:main
