@@ -2,6 +2,12 @@ name: Render Figure 2 QoI hierarchy
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'figures/R/figure2_qoi_hierarchy.R'
+      - '.github/workflows/render_figure2_qoi_hierarchy.yml'
+      - 'analysis/electron_count_qoi/**'
+      - 'analysis/hartree_potential_expansion/**'
 
 permissions:
   contents: read
