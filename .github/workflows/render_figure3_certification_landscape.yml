@@ -28,6 +28,16 @@ jobs:
             any::svglite
       - name: Render Figure 3
         run: Rscript figures/R/figure3_certification_landscape.R
+      - name: Validate Figure 3 outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            figures/R/rendered/figure3_certification_landscape_R.png \
+            figures/R/rendered/figure3_certification_landscape_R.pdf \
+            figures/R/rendered/figure3_certification_landscape_R.svg; do
+            test -s "$f" || { echo "Missing or empty output: $f"; exit 1; }
+          done
       - uses: actions/upload-artifact@v4
         with:
           name: figure3-certification-landscape
@@ -35,19 +45,18 @@ jobs:
             figures/R/rendered/figure3_certification_landscape_R.png
             figures/R/rendered/figure3_certification_landscape_R.pdf
             figures/R/rendered/figure3_certification_landscape_R.svg
-      - name: Commit rendered SVG
+      - name: Commit rendered outputs
         shell: bash
         run: |
-          if [ ! -f figures/R/rendered/figure3_certification_landscape_R.svg ]; then
-            echo "SVG output not present; nothing to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add figures/R/rendered/figure3_certification_landscape_R.svg
+          git add \
+            figures/R/rendered/figure3_certification_landscape_R.png \
+            figures/R/rendered/figure3_certification_landscape_R.pdf \
+            figures/R/rendered/figure3_certification_landscape_R.svg
           if git diff --cached --quiet; then
-            echo "SVG unchanged."
+            echo "Figure 3 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 3 SVG"
+          git commit -m "figure: render Figure 3 formal outputs"
           git push
