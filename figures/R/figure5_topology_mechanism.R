@@ -223,7 +223,9 @@ dd <- step_rows %>% filter(
   is.finite(reassign_frac), reassign_frac > 0
 )
 set.seed(20260909)
-dd_show <- dd %>% group_by(codec) %>% slice_sample(n=min(n(), 1500)) %>% ungroup()
+dd_show <- dd %>% group_by(codec) %>%
+  group_modify(~ slice_sample(.x, n=min(nrow(.x), 1500))) %>%
+  ungroup()
 rho <- suppressWarnings(cor(log10(dd$reassign_frac), log10(dd$jump_factor),
                             method="spearman", use="complete.obs"))
 
