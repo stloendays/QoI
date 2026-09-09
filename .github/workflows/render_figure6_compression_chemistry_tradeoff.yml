@@ -1,12 +1,13 @@
-name: Render Figure 6 compression-chemistry tradeoff
+name: Render Figure 6 matched realized Linf
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'figures/R/figure6_compression_chemistry_tradeoff.R'
+      - 'figures/R/figure6_matched_realized_linf.R'
       - '.github/workflows/render_figure6_compression_chemistry_tradeoff.yml'
-      - 'benchmark/master_benchmark_full.csv'
+      - 'analysis/matched_realized_linf_v1/matched_effects_summary.csv'
+      - 'analysis/matched_realized_linf_v1/equal_nominal_diagnostics.csv'
 
 permissions:
   contents: write
@@ -24,37 +25,48 @@ jobs:
           packages: |
             any::ggplot2
             any::dplyr
-            any::tidyr
             any::scales
             any::patchwork
             any::svglite
 
       - name: Render Figure 6
-        run: Rscript figures/R/figure6_compression_chemistry_tradeoff.R
+        run: Rscript figures/R/figure6_matched_realized_linf.R
+
+      - name: Validate Figure 6 outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            figures/R/rendered/figure6_matched_realized_linf_R.png \
+            figures/R/rendered/figure6_matched_realized_linf_R.pdf \
+            figures/R/rendered/figure6_matched_realized_linf_R.svg; do
+            test -s "$f"
+          done
+          file figures/R/rendered/figure6_matched_realized_linf_R.png
+          file figures/R/rendered/figure6_matched_realized_linf_R.pdf
+          head -n 2 figures/R/rendered/figure6_matched_realized_linf_R.svg
 
       - uses: actions/upload-artifact@v4
         with:
-          name: figure6-compression-chemistry-tradeoff
+          name: figure6-matched-realized-linf
           path: |
-            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.png
-            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.pdf
-            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.svg
+            figures/R/rendered/figure6_matched_realized_linf_R.png
+            figures/R/rendered/figure6_matched_realized_linf_R.pdf
+            figures/R/rendered/figure6_matched_realized_linf_R.svg
 
       - name: Commit rendered outputs
         shell: bash
         run: |
-          test -f figures/R/rendered/figure6_compression_chemistry_tradeoff_R.svg
-          test -f figures/R/rendered/figure6_compression_chemistry_tradeoff_R.png
-          test -f figures/R/rendered/figure6_compression_chemistry_tradeoff_R.pdf
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.svg \
-            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.png \
-            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.pdf
+            figures/R/rendered/figure6_matched_realized_linf_R.svg \
+            figures/R/rendered/figure6_matched_realized_linf_R.png \
+            figures/R/rendered/figure6_matched_realized_linf_R.pdf
           if git diff --cached --quiet; then
             echo "Rendered Figure 6 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 6 compression-chemistry tradeoff"
+          git commit -m "figure: render Figure 6 matched realized Linf"
           git push
