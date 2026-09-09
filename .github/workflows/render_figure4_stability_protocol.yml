@@ -12,6 +12,7 @@ on:
 permissions:
   contents: write
 
+# Serialize formal-figure writebacks so generated binaries cannot race on main.
 concurrency:
   group: qoi-formal-figure-writeback
   cancel-in-progress: false
