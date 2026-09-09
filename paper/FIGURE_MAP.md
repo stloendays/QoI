@@ -1,134 +1,161 @@
 # Figure map
 
-Scientific logic first; no styling work until the evidence behind each panel is frozen. Every figure names the data file it is generated from. Updated 2026-09-09 after the full Hartree-potential QoI expansion.
+Updated 2026-09-09. This file is the canonical figure-numbering registry for the manuscript. Figure numbering follows the formal R sources currently used for the paper; legacy scripts may remain in the repository for provenance but do not define the manuscript numbering.
 
 **Working title:** *Scientific Fidelity Is QoI-Dependent: Certifying Lossy Compression of Electronic Densities*
 
-**Alternate, more Bader-forward title:** *Chemical Fidelity Is Not a Pointwise Error: QoI-Dependent Failure Modes in Lossy Compression of Electronic Densities*
-
 ## Narrative spine
 
-A pointwise density-error bound is not a scientific-fidelity bound. The same reconstructed density can preserve a global linear observable, produce a smooth and nearly power-law error in a nonlocal linear observable, and simultaneously exhibit strongly non-monotone error in a topology-dependent local observable. We therefore treat fidelity as a property of the pair `(reconstruction, downstream QoI operator)`, not of the reconstruction alone. Bader charge is the deeply validated topology-sensitive case: it requires re-partitioning after reconstruction, exhibits domain-migration error, has a material-specific stability floor, and must be stability-qualified before certification. Under that qualified contract, lossy compression remains useful and the codec ranking depends on realized rather than nominal distortion.
+A pointwise density-error bound is not a scientific-fidelity bound. The same reconstructed density can preserve a global linear observable, produce a smooth and nearly power-law error in a nonlocal linear observable, and simultaneously exhibit strongly non-monotone error in a topology-dependent local observable. Fidelity is therefore treated as a property of the pair `(reconstruction, downstream QoI operator)`, not of the reconstruction alone.
 
-The manuscript should not claim that Hartree potential is "better" than Bader. The supported claim is that **QoI mathematical structure governs error propagation**.
+Bader charge is the deeply validated topology-sensitive case. It requires re-partitioning after reconstruction, exhibits domain-migration error, has a material-specific stability floor, and must be stability-qualified before certification. Protocol A is frozen provenance; Protocol A.1 is the operative qualification protocol. Codec comparisons that support scientific claims use realized rather than nominal distortion.
+
+---
+
+## Canonical manuscript figure registry
+
+| Figure | Canonical role | R source | Formal rendered outputs | Main-text role | Status |
+|---|---|---|---|---|---|
+| 1 | From density error to QoI-dependent scientific error | schematic / design source | final artwork TBD | conceptual framing | READY FOR DESIGN |
+| 2 | QoI hierarchy: electron count -> Hartree -> Bader | `figures/R/figure2_qoi_hierarchy.R` | `figures/R/rendered/figure2_qoi_hierarchy_R.{png,pdf,svg}` | Results: operator-dependent error propagation | FORMAL R SOURCE; lock audit pending |
+| 3 | Stability-aware chemical certification landscape | `figures/R/figure3_certification_landscape.R` | `figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg}` | Results: eligibility + certification decision | DATA-READY |
+| 4 | Protocol A -> A.1 stability-floor correction | `figures/R/figure4_stability_protocol.R` | `figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}` | Results: intrinsic QoI identifiability | DATA-READY |
+| 5 | Topology-induced amplification in re-solved Bader response | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | Results: Bader-specific mechanism | QA PASSED; final lock pending |
+| 6 | Equal nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | Results: fair codec comparison after distortion matching | QA PASSED; final lock pending |
+| 7 | External confirmation and practical value | final R source TBD | final artwork TBD | closing validation / practical value | DATA-READY / DESIGN PENDING |
+
+### Non-canonical legacy figure sources
+
+- `figures/R/figure2_fixed_vs_resolved.R`: retained as provenance; superseded as a main-text Figure 2 source by `figure2_qoi_hierarchy.R`.
+- `figures/R/figure6_compression_chemistry_tradeoff.R`: retained as provenance; superseded as a main-text Figure 6 source by `figure6_matched_realized_linf.R`.
+- The earlier plan that labelled the rate-QoI frontier as Figure 5 is retired. Figure 5 is now the formal topology-mechanism figure. Practical rate-fidelity results remain part of the Results narrative and closing practical-value evidence; they must not overwrite the canonical Figure 5 numbering.
 
 ---
 
 ## Figure 1 — From density error to QoI-dependent scientific error
 
-Conceptual schematic. Original density `rho` -> codec at requested tolerance -> reconstructed density `rho_tilde` -> three downstream operators:
+Conceptual schematic: original density `rho` -> codec at requested tolerance -> reconstructed density `rho_tilde` -> downstream operators:
 
 1. total electron count `N_e = integral rho` (global linear control),
 2. Hartree potential `V_H = nabla^{-2} rho` (linear nonlocal comparator),
 3. Bader charge `q_A = integral_{Omega_A[rho]} rho`, with density-dependent topological domains.
 
-Show that a single scalar reconstruction error feeds different downstream maps. Include the Bader-specific correct evaluation path: basins must be re-derived from the reconstruction, with `Delta Q_total = Delta Q_integrand + Delta Q_domain`.
+The Bader path must show re-partitioning after reconstruction and the decomposition `Delta Q_total = Delta Q_integrand + Delta Q_domain`.
 
 **Primary message:** density fidelity is not scientific fidelity; the downstream operator is part of the fidelity contract.
 
-*Data:* schematic only; quantitative evidence appears in Figures 2–6. *Status:* READY FOR DESIGN.
+*Data:* schematic only. *Status:* READY FOR DESIGN.
 
 ---
 
-## Figure 2 — QoI sensitivity hierarchy on identical reconstructions
+## Figure 2 — QoI hierarchy reveals operator-dependent error propagation
 
-This is the new mechanism figure and should be promoted to the main text.
+**Canonical source:** `figures/R/figure2_qoi_hierarchy.R`.
 
-**(a) Electron-number negative control.** Scatter or density plot of `|Delta N_e|` against resolved Bader error, with guides at `|Delta N_e| = 1e-4 e` and `Delta q_Bader = 1e-3 e`. Highlight the left-upper quadrant: 1,383 of 3,205 reconstructions with `|Delta N_e| < 1e-4 e` still have Bader error >= `1e-3 e` (43.15%). This establishes that global conservation is not a certificate of local chemical fidelity.
+**(a) Electron-number negative control.** Global electron conservation does not certify local Bader fidelity; 1,383 of 3,205 reconstructions with `|Delta N_e| < 1e-4 e` still have re-derived Bader error >= `1e-3 e` (43.15%).
 
-**(b) Hartree error vs realized L∞.** Log-log relationship for all gate-passed rows, faceted by codec and bulk/slab. Report slopes 0.91–1.12 and per-material `R^2` medians 0.994–0.997. Pooled exponent is 1.02.
+**(b) Hartree error vs realized L-infinity.** Gate-passing rows show a smooth approximately first-order response. Pooled exponent is 1.02; codec-by-stratum slopes are 0.91-1.12 and median material-level `R^2` is 0.994-0.997.
 
-**(c) Bader error on the same rows.** Same x-axis and facets. Bader pooled slopes are 0.53–0.67 with lower `R^2` in every codec × stratum cell. Material-level strict monotonicity is 32.4% for Bader versus 88.6% for Hartree overall.
+**(c) Bader response on identical reconstructions.** Bader error is less regular, with lower `R^2` and 32.4% material-codec strict monotonicity versus 88.6% for Hartree overall.
 
-**(d) Matched-Hartree-error dispersion.** For 0.5-decade Hartree-error bins, show `P90/P10` of Bader error. 55.4% of gate-passed rows lie in bins with at least one decade of Bader spread; the condition occurs in all three codecs and both bulk/slab strata. Annotate the largest Bader jump (22,296x, `mp-676693`, ZFP) while Hartree `R^2` on the same ladder is 0.999.
+**(d) Matched-Hartree-error dispersion.** In 0.5-decade Hartree-error bins, 55.4% of gate-passing rows lie in bins where the Bader `P90/P10` spread is at least 10x. The largest frozen Bader jump is 22,296x (`mp-676693`, ZFP) while the Hartree ladder remains smooth (`R^2 = 0.999`).
 
-**Slab caveat:** do not label Hartree as universally monotone. Strict slab monotonicity is 47–84% depending on codec, while per-material slab Hartree `R^2` remains 0.965–0.983. The slab contrast is supported by smoothness, elasticity range and jump size, not strict rung-by-rung monotonicity.
+**Slab caveat:** do not claim universal Hartree monotonicity. The supported contrast is smooth approximately power-law Hartree response versus substantially more non-monotone Bader response.
 
-*Data:* `analysis/electron_count_qoi/electron_bader_decoupling.csv`, `analysis/electron_count_qoi/summary_by_codec.csv`, `analysis/hartree_potential_expansion/rows.csv`, `group_summary.csv`, `material_smoothness.csv`, `matched_error_dispersion.csv`, `RESULTS_DETAIL.md`. *Status:* **DATA-READY / PROMOTE_TO_MAIN_TEXT**.
-
----
-
-## Figure 3 — Why Bader is topology-sensitive: fixed basins fail and domain migration dominates
-
-Combine the old fixed-basin and mechanism figures to keep the main text compact.
-
-**(a)** Paired scatter `dQ_fixed` vs `dQ_resolved`, one point per material/codec/rung, faceted bulk/slab, identity line. Fixed-basin evaluation systematically understates the error.
-
-**(b)** Error decomposition at representative materials: `Delta Q_integrand` versus `Delta Q_domain`, with fraction of voxels reassigned. The domain term dominates the tight-tolerance failure mode.
-
-**(c)** A representative ladder showing a large Bader jump despite a smooth Hartree response may be used as the visual bridge from Figure 2 to the topology mechanism.
-
-*Data:* frozen master table plus mechanism decomposition files; Figure 2 Hartree rows for the bridge example. *Status:* DATA-READY, with representative-case decomposition retained under its existing evidence limitations.
+*Data:* `analysis/electron_count_qoi/`, `analysis/hartree_potential_expansion/`, and `benchmark/master_benchmark_full.csv`.
 
 ---
 
-## Figure 4 — A QoI must be stability-qualified before certification
+## Figure 3 — Chemical certification is a stability-aware decision problem
 
-**(a)** Protocol A.1 stability-floor distributions across development and external strata, with contract thresholds at `1e-4`, `1e-3`, `1e-2 e`.
+**Canonical source:** `figures/R/figure3_certification_landscape.R`.
 
-**(b)** Non-evaluable fraction at each threshold. Emphasize that the contract itself may be below the observable's numerical/topological stability floor.
+The figure reports Protocol A.1-valid certification by codec and chemical tolerance, the identifiability ceiling imposed by the uncompressed Bader stability floor, and the overstatement that results when eligibility is ignored.
 
-**(c)** Probe validation: archived float32 floor versus A.1 floor. The order-preserving float32 probe understates the floor by a median factor of about 8,700; Protocol A remains provenance, A.1 is the operative qualification protocol.
+**Primary message:** codec success is scientifically interpretable only after the downstream QoI is identifiable at the requested tolerance.
 
-**Primary message:** a downstream QoI cannot serve as a fidelity contract at a precision at which the QoI is not itself numerically identifiable.
-
-*Data:* Protocol A.1 stability and probe-calibration outputs. *Status:* DATA-READY.
+*Data:* `benchmark/master_benchmark_full.csv`, using the frozen Protocol A.1 eligibility/certification fields.
 
 ---
 
-## Figure 5 — Honest rate–QoI-fidelity frontier under the qualified Bader contract
+## Figure 4 — Protocol A -> A.1 stability floor
 
-Compression ratio versus re-solved Bader error, ZFP/SZ3/SPERR, bulk/slab, restricted to A.1-eligible material-threshold pairs. Include tight ladder points and the low-error plateau where tighter codec tolerance no longer reduces resolved Bader error.
+**Canonical source:** `figures/R/figure4_stability_protocol.R`.
 
-This is where the general framework returns to the practical compression question: after the QoI is correctly evaluated and qualified, what compression ratios are actually certifiable?
+Protocol A remains archived provenance. Protocol A.1 uses fixed-seed uniform perturbations at the float32 L-infinity amplitude while retaining the frozen tolerance set, exclusion semantics and reporting rules. The figure quantifies the change in measured Bader stability floor and the consequences for evaluability.
 
-*Data:* `benchmark/master_benchmark_full.csv` plus A.1 eligibility tables. *Status:* DATA-READY; use final merged ladder rather than the older pending wording.
+**Primary message:** a QoI cannot serve as a fidelity contract at a precision at which that QoI is not itself numerically/topologically identifiable.
+
+*Data:* `stability/stability_floor_A1.csv` and `stability/stability_floor_A_archived_float32.csv`.
 
 ---
 
-## Figure 6 — Nominal tolerance is not realized distortion
+## Figure 5 — Topology-induced amplification explains irregular Bader response
 
-**(a)** Equal-nominal diagnostic: ZFP realizes about 0.17x the L∞ of SZ3/SPERR at the same requested tolerance, while SZ3/SPERR is about 1.00x.
+**Canonical source:** `figures/R/figure5_topology_mechanism.R`.
 
-**(b)** Within-material matching on `log10(realized_Linf)`: ZFP/SZ3 resolved-Bader error ratio 0.557 at the primary 0.10-dex caliper; ZFP/SPERR 0.601; SZ3/SPERR 1.033.
+**(a)** Re-solved Bader error versus the fixed-basin/integrand contribution, with basin reassignment encoded by colour.
+
+**(b)** Signed per-atom decomposition into integrand and domain-migration contributions. Large atomic deviations expose the domain term.
+
+**(c)** Representative full-ladder trajectories comparing fixed-basin and re-solved Bader errors across smooth, intermediate and jump cases.
+
+**(d)** Rung-to-rung Bader jump severity versus basin reassignment over the frozen benchmark. The reported Spearman association is descriptive and is not presented as a causal model.
+
+**Primary message:** for Bader charge, re-solving the density-dependent partition can amplify a smooth field perturbation through topology-driven domain migration. This is a Bader-specific mechanism and must not be generalized to every downstream QoI.
+
+*Data:* `benchmark/master_benchmark_full.csv`, `mechanism/basin_error_decomposition_summary.csv`, `mechanism/basin_error_decomposition_per_atom.csv`.
+
+*QA:* final CI run `34349558487`; artifact `10103144848`; PNG/PDF/SVG visually cross-checked with no clipping or legend/title overlap.
+
+---
+
+## Figure 6 — Equal nominal tolerance conflates distortion magnitude with error geometry
+
+**Canonical source:** `figures/R/figure6_matched_realized_linf.R`.
+
+**(a)** Equal-nominal diagnostic: ZFP realizes about 0.17x the L-infinity perturbation of SZ3/SPERR at the same requested tolerance, while SZ3/SPERR is about 1.00x.
+
+**(b)** Within-material matching on `log10(realized_Linf)`: at the primary 0.10-dex caliper, the dramatic equal-nominal error gap shrinks substantially but does not vanish.
 
 **(c)** Compression-ratio effects on the same matched pairs.
 
-**(d)** A.1 certification differences at `tau = 0.01 e`.
+**(d)** Protocol A.1 certification-rate differences on the matched comparisons.
 
-**Primary message:** scalar L∞ magnitude is insufficient, but equal nominal tolerance is not a valid way to establish that; realized distortion must be controlled first.
+**Primary message:** scalar L-infinity magnitude is insufficient to explain the full codec difference, but equal nominal tolerance is not a valid test of error geometry; realized distortion must be controlled first.
 
-*Data:* `analysis/matched_realized_linf_v1/`. *Status:* DATA-READY / existing rendered figure can be revised into the new numbering.
+*Data:* `analysis/matched_realized_linf_v1/matched_effects_summary.csv` and `analysis/matched_realized_linf_v1/equal_nominal_diagnostics.csv`.
+
+*QA:* final CI run `34340308601`; artifact `10099481566`; PNG/PDF/SVG visually cross-checked.
 
 ---
 
 ## Figure 7 — External confirmation and practical value
 
-Use a compact two-part closing figure rather than two separate headline figures.
+A compact closing figure should combine:
 
-**(a) External confirmatory cohort.** Final 63/63 primary systems complete, 1,689 retained rows, zero material-level failures, zero bound violations, with all three pre-specified rate-fidelity directional expectations reproduced. Show the external certified compression-ratio summary and explicitly retain the narrower ZFP–SZ3 separation at `1e-4 e`.
+**(a) External confirmatory cohort.** 63/63 primary systems complete, 1,689 retained rows, zero material-level pipeline failures, zero codec bound violations, and reproduction of the pre-specified directional rate-fidelity expectations.
 
-**(b) Lossless versus qualified lossy.** Compare f64+zstd, f64+xz, f32+zstd with best certified lossy compression at each QoI threshold. This closes the paper by showing that the stricter scientific contract still permits substantial compression.
+**(b) Lossless versus stability-qualified lossy compression.** Compare exact/lossless baselines with the best certified lossy compression at each QoI threshold.
 
-*Data:* `validation/final_external_confirmatory63_20260908/`, `paper/EXTERNAL_CONFIRMATORY63_EVIDENCE.md`, lossless baseline outputs, A.1 summary tables. *Status:* DATA-READY.
+*Data:* `validation/final_external_confirmatory63_20260908/`, `paper/EXTERNAL_CONFIRMATORY63_EVIDENCE.md`, lossless baseline outputs and A.1 summary tables. *Status:* DATA-READY / DESIGN PENDING.
 
 ---
 
 ## Main-text claim hierarchy
 
 1. **General:** reconstruction error alone does not define scientific fidelity; downstream QoI structure matters.
-2. **Mechanistic:** on identical reconstructions, Hartree-potential error follows a smooth approximately first-order response to realized L∞, whereas Bader error is more non-monotone and can vary by orders of magnitude at matched Hartree error.
-3. **Bader-specific:** the topology-sensitive error is strongly affected by basin migration, so fixed-basin scoring is invalid for fidelity assessment.
+2. **Mechanistic:** on identical reconstructions, Hartree-potential error follows a smooth approximately first-order response to realized L-infinity, whereas Bader error is more non-monotone and can vary by orders of magnitude at comparable smooth-field fidelity.
+3. **Bader-specific:** topology-sensitive Bader error is strongly affected by basin migration, so fixed-basin scoring is not the fidelity metric for the actual downstream pipeline.
 4. **Qualification:** Bader charge has a material-specific stability floor; contracts below that floor are not evaluable and must not be counted as compression failures or successes.
-5. **Practical:** after controlling realized distortion and applying A.1 qualification, lossy compression remains useful and the codec tradeoff can be reported honestly.
+5. **Comparison:** nominal codec controls are not commensurate; realized distortion must be matched before residual codec differences are interpreted.
+6. **Practical:** after Protocol A.1 qualification and realized-distortion control, lossy compression remains scientifically useful over a substantial part of the rate-fidelity frontier.
 
-Do not generalize from these three QoIs to all scientific observables. The manuscript supports a **general evaluation principle** with one deeply validated topology-sensitive case and two structurally distinct controls/comparators.
+Do not generalize from these three QoIs to all scientific observables. The manuscript supports a general evaluation principle with one deeply validated topology-sensitive case and two structurally distinct controls/comparators.
 
 ---
 
 ## Supplementary material
-
-Move detail that no longer needs headline space out of the main figure sequence:
 
 | Panel | Content | Disposition |
 |---|---|---|
@@ -143,4 +170,4 @@ Move detail that no longer needs headline space out of the main figure sequence:
 | S9 | Failure taxonomy / registry | retain |
 | S10 | External baselines and unit conversions | retain |
 
-The old standalone "generality of slab vs bulk stability" figure should not remain a headline figure because that specific bulk/slab generalization was falsified externally. Its useful evidence is absorbed into Figure 4 and Figure 7.
+The old standalone bulk-versus-slab stability generalization must not return as a headline claim; that generalization was not reproduced externally.
