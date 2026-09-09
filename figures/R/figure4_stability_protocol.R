@@ -78,7 +78,7 @@ p3 <- ggplot(all_a1, aes(stability_floor_A1_e)) +
   geom_vline(data=thresholds, aes(xintercept=x, colour=lab), linetype=2, linewidth=.7, show.legend=FALSE) +
   scale_colour_manual(values=setNames(thresholds$col, thresholds$lab), guide="none") +
   geom_text(data=thresholds,
-            aes(x=x, y=pmin(eligible+.06,.96), label=sprintf("tau %s: %.0f%% eligible", lab, 100*eligible), colour=lab),
+            aes(x=x, y=.08, label=sprintf("tau %s: %.0f%% eligible", lab, 100*eligible), colour=lab),
             angle=90, hjust=0, vjust=-.35, size=3.0, inherit.aes=FALSE, show.legend=FALSE) +
   scale_x_log10(labels=label_scientific(digits=1)) +
   scale_y_continuous(limits=c(0,1), breaks=seq(0,1,.2), labels=label_percent()) +
@@ -91,7 +91,7 @@ fig <- ((p1 | p2) / p3) +
   plot_annotation(
     title="Figure 4 | Stability is a property of the observable and its measurement protocol",
     subtitle="Protocol A.1 replaces the archived float32 round-trip probe with five fixed-seed uniform-noise probes at the same float32 L-infinity amplitude.",
-    caption="Protocol A remains archived and unchanged. Panels A-B compare the paired development subset for which both protocol outputs exist; Panel C uses all available A.1 systems and defines the eligibility ceiling used for headline certification.",
+    caption="Protocol A remains archived and unchanged. Panels A-B compare the paired development subset for which both protocol outputs exist.\nPanel C uses all available A.1 systems and defines the eligibility ceiling used for headline certification.",
     theme=theme(plot.background=element_rect(fill=bg, colour=NA),
                 plot.title=element_text(face="bold", size=14, colour=ink, margin=margin(b=4)),
                 plot.subtitle=element_text(size=9.8, colour="#4F545C", margin=margin(b=8)),
