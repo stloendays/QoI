@@ -52,6 +52,12 @@ bg <- "#FAFAF8"
 ink <- "#202124"
 grid <- "#DEDCD7"
 muted <- "#646A73"
+signed_breaks <- c(-1, -1e-3, 0, 1e-3, 1)
+sci0 <- function(x) {
+  out <- label_scientific(digits=1)(x)
+  out[x == 0] <- "0"
+  out
+}
 
 normalize_codec <- function(x) toupper(as.character(x))
 bench$codec <- factor(normalize_codec(bench$codec), levels=c("ZFP","SZ3","SPERR"))
@@ -133,11 +139,11 @@ pB <- ggplot(b, aes(integrand, domain_term, colour=class)) +
   geom_point(alpha=.48, size=.80) +
   scale_x_continuous(
     trans=pseudo_log_trans(base=10, sigma=1e-7),
-    labels=label_scientific(digits=1), n.breaks=5
+    breaks=signed_breaks, labels=sci0
   ) +
   scale_y_continuous(
     trans=pseudo_log_trans(base=10, sigma=1e-7),
-    labels=label_scientific(digits=1), n.breaks=5
+    breaks=signed_breaks, labels=sci0
   ) +
   scale_colour_manual(
     values=c("Typical"=pal[["navy"]], "Large deviation"=pal[["orange"]]),
