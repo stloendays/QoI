@@ -166,7 +166,7 @@ fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Figure 6 | Equal nominal tolerance conflates distortion magnitude with error geometry",
     subtitle = paste0(
-      "ZFP realizes only about one-sixth of the L-inf perturbation of SZ3/SPERR at equal nominal tolerance. ",
+      "ZFP realizes only about one-sixth of the L-inf perturbation of SZ3/SPERR at equal nominal tolerance.\n",
       "After matching actual L-inf within material, the dramatic gap shrinks but does not vanish."
     ),
     caption = paste0(
@@ -176,10 +176,10 @@ fig <- ((pA | pB) / (pC | pD)) +
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
       plot.title = element_text(face = "bold", size = 14, colour = ink, margin = margin(b = 4)),
-      plot.subtitle = element_text(size = 10, colour = "#4F4F4F", margin = margin(b = 8)),
+      plot.subtitle = element_text(size = 10, colour = "#4F4F4F", lineheight = 1.08, margin = margin(b = 8)),
       plot.caption = element_text(size = 8.5, colour = "#5F5F5F", hjust = 0, margin = margin(t = 7))
     )
-  )
+  ) & theme(legend.position = "top")
 
 png_path <- file.path(outdir, "figure6_matched_realized_linf_R.png")
 pdf_path <- file.path(outdir, "figure6_matched_realized_linf_R.pdf")
