@@ -1,3 +1,4 @@
+# Canonical CI renderer for the data-driven four-panel Figure 2.
 name: Render Figure 2 QoI hierarchy
 
 on:
@@ -8,6 +9,7 @@ on:
       - '.github/workflows/render_figure2_qoi_hierarchy.yml'
       - 'analysis/electron_count_qoi/**'
       - 'analysis/hartree_potential_expansion/**'
+      - 'benchmark/master_benchmark_full.csv'
 
 permissions:
   contents: write
@@ -28,6 +30,12 @@ jobs:
             any::svglite
       - name: Render Figure 2
         run: Rscript figures/R/figure2_qoi_hierarchy.R
+      - name: Validate Figure 2 outputs
+        shell: bash
+        run: |
+          test -f figures/R/rendered/figure2_qoi_hierarchy_R.png
+          test -f figures/R/rendered/figure2_qoi_hierarchy_R.pdf
+          test -f figures/R/rendered/figure2_qoi_hierarchy_R.svg
       - uses: actions/upload-artifact@v4
         with:
           name: figure2-qoi-hierarchy
@@ -35,19 +43,18 @@ jobs:
             figures/R/rendered/figure2_qoi_hierarchy_R.png
             figures/R/rendered/figure2_qoi_hierarchy_R.pdf
             figures/R/rendered/figure2_qoi_hierarchy_R.svg
-      - name: Commit rendered SVG
+      - name: Commit rendered outputs
         shell: bash
         run: |
-          if [ ! -f figures/R/rendered/figure2_qoi_hierarchy_R.svg ]; then
-            echo "SVG output not present; nothing to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add figures/R/rendered/figure2_qoi_hierarchy_R.svg
+          git add \
+            figures/R/rendered/figure2_qoi_hierarchy_R.png \
+            figures/R/rendered/figure2_qoi_hierarchy_R.pdf \
+            figures/R/rendered/figure2_qoi_hierarchy_R.svg
           if git diff --cached --quiet; then
-            echo "SVG unchanged."
+            echo "Rendered Figure 2 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 2 SVG"
+          git commit -m "figure: render Figure 2 QoI hierarchy"
           git push
