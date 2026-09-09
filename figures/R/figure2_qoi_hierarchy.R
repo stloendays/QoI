@@ -18,12 +18,14 @@ rowsf <- file.path(root, "analysis", "hartree_potential_expansion", "rows.csv")
 smoothf <- file.path(root, "analysis", "hartree_potential_expansion", "material_smoothness.csv")
 dispf <- file.path(root, "analysis", "hartree_potential_expansion", "matched_error_dispersion.csv")
 decf <- file.path(root, "analysis", "electron_count_qoi", "electron_bader_decoupling.csv")
-stopifnot(file.exists(rowsf), file.exists(smoothf), file.exists(dispf), file.exists(decf))
+benchf <- file.path(root, "benchmark", "master_benchmark_full.csv")
+stopifnot(file.exists(rowsf), file.exists(smoothf), file.exists(dispf), file.exists(decf), file.exists(benchf))
 
 rows <- read.csv(rowsf, check.names=FALSE, stringsAsFactors=FALSE)
 sm <- read.csv(smoothf, check.names=FALSE, stringsAsFactors=FALSE)
 disp <- read.csv(dispf, check.names=FALSE, stringsAsFactors=FALSE)
 dec <- read.csv(decf, check.names=FALSE, stringsAsFactors=FALSE)
+bench <- read.csv(benchf, check.names=FALSE, stringsAsFactors=FALSE)
 
 # Frozen full-expansion statistics use only gate-passing rows.
 if ("reproduction_gate_pass" %in% names(rows)) {
@@ -63,7 +65,9 @@ theme_qoi <- theme_minimal(base_size=10.2) + theme(
 )
 
 # A — global linear conservation does not certify local Bader fidelity.
-a <- gp %>%
+# Electron-count deviation is a frozen benchmark quantity, not part of the
+# Hartree expansion rows contract, so this panel reads it from the master table.
+a <- bench %>%
   filter(is.finite(electron_count_abs_dev), is.finite(Bader_error_resolved_e),
          electron_count_abs_dev > 0, Bader_error_resolved_e > 0)
 adec <- 100 * mean(a$electron_count_abs_dev <= 1e-4 & a$Bader_error_resolved_e > 1e-3)
@@ -92,7 +96,10 @@ b <- gp %>%
   filter(is.finite(realized_Linf_over_ptp), is.finite(potential_rel_RMSE),
          realized_Linf_over_ptp > 0, potential_rel_RMSE > 0)
 set.seed(20260909)
-b_show <- b %>% group_by(codec) %>% slice_sample(n=min(n(), 1200)) %>% ungroup()
+b_show <- b %>%
+  group_by(codec) %>%
+  group_modify(~slice_sample(.x, n=min(nrow(.x), 1200))) %>%
+  ungroup()
 
 fit_lines <- b %>% group_by(codec) %>% group_modify(~{
   m <- lm(log10(potential_rel_RMSE) ~ log10(realized_Linf_over_ptp), data=.x)
