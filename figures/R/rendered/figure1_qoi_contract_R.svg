@@ -48,7 +48,7 @@
 <polygon points='170.24,240.60 176.48,237.00 170.24,233.40 ' style='stroke-width: 1.39; stroke: #202124; stroke-linecap: butt; fill: #202124;' />
 <line x1='274.32' y1='237.00' x2='294.57' y2='237.00' style='stroke-width: 1.39; stroke: #202124; stroke-linecap: butt;' />
 <polygon points='288.33,240.60 294.57,237.00 288.33,233.40 ' style='stroke-width: 1.39; stroke: #202124; stroke-linecap: butt; fill: #202124;' />
-<text x='284.44' y='219.58' text-anchor='middle' style='font-size: 7.82px;fill: #646A73; font-family: "Liberation Sans";' textLength='56.89px' lengthAdjust='spacingAndGlyphs'>field-level bound</text>
+<text x='284.44' y='186.04' text-anchor='middle' style='font-size: 7.68px;fill: #646A73; font-family: "Liberation Sans";' textLength='55.86px' lengthAdjust='spacingAndGlyphs'>field-level bound</text>
 <line x1='416.03' y1='237.00' x2='440.99' y2='237.00' style='stroke-width: 1.39; stroke: #202124; stroke-linecap: butt;' />
 <line x1='440.99' y1='372.98' x2='440.99' y2='118.43' style='stroke-width: 1.60; stroke: #D8DADD; stroke-linecap: butt;' />
 <rect x='461.91' y='78.91' width='348.87' height='84.40' style='stroke-width: 1.39; stroke: #72B063; stroke-linecap: butt; stroke-linejoin: miter; fill: #F6FBF5;' />
@@ -67,13 +67,13 @@
 <text x='477.43' y='149.50' style='font-size: 8.54px;fill: #646A73; font-family: "Liberation Sans";' textLength='205.06px' lengthAdjust='spacingAndGlyphs'>Local perturbations can cancel under a global integral.</text>
 <text x='477.43' y='203.61' style='font-size: 8.11px; font-weight: bold;fill: #94C6CD; font-family: "Liberation Sans";' textLength='78.22px' lengthAdjust='spacingAndGlyphs'>LINEAR NONLOCAL</text>
 <text x='477.43' y='229.13' style='font-size: 10.24px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='81.30px' lengthAdjust='spacingAndGlyphs'>Hartree potential</text>
-<text x='591.47' y='228.98' style='font-size: 9.82px;fill: #202124; font-family: "Liberation Sans";' textLength='52.12px' lengthAdjust='spacingAndGlyphs'>V_H ∝ ∇⁻²ρ</text>
+<text x='591.47' y='228.98' style='font-size: 9.82px;fill: #202124; font-family: "Liberation Sans";' textLength='43.55px' lengthAdjust='spacingAndGlyphs'>Vₕ ∝ ∇⁻²ρ</text>
 <text x='675.82' y='228.79' style='font-size: 9.25px;fill: #94C6CD; font-family: "Liberation Sans";' textLength='96.03px' lengthAdjust='spacingAndGlyphs'>→  smooth propagation</text>
 <text x='477.43' y='254.00' style='font-size: 8.54px;fill: #646A73; font-family: "Liberation Sans";' textLength='290.45px' lengthAdjust='spacingAndGlyphs'>The downstream response remains continuous and approximately first-order.</text>
 <text x='477.43' y='308.10' style='font-size: 8.11px; font-weight: bold;fill: #4A5F7E; font-family: "Liberation Sans";' textLength='97.91px' lengthAdjust='spacingAndGlyphs'>TOPOLOGY-DEPENDENT</text>
 <text x='477.43' y='330.28' style='font-size: 10.24px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='65.39px' lengthAdjust='spacingAndGlyphs'>Bader charge</text>
-<text x='559.76' y='330.04' style='font-size: 9.53px;fill: #202124; font-family: "Liberation Sans";' textLength='83.83px' lengthAdjust='spacingAndGlyphs'>Q_A = ∫Ω_A[ρ] ρ dV</text>
-<text x='700.11' y='329.54' style='font-size: 8.11px;fill: #E29135; font-family: "Liberation Sans";' textLength='110.16px' lengthAdjust='spacingAndGlyphs'>re-partition after reconstruction</text>
+<text x='559.76' y='329.94' style='font-size: 9.25px;fill: #202124; font-family: "Liberation Sans";' textLength='81.27px' lengthAdjust='spacingAndGlyphs'>Q_A = ∫Ω_A[ρ] ρ dV</text>
+<text x='702.81' y='329.30' style='font-size: 7.40px;fill: #E29135; font-family: "Liberation Sans";' textLength='100.64px' lengthAdjust='spacingAndGlyphs'>re-partition after reconstruction</text>
 <rect x='480.81' y='347.52' width='91.10' height='43.54' style='stroke-width: 1.07; stroke: #D8DADD; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF;' />
 <rect x='588.77' y='347.52' width='91.10' height='43.54' style='stroke-width: 1.07; stroke: #D8DADD; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF;' />
 <text x='526.02' y='357.96' text-anchor='middle' style='font-size: 6.97px;fill: #646A73; font-family: "Liberation Sans";' textLength='51.53px' lengthAdjust='spacingAndGlyphs'>reference basins</text>
@@ -86,8 +86,9 @@
 <polyline points='632.64,389.05 633.77,388.32 634.87,387.58 635.93,386.84 636.91,386.10 637.79,385.36 638.57,384.62 639.21,383.88 639.71,383.15 640.07,382.41 640.26,381.67 640.30,380.93 640.18,380.19 639.92,379.45 639.52,378.71 639.00,377.98 638.37,377.24 637.66,376.50 636.89,375.76 636.08,375.02 635.26,374.28 634.45,373.54 633.68,372.81 632.97,372.07 632.35,371.33 631.82,370.59 631.42,369.85 631.16,369.11 631.05,368.37 631.08,367.64 631.28,366.90 631.63,366.16 632.13,365.42 632.78,364.68 633.55,363.94 634.44,363.20 635.42,362.47 636.47,361.73 637.58,360.99 638.71,360.25 ' style='stroke-width: 1.81; stroke: #E29135; stroke-linecap: butt;' />
 <line x1='574.60' y1='370.97' x2='585.40' y2='370.97' style='stroke-width: 1.28; stroke: #E29135; stroke-linecap: butt;' />
 <polygon points='581.04,373.49 585.40,370.97 581.04,368.45 ' style='stroke-width: 1.28; stroke: #E29135; stroke-linecap: butt; fill: #E29135;' />
-<text x='698.09' y='367.89' style='font-size: 8.59px;fill: #202124; font-family: "Liberation Sans";' textLength='150.25px' lengthAdjust='spacingAndGlyphs'>ΔQ_total = ΔQ_integrand + ΔQ_domain</text>
-<text x='698.09' y='388.44' style='font-size: 7.97px;fill: #E29135; font-family: "Liberation Sans";' textLength='135.34px' lengthAdjust='spacingAndGlyphs'>basin migration can amplify a small Δρ</text>
+<text x='693.37' y='365.57' style='font-size: 7.68px;fill: #202124; font-family: "Liberation Sans";' textLength='85.50px' lengthAdjust='spacingAndGlyphs'>ΔQ_total = ΔQ_integrand</text>
+<text x='693.37' y='380.31' style='font-size: 7.68px;fill: #202124; font-family: "Liberation Sans";' textLength='74.33px' lengthAdjust='spacingAndGlyphs'>             + ΔQ_domain</text>
+<text x='693.37' y='396.24' style='font-size: 7.26px;fill: #E29135; font-family: "Liberation Sans";' textLength='123.42px' lengthAdjust='spacingAndGlyphs'>basin migration can amplify a small Δρ</text>
 <text x='225.74' y='312.27' text-anchor='middle' style='font-size: 8.54px; font-weight: bold;fill: #E29135; font-family: "Liberation Sans";' textLength='93.70px' lengthAdjust='spacingAndGlyphs'>controls Δρ — not Q[ρ]</text>
 <rect x='57.04' y='427.24' width='735.52' height='45.55' style='stroke-width: 1.49; stroke: #4A5F7E; stroke-linecap: butt; stroke-linejoin: miter; fill: #F5F7FA;' />
 <text x='424.80' y='449.76' text-anchor='middle' style='font-size: 10.95px; font-weight: bold;fill: #4A5F7E; font-family: "Liberation Sans";' textLength='420.52px' lengthAdjust='spacingAndGlyphs'>Scientific fidelity depends on the pair (reconstruction, downstream QoI operator)</text>
