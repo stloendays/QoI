@@ -17,12 +17,18 @@ Bader charge is the deeply validated topology-sensitive case. It requires re-par
 | Figure | Canonical role | R source | Formal rendered outputs | Main-text role | Status |
 |---|---|---|---|---|---|
 | 1 | From density error to QoI-dependent scientific error | schematic / design source | final artwork TBD | conceptual framing | READY FOR DESIGN |
-| 2 | QoI hierarchy: electron count -> Hartree -> Bader | `figures/R/figure2_qoi_hierarchy.R` | `figures/R/rendered/figure2_qoi_hierarchy_R.{png,pdf,svg}` | Results: operator-dependent error propagation | FORMAL R SOURCE; lock audit pending |
+| 2 | QoI hierarchy: electron count -> Hartree -> Bader | `figures/R/figure2_qoi_hierarchy.R` | `figures/R/rendered/figure2_qoi_hierarchy_R.{png,pdf,svg}` | Results: operator-dependent error propagation | **LOCKED** |
 | 3 | Stability-aware chemical certification landscape | `figures/R/figure3_certification_landscape.R` | `figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg}` | Results: eligibility + certification decision | DATA-READY |
 | 4 | Protocol A -> A.1 stability-floor correction | `figures/R/figure4_stability_protocol.R` | `figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}` | Results: intrinsic QoI identifiability | DATA-READY |
-| 5 | Topology-induced amplification in re-solved Bader response | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | Results: Bader-specific mechanism | QA PASSED; final lock pending |
-| 6 | Equal nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | Results: fair codec comparison after distortion matching | QA PASSED; final lock pending |
+| 5 | Topology-induced amplification in re-solved Bader response | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | Results: Bader-specific mechanism | **LOCKED** |
+| 6 | Equal nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | Results: fair codec comparison after distortion matching | **LOCKED** |
 | 7 | External confirmation and practical value | final R source TBD | final artwork TBD | closing validation / practical value | DATA-READY / DESIGN PENDING |
+
+### Locked figure provenance
+
+- **Figure 2:** final CI run `34352844171`; artifact `10104481700`; PNG/PDF/SVG generated from `figures/R/figure2_qoi_hierarchy.R` and visually QA'd after the readability/statistic correction.
+- **Figure 5:** final CI run `34349558487`; artifact `10103144848`; PNG/PDF/SVG visually cross-checked with no clipping or legend/title overlap.
+- **Figure 6:** final CI run `34340308601`; artifact `10099481566`; PNG/PDF/SVG visually cross-checked.
 
 ### Non-canonical legacy figure sources
 
@@ -106,8 +112,6 @@ Protocol A remains archived provenance. Protocol A.1 uses fixed-seed uniform per
 
 *Data:* `benchmark/master_benchmark_full.csv`, `mechanism/basin_error_decomposition_summary.csv`, `mechanism/basin_error_decomposition_per_atom.csv`.
 
-*QA:* final CI run `34349558487`; artifact `10103144848`; PNG/PDF/SVG visually cross-checked with no clipping or legend/title overlap.
-
 ---
 
 ## Figure 6 — Equal nominal tolerance conflates distortion magnitude with error geometry
@@ -125,8 +129,6 @@ Protocol A remains archived provenance. Protocol A.1 uses fixed-seed uniform per
 **Primary message:** scalar L-infinity magnitude is insufficient to explain the full codec difference, but equal nominal tolerance is not a valid test of error geometry; realized distortion must be controlled first.
 
 *Data:* `analysis/matched_realized_linf_v1/matched_effects_summary.csv` and `analysis/matched_realized_linf_v1/equal_nominal_diagnostics.csv`.
-
-*QA:* final CI run `34340308601`; artifact `10099481566`; PNG/PDF/SVG visually cross-checked.
 
 ---
 
