@@ -74,10 +74,12 @@ base_theme <- theme_minimal(base_size=10.3) + theme(
   axis.title=element_text(colour=ink), axis.text=element_text(colour=ink),
   strip.background=element_rect(fill="#F0F1F0", colour="#C7CBCF", linewidth=.4),
   strip.text=element_text(face="bold", colour=ink),
-  plot.title=element_text(face="bold", size=11.0, colour=ink, margin=margin(b=4)),
-  plot.subtitle=element_text(size=8.8, colour="#535860", margin=margin(b=6)),
-  legend.position="top", legend.title=element_blank(),
-  plot.margin=margin(8,10,8,8)
+  plot.title=element_text(face="bold", size=10.7, colour=ink, margin=margin(b=3)),
+  plot.subtitle=element_text(size=8.5, colour="#535860", margin=margin(b=5)),
+  legend.position="bottom",
+  legend.title=element_text(size=7.7, colour=ink),
+  legend.text=element_text(size=7.7, colour=ink),
+  plot.margin=margin(7,8,7,7)
 )
 
 # -----------------------------------------------------------------------------
@@ -99,13 +101,16 @@ a <- ms %>% transmute(
 pA <- ggplot(a, aes(integrand, total, colour=reassign)) +
   geom_abline(slope=1, intercept=0, linetype=2, colour="#595D63", linewidth=.6) +
   geom_point(size=2.0, alpha=.78) +
-  scale_x_log10(labels=label_math()) +
-  scale_y_log10(labels=label_math()) +
-  scale_colour_gradient(low=pal[["light_green"]], high=pal[["green"]],
-                        trans="sqrt", name="Reassigned\nvoxel fraction") +
+  scale_x_log10(labels=label_log()) +
+  scale_y_log10(labels=label_log()) +
+  scale_colour_gradient(
+    low=pal[["light_green"]], high=pal[["green"]], trans="sqrt",
+    name="Reassigned voxel fraction",
+    guide=guide_colourbar(direction="horizontal", title.position="top")
+  ) +
   labs(
-    title="A | Re-solving the basins can amplify fixed-basin perturbation",
-    subtitle="Representative mechanism corpus; identity line marks equal integrand-only and total error",
+    title="A | Re-solving amplifies fixed-basin perturbation",
+    subtitle="Representative mechanism corpus; dashed line = identity",
     x="Integrand / fixed-basin contribution (e)",
     y="Re-solved total Bader error (e)"
   ) + base_theme
@@ -126,11 +131,20 @@ pB <- ggplot(b, aes(integrand, domain_term, colour=class)) +
   geom_hline(yintercept=0, linetype=2, colour="#6A6E74", linewidth=.45) +
   geom_vline(xintercept=0, linetype=2, colour="#6A6E74", linewidth=.45) +
   geom_point(alpha=.48, size=.80) +
-  scale_x_continuous(trans=pseudo_log_trans(base=10, sigma=1e-7), labels=label_scientific()) +
-  scale_y_continuous(trans=pseudo_log_trans(base=10, sigma=1e-7), labels=label_scientific()) +
-  scale_colour_manual(values=c("Typical"=pal[["navy"]], "Large deviation"=pal[["orange"]])) +
+  scale_x_continuous(
+    trans=pseudo_log_trans(base=10, sigma=1e-7),
+    labels=label_scientific(digits=1), n.breaks=5
+  ) +
+  scale_y_continuous(
+    trans=pseudo_log_trans(base=10, sigma=1e-7),
+    labels=label_scientific(digits=1), n.breaks=5
+  ) +
+  scale_colour_manual(
+    values=c("Typical"=pal[["navy"]], "Large deviation"=pal[["orange"]]),
+    name=NULL
+  ) +
   labs(
-    title="B | Large atomic deviations expose the domain-migration term",
+    title="B | Domain migration dominates large atomic deviations",
     subtitle=expression(Delta*q[total] == Delta*q[integrand] + Delta*q[domain]),
     x="Integrand contribution (e)",
     y="Domain-migration contribution (e)"
@@ -202,17 +216,19 @@ pC <- ggplot(rep, aes(realized_rel, error_e, colour=evaluation, group=evaluation
   geom_line(linewidth=.82) +
   geom_point(aes(size=pmax(reassign_frac, 0)), alpha=.86) +
   facet_wrap(~case, ncol=1, scales="free_y") +
-  scale_x_log10(labels=label_math()) +
-  scale_y_log10(labels=label_math()) +
-  scale_colour_manual(values=c("Fixed-basin"=pal[["teal"]],
-                               "Re-solved Bader"=pal[["orange"]])) +
+  scale_x_log10(labels=label_log()) +
+  scale_y_log10(labels=label_log()) +
+  scale_colour_manual(
+    values=c("Fixed-basin"=pal[["teal"]], "Re-solved Bader"=pal[["orange"]]),
+    name=NULL
+  ) +
   scale_size_continuous(range=c(1.2,4.0), trans="sqrt", guide="none") +
   labs(
-    title="C | Representative ladders separate smooth integrand change from abrupt re-solving",
-    subtitle="Point size encodes the fraction of voxels reassigned by the Bader partition",
+    title="C | Tolerance ladders expose abrupt re-solving",
+    subtitle="Point size = reassigned voxel fraction",
     x=expression(Realized~L[infinity] / density~ptp),
     y="Bader error (e)"
-  ) + base_theme + theme(legend.position="bottom")
+  ) + base_theme
 
 # -----------------------------------------------------------------------------
 # D — rung-to-rung jump severity versus basin reassignment.
@@ -232,9 +248,9 @@ rho <- suppressWarnings(cor(log10(dd$reassign_frac), log10(dd$jump_factor),
 pD <- ggplot(dd_show, aes(reassign_frac, jump_factor, colour=codec)) +
   geom_point(alpha=.25, size=.72) +
   geom_smooth(method="lm", formula=y~x, se=FALSE, linewidth=.9) +
-  scale_colour_manual(values=codec_cols) +
-  scale_x_log10(labels=label_math()) +
-  scale_y_log10(labels=label_math()) +
+  scale_colour_manual(values=codec_cols, name=NULL) +
+  scale_x_log10(labels=label_log()) +
+  scale_y_log10(labels=label_log()) +
   annotate("label",
            x=quantile(dd$reassign_frac, .06, na.rm=TRUE),
            y=quantile(dd$jump_factor, .95, na.rm=TRUE),
@@ -242,14 +258,14 @@ pD <- ggplot(dd_show, aes(reassign_frac, jump_factor, colour=codec)) +
            hjust=0, size=2.8, label.size=.18,
            fill=alpha("white", .92), colour=ink) +
   labs(
-    title="D | Larger basin reassignment accompanies larger rung-to-rung Bader jumps",
-    subtitle="Full frozen benchmark; trend is descriptive association, not a causal fit",
+    title="D | Basin reassignment tracks jump severity",
+    subtitle="Full frozen benchmark; descriptive association only",
     x="Reassigned voxel fraction",
     y="Consecutive Bader-error jump factor"
   ) + base_theme
 
 fig <- ((pA | pB) / (pC | pD)) +
-  plot_layout(guides="collect", widths=c(1,1)) +
+  plot_layout(widths=c(1,1), heights=c(.92,1.08)) +
   plot_annotation(
     title="Figure 5 | Topology-induced amplification explains irregular Bader response",
     subtitle="re-solved Bader error = integrand perturbation + topology-driven domain migration",
