@@ -1,0 +1,60 @@
+name: Render Figure 6 compression-chemistry tradeoff
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'figures/R/figure6_compression_chemistry_tradeoff.R'
+      - '.github/workflows/render_figure6_compression_chemistry_tradeoff.yml'
+      - 'benchmark/master_benchmark_full.csv'
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::tidyr
+            any::scales
+            any::patchwork
+            any::svglite
+
+      - name: Render Figure 6
+        run: Rscript figures/R/figure6_compression_chemistry_tradeoff.R
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: figure6-compression-chemistry-tradeoff
+          path: |
+            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.png
+            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.pdf
+            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.svg
+
+      - name: Commit rendered outputs
+        shell: bash
+        run: |
+          test -f figures/R/rendered/figure6_compression_chemistry_tradeoff_R.svg
+          test -f figures/R/rendered/figure6_compression_chemistry_tradeoff_R.png
+          test -f figures/R/rendered/figure6_compression_chemistry_tradeoff_R.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.svg \
+            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.png \
+            figures/R/rendered/figure6_compression_chemistry_tradeoff_R.pdf
+          if git diff --cached --quiet; then
+            echo "Rendered Figure 6 outputs unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render Figure 6 compression-chemistry tradeoff"
+          git push
