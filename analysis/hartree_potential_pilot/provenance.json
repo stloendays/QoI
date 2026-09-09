@@ -1,0 +1,258 @@
+{
+  "materials": {
+    "mp-1778": {
+      "sha256_verified": true,
+      "ngrid": [
+        48,
+        48,
+        48
+      ],
+      "npoints": 110592,
+      "natoms": 2,
+      "envelope": {
+        "fs_id": "6041c10e66be6ca98ccf4d08",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1948199"
+      },
+      "mean_electrons_per_cell": 9.99999923108501,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-2647013": {
+      "sha256_verified": true,
+      "ngrid": [
+        48,
+        48,
+        72
+      ],
+      "npoints": 165888,
+      "natoms": 2,
+      "envelope": {
+        "fs_id": "62b222ec76ff1154737f0fb2",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-2647128"
+      },
+      "mean_electrons_per_cell": 24.00000023941096,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-214": {
+      "sha256_verified": true,
+      "ngrid": [
+        56,
+        56,
+        56
+      ],
+      "npoints": 175616,
+      "natoms": 2,
+      "envelope": {
+        "fs_id": "60a85864c6f4ef1665f67002",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1538442"
+      },
+      "mean_electrons_per_cell": 26.000000014321483,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-1094905": {
+      "sha256_verified": true,
+      "ngrid": [
+        48,
+        72,
+        80
+      ],
+      "npoints": 276480,
+      "natoms": 4,
+      "envelope": {
+        "fs_id": "5fabcf7ef9446ed8e225fbcc",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1801447"
+      },
+      "mean_electrons_per_cell": 37.999999988999626,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-1007755": {
+      "sha256_verified": true,
+      "ngrid": [
+        56,
+        56,
+        96
+      ],
+      "npoints": 301056,
+      "natoms": 4,
+      "envelope": {
+        "fs_id": "62a09af2faa23a6ae441b3b3",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-2289007"
+      },
+      "mean_electrons_per_cell": 41.999999870720785,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-1219705": {
+      "sha256_verified": true,
+      "ngrid": [
+        56,
+        56,
+        96
+      ],
+      "npoints": 301056,
+      "natoms": 2,
+      "envelope": {
+        "fs_id": "6023e9a75e22a080f83b54ba",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1921321"
+      },
+      "mean_electrons_per_cell": 22.00000002409994,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-1246548": {
+      "sha256_verified": true,
+      "ngrid": [
+        48,
+        48,
+        140
+      ],
+      "npoints": 322560,
+      "natoms": 5,
+      "envelope": {
+        "fs_id": "5fab5ecda648678b483577c2",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1781457"
+      },
+      "mean_electrons_per_cell": 51.00000010302107,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-10761": {
+      "sha256_verified": true,
+      "ngrid": [
+        64,
+        64,
+        80
+      ],
+      "npoints": 327680,
+      "natoms": 4,
+      "envelope": {
+        "fs_id": "62a1091b8572d62b0741b83f",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-2289726"
+      },
+      "mean_electrons_per_cell": 40.000000529945815,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-1226636": {
+      "sha256_verified": true,
+      "ngrid": [
+        84,
+        84,
+        48
+      ],
+      "npoints": 338688,
+      "natoms": 6,
+      "envelope": {
+        "fs_id": "5faafa190c3d65078a25f88a",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1800409"
+      },
+      "mean_electrons_per_cell": 51.000000055352714,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-560030": {
+      "sha256_verified": true,
+      "ngrid": [
+        56,
+        64,
+        96
+      ],
+      "npoints": 344064,
+      "natoms": 6,
+      "envelope": {
+        "fs_id": "5fabd81026fa8ffdb63579a2",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1782230"
+      },
+      "mean_electrons_per_cell": 47.99999998658355,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-1246480": {
+      "sha256_verified": true,
+      "ngrid": [
+        48,
+        48,
+        160
+      ],
+      "npoints": 368640,
+      "natoms": 8,
+      "envelope": {
+        "fs_id": "5fac41ae0c3d65078a25fd8e",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1800837"
+      },
+      "mean_electrons_per_cell": 66.0000000394712,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    },
+    "mp-11419": {
+      "sha256_verified": true,
+      "ngrid": [
+        72,
+        72,
+        72
+      ],
+      "npoints": 373248,
+      "natoms": 3,
+      "envelope": {
+        "fs_id": "604092b80d62d0149bcf4721",
+        "maggma_store_type": "S3Store",
+        "compression": "zlib",
+        "task_id": "mp-1947108"
+      },
+      "mean_electrons_per_cell": 38.00000175022779,
+      "bit_identical_to_frozen_npz_grid": true,
+      "lattice_allclose_frozen_npz": true,
+      "value_ptp_matches_frozen": true
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "zfpy": "1.0.1 (pip)",
+    "pandas": "2.3.3"
+  },
+  "loader": "analysis/mp_chgcar_loader.py (verbatim RhoCodec scripts/fetch_mp_corpus.py::parse_chgcar_json)",
+  "frozen_table": "benchmark/master_benchmark_full.csv (read only)",
+  "gate": {
+    "reproduced_over_frozen_realized_Linf": [
+      0.95,
+      1.05
+    ]
+  }
+}
