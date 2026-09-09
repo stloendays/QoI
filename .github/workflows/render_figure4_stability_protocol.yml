@@ -1,0 +1,54 @@
+name: Render Figure 4 stability protocol
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'figures/R/figure4_stability_protocol.R'
+      - '.github/workflows/render_figure4_stability_protocol.yml'
+      - 'stability/stability_floor_A1.csv'
+      - 'stability/stability_floor_A_archived_float32.csv'
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::tidyr
+            any::scales
+            any::patchwork
+            any::svglite
+      - name: Render Figure 4
+        run: Rscript figures/R/figure4_stability_protocol.R
+      - uses: actions/upload-artifact@v4
+        with:
+          name: figure4-stability-protocol
+          path: |
+            figures/R/rendered/figure4_stability_protocol_R.png
+            figures/R/rendered/figure4_stability_protocol_R.pdf
+            figures/R/rendered/figure4_stability_protocol_R.svg
+      - name: Commit rendered SVG
+        shell: bash
+        run: |
+          if [ ! -f figures/R/rendered/figure4_stability_protocol_R.svg ]; then
+            echo "SVG output not present; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add figures/R/rendered/figure4_stability_protocol_R.svg
+          if git diff --cached --quiet; then
+            echo "SVG unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render Figure 4 SVG"
+          git push
