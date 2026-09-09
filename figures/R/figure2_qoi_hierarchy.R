@@ -1,4 +1,4 @@
-# Figure 2 — QoI operator hierarchy
+# Figure 2 - QoI operator hierarchy
 suppressPackageStartupMessages({
   library(ggplot2)
   library(dplyr)
@@ -36,7 +36,7 @@ if ("reproduction_gate_pass" %in% names(rows)) {
   stop("rows.csv has no reproduction gate column")
 }
 
-# Palette adapted from the user's top-journal reference figure.
+# Palette adapted from the manuscript visual system.
 pal <- c(
   light_green = "#B8DBB3",
   green       = "#72B063",
@@ -58,19 +58,19 @@ theme_qoi <- theme_minimal(base_size=10.2) + theme(
   axis.text=element_text(colour=ink),
   strip.text=element_text(face="bold", colour=ink),
   plot.title=element_text(face="bold", size=11.2, margin=margin(b=5)),
-  plot.subtitle=element_text(size=9.0, colour="#4F545C", margin=margin(b=6)),
-  legend.position="top",
+  plot.subtitle=element_text(size=8.8, colour="#4F545C", lineheight=1.05, margin=margin(b=6)),
+  legend.position="none",
   legend.title=element_blank(),
   plot.margin=margin(8,10,8,8)
 )
 
-# A — global linear conservation does not certify local Bader fidelity.
-# Electron-count deviation is a frozen benchmark quantity, not part of the
-# Hartree expansion rows contract, so this panel reads it from the master table.
+# A - global linear conservation does not certify local Bader fidelity.
 a <- bench %>%
   filter(is.finite(electron_count_abs_dev), is.finite(Bader_error_resolved_e),
          electron_count_abs_dev > 0, Bader_error_resolved_e > 0)
-adec <- 100 * mean(a$electron_count_abs_dev <= 1e-4 & a$Bader_error_resolved_e > 1e-3)
+preserved <- a$electron_count_abs_dev <= 1e-4
+if (!any(preserved)) stop("No electron-count-preserved rows for Figure 2A")
+adec <- 100 * mean(a$Bader_error_resolved_e[preserved] >= 1e-3)
 
 pA <- ggplot(a, aes(electron_count_abs_dev, Bader_error_resolved_e)) +
   annotate("rect", xmin=min(a$electron_count_abs_dev), xmax=1e-4,
@@ -81,17 +81,17 @@ pA <- ggplot(a, aes(electron_count_abs_dev, Bader_error_resolved_e)) +
   geom_point(colour="#747B83", alpha=.24, size=.78) +
   annotate("label", x=min(a$electron_count_abs_dev)*2.2,
            y=max(a$Bader_error_resolved_e)/2.5,
-           label=sprintf("%.2f%% of rows:\nelectron count preserved,\nBader criterion failed", adec),
-           hjust=0, vjust=1, size=3.0, label.size=.18,
+           label=sprintf("%.2f%% of electron-count-preserved rows\nfail the 10^-3 e Bader criterion", adec),
+           hjust=0, vjust=1, size=2.85, label.size=.18,
            fill=alpha("white", .90), colour=ink) +
-  scale_x_log10(labels=label_math()) +
-  scale_y_log10(labels=label_math()) +
+  scale_x_log10(labels=label_log()) +
+  scale_y_log10(labels=label_log()) +
   labs(title="A | Global conservation does not guarantee local fidelity",
-       subtitle="Same reconstructions; dashed thresholds: |Delta N| = 10^-4 e and Bader error = 10^-3 e",
+       subtitle="Same reconstructions; dashed thresholds mark\n|Delta N| = 10^-4 e and Bader error = 10^-3 e",
        x="Electron-count absolute deviation |Delta N| (e)",
        y="Bader resolved error (e)") + theme_qoi
 
-# B — smooth nonlocal Hartree response. Fit in log-log space, then transform back.
+# B - smooth nonlocal Hartree response. Fit in log-log space, then transform back.
 b <- gp %>%
   filter(is.finite(realized_Linf_over_ptp), is.finite(potential_rel_RMSE),
          realized_Linf_over_ptp > 0, potential_rel_RMSE > 0)
@@ -125,18 +125,21 @@ pB <- ggplot(b_show, aes(realized_Linf_over_ptp, potential_rel_RMSE,
             inherit.aes=FALSE, linewidth=.72, linetype=2, colour="#30343A") +
   scale_colour_manual(values=codec_cols) +
   scale_shape_manual(values=c(bulk=16, slab=17)) +
-  scale_x_log10(labels=label_math()) +
-  scale_y_log10(labels=label_math()) +
+  scale_x_log10(labels=label_log()) +
+  scale_y_log10(labels=label_log()) +
   annotate("label", x=quantile(b$realized_Linf_over_ptp, .60),
            y=quantile(b$potential_rel_RMSE, .03),
            label="pooled slope = 1.02\nPearson = 0.89",
            hjust=0, size=3.0, label.size=.18, fill=alpha("white", .92), colour=ink) +
   labs(title="B | Hartree potential follows a smooth near-linear response",
-       subtitle="Three codecs and both bulk/slab systems; dashed line is the pooled log-log fit",
+       subtitle="All codecs and bulk/slab systems;\ndashed line: pooled log-log fit",
        x="Realized L-inf / density ptp",
-       y="Hartree-potential relative RMSE") + theme_qoi
+       y="Hartree-potential relative RMSE") + theme_qoi +
+  theme(legend.position="bottom", legend.box="horizontal",
+        legend.margin=margin(t=1, b=0), legend.key.height=unit(8, "pt")) +
+  guides(colour=guide_legend(order=1), shape=guide_legend(order=2))
 
-# C — material-level regularity: distribution rather than bars.
+# C - material-level regularity: distribution rather than bars.
 sm_long <- bind_rows(
   sm %>% transmute(codec, system_type, operator="Hartree", R2=hartree_R2),
   sm %>% transmute(codec, system_type, operator="Bader", R2=bader_R2)
@@ -153,10 +156,10 @@ pC <- ggplot(sm_long, aes(operator, R2, fill=operator, colour=operator)) +
   scale_fill_manual(values=operator_cols, guide="none") +
   scale_colour_manual(values=operator_cols, guide="none") +
   labs(title="C | Operator structure changes error regularity",
-       subtitle="Material-level log-log R2; Hartree median 0.994-0.997, Bader median 0.89-0.95",
+       subtitle="Material-level log-log R2; Hartree median 0.994-0.997,\nBader median 0.89-0.95",
        x=NULL, y="Material-level log-log R2") + theme_qoi
 
-# D — Bader dispersion after conditioning on matched Hartree fidelity.
+# D - Bader dispersion after conditioning on matched Hartree fidelity.
 ratio_col <- intersect(c("bader_p90_over_p10","p90_p10_ratio","P90_over_P10",
                          "bader_p90_p10","ratio_p90_p10"), names(disp))
 if (length(ratio_col)==0) stop("Cannot identify P90/P10 ratio column in matched_error_dispersion.csv")
@@ -174,21 +177,24 @@ pD <- ggplot(d, aes(interaction(codec, system_type, sep="\n"), ratio, fill=codec
   geom_jitter(aes(colour=codec), width=.10, alpha=.34, size=.7, show.legend=FALSE) +
   scale_fill_manual(values=codec_cols, guide="none") +
   scale_colour_manual(values=codec_cols, guide="none") +
-  scale_y_log10(labels=label_number(accuracy=.1, suffix="x")) +
+  scale_y_log10(labels=label_number(accuracy=.1, suffix="x", big.mark=",")) +
   labs(title="D | Similar Hartree fidelity does not imply similar Bader fidelity",
-       subtitle="P90/P10 Bader-error spread in 0.5-decade Hartree-error bins; 55.4% of rows lie in bins >= 10x",
+       subtitle="P90/P10 spread within 0.5-decade Hartree-error bins;\n55.4% of rows lie in bins with at least 10x spread",
        x=NULL, y="Bader error dispersion (P90 / P10)") + theme_qoi
 
-fig <- ((pA | pB) / (pC | pD)) + plot_layout(guides="collect") +
+fig <- ((pA | pB) / (pC | pD)) + plot_layout(guides="keep") +
   plot_annotation(
     title="Figure 2 | QoI hierarchy reveals operator-dependent error propagation",
     subtitle="global linear: electron count  ->  smooth nonlocal: Hartree potential  ->  topology-dependent: Bader charge",
-    caption="Hartree statistics use only reproduction-gate-passing rows. The 73 SZ3 stream-size mismatches are excluded by the frozen gate. Strict monotonicity is weaker for slabs; the slab contrast is supported by R2, local elasticity, and jump magnitude rather than strict monotonicity alone.",
+    caption=paste0(
+      "Hartree statistics use reproduction-gate-passing rows; 73 SZ3 stream-size mismatches remain excluded by the frozen gate.\n",
+      "Slab conclusions rely on R2, local elasticity and jump magnitude rather than universal rung-wise monotonicity."
+    ),
     theme=theme(
       plot.background=element_rect(fill=bg, colour=NA),
       plot.title=element_text(face="bold", size=14, colour=ink, margin=margin(b=4)),
       plot.subtitle=element_text(size=10, colour="#4F545C", margin=margin(b=8)),
-      plot.caption=element_text(size=8.2, colour=muted, hjust=0, margin=margin(t=7))
+      plot.caption=element_text(size=8.0, colour=muted, hjust=0, lineheight=1.05, margin=margin(t=7))
     )
   )
 
@@ -200,4 +206,7 @@ ggsave(png_path, fig, width=11.8, height=8.3, dpi=360, bg=bg)
 ggsave(pdf_path, fig, width=11.8, height=8.3, bg=bg)
 ggsave(svg_path, fig, width=11.8, height=8.3, bg=bg, device=svglite::svglite)
 
-message("Rendered: ", svg_path)
+message("Rendered Figure 2:")
+message("  ", png_path)
+message("  ", pdf_path)
+message("  ", svg_path)
