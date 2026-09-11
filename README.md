@@ -1,3 +1,4 @@
+<!-- QSQ_RESEARCH_AUDIT_INTEGRATED -->
 # QoI — stability-qualified chemical-fidelity benchmark for lossy DFT charge-density compression
 
 Data release for the RhoCodec project (NUS, 2026). Every reported number is generated from a file in this package; nothing here is transcribed by hand.
@@ -22,19 +23,19 @@ This makes the project a benchmark of **QoI certifiability and benchmark validit
 
 ## Headline benchmark-validity result
 
-The central audit uses **254 development materials × 3 codecs = 762 material–codec decisions per Bader threshold**. A conventional binary benchmark reports the following failures before eligibility is considered:
+**Research audit correction:** numerical fidelity to a fixed reference and robustness of that reference are distinct targets. A QSQ rejection does not prove that an observed discrepancy was not caused by compression. The historical full-record Figure 3 remains reproducible but is not a design-independent causal attribution result.
 
-| Bader contract | Naive failures | Reclassified as non-evaluable | Genuine eligible failures | Naive failures reclassified |
-|---|---:|---:|---:|---:|
-| `1e-4 e` | 533 | 518 | 15 | **97.2%** |
-| `1e-3 e` | 310 | 296 | 14 | **95.5%** |
-| `1e-2 e` | 108 | 61 | 47 | 56.5% |
+| Bader tolerance | Historical full record | Common base ladder | Non-evaluable prevalence |
+|---|---:|---:|---:|
+| 1e-4 e | 518/533 = 97.2% | 616/740 = 83.2% | 624/762 = 81.9% |
+| 1e-3 e | 296/310 = 95.5% | 296/524 = 56.5% | 333/762 = 43.7% |
+| 1e-2 e | 61/108 = 56.5% | 61/119 = 51.3% | 75/762 = 9.8% |
 
-Thus, at the two strictest contracts, **more than 95% of apparent codec failures cannot be scientifically attributed to the compressor** because the reference Bader analysis is not independently resolvable at the requested precision.
+The fractions are numerical no-pass outcomes occurring on QSQ-non-evaluable targets. Eligibility-targeted access to the tight ladder changes these fractions substantially. The common observed base-rung sensitivity gives the same pooled counts as base-only analysis. At 1e-3 e, the full record adds 214 numerical passes, all among eligible targets.
 
-This correction is not a permissive exclusion rule. It also invalidates apparent successes: at `1e-4 e`, **106 of 229 naive passes (46.3%) are themselves non-evaluable**. The benchmark therefore changes from an invalid binary label space to a three-state scientific decision.
+The retrospective four-seed/one-seed holdout finds 18/338, 12/947 and 1/1441 exceedances among admitted material-splits. This diagnoses finite-panel fragility, not prospective five-seed reliability. No new probe measurements are asserted.
 
-The formal result is visualized in **Figure 3**, generated from `figures/R/figure3_certification_landscape.R`; the script recomputes all counts from `benchmark/master_benchmark_full.csv` and contains frozen assertions that fail if the headline numbers drift.
+Executed analysis: `analysis/research_upgrade/REPORT.md`; source `scripts/audit_qsq_research.py`. Current research plan: `paper/RESEARCH_UPGRADE_PLAN.md`; target definitions: `paper/ROBUST_FIDELITY_FOUNDATIONS.md`. Frozen Figure 3 data and assertions remain unchanged and must be labelled full-record results.
 
 ## Layout
 
@@ -74,7 +75,7 @@ For reconstruction row `r`:
 
 `certified(r, tau) := eligible(m, tau) AND Bader_error_resolved_e(r) < tau`
 
-If `eligible(m, tau)` is false, the correct benchmark state is **non-evaluable**, not codec failure. This distinction is essential at strict tolerances, where the Bader analysis itself may not be numerically identifiable at the requested precision.
+If `eligible(m, tau)` is false, the frozen QSQ operational state is **non-evaluable**. Fixed-pipeline numerical agreement remains separately measurable; this classification is not a causal attribution test or a worst-case guarantee.
 
 ## Master table columns (`benchmark/master_benchmark_full.csv`)
 
@@ -114,7 +115,7 @@ Rows for a (material, codec, tolerance) that fail inside the Bader solver are ab
 The manuscript now separates five layers of evidence:
 
 1. **Established background:** raw-data/pointwise error alone is not a universal downstream scientific guarantee.
-2. **Central benchmark-validity result:** the downstream tolerance itself must be independently qualified for numerical identifiability before codec scoring. Figure 3 shows that 97.2% and 95.5% of naive failures at `1e-4 e` and `1e-3 e` are non-evaluable rather than genuine eligible codec failures.
+2. **Audited benchmark interpretation:** reference stability and numerical agreement are separate axes. The full-record Figure 3 percentages are sensitive to targeted tight-ladder access; common-base fractions are 83.2% and 56.5%, and must be interpreted with exclusion prevalence. See the research audit rather than quoting >95% as a universal correction.
 3. **Qualification-method validation:** QSQ replaces the archived order-preserving float32 probe with a calibrated five-seed perturbation procedure that can excite the relevant Bader partition sensitivity.
 4. **Bader-specific mechanism:** density-dependent basin migration explains why the local charge response can become irregular and why fixed-basin scoring can substantially understate the re-derived Bader error.
 5. **Fair comparison and confirmation:** realized-distortion matching controls nominal-tolerance confounding, and the untouched 63-system cohort tests the frozen decision logic without retuning.

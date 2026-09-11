@@ -1,4 +1,8 @@
+<!-- QSQ_RESEARCH_AUDIT_INTEGRATED -->
 # Current paper story — 2026-09-11
+
+> **Research interpretation superseded in part (2026-09-11).** The common-ladder and reused-seed audits require a stronger research programme, not just submission assembly. Full-record 97.2%/95.5% are historical ladder-dependent fractions, not causal misattribution estimates. Common-base values are 83.2%/56.5%; numerical agreement remains defined even when the reference fails QSQ. The authoritative next-step plan is `paper/RESEARCH_UPGRADE_PLAN.md`; executed evidence is `analysis/research_upgrade/REPORT.md`. Older quantitative claims below retain their original data scope.
+
 
 ## One-sentence thesis
 
