@@ -31,8 +31,8 @@ theme_si <- theme_minimal(base_size = 10.3) + theme(
   panel.grid.minor = element_blank(),
   panel.grid.major = element_line(colour = grid, linewidth = .3),
   axis.title = element_text(colour = ink), axis.text = element_text(colour = ink),
-  plot.title = element_text(face = "bold", size = 11.1, colour = ink, margin = margin(b = 4)),
-  plot.subtitle = element_text(size = 8.9, colour = muted, margin = margin(b = 6)),
+  plot.title = element_text(face = "bold", size = 10.8, colour = ink, margin = margin(b = 4)),
+  plot.subtitle = element_text(size = 8.8, colour = muted, margin = margin(b = 6)),
   legend.title = element_blank(), legend.text = element_text(size = 8.7),
   strip.text = element_text(face = "bold", colour = ink),
   strip.background = element_rect(fill = "#F8FAFC", colour = NA),
@@ -61,7 +61,7 @@ pA <- ggplot(e, aes(electron_plot, bader_plot)) +
            hjust = 0, vjust = 1, size = 3.0, label.size = .2, fill = alpha("white", .95),
            label = sprintf("|Delta Ne| < 10^-4 e but Bader >= 10^-3 e\n%d / %d = %.2f%%", ndecoupled, ngood, 100 * ndecoupled / ngood)) +
   labs(
-    title = "A | Global electron-number conservation is not a local chemical certificate",
+    title = "A | Global electron conservation does not certify local Bader fidelity",
     subtitle = "All finite development reconstructions; dashed lines mark the negative-control thresholds",
     x = "Absolute electron-count deviation (e)", y = "Re-derived Bader error (e)", fill = "Rows"
   ) + theme_si + theme(legend.position = "right")
@@ -87,8 +87,8 @@ pB <- ggplot(smooth, aes(bader_R2, hartree_R2, colour = codec)) +
   scale_colour_manual(values = codec_cols) +
   coord_equal(xlim = c(0, 1), ylim = c(0, 1), expand = FALSE) +
   labs(
-    title = "B | Hartree response is smoother on the identical reconstruction ladders",
-    subtitle = "Paired material-codec fits; n = 678 pairs",
+    title = "B | Hartree fits are smoother than Bader fits",
+    subtitle = "Paired material-codec ladder fits; n = 678",
     x = expression(Bader~R^2), y = expression(Hartree~R^2)
   ) + theme_si + theme(legend.position = "top")
 
@@ -105,8 +105,8 @@ pC <- ggplot(mono, aes(operator, fraction, colour = codec, group = codec)) +
   scale_colour_manual(values = codec_cols) +
   scale_y_continuous(limits = c(0, 1), labels = label_percent(), breaks = seq(0, 1, .2), expand = c(0, 0)) +
   labs(
-    title = "C | Strict monotonicity shows a bulk/slab nuance",
-    subtitle = "Hartree remains smoother by R2, but slab ladders contain small local Hartree wiggles",
+    title = "C | Strict monotonicity retains a bulk/slab nuance",
+    subtitle = "Hartree remains smoother by R2; slab ladders contain small local Hartree wiggles",
     x = NULL, y = "Strictly monotone material-codec ladders"
   ) + theme_si + theme(legend.position = "top", panel.grid.major.x = element_blank())
 
@@ -129,9 +129,9 @@ pD <- ggplot(disp2, aes(hartree_log10_center, bader_p90_over_p10, colour = codec
   scale_y_log10(labels = label_number()) +
   annotate("label", x = min(disp2$hartree_log10_center), y = max(disp2$bader_p90_over_p10, na.rm = TRUE),
            hjust = 0, vjust = 1, size = 2.9, label.size = .2, fill = alpha("white", .95),
-           label = sprintf("%.1f%% of rows in displayed bins lie in bins with Bader P90/P10 >= 10", 100 * weighted_frac)) +
+           label = sprintf("%.1f%% of rows lie in bins with Bader P90/P10 >= 10", 100 * weighted_frac)) +
   labs(
-    title = "D | Similar Hartree error can coexist with order-of-magnitude Bader dispersion",
+    title = "D | Matched Hartree error leaves large Bader dispersion",
     subtitle = "0.5-decade Hartree-error bins with at least 10 rows",
     x = "log10 relative Hartree RMSE (bin centre)", y = "Bader P90 / P10 within matched-Hartree bin"
   ) + theme_si + theme(legend.position = "top")
@@ -139,12 +139,12 @@ pD <- ggplot(disp2, aes(hartree_log10_center, bader_p90_over_p10, colour = codec
 fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Supplementary Figure S3 | Extended controls separate global, smooth nonlocal and topology-sensitive QoIs",
-    subtitle = "The same frozen reconstruction corpus is interrogated with total electron count, periodic Hartree potential and re-derived Bader charge.",
-    caption = "A, electron-count negative control. B-C, material-level Hartree/Bader smoothness and monotonicity. D, Bader dispersion after matching the Hartree-error scale. These controls motivate operator-aware evaluation but are not the paper's benchmark-validity novelty claim.",
+    subtitle = "The same frozen corpus is interrogated with electron count, periodic Hartree potential and re-derived Bader charge.",
+    caption = "A, electron-count negative control. B-C, material-level Hartree/Bader smoothness. D, Bader dispersion at matched Hartree-error scale. These are operator controls, not the benchmark-validity novelty claim.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
-                  plot.title = element_text(face = "bold", size = 13.8, colour = ink, margin = margin(b = 4)),
-                  plot.subtitle = element_text(size = 9.4, colour = muted, margin = margin(b = 8)),
-                  plot.caption = element_text(size = 8.0, colour = muted, hjust = 0, margin = margin(t = 8)))
+                  plot.title = element_text(face = "bold", size = 13.7, colour = ink, margin = margin(b = 4)),
+                  plot.subtitle = element_text(size = 9.3, colour = muted, margin = margin(b = 8)),
+                  plot.caption = element_text(size = 7.9, colour = muted, hjust = 0, margin = margin(t = 8)))
   )
 
 paths <- c(
@@ -152,9 +152,9 @@ paths <- c(
   pdf = file.path(outdir, "supplementary_figureS3_operator_controls_R.pdf"),
   svg = file.path(outdir, "supplementary_figureS3_operator_controls_R.svg")
 )
-ggsave(paths[["png"]], fig, width = 13.0, height = 9.2, dpi = 360, bg = bg)
-ggsave(paths[["pdf"]], fig, width = 13.0, height = 9.2, bg = bg)
-ggsave(paths[["svg"]], fig, width = 13.0, height = 9.2, device = svglite::svglite, bg = bg)
+ggsave(paths[["png"]], fig, width = 13.8, height = 9.2, dpi = 360, bg = bg)
+ggsave(paths[["pdf"]], fig, width = 13.8, height = 9.2, bg = bg)
+ggsave(paths[["svg"]], fig, width = 13.8, height = 9.2, device = svglite::svglite, bg = bg)
 stopifnot(all(file.exists(paths)), all(file.info(paths)$size > 0))
 message("Rendered Supplementary Figure S3: PNG + PDF + SVG")
 message(sprintf("Electron/Bader decoupling: %d/%d = %.4f; matched-Hartree-bin weighted fraction = %.4f", ndecoupled, ngood, ndecoupled / ngood, weighted_frac))
