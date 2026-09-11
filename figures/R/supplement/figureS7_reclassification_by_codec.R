@@ -35,6 +35,7 @@ fail_long <- d %>%
     naive_fail_reclassified_non_evaluable = "Reclassified non-evaluable"))
 
 pass <- d %>% mutate(invalid_pass_fraction = non_evaluable_naive_pass / naive_pass)
+pass_strict <- pass %>% filter(threshold_e == 1e-4)
 
 bg <- "#FFFFFF"; ink <- "#202124"; grid <- "#E5E7EB"; muted <- "#5F6368"
 col_red <- "#D94B41"; col_orange <- "#E9B13A"
@@ -68,12 +69,13 @@ pA <- ggplot(fail_long, aes(tau, count, fill = state)) +
 pB <- ggplot(pass, aes(tau, invalid_pass_fraction, colour = codec, group = codec)) +
   geom_hline(yintercept = 0, colour = "#AEB4BB", linewidth = .4) +
   geom_line(linewidth = .9) + geom_point(size = 2.8) +
-  geom_text(aes(label = paste0(non_evaluable_naive_pass, "/", naive_pass)), vjust = -1.05, size = 2.9, show.legend = FALSE) +
+  geom_text(data = pass_strict, aes(label = paste0(non_evaluable_naive_pass, "/", naive_pass)),
+            vjust = -1.05, size = 2.9, show.legend = FALSE) +
   scale_colour_manual(values = codec_cols) +
   scale_y_continuous(limits = c(0, .70), breaks = seq(0, .6, .1), labels = label_percent(), expand = c(0, 0)) +
   labs(
     title = "B | Qualification also invalidates apparent successes",
-    subtitle = "Non-evaluable naive passes / all naive passes",
+    subtitle = "Strict-contract counts are labelled; complete counts are in Supplementary Table S4",
     x = "Bader tolerance", y = "Non-evaluable fraction of naive passes"
   ) + theme_si + theme(legend.position = "top")
 
