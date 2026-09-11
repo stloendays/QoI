@@ -40,7 +40,7 @@ jobs:
           grep -q '50.83-fold' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
           grep -q '14,986/14,986' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
           grep -q 'Figure 3 combines these two controls' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
-          grep -q 'Primary result: equal-search separation plus prospective risk stratification' paper/FIGURE3_CAPTION_FINAL_20260911.md
+          grep -q 'The primary Figure 3 claim is prospective risk stratification after a separate equal-search control.' paper/FIGURE3_CAPTION_FINAL_20260911.md
           grep -q 'P1 equal-search control' paper/FIGURE_MAP.md
           ! grep -q 'more than 95% of apparent binary failures cannot be scientifically attributed to the compressor' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
       - name: Commit refreshed audit record if needed
