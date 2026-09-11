@@ -1,4 +1,4 @@
-# Supplementary Figure S1 — stability-floor landscape and eligibility
+# Supplementary Figure S1 — QSQ stability-floor landscape and eligibility
 suppressPackageStartupMessages({
   library(ggplot2)
   library(dplyr)
@@ -64,29 +64,29 @@ pA <- ggplot(paired, aes(floor_resolved_e, stability_floor_A1_e, colour = corpus
   scale_x_log10(labels = label_scientific(digits = 1)) +
   scale_y_log10(labels = label_scientific(digits = 1)) +
   labs(
-    title = "A | A.1 exposes much larger Bader instability",
-    subtitle = sprintf("Paired archived float32 vs five-seed A.1 floors; n = %d", nrow(paired)),
-    x = "Archived Protocol A floor (e)", y = "Protocol A.1 floor (e)"
+    title = "A | QSQ exposes substantially larger Bader instability",
+    subtitle = sprintf("Paired archived float32-probe vs five-seed QSQ floors; n = %d", nrow(paired)),
+    x = "Archived float32-probe floor (e)", y = "QSQ stability floor (e)"
   ) + theme_si + theme(legend.position = "top")
 
 overall <- elig %>%
   filter(stratum == "overall") %>%
   transmute(
     threshold_e,
-    A1 = frac_non_evaluable_a1,
+    QSQ = frac_non_evaluable_a1,
     Archived = frac_non_evaluable_a_archived,
     tau = factor(threshold_e, levels = c(1e-4, 1e-3, 1e-2), labels = c("10^-4 e", "10^-3 e", "10^-2 e"))
   )
 
 pB <- ggplot(overall) +
-  geom_segment(aes(x = Archived, xend = A1, y = tau, yend = tau), colour = "#C7CBD1", linewidth = 1.2) +
-  geom_point(aes(x = Archived, y = tau, colour = "Archived A"), size = 3.2) +
-  geom_point(aes(x = A1, y = tau, colour = "Protocol A.1"), size = 3.2) +
-  geom_text(aes(x = A1, y = tau, label = percent(A1, accuracy = .1)), hjust = -0.28, size = 3.05, colour = ink) +
-  scale_colour_manual(values = c("Archived A" = "#9AA0A6", "Protocol A.1" = "#E9B13A")) +
+  geom_segment(aes(x = Archived, xend = QSQ, y = tau, yend = tau), colour = "#C7CBD1", linewidth = 1.2) +
+  geom_point(aes(x = Archived, y = tau, colour = "Archived probe"), size = 3.2) +
+  geom_point(aes(x = QSQ, y = tau, colour = "QSQ"), size = 3.2) +
+  geom_text(aes(x = QSQ, y = tau, label = percent(QSQ, accuracy = .1)), hjust = -0.28, size = 3.05, colour = ink) +
+  scale_colour_manual(values = c("Archived probe" = "#9AA0A6", "QSQ" = "#E9B13A")) +
   scale_x_continuous(limits = c(0, .91), breaks = seq(0, .8, .2), labels = label_percent(), expand = c(0, 0)) +
   labs(
-    title = "B | Qualification changes the non-evaluable rate",
+    title = "B | Stability qualification changes the non-evaluable rate",
     subtitle = "Overall 319-system stability universe",
     x = "Non-evaluable fraction", y = NULL
   ) + theme_si + theme(legend.position = "top", panel.grid.major.y = element_blank())
@@ -106,16 +106,16 @@ pC <- ggplot(heat, aes(tau, stratum_label, fill = frac_non_evaluable_a1)) +
   scale_fill_gradient(low = "#F4F8F7", high = "#2A9D8F", limits = c(0, 1), labels = label_percent()) +
   labs(
     title = "C | Numerical eligibility is material- and tolerance-dependent",
-    subtitle = "Protocol A.1; the structural-class contrast is not universal",
+    subtitle = "QSQ; the structural-class contrast is not universal",
     x = "Bader tolerance", y = NULL, fill = "Non-evaluable"
   ) + theme_si + theme(panel.grid = element_blank(), legend.position = "right")
 
 fig <- ((pA | pB) / pC) +
   plot_layout(heights = c(1.05, .95)) +
   plot_annotation(
-    title = "Supplementary Figure S1 | Protocol A.1 redefines the measurable Bader-fidelity landscape",
-    subtitle = "The archived order-preserving float32 probe is provenance only; all current eligibility and certification use Protocol A.1.",
-    caption = "A, paired archived and A.1 floors. B, overall non-evaluable fractions. C, Protocol A.1 rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.",
+    title = "Supplementary Figure S1 | QSQ defines the measurable Bader-fidelity landscape",
+    subtitle = "The archived order-preserving float32 probe is provenance only; all current eligibility and certification use QSQ.",
+    caption = "A, paired archived and QSQ floors. B, overall non-evaluable fractions. C, QSQ rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.",
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
       plot.title = element_text(face = "bold", size = 14.0, colour = ink, margin = margin(b = 4)),
