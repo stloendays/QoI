@@ -1,81 +1,103 @@
 # QSQ research upgrade — current status
 
-Last synchronized: **2026-09-11 22:27 Asia/Singapore**.
+Last synchronized: **2026-09-11 Asia/Singapore**.
 
-This file is the concise status record for the active research-strengthening phase. Historical benchmark/protocol outputs remain frozen; all prospective work is additive.
+This file is the concise authoritative status record for the active research-strengthening phase. Historical benchmark/protocol outputs remain frozen; all validation work below was additive and retained with provenance.
 
 ## Overall
 
-- **P0 — claim correction / target definition: COMPLETE.** The active manuscript distinguishes fixed-pipeline numerical fidelity from reference robustness and no longer treats the historical >95% full-record number as a design-independent causal misattribution rate.
-- **P1 — equal search opportunity: COMPLETE.** 1,332/1,332 additive common-tight-ladder reconstructions were accounted successfully; no final failures remain.
+- **P0 — claim correction / target definition: COMPLETE.** The active paper distinguishes fixed-pipeline numerical fidelity from robustness of the downstream reference analysis.
+- **P1 — equal search opportunity: COMPLETE.** 1,332/1,332 additive common-tight-ladder reconstructions succeeded; final failures = 0.
 - **P2 — prospective fresh-perturbation validation: COMPLETE.** 14,986/14,986 pre-registered fresh perturbation trials succeeded with the original five-seed QSQ gate unchanged.
-- **P3A — implementation transfer: COMPLETE.** The original first run is retained with its recorded pre-solver failures; a failure taxonomy was frozen before an engineering-only retry. The 20 blocked materials were then rerun with unchanged scientific definitions. Retry accounting is 360/360 success, giving complete five-seed summaries for all 24 materials and all three solvers.
-- **P3B — true grid convergence: NOT EXECUTED.** Requires genuinely recomputed electronic-density grids or recoverable original electronic-structure inputs; interpolation is not accepted as convergence evidence.
-- **P4 — chemistry decision utility: protocol frozen; outcome not executed.** Case selection/evaluation rules were frozen before viewing P3A outcomes.
-- **P5 — second-task transfer: not started.**
+- **P3A — independent implementation transfer: COMPLETE.** The resolved 24-system panel is complete across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. Henkelman on-grid reproduces QSQ classification for 24/24 systems at all three thresholds; near-grid exposes an analysis-definition boundary.
+- **P3B — new-DFT grid convergence: DEFERRED_NO_NEW_DFT.** This is an explicit submission-scope decision, not a positive convergence result. The paper must not treat QSQ floors as grid-independent material constants.
+- **P4 — real chemical-decision case study: COMPLETE_RESOLVED.** Five outcome-blind paired chemistry cases were frozen before outcome inspection; all five passed the two-implementation source-reference gate. Final compressed analysis contains 216/216 successful solver cells and 60/60 valid qualitative charge-transfer-direction decisions.
+- **P5 — second sensitive task: OPTIONAL / NOT STARTED.** It should be added only if it materially strengthens transfer without diluting the electronic-density story.
 
-## P1 result: common tight ladder
+## P1 result — common tight ladder
 
 At the primary `1e-3 e` Bader tolerance, after equalizing tight-ladder search opportunity across all 254 development materials, failure to find a numerical pass occurs in **3.3% of eligible** versus **66.4% of QSQ screen-rejected** material–codec pairs, a **20.34x risk ratio**. Secondary results are 10.9% vs 79.3% at `1e-4 e` and 0.0% vs 68.0% at `1e-2 e`.
 
-Source: `analysis/research_upgrade/P1_COMMON_TIGHT_REPORT.md`.
+This removes unequal tight-search opportunity as an explanation for the observed separation. It is an association between qualification state and benchmark no-pass risk, not a causal codec-failure fraction.
 
-## P2 result: prospective fresh perturbations
+## P2 result — prospective fresh perturbations
 
-The original five-seed QSQ gate was frozen. Each of the 254 development materials then received 59 pre-registered fresh iid-uniform perturbations at its original float32-amplitude scale: **14,986/14,986 valid outcomes; unresolved = 0**.
+The original five-seed QSQ gate was frozen before each of the 254 development materials received 59 pre-registered fresh iid-uniform perturbations at its original float32-amplitude scale: **14,986/14,986 valid outcomes; unresolved = 0**.
 
 Primary endpoint (`1e-3 e`):
 
-- QSQ eligible: **143/254 materials (56.3% coverage)**; 135/8,437 fresh trials exceeded threshold = **1.600%**, 95% material-cluster CI **0.782–2.596%**.
-- QSQ screen-rejected: **111/254 materials**; 5,326/6,549 fresh trials exceeded threshold = **81.325%**, 95% material-cluster CI **75.981–86.257%**.
+- QSQ eligible: **143/254 materials (56.3% coverage)**; fresh exceedance risk **1.600%** (135/8,437; 95% material-cluster CI 0.782–2.596%).
+- QSQ screen-rejected: **111/254 materials**; fresh exceedance risk **81.325%** (5,326/6,549; CI 75.981–86.257%).
 - Rejected/eligible risk ratio: **50.83x**.
-- Materials with >=1 exceedance: **20/143** eligible vs **110/111** rejected.
+- Materials with at least one fresh exceedance: **20/143** eligible vs **110/111** rejected.
 
-Secondary endpoints preserve the same direction: `1e-4 e`, 4.016% vs 86.938% (21.65x); `1e-2 e`, 0.148% vs 79.593% (537.69x).
+Secondary endpoints preserve the direction: `1e-4 e`, 4.016% vs 86.938% (21.65x); `1e-2 e`, 0.148% vs 79.593% (537.69x).
 
-Interpretation boundary: this prospectively validates **risk stratification under the declared iid-uniform perturbation model** on the development materials. It is not a worst-case stability guarantee, not simultaneous per-material certification, and not new-material generalization.
+Interpretation boundary: P2 prospectively validates **risk stratification under the declared iid-uniform perturbation model on the development materials**. It is not a worst-case guarantee, simultaneous per-material certification, or new-material generalization.
 
-Source: `analysis/research_upgrade/P2_FRESH_PROBE_REPORT.md` and `validation/qsq_prospective/p2_fresh_probes/execution_manifest.json`.
+## Figure 3 and active story
 
-## Manuscript and Figure 3
+P1/P2 are the central validation evidence in `paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`. Figure 3 is built around **equal-search validation + prospective fresh-risk stratification**, not the historical 97.2% / 95.5% full-record headline. Formal R PNG/PDF/SVG rendering passed in run **34605839019** and was committed in **f0693a35475f9b2a12af5ce9b1f12a4ef4c8429a**.
 
-P1/P2 evidence has been integrated into `paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`. The new central result is no longer the historical 97.2% / 95.5% reclassification headline; it is the combination of **equal-search risk separation (P1)** and **prospective fresh-perturbation discrimination (P2)**.
+## P3A result — implementation transfer
 
-Figure 3 has been redesigned around these two prospective tests and rendered from the formal R source. GitHub Actions run **34605839019** completed successfully, and formal PNG/PDF/SVG outputs were committed in **f0693a35475f9b2a12af5ce9b1f12a4ef4c8429a**.
+The original run **34605557997** is retained with its 360 pre-solver recorded failures. Before retry, all 360 failures were classified as the same archived-amplitude serialization/provenance-gate family. The engineering-only retry **34608648393** changed no scientific panel, seed, perturbation amplitude, solver definition, threshold, QSQ gate, P1 or P2; it completed **360/360** retry cells successfully.
 
-## P3A result: implementation transfer
+Resolved 24-system results:
 
-The first P3A run, GitHub Actions **34605557997**, is retained unchanged. It accounted 432/432 conceptual solver cells but blocked 20/24 materials before solver execution because an archive-amplitude provenance comparison used binary-ULP precision against decimal-serialized historical CSV values. Before any retry, all 360 recorded failures were classified and frozen in `analysis/research_upgrade/P3A_FAILURE_TAXONOMY.md`; all 360 shared this single pre-solver error family, with no recorded Bader-solver, atom-mapping, vacuum, grid-shape, or source-download failure.
+- **72/72** material–solver five-seed summaries complete.
+- Recreated BaderKit floors differ from frozen BaderKit floors by at most **8.71338e-11 e**.
+- **Henkelman on-grid:** 24/24 classification agreement at `1e-4`, `1e-3` and `1e-2 e`; agreement 100%, Cohen kappa 1.000 at all three; floor-rank Spearman **rho = 0.995**.
+- **Henkelman near-grid:** agreement 82.6%, 83.3% and 95.8% at the three thresholds; floor-rank Spearman **rho = 0.754**.
 
-A predeclared engineering-only retry, GitHub Actions **34608648393**, changed only the archive-compatibility comparison and reliable shell exit-code capture. It did **not** change the 24-system panel, historical five perturbation seeds/amplitudes, solver definitions, density source identity, atom mapping, thresholds, original QSQ gate, P1, or P2. The retry completed **360/360 cells successfully with 0 recorded failures**. The resolved 24-system analysis contains **72/72 complete material–solver five-seed summaries**.
+Interpretation: QSQ stratification is not an artifact of the original BaderKit package when the same on-grid assignment class is used. Near-grid disagreement shows that the downstream numerical definition remains part of the measurement contract. P3A is implementation-transfer evidence, not density-grid convergence or a unique physical Bader reference.
 
-Resolved implementation-transfer results:
+## P3B scope decision
 
-- Recreated BaderKit five-seed floors agree with the frozen BaderKit values to a maximum absolute difference of **8.71338e-11 e**.
-- **Henkelman on-grid** reproduces the frozen QSQ eligibility classification for **24/24 materials at all three thresholds** (`1e-4`, `1e-3`, `1e-2 e`): **100% agreement, Cohen kappa = 1.000**, with no eligible→rejected or rejected→eligible switches.
-- The on-grid floor ordering also transfers strongly: Spearman **rho = 0.995** across 24 materials.
-- **Henkelman near-grid** is not equivalent: agreement is **82.6%** at `1e-4 e` (23 comparable, 1 threshold-ambiguous), **83.3%** at `1e-3 e`, and **95.8%** at `1e-2 e`; floor-rank Spearman **rho = 0.754**. The direction of threshold switches is reported explicitly in the resolved table.
+P3B new electronic-structure grid recomputation is **deferred for the current submission**. Existing provenance-audit assets are retained for future or reviewer-requested targeted work.
 
-Interpretation: the QSQ low-risk/high-risk classification is robust to an independent **on-grid implementation** on this deterministically stratified 24-system panel, while changing the basin-assignment numerical algorithm to the near-grid variant produces a measurable implementation-sensitive boundary. This is a mechanism/implementation-transfer result, not a population-prevalence estimate. P3A does **not** establish electronic-structure grid convergence or a unique physical Bader reference.
+Consequently, the manuscript may call the QSQ floor an **operational stability measure under the declared density representation and downstream-analysis contract**. It must not claim that the floor is grid independent, that Bader instability is independent of the electronic-structure grid, or that interpolation/resampling constitutes DFT convergence.
 
-Sources: `analysis/research_upgrade/P3A_FAILURE_TAXONOMY.md`, `validation/qsq_prospective/p3a_implementation_transfer_resolved/P3A_IMPLEMENTATION_TRANSFER_RESOLVED_REPORT.md`, and the resolved execution manifest. Resolved aggregate commit: **428272ce397255b34839bfb11d8deb46777067f9**.
+Source: `validation/qsq_prospective/P3B_SCOPE_DECISION.md`.
+
+## P4 result — outcome-blind chemical decision case study
+
+P4 was frozen before inspecting chemistry outcomes. A chemistry/provenance/geometry-only audit of 68 NOMAD development slab states yielded **5 primary paired cases** across GaN electrochemical surfaces and RuO2 CO2RR chemistry. Pair selection and target atoms did not use QSQ, codec, P2/P3A or Bader outcomes.
+
+All **5/5** pairs passed the predeclared uncompressed reference gate based on BaderKit on-grid and Henkelman on-grid: same non-zero direction, minimum `|Delta q| >= 0.02 e`, inter-solver disagreement `<= 0.01 e`. The nine unique source states required **18/18 successful source solver calls** and produced zero reference-ambiguous pairs.
+
+The compressed stage used the frozen common-tight ladder `{1e-7, 3e-7, 1e-6, 3e-6}` with ZFP, SZ3 and SPERR. The immutable first run **34617416199** produced 72 successful cells and 144 path-engineering failures. Before any retry, **144/144** failures were classified with zero unclassified: 72 SPERR work-directory creation failures and 72 Henkelman work-directory creation failures. The retry altered only directory creation and executed exactly the failed keys. Final resolved run **34618290375** yielded:
+
+- **216/216 successful compressed solver cells; final failures = 0**.
+- **60/60** direct BaderKit qualitative charge-transfer-direction decisions preserved the frozen reference direction; adverse/zero-direction decisions = **0**.
+- Therefore **no qualification**, realized-Linf coverage matching, archived float32 screening and QSQ all have **0% direction-error rate** on their retained trials.
+- Frozen QSQ retains **36/60 trials (60%)**, representing **3/5 chemistry pairs**, while no qualification retains 60/60. Thus QSQ is conservative relative to this deliberately coarse sign endpoint and **does not improve correctness here because the unqualified baseline is already perfect**.
+- Under the predeclared optional second-solver audit workflow, QSQ-targeted escalation resolves all 60 decisions with **48 Henkelman reconstructed-state calls** and **397.2 s** measured Henkelman wall time, versus **108 calls** and **733.3 s** for escalating all. This is audit-cost reduction relative to blanket second-solver checking, not a correctness gain over direct BaderKit on this cohort.
+
+Interpretation: P4 is a useful **null utility / contract-boundary result**, not a new headline. Strict `1e-3 e` Bader fidelity and preservation of a coarse chemical direction are distinct measurement contracts. P4 should be used in Discussion/Supplementary Information to make that distinction explicit, not to claim universal chemical-decision benefit.
+
+Sources: `validation/qsq_prospective/p4_candidate_audit/`, `validation/qsq_prospective/p4_reference_adjudication/`, `analysis/research_upgrade/p4_failure_taxonomy/`, and `validation/qsq_prospective/p4_chemical_decisions_resolved/`.
 
 ## Immediate next actions
 
-1. Integrate the resolved P3A result into the active manuscript and supporting mechanism material without turning implementation transfer into a grid-convergence claim.
-2. Audit recoverability of original electronic-structure inputs for the frozen 24-system panel. P3B may proceed only on systems for which genuinely recomputed density grids can be produced under a documented calculation protocol.
-3. Freeze a P3B grid-convergence work order before inspecting new grid-convergence outcomes. Report non-recoverable systems rather than silently replacing them.
-4. After P3B is scientifically resolved, execute the already outcome-blind P4 chemistry-decision utility protocol.
-5. P5 remains optional and should be undertaken only if a second topology-sensitive task can be specified without weakening the central electronic-density story.
+1. Integrate the **resolved P3A** result into the manuscript/SI as implementation-transfer evidence, maintaining the grid-convergence boundary.
+2. Integrate **P4 as a negative/control-boundary case study** in Discussion/SI: no sign errors at common-tight settings, QSQ conservative for this coarse endpoint, optional audit-call reduction only.
+3. Re-run the claim/evidence matrix and manuscript–Figure–SI numeric cross-reference audit after these additions.
+4. Decide whether P5 is scientifically worth the scope expansion. Do not add a second task merely to obtain a positive result after P4's frozen null endpoint.
+5. If no compelling P5 can be specified outcome-blind with low scope cost, freeze the research scope and move to submission assembly.
 
 ## Key provenance
 
 - P1 final report: `analysis/research_upgrade/P1_COMMON_TIGHT_REPORT.md`
 - P2 final report: `analysis/research_upgrade/P2_FRESH_PROBE_REPORT.md`
-- P2 execution manifest: `validation/qsq_prospective/p2_fresh_probes/execution_manifest.json`
-- P3 protocol: `validation/qsq_prospective/P3_NUMERICAL_VALIDATION_PROTOCOL.md`
-- P3A first-run report: `validation/qsq_prospective/p3a_implementation_transfer/P3A_IMPLEMENTATION_TRANSFER_REPORT.md`
-- P3A failure taxonomy: `analysis/research_upgrade/P3A_FAILURE_TAXONOMY.md`
+- P2 manifest: `validation/qsq_prospective/p2_fresh_probes/execution_manifest.json`
 - P3A resolved report: `validation/qsq_prospective/p3a_implementation_transfer_resolved/P3A_IMPLEMENTATION_TRANSFER_RESOLVED_REPORT.md`
+- P3B scope decision: `validation/qsq_prospective/P3B_SCOPE_DECISION.md`
+- P4 primary protocol: `validation/qsq_prospective/P4_CHEMICAL_DECISION_PROTOCOL.md`
+- P4 frozen reference/policy addendum: `validation/qsq_prospective/P4_REFERENCE_POLICY_ADDENDUM.md`
+- P4 candidate audit: `validation/qsq_prospective/p4_candidate_audit/P4_CANDIDATE_AUDIT_REPORT.md`
+- P4 reference report: `validation/qsq_prospective/p4_reference_adjudication/P4_REFERENCE_ADJUDICATION_REPORT.md`
+- P4 failure taxonomy: `analysis/research_upgrade/p4_failure_taxonomy/P4_FAILURE_TAXONOMY.md`
+- P4 resolved report: `validation/qsq_prospective/p4_chemical_decisions_resolved/P4_CHEMICAL_DECISION_REPORT.md`
 - Current manuscript: `paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`
 - Figure 3 R source: `figures/R/figure3_certification_landscape.R`
