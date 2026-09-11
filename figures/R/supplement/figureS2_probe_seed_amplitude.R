@@ -21,7 +21,7 @@ stopifnot(all(c("floor_noise_resolved_e", "seed", "material_id", "corpus") %in% 
 stopifnot(all(c("floor_x0.1", "floor_x1", "floor_x10", "log10_floor_x10_over_x0.1") %in% names(amp)))
 
 bg <- "#FFFFFF"; ink <- "#202124"; grid <- "#E5E7EB"; muted <- "#5F6368"
-col_arch <- "#9AA0A6"; col_noise <- "#4A5F7E"; col_orange <- "#E9B13A"; col_red <- "#D94B41"
+col_arch <- "#9AA0A6"; col_noise <- "#4A5F7E"; col_orange <- "#E9B13A"; col_vac <- "#8C6BB1"; col_red <- "#D94B41"
 theme_si <- theme_minimal(base_size = 10.4) + theme(
   plot.background = element_rect(fill = bg, colour = NA),
   panel.background = element_rect(fill = bg, colour = NA),
@@ -54,7 +54,7 @@ pA <- ggplot(cal_pair, aes(probe, log10(1 + n_exact_neighbour_ties_created), fil
   geom_boxplot(width = .55, outlier.shape = NA, alpha = .75) +
   geom_jitter(width = .10, size = 1.45, alpha = .60, colour = ink) +
   scale_fill_manual(values = c("Archived float32" = col_arch, "A.1 noise" = col_noise), guide = "none") +
-  scale_y_continuous(labels = function(x) label_number(accuracy = 1)(10^x - 1)) +
+  scale_y_continuous(breaks = 0:4, labels = c("0", "9", "99", "999", "9,999")) +
   annotate("text", x = 1, y = max(log10(1 + cal_pair$n_exact_neighbour_ties_created)) * .95,
            label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "Archived float32"]),
            size = 3.0, colour = ink) +
@@ -68,7 +68,7 @@ pB <- ggplot(cal_pair, aes(probe, log10(1 + n_voxels_reassigned), fill = probe))
   geom_boxplot(width = .55, outlier.shape = NA, alpha = .75) +
   geom_jitter(width = .10, size = 1.45, alpha = .60, colour = ink) +
   scale_fill_manual(values = c("Archived float32" = col_arch, "A.1 noise" = col_noise), guide = "none") +
-  scale_y_continuous(labels = function(x) label_number(accuracy = 1)(10^x - 1)) +
+  scale_y_continuous(breaks = 0:5, labels = c("0", "9", "99", "999", "9,999", "99,999")) +
   annotate("label", x = 1, y = max(log10(1 + cal_pair$n_voxels_reassigned)) * .90,
            label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "Archived float32"], cal_stats$n[cal_stats$probe == "Archived float32"]),
            size = 2.9, label.size = .18, fill = alpha("white", .94)) +
@@ -114,6 +114,7 @@ amp_long <- amp %>%
   left_join(domain_map, by = "material_id") %>%
   pivot_longer(cols = all_of(c("floor_x0.1", "floor_x1", "floor_x10")), names_to = "amp_name", values_to = "floor_e") %>%
   mutate(amplitude = case_when(amp_name == "floor_x0.1" ~ 0.1, amp_name == "floor_x1" ~ 1, TRUE ~ 10))
+stopifnot(all(!is.na(amp_long$domain)))
 shift <- amp$log10_floor_x10_over_x0.1
 med_shift <- median(shift, na.rm = TRUE); p10_shift <- quantile(shift, .10, na.rm = TRUE); p90_shift <- quantile(shift, .90, na.rm = TRUE)
 
@@ -121,7 +122,10 @@ pD <- ggplot(amp_long, aes(amplitude, floor_e, group = material_id, colour = dom
   geom_line(alpha = .48, linewidth = .65) + geom_point(size = 1.45, alpha = .72) +
   scale_x_log10(breaks = c(.1, 1, 10), labels = c("x0.1", "x1", "x10")) +
   scale_y_log10(labels = label_scientific(digits = 1)) +
-  scale_colour_manual(values = c(bulk = col_noise, slab = col_orange), labels = c(bulk = "Bulk", slab = "Slab")) +
+  scale_colour_manual(
+    values = c(bulk = col_noise, slab = col_orange, vacuum2d = col_vac),
+    labels = c(bulk = "Bulk", slab = "Slab", vacuum2d = "External vacuum-2D")
+  ) +
   annotate("label", x = .12, y = max(amp_long$floor_e, na.rm = TRUE), hjust = 0, vjust = 1,
            label = sprintf("x0.1 -> x10 floor shift\nmedian %.2f decades\nP10 %.2f, P90 %.2f", med_shift, p10_shift, p90_shift),
            size = 2.9, label.size = .2, fill = alpha("white", .95), colour = ink) +
