@@ -1,8 +1,8 @@
 {
-  "status": "COMPLETE_WITH_RECORDED_FAILURES",
+  "status": "COMPLETE",
   "work_order_rows": 1332,
-  "successful_rows": 1308,
-  "failed_rows": 24,
+  "successful_rows": 1332,
+  "failed_rows": 0,
   "accounted_rows": 1332,
   "successful_by_codec": {
     "SPERR": 436,
@@ -14,8 +14,21 @@
   },
   "shards_found": 8,
   "work_order_sha256": "d19c4a91629cf5a43b01909075da5387c154b529606d5ab022f013c25849a240",
-  "rows_sha256": "60e64f5815ea8355d1520ccddaad183d29ee151f5970782a5c2dda0e8055181d",
-  "failures_sha256": "d9ea9109685fa87277869426ef21ac752b170f703c7928cf158dd650d9d116fc",
+  "rows_sha256": "d734938099dd05a06e0f0b70df122071b1f95eeeb654a864281f48fd18f550a9",
+  "failures_sha256": "cbffa4bcf30755056cfb12c8c2671de3e8da6293e8aec1ea2fc37c4523f83fe3",
   "historical_master_unchanged": true,
-  "audit_summary_sha256": "f4765e87bbaf1cfd5b3a217e9e9d3517a2f39d8cce570a352b65e9e2d9ad33f6"
+  "audit_summary_sha256": "d519d0aa7f65b23badd24cefb79856b2b536619628e80888a79c708825894937",
+  "source_timeout_retry": {
+    "initial_successful_rows": 1308,
+    "initial_failures": 24,
+    "initial_failure_stages": [
+      "source_or_reference"
+    ],
+    "retry_successful_rows": 24,
+    "retry_failures": 0,
+    "final_successful_rows": 1332,
+    "final_failures": 0,
+    "initial_failure_sha256": "d9ea9109685fa87277869426ef21ac752b170f703c7928cf158dd650d9d116fc",
+    "retry_did_not_change_scientific_parameters": true
+  }
 }

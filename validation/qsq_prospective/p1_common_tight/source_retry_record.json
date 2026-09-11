@@ -1,0 +1,13 @@
+{
+  "initial_successful_rows": 1308,
+  "initial_failures": 24,
+  "initial_failure_stages": [
+    "source_or_reference"
+  ],
+  "retry_successful_rows": 24,
+  "retry_failures": 0,
+  "final_successful_rows": 1332,
+  "final_failures": 0,
+  "initial_failure_sha256": "d9ea9109685fa87277869426ef21ac752b170f703c7928cf158dd650d9d116fc",
+  "retry_did_not_change_scientific_parameters": true
+}
