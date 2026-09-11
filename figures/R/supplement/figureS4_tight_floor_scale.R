@@ -1,4 +1,4 @@
-# Supplementary Figure S4 — strict certified regime relative to the Protocol A.1 floor
+# Supplementary Figure S4 — strict certified regime relative to the QSQ stability floor
 suppressPackageStartupMessages({
   library(ggplot2)
   library(dplyr)
@@ -98,7 +98,7 @@ pA <- ggplot(plot_sum, aes(tau_label, median, colour = codec, group = codec)) +
   labs(
     title = "A | Certified Bader error is floor-scale only at the strictest contract",
     subtitle = "Median with P10-P90; one highest-rate certified point per material-codec pair",
-    x = "Bader certification threshold", y = "Re-derived Bader error / Protocol A.1 floor"
+    x = "Bader certification threshold", y = "Re-derived Bader error / QSQ floor"
   ) + theme_si + theme(legend.position = "top")
 
 # Panel B: raw strict-contract relationship.
@@ -118,7 +118,7 @@ pB <- ggplot(strict, aes(floor_plot, error_plot, colour = codec)) +
   labs(
     title = "B | Error versus floor",
     subtitle = "10^-4 e; n = 123 certified decisions",
-    x = "Protocol A.1 stability floor (e)", y = "Best-certified re-derived Bader error (e)"
+    x = "QSQ stability floor (e)", y = "Best-certified re-derived Bader error (e)"
   ) + theme_si + theme(legend.position = "top")
 
 # Panel C: full tight-ladder diagnostic, deliberately not a plateau estimator.
@@ -147,15 +147,15 @@ pC <- ggplot(tight_summary, aes(nominal_tolerance_relative, median, colour = cod
   labs(
     title = "C | Tight-ladder response remains heterogeneous relative to the floor",
     subtitle = "Median and IQR across the frozen tight-ladder materials; descriptive, not a plateau fit",
-    x = "Nominal relative codec tolerance", y = "Re-derived Bader error / Protocol A.1 floor"
+    x = "Nominal relative codec tolerance", y = "Re-derived Bader error / QSQ floor"
   ) + theme_si + theme(legend.position = "top")
 
 fig <- ((pA | pB) / pC) +
   plot_layout(heights = c(1.05, .85)) +
   plot_annotation(
     title = "Supplementary Figure S4 | The strictest certified Bader regime is floor-scale, not a universal plateau",
-    subtitle = "Independent Protocol A.1 stability floors provide the numerical reference scale; certified compression error increasingly exceeds that scale at looser contracts.",
-    caption = "A, frozen error/floor summaries for certified points. B, strict-contract material-level relationship. C, full tight-ladder diagnostic. These data are consistent with an emerging analysis-limited regime at 10^-4 e but do not establish a universal material-level identity between a compression plateau and the A.1 floor.",
+    subtitle = "Independent QSQ stability floors provide the numerical reference scale; certified compression error increasingly exceeds that scale at looser contracts.",
+    caption = "A, frozen error/floor summaries for certified points. B, strict-contract material-level relationship. C, full tight-ladder diagnostic. These data are consistent with an emerging analysis-limited regime at 10^-4 e but do not establish a universal material-level identity between a compression plateau and the QSQ floor.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
                   plot.title = element_text(face = "bold", size = 13.8, colour = ink, margin = margin(b = 4)),
                   plot.subtitle = element_text(size = 9.4, colour = muted, margin = margin(b = 8)),
