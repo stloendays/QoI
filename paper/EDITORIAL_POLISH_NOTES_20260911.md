@@ -13,9 +13,23 @@ The polished version follows a Nature/ACS-style narrative rather than a chronolo
 3. **Make Figure 3 the narrative pivot.** The central quantitative result is now reached quickly: 97.2% and 95.5% of naive failures at the two strictest Bader contracts are non-evaluable, and 46.3% of naive passes at `1e-4 e` are also non-evaluable.
 4. **Use declarative Results headings.** Each section states the scientific conclusion rather than naming the analysis procedure.
 5. **Separate result from interpretation.** Results report what the data show; Discussion explains why the result matters, how it relates to prior QoI-aware compression, and where the generalization stops.
-6. **Reduce repetitive caveats.** Claim boundaries are retained once at the point where they matter (Bader specificity, protocol dependence, plateau/floor boundary) rather than repeated after every paragraph.
+6. **Reduce repetitive caveats.** Claim boundaries are retained once at the point where they matter (Bader specificity, qualification dependence, plateau/floor boundary) rather than repeated after every paragraph.
 7. **Use active, compact sentences.** Long noun chains, repeated phrases such as “the resulting framework”, and meta-writing such as “this is not used to claim…” were reduced.
 8. **Put methods after the scientific narrative.** The polished draft follows a reader-first sequence: Introduction → Results → Discussion → Methods → availability.
+
+## Reader-facing terminology freeze
+
+The formal name of the qualification framework is **QoI Stability Qualification (QSQ)**. The concrete operation can be called a **perturbation-based numerical identifiability test** or, when shorter wording is needed, a **stability probe**.
+
+Use the following terminology consistently in all submission-facing material:
+
+- **QoI Stability Qualification (QSQ)** — the framework/method;
+- **QSQ stability floor** — the material-specific numerical floor measured by the perturbation test;
+- **QSQ eligibility** — whether a material–threshold pair supports a meaningful benchmark decision;
+- **certification** — codec performance after eligibility is established;
+- **archived float32 probe** or **archived predecessor** — the superseded order-preserving probe used only for historical comparison.
+
+Do not use `Protocol A.1`, `A.1 floor`, `A.1 eligibility`, `A -> A.1`, `v2`, dated method names, or similar development labels as preferred scientific names in the abstract, main text, figure titles, figure captions, SI prose, talks, or final Word/PDF. Historical repository identifiers and filenames may retain `Protocol A`, `Protocol A.1`, `_A1`, or other version labels when required for provenance and reproducibility.
 
 ## Structural changes relative to the provenance draft
 
@@ -57,7 +71,7 @@ The preferred Results sequence is now aligned with the formal figure sequence:
 
 - **Figure 2:** operator-dependent error propagation;
 - **Figure 3:** binary benchmark → three-state certification (**central result**);
-- **Figure 4:** validation of the stability probe;
+- **Figure 4:** validation of the QSQ stability probe against the archived float32 predecessor;
 - **Figure 5:** Bader-specific basin-migration mechanism;
 - **Figure 6:** realized-distortion confounding control;
 - **Figure 7:** frozen external confirmation.
@@ -79,7 +93,7 @@ The previous separate Conclusions section was removed from the polished draft be
 
 - Do not claim that this work first discovered that pointwise error fails to determine QoI fidelity.
 - Do not call a non-evaluable decision a codec failure or a codec success.
-- Do not describe Protocol A.1 as “rescuing” failures; it invalidates unsupported positive labels as well as negative labels.
+- Do not describe QSQ as “rescuing” failures; it invalidates unsupported positive labels as well as negative labels.
 - Do not claim a universal `plateau = stability floor` relation. The supported statement is: **the strictest certified regime is floor-scale, consistent with an emerging analysis-limited regime**.
 - Do not claim that the matched-realized residual identifies a specific geometric statistic of codec error. It supports an error-structure contribution beyond scalar `L_inf` only.
 - Do not generalize Bader basin migration to arbitrary QoIs.
@@ -97,5 +111,5 @@ The prose is now deliberately journal-neutral at the Nature/ACS level. Before ac
 1. Replace the repository-only Data and Code Availability statement with a persistent archival DOI (for example, a frozen release deposited in an archival repository) before publication.
 2. Perform a final reference audit against `paper/REFERENCES.md` and the selected journal's reference requirements.
 3. Decide whether the target journal needs 5, 6 or 7 main-text figures before building the final Word/PDF submission package.
-4. Run one consistency audit across manuscript, captions, Figure Map and Supplement for the terms `eligible`, `certified`, `eligible but not certified`, and `non-evaluable`.
+4. Run one consistency audit across manuscript, captions, Figure Map and Supplement for the terms `QSQ`, `stability floor`, `eligible`, `certified`, `eligible but not certified`, and `non-evaluable`.
 5. Build the final Word manuscript only from the polished draft and the locked data-driven figures.
