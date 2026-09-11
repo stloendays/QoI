@@ -1,6 +1,8 @@
 # References for the QoI manuscript
 
-Numbering below is the canonical citation order for the current submission draft and the 2026-09-11 certifiability reframe. The bibliography is intentionally organized around four evidence layers: scientific-compression foundations, QoI-aware/error-propagation prior art, topology/Bader numerical analysis, and chemistry/electronic-structure compression context.
+Numbering below is the **stable reference-library ID** used by the project literature archive and Notion/PDF records. These IDs are intentionally not renumbered. The reader-facing submission manuscript numbers the same 21 references by order of first appearance; the exact library-ID ↔ submission-number mapping is frozen in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`. This separation preserves archival provenance while keeping the submission bibliography compliant with numbered-journal citation order.
+
+The bibliography is organized around four evidence layers: scientific-compression foundations, QoI-aware/error-propagation prior art, topology/Bader numerical analysis, and chemistry/electronic-structure compression context.
 
 **Metadata audit:** 2026-09-11. Bibliographic metadata were checked against publisher, PubMed, institutional-repository, DBLP, arXiv, or author-hosted records as appropriate. Journal-specific renderings are maintained separately in `paper/REFERENCES_NATURE_STYLE_20260911.md` and `paper/REFERENCES_ACS_STYLE_20260911.md`.
 
@@ -46,7 +48,7 @@ Numbering below is the canonical citation order for the current submission draft
 
 21. Gok, A. M., Di, S., Alexeev, Y., Tao, D., Mironov, V., Liang, X. & Cappello, F. PaSTRI: Error-bounded lossy compression for two-electron integrals in quantum chemistry. In **2018 IEEE International Conference on Cluster Computing (CLUSTER)**, 1–11 (IEEE, 2018). https://doi.org/10.1109/CLUSTER.2018.00013.
 
-## Intended citation logic
+## Intended citation logic (stable library IDs)
 
 - **[1–5] Scientific-compression foundation.** [1] is the broad state-of-the-field survey. [2–4] are the direct primary references for the three codec families used in this work; [3] cites SZ3 itself rather than only the earlier SZ generation. [5] represents conventional post-compression distortion assessment.
 - **[6,12–14,20] QoI-aware compression prior art.** These papers establish that scientific compression can explicitly preserve, bound or operationalize derived quantities of interest. They make it inappropriate to claim novelty for the generic proposition that field-level error does not determine QoI fidelity.
@@ -55,24 +57,28 @@ Numbering below is the canonical citation order for the current submission draft
 - **[18,19,21] Chemistry/electronic-structure compression context.** [18] documents scientific-compression use cases including quantum chemistry; [21] demonstrates error-bounded lossy compression inside a GAMESS quantum-chemistry workflow; [19] is a recent JCTC example of lossy compression in DFT, albeit of the atomic-orbital basis rather than a stored real-space density field. These papers establish domain relevance without overlapping the present Bader-certifiability benchmark.
 - **[11] Emerging QoI-error prediction.** TOPIQ is a current preprint and should be cited as recent context, not used as the sole anchor for any core prior-art claim. Peer-reviewed references [6,12–15,20] should carry the main literature burden.
 
-## Recommended manuscript citation placement
+## Recommended manuscript citation placement (stable library IDs; translate through the crosswalk for submission)
 
 ### Introduction — compression and electronic-structure context
+
 Use approximately:
 
 > Error-bounded lossy compression has become a mature strategy for scientific floating-point data [1–5,18]. Compression has also been explored directly in quantum-chemistry and electronic-structure workflows, from GAMESS integral data to recent lossy reduction of DFT atomic-orbital spaces [3,19,21].
 
 ### Introduction — QoI prior art and novelty boundary
+
 Use approximately:
 
 > Scientific-compression research has increasingly moved from generic distortion metrics toward preservation or prediction of downstream quantities of interest [6,12–14,20]. Topology-aware methods further show that strict pointwise bounds do not guarantee preservation of discrete scientific structure [7,15], and recent work has begun to model QoI-level uncertainty directly [11]. These advances establish the importance of downstream fidelity; our question is logically prior: whether the requested QoI tolerance is itself numerically resolvable before it is used to score a compressor.
 
 ### Bader/QTAIM background
+
 Use approximately:
 
 > Bader analysis partitions the density according to the topology of its gradient field [17]. Practical grid-based algorithms have progressively addressed robustness, lattice bias and integration accuracy [8,9,16], while modern arbitrary-grid treatments make the role of discretization and numerical topology explicit [10].
 
 ### Discussion — positioning against prior work
+
 Use approximately:
 
 > Previous work has developed mathematical QoI error control, application-specific QoI-preserving pipelines and topology-preserving compressors [6,12–15,20]. The present contribution adds a distinct precondition: the QoI target must first be demonstrated to be numerically identifiable on the reference data before pass/fail attribution to compression is meaningful.
