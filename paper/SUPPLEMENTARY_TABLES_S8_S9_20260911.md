@@ -1,109 +1,74 @@
-# Supplementary Tables S8-S9
+# Supplementary Tables S8–S9
 
-Updated 2026-09-11. Submission-facing extended operator-control tables. Machine-readable assets remain the numerical source of record.
+Generated 2026-09-11 directly from frozen operator-control outputs. These tables support Supplementary Figure S3 and the main-text operator comparison. No values are transcribed from historical prose summaries.
 
-## Supplementary Table S8 | Total-electron-count negative control
+## Supplementary Table S8 | Electron-count preservation does not certify Bader-charge fidelity
 
-### S8a. Electron-count deviation and re-derived Bader error by codec
+### S8a. Pooled negative-control matrix across all codecs
 
-All 6,343 retained development reconstruction rows are included. The electron-count quantity is a global linear control, not a difficult target QoI.
+| Electron-count threshold | Bader threshold | Rows preserving electron count | Rows failing Bader threshold despite preservation | Fraction |
+|---:|---:|---:|---:|---:|
+| 1e-06 e | 1e-04 e | 1,108 | 652 | 58.84% |
+| 1e-06 e | 1e-03 e | 1,108 | 108 | 9.75% |
+| 1e-06 e | 1e-02 e | 1,108 | 10 | 0.90% |
+| 1e-05 e | 1e-04 e | 1,993 | 1,486 | 74.56% |
+| 1e-05 e | 1e-03 e | 1,993 | 482 | 24.18% |
+| 1e-05 e | 1e-02 e | 1,993 | 73 | 3.66% |
+| 1e-04 e | 1e-04 e | 3,205 | 2,691 | 83.96% |
+| 1e-04 e | 1e-03 e | 3,205 | 1,383 | 43.15% |
+| 1e-04 e | 1e-02 e | 3,205 | 306 | 9.55% |
+| 1e-03 e | 1e-04 e | 4,380 | 3,866 | 88.26% |
+| 1e-03 e | 1e-03 e | 4,380 | 2,477 | 56.55% |
+| 1e-03 e | 1e-02 e | 4,380 | 801 | 18.29% |
 
-| Codec | n rows | Median |Delta Ne| (e) | P95 (e) | P99 (e) | Maximum (e) | Median re-derived Bader error (e) |
-|---|---:|---:|---:|---:|---:|---:|
-| All codecs | 6,343 | 9.38e-5 | 6.43e-2 | 2.75e-1 | 3.98 | 4.00e-3 |
-| SPERR | 1,956 | 3.27e-5 | 8.29e-3 | 2.96e-2 | 1.46e-1 | 5.63e-3 |
-| SZ3 | 1,937 | 2.43e-3 | 2.08e-1 | 5.46e-1 | 3.98 | 5.71e-3 |
-| ZFP | 2,450 | 2.68e-5 | 9.86e-3 | 2.50e-2 | 9.52e-2 | 2.45e-3 |
+### S8b. Codec-resolved headline control at |ΔNe| < 1e-4 e and Bader error >= 1e-3 e
 
-**Source:** `analysis/electron_count_qoi/summary_by_codec.csv`.
-
-### S8b. Decoupling of global electron conservation from local Bader fidelity
-
-Using the deliberately strict global-control condition `|Delta Ne| < 1e-4 e`, **3,205** reconstruction rows have both preserved total electron count and a finite re-derived Bader result. Among these, **1,383** have a re-derived Bader error `>= 1e-3 e`, corresponding to **43.15%**.
-
-| Condition | Rows |
-|---|---:|
-| Finite re-derived Bader result and `|Delta Ne| < 1e-4 e` | **3,205** |
-| Of these, re-derived Bader error `>= 1e-3 e` | **1,383** |
-| Conditional fraction | **43.15%** |
-
-This negative control supports only the statement that **global electron-number conservation is not a sufficient certificate of atom-resolved Bader fidelity**. It does not imply that total electron count itself is unstable or difficult to preserve.
-
-### S8c. Log-scale correlations
-
-| Codec | n | Pearson: log electron-count error vs log realized Linf | Pearson: log electron-count error vs log Bader error |
+| Codec | Rows preserving electron count | Rows still failing Bader threshold | Fraction |
 |---|---:|---:|---:|
-| All codecs | 6,343 | 0.866 | 0.777 |
-| SPERR | 1,956 | 0.936 | 0.807 |
-| SZ3 | 1,937 | 0.955 | 0.851 |
-| ZFP | 2,450 | 0.927 | 0.811 |
+| ZFP | 1,509 | 607 | 40.23% |
+| SZ3 | 466 | 79 | 16.95% |
+| SPERR | 1,230 | 697 | 56.67% |
+| **All codecs** | **3,205** | **1,383** | **43.15%** |
 
-**Source:** `analysis/electron_count_qoi/correlations.csv`. Tolerance-resolved values remain in `analysis/electron_count_qoi/summary_by_tolerance.csv`.
+**Interpretation.** Global electron conservation is a negative control, not a sufficient certificate for atom-resolved Bader fidelity. The main-text 3,205 / 1,383 = 43.15% result is the pooled row highlighted above.
+
+**Source:** `analysis/electron_count_qoi/electron_bader_decoupling.csv`.
 
 ---
 
-## Supplementary Table S9 | Hartree-potential control on the frozen development reconstruction corpus
+## Supplementary Table S9 | Hartree-potential response is smoother than re-derived Bader response on the same reconstructions
 
-The periodic Hartree potential is used as a linear nonlocal comparator. The full expansion regenerated all 6,343 frozen development rows. The formal reproduction gate retained **6,270 rows**; the 73 excluded rows are infrastructure-level SZ3 byte-stream mismatches, not reconstruction-field mismatches or codec-bound failures.
+### S9a. Pooled codec-level scaling on the 6,270 reproduction-gate-passing rows
 
-### S9a. Pooled log-log response by codec and system type
+| Codec | Gate-passing rows | Hartree slope | Hartree R² | Bader slope | Bader R² | Median Hartree relative RMSE | Median Bader error (e) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ZFP | 2,450 | 0.968 | 0.863 | 0.646 | 0.684 | 9.405e-07 | 2.453e-03 |
+| SZ3 | 1,864 | 1.069 | 0.910 | 0.584 | 0.757 | 2.591e-05 | 5.890e-03 |
+| SPERR | 1,956 | 0.988 | 0.786 | 0.587 | 0.750 | 2.643e-06 | 5.631e-03 |
 
-`Hartree slope` is the pooled exponent in `Hartree error proportional to realized Linf^alpha`. Bader statistics are shown on the same gate-passing rows for comparison.
+The all-codec pooled Hartree log–log exponent reported by the frozen analysis is **1.02** on all 6,270 gate-passing rows; the per-codec values above show the same near-first-order pattern without collapsing codec-specific prefactors.
 
-| Codec | Stratum | n rows | Hartree slope | Hartree R2 | Hartree Pearson | Bader slope | Bader R2 | Bader Pearson |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| ZFP | Bulk | 1,839 | 1.00 | 0.930 | 0.964 | 0.67 | 0.685 | 0.828 |
-| ZFP | Slab | 611 | 0.91 | 0.852 | 0.923 | 0.57 | 0.689 | 0.830 |
-| SZ3 | Bulk | 1,403 | 1.12 | 0.936 | 0.968 | 0.60 | 0.760 | 0.872 |
-| SZ3 | Slab | 461 | 0.94 | 0.925 | 0.962 | 0.53 | 0.743 | 0.862 |
-| SPERR | Bulk | 1,530 | 0.97 | 0.936 | 0.967 | 0.58 | 0.755 | 0.869 |
-| SPERR | Slab | 426 | 0.99 | 0.894 | 0.945 | 0.64 | 0.773 | 0.879 |
-| All codecs | Bulk | 4,772 | 1.04 | 0.877 | 0.937 | — | — | — |
-| All codecs | Slab | 1,498 | 1.00 | 0.709 | 0.842 | — | — | — |
-| All codecs | All | **6,270** | **1.02** | **0.792** | **0.890** | **0.62** | **0.714** | **0.845** |
+### S9b. Material-level smoothness for 678 material–codec pairs with at least five gate-passing rows
 
-**Sources:** `analysis/hartree_potential_expansion/group_summary.csv`; `analysis/hartree_potential_expansion/RESULTS_DETAIL.md`.
+| Codec | Pairs | Hartree monotone | Bader monotone | Median Hartree R² | Median Bader R² | Median Hartree slope | Median Bader slope |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ZFP | 241 | 85.1% | 19.5% | 0.997 | 0.892 | 1.05 | 0.58 |
+| SZ3 | 219 | 85.8% | 42.0% | 0.994 | 0.947 | 1.17 | 0.60 |
+| SPERR | 218 | 95.4% | 37.2% | 0.996 | 0.936 | 1.01 | 0.59 |
+| **All** | **678** | **88.6%** | **32.4%** | **0.996** | **0.928** | — | — |
 
-### S9b. Material-level ladder smoothness
+### S9c. Rung-level irregularity and matched-Hartree dispersion
 
-Material-level statistics use 678 material-codec pairs with at least five reproduction-gate-passing rungs.
+| Diagnostic | Hartree | Bader |
+|---|---:|---:|
+| Local log–log elasticity range | -2.0 to +4.4 | -9.3 to +14.1 |
+| Largest consecutive Bader-error jump | — | 22,296× |
+| Gate-passing rows in matched-Hartree bins with Bader P90/P10 >= 10 | — | 3,452/6,229 = 55.4% |
 
-| Codec | Material-codec pairs | Hartree strictly monotone | Bader strictly monotone | Hartree median R2 | Bader median R2 |
-|---|---:|---:|---:|---:|---:|
-| ZFP | 241 | 85.1% | 19.5% | 0.997 | 0.892 |
-| SZ3 | 219 | 85.8% | 42.0% | 0.994 | 0.947 |
-| SPERR | 218 | 95.4% | 37.2% | 0.996 | 0.936 |
-| All | **678** | **88.6%** | **32.4%** | **0.996** | **0.930** |
+**Interpretation.** The Hartree control is close to first-order at pooled and material levels, whereas the re-derived Bader response shows substantially more rung-level non-monotonicity and dispersion. The slab monotonicity caveat remains: strict Hartree monotonicity is weaker on slabs even though material-level Hartree R² remains high. The result should therefore be described as a smoother response, not as universal monotonicity.
 
-The strict-monotonicity contrast has an important slab caveat. Hartree remains highly smooth by R2, but small local Hartree decreases make strict monotonicity less frequent on slabs than in bulk.
+**Sources:** `analysis/hartree_potential_expansion/group_summary.csv`; `analysis/hartree_potential_expansion/material_smoothness.csv`; `analysis/hartree_potential_expansion/matched_error_dispersion.csv`; `analysis/hartree_potential_expansion/RESULTS_DETAIL.md`.
 
-| Codec | Hartree monotone, bulk | Hartree monotone, slab | Bader monotone, bulk | Bader monotone, slab |
-|---|---:|---:|---:|---:|
-| ZFP | 96.6% | 52.4% | 17.4% | 25.4% |
-| SZ3 | 98.8% | 47.3% | 42.7% | 40.0% |
-| SPERR | 98.8% | 84.3% | 31.1% | 56.9% |
+## Submission boundary
 
-Therefore the manuscript/SI should characterize Hartree as a smoother linear-nonlocal response using the combined evidence from slope, R2, elasticity and jump size, not as perfectly monotone in every slab ladder.
-
-### S9c. Matched-Hartree dispersion of Bader error
-
-Using 0.5-decade Hartree-error bins with at least 10 rows, **55.4% of gate-passing rows** fall into bins in which the Bader-error `P90/P10 >= 10`. The condition occurs in all three codecs and both system strata.
-
-| Codec | Stratum | Eligible Hartree bins | Bins with Bader P90/P10 >= 10 | Rows in such bins / rows in displayed bins | Median Bader P90/P10 | Maximum Bader P90/P10 |
-|---|---|---:|---:|---:|---:|---:|
-| ZFP | Bulk | 14 | 9 | 1,131 / 1,836 | 17.8 | 61,567 |
-| ZFP | Slab | 12 | 10 | 511 / 599 | 15.1 | 445 |
-| SZ3 | Bulk | 14 | 7 | 626 / 1,397 | 8.9 | 2,439 |
-| SZ3 | Slab | 10 | 3 | 146 / 450 | 7.4 | 12.3 |
-| SPERR | Bulk | 13 | 6 | 723 / 1,527 | 9.5 | 22.4 |
-| SPERR | Slab | 10 | 7 | 315 / 420 | 12.0 | 22.1 |
-
-**Sources:** `analysis/hartree_potential_expansion/material_smoothness.csv`; `analysis/hartree_potential_expansion/matched_error_dispersion.csv`; `analysis/hartree_potential_expansion/RESULTS_DETAIL.md`.
-
-### Reproduction-gate footnote
-
-ZFP: 2,450/2,450 rows pass. SPERR: 1,956/1,956 pass. SZ3: 1,864/1,937 pass. In all 73 SZ3 gate exclusions, reproduced realized Linf agrees with the frozen value to better than approximately `2e-5` relative, but the compressed byte count differs across platforms. The median byte difference is approximately one byte, although rare larger differences occur. Per the frozen rule these rows are excluded from Hartree statistics. This is an infrastructure/reproducibility issue and must not be described as a numerical failure of the reconstruction.
-
-## Interpretation boundary
-
-Tables S8-S9 expand the operator-control evidence supporting main-text Figure 2. They motivate an operator-aware downstream measurement contract, but **they are not the central novelty claim**. The central benchmark-validity result remains the stability-qualified binary-to-three-state reclassification in Figure 3 / Supplementary Figure S7.
+Tables S8–S9 are operator-control evidence. They motivate why downstream analyses must be evaluated explicitly, but they do not carry the central novelty claim. The central benchmark-validity result remains the stability-qualified binary-to-three-state reclassification in Figure 3 / Supplementary Table S4.
