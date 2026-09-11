@@ -1,0 +1,55 @@
+name: Export final submission source assets
+
+on:
+  push:
+    branches:
+      - paper/submission-storyline-20260912
+    paths:
+      - '.github/workflows/export_submission_assets_20260912.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble frozen submission assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p export/paper export/figures
+          cp paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md export/paper/
+          cp paper/SUPPLEMENTARY_INFORMATION_DRAFT_20260911.md export/paper/
+          cp paper/FIGURE_MAP.md export/paper/
+          cp paper/FIGURE3_CAPTION_FINAL_20260911.md export/paper/
+          cp paper/REFERENCE_NUMBER_CROSSWALK_20260911.md export/paper/
+          cp paper/REFERENCES_NATURE_SUBMISSION_ORDER_20260911.md export/paper/ 2>/dev/null || true
+          for stem in \
+            figure1_qoi_contract_R \
+            figure2_qoi_hierarchy_R \
+            figure3_certification_landscape_R \
+            figure4_stability_protocol_R \
+            figure5_topology_mechanism_R \
+            figure6_matched_realized_linf_R \
+            figure7_external_confirmation_R; do
+            for ext in png pdf svg; do
+              src="figures/R/rendered/${stem}.${ext}"
+              test -s "$src" || { echo "Missing locked figure: $src"; exit 1; }
+              cp "$src" export/figures/
+            done
+          done
+          printf '%s\n' \
+            'Frozen submission source export' \
+            'Scientific scope: FROZEN_FOR_SUBMISSION' \
+            'Figures: canonical LOCKED Figure 1-7 outputs from paper/FIGURE_MAP.md' \
+            'Figure 6: matched realized L-infinity version' \
+            > export/EXPORT_MANIFEST.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoi-final-submission-source-20260912
+          path: export/
+          if-no-files-found: error
+          retention-days: 7
