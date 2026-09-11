@@ -80,19 +80,17 @@ smooth <- smooth %>%
   )
 stopifnot(nrow(smooth) == 678)
 
-# Panel B: paired material-level smoothness.
 pB <- ggplot(smooth, aes(bader_R2, hartree_R2, colour = codec)) +
   geom_abline(slope = 1, intercept = 0, linetype = 2, linewidth = .55, colour = "#9AA0A6") +
   geom_point(alpha = .48, size = 1.5) +
   scale_colour_manual(values = codec_cols) +
   coord_equal(xlim = c(0, 1), ylim = c(0, 1), expand = FALSE) +
   labs(
-    title = "B | Hartree fits are smoother than Bader fits",
-    subtitle = "Paired material-codec ladder fits; n = 678",
+    title = "B | Hartree ladder fits are smoother",
+    subtitle = "Paired R2; n = 678 material-codec pairs",
     x = expression(Bader~R^2), y = expression(Hartree~R^2)
   ) + theme_si + theme(legend.position = "top")
 
-# Panel C: preserve the slab monotonicity caveat rather than hiding it.
 mono <- smooth %>%
   group_by(codec, system_type) %>%
   summarise(Hartree = mean(hartree_monotone), Bader = mean(bader_monotone), n = n(), .groups = "drop") %>%
@@ -110,7 +108,6 @@ pC <- ggplot(mono, aes(operator, fraction, colour = codec, group = codec)) +
     x = NULL, y = "Strictly monotone material-codec ladders"
   ) + theme_si + theme(legend.position = "top", panel.grid.major.x = element_blank())
 
-# Panel D: matched-Hartree error does not determine Bader error.
 disp2 <- disp %>%
   filter(is.finite(bader_p90_over_p10), bader_p90_over_p10 > 0, n >= 10) %>%
   mutate(
