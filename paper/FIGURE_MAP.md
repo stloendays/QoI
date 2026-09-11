@@ -2,7 +2,7 @@
 
 Updated 2026-09-11. Canonical figure-numbering, narrative-role, source, and provenance registry for the certifiability manuscript.
 
-**Working title:** *Stability-Qualified Certification of Lossy Compression for Electronic-Density QoIs*
+**Working title:** *Stability-qualified benchmarks for scientific compression of electronic densities*
 
 ## Narrative spine
 
@@ -82,7 +82,7 @@ Frozen evidence on identical reconstructions includes:
 
 Protocol A is retained unchanged as provenance. A.1 replaces the order-preserving float32 round-trip with five pre-specified fixed-seed uniform perturbations at the material's float32 L-infinity amplitude while preserving the tolerance set and reporting semantics.
 
-Across 319 systems, A.1 non-evaluable fractions are 79.9% at `1e-4 e`, 41.4% at `1e-3 e`, and 9.7% at `1e-2 e`.
+Across 319 systems, A.1 non-evaluable fractions are 79.9% at `1e-4 e`, 41.4% at `1e-3 e`, and 9.7% at `1e-2 e`. In the 18-material pre-freeze calibration, archived float32 rounding creates a median of 82 exact neighbouring ties and zero voxel reassignment in 9/18 systems, versus 2/18 under the same-amplitude primary noise probe. In the formal paired comparison of all 254 development materials, the operative five-seed A.1 floor is a median of approximately **1.6×10^4** times the archived Protocol A floor.
 
 **Take-home:** the qualification probe itself must excite the numerical failure channel relevant to the downstream operator.
 
@@ -112,14 +112,14 @@ External A.1 eligibility is 16/63 at `1e-4 e`, 42/63 at `1e-3 e`, and 57/63 at `
 
 ## Results order
 
-1. Define Protocol A.1 eligibility and the three-state state space.
-2. **Figure 3:** demonstrate that naive binary benchmarking is materially invalid at strict Bader thresholds.
-3. **Figure 2:** provide operator-level motivation/background evidence. In page layout Figure 2 may precede Figure 3, but the prose must keep Figure 3 as the novelty-bearing result.
+1. **Figure 2:** establish the operator-level motivation/background on identical reconstructions; this is not the novelty claim.
+2. Define Protocol A.1 eligibility and the three-state state space.
+3. **Figure 3:** demonstrate that naive binary benchmarking is materially invalid at strict Bader thresholds; keep Figure 3 as the novelty-bearing result.
 4. **Figure 4:** validate the stability probe and the A -> A.1 correction.
 5. Report the tight-ladder result conservatively: at `1e-4 e`, median resolved-Bader-error/A.1-floor is 1.09-1.33× across codecs; call this floor-scale and consistent with an emerging analysis-limited regime, not `plateau = floor`.
 6. **Figure 5:** explain Bader domain migration.
 7. **Figure 6:** control nominal-versus-realized distortion.
-8. Report rate-fidelity only among eligible material-threshold pairs.
+8. Report rate-fidelity only among eligible material-threshold pairs, using `benchmark/summary_a1.csv` rather than historical prose values.
 9. **Figure 7:** close with untouched external confirmation.
 
 ## Main-text claim hierarchy
