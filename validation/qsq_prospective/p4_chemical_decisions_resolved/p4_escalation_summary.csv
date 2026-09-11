@@ -1,0 +1,9 @@
+scope,policy,valid_trials,resolved_trials,needs_review_trials,needs_review_fraction,errors_among_resolved,error_rate_among_resolved,henkelman_reconstructed_state_calls,henkelman_wall_seconds_policy_calls
+ALL,qsq_targeted,60,60,0,0.0,0,0.0,48,397.1954855918884
+ALL,escalate_all,60,60,0,0.0,0,0.0,108,733.2840983867645
+ZFP,qsq_targeted,20,20,0,0.0,0,0.0,16,129.2720193862915
+ZFP,escalate_all,20,20,0,0.0,0,0.0,36,237.17194652557373
+SZ3,qsq_targeted,20,20,0,0.0,0,0.0,16,133.8674509525299
+SZ3,escalate_all,20,20,0,0.0,0,0.0,36,247.2740581035614
+SPERR,qsq_targeted,20,20,0,0.0,0,0.0,16,134.05601525306702
+SPERR,escalate_all,20,20,0,0.0,0,0.0,36,248.8380937576294
