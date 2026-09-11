@@ -1,0 +1,60 @@
+name: Prepare QSQ confirmation and integrate research audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/prepare_qsq_confirmation.py
+      - scripts/integrate_qsq_research_audit.py
+      - validation/qsq_prospective/PROTOCOL.md
+      - .github/workflows/prepare_qsq_confirmation.yml
+permissions:
+  contents: write
+concurrency:
+  group: qsq-confirmation-preparation
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned analysis dependencies
+        run: python -m pip install numpy==2.1.3 pandas==2.2.3
+      - name: Check script syntax and work-order invariants
+        run: |
+          python -m py_compile scripts/prepare_qsq_confirmation.py scripts/integrate_qsq_research_audit.py
+          python scripts/prepare_qsq_confirmation.py --self-test
+      - name: Prepare work orders without running scientific jobs
+        run: python scripts/prepare_qsq_confirmation.py
+      - name: Integrate executed research audit into active documents
+        run: python scripts/integrate_qsq_research_audit.py
+      - name: Check frozen scientific inputs remain unchanged
+        run: git diff --exit-code -- benchmark stability protocol
+      - name: Retain work orders and integration receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: qsq-confirmation-prepared
+          path: |
+            validation/qsq_prospective/
+            analysis/research_upgrade/integration_manifest.json
+            paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          if-no-files-found: error
+      - name: Commit prepared work orders and reviewed claims
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/
+          git add analysis/research_upgrade/integration_manifest.json
+          git add README.md paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          git add paper/CURRENT_PAPER_STORY_20260911.md paper/CLAIM_EVIDENCE_MATRIX.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'research: prepare confirmation work orders and integrate corrected claims'
+          git pull --rebase origin main
+          git push origin HEAD:main
