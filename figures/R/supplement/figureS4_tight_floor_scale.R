@@ -116,8 +116,8 @@ pB <- ggplot(strict, aes(floor_plot, error_plot, colour = codec)) +
   scale_y_log10(labels = label_scientific(digits = 1)) +
   coord_equal() +
   labs(
-    title = "B | Strict certified points lie near the independent floor scale",
-    subtitle = "10^-4 e contract; n = 123 material-codec decisions",
+    title = "B | Strict certified points are near the floor scale",
+    subtitle = "10^-4 e contract; n = 123 decisions",
     x = "Protocol A.1 stability floor (e)", y = "Best-certified re-derived Bader error (e)"
   ) + theme_si + theme(legend.position = "top")
 
