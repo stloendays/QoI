@@ -1,0 +1,90 @@
+name: Render final Supplementary S5 S6 S8 bundle
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render_supplementary_final_bundle.yml'
+      - 'figures/R/supplement/figureS5_bader_implementation_robustness.R'
+      - 'figures/R/supplement/figureS6_matching_sensitivity.R'
+      - 'figures/R/supplement/figureS8_external_confirmation.R'
+      - 'supplement/S11_cross_implementation_pairs.csv'
+      - 'supplement/S11_independent_implementation_summary.csv'
+      - 'supplement/S11_spatial_control_summary.csv'
+      - 'supplement/S12_matching_sensitivity.csv'
+      - 'supplement/S13_rate_fidelity_summary.csv'
+      - 'supplement/S13_pairwise_sz3_zfp.csv'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-final-supplement-bundle
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::tidyr
+            any::scales
+            any::patchwork
+            any::svglite
+      - name: Render S5, S6 and S8
+        run: |
+          Rscript figures/R/supplement/figureS5_bader_implementation_robustness.R
+          Rscript figures/R/supplement/figureS6_matching_sensitivity.R
+          Rscript figures/R/supplement/figureS8_external_confirmation.R
+      - name: Validate all nine outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for stem in \
+            supplementary_figureS5_bader_implementation_robustness_R \
+            supplementary_figureS6_matching_sensitivity_R \
+            supplementary_figureS8_external_confirmation_R; do
+            for ext in png pdf svg; do
+              f="figures/R/rendered/${stem}.${ext}"
+              test -s "$f" || { echo "Missing or empty output: $f"; exit 1; }
+            done
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supplementary-final-S5-S6-S8
+          path: |
+            figures/R/rendered/supplementary_figureS5_bader_implementation_robustness_R.*
+            figures/R/rendered/supplementary_figureS6_matching_sensitivity_R.*
+            figures/R/rendered/supplementary_figureS8_external_confirmation_R.*
+      - name: Commit rendered bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp=$(mktemp -d)
+          cp figures/R/rendered/supplementary_figureS5_bader_implementation_robustness_R.* "$tmp"/
+          cp figures/R/rendered/supplementary_figureS6_matching_sensitivity_R.* "$tmp"/
+          cp figures/R/rendered/supplementary_figureS8_external_confirmation_R.* "$tmp"/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp"/* figures/R/rendered/
+          git add \
+            figures/R/rendered/supplementary_figureS5_bader_implementation_robustness_R.* \
+            figures/R/rendered/supplementary_figureS6_matching_sensitivity_R.* \
+            figures/R/rendered/supplementary_figureS8_external_confirmation_R.*
+          if git diff --cached --quiet; then
+            echo "Bundle outputs unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render final Supplementary S5 S6 S8 bundle"
+          git push origin HEAD:main
