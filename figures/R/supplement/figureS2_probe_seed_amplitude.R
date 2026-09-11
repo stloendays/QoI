@@ -21,14 +21,14 @@ stopifnot(all(c("floor_noise_resolved_e", "seed", "material_id", "corpus") %in% 
 stopifnot(all(c("floor_x0.1", "floor_x1", "floor_x10", "log10_floor_x10_over_x0.1") %in% names(amp)))
 
 bg <- "#FFFFFF"; ink <- "#202124"; grid <- "#E5E7EB"; muted <- "#5F6368"
-col_arch <- "#9AA0A6"; col_noise <- "#4A5F7E"; col_teal <- "#2A9D8F"; col_orange <- "#E9B13A"; col_red <- "#D94B41"
+col_arch <- "#9AA0A6"; col_noise <- "#4A5F7E"; col_orange <- "#E9B13A"; col_red <- "#D94B41"
 theme_si <- theme_minimal(base_size = 10.4) + theme(
   plot.background = element_rect(fill = bg, colour = NA),
   panel.background = element_rect(fill = bg, colour = NA),
   panel.grid.minor = element_blank(),
   panel.grid.major = element_line(colour = grid, linewidth = .3),
   axis.title = element_text(colour = ink), axis.text = element_text(colour = ink),
-  plot.title = element_text(face = "bold", size = 11.4, colour = ink, margin = margin(b = 4)),
+  plot.title = element_text(face = "bold", size = 11.1, colour = ink, margin = margin(b = 4)),
   plot.subtitle = element_text(size = 9.0, colour = muted, margin = margin(b = 6)),
   legend.title = element_blank(), legend.text = element_text(size = 8.8),
   plot.margin = margin(8, 10, 8, 8)
@@ -38,7 +38,10 @@ theme_si <- theme_minimal(base_size = 10.4) + theme(
 cal_pair <- cal %>%
   mutate(seed_chr = as.character(seed)) %>%
   filter(amplitude_factor == 1, seed_chr %in% c("float32", "20260905")) %>%
-  mutate(probe = ifelse(seed_chr == "float32", "Archived float32", "A.1 noise"))
+  mutate(
+    probe = ifelse(seed_chr == "float32", "Archived float32", "A.1 noise"),
+    probe = factor(probe, levels = c("Archived float32", "A.1 noise"))
+  )
 stopifnot(nrow(cal_pair) == 36)
 
 cal_stats <- cal_pair %>% group_by(probe) %>% summarise(
@@ -58,7 +61,7 @@ pA <- ggplot(cal_pair, aes(probe, log10(1 + n_exact_neighbour_ties_created), fil
   annotate("text", x = 2, y = max(log10(1 + cal_pair$n_exact_neighbour_ties_created)) * .95,
            label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "A.1 noise"]),
            size = 3.0, colour = ink) +
-  labs(title = "A | Order-preserving rounding creates exact ties", subtitle = "18-material calibration panel; same perturbation amplitude", x = NULL, y = "Exact neighbour ties created") +
+  labs(title = "A | Order-preserving rounding creates exact ties", subtitle = "18-material pre-freeze calibration; matched perturbation amplitude", x = NULL, y = "Exact neighbour ties created") +
   theme_si
 
 pB <- ggplot(cal_pair, aes(probe, log10(1 + n_voxels_reassigned), fill = probe)) +
@@ -72,10 +75,11 @@ pB <- ggplot(cal_pair, aes(probe, log10(1 + n_voxels_reassigned), fill = probe))
   annotate("label", x = 2, y = max(log10(1 + cal_pair$n_voxels_reassigned)) * .90,
            label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "A.1 noise"], cal_stats$n[cal_stats$probe == "A.1 noise"]),
            size = 2.9, label.size = .18, fill = alpha("white", .94)) +
-  labs(title = "B | Non-order-preserving noise excites basin reassignment", subtitle = "The A.1 probe is less watershed-friendly than float32 rounding", x = NULL, y = "Voxels reassigned") +
+  labs(title = "B | Noise excites basin reassignment", subtitle = "A.1 removes the archived probe's order-preserving blind spot", x = NULL, y = "Voxels reassigned") +
   theme_si
 
-# Full 319-system seed sensitivity.
+# Full 319-system seed sensitivity. This is deliberately distinguished from
+# the 18-material pre-freeze calibration statistics documented in PROTOCOL_A1.md.
 seed2 <- seed %>%
   filter(is.finite(floor_noise_resolved_e), floor_noise_resolved_e > 0) %>%
   mutate(seed_chr = as.character(seed))
@@ -98,10 +102,10 @@ pC <- ggplot(spread, aes(log10_span)) +
   geom_histogram(binwidth = .15, boundary = 0, fill = "#94C6CD", colour = "white", linewidth = .35) +
   geom_vline(xintercept = med_span, colour = col_red, linetype = 2, linewidth = .75) +
   annotate("label", x = max(spread$log10_span) * .98, y = Inf, vjust = 1.15, hjust = 1,
-           label = sprintf("Median five-seed span = %.2f decades\nMaximum = %.2f decades\nSingle primary seed changes eligibility vs five-seed max:\n10^-4 e: %d/319   10^-3 e: %d/319   10^-2 e: %d/319",
+           label = sprintf("Full-corpus median = %.2f decades\nMaximum = %.2f decades\nPrimary seed vs five-seed max eligibility flips:\n10^-4 e: %d/319   10^-3 e: %d/319   10^-2 e: %d/319",
                            med_span, max_span, flips[1], flips[2], flips[3]),
            size = 2.95, lineheight = .98, label.size = .2, fill = alpha("white", .95), colour = ink) +
-  labs(title = "C | One random seed is insufficient for a conservative qualification", subtitle = "Full 319-system stability corpus", x = "Within-material log10 floor span across five seeds (decades)", y = "Number of materials") +
+  labs(title = "C | A single seed is insufficient for conservative qualification", subtitle = "Full 319-system corpus after the A.1 protocol was frozen", x = "Within-material log10 floor span across five seeds (decades)", y = "Number of materials") +
   theme_si
 
 # Amplitude sensitivity in the pre-freeze 18-material panel.
@@ -121,18 +125,18 @@ pD <- ggplot(amp_long, aes(amplitude, floor_e, group = material_id, colour = dom
   annotate("label", x = .12, y = max(amp_long$floor_e, na.rm = TRUE), hjust = 0, vjust = 1,
            label = sprintf("x0.1 -> x10 floor shift\nmedian %.2f decades\nP10 %.2f, P90 %.2f", med_shift, p10_shift, p90_shift),
            size = 2.9, label.size = .2, fill = alpha("white", .95), colour = ink) +
-  labs(title = "D | The stability floor is protocol-defined, not amplitude-free", subtitle = "Pre-freeze amplitude sweep on the 18 calibration materials", x = "Noise amplitude relative to the A.1 definition", y = "Re-derived Bader floor (e)") +
+  labs(title = "D | The floor is protocol-defined, not amplitude-free", subtitle = "Pre-freeze amplitude sweep on the 18 calibration materials", x = "Noise amplitude relative to the A.1 definition", y = "Re-derived Bader floor (e)") +
   theme_si + theme(legend.position = "top")
 
 fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Supplementary Figure S2 | Protocol A.1 probe validation, seed sensitivity and amplitude sensitivity",
-    subtitle = "Five fixed seeds and a maximum-over-seeds floor are used to make numerical eligibility conservative and auditable; the amplitude remains explicitly part of the protocol definition.",
-    caption = "A-B. Eighteen-material pre-freeze calibration comparing archived float32 rounding with uniform noise at the same amplitude. C. Full-corpus five-seed variability and eligibility changes relative to the primary seed alone. D. Two-decade amplitude sensitivity. The amplitude sweep is a sensitivity analysis and was not used to tune the frozen A.1 amplitude.",
+    subtitle = "The calibration justifies a non-order-preserving, multi-seed probe; full-corpus statistics quantify its deployment behavior without retuning.",
+    caption = "A-B, 18-material pre-freeze probe calibration. C, five-seed variability in all 319 systems. D, pre-freeze two-decade amplitude sensitivity. The A.1 amplitude and seed set remained frozen.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
-                  plot.title = element_text(face = "bold", size = 14.0, colour = ink, margin = margin(b = 4)),
-                  plot.subtitle = element_text(size = 9.6, colour = muted, margin = margin(b = 8)),
-                  plot.caption = element_text(size = 8.1, colour = muted, hjust = 0, margin = margin(t = 8)))
+                  plot.title = element_text(face = "bold", size = 13.9, colour = ink, margin = margin(b = 4)),
+                  plot.subtitle = element_text(size = 9.5, colour = muted, margin = margin(b = 8)),
+                  plot.caption = element_text(size = 8.0, colour = muted, hjust = 0, margin = margin(t = 8)))
   )
 
 paths <- c(
@@ -140,9 +144,9 @@ paths <- c(
   pdf = file.path(outdir, "supplementary_figureS2_probe_seed_amplitude_R.pdf"),
   svg = file.path(outdir, "supplementary_figureS2_probe_seed_amplitude_R.svg")
 )
-ggsave(paths[["png"]], fig, width = 12.2, height = 9.1, dpi = 360, bg = bg)
-ggsave(paths[["pdf"]], fig, width = 12.2, height = 9.1, bg = bg)
-ggsave(paths[["svg"]], fig, width = 12.2, height = 9.1, device = svglite::svglite, bg = bg)
+ggsave(paths[["png"]], fig, width = 12.8, height = 9.1, dpi = 360, bg = bg)
+ggsave(paths[["pdf"]], fig, width = 12.8, height = 9.1, bg = bg)
+ggsave(paths[["svg"]], fig, width = 12.8, height = 9.1, device = svglite::svglite, bg = bg)
 stopifnot(all(file.exists(paths)), all(file.info(paths)$size > 0))
 message("Rendered Supplementary Figure S2: PNG + PDF + SVG")
-message(sprintf("Seed span median %.3f dec; flips %d/%d/%d", med_span, flips[1], flips[2], flips[3]))
+message(sprintf("Full-corpus seed span median %.3f dec, max %.3f dec; flips %d/%d/%d", med_span, max_span, flips[1], flips[2], flips[3]))
