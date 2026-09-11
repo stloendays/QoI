@@ -1,0 +1,20 @@
+{
+  "status": "COMPLETE",
+  "work_order_jobs": 14986,
+  "successful_outcomes": 14986,
+  "failed_outcomes": 0,
+  "accounted_outcomes": 14986,
+  "materials": 254,
+  "fresh_seeds_per_material": 59,
+  "primary_tau_e": 0.001,
+  "secondary_taus_e": [
+    0.0001,
+    0.01
+  ],
+  "failure_stages": {},
+  "work_order_sha256": "244bd6506afe4668a03252298a8d268746e6094408b0fcfe55409ef0b74ef07d",
+  "outcomes_sha256": "784fad387a9d0a567ec0857f3a50b24cf0545d9ee2532cee8a5b886959503fa5",
+  "failures_sha256": "b3216a58a2ef1801c5b3146af1b2625e888cb8b1b9f817657793749797f5efc0",
+  "original_five_seed_gate_modified": false,
+  "historical_qsq_outputs_modified": false
+}
