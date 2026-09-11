@@ -25,11 +25,9 @@ paired <- merge(
   a0[, c("material_id", "floor_resolved_e")],
   by = "material_id"
 ) %>%
-  filter(is.finite(stability_floor_A1_e), is.finite(floor_resolved_e), stability_floor_A1_e > 0, floor_resolved_e > 0) %>%
-  mutate(ratio = stability_floor_A1_e / floor_resolved_e)
+  filter(is.finite(stability_floor_A1_e), is.finite(floor_resolved_e), stability_floor_A1_e > 0, floor_resolved_e > 0)
 
 stopifnot(nrow(paired) >= 250)
-median_shift <- median(paired$ratio, na.rm = TRUE)
 
 corpus_labels <- c(
   dev_bulk = "Development bulk",
@@ -65,9 +63,6 @@ pA <- ggplot(paired, aes(floor_resolved_e, stability_floor_A1_e, colour = corpus
   scale_colour_manual(values = corpus_cols, labels = corpus_labels) +
   scale_x_log10(labels = label_scientific(digits = 1)) +
   scale_y_log10(labels = label_scientific(digits = 1)) +
-  annotate("label", x = quantile(paired$floor_resolved_e, .04), y = quantile(paired$stability_floor_A1_e, .96),
-           hjust = 0, vjust = 1, size = 3.0, label.size = .2, fill = alpha("white", .95),
-           label = sprintf("Median A.1 / archived shift = %.2g x", median_shift)) +
   labs(
     title = "A | A.1 exposes much larger Bader instability",
     subtitle = sprintf("Paired archived float32 vs five-seed A.1 floors; n = %d", nrow(paired)),
