@@ -1,6 +1,6 @@
 # Submission storyline patch — 2026-09-12
 
-Status: **READY FOR MANUSCRIPT INTEGRATION**
+Status: **INTEGRATED ON SUBMISSION STORYLINE BRANCH**
 
 Scientific scope: **FROZEN_FOR_SUBMISSION**. This patch changes narrative emphasis only; it does not alter data, thresholds, endpoints, cohorts, or scientific claims.
 
