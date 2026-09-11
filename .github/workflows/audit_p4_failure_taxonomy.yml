@@ -1,0 +1,49 @@
+name: Audit P4 first-run failure taxonomy
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'analysis/research_upgrade/P4_FAILURE_TAXONOMY_START'
+
+permissions:
+  contents: write
+
+jobs:
+  taxonomy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify immutable first-run inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '"planned_compressed_solver_evaluations": 216' validation/qsq_prospective/p4_chemical_decisions/execution_manifest.json
+          grep -q '"failed_solver_rows": 144' validation/qsq_prospective/p4_chemical_decisions/execution_manifest.json
+          python -m py_compile analysis/research_upgrade/analyze_p4_failure_taxonomy.py
+      - name: Classify every recorded first-run failure
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf analysis/research_upgrade/p4_failure_taxonomy
+          python analysis/research_upgrade/analyze_p4_failure_taxonomy.py \
+            --failures validation/qsq_prospective/p4_chemical_decisions/p4_compressed_solver_failures.csv \
+            --output-dir analysis/research_upgrade/p4_failure_taxonomy
+      - name: Commit taxonomy before any retry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/research_upgrade/p4_failure_taxonomy
+          if ! git diff --cached --quiet; then
+            git commit -m 'validation: classify P4 compressed-stage failures before retry'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
