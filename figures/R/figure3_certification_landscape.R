@@ -112,7 +112,6 @@ col_teal <- "#2A9D8F"
 col_orange <- "#E9B13A"
 col_text <- "#1F2937"
 col_grid <- "#E5E7EB"
-col_line <- "#CBD5E1"
 col_box <- "#F8FAFC"
 
 base_theme <- theme_minimal(base_size = 11.2) +
@@ -124,12 +123,12 @@ base_theme <- theme_minimal(base_size = 11.2) +
     panel.grid.major.y = element_line(colour = col_grid, linewidth = 0.35),
     axis.title = element_text(colour = col_text, size = 11.8),
     axis.text = element_text(colour = col_text, size = 10.6),
-    plot.title = element_text(face = "bold", colour = col_text, size = 14.8,
+    plot.title = element_text(face = "bold", colour = col_text, size = 14.2,
                               margin = margin(b = 4)),
-    plot.subtitle = element_text(colour = "#4B5563", size = 10.4,
+    plot.subtitle = element_text(colour = "#4B5563", size = 10.0,
                                  lineheight = 1.05, margin = margin(b = 8)),
     legend.title = element_blank(),
-    legend.text = element_text(size = 9.8, colour = col_text),
+    legend.text = element_text(size = 9.6, colour = col_text),
     plot.margin = margin(10, 12, 8, 10)
   )
 
@@ -206,8 +205,11 @@ p_b <- ggplot(S, aes(x = x)) +
   theme(legend.position = "bottom", legend.box.margin = margin(t = -4))
 
 # ---- Panel C: failure reclassification ---------------------------------------
-callout_y <- c(690, 575, 385)
-S_c <- S %>% mutate(callout_y = callout_y)
+S_c <- S %>%
+  mutate(
+    callout_y = c(675, 540, 350),
+    naive_label_y = naive_fail + c(28, 27, 24)
+  )
 
 p_c <- ggplot(S_c, aes(x = x)) +
   geom_rect(aes(xmin = x - bar_half, xmax = x + bar_half,
@@ -225,36 +227,25 @@ p_c <- ggplot(S_c, aes(x = x)) +
                   naive_fail_reclassified_non_evaluable / 2,
                 label = naive_fail_reclassified_non_evaluable),
             colour = "white", fontface = "bold", size = 4.4) +
-  geom_text(aes(y = naive_fail + 25,
-                label = paste0("Naive failures\n= ", naive_fail)),
-            colour = col_text, size = 3.55, lineheight = 0.95) +
-  geom_segment(aes(x = x, xend = x,
-                   y = callout_y - 37, yend = naive_fail + 5),
-               arrow = grid::arrow(length = grid::unit(0.13, "inches")),
-               linewidth = 0.45, colour = "#111827") +
+  geom_text(aes(y = naive_label_y,
+                label = paste0("Naive failures = ", naive_fail)),
+            colour = col_text, size = 3.35) +
   geom_label(aes(y = callout_y,
                  label = paste0(percent(fraction_naive_fail_reclassified,
                                         accuracy = 0.1), "\nreclassified")),
              fill = "white", colour = col_red, fontface = "bold",
-             label.size = 0.35, size = 4.25, lineheight = 0.92) +
-  annotate(
-    "label", x = 3.58, y = 660,
-    label = "At 10^-4 e, 106 of 229\nnaive passes (46.3%) are\nalso non-evaluable.",
-    hjust = 0, vjust = 0.5, size = 3.35,
-    fill = "#F3F4F6", colour = col_text,
-    label.size = 0.3, label.padding = grid::unit(0.22, "lines")
-  ) +
+             label.size = 0.35, size = 4.15, lineheight = 0.92) +
   scale_fill_manual(values = c(
     "Genuine eligible failure" = col_red,
     "Reclassified non-evaluable" = col_orange
   )) +
   scale_x_continuous(breaks = 1:3, labels = threshold_labels,
-                     limits = c(0.5, 4.6), expand = c(0, 0)) +
-  scale_y_continuous(breaks = seq(0, 700, 100), limits = c(0, 735),
+                     limits = c(0.5, 3.5), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 700, 100), limits = c(0, 720),
                      expand = c(0, 0)) +
   labs(
-    title = "C  What the binary benchmark gets wrong",
-    subtitle = "Naive failures split into genuine failures and non-evaluable targets",
+    title = "C  Failure reclassification under Protocol A.1",
+    subtitle = "Most naive failures at strict thresholds are non-evaluable targets",
     x = "Bader threshold",
     y = "Number of naive failures"
   ) +
