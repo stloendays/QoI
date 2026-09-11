@@ -1,0 +1,151 @@
+name: Retry preclassified P4 failed cells
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P4_RETRY_START'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p4-engineering-retry
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify pre-retry taxonomy and frozen scientific boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'All \*\*144/144\*\* recorded failures' repo/analysis/research_upgrade/p4_failure_taxonomy/P4_FAILURE_TAXONOMY.md
+          grep -q '0 unclassified failures' repo/analysis/research_upgrade/p4_failure_taxonomy/P4_FAILURE_TAXONOMY.md
+          test "$(git -C repo rev-parse HEAD:validation/qsq_prospective/P4_CHEMICAL_DECISION_PROTOCOL.md)" = 'c1538c659313c65a82cd81c4cff5cee9b4f585ed'
+          test "$(git -C repo rev-parse HEAD:validation/qsq_prospective/P4_REFERENCE_POLICY_ADDENDUM.md)" = '06633cc8bb5847f5159302c748cf2f6fda8d8cf8'
+          python -m py_compile repo/validation/qsq_prospective/run_p4_failed_cells_retry.py repo/validation/qsq_prospective/aggregate_p4_resolved_retry.py
+      - name: Install frozen scientific stack and compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y gfortran-13
+      - name: Build unchanged Henkelman source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo/mechanism/independent_bader_20260908/reference_source
+          make -f makefile.osx_gfortran clean
+          make -f makefile.osx_gfortran FC=gfortran-13 LINK='' bader
+          test -x ./bader
+      - name: Retry exact preclassified failed cells
+        id: execute
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p4_retry_shard_${{ matrix.shard }}"
+          rm -rf "$out"; mkdir -p "$out"
+          python repo/validation/qsq_prospective/run_p4_failed_cells_retry.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --classified-failures repo/analysis/research_upgrade/p4_failure_taxonomy/P4_FIRST_RUN_FAILURES_CLASSIFIED.csv \
+            --henkelman-binary repo/mechanism/independent_bader_20260908/reference_source/bader \
+            --shard-count 8 --shard-index ${{ matrix.shard }} --output-dir "$out" \
+            2>&1 | tee "$out/run.log"
+          code=${PIPESTATUS[0]}; echo "$code" > "$out/exit_code.txt"; exit "$code"
+      - name: Upload retry shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-retry-shard-${{ matrix.shard }}
+          path: repo/validation/qsq_prospective/p4_retry_shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 90
+      - name: Preserve explicit retry failures
+        if: always()
+        shell: bash
+        run: |
+          code=$(cat "repo/validation/qsq_prospective/p4_retry_shard_${{ matrix.shard }}/exit_code.txt" 2>/dev/null || echo 99)
+          if [ "$code" = "0" ]; then echo 'Retry shard resolved all assigned failure keys.'; elif [ "$code" = "2" ]; then echo 'Retry shard accounted explicit unresolved failures.'; else exit 1; fi
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.4.6
+      - name: Download current retry shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p4-retry-shard-*
+          path: retry_shards
+      - name: Download immutable first-run shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p4-compressed-shard-*
+          path: first_shards
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34617416199
+      - name: Merge immutable successes and exact retry
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/validation/qsq_prospective/p4_chemical_decisions_resolved
+          python repo/validation/qsq_prospective/aggregate_p4_resolved_retry.py \
+            --reference-valid-pairs repo/validation/qsq_prospective/p4_reference_adjudication/p4_reference_valid_pairs.csv \
+            --stability-per-seed repo/stability/stability_floor_A1_per_seed.csv \
+            --first-shards-root first_shards \
+            --retry-shards-root retry_shards \
+            --classified-failures repo/analysis/research_upgrade/p4_failure_taxonomy/P4_FIRST_RUN_FAILURES_CLASSIFIED.csv \
+            --output-dir repo/validation/qsq_prospective/p4_chemical_decisions_resolved
+      - name: Commit resolved P4 analysis
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p4_chemical_decisions_resolved
+          git commit -m 'validation: resolve P4 engineering failures and recompute utility' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Upload resolved P4 bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-chemical-decisions-resolved
+          path: repo/validation/qsq_prospective/p4_chemical_decisions_resolved
+          if-no-files-found: error
+          retention-days: 90
