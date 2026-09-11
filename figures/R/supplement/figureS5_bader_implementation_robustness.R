@@ -30,8 +30,8 @@ stopifnot(length(unique(stab$material[!read_bool(stab$sentinel)])) == 12)
 stopifnot(nrow(pairs) == 144)
 stopifnot(nrow(spatial) == 9)
 
-get_impl <- function(solver, filter) {
-  z <- impl %>% filter(metric == "codec_response_ratio", .data$solver == solver, .data$filter == filter)
+get_impl <- function(solver_name, filter_name) {
+  z <- impl %>% dplyr::filter(metric == "codec_response_ratio", .data$solver == solver_name, .data$filter == filter_name)
   stopifnot(nrow(z) == 1)
   z
 }
