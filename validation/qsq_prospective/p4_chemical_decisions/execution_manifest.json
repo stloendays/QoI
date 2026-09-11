@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETE_WITH_RECORDED_FAILURES",
+  "reference_valid_pairs": 5,
+  "unique_states": 9,
+  "planned_compressed_solver_evaluations": 216,
+  "successful_solver_rows": 72,
+  "failed_solver_rows": 144,
+  "qsq_tau_e": 0.001,
+  "reference_margin_e": 0.02,
+  "random_baseline_repetitions": 10000,
+  "pair_bootstrap_repetitions": 5000,
+  "reference_valid_pairs_sha256": "e0fa923ce41f7341ae10a960f4af7375818707a6681b369d93fca995841f7598",
+  "stability_per_seed_sha256": "1c21be27eb9fbd3b9a3df65216079f6c5182ca567a80f497f20c6441550291a9",
+  "p3b_new_dft_used": false
+}
