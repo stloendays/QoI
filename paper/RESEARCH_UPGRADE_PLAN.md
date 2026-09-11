@@ -78,17 +78,15 @@ Charge-neutral, nonnegative-density-preserving and spatially correlated perturba
 
 ### P3 — Separate algorithmic instability from continuum/representation error
 
-**Status: P3A COMPLETE_WITH_RECORDED_FAILURES; P3B NOT EXECUTED.** P3A run **34605557997** accounted all **432/432** planned solver cells on the frozen 24-system panel, but only **72** rows succeeded and **360** are recorded failed/unresolved. Aggregate results were retained and committed in **99f5adcaf08f7556b5d05fdb16f75b465592f52b**. Only **4/24 materials** currently have complete five-seed implementation-transfer results, so P3A has not passed the full-panel gate.
+**Status: P3A COMPLETE; P3B NOT EXECUTED.** The original P3A run **34605557997** and its 360 recorded failures remain preserved. Before retry, all **360/360** failures were frozen and classified as the same pre-solver archived-amplitude serialization/provenance-gate signature; no recorded Bader-solver, atom-mapping, vacuum, grid-shape or source-download failure was present. A predeclared engineering-only retry, run **34608648393**, changed only serialization-aware amplitude compatibility and shell exit-code capture. It completed **360/360 retry cells successfully with 0 failures**, producing **72/72 complete material–solver five-seed summaries** across the 24-system panel.
 
-Among those four complete materials, recreated BaderKit floors match the frozen floors to a maximum absolute difference of **1.54445e-11 e**. Henkelman on-grid classifications agree 100% with frozen BaderKit at `1e-4`, `1e-3` and `1e-2 e` (Cohen kappa 1.0; floor-rank Spearman rho 1.0). Henkelman near-grid is less consistent (agreement 50% / 75% / 75%; floor-rank rho 0.4), which currently defines an implementation-sensitive boundary rather than a universal reference.
+Resolved P3A results are strong but deliberately implementation-specific. Recreated BaderKit floors match the frozen values to maximum absolute difference **8.71338e-11 e**. Henkelman on-grid reproduces the frozen QSQ classification for **24/24 materials at all three thresholds** (`1e-4`, `1e-3`, `1e-2 e`; agreement 100%, Cohen kappa 1.000 throughout) and preserves floor ordering with Spearman **rho = 0.995**. Henkelman near-grid is measurably less concordant: **82.6% / 83.3% / 95.8%** agreement and floor-rank **rho = 0.754**.
 
-One inspected failed shard shows a provenance-gate issue rather than a Bader-solver failure: the source-rederived float32 amplitude and the historical CSV value differ only at serialized decimal precision, while the hard ULP-based equality check was far tighter than the stored text precision. This finding cannot yet be extrapolated to all 360 failures. Every failed row must be classified by stage/signature before deciding which cells are eligible for an engineering-only rerun.
+**Gate outcome for P3A: PASSED for targeted implementation transfer.** The frozen QSQ stratification is not an artifact of the original BaderKit package when the same on-grid assignment class is used, but the near-grid comparison demonstrates that the downstream numerical implementation remains part of the measurement contract. This 24-system hash-stratified panel is a mechanism/robustness panel, not a prevalence sample.
 
-The deterministic 24-system panel remains frozen. Any rerun may repair only infrastructure/provenance validation logic; material selection, perturbation fields, solver definitions and scientific thresholds must not be changed because of observed outcomes. The original failed run remains provenance.
+P3B grid convergence remains open and requires genuinely recomputed electronic-density grids where convergence is claimed; interpolation of an existing coarse grid is not accepted as a new DFT convergence result. P3A must not be described as grid convergence or as defining a unique physical Bader reference.
 
-P3B grid convergence requires genuinely recomputed electronic-density grids where convergence is claimed; interpolation of an existing coarse grid is not accepted as a new DFT convergence result.
-
-**Gate:** full-panel implementation-transfer evidence remains open until unresolved P3A rows are correctly classified/recovered. At least one genuine grid-convergence comparison is still required for P3B.
+**Gate:** P3A closed; at least one genuine grid-convergence comparison is still required for P3B before the numerical-reference question is considered fully closed.
 
 ### P4 — Demonstrate a useful scientific decision and a remedy
 

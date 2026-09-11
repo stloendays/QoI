@@ -171,7 +171,7 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | **Table S8** | Electron-count control by codec/tolerance | `analysis/electron_count_qoi/electron_bader_decoupling.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `matched_error_dispersion.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S10** | Bader domain decomposition across representative systems | `mechanism/basin_error_decomposition_summary.csv`; `..._per_atom.csv` | **READY** |
-| **Table S11** | Cross-implementation Bader robustness | `mechanism/independent_bader_20260908/` | **READY, needs compact aggregation** |
+| **Table S11** | Cross-implementation Bader robustness + resolved 24-system QSQ classification transfer | `mechanism/independent_bader_20260908/`; `validation/qsq_prospective/p3a_implementation_transfer_resolved/` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md` |
 | **Table S12** | Realized-L∞ matching quality and caliper sensitivity | `analysis/matched_realized_linf_v1/` | **READY** |
 | **Table S13** | Development and external stability-qualified rate–fidelity summaries | `benchmark/summary_a1.csv`; `validation/final_external_confirmatory63_20260908/confirmatory63/` | **READY, regenerate at final build** |
 | **Table S14** | Failure taxonomy and negative algorithm results | `failure_registry.csv`; `paper/CLAIM_EVIDENCE_MATRIX.md` | **READY, needs compact aggregation** |
@@ -198,7 +198,7 @@ All final supplementary figures should be generated from R sources and exported 
 3. `NON_EVALUABLE_BADER_UNSTABLE` is neither pass nor failure.
 4. The 319-system stability universe and 63-system primary external confirmatory cohort use different denominators and must be labelled separately.
 5. Tight-ladder data support “floor-scale, consistent with an emerging analysis-limited regime”, not universal `plateau = floor`.
-6. Independent Bader implementation results validate robustness but do not redefine the frozen primary metric.
+6. The resolved 24-system P3A panel validates classification transfer across the tested independent on-grid implementation, while near-grid threshold switches demonstrate implementation dependence. It does not redefine the frozen primary metric and does not establish grid convergence.
 7. Supplementary figures should be regenerated in R rather than using legacy exploratory plots as final publication graphics.
 8. Negative algorithm results belong in the SI to show what was tested and falsified; they should not compete with the benchmark-validity narrative.
 

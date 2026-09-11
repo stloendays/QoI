@@ -88,6 +88,27 @@ Codec-response ratios above use successful paired outputs above the 2e-6 e Henke
 | henkelman_neargrid | shift | 36 | 0.00 | -0.27–0.46 | 50.0% |
 | henkelman_neargrid | stratified | 36 | 0.07 | -0.24–0.47 | 55.6% |
 
+### S11f. Resolved 24-system QSQ classification transfer
+
+This second, deterministic panel is distinct from the 12-system mechanism matrix above. It contains 24 development systems stratified by bulk/slab and four frozen QSQ stability-floor bands. The same five historical perturbation fields were analyzed with independent Bader implementations.
+
+| Bader threshold | Independent solver | Comparable systems | Ambiguous | Agreement with frozen QSQ classification | Cohen kappa | Eligible -> rejected | Rejected -> eligible |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 1e-4 e | Henkelman on-grid | 24 | 0 | **100.0%** | **1.000** | 0 | 0 |
+| 1e-4 e | Henkelman near-grid | 23 | 1 | 82.6% | 0.593 | 1 | 3 |
+| 1e-3 e | Henkelman on-grid | 24 | 0 | **100.0%** | **1.000** | 0 | 0 |
+| 1e-3 e | Henkelman near-grid | 24 | 0 | 83.3% | 0.667 | 0 | 4 |
+| 1e-2 e | Henkelman on-grid | 24 | 0 | **100.0%** | **1.000** | 0 | 0 |
+| 1e-2 e | Henkelman near-grid | 24 | 0 | 95.8% | 0.882 | 0 | 1 |
+
+Floor-rank Spearman correlation with frozen BaderKit is **0.995** for Henkelman on-grid and **0.754** for Henkelman near-grid. Recreated BaderKit floors agree with their frozen values to a maximum absolute difference of **8.71338e-11 e**.
+
+The first execution is retained as provenance. Its 360 recorded failures were all classified before retry as a single pre-solver decimal-serialization compatibility-gate failure family. The predeclared engineering retry completed 360/360 blocked cells with zero failures and changed no scientific panel, perturbation, solver or threshold definition.
+
+**Sources:** `validation/qsq_prospective/p3a_implementation_transfer_resolved/p3a_classification_transfer_combined.csv`; `p3a_floor_rank_transfer_combined.csv`; `P3A_IMPLEMENTATION_TRANSFER_RESOLVED_REPORT.md`; failure provenance in `analysis/research_upgrade/P3A_FAILURE_TAXONOMY.md`.
+
+---
+
 **Interpretation boundary.** This deliberately stratified 12-system panel is a mechanism/implementation robustness study, not a prevalence estimate. Henkelman on-grid reproduces the BaderKit codec response essentially one-for-one above print resolution, and the strict SZ3/ZFP and SPERR/ZFP ordering remains qualitatively similar under on-grid and near-grid Henkelman analyses. The exact decomposition supports a Bader-specific domain-migration channel. Spatial permutations provide secondary evidence that error organization matters, while the near-null periodic-shift control argues against a simple alignment-only explanation. These results do not redefine QSQ or alter the primary benchmark.
 
 **Sources:** `mechanism/independent_bader_20260908/outcomes/*.jsonl`; `stability_comparison.csv`; `mechanism_domain_decomposition.csv`; `mechanism_spatial_pairs.csv`; protocol/scope in `mechanism/independent_bader_20260908/README.md`.
