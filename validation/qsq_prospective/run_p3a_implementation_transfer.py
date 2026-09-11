@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run one shard of the frozen 24-system P3A implementation-transfer panel."""
 from __future__ import annotations
-import argparse, csv, hashlib, json, sys, tempfile, time, traceback
+import argparse, csv, hashlib, json, sys, tempfile, time
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -55,6 +55,13 @@ def write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
         w.writeheader(); w.writerows(rows)
 
 
+def add_material_failures(rows: list[dict[str, Any]], material: str, stage: str, error: str) -> None:
+    for solver in SOLVERS:
+        rows.append({"material_id": material, "variant": "baseline", "seed": "", "solver": solver, "status": "FAILED", "stage": stage, "error": error})
+        for seed in OLD_SEEDS:
+            rows.append({"material_id": material, "variant": "noise", "seed": seed, "solver": solver, "status": "FAILED", "stage": stage, "error": error})
+
+
 def main() -> int:
     a = parse_args()
     if a.shard_count <= 0 or not 0 <= a.shard_index < a.shard_count:
@@ -78,7 +85,8 @@ def main() -> int:
     for p in selected:
         m = p["material_id"]; meta = metadata.get(m); eps = amps.get(m)
         if meta is None or eps is None:
-            failures.append({"material_id": m, "status": "FAILED", "stage": "preflight", "error": "missing metadata/amplitude"}); continue
+            add_material_failures(failures, m, "preflight", "missing metadata/amplitude")
+            continue
         try:
             blob = fetch_exact(meta["url"], meta["sha256"], int(meta["source_bytes"]))
             with tempfile.TemporaryDirectory(prefix="qoi_p3a_") as td:
@@ -90,24 +98,26 @@ def main() -> int:
                 if field.size != int(p["npoints"]) or len(symbols) != int(p["natoms"]):
                     raise RuntimeError("panel/source shape or atom-count mismatch")
                 refs: dict[str, np.ndarray] = {}
+                baseline_log = work / "logs" / "baseline"; baseline_log.mkdir(parents=True, exist_ok=True)
                 for solver in SOLVERS:
                     t0 = time.time()
                     try:
-                        q, _, extra = study.solve(solver, field, lattice, frac, symbols, work / solver, work / "logs" / "baseline")
+                        q, _, extra = study.solve(solver, field, lattice, frac, symbols, work / solver, baseline_log)
                         refs[solver] = np.asarray(q, dtype=float)
                         rows.append({"material_id": m, "system_type": p["system_type"], "floor_band": p["floor_band"], "variant": "baseline", "seed": "", "solver": solver, "status": "SUCCESS", "response_e": 0.0, "epsilon": eps, "measured_Linf": 0.0, "source_sha256": meta["sha256"], "loader": loader, "elapsed_seconds": time.time()-t0, "charges_json": json.dumps(refs[solver].tolist(), separators=(",", ":")), "vacuum_charge_e": extra.get("vacuum_charge_e", "")})
                     except Exception as exc:
-                        failures.append({"material_id": m, "variant": "baseline", "solver": solver, "status": "FAILED", "stage": "baseline_solver", "error": f"{type(exc).__name__}: {exc}"})
+                        failures.append({"material_id": m, "variant": "baseline", "seed": "", "solver": solver, "status": "FAILED", "stage": "baseline_solver", "error": f"{type(exc).__name__}: {exc}"})
                 for seed in OLD_SEEDS:
                     rng = np.random.default_rng(seed)
                     noise = rng.uniform(-eps, eps, size=field.shape).astype(np.float64, copy=False)
                     recon = field + noise; linf = float(np.max(np.abs(noise))) if noise.size else 0.0
+                    noise_log = work / "logs" / f"noise_{seed}"; noise_log.mkdir(parents=True, exist_ok=True)
                     for solver in SOLVERS:
                         if solver not in refs:
                             failures.append({"material_id": m, "variant": "noise", "seed": seed, "solver": solver, "status": "FAILED", "stage": "missing_baseline", "error": "baseline unavailable"}); continue
                         t0 = time.time()
                         try:
-                            q, _, extra = study.solve(solver, recon, lattice, frac, symbols, work / solver, work / "logs" / f"noise_{seed}")
+                            q, _, extra = study.solve(solver, recon, lattice, frac, symbols, work / solver, noise_log)
                             q = np.asarray(q, dtype=float); response = float(np.max(np.abs(q - refs[solver])))
                             precision = 2e-6 if solver.startswith("henkelman") else 0.0
                             verdicts = {str(t): ("AMBIGUOUS" if precision and abs(response-t) <= precision else "PASS" if response < t else "FAIL") for t in TAUS}
@@ -115,12 +125,17 @@ def main() -> int:
                         except Exception as exc:
                             failures.append({"material_id": m, "variant": "noise", "seed": seed, "solver": solver, "status": "FAILED", "stage": "perturbed_solver", "error": f"{type(exc).__name__}: {exc}"})
         except Exception as exc:
-            failures.append({"material_id": m, "status": "FAILED", "stage": "source_or_grid", "error": f"{type(exc).__name__}: {exc}\n{traceback.format_exc()}"})
+            add_material_failures(failures, m, "source_or_grid", f"{type(exc).__name__}: {exc}")
 
+    rows.sort(key=lambda r: (r["material_id"], r["solver"], str(r.get("seed", ""))))
+    failures.sort(key=lambda r: (r["material_id"], r["solver"], str(r.get("seed", ""))))
     write_rows(outdir / f"outcomes_shard_{a.shard_index:02d}.csv", rows)
     write_rows(outdir / f"failures_shard_{a.shard_index:02d}.csv", failures)
     planned = len(selected) * 18
-    manifest = {"shard_index": a.shard_index, "shard_count": a.shard_count, "materials": len(selected), "planned_solver_evaluations": planned, "successful_rows": len(rows), "failed_records": len(failures), "panel_sha256": hashlib.sha256(a.panel.read_bytes()).hexdigest(), "henkelman_binary_sha256": hashlib.sha256(study.BADER.read_bytes()).hexdigest()}
+    accounted = len(rows) + len(failures)
+    if accounted != planned:
+        raise RuntimeError(f"P3A accounting mismatch: {accounted} != {planned}")
+    manifest = {"shard_index": a.shard_index, "shard_count": a.shard_count, "materials": len(selected), "planned_solver_evaluations": planned, "successful_rows": len(rows), "failed_rows": len(failures), "accounted_solver_evaluations": accounted, "panel_sha256": hashlib.sha256(a.panel.read_bytes()).hexdigest(), "henkelman_binary_sha256": hashlib.sha256(study.BADER.read_bytes()).hexdigest()}
     (outdir / f"manifest_shard_{a.shard_index:02d}.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(manifest, indent=2))
     return 0 if not failures else 2
