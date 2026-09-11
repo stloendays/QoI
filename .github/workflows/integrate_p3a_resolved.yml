@@ -1,0 +1,74 @@
+name: Integrate resolved P3A evidence
+
+on:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P3A_INTEGRATE_START'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: integrate-p3a-resolved
+  cancel-in-progress: false
+
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out research record
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify resolved evidence and integration source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD:scripts/integrate_p3a_resolved.py)" = '6b332c5d476c94a058bfafea5172b45633b67148'
+          test "$(git rev-parse HEAD:validation/qsq_prospective/p3a_implementation_transfer_resolved/execution_manifest.json)" = '952eda321873f7f5d63830380f5a2388b9f7ba8d'
+          test "$(git rev-parse HEAD:validation/qsq_prospective/p3a_implementation_transfer_resolved/p3a_classification_transfer_combined.csv)" = '883f2a8b02c5e724c94f111028f5f73972687fb7'
+          test -f analysis/research_upgrade/P3A_FAILURE_TAXONOMY.md
+          python -m py_compile scripts/integrate_p3a_resolved.py
+
+      - name: Integrate P3A into active paper records
+        run: python scripts/integrate_p3a_resolved.py
+
+      - name: Verify only paper-facing records changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed=$(git diff --name-only)
+          printf '%s\n' "$changed"
+          for f in $changed; do
+            case "$f" in
+              paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md|paper/RESEARCH_UPGRADE_PLAN.md|paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md|paper/SUPPLEMENTARY_INFORMATION_DRAFT_20260911.md|paper/CLAIM_EVIDENCE_MATRIX.md) ;;
+              *) echo "Unexpected modified path: $f"; exit 1 ;;
+            esac
+          done
+          grep -q 'P3A_RESOLVED_EVIDENCE' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          grep -q 'P3A COMPLETE; P3B NOT EXECUTED' paper/RESEARCH_UPGRADE_PLAN.md
+          grep -q 'Resolved 24-system QSQ classification transfer' paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md
+          grep -q 'QSQ classification transfers across an independent on-grid Bader implementation' paper/CLAIM_EVIDENCE_MATRIX.md
+
+      - name: Commit integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md paper/RESEARCH_UPGRADE_PLAN.md paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md paper/SUPPLEMENTARY_INFORMATION_DRAFT_20260911.md paper/CLAIM_EVIDENCE_MATRIX.md
+          if git diff --cached --quiet; then
+            echo 'No paper-facing changes required.'
+          else
+            git commit -m 'paper: integrate resolved P3A implementation transfer'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
