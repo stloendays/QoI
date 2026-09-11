@@ -1,0 +1,54 @@
+name: Preflight P3A implementation transfer
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/preflight_p3a_implementation_transfer.yml'
+      - 'validation/qsq_prospective/P3_NUMERICAL_VALIDATION_PROTOCOL.md'
+      - 'validation/qsq_prospective/run_p3a_implementation_transfer.py'
+      - 'validation/qsq_prospective/aggregate_p3a_implementation_transfer.py'
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile P3A Python code
+        run: |
+          python -m py_compile validation/qsq_prospective/run_p3a_implementation_transfer.py
+          python -m py_compile validation/qsq_prospective/aggregate_p3a_implementation_transfer.py
+      - name: Verify frozen panel and method source
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'ecd58e8ca42e6553a2d39693447d4c85b7960fbbea66622f58412e7b80ad08ef  validation/qsq_prospective/convergence_panel.csv' | sha256sum -c -
+          test "$(git rev-parse HEAD:mechanism/independent_bader_20260908/reference_source)" = '8f840f6413602eafd9c49c59be57654cb785c0ad'
+          grep -q 'Status: \*\*FROZEN_PRE_EXECUTION\*\*' validation/qsq_prospective/P3_NUMERICAL_VALIDATION_PROTOCOL.md
+          python - <<'PY'
+          import csv
+          from collections import Counter
+          p=list(csv.DictReader(open('validation/qsq_prospective/convergence_panel.csv',newline='',encoding='utf-8')))
+          assert len(p)==24 and len({r['material_id'] for r in p})==24
+          assert all(r['status']=='PREPARED_NOT_EXECUTED' for r in p)
+          c=Counter((r['system_type'],r['floor_band']) for r in p)
+          assert len(c)==8 and set(c.values())=={3}, c
+          print('P3A_PANEL_PASS materials=24 strata=8 per_stratum=3')
+          PY
+      - name: Build frozen Henkelman input-adapter source
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y gfortran-13
+          cd mechanism/independent_bader_20260908/reference_source
+          make -f makefile.osx_gfortran clean
+          make -f makefile.osx_gfortran FC=gfortran-13 LINK='' bader
+          test -x ./bader
+          sha256sum ./bader
+          gfortran-13 --version | head -1
+          ./bader -v || true
