@@ -6,7 +6,7 @@ Generated 2026-09-11 from the canonical `failure_registry.csv` and the retracted
 
 | State / category | Meaning | Scored as codec pass/fail? | Canonical source |
 |---|---|---|---|
-| `NON_EVALUABLE_BADER_UNSTABLE` | Reference Bader QoI fails Protocol A.1 eligibility at the requested tolerance | **No** — neither pass nor fail | `stability/eligibility_summary_A1.csv`; Figure 3/S4 |
+| `NON_EVALUABLE_BADER_UNSTABLE` | Reference Bader QoI fails **QSQ eligibility** at the requested tolerance | **No** — neither pass nor fail | `stability/eligibility_summary_A1.csv`; Figure 3/S4 |
 | `bader_solver_failure` | Downstream Bader analysis did not return a valid row-level result | **No automatic codec attribution**; retained in audit | `failure_registry.csv` |
 | `reproduction_mismatch` | Reproduction/platform check failed despite reconstructed scientific field remaining consistent | **No**; infrastructure exclusion from the affected formal analysis | Hartree reproduction-gate records |
 | `basin_relabelling_symmetry_equivalent` | Apparent large atom-indexed charge change is a permutation among symmetry-equivalent basins | **Non-evaluable for position-indexed charge**, separately flagged | `failure_registry.csv` |
@@ -28,7 +28,7 @@ Generated 2026-09-11 from the canonical `failure_registry.csv` and the retracted
 | dev_slab | SPERR | 4 |
 | dev_slab | ZFP | 37 |
 
-These counts describe explicit row-level failure records, not material-level non-evaluable counts. Protocol A.1 non-evaluability is stored in the stability/benchmark tables and must not be reconstructed from `failure_registry.csv`.
+These counts describe explicit row-level failure records, not material-level non-evaluable counts. QSQ non-evaluability is stored in the stability/benchmark tables and must not be reconstructed from `failure_registry.csv`. Historical `_A1` source filenames remain unchanged for frozen-schema compatibility.
 
 ## S14c. Superseded exploratory statements retained for provenance but prohibited from the submission
 
