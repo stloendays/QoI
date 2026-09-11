@@ -1,0 +1,64 @@
+name: Build Supplementary Tables S10-S11
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_supplement_tables_s10_s11_20260911.py'
+      - '.github/workflows/build_supplement_tables_s10_s11.yml'
+      - 'mechanism/basin_error_decomposition_summary.csv'
+      - 'mechanism/basin_error_decomposition_per_atom.csv'
+      - 'mechanism/independent_bader_20260908/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-submission-table-writeback
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Tables S10-S11 and machine-readable summaries
+        run: python scripts/build_supplement_tables_s10_s11_20260911.py
+      - name: Validate outputs
+        run: |
+          test -s paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md
+          test -s supplement/S10_bader_decomposition_summary.csv
+          test -s supplement/S11_cross_implementation_pairs.csv
+          test -s supplement/S11_independent_implementation_summary.csv
+          test -s supplement/S11_codec_order_1e4.csv
+          test -s supplement/S11_independent_domain_summary.csv
+          test -s supplement/S11_spatial_control_summary.csv
+          git diff --check
+      - name: Commit generated outputs
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          tmp=$(mktemp -d)
+          cp paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md "$tmp/"
+          cp supplement/S10_bader_decomposition_summary.csv "$tmp/"
+          cp supplement/S11_cross_implementation_pairs.csv "$tmp/"
+          cp supplement/S11_independent_implementation_summary.csv "$tmp/"
+          cp supplement/S11_codec_order_1e4.csv "$tmp/"
+          cp supplement/S11_independent_domain_summary.csv "$tmp/"
+          cp supplement/S11_spatial_control_summary.csv "$tmp/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp/SUPPLEMENTARY_TABLES_S10_S11_20260911.md" paper/
+          cp "$tmp"/*.csv supplement/
+          git add paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md supplement/S10_bader_decomposition_summary.csv supplement/S11_cross_implementation_pairs.csv supplement/S11_independent_implementation_summary.csv supplement/S11_codec_order_1e4.csv supplement/S11_independent_domain_summary.csv supplement/S11_spatial_control_summary.csv
+          git commit -m 'supplement: build Tables S10-S11 from frozen mechanism data'
+          git push origin HEAD:main
