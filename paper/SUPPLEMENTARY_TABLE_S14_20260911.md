@@ -42,7 +42,7 @@ These counts describe explicit row-level failure records, not material-level non
 | "Spatial error allocation is dead (bits/chemistry ratio ~1.0)" | Diagnostic used fixed basins and was blind to the dominant term |
 | "Bulk float32 reaches 26x, lossy is pointless there" | Sampling bias: smallest-first ordering selected high-symmetry materials; full corpus gives 4.6x |
 | Bias correction "2.08x on slabs" | Fixed-basin metric; gains largely evaporate honestly measured |
-| "Bulk crystals have a median Bader stability floor of 6e-9 e" and every Protocol A non-evaluable rate | Float32 probe is order-preserving and understates the floor substantially. The older ~8,700x intermediate summary is superseded for submission wording by the formal five-seed A.1 paired-development median shift of ~1.6×10^4. Archived A remains PROVISIONAL / archived; A.1 values replace it |
+| "Bulk crystals have a median Bader stability floor of 6e-9 e" and every archived-float32-probe non-evaluable rate | The float32 probe is order-preserving and understates the floor substantially. The older ~8,700x intermediate summary is superseded for submission wording by the formal five-seed QSQ paired-development median shift of ~1.6×10^4. Archived values remain provenance only; QSQ values replace them for current claims |
 | "BQB's 35:1 converts to about 7.8x against float64" | Wrong denominator twice over: BQB's reference is the Gaussian cube (13.167 B/value), not CHGCAR, and the ~36 B/value CHGCAR figure used included header and augmentation block. **The correct conversion is 21.3:1**, i.e. 3.01 bits per grid value. See `results/external_baselines/BASELINE_REPORT.md` |
 
 ## S14d. Closed baseline / algorithm tracks
