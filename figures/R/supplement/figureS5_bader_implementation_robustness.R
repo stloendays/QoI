@@ -114,6 +114,7 @@ pB <- ggplot(stab_pair, aes(baderkit_floor, comparison_floor, shape = domain)) +
   ) + base_theme + theme(legend.position = "top")
 
 # C — paired codec responses; one-to-one for on-grid implementation, wider for near-grid.
+expected_pair_n <- sum(read_bool(pairs$above_2e.6_print_region))
 pair_plot <- pairs %>%
   filter(read_bool(above_2e.6_print_region)) %>%
   mutate(
@@ -123,7 +124,8 @@ pair_plot <- pairs %>%
       labels = c("Henkelman on-grid", "Henkelman near-grid")),
     x = pmax(baderkit_error_e, 1e-8), y = pmax(comparison_error_e, 1e-8)
   )
-stopifnot(nrow(pair_plot) == 140)
+stopifnot(expected_pair_n > 0, nrow(pair_plot) == expected_pair_n)
+message("Figure S5 paired codec-response points above print region: ", nrow(pair_plot))
 ann <- data.frame(
   comparison_solver = factor(c("Henkelman on-grid", "Henkelman near-grid"), levels = levels(pair_plot$comparison_solver)),
   label = c(
@@ -137,7 +139,7 @@ pC <- ggplot(pair_plot, aes(x, y, colour = codec)) +
   geom_abline(slope = 1, intercept = 0, linetype = 2, linewidth = .65, colour = "#70757A") +
   geom_point(size = 1.65, alpha = .65) +
   geom_label(data = ann, aes(x = x, y = y, label = label), inherit.aes = FALSE,
-             hjust = 0, vjust = 1, size = 2.75, label.size = .18, fill = alpha("white", .9)) +
+             hjust = 0, vjust = 1, size = 2.75, linewidth = .18, fill = alpha("white", .9)) +
   facet_wrap(~comparison_solver, nrow = 1) +
   scale_colour_manual(values = codec_cols) +
   scale_x_log10(labels = label_scientific(digits = 1), limits = c(2e-6, 4e-1)) +
