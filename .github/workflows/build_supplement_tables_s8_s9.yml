@@ -1,0 +1,53 @@
+name: Build Supplementary Tables S8-S9
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_supplement_tables_s8_s9_20260911.py'
+      - '.github/workflows/build_supplement_tables_s8_s9.yml'
+      - 'analysis/electron_count_qoi/electron_bader_decoupling.csv'
+      - 'analysis/hartree_potential_expansion/group_summary.csv'
+      - 'analysis/hartree_potential_expansion/material_smoothness.csv'
+      - 'analysis/hartree_potential_expansion/matched_error_dispersion.csv'
+      - 'analysis/hartree_potential_expansion/RESULTS_DETAIL.md'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-submission-table-writeback
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Tables S8-S9
+        run: python scripts/build_supplement_tables_s8_s9_20260911.py
+      - name: Validate output
+        run: |
+          test -s paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md
+          git diff --check
+      - name: Commit generated table
+        run: |
+          if git diff --quiet; then
+            echo 'No table changes to commit.'
+            exit 0
+          fi
+          tmp=$(mktemp)
+          cp paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md "$tmp"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp" paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md
+          git add paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md
+          git commit -m 'supplement: build Tables S8-S9 from frozen operator controls'
+          git push origin HEAD:main
