@@ -1,0 +1,50 @@
+name: Apply submission consistency patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/submission_consistency_patch_20260911.py'
+      - '.github/workflows/submission_consistency_patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply deterministic consistency patch
+        run: python scripts/submission_consistency_patch_20260911.py
+
+      - name: Validate diff
+        run: |
+          git diff --check
+          git diff -- paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md paper/CLAIM_EVIDENCE_MATRIX.md paper/FIGURE_MAP.md paper/SUPPLEMENTARY_CROSS_REFERENCE_PLAN_20260911.md paper/NUMERIC_CROSS_REFERENCE_AUDIT_20260911.md
+
+      - name: Commit audited files
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md \
+            paper/CLAIM_EVIDENCE_MATRIX.md \
+            paper/FIGURE_MAP.md \
+            paper/SUPPLEMENTARY_CROSS_REFERENCE_PLAN_20260911.md \
+            paper/NUMERIC_CROSS_REFERENCE_AUDIT_20260911.md
+          git commit -m 'paper: align numeric and supplementary cross-references'
+          git push
