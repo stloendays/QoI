@@ -84,13 +84,16 @@ pA <- ggplot(dec_plot, aes(integrand_plot, domain_plot, colour = kind)) +
     x = "Integrand contribution, max |Delta Q| (e)", y = "Domain-migration contribution, max |Delta Q| (e)"
   ) + base_theme + theme(legend.position = "top")
 
-# B — A.1 floor cross-implementation comparison.
+# B — A.1 floor cross-implementation comparison. Use the material-domain map
+# from the paired codec table so this join is independent of stability CSV schema.
 stab2 <- stab %>% filter(!read_bool(sentinel))
+domain_map <- pairs %>% select(material, domain) %>% distinct()
 ref <- stab2 %>% filter(solver == "baderkit_ongrid") %>%
-  select(material, domain, role, baderkit_floor = probe_response_max_e)
+  select(material, baderkit_floor = probe_response_max_e)
 comp <- stab2 %>% filter(solver != "baderkit_ongrid") %>%
   select(material, solver, comparison_floor = probe_response_max_e)
 stab_pair <- inner_join(comp, ref, by = "material") %>%
+  left_join(domain_map, by = "material") %>%
   mutate(
     solver = factor(solver, levels = c("henkelman_ongrid", "henkelman_neargrid"),
                     labels = c("Henkelman on-grid", "Henkelman near-grid")),
@@ -98,7 +101,7 @@ stab_pair <- inner_join(comp, ref, by = "material") %>%
     baderkit_floor = pmax(baderkit_floor, 1e-9),
     comparison_floor = pmax(comparison_floor, 1e-9)
   )
-stopifnot(nrow(stab_pair) == 24)
+stopifnot(nrow(stab_pair) == 24, all(!is.na(stab_pair$domain)))
 
 pB <- ggplot(stab_pair, aes(baderkit_floor, comparison_floor, shape = domain)) +
   geom_abline(slope = 1, intercept = 0, linetype = 2, linewidth = .65, colour = "#70757A") +
