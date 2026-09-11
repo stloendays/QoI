@@ -166,8 +166,8 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | **Table S5** | No-exclusion and inflated-threshold sensitivity | `supplement/S1_S3_sensitivity.csv` | **READY** |
 | **Table S6** | Certified Bader error relative to A.1 floor | `supplement/S2_floor_relative.csv` | **READY** |
 | **Table S7** | Probe seed and amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **READY** |
-| **Table S8** | Electron-count control by codec/tolerance | `analysis/electron_count_qoi/summary_by_codec.csv`; `summary_by_tolerance.csv` | **READY** |
-| **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `gate_failures.csv` | **READY** |
+| **Table S8** | Electron-count control by codec/tolerance | `analysis/electron_count_qoi/electron_bader_decoupling.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
+| **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `matched_error_dispersion.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S10** | Bader domain decomposition across representative systems | `mechanism/basin_error_decomposition_summary.csv`; `..._per_atom.csv` | **READY** |
 | **Table S11** | Cross-implementation Bader robustness | `mechanism/independent_bader_20260908/` | **READY, needs compact aggregation** |
 | **Table S12** | Realized-L∞ matching quality and caliper sensitivity | `analysis/matched_realized_linf_v1/` | **READY** |
@@ -180,13 +180,13 @@ All final supplementary figures should be generated from R sources and exported 
 
 | Figure | Content | Source data | Status |
 |---|---|---|---|
-| **Fig. S1** | Protocol A vs A.1 stability-floor distribution and threshold eligibility | `stability/stability_floor_A1.csv`; archived A; `eligibility_summary_A1.csv` | **PLANNED R** |
-| **Fig. S2** | Five-seed spread and ×0.1/×1/×10 amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **PLANNED R** |
-| **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **PLANNED R** |
-| **Fig. S4** | Tight-regime Bader error/floor ratios and selected ladder trajectories | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **PLANNED R** |
+| **Fig. S1** | Protocol A vs A.1 stability-floor distribution and threshold eligibility | `stability/stability_floor_A1.csv`; archived A; `eligibility_summary_A1.csv` | **LOCKED** |
+| **Fig. S2** | Five-seed spread and ×0.1/×1/×10 amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **LOCKED** |
+| **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **LOCKED** |
+| **Fig. S4** | Tight-regime Bader error/floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
 | **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | `mechanism/basin_error_decomposition_*`; `mechanism/independent_bader_20260908/` | **PLANNED R** |
 | **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | `analysis/matched_realized_linf_v1/` | **PLANNED R** |
-| **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **PLANNED R** |
+| **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **LOCKED** |
 | **Fig. S8** | External confirmatory per-system/pairwise distributions and audit summary | `validation/final_external_confirmatory63_20260908/confirmatory63/` | **PLANNED R** |
 
 # Submission boundaries
@@ -204,6 +204,6 @@ All final supplementary figures should be generated from R sources and exported 
 
 - **Raw evidence coverage:** high; nearly all intended SI claims already have frozen machine-readable sources.
 - **Submission-facing SI prose:** first structured draft completed here.
-- **Supplementary tables:** 12/14 can be generated directly from existing tables; S11 and S14 require compact aggregation but no new scientific experiment.
-- **Supplementary figures:** source data are present, but final R renderings still need to be produced and locked.
-- **Highest-priority audit before final submission:** regenerate Table S13 from the final numerical source of record and explicitly document the 65-descriptive versus 63-confirmatory external-cohort relationship in the final SI build.
+- **Supplementary tables:** S1–S9 are now built as submission-facing drafts/objects; S10–S12/S14 require compact aggregation and S13 requires deterministic final regeneration. No new core scientific experiment is required.
+- **Supplementary figures:** S1–S4 and S7 are locked R figures; S5, S6 and S8 remain to be built/locked from existing frozen analyses.
+- **Highest-priority remaining build:** complete S10–S14 and Figures S5/S6/S8, then rerun the final manuscript ↔ SI cross-reference audit.

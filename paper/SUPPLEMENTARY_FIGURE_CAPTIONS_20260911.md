@@ -26,6 +26,22 @@ Updated 2026-09-11. Canonical submission-facing captions for the first formal su
 
 **R source:** `figures/R/supplement/figureS7_reclassification_by_codec.R`.
 
+## Supplementary Figure S3 | Extended operator controls separate global, smooth nonlocal and topology-sensitive QoIs
+
+**A,** Electron-count error versus re-derived Bader-charge error across finite development reconstructions. The dashed thresholds mark |ΔNe| = 10^-4 e and Bader error = 10^-3 e; 1,383 of 3,205 reconstructions (43.15%) that satisfy the electron-count threshold still exceed the Bader threshold. **B,** Paired material-level goodness of fit for Hartree-potential and Bader response across 678 material–codec pairs with at least five reproduction-gate-passing rows. **C,** Strict monotonicity resolved by bulk/slab stratum and codec. Hartree response is substantially smoother overall, while the slab result is intentionally retained as a caveat against claiming universal monotonicity. **D,** Dispersion of re-derived Bader error within 0.5-decade Hartree-error bins containing at least 10 rows; 3,452 of 6,229 rows (55.4%) lie in bins with Bader P90/P10 ≥ 10. Together these controls show that similar global or smooth nonlocal fidelity does not uniquely determine the topology-sensitive Bader response.
+
+**Sources:** `analysis/electron_count_qoi/electron_bader_decoupling.csv`; `analysis/hartree_potential_expansion/group_summary.csv`; `analysis/hartree_potential_expansion/material_smoothness.csv`; `analysis/hartree_potential_expansion/matched_error_dispersion.csv`.
+
+**R source:** `figures/R/supplement/figureS3_operator_controls.R`.
+
+## Supplementary Figure S4 | The strictest certified Bader regime is floor-scale, not a universal plateau
+
+**A,** Re-derived Bader error normalized by the independently measured Protocol A.1 stability floor for one highest-rate certified reconstruction per material–codec pair. Points show the median and bars the P10–P90 range. At 10^-4 e, median error/floor is 1.09 for ZFP, 1.33 for SZ3 and 1.23 for SPERR. **B,** Material-level relation between the Protocol A.1 floor and the best-certified re-derived Bader error at the 10^-4 e contract (n = 123 certified material–codec decisions); the dashed diagonal denotes equal scales. **C,** Median and interquartile range of error/floor across the frozen tight ladder as a function of nominal relative codec tolerance. This panel is descriptive and is not used as a material-level plateau estimator. The strictest certified regime is therefore floor-scale and consistent with an emerging analysis-limited regime, but the data do not establish a universal identity between a compression plateau and the Protocol A.1 floor.
+
+**Sources:** `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_full.csv`; `benchmark/master_benchmark_tight_ladder.csv`.
+
+**R source:** `figures/R/supplement/figureS4_tight_floor_scale.R`.
+
 ## Interpretation boundary
 
 Figures S1, S2 and S7 support the benchmark-validity and probe-validation claims. They do not establish that Protocol A.1 is an amplitude-free intrinsic material property, do not convert non-evaluable cases into successful codec outcomes, and do not imply a universal codec ranking.

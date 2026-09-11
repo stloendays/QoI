@@ -50,13 +50,13 @@ Historical prose values such as bulk SZ3 52.0x [48.0, 61.7] and slab SZ3 69.6x [
 ## Supplementary cross-reference state
 
 Safe to cite now:
-- Tables **S1–S7** are built as submission-facing drafts.
-- Figures **S1, S2 and S7** are locked R-generated objects.
-- The polished manuscript currently inserts references only to built/locked objects needed for its present claims: **S1–S4, S6–S7 and Figs. S1, S2, S7**.
+- Tables **S1–S9** are built as submission-facing drafts/objects.
+- Figures **S1–S4 and S7** are locked R-generated objects.
+- The polished manuscript currently cites built/locked operator-control, stability, reclassification and floor-scale SI objects as appropriate.
 
 Deferred until built/locked:
-- Tables S8–S14.
-- Figures S3–S6 and S8.
+- Tables S10–S14.
+- Figures S5, S6 and S8.
 
 This prevents the final Word/PDF from containing dangling Supplementary references.
 

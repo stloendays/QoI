@@ -23,7 +23,7 @@ The current submission plan contains:
 - **14 Supplementary Tables (S1–S14)**;
 - **8 Supplementary Figures (S1–S8)**.
 
-Most tables are already backed by frozen CSV/JSON/Markdown evidence. The remaining work is primarily aggregation, R rendering, caption polishing and cross-reference validation rather than new experiments.
+Tables S1–S9 are now built as submission-facing drafts/objects, and Figures S1–S4 plus S7 are locked R-generated publication figures. The remaining work is primarily compact aggregation for S10–S14 and R rendering/locking for S5, S6 and S8 rather than new experiments.
 
 ## Critical denominator convention
 
@@ -48,10 +48,8 @@ The 65-record external descriptive set must not be silently substituted for the 
 
 ## Next build order
 
-1. Build Tables S1–S4 and S6 directly from existing frozen tables.
-2. Render Figures S1–S2 (Protocol A.1 / seed / amplitude) because they are the most directly tied to benchmark validity.
-3. Render Figure S7 (codec-resolved reclassification) as the natural supplement to central Figure 3.
-4. Build the controls/mechanism/matching figures S3–S6.
-5. Regenerate Table S13 and Figure S8 from the final 63-system external confirmatory outputs.
-6. Aggregate failure/negative-result Table S14.
-7. Run final manuscript ↔ SI cross-reference audit before Word/PDF assembly.
+1. Build Tables S10–S11 and Figure S5 for Bader mechanism / independent-implementation robustness.
+2. Build Table S12 and Figure S6 for realized-distortion matching sensitivity.
+3. Regenerate Table S13 and Figure S8 from the final 63-system external confirmatory outputs and the current development `benchmark/summary_a1.csv`.
+4. Aggregate failure/negative-result Table S14.
+5. Run the final manuscript ↔ SI cross-reference audit, then assemble Word/PDF submission files.

@@ -2,7 +2,7 @@
 
 Updated 2026-09-11. This map specifies where each Supplementary object should be cited in the polished manuscript. It is a build plan rather than a second narrative: the main text keeps the central claims, while the SI carries detailed denominators, sensitivity analyses and robustness evidence.
 
-**Current insertion state (submission audit 2026-09-11):** Tables S1–S7 exist as submission-facing drafts; Supplementary Figs. S1, S2 and S7 are formally locked. The polished manuscript now cites only built/locked SI objects (S1–S4, S6–S7; Figs. S1, S2, S7). References to Tables S8–S14 and Figs. S3–S6/S8 remain deferred until those objects are built and locked.
+**Current insertion state (submission audit 2026-09-11):** Tables S1–S9 now exist as submission-facing objects; Supplementary Figs. S1–S4 and S7 are formally locked. The polished manuscript cites the built/locked objects needed for its current claims, including the operator-control Tables S8–S9/Fig. S3 and floor-scale Fig. S4. References to Tables S10–S14 and Figs. S5–S6/S8 remain deferred until those objects are built and locked.
 
 ## Cross-reference principles
 

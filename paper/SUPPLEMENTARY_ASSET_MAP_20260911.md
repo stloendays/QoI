@@ -18,8 +18,8 @@ Updated 2026-09-11. This file is the canonical bridge between the submission-fac
 |---|---|---|---|---|
 | Note 1 | Cohort definitions and denominator conventions | `materials_metadata.csv`; `external_test_MANIFEST.json`; `benchmark/master_benchmark_full.csv`; `validation/EXTERNAL_CONFIRMATORY63_20260908.md` | Table S1 | **READY** |
 | Note 2 | Protocol A.1 definition and archived A provenance | `protocol/PROTOCOL_A1.md`; `protocol/PROTOCOL_A_archived.md`; `stability/probe_calibration.csv` | Table S2; Figs. S1-S2 | **TABLE READY; FIGS. S1-S2 LOCKED** |
-| Note 3 | Eligibility and certification sensitivity | `supplement/S1_S3_sensitivity.csv`; `supplement/S2_floor_relative.csv`; `supplement/S4_amplitude_sensitivity.csv`; `stability/stability_floor_A1_per_seed.csv` | Tables S5-S7; Figs. S2, S4 | **TABLES S5-S7 READY; S2 LOCKED; S4 PLANNED R** |
-| Note 4 | Electron-count and Hartree controls | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | Tables S8-S9; Fig. S3 | **READY; S3 SOURCE READY** |
+| Note 3 | Eligibility and certification sensitivity | `supplement/S1_S3_sensitivity.csv`; `supplement/S2_floor_relative.csv`; `supplement/S4_amplitude_sensitivity.csv`; `stability/stability_floor_A1_per_seed.csv` | Tables S5-S7; Figs. S2, S4 | **TABLES S5-S7 READY; FIGS. S2/S4 LOCKED** |
+| Note 4 | Electron-count and Hartree controls | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | Tables S8-S9; Fig. S3 | **TABLES S8-S9 READY; FIG. S3 LOCKED** |
 | Note 5 | Binary -> three-state reclassification | `analysis/certifiability_reclassification_pooled_20260911.csv`; `analysis/certifiability_reclassification_by_codec_20260911.csv`; `analysis/CERTIFIABILITY_AUDIT_20260911.md` | Table S4; Fig. S7 | **TABLE S4 READY; FIG. S7 LOCKED** |
 | Note 6 | Basin migration and Bader implementation robustness | `mechanism/basin_error_decomposition_per_atom.csv`; `mechanism/basin_error_decomposition_summary.csv`; `mechanism/independent_bader_20260908/` | Tables S10-S11; Fig. S5 | **READY / AGGREGATE / PLANNED R** |
 | Note 7 | Realized-Linf matching and sensitivity | `analysis/matched_realized_linf_v1/` | Table S12; Fig. S6 | **READY / PLANNED R** |
@@ -52,6 +52,30 @@ Updated 2026-09-11. This file is the canonical bridge between the submission-fac
 - **Interpretation lock:** 18-material pre-freeze calibration has five-seed span median ~0.47 decades, max ~2.4; the already-frozen five-seed rule deployed on all 319 systems gives median ~0.37, max ~3.82, with primary-seed-vs-max eligibility flips 35/17/2 at 1e-4/1e-3/1e-2 e. These populations must not be substituted for each other.
 - **Status:** **LOCKED 2026-09-11**.
 
+### Supplementary Figure S3 — extended operator controls
+
+- **Role:** expands Figure 2 with the full electron-count negative control, material-level Hartree/Bader smoothness comparison, bulk/slab monotonicity nuance and matched-Hartree Bader dispersion.
+- **R source:** `figures/R/supplement/figureS3_operator_controls.R`.
+- **Outputs:** `figures/R/rendered/supplementary_figureS3_operator_controls_R.{png,pdf,svg}`.
+- **Final CI:** GitHub Actions run `34574517842`; artifact `10189104659`; source commit `4b98758b997ae03c57e62441e3a9500dfaf82e26`.
+- **Visual inspection:** PASS. Four panels are legible with no clipping/collision; the slab monotonicity caveat remains visible rather than being averaged away.
+- **Repository outputs:** PNG 683,983 B; PDF 58,131 B; SVG 235,326 B.
+- **Blob SHAs:** PNG `c38446463ab62064029d6088fa904ec424f7dbbf`; PDF `780b4ab3b15e6a18bdca9039b2081b7c666c1575`; SVG `95a108e8e70fb6d657b51f9be8a68c7810efd4b7`.
+- **Interpretation lock:** operator-control evidence only; it motivates explicit downstream evaluation but does not replace the Figure 3 benchmark-validity claim.
+- **Status:** **LOCKED 2026-09-11**.
+
+### Supplementary Figure S4 — strict certified regime relative to the A.1 floor
+
+- **Role:** tests where certified Bader reconstruction error sits relative to the independently measured Protocol A.1 numerical floor.
+- **R source:** `figures/R/supplement/figureS4_tight_floor_scale.R`.
+- **Outputs:** `figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.{png,pdf,svg}`.
+- **Final CI:** GitHub Actions run `34584885979`; artifact `10193221595`; source commit `cafc9767a2060a85a7268fe02907fef5000569b0`.
+- **Visual inspection:** PASS after title-layout refinement. No panel-title clipping, axis collision or legend collision remains.
+- **Repository outputs:** PNG 550,537 B; PDF 16,413 B; SVG 41,996 B.
+- **Blob SHAs:** PNG `f01594994769d21bbf90449c2421c5058cf03859`; PDF `189158ae2b3251a733741674e98e7c5c1b341a80`; SVG `5f6dea59561b860d03d4cafcd137d792ba6ef97a`.
+- **Interpretation lock:** at 10^-4 e the certified error is floor-scale (median error/floor 1.09–1.33 across codecs), consistent with an emerging analysis-limited regime. This figure does **not** establish `plateau = floor` as a universal law.
+- **Status:** **LOCKED 2026-09-11**.
+
 ### Supplementary Figure S7 — codec-resolved reclassification
 
 - **Role:** demonstrates that the pooled binary-to-three-state result is not driven by a single codec and that qualification invalidates apparent successes as well as failures.
@@ -63,7 +87,7 @@ Updated 2026-09-11. This file is the canonical bridge between the submission-fac
 - **Blob SHAs:** PNG `3fd7af7a5e57561aab7bbd4f3f81fee58a154ea6`; PDF `40633062ecf17028cc071e29ef4bf0ecf013b95a`; SVG `dd90d474770119f7ba48d50dd43ed28409e38f63`.
 - **Status:** **LOCKED 2026-09-11**.
 
-Canonical captions for S1/S2/S7 are in `paper/SUPPLEMENTARY_FIGURE_CAPTIONS_20260911.md`.
+Canonical captions for S1–S4 and S7 are in `paper/SUPPLEMENTARY_FIGURE_CAPTIONS_20260911.md`.
 
 ## Denominator registry
 
@@ -96,13 +120,9 @@ Submission-facing first drafts are in `paper/SUPPLEMENTARY_TABLES_S5_S7_20260911
 - **S6:** `supplement/S2_floor_relative.csv`; certified points only; does not estimate a material-level plateau.
 - **S7:** `stability/probe_calibration.csv`, `stability/stability_floor_A1_per_seed.csv`, `supplement/S4_amplitude_sensitivity.csv`; calibration and full-corpus deployment statistics remain separately labelled.
 
-### Table S8 — electron-count control
+### Tables S8–S9 — operator controls — **BUILT**
 
-Use `analysis/electron_count_qoi/summary_by_codec.csv` and `summary_by_tolerance.csv`; include the 3,205/1,383 decoupling result prominently.
-
-### Table S9 — Hartree control
-
-Use `analysis/hartree_potential_expansion/group_summary.csv` and `material_smoothness.csv`. A separate footnote should explain the 73 SZ3 reproduction-gate exclusions as platform byte-stream mismatches rather than field-reconstruction mismatches.
+Submission-facing tables are generated deterministically in `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` by `scripts/build_supplement_tables_s8_s9_20260911.py` (CI run `34584427019`). Table S8 contains the pooled and codec-resolved electron-count/Bader decoupling matrix, including 1,383/3,205 = 43.15%. Table S9 contains the 6,270-row Hartree scaling summary, the 678-pair material-level smoothness audit, local elasticity ranges, the 22,296× Bader jump and the matched-Hartree 55.4% dispersion result. The reproduction-gate exclusion remains an infrastructure/platform caveat rather than a codec-fidelity failure.
 
 ### Table S10 — basin decomposition
 
@@ -134,17 +154,13 @@ See locked-figure registry above.
 
 See locked-figure registry above.
 
-### Figure S3 — extended operator controls — **SOURCE READY**
+### Figure S3 — extended operator controls — **LOCKED**
 
-R source: `figures/R/supplement/figureS3_operator_controls.R`.
+See locked-figure registry above.
 
-Panels: electron-count/Bader decoupling; paired material-level Hartree/Bader R2; bulk/slab strict-monotonicity nuance; matched-Hartree Bader dispersion. Slab monotonicity caveat must remain visible in the caption.
+### Figure S4 — tight regime and floor scale — **LOCKED**
 
-### Figure S4 — tight regime and floor scale — **PLANNED R**
-
-Planned R source: `figures/R/supplement/figureS4_tight_floor_scale.R`.
-
-Panels: error/floor summary by codec and threshold; selected tight-ladder trajectories. Caption boundary: **floor-scale / emerging analysis-limited**, not `plateau = floor`.
+See locked-figure registry above.
 
 ### Figure S5 — extended Bader mechanism — **PLANNED R**
 
@@ -181,8 +197,8 @@ These remain in the repository but should not be reproduced as SI figures unless
 
 ## Current blocking items
 
-1. **Figures S3-S6 and S8 remain to be formally rendered/locked.** S3 already has formal R source; S4-S6/S8 are presentation/build tasks, not new experiments.
-2. **Tables S8-S14 remain to be finalized.** S10-S12/S14 require compact aggregation; no new core scientific experiment is required.
+1. **Figures S5, S6 and S8 remain to be formally rendered/locked.** These are presentation/build tasks from existing frozen analyses, not new core experiments.
+2. **Tables S10-S14 remain to be finalized.** S10-S12/S14 require compact aggregation; Table S13 requires deterministic regeneration from frozen development/external summaries.
 3. **Table S13 must be regenerated from final machine-readable sources.** Historical prose contains intermediate rate-fidelity values and should not be treated as canonical.
 4. Before submission, explicitly document the membership relationship between the 65-system external descriptive set and the 63-system confirmatory set in Table S1 or its footnote.
 
