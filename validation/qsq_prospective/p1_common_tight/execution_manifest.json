@@ -1,0 +1,21 @@
+{
+  "status": "COMPLETE_WITH_RECORDED_FAILURES",
+  "work_order_rows": 1332,
+  "successful_rows": 1308,
+  "failed_rows": 24,
+  "accounted_rows": 1332,
+  "successful_by_codec": {
+    "SPERR": 436,
+    "SZ3": 436,
+    "ZFP": 436
+  },
+  "failures_by_stage": {
+    "source_or_reference": 24
+  },
+  "shards_found": 8,
+  "work_order_sha256": "d19c4a91629cf5a43b01909075da5387c154b529606d5ab022f013c25849a240",
+  "rows_sha256": "60e64f5815ea8355d1520ccddaad183d29ee151f5970782a5c2dda0e8055181d",
+  "failures_sha256": "d9ea9109685fa87277869426ef21ac752b170f703c7928cf158dd650d9d116fc",
+  "historical_master_unchanged": true,
+  "audit_summary_sha256": "f4765e87bbaf1cfd5b3a217e9e9d3517a2f39d8cce570a352b65e9e2d9ad33f6"
+}
