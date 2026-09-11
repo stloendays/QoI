@@ -2,6 +2,9 @@ name: Execute P3A implementation transfer
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P3A_START'
 
 permissions:
   contents: write
