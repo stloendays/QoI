@@ -1,0 +1,7 @@
+tau_e,solver,panel_materials,comparable_materials,unresolved_materials,ambiguous_materials,agreement_fraction,cohen_kappa,eligible_to_rejected,rejected_to_eligible
+0.0001,henkelman_ongrid,24,4,20,0,1.0,1.0,0,0
+0.0001,henkelman_neargrid,24,4,20,0,0.5,-0.3333333333333333,1,1
+0.001,henkelman_ongrid,24,4,20,0,1.0,1.0,0,0
+0.001,henkelman_neargrid,24,4,20,0,0.75,0.5,0,1
+0.01,henkelman_ongrid,24,4,20,0,1.0,1.0,0,0
+0.01,henkelman_neargrid,24,4,20,0,0.75,0.0,0,1
