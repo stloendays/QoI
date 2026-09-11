@@ -41,7 +41,16 @@ jobs:
           git diff --check
       - name: Commit generated outputs
         run: |
-          if git diff --quiet; then
+          paths=(
+            paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md
+            supplement/S10_bader_decomposition_summary.csv
+            supplement/S11_cross_implementation_pairs.csv
+            supplement/S11_independent_implementation_summary.csv
+            supplement/S11_codec_order_1e4.csv
+            supplement/S11_independent_domain_summary.csv
+            supplement/S11_spatial_control_summary.csv
+          )
+          if [ -z "$(git status --porcelain -- "${paths[@]}")" ]; then
             echo 'No changes to commit.'
             exit 0
           fi
@@ -59,6 +68,6 @@ jobs:
           git reset --hard origin/main
           cp "$tmp/SUPPLEMENTARY_TABLES_S10_S11_20260911.md" paper/
           cp "$tmp"/*.csv supplement/
-          git add paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md supplement/S10_bader_decomposition_summary.csv supplement/S11_cross_implementation_pairs.csv supplement/S11_independent_implementation_summary.csv supplement/S11_codec_order_1e4.csv supplement/S11_independent_domain_summary.csv supplement/S11_spatial_control_summary.csv
+          git add "${paths[@]}"
           git commit -m 'supplement: build Tables S10-S11 from frozen mechanism data'
           git push origin HEAD:main
