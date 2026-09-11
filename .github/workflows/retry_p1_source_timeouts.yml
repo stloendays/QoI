@@ -1,0 +1,207 @@
+name: Retry P1 source timeouts and refinalize
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/retry_p1_source_timeouts.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p1-source-timeout-retry
+  cancel-in-progress: false
+
+jobs:
+  retry:
+    strategy:
+      fail-fast: false
+      matrix:
+        material:
+          - 'nomad--MeUbDBN9nIW'
+          - 'nomad-2C9dg1L8liw7'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Set up frozen Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify initial P1 failure scope
+        shell: bash
+        env:
+          MATERIAL: ${{ matrix.material }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, os
+          from pathlib import Path
+          src = Path('repo/validation/qsq_prospective/p1_common_tight/failures.csv')
+          rows = list(csv.DictReader(src.open(newline='', encoding='utf-8')))
+          allowed = {'nomad--MeUbDBN9nIW', 'nomad-2C9dg1L8liw7'}
+          assert len(rows) == 24, len(rows)
+          assert {r['material_id'] for r in rows} == allowed
+          assert all(r['stage'] == 'source_or_reference' for r in rows)
+          assert all(('URLError' in r['error'] or 'timed out' in r['error'].lower()) for r in rows)
+          selected = [r for r in rows if r['material_id'] == os.environ['MATERIAL']]
+          assert len(selected) == 12, (os.environ['MATERIAL'], len(selected))
+          out = Path('retry_work_order.csv')
+          with out.open('w', newline='', encoding='utf-8') as f:
+              w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+              w.writeheader(); w.writerows(selected)
+          PY
+          test "$(git -C frozen rev-parse HEAD)" = "893f931b3045b0b628329db81999c2f439d4e830"
+          test "$(git -C frozen rev-parse HEAD:validation/external_end_to_end.py)" = "3da20fcc2bf52cf3fb135802cfe81bac8eed4a98"
+
+      - name: Install frozen scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+
+      - name: Retry only transient source failures
+        id: execute
+        shell: bash
+        env:
+          MATERIAL: ${{ matrix.material }}
+        run: |
+          set -euo pipefail
+          out="$GITHUB_WORKSPACE/retry_${MATERIAL}"
+          rm -rf "$out"
+          mkdir -p "$out"
+          final_code=99
+          for attempt in 1 2 3; do
+            rm -f "$out"/rows_shard_00.csv "$out"/failures_shard_00.csv "$out"/manifest_shard_00.json
+            set +e
+            python repo/validation/qsq_prospective/run_p1_common_tight.py \
+              --repo-root repo \
+              --frozen-validation-dir frozen/validation \
+              --work-order retry_work_order.csv \
+              --shard-count 1 \
+              --shard-index 0 \
+              --output-dir "$out" \
+              > "$out/attempt_${attempt}.log" 2>&1
+            code=$?
+            set -e
+            echo "$code" > "$out/attempt_${attempt}_exit_code.txt"
+            if [ "$code" = "0" ]; then
+              final_code=0
+              break
+            fi
+            if [ "$code" = "2" ]; then
+              if python - "$out/failures_shard_00.csv" <<'PY'
+          import csv, sys
+          rows = list(csv.DictReader(open(sys.argv[1], newline='', encoding='utf-8')))
+          transient = bool(rows) and all(('URLError' in r['error'] or 'timed out' in r['error'].lower()) for r in rows)
+          raise SystemExit(0 if transient else 1)
+          PY
+              then
+                final_code=2
+                continue
+              else
+                final_code=2
+                break
+              fi
+            fi
+            final_code=$code
+            break
+          done
+          echo "$final_code" > "$out/final_exit_code.txt"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit.txt"
+          sha256sum retry_work_order.csv > "$out/retry_work_order_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/run_p1_common_tight.py > "$out/runner_sha256.txt"
+          if [ "$final_code" != "0" ] && [ "$final_code" != "2" ]; then
+            exit "$final_code"
+          fi
+
+      - name: Upload retry bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-source-retry-${{ matrix.material }}
+          path: retry_${{ matrix.material }}
+          if-no-files-found: error
+          retention-days: 90
+
+  finalize:
+    if: always()
+    needs: retry
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Set up audit Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install audit dependency
+        run: python -m pip install numpy==2.4.6
+
+      - name: Download retry bundles
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p1-source-retry-*
+          path: retries
+
+      - name: Merge only initial failed keys and recompute P1 audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python repo/validation/qsq_prospective/finalize_p1_source_retry.py \
+            --repo-root repo \
+            --retry-root retries \
+            --bootstrap-reps 20000
+          echo "$GITHUB_RUN_ID" > repo/validation/qsq_prospective/p1_common_tight/source_retry_github_run_id.txt
+
+      - name: Commit final P1 record
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p1_common_tight analysis/research_upgrade/P1_COMMON_TIGHT_REPORT.md analysis/research_upgrade/p1_common_tight_summary.csv analysis/research_upgrade/p1_common_tight_decisions.csv
+          if git diff --cached --quiet; then
+            echo 'No final P1 changes to commit.'
+          else
+            git commit -m 'validation: close transient P1 source gaps'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload final P1 audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-common-tight-final
+          path: |
+            repo/validation/qsq_prospective/p1_common_tight
+            repo/analysis/research_upgrade/P1_COMMON_TIGHT_REPORT.md
+            repo/analysis/research_upgrade/p1_common_tight_summary.csv
+          if-no-files-found: error
+          retention-days: 90
