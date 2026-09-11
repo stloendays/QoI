@@ -39,8 +39,8 @@ base_theme <- theme_minimal(base_size = 10.4) + theme(
   axis.text = element_text(colour = ink),
   legend.title = element_blank(),
   legend.text = element_text(size = 8.8),
-  plot.title = element_text(face = "bold", size = 11.2, colour = ink, margin = margin(b = 4)),
-  plot.subtitle = element_text(size = 8.9, colour = muted, margin = margin(b = 6)),
+  plot.title = element_text(face = "bold", size = 10.8, colour = ink, margin = margin(b = 4)),
+  plot.subtitle = element_text(size = 8.5, colour = muted, margin = margin(b = 6)),
   plot.margin = margin(8, 10, 8, 8)
 )
 
@@ -55,8 +55,8 @@ pA <- ggplot(d, aes(caliper_dex, resolved_bader_ratio, colour = pair_label, grou
   scale_fill_manual(values = pair_cols) +
   scale_x_continuous(breaks = c(.05,.10,.20,.30), labels = number_format(accuracy = .01)) +
   labs(
-    title = "A | Matched Bader-effect direction is stable across calipers",
-    subtitle = "Solid lines: material-weighted geometric mean ratio; ribbons: 95% material-bootstrap CI; dotted line: primary 0.10 dex",
+    title = "A | Matched Bader effects are stable across calipers",
+    subtitle = "95% material-bootstrap CI; vertical line marks the primary 0.10-dex analysis",
     x = "Matching caliper in log10(realized L-infinity) (dex)",
     y = "Re-derived Bader-error ratio"
   ) + base_theme + theme(legend.position = "top")
@@ -70,8 +70,8 @@ pB <- ggplot(d, aes(caliper_dex, n_materials, colour = pair_label, group = pair_
   scale_x_continuous(breaks = c(.05,.10,.20,.30), labels = number_format(accuracy = .01)) +
   scale_y_continuous(breaks = c(100,150,200,250)) +
   labs(
-    title = "B | Wider calipers increase common material support",
-    subtitle = "SZ3/SPERR is effectively matched already; ZFP comparisons gain support as the caliper widens",
+    title = "B | Wider calipers increase common support",
+    subtitle = "SZ3/SPERR is matched throughout; ZFP comparisons gain materials as the caliper widens",
     x = "Matching caliper (dex)", y = "Materials represented"
   ) + base_theme + theme(legend.position = "top")
 
@@ -86,8 +86,8 @@ pC <- ggplot(d, aes(caliper_dex, median_linf_ratio_larger_over_smaller, colour =
   scale_fill_manual(values = pair_cols) +
   scale_x_continuous(breaks = c(.05,.10,.20,.30), labels = number_format(accuracy = .01)) +
   labs(
-    title = "C | The primary 0.10-dex match keeps realized perturbations close",
-    subtitle = "Line: median larger/smaller realized L-infinity; ribbon extends to P95",
+    title = "C | The primary match keeps realized perturbations close",
+    subtitle = "Line shows the median larger/smaller realized L-infinity; ribbon extends to P95",
     x = "Matching caliper (dex)", y = "Larger / smaller realized L-infinity"
   ) + base_theme + theme(legend.position = "top")
 
@@ -96,12 +96,16 @@ fig <- ((pA | pB) / pC) +
   plot_annotation(
     title = "Supplementary Figure S6 | Realized-distortion matching conclusions are robust to the caliper choice",
     subtitle = "The primary 0.10-dex analysis balances support and distortion similarity; ZFP retains lower re-derived Bader error than SZ3/SPERR after matching, whereas SZ3 and SPERR remain similar.",
-    caption = "A, re-derived Bader-error ratios across all pre-specified calipers. Values below one favour the numerator codec. B, material common support. C, residual realized-L-infinity imbalance among matched pairs. Matching controls scalar maximum perturbation but not the full geometry of the error field; the residual codec effect is therefore consistent with an error-structure contribution but does not identify a unique spatial invariant.",
+    caption = paste0(
+      "A, re-derived Bader-error ratios across all pre-specified calipers; values below one favour the numerator codec. ",
+      "B, material common support. C, residual realized-L-infinity imbalance among matched pairs.\n",
+      "Matching controls scalar maximum perturbation but not the full geometry of the error field; the residual codec effect is consistent with an error-structure contribution but does not identify a unique spatial invariant."
+    ),
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
       plot.title = element_text(face = "bold", size = 13.8, colour = ink, margin = margin(b = 4)),
       plot.subtitle = element_text(size = 9.3, colour = muted, margin = margin(b = 8)),
-      plot.caption = element_text(size = 7.9, colour = muted, hjust = 0, margin = margin(t = 8))
+      plot.caption = element_text(size = 7.8, colour = muted, hjust = 0, lineheight = 1.15, margin = margin(t = 8))
     )
   )
 
@@ -110,8 +114,8 @@ paths <- c(
   pdf = file.path(outdir, "supplementary_figureS6_matching_sensitivity_R.pdf"),
   svg = file.path(outdir, "supplementary_figureS6_matching_sensitivity_R.svg")
 )
-ggsave(paths[["png"]], fig, width = 12.8, height = 8.5, dpi = 360, bg = bg)
-ggsave(paths[["pdf"]], fig, width = 12.8, height = 8.5, bg = bg)
-ggsave(paths[["svg"]], fig, width = 12.8, height = 8.5, device = svglite::svglite, bg = bg)
+ggsave(paths[["png"]], fig, width = 12.8, height = 8.6, dpi = 360, bg = bg)
+ggsave(paths[["pdf"]], fig, width = 12.8, height = 8.6, bg = bg)
+ggsave(paths[["svg"]], fig, width = 12.8, height = 8.6, device = svglite::svglite, bg = bg)
 stopifnot(all(file.exists(paths)), all(file.info(paths)$size > 0))
 message("Rendered Supplementary Figure S6: PNG + PDF + SVG")
