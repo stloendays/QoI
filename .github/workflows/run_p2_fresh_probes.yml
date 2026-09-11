@@ -1,0 +1,280 @@
+name: Execute P2 prospective fresh probes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/run_p2_fresh_probes.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p2-fresh-probes
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Set up frozen Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify frozen anchors and prospective work order
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          smoke = json.loads(Path('repo/validation/qsq_prospective/compatibility_smoke_results/compatibility_smoke.json').read_text())
+          assert smoke['status'] == 'PASS'
+          assert len(smoke['rows']) == 6
+          assert all(r['scientific_compatibility_pass'] for r in smoke['rows'])
+          manifest = json.loads(Path('repo/validation/qsq_prospective/execution_manifest.json').read_text())
+          p = Path('repo/validation/qsq_prospective/fresh_seed_jobs.csv')
+          got = hashlib.sha256(p.read_bytes()).hexdigest()
+          expected = manifest['work_order_sha256']['fresh_seed_jobs.csv']
+          assert got == expected == '244bd6506afe4668a03252298a8d268746e6094408b0fcfe55409ef0b74ef07d', (got, expected)
+          assert manifest['fresh_seed_jobs'] == 14986
+          assert manifest['fresh_seed_materials'] == 254
+          assert manifest['new_seed_labels'] == list(range(10000, 10059))
+          print('FROZEN_P2_WORK_ORDER_PASS', got)
+          PY
+          test "$(git -C frozen rev-parse HEAD)" = "893f931b3045b0b628329db81999c2f439d4e830"
+          test "$(git -C frozen rev-parse HEAD:validation/external_end_to_end.py)" = "3da20fcc2bf52cf3fb135802cfe81bac8eed4a98"
+
+      - name: Canonicalize epsilon text without changing the frozen work order
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, hashlib, json, math, os
+          from collections import defaultdict
+          from pathlib import Path
+
+          root = Path('repo')
+          frozen_path = root / 'validation/qsq_prospective/fresh_seed_jobs.csv'
+          old_path = root / 'stability/stability_floor_A1_per_seed.csv'
+          out_path = Path(os.environ['RUNNER_TEMP']) / 'p2_fresh_seed_jobs_canonical.csv'
+          report_path = Path(os.environ['RUNNER_TEMP']) / 'p2_epsilon_canonicalization.json'
+
+          old = defaultdict(list)
+          old_seeds = defaultdict(set)
+          with old_path.open(newline='', encoding='utf-8') as f:
+              for r in csv.DictReader(f):
+                  old[r['material_id']].append(float(r['probe_linf']))
+                  old_seeds[r['material_id']].add(int(r['seed']))
+          amplitude = {}
+          for m, vals in old.items():
+              assert old_seeds[m] == {20260905, 1, 2, 3, 4}
+              assert len(vals) == 5 and len(set(vals)) == 1
+              amplitude[m] = vals[0]
+
+          with frozen_path.open(newline='', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+              fields = reader.fieldnames
+              rows = list(reader)
+          assert fields is not None and len(rows) == 14986
+          changed = 0
+          max_delta = 0.0
+          for r in rows:
+              expected = amplitude[r['material_id']]
+              encoded = float(r['epsilon'])
+              tol = 4.0 * max(math.ulp(expected), math.ulp(encoded))
+              assert math.isclose(encoded, expected, rel_tol=0.0, abs_tol=tol), (r['material_id'], encoded, expected, tol)
+              if encoded != expected:
+                  changed += 1
+                  max_delta = max(max_delta, abs(encoded - expected))
+              r['epsilon'] = repr(expected)
+          with out_path.open('w', newline='', encoding='utf-8') as f:
+              w = csv.DictWriter(f, fieldnames=fields)
+              w.writeheader(); w.writerows(rows)
+          payload = {
+              'purpose': 'execution-only float text canonicalization; frozen work order bytes remain unchanged',
+              'frozen_work_order_sha256': hashlib.sha256(frozen_path.read_bytes()).hexdigest(),
+              'canonical_work_order_sha256': hashlib.sha256(out_path.read_bytes()).hexdigest(),
+              'rows': len(rows),
+              'epsilon_values_not_bitwise_equal_after_csv_parse': changed,
+              'max_abs_epsilon_delta': max_delta,
+              'scientific_amplitudes_changed': False,
+          }
+          report_path.write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(payload, indent=2))
+          PY
+
+      - name: Install frozen scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+
+      - name: Execute pre-registered fresh-probe shard
+        id: execute
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p2_shard_${{ matrix.shard }}"
+          rm -rf "$out"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/p2_epsilon_canonicalization.json" "$out/epsilon_canonicalization.json"
+          python repo/validation/qsq_prospective/run_p2_fresh_probes.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --work-order "$RUNNER_TEMP/p2_fresh_seed_jobs_canonical.csv" \
+            --shard-count 32 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out" \
+            2>&1 | tee "$out/run.log"
+          status=${PIPESTATUS[0]}
+          echo "$status" > "$out/exit_code.txt"
+          exit "$status"
+
+      - name: Archive exact shard environment
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p2_shard_${{ matrix.shard }}"
+          mkdir -p "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          sha256sum frozen/validation/requirements-external-e2e.txt > "$out/requirements_sha256.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit.txt"
+          sha256sum repo/validation/qsq_prospective/fresh_seed_jobs.csv > "$out/frozen_work_order_sha256.txt"
+          if [ -f "$RUNNER_TEMP/p2_fresh_seed_jobs_canonical.csv" ]; then
+            sha256sum "$RUNNER_TEMP/p2_fresh_seed_jobs_canonical.csv" > "$out/canonical_work_order_sha256.txt"
+          fi
+          sha256sum repo/validation/qsq_prospective/run_p2_fresh_probes.py > "$out/runner_sha256.txt"
+
+      - name: Upload shard audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-fresh-probe-shard-${{ matrix.shard }}
+          path: repo/validation/qsq_prospective/p2_shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Report row failures without hiding them
+        if: always()
+        shell: bash
+        run: |
+          code=$(cat "repo/validation/qsq_prospective/p2_shard_${{ matrix.shard }}/exit_code.txt" 2>/dev/null || echo 99)
+          if [ "$code" = "0" ]; then
+            echo 'Shard completed with no recorded probe failures.'
+          elif [ "$code" = "2" ]; then
+            echo 'Shard completed accounting with recorded source/Bader failures; aggregate audit will retain them.'
+          else
+            echo "Shard infrastructure/accounting failure: exit $code"
+            exit 1
+          fi
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Set up audit Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install frozen numerical audit dependencies
+        run: python -m pip install numpy==2.4.6 scipy==1.18.1
+
+      - name: Download every P2 shard
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p2-fresh-probe-shard-*
+          path: shards
+
+      - name: Aggregate and enforce full prospective accounting
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/validation/qsq_prospective/p2_fresh_probes
+          python repo/validation/qsq_prospective/aggregate_p2_fresh_probes.py \
+            --repo-root repo \
+            --shards-root shards \
+            --output-dir repo/validation/qsq_prospective/p2_fresh_probes \
+            --audit-dir repo/analysis/research_upgrade \
+            --bootstrap-reps 20000
+
+      - name: Archive aggregate provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='repo/validation/qsq_prospective/p2_fresh_probes'
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit_before_p2_commit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          echo '893f931b3045b0b628329db81999c2f439d4e830' > "$out/frozen_scientific_commit.txt"
+          sha256sum repo/validation/qsq_prospective/fresh_seed_jobs.csv > "$out/frozen_work_order_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/run_p2_fresh_probes.py > "$out/runner_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/aggregate_p2_fresh_probes.py > "$out/aggregator_sha256.txt"
+
+      - name: Commit prospective P2 measurements and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p2_fresh_probes \
+                  analysis/research_upgrade/P2_FRESH_PROBE_REPORT.md \
+                  analysis/research_upgrade/p2_fresh_probe_material_summary.csv \
+                  analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv \
+                  analysis/research_upgrade/p2_fresh_probe_discrimination.csv
+          if git diff --cached --quiet; then
+            echo 'No aggregate changes to commit.'
+          else
+            git commit -m 'validation: complete prospective fresh-probe P2'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload aggregate audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-fresh-probe-aggregate
+          path: |
+            repo/validation/qsq_prospective/p2_fresh_probes
+            repo/analysis/research_upgrade/P2_FRESH_PROBE_REPORT.md
+            repo/analysis/research_upgrade/p2_fresh_probe_material_summary.csv
+            repo/analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv
+            repo/analysis/research_upgrade/p2_fresh_probe_discrimination.csv
+          if-no-files-found: error
+          retention-days: 90
