@@ -6,7 +6,8 @@ on:
     paths:
       - 'figures/R/figure3_certification_landscape.R'
       - '.github/workflows/render_figure3_certification_landscape.yml'
-      - 'benchmark/master_benchmark_full.csv'
+      - 'analysis/research_upgrade/p1_common_tight_summary.csv'
+      - 'analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv'
 
 permissions:
   contents: write
