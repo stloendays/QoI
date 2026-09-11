@@ -1,0 +1,13 @@
+metric,solver,filter,n,median,q25,q75
+codec_response_ratio,henkelman_ongrid,above_print_resolution,70,0.9999869505275703,0.9196040552740576,1.0052658373335714
+codec_response_ratio,henkelman_ongrid,above_print_and_baseline_compatible,47,0.9999878183883705,0.9998589785646119,1.0000942619130488
+codec_response_ratio,henkelman_neargrid,above_print_resolution,70,0.7678732568630886,0.30979696930010564,1.217794536751697
+codec_response_ratio,henkelman_neargrid,above_print_and_baseline_compatible,0,nan,nan,nan
+noise_floor_ratio,henkelman_ongrid,all_12_representatives,10,0.9995658514809027,0.9917303802021,1.0005426937243416
+eligibility_concordance_0.0001,henkelman_ongrid,all_12_representatives,12,1.0,,
+eligibility_concordance_0.001,henkelman_ongrid,all_12_representatives,12,1.0,,
+eligibility_concordance_0.01,henkelman_ongrid,all_12_representatives,12,0.9166666666666666,,
+noise_floor_ratio,henkelman_neargrid,all_12_representatives,12,0.4900998520228418,0.21686817567804234,1.2515108607923782
+eligibility_concordance_0.0001,henkelman_neargrid,all_12_representatives,12,0.8333333333333334,,
+eligibility_concordance_0.001,henkelman_neargrid,all_12_representatives,12,0.9166666666666666,,
+eligibility_concordance_0.01,henkelman_neargrid,all_12_representatives,12,0.9166666666666666,,
