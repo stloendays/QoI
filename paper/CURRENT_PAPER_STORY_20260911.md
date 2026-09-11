@@ -8,9 +8,9 @@
 
 This manuscript is no longer framed around the established observation that small pointwise reconstruction error does not guarantee small downstream QoI error. That result is background motivation.
 
-The contribution is a **benchmark-validity and measurement-contract framework** for scientific compression. The evaluation order is:
+The contribution is a **benchmark-validity and measurement-contract framework** for scientific compression. The reader-facing name for the qualification framework is **QoI Stability Qualification (QSQ)**. The evaluation order is:
 
-`QoI stability qualification -> eligibility -> compression evaluation -> certification`
+`QoI Stability Qualification (QSQ) -> eligibility -> compression evaluation -> certification`
 
 rather than simply:
 
@@ -40,7 +40,7 @@ The correction is not a permissive exclusion rule. It also invalidates apparent 
 
 ### Independent QoI eligibility
 
-Protocol A.1 measures a material-specific Bader stability floor from five fixed-seed uniform perturbations at the material's float32 L-infinity perturbation scale. Across 319 development + external systems, the non-evaluable fraction is:
+QSQ measures a material-specific Bader stability floor using a perturbation-based numerical identifiability test: five fixed-seed uniform perturbations at the material's float32 L-infinity perturbation scale. Across 319 development + external systems, the non-evaluable fraction is:
 
 - **79.9%** at 1e-4 e;
 - **41.4%** at 1e-3 e;
@@ -62,7 +62,7 @@ This explains the Bader-specific sensitivity, but the manuscript does not genera
 
 ### Analysis-limited regime: supported wording
 
-At the strictest 1e-4 e certified contract, resolved Bader errors are on the same scale as the independently measured A.1 floor: median error/floor is approximately **1.09× for ZFP, 1.33× for SZ3, and 1.23× for SPERR**.
+At the strictest 1e-4 e certified contract, resolved Bader errors are on the same scale as the independently measured QSQ floor: median error/floor is approximately **1.09× for ZFP, 1.33× for SZ3, and 1.23× for SPERR**.
 
 Supported wording:
 
@@ -76,14 +76,14 @@ Equal nominal codec tolerances do not produce equal realized perturbations. At m
 
 ### External confirmation
 
-The untouched 63-system external cohort is evaluated under the same frozen qualification and certification rules with no retuning. External eligibility expands with relaxed tolerance (16/63, 42/63, 57/63 at 1e-4, 1e-3, 1e-2 e), and the best certified compression-rate ordering changes with the requested scientific contract. Therefore the output is a **stability-qualified rate-fidelity frontier**, not a universal codec leaderboard.
+The untouched 63-system external cohort is evaluated under the same frozen qualification and certification rules with no retuning. External QSQ eligibility expands with relaxed tolerance (16/63, 42/63, 57/63 at 1e-4, 1e-3, 1e-2 e), and the best certified compression-rate ordering changes with the requested scientific contract. Therefore the output is a **stability-qualified rate-fidelity frontier**, not a universal codec leaderboard.
 
 ## Figure logic
 
 - **Figure 1:** scientific-compression measurement contract.
 - **Figure 2:** operator hierarchy / motivation.
 - **Figure 3:** **central benchmark-validity result — binary benchmark -> three-state certification.**
-- **Figure 4:** Protocol A -> A.1 qualification-probe validation.
+- **Figure 4:** archived float32 probe -> QSQ perturbation-probe validation.
 - **Figure 5:** Bader basin-migration mechanism.
 - **Figure 6:** nominal-vs-realized distortion confounding control.
 - **Figure 7:** untouched external confirmation.
@@ -95,7 +95,11 @@ Do not use the following as headline novelty:
 - “pointwise error does not imply QoI fidelity” — established background;
 - “Bader has a numerical/grid floor” — established numerical-analysis background;
 - “Bader basin migration is a universal QoI mechanism” — unsupported generalization;
-- “Protocol A.1 rescues codec failures” — incorrect interpretation;
-- “plateau equals A.1 floor” — stronger than the frozen data support.
+- “QSQ rescues codec failures” — incorrect interpretation;
+- “plateau equals the QSQ floor” — stronger than the frozen data support.
 
-The canonical claim is **QoI certifiability before benchmark scoring**.
+The canonical claim is **QoI stability qualification before benchmark scoring**.
+
+## Naming boundary
+
+Reader-facing text uses **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, and **archived float32 probe**. Historical repository identifiers such as `Protocol A`, `Protocol A.1`, and filenames containing `_A1` remain unchanged only where needed for frozen provenance and reproducibility.
