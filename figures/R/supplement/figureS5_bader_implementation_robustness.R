@@ -65,11 +65,11 @@ dec_plot <- dec %>%
   filter(!read_bool(sentinel)) %>%
   mutate(
     kind = factor(kind, levels = c("codec", "noise", "spatial_control", "float32"),
-                  labels = c("Codec", "A.1 noise", "Spatial control", "Float32")),
+                  labels = c("Codec", "QSQ noise", "Spatial control", "Float32")),
     integrand_plot = pmax(integrand_max_e, 1e-12),
     domain_plot = pmax(domain_max_e, 1e-12)
   )
-kind_cols_lab <- c("Codec" = kind_cols[["codec"]], "A.1 noise" = kind_cols[["noise"]],
+kind_cols_lab <- c("Codec" = kind_cols[["codec"]], "QSQ noise" = kind_cols[["noise"]],
                    "Spatial control" = kind_cols[["spatial_control"]], "Float32" = kind_cols[["float32"]])
 
 pA <- ggplot(dec_plot, aes(integrand_plot, domain_plot, colour = kind)) +
@@ -84,7 +84,7 @@ pA <- ggplot(dec_plot, aes(integrand_plot, domain_plot, colour = kind)) +
     x = "Integrand contribution, max |Delta Q| (e)", y = "Domain-migration contribution, max |Delta Q| (e)"
   ) + base_theme + theme(legend.position = "top")
 
-# B — A.1 floor cross-implementation comparison. Use the material-domain map
+# B — QSQ floor cross-implementation comparison. Use the material-domain map
 # from the paired codec table so this join is independent of stability CSV schema.
 stab2 <- stab %>% filter(!read_bool(sentinel))
 domain_map <- pairs %>% select(material, domain) %>% distinct()
@@ -113,7 +113,7 @@ pB <- ggplot(stab_pair, aes(baderkit_floor, comparison_floor, shape = domain)) +
   labs(
     title = "B | Absolute stability floors depend on the basin implementation",
     subtitle = "Twelve deliberately stratified development systems",
-    x = "BaderKit on-grid A.1 floor (e)", y = "Independent implementation A.1 floor (e)"
+    x = "BaderKit on-grid QSQ floor (e)", y = "Independent implementation QSQ floor (e)"
   ) + base_theme + theme(legend.position = "top")
 
 # C — paired codec responses; one-to-one for on-grid implementation, wider for near-grid.
@@ -181,7 +181,7 @@ fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Supplementary Figure S5 | Bader mechanism is robust to an independent implementation",
     subtitle = "Exact decomposition, stability-floor cross-checks and error-reorganization controls on a deliberately stratified 12-system panel.",
-    caption = "A, density-dependent basin migration dominates codec, A.1-noise and spatial-control perturbations; float32 is heterogeneous. B, changing the basin implementation can shift the absolute numerical floor. C, the independent on-grid implementation reproduces codec responses nearly one-for-one, whereas near-grid basins broaden the absolute response scale. D, shuffling error values modestly changes Bader response, while a periodic shift is near-null. This is a mechanism/implementation robustness study, not a prevalence estimate, and it does not alter Protocol A.1 or the primary benchmark.",
+    caption = "A, density-dependent basin migration dominates codec, QSQ-noise and spatial-control perturbations; float32 is heterogeneous. B, changing the basin implementation can shift the absolute numerical floor. C, the independent on-grid implementation reproduces codec responses nearly one-for-one, whereas near-grid basins broaden the absolute response scale. D, shuffling error values modestly changes Bader response, while a periodic shift is near-null. This is a mechanism/implementation robustness study, not a prevalence estimate, and it does not alter the frozen QSQ benchmark definition.",
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
       plot.title = element_text(face = "bold", size = 13.8, colour = ink, margin = margin(b = 4)),
