@@ -1,20 +1,24 @@
 # Figure map
 
-Updated 2026-09-11. Canonical figure-numbering, narrative-role, source, and provenance registry for the certifiability manuscript.
+Updated 2026-09-12. Canonical figure-numbering, narrative-role, source, and provenance registry for the frozen submission scope.
 
 **Working title:** *Stability-qualified benchmarks for scientific compression of electronic densities*
 
 ## Narrative spine
 
-The manuscript is organized around a benchmark-validity principle, not the already-established observation that raw reconstruction error does not automatically guarantee downstream QoI fidelity:
+The manuscript is organized around a benchmark-validity and measurement-contract principle:
 
-> **A downstream scientific tolerance is a valid compression benchmark only after the QoI is shown to be numerically identifiable at that tolerance.**
+> **A downstream scientific tolerance should be used to score scientific compression only after the QoI has been independently qualified for numerical stability at that tolerance.**
 
-The reader-facing name for the qualification framework is **QoI Stability Qualification (QSQ)**. The figure logic is:
+The reader-facing framework is **QoI Stability Qualification (QSQ)**. The operative decision order is:
 
-`measurement contract -> operator motivation -> binary-benchmark invalidity -> QSQ probe validation -> Bader mechanism -> fair codec comparison -> untouched external confirmation`
+`QoI Stability Qualification -> eligibility -> compression evaluation -> certification`
 
-**Figure 3 is the central novelty-bearing figure.** Figure 2 supplies motivation, Figure 4 validates the eligibility procedure, Figure 5 explains the Bader-specific mechanism, Figure 6 controls a separate realized-distortion confound, and Figure 7 closes the evidence chain externally.
+The manuscript does **not** claim novelty for the general observation that small pointwise reconstruction error can coexist with large downstream QoI error. That is motivation. The novelty-bearing evidence hierarchy is now frozen as:
+
+`P1 equal-search control -> P2 prospective fresh-perturbation validation -> P3A independent on-grid implementation transfer`
+
+with **P4** retained as a secondary measurement-contract boundary / null-correctness case study.
 
 ## Canonical figure registry
 
@@ -22,21 +26,25 @@ The reader-facing name for the qualification framework is **QoI Stability Qualif
 |---|---|---|---|---|
 | 1 | Scientific-compression measurement contract | `figures/R/figure1_qoi_contract.R` | `figures/R/rendered/figure1_qoi_contract_R.{png,pdf,svg}` | **LOCKED** |
 | 2 | Operator hierarchy on identical reconstructions | `figures/R/figure2_qoi_hierarchy.R` | `figures/R/rendered/figure2_qoi_hierarchy_R.{png,pdf,svg}` | **LOCKED** |
-| 3 | Binary benchmark -> stability-qualified three-state certification | `figures/R/figure3_certification_landscape.R` | `figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg}` | **LOCKED 2026-09-11** |
-| 4 | Archived float32 probe -> QSQ perturbation-probe validation | `figures/R/figure4_stability_protocol.R` | `figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}` | **LOCKED** |
+| 3 | **Central validation: equal-search control + prospective QSQ risk stratification** | `figures/R/figure3_certification_landscape.R` | `figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg}` | **LOCKED — P1/P2 version** |
+| 4 | Archived float32 probe -> validated QSQ perturbation probe | `figures/R/figure4_stability_protocol.R` | `figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}` | **LOCKED** |
 | 5 | Basin migration and topology-sensitive Bader amplification | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | **LOCKED** |
 | 6 | Nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | **LOCKED** |
 | 7 | Untouched external confirmation | `figures/R/figure7_external_confirmation.R` | `figures/R/rendered/figure7_external_confirmation_R.{png,pdf,svg}` | **LOCKED** |
 
 ## Figure 1 — Measurement contract
 
-**Function:** conceptual entry point. Separates the codec's field-level reconstruction guarantee from the downstream scientific measurement. Electron number, Hartree potential, and Bader charge are introduced as distinct downstream operators; Bader explicitly re-partitions the reconstructed field.
+**Function:** conceptual entry point. Separate field-level reconstruction error from downstream scientific validity. The key reader-facing logic should be visible without reading the caption:
 
-**Take-home:** scientific certification requires a defined downstream operator and tolerance, not only a pointwise field bound.
+`reference density -> QSQ -> eligible? -> compression evaluation -> certified / not certified`
+
+If QSQ rejects the material–threshold pair, numerical codec agreement is still reportable, but robustness of the scientific interpretation is not collapsed into the same binary label.
+
+**Take-home:** benchmark validity precedes codec scoring.
 
 ## Figure 2 — Operator hierarchy
 
-**Function:** motivation/background evidence, not the primary novelty claim.
+**Function:** motivation/background evidence, not the headline novelty.
 
 Frozen evidence on identical reconstructions includes:
 - 1,383/3,205 reconstructions with `|Delta N_e| < 1e-4 e` still have re-derived Bader error `>=1e-3 e` (43.15%);
@@ -44,114 +52,149 @@ Frozen evidence on identical reconstructions includes:
 - only 32.4% of material-codec Bader ladders are strictly monotone;
 - 55.4% of gate-passing rows lie in matched-Hartree bins with Bader `P90/P10 >= 10`.
 
-**Take-home:** operator structure changes how reconstruction perturbations propagate, motivating an explicit downstream measurement contract. Do not present “raw error != QoI fidelity” as a new discovery.
+**Take-home:** downstream operator structure changes perturbation propagation, motivating a measurement contract.
 
-## Figure 3 — Binary benchmark versus three-state certification
+## Figure 3 — Central validation figure
 
-**Function:** **central benchmark-validity result**.
+**Function:** carry the main scientific evidence, not the historical reclassification headline.
 
-**Caption:** `paper/FIGURE3_CAPTION_FINAL_20260911.md`.
+**Caption:** `paper/FIGURE3_CAPTION_FINAL_20260911.md` (content revised 2026-09-12 to frozen P1/P2 hierarchy).
 
-**Analysis unit:** one material-codec decision at a fixed Bader threshold; 254 development materials × 3 codecs = **762 decisions per threshold**.
+### Panel A — Frozen gate predicts fresh perturbation risk
 
-### A — Naive binary benchmark
-- `1e-4 e`: 229 pass, 533 fail.
-- `1e-3 e`: 452 pass, 310 fail.
-- `1e-2 e`: 654 pass, 108 fail.
+Primary endpoint: `tau = 1e-3 e`.
 
-### B — QSQ three-state certification
-- `1e-4 e`: 123 certified, 15 eligible failures, 624 non-evaluable.
-- `1e-3 e`: 415 certified, 14 eligible failures, 333 non-evaluable.
-- `1e-2 e`: 640 certified, 47 eligible failures, 75 non-evaluable.
+- QSQ admitted: **143/254 = 56.3% coverage**.
+- Fresh perturbations: **59 per material; 14,986/14,986 valid physical trials overall**.
+- Eligible group: **135/8,437 = 1.600%** exceedance risk, material-cluster 95% CI **0.782–2.596%**.
+- Screen-rejected group: **5,326/6,549 = 81.325%**, 95% CI **75.981–86.257%**.
+- Rejected / eligible risk ratio: **50.83×**.
 
-### C — Failure reclassification
-- `1e-4 e`: **518/533 = 97.2%** of naive failures are non-evaluable; 15 remain genuine eligible failures.
-- `1e-3 e`: **296/310 = 95.5%** are non-evaluable; 14 remain genuine eligible failures.
-- `1e-2 e`: **61/108 = 56.5%** are non-evaluable; 47 remain genuine eligible failures.
-- Eligibility also invalidates apparent success: at `1e-4 e`, **106/229 = 46.3% of naive passes are non-evaluable**.
+### Panel B — Equal-search control
 
-**Primary message:** at the two strictest contracts, more than 95% of apparent binary failures cannot be scientifically attributed to the compressor because the reference Bader analysis itself fails the independent numerical-eligibility test.
+The originally asymmetric tight ladder is completed for all 111 previously uncovered materials:
 
-**Interpretation boundary:** QSQ does not “rescue” failing codecs. A non-evaluable material-threshold pair is neither pass nor failure; the binary label itself is invalid.
+- **1,332/1,332** additive reconstructions successful.
+- At `1e-3 e`, no-pass risk: **3.3% eligible vs 66.4% screen-rejected**, RR **20.34×**.
+- At `1e-4 e`: **10.9% vs 79.3%**, RR **7.30×**.
+- At `1e-2 e`: **0% vs 68.0%**.
 
-**Formal validation:** GitHub Actions run `34565814071` on source commit `1886f776f048395b47eb16129c1231e814922271`; artifact `10185973963`. PNG, PDF, and SVG were all generated, checked non-empty, and visually inspected. Repository copies are `617,779 B` PNG, `7,903 B` PDF, and `39,701 B` SVG.
+**Take-home:** QSQ separation persists after codec search opportunity is equalized.
+
+### Panel C — Pre-specified secondary thresholds
+
+Fresh perturbation exceedance risk:
+
+- `1e-4 e`: **4.016% eligible vs 86.938% rejected**, RR **21.65×**.
+- `1e-3 e`: **1.600% vs 81.325%**, RR **50.83×**.
+- `1e-2 e`: **0.148% vs 79.593%**, RR **537.69×**.
+
+The same 59 response vectors per material support all three thresholds; they are not independent experiments.
+
+**Primary message:** the frozen five-seed QSQ gate prospectively stratifies unseen response risk under the declared iid-uniform perturbation model, and this finding is not explained by unequal compression-search depth.
+
+**Interpretation boundary:** do not claim worst-case stability, simultaneous per-material certification, causal codec attribution, or new-material prospective generalization.
+
+### Historical Figure 3 evidence
+
+The full-record reclassification values **97.2% / 95.5% / 56.5%** remain reproducible but are ladder-design-sensitive because the original tight extension was targeted to eligible materials. They are retained as provenance / sensitivity evidence, not as the Figure 3 headline and not as a design-independent causal misattribution estimate.
 
 ## Figure 4 — QSQ probe validation
 
-**Function:** validates why the QSQ perturbation test, rather than the archived float32 probe, defines eligibility.
+**Function:** show that a qualification probe must excite the numerical failure mode of the downstream operator.
 
-The archived float32 probe is retained unchanged as provenance. QSQ uses five pre-specified fixed-seed uniform perturbations at the material's float32 L-infinity amplitude while preserving the tolerance set and reporting semantics.
+The archived float32 round-trip probe is retained as provenance. QSQ uses five pre-specified non-order-preserving uniform perturbations at each material's float32 L-infinity amplitude. In the formal paired development comparison, the operative five-seed QSQ floor is a median of approximately **1.6×10^4** times the archived float32-probe floor.
 
-Across 319 systems, QSQ non-evaluable fractions are 79.9% at `1e-4 e`, 41.4% at `1e-3 e`, and 9.7% at `1e-2 e`. In the 18-material pre-freeze calibration, archived float32 rounding creates a median of 82 exact neighbouring ties and zero voxel reassignment in 9/18 systems, versus 2/18 under the same-amplitude primary noise probe. In the formal paired comparison of all 254 development materials, the operative five-seed QSQ floor is a median of approximately **1.6×10^4** times the archived float32-probe floor.
+**Take-home:** stability qualification itself must be validated; a numerically tiny but structurally inappropriate perturbation can give a false sense of stability.
 
-**Take-home:** the qualification probe itself must excite the numerical failure channel relevant to the downstream operator.
+## Figure 5 — Bader-specific mechanism and implementation boundary
 
-## Figure 5 — Bader-specific mechanism
+**Function:** explain why re-derived Bader charge can be irregular and locate the measurement-contract boundary.
 
-**Function:** mechanism, not general benchmark novelty.
+Re-derived Bader scoring is the scientific metric because basin assignment is a functional of the reconstructed density. Fixed-basin scoring suppresses domain migration and is diagnostic only.
 
-Re-derived Bader scoring is the scientific metric because the basin is a functional of the reconstructed density. Fixed-basin scoring is diagnostic only; it suppresses domain migration. Representative decompositions show that domain migration can dominate the tight-tolerance response.
+P3A supporting result:
+- 24-system deterministic panel;
+- independent Henkelman **on-grid** classification agreement: **24/24 at all three thresholds**, `kappa = 1.000`;
+- floor-rank Spearman `rho = 0.995`;
+- near-grid agreement: **82.6% / 83.3% / 95.8%**, `rho = 0.754`.
 
-**Take-home:** compression can perturb both the density being integrated and the integration domain itself, explaining irregular Bader response.
+**Take-home:** the effect transfers across an independent implementation when analysis semantics are matched, but it is not implementation-free; the downstream algorithm belongs to the measurement contract.
+
+Do not describe P3A as DFT grid convergence or as identifying a unique physical Bader reference.
 
 ## Figure 6 — Realized-distortion confounding control
 
-**Function:** fair codec comparison after the benchmark-validity issue has been established.
+**Function:** ensure codec comparison is not confounded by nominal tolerance.
 
-At equal nominal tolerance, ZFP realizes approximately 0.17× the L-infinity perturbation of SZ3 or SPERR; SZ3/SPERR is approximately 1.00×. Within-material matching on `log10(realized_Linf)` with the primary 0.10-dex caliper gives re-derived Bader-error ratios of approximately ZFP/SZ3 = 0.557, ZFP/SPERR = 0.601, and SZ3/SPERR = 1.033.
+At equal nominal tolerance, ZFP realizes approximately 0.17× the L-infinity perturbation of SZ3 or SPERR. Within-material matching on realized L-infinity gives re-derived Bader-error ratios approximately:
+- ZFP/SZ3 = **0.557**;
+- ZFP/SPERR = **0.601**;
+- SZ3/SPERR = **1.033**.
 
-**Take-home:** downstream tolerance must be qualified for measurability, and upstream codec comparison must use realized rather than nominal distortion.
+**Take-home:** after benchmark validity is established, fair codec comparison still requires realized rather than nominal distortion control.
 
 ## Figure 7 — Untouched external confirmation
 
-**Function:** closing validation on 63 completed external systems / 1,689 retained rows with frozen rules and no retuning.
+**Function:** close the empirical chain using the frozen decision rules on the 63-system untouched external cohort.
 
-External QSQ eligibility is 16/63 at `1e-4 e`, 42/63 at `1e-3 e`, and 57/63 at `1e-2 e`. Median best-certified compression ratios remain tolerance dependent: approximately ZFP/SZ3/SPERR = 13.0/12.1/5.2× at `1e-4 e`, 18.8/18.8/6.4× at `1e-3 e`, and 40.6/65.9/10.8× at `1e-2 e`.
+External QSQ eligibility is 16/63 at `1e-4 e`, 42/63 at `1e-3 e`, and 57/63 at `1e-2 e`. Certified rate–fidelity ordering changes with the requested scientific contract.
 
-**Take-home:** the frozen stability-qualified decision logic and tolerance-dependent rate-fidelity frontier reproduce on untouched systems.
+**Take-home:** the frozen stability-qualified evaluation logic reproduces without retuning, while the preferred codec remains tolerance dependent.
+
+## P4 — Chemical contract boundary
+
+P4 is intentionally **not** promoted into a new main headline figure. It belongs in Results/Discussion and Supplementary Tables S15–S16.
+
+Frozen result:
+- 5/5 outcome-blind chemistry pairs pass the two-implementation source-reference gate;
+- 216/216 compressed solver cells resolve;
+- 60/60 common-tight charge-transfer sign decisions preserve the reference direction;
+- unqualified baseline: 0 observed sign errors;
+- QSQ at `1e-3 e`: retains 36/60 trials from 3/5 pairs, also 0 errors.
+
+**Interpretation:** strict numerical QSQ qualification is not equivalent to preservation of a coarse, large-margin qualitative chemical direction. This is measurement-contract boundary evidence, not a QSQ correctness-gain headline.
 
 ## Results order
 
-1. **Figure 2:** establish the operator-level motivation/background on identical reconstructions; this is not the novelty claim.
-2. Define QSQ eligibility and the three-state state space.
-3. **Figure 3:** demonstrate that naive binary benchmarking is materially invalid at strict Bader thresholds; keep Figure 3 as the novelty-bearing result.
-4. **Figure 4:** validate the QSQ perturbation probe against the archived float32 predecessor.
-5. Report the tight-ladder result conservatively: at `1e-4 e`, median resolved-Bader-error/QSQ-floor is 1.09-1.33× across codecs; call this floor-scale and consistent with an emerging analysis-limited regime, not `plateau = floor`.
-6. **Figure 5:** explain Bader domain migration.
-7. **Figure 6:** control nominal-versus-realized distortion.
-8. Report rate-fidelity only among eligible material-threshold pairs, using `benchmark/summary_a1.csv` rather than historical prose values.
-9. **Figure 7:** close with untouched external confirmation.
+1. **Figure 1:** define the measurement-contract problem and three-state evaluation logic.
+2. **Figure 2:** establish operator-dependent perturbation propagation as motivation.
+3. Define the frozen QSQ screen and distinguish reference robustness from fixed-pipeline numerical agreement.
+4. **Figure 3:** lead with P1 equal-search control and P2 prospective fresh-perturbation validation; this is the central result.
+5. **Figure 4:** validate the QSQ perturbation probe against the archived float32 predecessor.
+6. Report the strictest certified regime as **floor-scale, consistent with an emerging analysis-limited regime**; do not claim `plateau = floor`.
+7. **Figure 5:** explain basin migration and report P3A implementation transfer as support.
+8. Report **P4** as a null correctness / contract-boundary case study.
+9. **Figure 6:** control nominal-versus-realized distortion for codec comparison.
+10. Report stability-qualified rate–fidelity only among eligible material–threshold pairs.
+11. **Figure 7:** close with untouched external confirmation.
 
 ## Main-text claim hierarchy
 
-1. **Background:** pointwise/raw-data error alone is not a universal downstream guarantee.
-2. **Central contribution:** requested QoI tolerances must be independently qualified for numerical identifiability before codec scoring.
-3. **Headline evidence:** 97.2% and 95.5% of naive failures at `1e-4` and `1e-3 e` are reclassified as non-evaluable.
-4. **Method requirement:** the qualification probe itself must be validated.
-5. **Bader mechanism:** density-dependent basin migration can dominate re-derived charge error.
-6. **Codec comparison:** nominal tolerance is not a common realized-distortion scale.
-7. **Practical result:** eligible systems retain a substantial, tolerance-dependent certified compression frontier.
-8. **External validation:** the frozen decision logic reproduces without retuning.
+1. **Background:** pointwise/raw-data error is not a universal downstream guarantee.
+2. **Central contribution:** benchmark tolerances should be independently qualified for QoI numerical stability before scientifically interpreting codec scoring.
+3. **Primary controlled evidence:** after equalizing compression-search opportunity, `1e-3 e` no-pass risk is **3.3% vs 66.4% (20.34×)**.
+4. **Strongest prospective evidence:** the frozen QSQ gate separates fresh-perturbation risk **1.600% vs 81.325% (50.83×)** at `1e-3 e`, with **56.3% coverage**.
+5. **Transfer evidence:** matched on-grid independent implementation gives **24/24 agreement**, while near-grid differences define the analysis-semantic boundary.
+6. **Contract-boundary evidence:** a coarse qualitative charge-transfer sign remains correct in all 60/60 tested reconstructions, so strict numerical qualification and qualitative decision preservation are not interchangeable.
+7. **Mechanistic support:** density-dependent basin migration explains irregular Bader amplification.
+8. **Fair codec comparison:** nominal tolerance is not a common realized-distortion scale.
+9. **Practical output:** among eligible systems, the certified compression frontier depends on the requested scientific contract.
 
 ## Figure provenance
 
 Locked formal runs retained for provenance:
 - Figure 1: run `34371089020`, artifact `10111997887`.
 - Figure 2: run `34352844171`, artifact `10104481700`.
-- **Figure 3: run `34565814071`, artifact `10185973963`, source commit `1886f776f048395b47eb16129c1231e814922271`.**
+- Historical binary-to-three-state Figure 3: run `34565814071`, artifact `10185973963`, source commit `1886f776f048395b47eb16129c1231e814922271`.
+- Current P1/P2 Figure 3 source: `figures/R/figure3_certification_landscape.R`; its frozen source contains hard assertions against the completed P1/P2 machine-readable summaries and exports PNG/PDF/SVG from the same code.
 - Figure 4: run `34370291570`, artifact `10111673650`.
 - Figure 5: run `34349558487`, artifact `10103144848`.
 - Figure 6: run `34340308601`, artifact `10099481566`.
 - Figure 7: run `34369886843`, artifact `10111557054`.
 
-The pre-2026-09-11 Figure 3 rendering (run `34369822427`, artifact `10111464747`) is retained as provenance but superseded by the binary-to-three-state redesign.
+## Submission scope lock
 
-## Supplementary scope
+P0–P4 are resolved. P3B new DFT grid convergence is deferred. P5 is **NO-GO for the current submission**. No new scientific endpoint, perturbation family, primary cohort, DFT convergence experiment, or primary threshold should be added before submission without an explicit scope-reopening addendum.
 
-Keep the following out of the main figure sequence: full electron-count and Hartree tables, reproduction-gate diagnostics, no-exclusion sensitivity, floor-relative sensitivity, QSQ seed/amplitude sensitivity, negative algorithm results, failure taxonomy, and external-baseline unit conversions.
-
-Do not generalize the three studied QoIs to all scientific observables. The manuscript supports a general **evaluation principle** using one deeply validated topology-sensitive chemical QoI and two structurally distinct controls/comparators.
-
-## Naming boundary
-
-Reader-facing labels use **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **QSQ perturbation probe**, and **archived float32 probe**. Historical internal identifiers and filenames containing `Protocol A`, `Protocol A.1`, or `_A1` are preserved only for provenance and reproducibility.
+Remaining work is manuscript/figure/SI alignment, archival DOI, journal-specific formatting, and final Word/PDF assembly.
