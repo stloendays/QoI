@@ -1,0 +1,68 @@
+name: Render Supplementary Figure S4 floor-scale regime
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'figures/R/supplement/figureS4_tight_floor_scale.R'
+      - '.github/workflows/render_supplementary_figureS4.yml'
+      - 'benchmark/master_benchmark_full.csv'
+      - 'benchmark/master_benchmark_tight_ladder.csv'
+      - 'supplement/S2_floor_relative.csv'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-formal-figure-writeback
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::tidyr
+            any::scales
+            any::patchwork
+            any::svglite
+      - name: Render Supplementary Figure S4
+        run: Rscript figures/R/supplement/figureS4_tight_floor_scale.R
+      - name: Validate outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.png \
+            figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.pdf \
+            figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.svg; do
+            test -s "$f" || { echo "Missing or empty output: $f"; exit 1; }
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supplementary-figure-S4-floor-scale
+          path: figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.*
+      - name: Commit rendered outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp=$(mktemp -d)
+          cp figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.* "$tmp"/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp"/supplementary_figureS4_tight_floor_scale_R.* figures/R/rendered/
+          git add figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.*
+          if git diff --cached --quiet; then
+            echo "Supplementary Figure S4 outputs unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render Supplementary Figure S4"
+          git push origin HEAD:main
