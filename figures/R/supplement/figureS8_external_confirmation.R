@@ -80,7 +80,7 @@ pB <- ggplot(elig, aes(threshold, eligible_fraction, group = 1)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0,1,.25), labels = percent_format(accuracy = 1), expand = expansion(mult = c(.02,.12))) +
   labs(
     title = "B | The externally measurable cohort expands as tolerance relaxes",
-    subtitle = "Protocol A.1 eligibility; denominator is the untouched 63-system cohort",
+    subtitle = "QSQ eligibility; denominator is the untouched 63-system cohort",
     x = "Bader contract", y = "Eligible external systems"
   ) + base_theme
 
@@ -111,7 +111,7 @@ pD <- ggplot(d, aes(threshold, frac_certified, colour = codec, group = codec)) +
   scale_y_continuous(limits = c(.75,1.01), breaks = c(.75,.80,.85,.90,.95,1), labels = percent_format(accuracy = 1)) +
   labs(
     title = "D | Certification remains high after conditioning on eligibility",
-    subtitle = "External certification fraction among Protocol A.1-admitted systems",
+    subtitle = "External certification fraction among QSQ-eligible systems",
     x = "Bader contract", y = "Certified fraction among admitted"
   ) + base_theme + theme(legend.position = "top")
 
@@ -119,9 +119,9 @@ fig <- ((pA | pB) / (pC | pD)) +
   plot_layout(heights = c(1, 1)) +
   plot_annotation(
     title = "Supplementary Figure S8 | Frozen rate-fidelity conclusions reproduce on the untouched external cohort",
-    subtitle = "Eligibility expands with tolerance and the codec ordering changes with the scientific contract; no protocol or scoring rule was retuned for external evaluation.",
+    subtitle = "Eligibility expands with tolerance and the codec ordering changes with the scientific contract; no qualification or scoring rule was retuned for external evaluation.",
     caption = paste0(
-      "A, pooled development and external rate-fidelity frontiers. B, external Protocol A.1 eligibility. ",
+      "A, pooled development and external rate-fidelity frontiers. B, external QSQ eligibility. ",
       "C, pairwise SZ3-versus-ZFP crossover. D, certification conditional on eligibility.\n",
       "The 63-system confirmatory cohort is distinct from the 65-system external descriptive/stability set; external rate-fidelity claims use only the frozen 63-system confirmatory outputs."
     ),
