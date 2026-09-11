@@ -1,0 +1,201 @@
+name: Execute P3A implementation transfer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p3a-implementation-transfer
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+
+      - name: Check out frozen scientific environment anchor
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify frozen P3A inputs and implementation anchors
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'ecd58e8ca42e6553a2d39693447d4c85b7960fbbea66622f58412e7b80ad08ef  repo/validation/qsq_prospective/convergence_panel.csv' | sha256sum -c -
+          test "$(git -C repo rev-parse HEAD:mechanism/independent_bader_20260908/reference_source)" = '8f840f6413602eafd9c49c59be57654cb785c0ad'
+          test "$(git -C frozen rev-parse HEAD)" = '893f931b3045b0b628329db81999c2f439d4e830'
+          test "$(git -C frozen rev-parse HEAD:validation/external_end_to_end.py)" = '3da20fcc2bf52cf3fb135802cfe81bac8eed4a98'
+          grep -q 'Status: \*\*FROZEN_PRE_EXECUTION\*\*' repo/validation/qsq_prospective/P3_NUMERICAL_VALIDATION_PROTOCOL.md
+          python -m py_compile repo/validation/qsq_prospective/run_p3a_implementation_transfer.py
+
+      - name: Install frozen scientific stack and compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y gfortran-13
+
+      - name: Build frozen Henkelman Bader source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo/mechanism/independent_bader_20260908/reference_source
+          make -f makefile.osx_gfortran clean
+          make -f makefile.osx_gfortran FC=gfortran-13 LINK='' bader
+          test -x ./bader
+          sha256sum ./bader > "$GITHUB_WORKSPACE/henkelman_binary_sha256.txt"
+          gfortran-13 --version | head -1 > "$GITHUB_WORKSPACE/gfortran_version.txt"
+
+      - name: Execute frozen P3A shard
+        id: execute
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p3a_shard_${{ matrix.shard }}"
+          rm -rf "$out"
+          mkdir -p "$out"
+          python repo/validation/qsq_prospective/run_p3a_implementation_transfer.py \
+            --repo-root repo \
+            --panel repo/validation/qsq_prospective/convergence_panel.csv \
+            --henkelman-binary repo/mechanism/independent_bader_20260908/reference_source/bader \
+            --shard-count 8 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out" \
+            2>&1 | tee "$out/run.log"
+          code=${PIPESTATUS[0]}
+          echo "$code" > "$out/exit_code.txt"
+          exit "$code"
+
+      - name: Archive exact P3A shard environment
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p3a_shard_${{ matrix.shard }}"
+          mkdir -p "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          cp "$GITHUB_WORKSPACE/henkelman_binary_sha256.txt" "$out/" 2>/dev/null || true
+          cp "$GITHUB_WORKSPACE/gfortran_version.txt" "$out/" 2>/dev/null || true
+          git -C repo rev-parse HEAD > "$out/research_record_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_environment_commit.txt"
+          sha256sum repo/validation/qsq_prospective/convergence_panel.csv > "$out/panel_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/run_p3a_implementation_transfer.py > "$out/runner_sha256.txt"
+
+      - name: Upload P3A shard audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3a-implementation-transfer-shard-${{ matrix.shard }}
+          path: repo/validation/qsq_prospective/p3a_shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Preserve recorded scientific failures
+        if: always()
+        shell: bash
+        run: |
+          code=$(cat "repo/validation/qsq_prospective/p3a_shard_${{ matrix.shard }}/exit_code.txt" 2>/dev/null || echo 99)
+          if [ "$code" = "0" ]; then
+            echo 'P3A shard completed with no recorded solver/source failures.'
+          elif [ "$code" = "2" ]; then
+            echo 'P3A shard fully accounted with recorded solver/source failures; aggregate will retain them.'
+          else
+            echo "P3A infrastructure/accounting failure: exit $code"
+            exit 1
+          fi
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Set up audit Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install audit dependencies
+        run: python -m pip install numpy==2.4.6 scipy==1.18.1
+
+      - name: Download every P3A shard
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p3a-implementation-transfer-shard-*
+          path: shards
+
+      - name: Aggregate and enforce 432-evaluation accounting
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/validation/qsq_prospective/p3a_implementation_transfer
+          python repo/validation/qsq_prospective/aggregate_p3a_implementation_transfer.py \
+            --panel repo/validation/qsq_prospective/convergence_panel.csv \
+            --shards-root shards \
+            --output-dir repo/validation/qsq_prospective/p3a_implementation_transfer
+
+      - name: Archive aggregate provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='repo/validation/qsq_prospective/p3a_implementation_transfer'
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit_before_p3a_commit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          sha256sum repo/validation/qsq_prospective/aggregate_p3a_implementation_transfer.py > "$out/aggregator_sha256.txt"
+
+      - name: Commit P3A measurements and report
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p3a_implementation_transfer
+          if git diff --cached --quiet; then
+            echo 'No P3A aggregate changes to commit.'
+          else
+            git commit -m 'validation: complete P3A implementation-transfer panel'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload P3A aggregate audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3a-implementation-transfer-aggregate
+          path: repo/validation/qsq_prospective/p3a_implementation_transfer
+          if-no-files-found: error
+          retention-days: 90
