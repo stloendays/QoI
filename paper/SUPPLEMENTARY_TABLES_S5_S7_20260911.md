@@ -1,12 +1,12 @@
 # Supplementary Tables S5-S7
 
-Updated 2026-09-11. Submission-facing robustness tables generated from frozen machine-readable assets. These tables are diagnostics and sensitivity analyses; they do not replace the pre-specified Protocol A.1 contracts.
+Updated 2026-09-11. Submission-facing robustness tables generated from frozen machine-readable assets. These tables are diagnostics and sensitivity analyses; they do not replace the pre-specified QSQ contracts.
 
 ## Supplementary Table S5 | Sensitivity to omission of eligibility and inflation of the Bader threshold
 
 ### S5a. Naive no-exclusion diagnostic
 
-The table applies the requested Bader tolerance directly to all 254 development materials without Protocol A.1 eligibility qualification. `n certified` therefore means a naive binary pass and must not be interpreted as a stability-qualified scientific certification.
+The table applies the requested Bader tolerance directly to all 254 development materials without QSQ eligibility qualification. `n certified` therefore means a naive binary pass and must not be interpreted as a stability-qualified scientific certification.
 
 | Bader threshold | Codec | n | Naive certified, n | Naive certified (%) | Median best ratio (x) | P10 (x) | P90 (x) |
 |---:|---|---:|---:|---:|---:|---:|---:|
@@ -60,7 +60,7 @@ Here the analysis threshold is multiplied by `k = 2, 5, 10` as a post hoc robust
 
 ---
 
-## Supplementary Table S6 | Re-derived Bader error relative to each material's independent Protocol A.1 floor
+## Supplementary Table S6 | Re-derived Bader error relative to each material's independent QSQ stability floor
 
 Only certified reconstruction points are included. Ratios near unity indicate that the observed reconstruction error is on the same numerical scale as the independent stability floor. This table does not estimate a material-level compression-error plateau and cannot establish `plateau = floor`.
 
@@ -82,19 +82,19 @@ At the strictest certified contract, median `DeltaQ/floor` is only 1.09-1.33 acr
 
 ---
 
-## Supplementary Table S7 | Protocol A.1 seed and amplitude sensitivity
+## Supplementary Table S7 | QSQ seed and amplitude sensitivity
 
 ### S7a. Pre-freeze 18-material calibration
 
-| Diagnostic | Archived float32 / calibration result | Protocol implication |
+| Diagnostic | Archived float32 / calibration result | Qualification implication |
 |---|---:|---|
-| Exact neighbouring ties created | median 82 under archived float32; 0 under same-amplitude noise | An order-preserving round trip is unusually benign for an order-dependent watershed |
-| Systems with zero voxel reassignment | 9/18 archived float32; 2/18 same-amplitude noise | Noise more effectively probes the relevant partition-instability channel |
+| Exact neighbouring ties created | median 82 under archived float32; 0 under same-amplitude QSQ noise | An order-preserving round trip is unusually benign for an order-dependent watershed |
+| Systems with zero voxel reassignment | 9/18 archived float32; 2/18 same-amplitude QSQ noise | QSQ noise more effectively probes the relevant partition-instability channel |
 | Five-seed log10 floor span | median 0.47 decades; maximum 2.4 decades | A single seed is insufficient for the frozen qualification rule |
 | Seed-dependent eligibility at 1e-4 e | 3/18 materials | Five pre-registered seeds retained |
 | Seed-dependent eligibility at 1e-3 e | 2/18 materials | Five pre-registered seeds retained |
 | Seed-dependent eligibility at 1e-2 e | 1/18 materials | Five pre-registered seeds retained |
-| Floor change from x0.1 to x10 amplitude | median 0.76 decades; P10 0.00; P90 2.02 | The floor is explicitly protocol-defined, not amplitude-free |
+| Floor change from x0.1 to x10 amplitude | median 0.76 decades; P10 0.00; P90 2.02 | The floor is explicitly qualification-defined, not amplitude-free |
 
 ### S7b. Full 319-system deployment of the already-frozen five-seed rule
 
@@ -107,10 +107,10 @@ At the strictest certified contract, median `DeltaQ/floor` is only 1.09-1.33 acr
 | Primary-seed verdict differs from five-seed maximum at 1e-3 e | **17/319** |
 | Primary-seed verdict differs from five-seed maximum at 1e-2 e | **2/319** |
 
-The 0.47-decade median / 2.4-decade maximum in S7a are calibration-panel statistics measured before Protocol A.1 was frozen. The 0.37-decade median / 3.82-decade maximum in S7b are full-corpus deployment statistics measured after applying the frozen rule to all 319 systems. They are not contradictory and must not be substituted for one another.
+The 0.47-decade median / 2.4-decade maximum in S7a are calibration-panel statistics measured before QSQ was frozen. The 0.37-decade median / 3.82-decade maximum in S7b are full-corpus deployment statistics measured after applying the frozen QSQ rule to all 319 systems. They are not contradictory and must not be substituted for one another.
 
-**Machine-readable sources:** `stability/probe_calibration.csv`; `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv`. Protocol definition: `protocol/PROTOCOL_A1.md`.
+**Machine-readable sources:** `stability/probe_calibration.csv`; `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv`. Frozen internal protocol record: `protocol/PROTOCOL_A1.md`.
 
 ## Interpretation boundary
 
-Tables S5-S7 are sensitivity and audit material. They support transparency of the measurement contract, but they do not redefine the primary chemical thresholds, change the frozen A.1 seed set or amplitude, or turn a non-evaluable material-threshold pair into a codec pass.
+Tables S5-S7 are sensitivity and audit material. They support transparency of the measurement contract, but they do not redefine the primary chemical thresholds, change the frozen QSQ seed set or amplitude, or turn a non-evaluable material-threshold pair into a codec pass. Historical source identifiers remain unchanged for provenance.
