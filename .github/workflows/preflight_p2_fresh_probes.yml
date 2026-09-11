@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo '244bd6506afe466a8a03252298a8d268746e6094408b0fcfe55409ef0b74ef07d  validation/qsq_prospective/fresh_seed_jobs.csv' | sha256sum -c -
+          echo '244bd6506afe466a03252298a8d268746e6094408b0fcfe55409ef0b74ef07d  validation/qsq_prospective/fresh_seed_jobs.csv' | sha256sum -c -
           python - <<'PY'
           import csv, hashlib
           from collections import defaultdict
