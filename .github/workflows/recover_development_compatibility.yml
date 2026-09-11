@@ -1,0 +1,122 @@
+name: Recover development execution compatibility
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/EXECUTION_ADDENDUM.md'
+      - 'validation/qsq_prospective/development_compatibility_smoke.py'
+      - '.github/workflows/recover_development_compatibility.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-development-compatibility
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Set up frozen Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify frozen implementation anchors
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C frozen rev-parse HEAD)" = "893f931b3045b0b628329db81999c2f439d4e830"
+          test "$(git -C frozen rev-parse HEAD:validation/external_end_to_end.py)" = "3da20fcc2bf52cf3fb135802cfe81bac8eed4a98"
+          test "$(git -C frozen rev-parse HEAD:validation/formal_external_e2e.py)" = "5ecdc03238a885e94f32b55d50c24e65e13aa07a"
+          test "$(git -C frozen rev-parse HEAD:validation/requirements-external-e2e.txt)" = "ef5f23717f3684e0ee343ec3c12a1eefb3864b76"
+          test "$(git -C frozen rev-parse HEAD:validation/EXTERNAL_ENVIRONMENT.md)" = "3f00afaafa03c05348645aad13435d301cdd8b54"
+
+      - name: Install frozen scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+
+      - name: Run development compatibility sentinels
+        id: compatibility
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/compatibility_smoke_results"
+          rm -rf "$out"
+          mkdir -p "$out"
+          python repo/validation/qsq_prospective/development_compatibility_smoke.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --output-dir "$out" \
+            2>&1 | tee "$out/smoke.log"
+          status=${PIPESTATUS[0]}
+          echo "$status" > "$out/exit_code.txt"
+          exit "$status"
+
+      - name: Archive exact compatibility environment
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/compatibility_smoke_results"
+          mkdir -p "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          sha256sum frozen/validation/requirements-external-e2e.txt > "$out/requirements_sha256.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit_at_start.txt"
+          sha256sum repo/validation/qsq_prospective/development_compatibility_smoke.py > "$out/recovery_script_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/missing_tight_jobs.csv > "$out/p1_work_order_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/fresh_seed_jobs.csv > "$out/p2_work_order_sha256.txt"
+
+      - name: Commit auditable smoke record
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/compatibility_smoke_results
+          if git diff --cached --quiet; then
+            echo 'No compatibility record changes to commit.'
+          else
+            git commit -m 'validation: record development compatibility smoke'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload smoke audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qsq-development-compatibility-smoke
+          path: repo/validation/qsq_prospective/compatibility_smoke_results
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Enforce compatibility gate
+        if: always()
+        shell: bash
+        run: |
+          test "${{ steps.compatibility.outcome }}" = "success"
