@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run one shard of the frozen 24-system P3A implementation-transfer panel."""
 from __future__ import annotations
-import argparse, csv, hashlib, json, sys, tempfile, time
+import argparse, csv, hashlib, json, math, sys, tempfile, time
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -45,6 +45,17 @@ def load_amplitudes(root: Path) -> dict[str, float]:
             raise RuntimeError(f"legacy amplitude/seed drift for {m}")
         out[m] = x[0]
     return out
+
+
+def verify_legacy_amplitude(field: np.ndarray, recorded: float, material: str) -> float:
+    derived = float(np.max(np.abs(field.astype(np.float32).astype(np.float64) - field)))
+    tol = 4.0 * max(math.ulp(recorded), math.ulp(derived), math.ulp(1.0) * 1e-18)
+    if not math.isclose(derived, recorded, rel_tol=0.0, abs_tol=tol):
+        raise RuntimeError(
+            f"legacy float32 amplitude mismatch for {material}: derived={derived:.17g} "
+            f"recorded={recorded:.17g} tol={tol:.3g}"
+        )
+    return derived
 
 
 def write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -92,6 +103,7 @@ def main() -> int:
             with tempfile.TemporaryDirectory(prefix="qoi_p3a_") as td:
                 work = Path(td); grid, loader = build_grid(meta, blob, work)
                 field = np.ascontiguousarray(np.asarray(grid.total, dtype=np.float64))
+                derived_eps = verify_legacy_amplitude(field, eps, m)
                 lattice = np.asarray(grid.structure.lattice.matrix, dtype=np.float64)
                 frac = np.asarray(grid.structure.frac_coords, dtype=np.float64)
                 symbols = [str(x) for x in grid.structure.species]
@@ -104,7 +116,7 @@ def main() -> int:
                     try:
                         q, _, extra = study.solve(solver, field, lattice, frac, symbols, work / solver, baseline_log)
                         refs[solver] = np.asarray(q, dtype=float)
-                        rows.append({"material_id": m, "system_type": p["system_type"], "floor_band": p["floor_band"], "variant": "baseline", "seed": "", "solver": solver, "status": "SUCCESS", "response_e": 0.0, "epsilon": eps, "measured_Linf": 0.0, "source_sha256": meta["sha256"], "loader": loader, "elapsed_seconds": time.time()-t0, "charges_json": json.dumps(refs[solver].tolist(), separators=(",", ":")), "vacuum_charge_e": extra.get("vacuum_charge_e", "")})
+                        rows.append({"material_id": m, "system_type": p["system_type"], "floor_band": p["floor_band"], "variant": "baseline", "seed": "", "solver": solver, "status": "SUCCESS", "response_e": 0.0, "epsilon": eps, "derived_float32_amplitude": derived_eps, "measured_Linf": 0.0, "source_sha256": meta["sha256"], "loader": loader, "elapsed_seconds": time.time()-t0, "charges_json": json.dumps(refs[solver].tolist(), separators=(",", ":")), "vacuum_charge_e": extra.get("vacuum_charge_e", "")})
                     except Exception as exc:
                         failures.append({"material_id": m, "variant": "baseline", "seed": "", "solver": solver, "status": "FAILED", "stage": "baseline_solver", "error": f"{type(exc).__name__}: {exc}"})
                 for seed in OLD_SEEDS:
@@ -121,7 +133,7 @@ def main() -> int:
                             q = np.asarray(q, dtype=float); response = float(np.max(np.abs(q - refs[solver])))
                             precision = 2e-6 if solver.startswith("henkelman") else 0.0
                             verdicts = {str(t): ("AMBIGUOUS" if precision and abs(response-t) <= precision else "PASS" if response < t else "FAIL") for t in TAUS}
-                            rows.append({"material_id": m, "system_type": p["system_type"], "floor_band": p["floor_band"], "variant": "noise", "seed": seed, "solver": solver, "status": "SUCCESS", "response_e": response, "epsilon": eps, "measured_Linf": linf, "source_sha256": meta["sha256"], "loader": loader, "elapsed_seconds": time.time()-t0, "charges_json": json.dumps(q.tolist(), separators=(",", ":")), "threshold_verdicts_json": json.dumps(verdicts, separators=(",", ":")), "vacuum_charge_e": extra.get("vacuum_charge_e", "")})
+                            rows.append({"material_id": m, "system_type": p["system_type"], "floor_band": p["floor_band"], "variant": "noise", "seed": seed, "solver": solver, "status": "SUCCESS", "response_e": response, "epsilon": eps, "derived_float32_amplitude": derived_eps, "measured_Linf": linf, "source_sha256": meta["sha256"], "loader": loader, "elapsed_seconds": time.time()-t0, "charges_json": json.dumps(q.tolist(), separators=(",", ":")), "threshold_verdicts_json": json.dumps(verdicts, separators=(",", ":")), "vacuum_charge_e": extra.get("vacuum_charge_e", "")})
                         except Exception as exc:
                             failures.append({"material_id": m, "variant": "noise", "seed": seed, "solver": solver, "status": "FAILED", "stage": "perturbed_solver", "error": f"{type(exc).__name__}: {exc}"})
         except Exception as exc:
@@ -135,7 +147,7 @@ def main() -> int:
     accounted = len(rows) + len(failures)
     if accounted != planned:
         raise RuntimeError(f"P3A accounting mismatch: {accounted} != {planned}")
-    manifest = {"shard_index": a.shard_index, "shard_count": a.shard_count, "materials": len(selected), "planned_solver_evaluations": planned, "successful_rows": len(rows), "failed_rows": len(failures), "accounted_solver_evaluations": accounted, "panel_sha256": hashlib.sha256(a.panel.read_bytes()).hexdigest(), "henkelman_binary_sha256": hashlib.sha256(study.BADER.read_bytes()).hexdigest()}
+    manifest = {"shard_index": a.shard_index, "shard_count": a.shard_count, "materials": len(selected), "planned_solver_evaluations": planned, "successful_rows": len(rows), "failed_rows": len(failures), "accounted_solver_evaluations": accounted, "panel_sha256": hashlib.sha256(a.panel.read_bytes()).hexdigest(), "henkelman_binary_sha256": hashlib.sha256(study.BADER.read_bytes()).hexdigest(), "legacy_amplitude_rederived_from_source": True}
     (outdir / f"manifest_shard_{a.shard_index:02d}.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(manifest, indent=2))
     return 0 if not failures else 2
