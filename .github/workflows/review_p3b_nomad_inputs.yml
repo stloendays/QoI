@@ -1,0 +1,71 @@
+name: Review P3B NOMAD exact inputs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P3B_NOMAD_REVIEW_START'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p3b-nomad-input-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify frozen boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'ecd58e8ca42e6553a2d39693447d4c85b7960fbbea66622f58412e7b80ad08ef  validation/qsq_prospective/convergence_panel.csv' | sha256sum -c -
+          test -f validation/qsq_prospective/p3b_provenance_audit/execution_manifest.json
+          grep -q '"status": "AUDIT_COMPLETE"' validation/qsq_prospective/p3b_provenance_audit/execution_manifest.json
+          python -m py_compile validation/qsq_prospective/review_p3b_nomad_inputs.py
+      - name: Review exact NOMAD raw inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf validation/qsq_prospective/p3b_nomad_input_review
+          python validation/qsq_prospective/review_p3b_nomad_inputs.py \
+            --repo-root . \
+            --output-dir validation/qsq_prospective/p3b_nomad_input_review
+      - name: Archive review provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='validation/qsq_prospective/p3b_nomad_input_review'
+          python --version > "$out/python_version.txt" 2>&1
+          git rev-parse HEAD > "$out/research_record_commit_before_review_commit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          sha256sum validation/qsq_prospective/review_p3b_nomad_inputs.py > "$out/review_script_sha256.txt"
+      - name: Commit exact-input review
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p3b_nomad_input_review
+          if ! git diff --cached --quiet; then
+            git commit -m 'validation: complete P3B NOMAD exact-input review'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Upload review bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3b-nomad-exact-input-review
+          path: validation/qsq_prospective/p3b_nomad_input_review
+          if-no-files-found: error
+          retention-days: 90
