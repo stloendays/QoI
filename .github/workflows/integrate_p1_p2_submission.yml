@@ -1,0 +1,47 @@
+name: Integrate P1-P2 evidence into manuscript
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/integrate_p1_p2_submission.yml'
+      - 'scripts/integrate_p1_p2_submission.py'
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Apply exact evidence integration
+        run: python scripts/integrate_p1_p2_submission.py
+      - name: Verify new primary claims are present
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '14,986/14,986 successful trials' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          grep -q '50.83-fold risk ratio' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          grep -q '1,332/1,332 successful outcomes' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          ! grep -q 'Fresh-seed confirmation is specified separately and has not yet been executed' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+      - name: Commit manuscript integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          if git diff --cached --quiet; then
+            echo 'No manuscript changes to commit.'
+          else
+            git commit -m 'paper: integrate prospective P1-P2 validation'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
