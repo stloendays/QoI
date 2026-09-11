@@ -358,14 +358,14 @@
 <text x='198.65' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>1e-08</text>
 <text x='322.47' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>1e-05</text>
 <text x='446.28' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>1e-02</text>
-<text x='291.48' y='325.83' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='130.20px' lengthAdjust='spacingAndGlyphs'>Archived Protocol A floor (e)</text>
-<text transform='translate(20.67,208.12) rotate(-90)' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='95.77px' lengthAdjust='spacingAndGlyphs'>Protocol A.1 floor (e)</text>
+<text x='291.48' y='325.83' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='144.83px' lengthAdjust='spacingAndGlyphs'>Archived float32-probe floor (e)</text>
+<text transform='translate(20.67,208.12) rotate(-90)' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='100.41px' lengthAdjust='spacingAndGlyphs'>QSQ stability floor (e)</text>
 <circle cx='203.89' cy='88.15' r='1.89' style='stroke-width: 0.68; stroke: #4A5F7E; stroke-opacity: 0.48; fill: #4A5F7E; fill-opacity: 0.48;' />
 <circle cx='302.74' cy='88.15' r='1.89' style='stroke-width: 0.68; stroke: #D55E00; stroke-opacity: 0.48; fill: #D55E00; fill-opacity: 0.48;' />
 <text x='217.76' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='71.11px' lengthAdjust='spacingAndGlyphs'>Development bulk</text>
 <text x='316.61' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='71.11px' lengthAdjust='spacingAndGlyphs'>Development slab</text>
-<text x='106.24' y='66.41' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='220.31px' lengthAdjust='spacingAndGlyphs'>Paired archived float32 vs five-seed A.1 floors; n = 254</text>
-<text x='106.24' y='53.95' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='228.42px' lengthAdjust='spacingAndGlyphs'>A | A.1 exposes much larger Bader instability</text>
+<text x='106.24' y='66.41' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='253.69px' lengthAdjust='spacingAndGlyphs'>Paired archived float32-probe vs five-seed QSQ floors; n = 254</text>
+<text x='106.24' y='53.95' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='272.75px' lengthAdjust='spacingAndGlyphs'>A | QSQ exposes substantially larger Bader instability</text>
 </g>
 <defs>
   <clipPath id='cpNTI3LjEyfDg5Ny42MXwxMTIuNDh8MzAzLjc3'>
@@ -402,12 +402,12 @@
 <text x='771.40' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='16.80px' lengthAdjust='spacingAndGlyphs'>60%</text>
 <text x='852.82' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='16.80px' lengthAdjust='spacingAndGlyphs'>80%</text>
 <text x='712.36' y='325.83' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='105.11px' lengthAdjust='spacingAndGlyphs'>Non-evaluable fraction</text>
-<circle cx='650.67' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #9AA0A6; fill: #9AA0A6;' />
-<circle cx='720.91' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #E9B13A; fill: #E9B13A;' />
-<text x='664.54' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='42.50px' lengthAdjust='spacingAndGlyphs'>Archived A</text>
-<text x='734.78' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='47.92px' lengthAdjust='spacingAndGlyphs'>Protocol A.1</text>
+<circle cx='656.11' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #9AA0A6; fill: #9AA0A6;' />
+<circle cx='743.60' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #E9B13A; fill: #E9B13A;' />
+<text x='669.98' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='59.75px' lengthAdjust='spacingAndGlyphs'>Archived probe</text>
+<text x='757.47' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='19.78px' lengthAdjust='spacingAndGlyphs'>QSQ</text>
 <text x='527.12' y='66.41' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='148.16px' lengthAdjust='spacingAndGlyphs'>Overall 319-system stability universe</text>
-<text x='527.12' y='53.95' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='244.05px' lengthAdjust='spacingAndGlyphs'>B | Qualification changes the non-evaluable rate</text>
+<text x='527.12' y='53.95' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='286.80px' lengthAdjust='spacingAndGlyphs'>B | Stability qualification changes the non-evaluable rate</text>
 </g>
 <defs>
   <clipPath id='cpMTA2LjI0fDg5Ny42MXwzNzEuNjJ8NTQ0LjY5'>
@@ -473,11 +473,11 @@
 <text x='935.81' y='461.22' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='17.78px' lengthAdjust='spacingAndGlyphs'>50%</text>
 <text x='935.81' y='439.69' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='17.78px' lengthAdjust='spacingAndGlyphs'>75%</text>
 <text x='935.81' y='418.16' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='22.72px' lengthAdjust='spacingAndGlyphs'>100%</text>
-<text x='106.24' y='363.76' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='228.61px' lengthAdjust='spacingAndGlyphs'>Protocol A.1; the structural-class contrast is not universal</text>
+<text x='106.24' y='363.76' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='199.77px' lengthAdjust='spacingAndGlyphs'>QSQ; the structural-class contrast is not universal</text>
 <text x='106.24' y='351.30' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='306.98px' lengthAdjust='spacingAndGlyphs'>C | Numerical eligibility is material- and tolerance-dependent</text>
-<text x='13.45' y='590.44' style='font-size: 8.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='590.56px' lengthAdjust='spacingAndGlyphs'>A, paired archived and A.1 floors. B, overall non-evaluable fractions. C, Protocol A.1 rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.</text>
-<text x='13.45' y='28.65' style='font-size: 9.70px;fill: #5F6368; font-family: "Liberation Sans";' textLength='506.22px' lengthAdjust='spacingAndGlyphs'>The archived order-preserving float32 probe is provenance only; all current eligibility and certification use Protocol A.1.</text>
-<text x='13.45' y='15.11' style='font-size: 14.00px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='600.72px' lengthAdjust='spacingAndGlyphs'>Supplementary Figure S1 | Protocol A.1 redefines the measurable Bader-fidelity landscape</text>
+<text x='13.45' y='590.44' style='font-size: 8.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='571.22px' lengthAdjust='spacingAndGlyphs'>A, paired archived and QSQ floors. B, overall non-evaluable fractions. C, QSQ rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.</text>
+<text x='13.45' y='28.65' style='font-size: 9.70px;fill: #5F6368; font-family: "Liberation Sans";' textLength='475.50px' lengthAdjust='spacingAndGlyphs'>The archived order-preserving float32 probe is provenance only; all current eligibility and certification use QSQ.</text>
+<text x='13.45' y='15.11' style='font-size: 14.00px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='536.69px' lengthAdjust='spacingAndGlyphs'>Supplementary Figure S1 | QSQ defines the measurable Bader-fidelity landscape</text>
 </g>
 </g>
 </svg>
