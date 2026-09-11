@@ -1,0 +1,42 @@
+name: Upgrade submission audit storyline rules
+
+on:
+  push:
+    branches:
+      - paper/submission-storyline-20260912
+    paths:
+      - '.github/workflows/upgrade_submission_audit_storyline_20260912.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: paper/submission-storyline-20260912
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Update audit semantics
+        run: python scripts/upgrade_submission_audit_storyline_20260912.py
+      - name: Verify updated audit compiles
+        run: python -m py_compile scripts/audit_submission_upgrade_consistency.py
+      - name: Commit updated audit rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/audit_submission_upgrade_consistency.py
+          if git diff --cached --quiet; then
+            echo 'Audit rules already synchronized.'
+          else
+            git commit -m 'ci: audit prospective Figure 3 storyline'
+            git pull --rebase origin paper/submission-storyline-20260912
+            git push origin HEAD:paper/submission-storyline-20260912
+          fi
