@@ -38,7 +38,7 @@ jobs:
           test -s supplement/S11_codec_order_1e4.csv
           test -s supplement/S11_independent_domain_summary.csv
           test -s supplement/S11_spatial_control_summary.csv
-          git diff --check
+          git diff --check -- paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md scripts/build_supplement_tables_s10_s11_20260911.py
       - name: Commit generated outputs
         run: |
           paths=(
