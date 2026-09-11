@@ -1,0 +1,64 @@
+name: Integrate P4 contract-boundary evidence
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'paper/P4_SUBMISSION_INTEGRATION_START'
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify frozen resolved P4 inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '"status": "COMPLETE_RESOLVED"' validation/qsq_prospective/p4_chemical_decisions_resolved/execution_manifest.json
+          grep -q '"final_successful_solver_rows": 216' validation/qsq_prospective/p4_chemical_decisions_resolved/execution_manifest.json
+          grep -q '"final_failed_solver_rows": 0' validation/qsq_prospective/p4_chemical_decisions_resolved/execution_manifest.json
+          grep -q 'DEFERRED_NO_NEW_DFT' validation/qsq_prospective/P3B_SCOPE_DECISION.md
+          python -m py_compile scripts/integrate_p4_contract_boundary.py
+      - name: Integrate P4 into manuscript, SI and claim matrix
+        run: python scripts/integrate_p4_contract_boundary.py
+      - name: Verify intended scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'P4_CONTRACT_BOUNDARY_RESULT' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          grep -q 'P4_CONTRACT_BOUNDARY_DISCUSSION' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          grep -q 'P4_CONTRACT_BOUNDARY_METHODS' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+          grep -q 'P4_CONTRACT_BOUNDARY_SI' paper/SUPPLEMENTARY_INFORMATION_DRAFT_20260911.md
+          grep -q '^| 17 | Strict QSQ numerical qualification is not equivalent' paper/CLAIM_EVIDENCE_MATRIX.md
+          grep -q 'Status: \*\*PASS\*\*' paper/P4_NUMERIC_AUDIT_20260911.md
+          grep -q 'Supplementary Table S15' paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md
+          grep -q 'Supplementary Table S16' paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md
+          test "$(grep -c '^## Abstract$' paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md)" = 1
+      - name: Commit integrated P4 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md \
+                  paper/SUPPLEMENTARY_INFORMATION_DRAFT_20260911.md \
+                  paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md \
+                  paper/P4_NUMERIC_AUDIT_20260911.md \
+                  paper/CLAIM_EVIDENCE_MATRIX.md
+          if git diff --cached --quiet; then
+            echo 'P4 submission-chain evidence already integrated.'
+          else
+            git commit -m 'paper: integrate P4 contract-boundary case study'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
