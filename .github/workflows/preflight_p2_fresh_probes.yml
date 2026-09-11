@@ -1,0 +1,69 @@
+name: Preflight P2 fresh probes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/preflight_p2_fresh_probes.yml'
+      - 'validation/qsq_prospective/run_p2_fresh_probes.py'
+      - 'validation/qsq_prospective/aggregate_p2_fresh_probes.py'
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile P2 execution and aggregation code
+        run: |
+          python -m py_compile validation/qsq_prospective/run_p2_fresh_probes.py
+          python -m py_compile validation/qsq_prospective/aggregate_p2_fresh_probes.py
+      - name: Verify frozen P2 work order and stream construction
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '244bd6506afe466a8a03252298a8d268746e6094408b0fcfe55409ef0b74ef07d  validation/qsq_prospective/fresh_seed_jobs.csv' | sha256sum -c -
+          python - <<'PY'
+          import csv, hashlib
+          from collections import defaultdict
+
+          jobs = list(csv.DictReader(open('validation/qsq_prospective/fresh_seed_jobs.csv', newline='', encoding='utf-8')))
+          assert len(jobs) == 14986, len(jobs)
+          assert all(r['status'] == 'PREPARED_NOT_EXECUTED' for r in jobs)
+          assert all(r['family'] == 'iid_uniform' for r in jobs)
+          keys = {(r['material_id'], int(r['seed_label'])) for r in jobs}
+          assert len(keys) == 14986
+          by_material = defaultdict(list)
+          streams = set()
+          for r in jobs:
+              m = r['material_id']; label = int(r['seed_label']); stream = int(r['stream_seed'])
+              assert 10000 <= label <= 10058
+              expected = int.from_bytes(hashlib.sha256(f'QSQ-heldout|{m}|iid_uniform|{label}'.encode()).digest()[:8], 'little')
+              assert stream == expected
+              assert stream not in streams
+              streams.add(stream)
+              by_material[m].append(r)
+          assert len(by_material) == 254
+          assert all(len(v) == 59 for v in by_material.values())
+          assert all({int(r['seed_label']) for r in v} == set(range(10000,10059)) for v in by_material.values())
+
+          old = defaultdict(list)
+          old_seeds = defaultdict(set)
+          for r in csv.DictReader(open('stability/stability_floor_A1_per_seed.csv', newline='', encoding='utf-8')):
+              if r['material_id'] in by_material:
+                  old[r['material_id']].append(float(r['probe_linf']))
+                  old_seeds[r['material_id']].add(int(r['seed']))
+          assert len(old) == 254
+          for m, rows in by_material.items():
+              vals = old[m]
+              assert old_seeds[m] == {20260905,1,2,3,4}
+              assert len(vals) == 5 and len(set(vals)) == 1
+              epsilon = vals[0]
+              assert all(float(r['epsilon']) == epsilon for r in rows)
+              assert len({r['field_fingerprint'] for r in rows}) == 1
+              assert len({r['npoints'] for r in rows}) == 1
+          print('P2_PREFLIGHT_PASS materials=254 jobs=14986 streams=14986 seeds_per_material=59')
+          PY
