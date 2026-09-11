@@ -39,6 +39,7 @@ def main():
     status = (AN / "CURRENT_STATUS.md").read_text(encoding="utf-8")
     plan = (PAPER / "RESEARCH_UPGRADE_PLAN.md").read_text(encoding="utf-8")
     fig3 = (ROOT / "figures/R/figure3_certification_landscape.R").read_text(encoding="utf-8")
+    fig3_caption = (PAPER / "FIGURE3_CAPTION_FINAL_20260911.md").read_text(encoding="utf-8")
 
     checks = []
     def ok(name: str, detail: str): checks.append((name, detail))
@@ -51,7 +52,7 @@ def main():
     if not close(float(r["no_pass_risk_eligible"]), 0.03263403263403263): raise RuntimeError("P1 eligible risk drift")
     if not close(float(r["no_pass_risk_non_evaluable"]), 0.6636636636636637): raise RuntimeError("P1 rejected risk drift")
     if not close(float(r["risk_ratio_non_evaluable_vs_eligible"]), 20.34, 0.01): raise RuntimeError("P1 RR drift")
-    must(manuscript, "3.3% of eligible versus 66.4% of QSQ screen-rejected", "P1 manuscript risks")
+    must(manuscript, "3.3% for QSQ-eligible versus 66.4% for screen-rejected", "P1 manuscript risks")
     must(fig3, 'rr_lab <- c("7.30×", "20.34×", "∞")', "P1 Figure 3 RR labels")
     ok("P1 equal-search", "3.3% vs 66.4%; RR 20.34x; Figure 3 uses completed common-tight summary")
 
@@ -66,9 +67,11 @@ def main():
     if int(e["exceedance_events"]) != 135 or int(q["exceedance_events"]) != 5326: raise RuntimeError("P2 event counts drift")
     if not close(float(e["valid_trial_exceedance_fraction"]), 0.016000948204338034): raise RuntimeError("P2 eligible risk drift")
     if not close(float(q["valid_trial_exceedance_fraction"]), 0.8132539318979997): raise RuntimeError("P2 rejected risk drift")
-    must(manuscript, "14,986/14,986 successful trials", "P2 manuscript accounting")
-    must(manuscript, "a 50.83-fold risk ratio", "P2 manuscript RR")
+    must(manuscript, "14,986/14,986 valid", "P2 manuscript accounting")
+    must(manuscript, "50.83-fold", "P2 manuscript RR")
     must(fig3, "14,986/14,986 fresh trials", "P2 Figure 3 accounting")
+    must(fig3_caption, "Primary result: equal-search separation plus prospective risk stratification", "Figure 3 caption hierarchy")
+    must(fig3_caption, "50.83-fold", "Figure 3 caption prospective RR")
     ok("P2 prospective", "14,986/14,986; 143 vs 111 materials; 1.600% vs 81.325%; RR 50.83x")
 
     # P3A machine evidence.
