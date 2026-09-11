@@ -52,10 +52,10 @@ theme_si <- theme_minimal(base_size = 10.5) + theme(
   panel.grid.major = element_line(colour = grid, linewidth = 0.3),
   axis.title = element_text(colour = ink),
   axis.text = element_text(colour = ink),
-  plot.title = element_text(face = "bold", size = 11.6, colour = ink, margin = margin(b = 4)),
-  plot.subtitle = element_text(size = 9.2, colour = muted, margin = margin(b = 6)),
+  plot.title = element_text(face = "bold", size = 10.7, colour = ink, margin = margin(b = 4)),
+  plot.subtitle = element_text(size = 9.1, colour = muted, margin = margin(b = 6)),
   legend.title = element_blank(),
-  legend.text = element_text(size = 9.0),
+  legend.text = element_text(size = 8.9),
   plot.margin = margin(8, 10, 8, 8)
 )
 
@@ -69,8 +69,8 @@ pA <- ggplot(paired, aes(floor_resolved_e, stability_floor_A1_e, colour = corpus
            hjust = 0, vjust = 1, size = 3.0, label.size = .2, fill = alpha("white", .95),
            label = sprintf("Median A.1 / archived shift = %.2g x", median_shift)) +
   labs(
-    title = "A | The archived probe systematically understates Bader instability",
-    subtitle = sprintf("Paired material-level floors; n = %d", nrow(paired)),
+    title = "A | A.1 exposes much larger Bader instability",
+    subtitle = sprintf("Paired archived float32 vs five-seed A.1 floors; n = %d", nrow(paired)),
     x = "Archived Protocol A floor (e)", y = "Protocol A.1 floor (e)"
   ) + theme_si + theme(legend.position = "top")
 
@@ -91,8 +91,8 @@ pB <- ggplot(overall) +
   scale_colour_manual(values = c("Archived A" = "#9AA0A6", "Protocol A.1" = "#E9B13A")) +
   scale_x_continuous(limits = c(0, .91), breaks = seq(0, .8, .2), labels = label_percent(), expand = c(0, 0)) +
   labs(
-    title = "B | Eligibility changes materially when the relevant failure channel is probed",
-    subtitle = "Overall 319-system non-evaluable fraction",
+    title = "B | Qualification changes the non-evaluable rate",
+    subtitle = "Overall 319-system stability universe",
     x = "Non-evaluable fraction", y = NULL
   ) + theme_si + theme(legend.position = "top", panel.grid.major.y = element_blank())
 
@@ -119,13 +119,13 @@ fig <- ((pA | pB) / pC) +
   plot_layout(heights = c(1.05, .95)) +
   plot_annotation(
     title = "Supplementary Figure S1 | Protocol A.1 redefines the measurable Bader-fidelity landscape",
-    subtitle = "The archived order-preserving float32 round trip is retained only as provenance; all current eligibility and certification use Protocol A.1.",
-    caption = "A. Paired archived and A.1 stability floors. B. Overall non-evaluable fractions at the three chemical contracts. C. A.1 non-evaluable fractions by analysis stratum. Non-evaluable means the reference Bader QoI is not independently resolvable at the requested tolerance and is neither a codec pass nor a codec failure.",
+    subtitle = "The archived order-preserving float32 probe is provenance only; all current eligibility and certification use Protocol A.1.",
+    caption = "A, paired archived and A.1 floors. B, overall non-evaluable fractions. C, Protocol A.1 rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.",
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
-      plot.title = element_text(face = "bold", size = 14.2, colour = ink, margin = margin(b = 4)),
-      plot.subtitle = element_text(size = 9.8, colour = muted, margin = margin(b = 8)),
-      plot.caption = element_text(size = 8.2, colour = muted, hjust = 0, margin = margin(t = 8))
+      plot.title = element_text(face = "bold", size = 14.0, colour = ink, margin = margin(b = 4)),
+      plot.subtitle = element_text(size = 9.7, colour = muted, margin = margin(b = 8)),
+      plot.caption = element_text(size = 8.1, colour = muted, hjust = 0, margin = margin(t = 8))
     )
   )
 
@@ -134,8 +134,8 @@ paths <- c(
   pdf = file.path(outdir, "supplementary_figureS1_stability_floor_landscape_R.pdf"),
   svg = file.path(outdir, "supplementary_figureS1_stability_floor_landscape_R.svg")
 )
-ggsave(paths[["png"]], fig, width = 11.8, height = 8.3, dpi = 360, bg = bg)
-ggsave(paths[["pdf"]], fig, width = 11.8, height = 8.3, bg = bg)
-ggsave(paths[["svg"]], fig, width = 11.8, height = 8.3, device = svglite::svglite, bg = bg)
+ggsave(paths[["png"]], fig, width = 13.6, height = 8.3, dpi = 360, bg = bg)
+ggsave(paths[["pdf"]], fig, width = 13.6, height = 8.3, bg = bg)
+ggsave(paths[["svg"]], fig, width = 13.6, height = 8.3, device = svglite::svglite, bg = bg)
 stopifnot(all(file.exists(paths)), all(file.info(paths)$size > 0))
 message("Rendered Supplementary Figure S1: PNG + PDF + SVG")
