@@ -25,12 +25,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo '244bd6506afe466a03252298a8d268746e6094408b0fcfe55409ef0b74ef07d  validation/qsq_prospective/fresh_seed_jobs.csv' | sha256sum -c -
           python - <<'PY'
-          import csv, hashlib
+          import csv, hashlib, json
           from collections import defaultdict
+          from pathlib import Path
 
-          jobs = list(csv.DictReader(open('validation/qsq_prospective/fresh_seed_jobs.csv', newline='', encoding='utf-8')))
+          manifest = json.loads(Path('validation/qsq_prospective/execution_manifest.json').read_text(encoding='utf-8'))
+          work_path = Path('validation/qsq_prospective/fresh_seed_jobs.csv')
+          expected_sha = manifest['work_order_sha256']['fresh_seed_jobs.csv']
+          got_sha = hashlib.sha256(work_path.read_bytes()).hexdigest()
+          assert got_sha == expected_sha, (got_sha, expected_sha)
+
+          jobs = list(csv.DictReader(work_path.open(newline='', encoding='utf-8')))
           assert len(jobs) == 14986, len(jobs)
           assert all(r['status'] == 'PREPARED_NOT_EXECUTED' for r in jobs)
           assert all(r['family'] == 'iid_uniform' for r in jobs)
