@@ -116,7 +116,7 @@ pB <- ggplot(strict, aes(floor_plot, error_plot, colour = codec)) +
   scale_y_log10(labels = label_scientific(digits = 1)) +
   coord_equal() +
   labs(
-    title = "B | Strict-contract error versus stability floor",
+    title = "B | Error versus floor",
     subtitle = "10^-4 e; n = 123 certified decisions",
     x = "Protocol A.1 stability floor (e)", y = "Best-certified re-derived Bader error (e)"
   ) + theme_si + theme(legend.position = "top")
