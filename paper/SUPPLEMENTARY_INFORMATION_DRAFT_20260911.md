@@ -209,3 +209,11 @@ All final supplementary figures should be generated from R sources and exported 
 - **Supplementary tables:** S1–S9 are now built as submission-facing drafts/objects; S10–S12/S14 require compact aggregation and S13 requires deterministic final regeneration. No new core scientific experiment is required.
 - **Supplementary figures:** S1–S4 and S7 are locked R figures; S5, S6 and S8 remain to be built/locked from existing frozen analyses.
 - **Highest-priority remaining build:** complete S10–S14 and Figures S5/S6/S8, then rerun the final manuscript ↔ SI cross-reference audit.
+
+
+<!-- P4_CONTRACT_BOUNDARY_SI -->
+## Supplementary Note | Outcome-blind chemical-decision boundary case study
+
+An outcome-blind chemistry/provenance/geometry audit of the 68 NOMAD development slabs froze five paired states before QSQ, codec or Bader outcomes were inspected for inclusion. All five passed the independently frozen two-implementation source-reference rule. Across ZFP, SZ3 and SPERR on the four common tight settings, all 60 direct qualitative target-atom charge-transfer directions were preserved after compression. QSQ at $10^{-3}\,e$ retained 36/60 trials from three pairs, while the unqualified baseline retained all 60; both had zero observed sign errors. This deliberately negative result shows that the strict numerical Bader contract and a coarse sign-level chemical interpretation are different fidelity targets. Full pair-level reference values and policy accounting are provided in Supplementary Tables S15-S16.
+
+The resolved compressed analysis contains 216/216 successful solver cells. The first execution's 144 failures were classified before retry as missing-work-directory engineering errors, and the retry executed exactly those failed keys without changing the scientific design. P3B new-DFT grid convergence was not used; the source reference is a BaderKit/Henkelman on-grid consensus under the declared density representation.
