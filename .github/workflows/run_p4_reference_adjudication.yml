@@ -1,0 +1,204 @@
+name: Run P4 reference adjudication
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P4_REFERENCE_START'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p4-reference
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+
+      - name: Check out frozen scientific environment anchor
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify P4 frozen boundary and candidate universe
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C repo rev-parse HEAD:validation/qsq_prospective/P4_CHEMICAL_DECISION_PROTOCOL.md)" = 'c1538c659313c65a82cd81c4cff5cee9b4f585ed'
+          test "$(git -C repo rev-parse HEAD:validation/qsq_prospective/P4_REFERENCE_POLICY_ADDENDUM.md)" = '06633cc8bb5847f5159302c748cf2f6fda8d8cf8'
+          test -s repo/validation/qsq_prospective/p4_candidate_audit/p4_candidate_pairs.csv
+          grep -q 'CANDIDATE_UNIVERSE_FROZEN' repo/validation/qsq_prospective/p4_candidate_audit/execution_manifest.json
+          test "$(git -C repo rev-parse HEAD:mechanism/independent_bader_20260908/reference_source)" = '8f840f6413602eafd9c49c59be57654cb785c0ad'
+          test "$(git -C frozen rev-parse HEAD)" = '893f931b3045b0b628329db81999c2f439d4e830'
+          python -m py_compile repo/validation/qsq_prospective/run_p4_reference_shard.py
+
+      - name: Install frozen scientific stack and compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y gfortran-13
+
+      - name: Build frozen Henkelman Bader source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo/mechanism/independent_bader_20260908/reference_source
+          make -f makefile.osx_gfortran clean
+          make -f makefile.osx_gfortran FC=gfortran-13 LINK='' bader
+          test -x ./bader
+          sha256sum ./bader > "$GITHUB_WORKSPACE/henkelman_binary_sha256.txt"
+          gfortran-13 --version | head -1 > "$GITHUB_WORKSPACE/gfortran_version.txt"
+
+      - name: Execute P4 source-reference shard
+        id: execute
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p4_reference_shard_${{ matrix.shard }}"
+          rm -rf "$out"; mkdir -p "$out"
+          python repo/validation/qsq_prospective/run_p4_reference_shard.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --candidates repo/validation/qsq_prospective/p4_candidate_audit/p4_candidate_pairs.csv \
+            --henkelman-binary repo/mechanism/independent_bader_20260908/reference_source/bader \
+            --shard-count 8 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out" \
+            2>&1 | tee "$out/run.log"
+          code=${PIPESTATUS[0]}
+          echo "$code" > "$out/exit_code.txt"
+          exit "$code"
+
+      - name: Archive exact reference environment
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p4_reference_shard_${{ matrix.shard }}"
+          mkdir -p "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          cp "$GITHUB_WORKSPACE/henkelman_binary_sha256.txt" "$out/" 2>/dev/null || true
+          cp "$GITHUB_WORKSPACE/gfortran_version.txt" "$out/" 2>/dev/null || true
+          git -C repo rev-parse HEAD > "$out/research_record_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_environment_commit.txt"
+
+      - name: Upload P4 reference shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-reference-shard-${{ matrix.shard }}
+          path: repo/validation/qsq_prospective/p4_reference_shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Preserve explicit scientific failures
+        if: always()
+        shell: bash
+        run: |
+          code=$(cat "repo/validation/qsq_prospective/p4_reference_shard_${{ matrix.shard }}/exit_code.txt" 2>/dev/null || echo 99)
+          if [ "$code" = "0" ]; then
+            echo 'Reference shard complete with no recorded source/solver failures.'
+          elif [ "$code" = "2" ]; then
+            echo 'Reference shard fully accounted with explicit failures retained for aggregate adjudication.'
+          else
+            echo "Reference infrastructure/accounting failure: exit $code"
+            exit 1
+          fi
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Set up audit Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install audit dependency
+        run: python -m pip install numpy==2.4.6
+
+      - name: Download all P4 reference shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p4-reference-shard-*
+          path: shards
+
+      - name: Adjudicate frozen reference decisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/validation/qsq_prospective/p4_reference_adjudication
+          python repo/validation/qsq_prospective/aggregate_p4_reference.py \
+            --candidates repo/validation/qsq_prospective/p4_candidate_audit/p4_candidate_pairs.csv \
+            --shards-root shards \
+            --output-dir repo/validation/qsq_prospective/p4_reference_adjudication
+
+      - name: Archive aggregate provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='repo/validation/qsq_prospective/p4_reference_adjudication'
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          git -C repo rev-parse HEAD > "$out/research_record_commit_before_reference_commit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          sha256sum repo/validation/qsq_prospective/P4_REFERENCE_POLICY_ADDENDUM.md > "$out/reference_policy_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/aggregate_p4_reference.py > "$out/aggregator_sha256.txt"
+
+      - name: Commit P4 reference cohort
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p4_reference_adjudication
+          if git diff --cached --quiet; then
+            echo 'No P4 reference changes to commit.'
+          else
+            git commit -m 'validation: adjudicate frozen P4 reference cohort'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload P4 reference aggregate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-reference-adjudication
+          path: repo/validation/qsq_prospective/p4_reference_adjudication
+          if-no-files-found: error
+          retention-days: 90
