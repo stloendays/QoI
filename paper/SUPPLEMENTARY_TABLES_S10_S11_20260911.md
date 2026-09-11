@@ -18,7 +18,7 @@ Generated 2026-09-11 from the frozen Bader mechanism corpus and the independent 
 
 Across the full representative matrix (n=106 material–codec–tolerance cases), the median maximum-resolved / maximum-fixed-basin error ratio is **52.59×**. At the atom of maximum total deviation, the median bounded absolute domain share |domain|/(|domain|+|integrand|) is **0.995**, and the domain term exceeds the integrand term in **98.1%** of cases. These two metrics are reported separately because signed cancellation can make |domain|/|total| exceed 1.
 
-**Sources:** `mechanism/basin_error_decomposition_summary.csv`; extended per-atom values in `mechanism/basin_error_decomposition_per_atom.csv`. The stability-floor column in the historical mechanism table is not used for current Protocol A.1 claims.
+**Sources:** `mechanism/basin_error_decomposition_summary.csv`; extended per-atom values in `mechanism/basin_error_decomposition_per_atom.csv`. The stability-floor column in the historical mechanism table is not used for current QSQ claims.
 
 ---
 
@@ -43,11 +43,11 @@ Across the full representative matrix (n=106 material–codec–tolerance cases)
 | Codec response comparison/BaderKit | henkelman_ongrid (above print resolution) | 70 | 1.000 | 0.920–1.005 |
 | Codec response comparison/BaderKit | henkelman_ongrid (above print and baseline compatible) | 47 | 1.000 | 1.000–1.000 |
 | Codec response comparison/BaderKit | henkelman_neargrid (above print resolution) | 70 | 0.768 | 0.310–1.218 |
-| A.1 floor agrees with BaderKit within 1e-6 e | henkelman_ongrid | 12 materials | 75.0% | — |
+| QSQ floor agrees with BaderKit within 1e-6 e | henkelman_ongrid | 12 materials | 75.0% | — |
 | Eligibility concordance at 0.0001 e | henkelman_ongrid | 12 materials | 100.0% | — |
 | Eligibility concordance at 0.001 e | henkelman_ongrid | 12 materials | 100.0% | — |
 | Eligibility concordance at 0.01 e | henkelman_ongrid | 12 materials | 91.7% | — |
-| A.1 floor agrees with BaderKit within 1e-6 e | henkelman_neargrid | 12 materials | 0.0% | — |
+| QSQ floor agrees with BaderKit within 1e-6 e | henkelman_neargrid | 12 materials | 0.0% | — |
 | Eligibility concordance at 0.0001 e | henkelman_neargrid | 12 materials | 83.3% | — |
 | Eligibility concordance at 0.001 e | henkelman_neargrid | 12 materials | 91.7% | — |
 | Eligibility concordance at 0.01 e | henkelman_neargrid | 12 materials | 91.7% | — |
@@ -71,8 +71,8 @@ Codec-response ratios above use successful paired outputs above the 2e-6 e Henke
 |---|---:|---:|---:|---:|---:|
 | codec | 70 | 0.9898 | 0.9573–0.9991 | 100.0% | 0.0e+00 |
 | float32 | 12 | 0.0208 | 0.0096–0.9999 | 41.7% | 0.0e+00 |
-| noise | 60 | 0.9999 | 0.9990–1.0000 | 83.3% | 0.0e+00 |
-| spatial_control | 324 | 0.9961 | 0.9843–0.9995 | 100.0% | 0.0e+00 |
+| QSQ noise | 60 | 0.9999 | 0.9990–1.0000 | 83.3% | 0.0e+00 |
+| spatial control | 324 | 0.9961 | 0.9843–0.9995 | 100.0% | 0.0e+00 |
 
 ### S11e. Spatial reorganization controls
 
@@ -88,6 +88,6 @@ Codec-response ratios above use successful paired outputs above the 2e-6 e Henke
 | henkelman_neargrid | shift | 36 | 0.00 | -0.27–0.46 | 50.0% |
 | henkelman_neargrid | stratified | 36 | 0.07 | -0.24–0.47 | 55.6% |
 
-**Interpretation boundary.** This deliberately stratified 12-system panel is a mechanism/implementation robustness study, not a prevalence estimate. Henkelman on-grid reproduces the BaderKit codec response essentially one-for-one above print resolution, and the strict SZ3/ZFP and SPERR/ZFP ordering remains qualitatively similar under on-grid and near-grid Henkelman analyses. The exact decomposition supports a Bader-specific domain-migration channel. Spatial permutations provide secondary evidence that error organization matters, while the near-null periodic-shift control argues against a simple alignment-only explanation. These results do not redefine Protocol A.1 or alter the primary benchmark.
+**Interpretation boundary.** This deliberately stratified 12-system panel is a mechanism/implementation robustness study, not a prevalence estimate. Henkelman on-grid reproduces the BaderKit codec response essentially one-for-one above print resolution, and the strict SZ3/ZFP and SPERR/ZFP ordering remains qualitatively similar under on-grid and near-grid Henkelman analyses. The exact decomposition supports a Bader-specific domain-migration channel. Spatial permutations provide secondary evidence that error organization matters, while the near-null periodic-shift control argues against a simple alignment-only explanation. These results do not redefine QSQ or alter the primary benchmark.
 
 **Sources:** `mechanism/independent_bader_20260908/outcomes/*.jsonl`; `stability_comparison.csv`; `mechanism_domain_decomposition.csv`; `mechanism_spatial_pairs.csv`; protocol/scope in `mechanism/independent_bader_20260908/README.md`.
