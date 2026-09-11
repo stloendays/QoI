@@ -1,0 +1,60 @@
+name: Freeze current submission research scope
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'paper/RESEARCH_SCOPE_SYNC_START'
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify frozen scope and prior consistency audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Status: \*\*FROZEN_FOR_SUBMISSION\*\*' paper/RESEARCH_SCOPE_FREEZE_20260911.md
+          grep -q 'Status: \*\*PASS\*\*' paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md
+          python -m py_compile scripts/freeze_current_submission_scope.py
+      - name: Synchronize story, status, plan, editorial notes and claim matrix
+        run: python scripts/freeze_current_submission_scope.py
+      - name: Verify no stale active planning language
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'P5 — second sensitive task: NO-GO FOR CURRENT SUBMISSION' analysis/research_upgrade/CURRENT_STATUS.md
+          grep -q 'Status: NO-GO FOR CURRENT SUBMISSION' paper/RESEARCH_UPGRADE_PLAN.md
+          grep -q 'The current submission scope is frozen' paper/CURRENT_PAPER_STORY_20260911.md
+          grep -q 'The scientific scope is now frozen' paper/EDITORIAL_POLISH_NOTES_20260911.md
+          grep -q 'Submission-scope interpretation lock' paper/CLAIM_EVIDENCE_MATRIX.md
+          ! grep -q 'P5 — second sensitive task: OPTIONAL / NOT STARTED' analysis/research_upgrade/CURRENT_STATUS.md
+          ! grep -q 'Status: OPTIONAL / NOT STARTED' paper/RESEARCH_UPGRADE_PLAN.md
+      - name: Commit scope-freeze synchronization
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/research_upgrade/CURRENT_STATUS.md \
+                  paper/RESEARCH_UPGRADE_PLAN.md \
+                  paper/CURRENT_PAPER_STORY_20260911.md \
+                  paper/EDITORIAL_POLISH_NOTES_20260911.md \
+                  paper/CLAIM_EVIDENCE_MATRIX.md
+          if git diff --cached --quiet; then
+            echo 'Scope-freeze synchronization already applied.'
+          else
+            git commit -m 'paper: freeze current submission scope after P1-P4'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
