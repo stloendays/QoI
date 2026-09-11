@@ -2,7 +2,9 @@
 
 Numbering below is the canonical citation order for the current submission draft and the 2026-09-11 certifiability reframe. The bibliography is intentionally organized around four evidence layers: scientific-compression foundations, QoI-aware/error-propagation prior art, topology/Bader numerical analysis, and chemistry/electronic-structure compression context.
 
-1. Di, S. *et al.* A survey on error-bounded lossy compression for scientific datasets. **ACM Computing Surveys** (2025). https://doi.org/10.1145/3733104.
+**Metadata audit:** 2026-09-11. Bibliographic metadata were checked against publisher, PubMed, institutional-repository, DBLP, arXiv, or author-hosted records as appropriate. Journal-specific renderings are maintained separately in `paper/REFERENCES_NATURE_STYLE_20260911.md` and `paper/REFERENCES_ACS_STYLE_20260911.md`.
+
+1. Di, S. *et al.* A survey on error-bounded lossy compression for scientific datasets. **ACM Computing Surveys** **57**(11), Article 287, 1–38 (2025). https://doi.org/10.1145/3733104.
 
 2. Lindstrom, P. Fixed-rate compressed floating-point arrays. **IEEE Transactions on Visualization and Computer Graphics** **20**, 2674–2683 (2014). https://doi.org/10.1109/TVCG.2014.2346458.
 
@@ -26,7 +28,7 @@ Numbering below is the canonical citation order for the current submission draft
 
 12. Ainsworth, M., Tugluk, O., Whitney, B. & Klasky, S. Multilevel techniques for compression and reduction of scientific data—quantitative control of accuracy in derived quantities. **SIAM Journal on Scientific Computing** **41**, A2146–A2171 (2019). https://doi.org/10.1137/18M1208885.
 
-13. Gong, Q. *et al.* Maintaining trust in reduction: Preserving the accuracy of quantities of interest for lossy compression. In **Driving Scientific and Engineering Discoveries Through the Integration of Experiment, Big Data, and Modeling and Simulation**, 22–39 (Springer, 2022). https://doi.org/10.1007/978-3-030-96498-6_2.
+13. Gong, Q. *et al.* Maintaining trust in reduction: Preserving the accuracy of quantities of interest for lossy compression. In **Driving Scientific and Engineering Discoveries Through the Integration of Experiment, Big Data, and Modeling and Simulation**, Communications in Computer and Information Science **1512**, 22–39 (Springer, 2022). https://doi.org/10.1007/978-3-030-96498-6_2.
 
 14. Lee, J., Gong, Q., Choi, J., Banerjee, T., Klasky, S., Ranka, S. & Rangarajan, A. Error-bounded learned scientific data compression with preservation of derived quantities. **Applied Sciences** **12**, 6718 (2022). https://doi.org/10.3390/app12136718.
 
@@ -46,7 +48,7 @@ Numbering below is the canonical citation order for the current submission draft
 
 ## Intended citation logic
 
-- **[1–5] Scientific-compression foundation.** [1] is the broad state-of-the-field survey. [2–4] are the direct primary references for the three codec families used in this work; [3] now cites SZ3 itself rather than only the earlier SZ generation. [5] represents conventional post-compression distortion assessment.
+- **[1–5] Scientific-compression foundation.** [1] is the broad state-of-the-field survey. [2–4] are the direct primary references for the three codec families used in this work; [3] cites SZ3 itself rather than only the earlier SZ generation. [5] represents conventional post-compression distortion assessment.
 - **[6,12–14,20] QoI-aware compression prior art.** These papers establish that scientific compression can explicitly preserve, bound or operationalize derived quantities of interest. They make it inappropriate to claim novelty for the generic proposition that field-level error does not determine QoI fidelity.
 - **[7,15] Topology-aware compression.** These works establish that pointwise bounds alone need not preserve topological descriptors and that explicit topological guarantees can be built into compression. They strengthen the distinction between field norms and structure-sensitive downstream analyses.
 - **[8–10,16,17] Bader/QTAIM foundations and numerical analysis.** [17] is the foundational QTAIM reference; [8,9,16] cover practical grid-based Bader algorithms and convergence; [10] provides a modern treatment of topological analysis on arbitrary grids. These references support the density-dependent partition and numerical-sensitivity background while preventing the manuscript from presenting those facts as new.
@@ -78,7 +80,7 @@ Use approximately:
 ## Reference hygiene rules for submission
 
 1. Prefer peer-reviewed sources for foundational claims; retain [11] only as a clearly identified recent preprint.
-2. Cite the primary codec paper actually corresponding to the implementation used. For SZ3, [3] is now the primary reference; the 2016 SZ paper is no longer used as a substitute.
+2. Cite the primary codec paper actually corresponding to the implementation used. For SZ3, [3] is the primary reference; the 2016 SZ paper is no longer used as a substitute.
 3. Do not cite [19] as prior work on *electron-density field compression*. It compresses the atomic-orbital basis in DFT and should be described precisely as adjacent electronic-structure compression work.
 4. Do not imply that [7] or [15] solve Bader preservation. They concern topological descriptors such as critical points/contour-tree structure and serve as conceptual prior art for topology-aware compression.
 5. Use [8–10,16,17] to acknowledge that Bader/QTAIM topology and grid sensitivity are established. The novelty remains **stability-qualified benchmark validity and three-state certification**.
