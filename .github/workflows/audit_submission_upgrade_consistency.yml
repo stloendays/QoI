@@ -1,0 +1,45 @@
+name: Audit submission research-upgrade consistency
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'paper/SUBMISSION_UPGRADE_AUDIT_START'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile audit
+        run: python -m py_compile scripts/audit_submission_upgrade_consistency.py
+      - name: Cross-check P1-P4 machine evidence against submission chain
+        run: python scripts/audit_submission_upgrade_consistency.py
+      - name: Verify PASS record
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Status: \*\*PASS\*\*' paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md
+          grep -q 'P4 chemistry boundary | PASS' paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md
+          grep -q 'P3B claim boundary | PASS' paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md
+      - name: Commit audit record
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'paper: pass final research-upgrade consistency audit'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
