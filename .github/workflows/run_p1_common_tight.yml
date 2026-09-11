@@ -1,0 +1,205 @@
+name: Execute P1 common tight ladder
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/run_p1_common_tight.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p1-common-tight
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+
+      - name: Set up frozen Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify compatibility gate and frozen anchors
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('repo/validation/qsq_prospective/compatibility_smoke_results/compatibility_smoke.json')
+          x = json.loads(p.read_text())
+          assert x['status'] == 'PASS', x.get('status')
+          assert len(x['rows']) == 6
+          assert all(r['scientific_compatibility_pass'] for r in x['rows'])
+          PY
+          test "$(git -C frozen rev-parse HEAD)" = "893f931b3045b0b628329db81999c2f439d4e830"
+          test "$(git -C frozen rev-parse HEAD:validation/external_end_to_end.py)" = "3da20fcc2bf52cf3fb135802cfe81bac8eed4a98"
+          echo 'd19c4a91629cf5a43b01909075da5387c154b529606d5ab022f013c25849a240  repo/validation/qsq_prospective/missing_tight_jobs.csv' | sha256sum -c -
+
+      - name: Install frozen scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+
+      - name: Execute pre-registered shard
+        id: execute
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p1_shard_${{ matrix.shard }}"
+          rm -rf "$out"
+          mkdir -p "$out"
+          python repo/validation/qsq_prospective/run_p1_common_tight.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --work-order repo/validation/qsq_prospective/missing_tight_jobs.csv \
+            --shard-count 8 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out" \
+            2>&1 | tee "$out/run.log"
+          status=${PIPESTATUS[0]}
+          echo "$status" > "$out/exit_code.txt"
+          exit "$status"
+
+      - name: Archive exact shard environment
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$GITHUB_WORKSPACE/repo/validation/qsq_prospective/p1_shard_${{ matrix.shard }}"
+          mkdir -p "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          sha256sum frozen/validation/requirements-external-e2e.txt > "$out/requirements_sha256.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit.txt"
+          sha256sum repo/validation/qsq_prospective/missing_tight_jobs.csv > "$out/work_order_sha256.txt"
+          sha256sum repo/validation/qsq_prospective/run_p1_common_tight.py > "$out/runner_sha256.txt"
+
+      - name: Upload shard audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-common-tight-shard-${{ matrix.shard }}
+          path: repo/validation/qsq_prospective/p1_shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Report row failures without hiding them
+        if: always()
+        shell: bash
+        run: |
+          code=$(cat "repo/validation/qsq_prospective/p1_shard_${{ matrix.shard }}/exit_code.txt" 2>/dev/null || echo 99)
+          if [ "$code" = "0" ]; then
+            echo 'Shard completed with no recorded row failures.'
+          elif [ "$code" = "2" ]; then
+            echo 'Shard completed accounting with recorded scientific/source failures; aggregate audit will retain them.'
+          else
+            echo "Shard infrastructure/accounting failure: exit $code"
+            exit 1
+          fi
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+
+      - name: Set up audit Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install audit dependency
+        run: python -m pip install numpy==2.4.6
+
+      - name: Download every P1 shard
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p1-common-tight-shard-*
+          path: shards
+
+      - name: Aggregate, enforce full accounting, and audit common ladder
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/validation/qsq_prospective/p1_common_tight
+          python repo/validation/qsq_prospective/aggregate_p1_common_tight.py \
+            --repo-root repo \
+            --shards-root shards \
+            --output-dir repo/validation/qsq_prospective/p1_common_tight \
+            --audit-dir repo/analysis/research_upgrade \
+            --bootstrap-reps 20000
+
+      - name: Archive aggregate provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='repo/validation/qsq_prospective/p1_common_tight'
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_record_commit_before_p1_commit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          sha256sum repo/validation/qsq_prospective/aggregate_p1_common_tight.py > "$out/aggregator_sha256.txt"
+
+      - name: Commit prospective P1 measurements and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p1_common_tight \
+                  analysis/research_upgrade/P1_COMMON_TIGHT_REPORT.md \
+                  analysis/research_upgrade/p1_common_tight_summary.csv \
+                  analysis/research_upgrade/p1_common_tight_decisions.csv
+          if git diff --cached --quiet; then
+            echo 'No aggregate changes to commit.'
+          else
+            git commit -m 'validation: complete prospective common tight-ladder P1'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload aggregate audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-common-tight-aggregate
+          path: |
+            repo/validation/qsq_prospective/p1_common_tight
+            repo/analysis/research_upgrade/P1_COMMON_TIGHT_REPORT.md
+            repo/analysis/research_upgrade/p1_common_tight_summary.csv
+            repo/analysis/research_upgrade/p1_common_tight_decisions.csv
+          if-no-files-found: error
+          retention-days: 90
