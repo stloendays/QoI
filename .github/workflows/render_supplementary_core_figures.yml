@@ -1,0 +1,97 @@
+name: Render supplementary core figures S1 S2 S7
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'figures/R/supplement/figureS1_stability_floor_landscape.R'
+      - 'figures/R/supplement/figureS2_probe_seed_amplitude.R'
+      - 'figures/R/supplement/figureS7_reclassification_by_codec.R'
+      - '.github/workflows/render_supplementary_core_figures.yml'
+      - 'stability/stability_floor_A1.csv'
+      - 'stability/stability_floor_A_archived_float32.csv'
+      - 'stability/eligibility_summary_A1.csv'
+      - 'stability/probe_calibration.csv'
+      - 'stability/stability_floor_A1_per_seed.csv'
+      - 'supplement/S4_amplitude_sensitivity.csv'
+      - 'analysis/certifiability_reclassification_by_codec_20260911.csv'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-formal-figure-writeback
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::tidyr
+            any::scales
+            any::patchwork
+            any::svglite
+
+      - name: Render Supplementary Figure S1
+        run: Rscript figures/R/supplement/figureS1_stability_floor_landscape.R
+      - name: Render Supplementary Figure S2
+        run: Rscript figures/R/supplement/figureS2_probe_seed_amplitude.R
+      - name: Render Supplementary Figure S7
+        run: Rscript figures/R/supplement/figureS7_reclassification_by_codec.R
+
+      - name: Validate supplementary outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.png \
+            figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.pdf \
+            figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.svg \
+            figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.png \
+            figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.pdf \
+            figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.svg \
+            figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.png \
+            figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.pdf \
+            figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.svg; do
+            test -s "$f" || { echo "Missing or empty output: $f"; exit 1; }
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supplementary-core-figures-S1-S2-S7
+          path: |
+            figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.*
+            figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.*
+            figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.*
+
+      - name: Commit rendered outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp=$(mktemp -d)
+          cp figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.* "$tmp"/
+          cp figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.* "$tmp"/
+          cp figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.* "$tmp"/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp"/supplementary_figureS1_stability_floor_landscape_R.* figures/R/rendered/
+          cp "$tmp"/supplementary_figureS2_probe_seed_amplitude_R.* figures/R/rendered/
+          cp "$tmp"/supplementary_figureS7_reclassification_by_codec_R.* figures/R/rendered/
+          git add figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.*
+          git add figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.*
+          git add figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.*
+          if git diff --cached --quiet; then
+            echo "Supplementary outputs unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render Supplementary Figures S1 S2 S7"
+          git push origin HEAD:main
