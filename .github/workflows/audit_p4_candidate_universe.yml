@@ -1,0 +1,84 @@
+name: Audit P4 outcome-blind chemistry candidates
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P4_CANDIDATE_AUDIT_START'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p4-candidate-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify frozen P4 selection boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD:validation/qsq_prospective/P4_CHEMICAL_DECISION_PROTOCOL.md)" = 'c1538c659313c65a82cd81c4cff5cee9b4f585ed'
+          python -m py_compile validation/qsq_prospective/audit_p4_candidate_universe.py
+
+      - name: Install structure-matching dependencies
+        run: python -m pip install numpy==2.4.6 scipy==1.18.1 pymatgen==2025.10.7
+
+      - name: Freeze chemistry-only candidate universe
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf validation/qsq_prospective/p4_candidate_audit
+          python validation/qsq_prospective/audit_p4_candidate_universe.py \
+            --repo-root . \
+            --output-dir validation/qsq_prospective/p4_candidate_audit
+
+      - name: Archive provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='validation/qsq_prospective/p4_candidate_audit'
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git rev-parse HEAD > "$out/research_record_commit_before_audit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          sha256sum validation/qsq_prospective/P4_CHEMICAL_DECISION_PROTOCOL.md > "$out/p4_protocol_sha256.txt"
+          sha256sum validation/qsq_prospective/audit_p4_candidate_universe.py > "$out/audit_script_sha256.txt"
+
+      - name: Commit frozen P4 candidate universe
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p4_candidate_audit
+          if git diff --cached --quiet; then
+            echo 'No P4 candidate-audit changes to commit.'
+          else
+            git commit -m 'validation: freeze P4 chemistry candidate universe'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload P4 candidate audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-candidate-audit
+          path: validation/qsq_prospective/p4_candidate_audit
+          if-no-files-found: error
+          retention-days: 90
