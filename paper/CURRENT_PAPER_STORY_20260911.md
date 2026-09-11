@@ -64,6 +64,12 @@ Resolved results:
 
 The interpretation is deliberately two-sided: QSQ stratification is not merely an artifact of the original BaderKit implementation when the same on-grid basin-assignment class is used, but changing the numerical basin-assignment algorithm creates a measurable implementation-sensitive boundary. **P3A does not establish electronic-structure grid convergence or a unique physical Bader reference.**
 
+### P4 — outcome-blind chemical-decision boundary case
+
+A chemistry/provenance/geometry-only audit of the 68 NOMAD development slabs froze **five paired chemical states** before QSQ, codec, P2/P3A or Bader outcomes were used for inclusion. All five passed the pre-specified BaderKit/Henkelman on-grid reference gate. The resolved compression analysis contains **216/216 successful solver cells** and **60/60** common-tight qualitative target-atom charge-transfer directions matching the frozen reference.
+
+This is a deliberately useful **null correctness result**. The unqualified baseline already has zero sign errors, while QSQ at `1e-3 e` retains **36/60 trials from 3/5 pairs** and also has zero errors. QSQ therefore does not improve this coarse endpoint; instead, P4 demonstrates that strict numerical Bader fidelity and preservation of a large-margin qualitative chemical direction are distinct measurement contracts. Under the pre-specified optional independent-solver audit, QSQ-targeted escalation uses 48 Henkelman reconstructed-state calls / 397.2 s versus 108 / 733.3 s for blanket escalation; this is audit-cost reduction only, not a correctness gain.
+
 ## Supporting evidence chain
 
 ### Same reconstruction, different operator response
@@ -102,13 +108,13 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 - **Figure 6:** nominal-vs-realized distortion confounding control.
 - **Figure 7:** untouched external confirmation.
 
-## Current research boundary and next gate
+## Current research scope
 
-**P3A is complete. P3B is not.** The next high-value research task is true electronic-structure grid convergence on cases for which the original calculation inputs or an equivalent reproducible calculation protocol can be recovered. Interpolation of an existing density does not count.
+**The current submission scope is frozen.** P0–P4 are resolved. P3B new-DFT grid convergence is explicitly deferred and is not required for the current claim; P5 is NO-GO for this submission after a repository asset audit found no already-frozen second sensitive QoI that could be added outcome-blind at modest scope.
 
-The P4 chemistry-decision utility protocol has already been frozen outcome-blind. It should be executed after the P3 numerical-reference question is closed sufficiently to define the high-precision reference.
+The evidence hierarchy is locked: **P1 equal-search control → P2 prospective fresh-perturbation validation → P3A independent on-grid implementation transfer**, with P4 as a secondary measurement-contract boundary/null case. The historical 97.2%/95.5% full-record fractions remain sensitivity/provenance results rather than the headline.
 
-P5, transfer to a second topology-sensitive task, remains optional and should be undertaken only if it can be added without diluting the electronic-density story.
+No new scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or primary threshold should be added before submission without an explicit scope-reopening addendum. Remaining work is archival DOI, journal-specific formatting, figure/SI assembly and final Word/PDF generation.
 
 ## Claim boundaries
 

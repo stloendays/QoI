@@ -12,7 +12,7 @@ This file is the concise authoritative status record for the active research-str
 - **P3A — independent implementation transfer: COMPLETE.** The resolved 24-system panel is complete across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. Henkelman on-grid reproduces QSQ classification for 24/24 systems at all three thresholds; near-grid exposes an analysis-definition boundary.
 - **P3B — new-DFT grid convergence: DEFERRED_NO_NEW_DFT.** This is an explicit submission-scope decision, not a positive convergence result. The paper must not treat QSQ floors as grid-independent material constants.
 - **P4 — real chemical-decision case study: COMPLETE_RESOLVED.** Five outcome-blind paired chemistry cases were frozen before outcome inspection; all five passed the two-implementation source-reference gate. Final compressed analysis contains 216/216 successful solver cells and 60/60 valid qualitative charge-transfer-direction decisions.
-- **P5 — second sensitive task: OPTIONAL / NOT STARTED.** It should be added only if it materially strengthens transfer without diluting the electronic-density story.
+- **P5 — second sensitive task: NO-GO FOR CURRENT SUBMISSION.** Repository asset audit found no already-frozen, independently implemented second nonlinear/topology-sensitive QoI that could be added outcome-blind at modest scope. Opening a new endpoint after the completed Bader/P4 results would create avoidable outcome-driven-selection risk.
 
 ## P1 result — common tight ladder
 
@@ -78,13 +78,19 @@ Interpretation: P4 is a useful **null utility / contract-boundary result**, not 
 
 Sources: `validation/qsq_prospective/p4_candidate_audit/`, `validation/qsq_prospective/p4_reference_adjudication/`, `analysis/research_upgrade/p4_failure_taxonomy/`, and `validation/qsq_prospective/p4_chemical_decisions_resolved/`.
 
+## Submission-chain closure
+
+P3A and P4 have been integrated into the active manuscript/SI without changing the Abstract or Figure 3 headline. `paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md` cross-checks P1–P4 machine-readable results against the manuscript, Figure 3 source, SI, Claim–Evidence Matrix and active status files and is **PASS**. Claims 15–17 are the current upgrade-era claim records.
+
+The current research scope is now **FROZEN_FOR_SUBMISSION** by `paper/RESEARCH_SCOPE_FREEZE_20260911.md`. P5 is NO-GO for this submission; P3B remains deferred.
+
 ## Immediate next actions
 
-1. Integrate the **resolved P3A** result into the manuscript/SI as implementation-transfer evidence, maintaining the grid-convergence boundary.
-2. Integrate **P4 as a negative/control-boundary case study** in Discussion/SI: no sign errors at common-tight settings, QSQ conservative for this coarse endpoint, optional audit-call reduction only.
-3. Re-run the claim/evidence matrix and manuscript–Figure–SI numeric cross-reference audit after these additions.
-4. Decide whether P5 is scientifically worth the scope expansion. Do not add a second task merely to obtain a positive result after P4's frozen null endpoint.
-5. If no compelling P5 can be specified outcome-blind with low scope cost, freeze the research scope and move to submission assembly.
+1. Keep the scientific scope frozen unless an explicit reviewer-requested or scope-reopening addendum is created.
+2. Finish submission assembly from the locked manuscript, real data-driven figures and current SI.
+3. Create a persistent archival release/DOI and freeze repository provenance for the submitted version.
+4. Apply journal-specific formatting and final reference/figure-count requirements without changing the locked scientific estimands.
+5. Generate the final Word/PDF package only after these non-scientific checks are complete.
 
 ## Key provenance
 

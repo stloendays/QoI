@@ -145,19 +145,19 @@ Under the separately frozen optional second-solver audit workflow, QSQ-targeted 
 
 ## P5 — Transfer beyond Bader
 
-**Status: OPTIONAL / NOT STARTED.**
+**Status: NO-GO FOR CURRENT SUBMISSION.**
 
-A second topology-sensitive task should be attempted only if it can be specified outcome-blind, executed with modest additional scope and genuinely tests transfer beyond the current density/Bader setting. It must not be introduced merely to search for a positive result after P4's frozen null endpoint.
+A repository asset audit found no already-frozen, independently implemented second nonlinear/topology-sensitive QoI with a reference implementation, outcome-blind cohort and low marginal execution cost. Electron count and Hartree potential remain intentional controls rather than a second sensitive-task validation. Defining a new endpoint after observing the completed Bader evidence and the prespecified P4 null result would materially widen the scope and create avoidable outcome-driven-selection risk.
 
-If no compelling second task meets those conditions, freeze the research scope and proceed to submission assembly.
+The current submission therefore stops at P4. P5 may be reconsidered only through an explicit scope-reopening addendum or a targeted reviewer request. The decision record is `paper/RESEARCH_SCOPE_FREEZE_20260911.md`.
 
 ## Execution order from the current checkpoint
 
-1. Integrate resolved P3A as implementation-transfer evidence in the active manuscript and SI, preserving the grid-convergence boundary.
-2. Integrate P4 as Discussion/SI **contract-boundary / negative-control evidence**, not as a main-figure headline.
-3. Re-run the claim–evidence and numeric manuscript–Figure–SI cross-reference audits after P3A/P4 integration.
-4. Make one explicit P5 go/no-go decision. Prefer scope freeze if a second task would dilute the paper or require outcome-driven selection.
-5. After scope freeze, move to final submission assembly, archival DOI and journal-specific formatting.
+1. Preserve the **FROZEN_FOR_SUBMISSION** scientific scope: P0–P4 resolved, P3B deferred, P5 no-go.
+2. Maintain the PASS state of `paper/SUBMISSION_UPGRADE_CROSS_REFERENCE_AUDIT_20260911.md` while performing only non-scientific editorial changes.
+3. Create a persistent archival release/DOI and record the submitted repository commit.
+4. Apply target-journal figure-count, reference and formatting requirements without altering the locked estimands or primary evidence hierarchy.
+5. Build the final Word/PDF submission package from the polished manuscript, locked real-data figures and current SI.
 
 ## Key provenance
 

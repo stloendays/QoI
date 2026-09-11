@@ -10,7 +10,7 @@ The polished version follows a Nature/ACS-style narrative rather than a chronolo
 
 1. **Open with the scientific decision problem, not the codec.** The abstract and introduction now begin from the assumption hidden in QoI benchmarking: a requested tolerance must itself be numerically resolvable before it can define pass/fail.
 2. **State the novelty positively and narrowly.** The manuscript no longer spends repeated sentences defending that `pointwise error != QoI fidelity` is prior art. That point remains background; the contribution is the logically prior eligibility test.
-3. **Make Figure 3 the narrative pivot.** The central quantitative result is now reached quickly: 97.2% and 95.5% of naive failures at the two strictest Bader contracts are non-evaluable, and 46.3% of naive passes at `1e-4 e` are also non-evaluable.
+3. **Make Figure 3 the narrative pivot.** The central quantitative result is prospective rather than retrospective: after equalizing codec search opportunity, QSQ-rejected targets remain much more likely to lack a numerical pass, and the frozen gate then separates 1.600% from 81.325% fresh-perturbation exceedance risk at the primary `1e-3 e` endpoint (50.83× risk ratio). Historical 97.2%/95.5% full-record fractions remain secondary design-sensitivity provenance.
 4. **Use declarative Results headings.** Each section states the scientific conclusion rather than naming the analysis procedure.
 5. **Separate result from interpretation.** Results report what the data show; Discussion explains why the result matters, how it relates to prior QoI-aware compression, and where the generalization stops.
 6. **Reduce repetitive caveats.** Claim boundaries are retained once at the point where they matter (Bader specificity, qualification dependence, plateau/floor boundary) rather than repeated after every paragraph.
@@ -51,9 +51,9 @@ Alternative titles for journal-specific tuning:
 
 The abstract was substantially compressed. It now follows a five-part sequence:
 
-`problem → benchmark design → headline reclassification → mechanism/confound controls → implication`
+`problem → benchmark design → prospective qualification evidence → mechanism/confound controls → implication`
 
-Secondary numerical details such as the full floor-normalized distributions were removed from the abstract because they compete with the main 97.2% / 95.5% result.
+Secondary numerical details such as implementation transfer and the P4 chemical-direction null case remain outside the abstract because they would compete with the stronger P1/P2 validation sequence. The Abstract keeps the 14,986-trial prospective result as the quantitative anchor.
 
 ### Introduction
 
@@ -70,7 +70,7 @@ The introduction is reduced to five paragraphs:
 The preferred Results sequence is now aligned with the formal figure sequence:
 
 - **Figure 2:** operator-dependent error propagation;
-- **Figure 3:** binary benchmark → three-state certification (**central result**);
+- **Figure 3:** equal-search benchmark control + prospective fresh-perturbation risk stratification (**central validation result**);
 - **Figure 4:** validation of the QSQ stability probe against the archived float32 predecessor;
 - **Figure 5:** Bader-specific basin-migration mechanism;
 - **Figure 6:** realized-distortion confounding control;
@@ -108,8 +108,10 @@ The prose is now deliberately journal-neutral at the Nature/ACS level. Before ac
 
 ## Remaining pre-submission items
 
-1. Replace the repository-only Data and Code Availability statement with a persistent archival DOI (for example, a frozen release deposited in an archival repository) before publication.
-2. Perform a final reference audit against `paper/REFERENCES.md` and the selected journal's reference requirements.
-3. Decide whether the target journal needs 5, 6 or 7 main-text figures before building the final Word/PDF submission package.
-4. Run one consistency audit across manuscript, captions, Figure Map and Supplement for the terms `QSQ`, `stability floor`, `eligible`, `certified`, `eligible but not certified`, and `non-evaluable`.
-5. Build the final Word manuscript only from the polished draft and the locked data-driven figures.
+The scientific scope is now frozen by `paper/RESEARCH_SCOPE_FREEZE_20260911.md`; P3B is deferred and P5 is no-go for the current submission. The P1–P4 submission-chain cross-reference audit is PASS. Remaining tasks are non-scientific submission work:
+
+1. Replace the repository-only Data and Code Availability statement with a persistent archival DOI/frozen release and record the submitted commit.
+2. Perform the journal-specific final reference-format audit against `paper/REFERENCES.md`.
+3. Decide whether the target journal requires 5, 6 or 7 main-text figures; consolidate only at the presentation level, with Figure 3 retained as the central validation figure.
+4. Re-run terminology/cross-reference checks only if editorial changes touch claims, captions or SI numbering; scientific estimands remain locked.
+5. Build the final Word/PDF manuscript only from the polished draft and locked real data-driven figures.
