@@ -2,7 +2,7 @@
 
 Status: **PASS**
 
-Scope: machine-readable P1-P4 results versus the active manuscript, Figure 3 source, Supplementary Information, Claim–Evidence Matrix, authoritative status and research plan. Historical provenance files are intentionally not required to adopt current status wording.
+Scope: machine-readable P1-P4 results versus the active manuscript, Figure 3 source and caption, Supplementary Information, Claim–Evidence Matrix, authoritative status and research plan. Historical provenance files are intentionally not required to adopt current status wording.
 
 | Check | Result |
 |---|---|
