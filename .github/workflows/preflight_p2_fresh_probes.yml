@@ -26,7 +26,7 @@ jobs:
         run: |
           set -euo pipefail
           python - <<'PY'
-          import csv, hashlib, json
+          import csv, hashlib, json, math
           from collections import defaultdict
           from pathlib import Path
 
@@ -63,13 +63,21 @@ jobs:
                   old[r['material_id']].append(float(r['probe_linf']))
                   old_seeds[r['material_id']].add(int(r['seed']))
           assert len(old) == 254
+          non_bitwise_equal = 0
+          max_abs_delta = 0.0
           for m, rows in by_material.items():
               vals = old[m]
               assert old_seeds[m] == {20260905,1,2,3,4}
               assert len(vals) == 5 and len(set(vals)) == 1
               epsilon = vals[0]
-              assert all(float(r['epsilon']) == epsilon for r in rows)
+              for r in rows:
+                  encoded = float(r['epsilon'])
+                  tol = 4.0 * max(math.ulp(epsilon), math.ulp(encoded), math.ulp(1.0) * 1e-18)
+                  assert math.isclose(encoded, epsilon, rel_tol=0.0, abs_tol=tol), (m, encoded, epsilon, tol)
+                  if encoded != epsilon:
+                      non_bitwise_equal += 1
+                      max_abs_delta = max(max_abs_delta, abs(encoded - epsilon))
               assert len({r['field_fingerprint'] for r in rows}) == 1
               assert len({r['npoints'] for r in rows}) == 1
-          print('P2_PREFLIGHT_PASS materials=254 jobs=14986 streams=14986 seeds_per_material=59')
+          print(f'P2_PREFLIGHT_PASS materials=254 jobs=14986 streams=14986 seeds_per_material=59 epsilon_serialization_differences={non_bitwise_equal} max_abs_delta={max_abs_delta:.3e}')
           PY
