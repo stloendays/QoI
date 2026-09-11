@@ -1,0 +1,53 @@
+name: Finalize SI S3-S4 and S8-S9
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/finalize_si_s3_s4_s8_s9_20260911.py'
+      - '.github/workflows/finalize_si_s3_s4_s8_s9.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-submission-doc-writeback
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply SI finalization patch
+        run: python scripts/finalize_si_s3_s4_s8_s9_20260911.py
+      - name: Validate
+        run: |
+          git diff --check
+          test -s paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md
+          test -s figures/R/rendered/supplementary_figureS3_operator_controls_R.png
+          test -s figures/R/rendered/supplementary_figureS4_tight_floor_scale_R.png
+      - name: Commit audited SI state
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            paper/CLAIM_EVIDENCE_MATRIX.md \
+            paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md \
+            paper/SUPPLEMENTARY_FIGURE_CAPTIONS_20260911.md \
+            paper/SUPPLEMENTARY_ASSET_MAP_20260911.md \
+            paper/SUPPLEMENTARY_CROSS_REFERENCE_PLAN_20260911.md \
+            paper/SUPPLEMENTARY_INFORMATION_DRAFT_20260911.md \
+            paper/NUMERIC_CROSS_REFERENCE_AUDIT_20260911.md \
+            supplement/README.md
+          git commit -m 'supplement: lock S3-S4 and register Tables S8-S9'
+          git push origin HEAD:main
