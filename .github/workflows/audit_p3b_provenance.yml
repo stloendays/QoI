@@ -1,0 +1,85 @@
+name: Audit P3B electronic-structure provenance
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'validation/qsq_prospective/P3B_PROVENANCE_AUDIT_START'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qsq-p3b-provenance-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out current research record
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify frozen P3B audit boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'ecd58e8ca42e6553a2d39693447d4c85b7960fbbea66622f58412e7b80ad08ef  validation/qsq_prospective/convergence_panel.csv' | sha256sum -c -
+          test "$(git rev-parse HEAD:validation/qsq_prospective/P3B_PROVENANCE_AUDIT_PROTOCOL.md)" = '93716f8278540c3db978e14c47fbd7c745d6b0a3'
+          python -m py_compile validation/qsq_prospective/audit_p3b_provenance.py
+          grep -q 'Status: \*\*FROZEN_PRE_AUDIT\*\*' validation/qsq_prospective/P3B_PROVENANCE_AUDIT_PROTOCOL.md
+
+      - name: Execute provenance recovery audit
+        shell: bash
+        env:
+          MP_API_KEY: ${{ secrets.MP_API_KEY }}
+        run: |
+          set -euo pipefail
+          rm -rf validation/qsq_prospective/p3b_provenance_audit
+          python validation/qsq_prospective/audit_p3b_provenance.py \
+            --repo-root . \
+            --output-dir validation/qsq_prospective/p3b_provenance_audit
+
+      - name: Archive audit provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='validation/qsq_prospective/p3b_provenance_audit'
+          python --version > "$out/python_version.txt" 2>&1
+          git rev-parse HEAD > "$out/research_record_commit_before_audit_commit.txt"
+          echo "$GITHUB_RUN_ID" > "$out/github_run_id.txt"
+          sha256sum validation/qsq_prospective/audit_p3b_provenance.py > "$out/audit_script_sha256.txt"
+          sha256sum validation/qsq_prospective/P3B_PROVENANCE_AUDIT_PROTOCOL.md > "$out/audit_protocol_sha256.txt"
+          sha256sum validation/qsq_prospective/convergence_panel.csv > "$out/panel_sha256.txt"
+
+      - name: Commit P3B provenance audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/qsq_prospective/p3b_provenance_audit
+          if git diff --cached --quiet; then
+            echo 'No P3B provenance changes to commit.'
+          else
+            git commit -m 'validation: complete P3B provenance recovery audit'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload P3B provenance audit bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3b-provenance-audit
+          path: validation/qsq_prospective/p3b_provenance_audit
+          if-no-files-found: error
+          retention-days: 90
