@@ -70,7 +70,7 @@ def main():
     must(manuscript, "14,986/14,986 valid", "P2 manuscript accounting")
     must(manuscript, "50.83-fold", "P2 manuscript RR")
     must(fig3, "14,986/14,986 fresh trials", "P2 Figure 3 accounting")
-    must(fig3_caption, "Primary result: equal-search separation plus prospective risk stratification", "Figure 3 caption hierarchy")
+    must(fig3_caption, "The primary Figure 3 claim is prospective risk stratification after a separate equal-search control.", "Figure 3 caption hierarchy")
     must(fig3_caption, "50.83-fold", "Figure 3 caption prospective RR")
     ok("P2 prospective", "14,986/14,986; 143 vs 111 materials; 1.600% vs 81.325%; RR 50.83x")
 
@@ -126,7 +126,7 @@ def main():
         "",
         "Status: **PASS**",
         "",
-        "Scope: machine-readable P1-P4 results versus the active manuscript, Figure 3 source, Supplementary Information, Claim–Evidence Matrix, authoritative status and research plan. Historical provenance files are intentionally not required to adopt current status wording.",
+        "Scope: machine-readable P1-P4 results versus the active manuscript, Figure 3 source and caption, Supplementary Information, Claim–Evidence Matrix, authoritative status and research plan. Historical provenance files are intentionally not required to adopt current status wording.",
         "",
         "| Check | Result |",
         "|---|---|",
