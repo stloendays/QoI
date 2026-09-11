@@ -6,6 +6,7 @@ on:
       - paper/submission-storyline-20260912
     paths:
       - '.github/workflows/upgrade_submission_audit_storyline_20260912.yml'
+      - 'scripts/upgrade_submission_audit_storyline_20260912.py'
 
 permissions:
   contents: write
