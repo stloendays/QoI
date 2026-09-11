@@ -2,7 +2,7 @@
 
 ## Stability-qualified benchmarks for scientific compression of electronic densities
 
-This Supplementary Information (SI) is organized to support the main-text benchmark-validity claim without duplicating the primary narrative. The main manuscript establishes the three-state certification logic and its headline consequence. The SI documents denominator conventions, protocol provenance, sensitivity analyses, extended operator controls, mechanistic robustness, matching diagnostics, rate–fidelity tables, external confirmation, and failure semantics.
+This Supplementary Information (SI) is organized to support the main-text benchmark-validity claim without duplicating the primary narrative. The main manuscript establishes the three-state certification logic and its headline consequence. The SI documents denominator conventions, qualification provenance, sensitivity analyses, extended operator controls, mechanistic robustness, matching diagnostics, rate–fidelity tables, external confirmation, and failure semantics.
 
 The SI uses frozen data assets already versioned in the repository. No supplementary result should be transcribed manually when a machine-readable source exists.
 
@@ -17,7 +17,7 @@ The numerical-stability qualification has a broader frozen universe of **319 sys
 This distinction is important because different questions use different denominators:
 
 - **254 development systems**: primary codec benchmark, binary-to-three-state reclassification, electron-count control, Hartree control, realized-distortion matching.
-- **319 stability-tested systems**: Protocol A.1 stability-floor and eligibility summaries.
+- **319 stability-tested systems**: QSQ stability-floor and eligibility summaries.
 - **65 external descriptive systems**: descriptive external stability/robustness universe.
 - **63 external confirmatory systems**: frozen primary external rate–fidelity confirmation.
 
@@ -27,17 +27,17 @@ Primary provenance assets are `materials_metadata.csv`, `external_test_MANIFEST.
 
 ---
 
-## Supplementary Note 2 — Protocol A and Protocol A.1
+## Supplementary Note 2 — QoI Stability Qualification and archived probe provenance
 
-Protocol A is retained as an archived provenance record. It used a deterministic float64 → float32 → float64 round trip to probe numerical Bader stability. During tight-ladder extension, this perturbation was found to be strongly order-preserving and therefore unusually benign for an on-grid watershed partition.
+The archived float32 qualification probe is retained as a provenance record. It used a deterministic float64 → float32 → float64 round trip to probe numerical Bader stability. During tight-ladder extension, this perturbation was found to be strongly order-preserving and therefore unusually benign for an on-grid watershed partition.
 
-Protocol A.1 changes only the stability perturbation. For material \(m\), let
+QoI Stability Qualification (QSQ) uses a perturbation-based numerical identifiability test. For material \(m\), let
 
 \[
 \epsilon_m = \|\mathrm{float32}(\rho_m)-\rho_m\|_\infty.
 \]
 
-Five pre-registered uniform perturbations \(U(-\epsilon_m,+\epsilon_m)\) are applied with seeds \(\{20260905,1,2,3,4\}\). Bader basins are re-derived after each perturbation. The material-specific stability floor is
+Five pre-registered uniform perturbations \(U(-\epsilon_m,+\epsilon_m)\) are applied with seeds \(\{20260905,1,2,3,4\}\). Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
 
 \[
 f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
@@ -48,20 +48,22 @@ A Bader tolerance \(\tau\) is eligible only when \(f_m<\tau\). If \(f_m\ge\tau\)
 The 18-material calibration run showed why the probe had to change (`stability/probe_calibration.csv`; `protocol/PROTOCOL_A1.md`):
 
 - the archived float32 probe produced a median of **82 exact neighbouring ties** and reassigned zero voxels in **9/18** calibration systems;
-- the non-order-preserving noise probe produced no exact ties and reassigned zero voxels in only **2/18** systems;
+- the non-order-preserving QSQ perturbation probe produced no exact ties and reassigned zero voxels in only **2/18** systems;
 - across five seeds, the per-material log10 floor span had a median of **0.47 decades** and reached **2.4 decades**;
 - a single-seed eligibility verdict changed across seeds in 3/18 materials at \(10^{-4}\,e\), 2/18 at \(10^{-3}\,e\), and 1/18 at \(10^{-2}\,e\);
-- over a two-decade amplitude sweep (×0.1 to ×10), the floor changed by a median of **0.76 decades** (P10 0.00; P90 2.02), demonstrating that the reported floor is protocol-defined rather than an amplitude-free material constant.
+- over a two-decade amplitude sweep (×0.1 to ×10), the floor changed by a median of **0.76 decades** (P10 0.00; P90 2.02), demonstrating that the reported floor is qualification-defined rather than an amplitude-free material constant.
 
-Across the complete 319-system stability corpus, the A.1 non-evaluable fractions are **79.9%** at \(10^{-4}\,e\), **41.4%** at \(10^{-3}\,e\), and **9.7%** at \(10^{-2}\,e\) (`stability/eligibility_summary_A1.csv`).
+Across the complete 319-system stability corpus, the QSQ non-evaluable fractions are **79.9%** at \(10^{-4}\,e\), **41.4%** at \(10^{-3}\,e\), and **9.7%** at \(10^{-2}\,e\) (`stability/eligibility_summary_A1.csv`).
 
-One extreme A.1 response, `aflow-Al8Cu4U1_ICSD_601801`, corresponds to a permutation of symmetry-equivalent Al basins rather than a literal multi-electron chemical transfer. It is retained as `basin_relabelling_symmetry_equivalent` in `failure_registry.csv` and remains non-evaluable for a position-indexed atomic-charge QoI.
+One extreme QSQ response, `aflow-Al8Cu4U1_ICSD_601801`, corresponds to a permutation of symmetry-equivalent Al basins rather than a literal multi-electron chemical transfer. It is retained as `basin_relabelling_symmetry_equivalent` in `failure_registry.csv` and remains non-evaluable for a position-indexed atomic-charge QoI.
+
+Historical repository identifiers such as `Protocol A`, `Protocol A.1`, and filenames containing `_A1` are retained only to preserve the frozen development record and machine-readable provenance; they are not the preferred scientific names of the qualification method.
 
 ---
 
 ## Supplementary Note 3 — Sensitivity analyses for eligibility and certification
 
-The principal benchmark uses Protocol A.1 eligibility exactly as frozen. Four sensitivity analyses test how the reported conclusions depend on alternative reporting choices.
+The principal benchmark uses QSQ eligibility exactly as frozen. Four sensitivity analyses test how the reported conclusions depend on alternative reporting choices.
 
 ### S1 — No-exclusion diagnostic
 
@@ -69,7 +71,7 @@ The principal benchmark uses Protocol A.1 eligibility exactly as frozen. Four se
 
 ### S2 — Error relative to the independent stability floor
 
-For certified reconstructions, `supplement/S2_floor_relative.csv` reports \(\Delta Q_\mathrm{Bader}/f_m\). At \(10^{-4}\,e\), median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At \(10^{-3}\,e\), median ratios broaden to 2.78–3.55, and at \(10^{-2}\,e\) to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the A.1 floor.
+For certified reconstructions, `supplement/S2_floor_relative.csv` reports \(\Delta Q_\mathrm{Bader}/f_m\). At \(10^{-4}\,e\), median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At \(10^{-3}\,e\), median ratios broaden to 2.78–3.55, and at \(10^{-2}\,e\) to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the QSQ floor.
 
 ### S3 — Inflated-threshold stress test
 
@@ -77,7 +79,7 @@ For certified reconstructions, `supplement/S2_floor_relative.csv` reports \(\Del
 
 ### S4 — Probe-amplitude sensitivity
 
-The 18-material amplitude sweep in `supplement/S4_amplitude_sensitivity.csv` reports floors at ×0.1, ×1 and ×10 of the Protocol A.1 amplitude. The heterogeneity across materials is part of the result: some systems are plateau-like while others scale substantially. The purpose is to demonstrate protocol dependence transparently, not to tune the amplitude post hoc.
+The 18-material amplitude sweep in `supplement/S4_amplitude_sensitivity.csv` reports floors at ×0.1, ×1 and ×10 of the QSQ perturbation amplitude. The heterogeneity across materials is part of the result: some systems are plateau-like while others scale substantially. The purpose is to demonstrate qualification-procedure dependence transparently, not to tune the amplitude post hoc.
 
 ---
 
@@ -141,7 +143,7 @@ The supplementary presentation should report, for each \(\tau\), stratum and cod
 
 The primary external confirmatory cohort contains **63/63 completed systems**, **1,689 retained scientific rows**, **0 material-level pipeline failures**, **0 codec-bound violations** and **3 preserved row-level Bader solver failures** affecting two materials (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`). The final frozen 65-system descriptive aggregate contains **65/65 systems** and **1,755 rows**, also with zero material-level failures and zero bound violations.
 
-For the primary 63-system confirmatory cohort, Protocol A.1 eligibility counts are **16**, **42** and **57** systems at \(10^{-4}\), \(10^{-3}\) and \(10^{-2}\,e\), respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at \(10^{-4}\,e\), ZFP ≈ SZ3 > SPERR at \(10^{-3}\,e\), and SZ3 > ZFP > SPERR at \(10^{-2}\,e\). The ZFP–SZ3 separation at the strictest threshold is narrower than in development and should not be described as a strong external separation.
+For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at \(10^{-4}\), \(10^{-3}\) and \(10^{-2}\,e\), respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at \(10^{-4}\,e\), ZFP ≈ SZ3 > SPERR at \(10^{-3}\,e\), and SZ3 > ZFP > SPERR at \(10^{-2}\,e\). The ZFP–SZ3 separation at the strictest threshold is narrower than in development and should not be described as a strong external separation.
 
 The supplementary external section should also retain the row-level solver failures, recovery provenance for `aflow-Cl1O12Pb5V3_ICSD_203074`, the descriptive 65-system aggregate, and the distinction between `vacuum-containing 2D` systems and development adsorbate slabs.
 
@@ -160,12 +162,12 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | Table | Content | Primary source | Status |
 |---|---|---|---|
 | **Table S1** | Cohort composition, denominator conventions and provenance | `materials_metadata.csv`; `external_test_MANIFEST.json`; `validation/EXTERNAL_CONFIRMATORY63_20260908.md` | **READY** |
-| **Table S2** | Protocol A vs Protocol A.1 definition, seeds, amplitudes and decision semantics | `protocol/PROTOCOL_A1.md`; `protocol/PROTOCOL_A_archived.md` | **READY** |
-| **Table S3** | A.1 eligibility by threshold and stratum; archived A shown only as provenance | `stability/eligibility_summary_A1.csv` | **READY** |
+| **Table S2** | QSQ definition, seeds, amplitudes, decision semantics and archived float32-probe provenance | `protocol/PROTOCOL_A1.md`; `protocol/PROTOCOL_A_archived.md` | **READY** |
+| **Table S3** | QSQ eligibility by threshold and stratum; archived float32 probe shown only as provenance | `stability/eligibility_summary_A1.csv` | **READY** |
 | **Table S4** | Binary-to-three-state reclassification by codec | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **READY** |
 | **Table S5** | No-exclusion and inflated-threshold sensitivity | `supplement/S1_S3_sensitivity.csv` | **READY** |
-| **Table S6** | Certified Bader error relative to A.1 floor | `supplement/S2_floor_relative.csv` | **READY** |
-| **Table S7** | Probe seed and amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **READY** |
+| **Table S6** | Certified Bader error relative to QSQ floor | `supplement/S2_floor_relative.csv` | **READY** |
+| **Table S7** | QSQ probe seed and amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **READY** |
 | **Table S8** | Electron-count control by codec/tolerance | `analysis/electron_count_qoi/electron_bader_decoupling.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `matched_error_dispersion.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S10** | Bader domain decomposition across representative systems | `mechanism/basin_error_decomposition_summary.csv`; `..._per_atom.csv` | **READY** |
@@ -180,10 +182,10 @@ All final supplementary figures should be generated from R sources and exported 
 
 | Figure | Content | Source data | Status |
 |---|---|---|---|
-| **Fig. S1** | Protocol A vs A.1 stability-floor distribution and threshold eligibility | `stability/stability_floor_A1.csv`; archived A; `eligibility_summary_A1.csv` | **LOCKED** |
-| **Fig. S2** | Five-seed spread and ×0.1/×1/×10 amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **LOCKED** |
+| **Fig. S1** | Archived float32-probe vs QSQ stability-floor distribution and threshold eligibility | `stability/stability_floor_A1.csv`; archived predecessor; `eligibility_summary_A1.csv` | **LOCKED** |
+| **Fig. S2** | QSQ five-seed spread and ×0.1/×1/×10 amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **LOCKED** |
 | **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **LOCKED** |
-| **Fig. S4** | Tight-regime Bader error/floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
+| **Fig. S4** | Tight-regime Bader error/QSQ-floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
 | **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | `mechanism/basin_error_decomposition_*`; `mechanism/independent_bader_20260908/` | **PLANNED R** |
 | **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | `analysis/matched_realized_linf_v1/` | **PLANNED R** |
 | **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **LOCKED** |
@@ -191,8 +193,8 @@ All final supplementary figures should be generated from R sources and exported 
 
 # Submission boundaries
 
-1. The SI must not reintroduce withdrawn claims from earlier protocol stages.
-2. Protocol A results are provenance only and must be visibly labelled archived/provisional.
+1. The SI must not reintroduce withdrawn claims from earlier qualification stages.
+2. Archived float32-probe results are provenance only and must be visibly labelled archived/provisional.
 3. `NON_EVALUABLE_BADER_UNSTABLE` is neither pass nor failure.
 4. The 319-system stability universe and 63-system primary external confirmatory cohort use different denominators and must be labelled separately.
 5. Tight-ladder data support “floor-scale, consistent with an emerging analysis-limited regime”, not universal `plateau = floor`.
