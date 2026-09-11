@@ -1,0 +1,57 @@
+name: Build Supplementary Table S13
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_supplement_table_s13_20260911.py'
+      - '.github/workflows/build_supplement_table_s13.yml'
+      - 'benchmark/summary_a1.csv'
+      - 'benchmark/pairwise_a1.csv'
+      - 'validation/final_external_confirmatory63_20260908/confirmatory63/external_summary_a1.csv'
+      - 'validation/final_external_confirmatory63_20260908/confirmatory63/pairwise_external.csv'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-submission-table-writeback
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build S13
+        run: python scripts/build_supplement_table_s13_20260911.py
+      - name: Validate
+        run: |
+          test -s paper/SUPPLEMENTARY_TABLE_S13_20260911.md
+          test -s supplement/S13_rate_fidelity_summary.csv
+          test -s supplement/S13_pairwise_sz3_zfp.csv
+          git diff --check -- paper/SUPPLEMENTARY_TABLE_S13_20260911.md scripts/build_supplement_table_s13_20260911.py
+      - name: Commit generated outputs
+        run: |
+          paths=(paper/SUPPLEMENTARY_TABLE_S13_20260911.md supplement/S13_rate_fidelity_summary.csv supplement/S13_pairwise_sz3_zfp.csv)
+          if [ -z "$(git status --porcelain -- "${paths[@]}")" ]; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          tmp=$(mktemp -d)
+          cp paper/SUPPLEMENTARY_TABLE_S13_20260911.md supplement/S13_rate_fidelity_summary.csv supplement/S13_pairwise_sz3_zfp.csv "$tmp"/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$tmp/SUPPLEMENTARY_TABLE_S13_20260911.md" paper/
+          cp "$tmp/S13_rate_fidelity_summary.csv" supplement/
+          cp "$tmp/S13_pairwise_sz3_zfp.csv" supplement/
+          git add "${paths[@]}"
+          git commit -m 'supplement: build Table S13 from frozen rate-fidelity summaries'
+          git push origin HEAD:main
