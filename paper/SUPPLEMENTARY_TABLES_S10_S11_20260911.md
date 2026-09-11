@@ -4,25 +4,25 @@ Generated 2026-09-11 from the frozen Bader mechanism corpus and the independent 
 
 ## Supplementary Table S10 | Representative Bader decomposition confirms a dominant domain-migration channel
 
-| Relative codec tolerance | Codec | Cases | Median total/integrand at max-error atom | P10–P90 | Median bounded domain share | Domain term > integrand | Median reassigned voxel fraction |
+| Relative codec tolerance | Codec | Cases | Median fixed-basin underestimation | P10–P90 | Median bounded domain share at max-total atom | Domain term > integrand | Median reassigned voxel fraction |
 |---:|---|---:|---:|---:|---:|---:|---:|
-| 1e-04 | ZFP | 12 | 2168.31× | 182.35–31510.31× | 0.999 | 100.0% | 1.610e-03 |
-| 1e-04 | SZ3 | 12 | 82.01× | 6.88–349.60× | 0.985 | 100.0% | 1.216e-02 |
-| 1e-04 | SPERR | 12 | 1309.22× | 189.67–8048.20× | 0.999 | 100.0% | 1.945e-02 |
-| 1e-03 | ZFP | 12 | 366.23× | 49.71–1763.79× | 0.997 | 100.0% | 5.695e-03 |
-| 1e-03 | SZ3 | 12 | 16.28× | 4.63–147.99× | 0.942 | 91.7% | 5.119e-02 |
-| 1e-03 | SPERR | 12 | 546.05× | 174.23–1965.94× | 0.998 | 100.0% | 1.182e-01 |
-| 1e-02 | ZFP | 10 | 233.38× | 28.98–2380.74× | 0.996 | 100.0% | 3.758e-02 |
-| 1e-02 | SZ3 | 12 | 4.87× | 2.66–146.16× | 0.847 | 91.7% | 1.376e-01 |
-| 1e-02 | SPERR | 12 | 135.11× | 23.59–532.72× | 0.993 | 100.0% | 2.365e-01 |
+| 1e-04 | ZFP | 12 | 1011.31× | 87.56–11538.89× | 0.999 | 100.0% | 1.610e-03 |
+| 1e-04 | SZ3 | 12 | 20.11× | 3.83–30.07× | 0.985 | 100.0% | 1.216e-02 |
+| 1e-04 | SPERR | 12 | 585.30× | 118.26–1147.15× | 0.999 | 100.0% | 1.945e-02 |
+| 1e-03 | ZFP | 12 | 171.84× | 27.16–1122.03× | 0.997 | 100.0% | 5.695e-03 |
+| 1e-03 | SZ3 | 12 | 4.00× | 2.38–28.80× | 0.942 | 91.7% | 5.119e-02 |
+| 1e-03 | SPERR | 12 | 158.98× | 46.34–466.47× | 0.998 | 100.0% | 1.182e-01 |
+| 1e-02 | ZFP | 10 | 43.67× | 13.15–327.91× | 0.996 | 100.0% | 3.758e-02 |
+| 1e-02 | SZ3 | 12 | 3.07× | 1.26–6.83× | 0.847 | 91.7% | 1.376e-01 |
+| 1e-02 | SPERR | 12 | 40.29× | 10.15–229.09× | 0.993 | 100.0% | 2.365e-01 |
 
-Across the full representative matrix (n=106 material–codec–tolerance cases), the median total/integrand amplification at the atom of maximum total deviation is **216.06×**, the median bounded absolute domain share is **0.995**, and the domain term exceeds the integrand term in **98.1%** of cases. Because signed cancellation can make |domain|/|total| exceed 1, Table S10 reports the bounded diagnostic |domain|/(|domain|+|integrand|) and the directly interpretable total/integrand amplification separately.
+Across the full representative matrix (n=106 material–codec–tolerance cases), the median maximum-resolved / maximum-fixed-basin error ratio is **52.59×**. At the atom of maximum total deviation, the median bounded absolute domain share |domain|/(|domain|+|integrand|) is **0.995**, and the domain term exceeds the integrand term in **98.1%** of cases. These two metrics are reported separately because signed cancellation can make |domain|/|total| exceed 1.
 
 **Sources:** `mechanism/basin_error_decomposition_summary.csv`; extended per-atom values in `mechanism/basin_error_decomposition_per_atom.csv`. The stability-floor column in the historical mechanism table is not used for current Protocol A.1 claims.
 
 ---
 
-## Supplementary Table S11 | Independent Bader implementations preserve the mechanism and codec-response ordering
+## Supplementary Table S11 | Independent Bader implementations preserve the mechanism and strict-response ordering
 
 ### S11a. Study completeness and solver failures
 
@@ -36,16 +36,23 @@ Across the full representative matrix (n=106 material–codec–tolerance cases)
 | Representative systems in aggregate | 12 development systems |
 | Separate probe-failure sentinel | 1 (`mp-1007755`; excluded from aggregates) |
 
-### S11b. Paired codec-response ratios relative to BaderKit on-grid
+### S11b. Cross-implementation stability and codec response
 
-| Comparison solver | Filter | n paired codec responses | Median comparison/BaderKit | IQR |
+| Diagnostic | Comparison solver | n | Median / fraction | IQR |
 |---|---|---:|---:|---:|
-| henkelman_ongrid | above print resolution | 70 | 1.000 | 0.920–1.005 |
-| henkelman_ongrid | above print and baseline compatible | 47 | 1.000 | 1.000–1.000 |
-| henkelman_neargrid | above print resolution | 70 | 0.768 | 0.310–1.218 |
-| henkelman_neargrid | above print and baseline compatible | 0 | nan | nan–nan |
+| Codec response comparison/BaderKit | henkelman_ongrid (above print resolution) | 70 | 1.000 | 0.920–1.005 |
+| Codec response comparison/BaderKit | henkelman_ongrid (above print and baseline compatible) | 47 | 1.000 | 1.000–1.000 |
+| Codec response comparison/BaderKit | henkelman_neargrid (above print resolution) | 70 | 0.768 | 0.310–1.218 |
+| A.1 floor agrees with BaderKit within 1e-6 e | henkelman_ongrid | 12 materials | 75.0% | — |
+| Eligibility concordance at 0.0001 e | henkelman_ongrid | 12 materials | 100.0% | — |
+| Eligibility concordance at 0.001 e | henkelman_ongrid | 12 materials | 100.0% | — |
+| Eligibility concordance at 0.01 e | henkelman_ongrid | 12 materials | 91.7% | — |
+| A.1 floor agrees with BaderKit within 1e-6 e | henkelman_neargrid | 12 materials | 0.0% | — |
+| Eligibility concordance at 0.0001 e | henkelman_neargrid | 12 materials | 83.3% | — |
+| Eligibility concordance at 0.001 e | henkelman_neargrid | 12 materials | 91.7% | — |
+| Eligibility concordance at 0.01 e | henkelman_neargrid | 12 materials | 91.7% | — |
 
-The baseline-compatible filter requires the unperturbed comparison-solver and BaderKit atomic charges to agree within 1e-3 e and both codec responses to exceed the 2e-6 e Henkelman print-resolution region. The unfiltered paired points remain available in `supplement/S11_cross_implementation_pairs.csv`.
+Codec-response ratios above use successful paired outputs above the 2e-6 e Henkelman print-resolution region. The additional on-grid baseline-compatible row requires the unperturbed Henkelman/BaderKit atomic charges to agree within 1e-3 e. All paired points, including flagged baseline differences, remain in `supplement/S11_cross_implementation_pairs.csv`.
 
 ### S11c. Relative 1e-4 codec-response ordering by implementation
 
@@ -81,6 +88,6 @@ The baseline-compatible filter requires the unperturbed comparison-solver and Ba
 | henkelman_neargrid | shift | 36 | 0.00 | -0.27–0.46 | 50.0% |
 | henkelman_neargrid | stratified | 36 | 0.07 | -0.24–0.47 | 55.6% |
 
-**Interpretation boundary.** This deliberately stratified 12-system panel is a mechanism/implementation robustness study, not a prevalence estimate. The independent implementation results support the Bader-specific basin-migration mechanism and preserve the qualitative codec ordering at strict perturbation. Spatial permutations provide secondary evidence that error organization matters, while the near-null periodic-shift control argues against a simple alignment-only explanation. These results do not redefine Protocol A.1 or alter the primary benchmark.
+**Interpretation boundary.** This deliberately stratified 12-system panel is a mechanism/implementation robustness study, not a prevalence estimate. Henkelman on-grid reproduces the BaderKit codec response essentially one-for-one above print resolution, and the strict SZ3/ZFP and SPERR/ZFP ordering remains qualitatively similar under on-grid and near-grid Henkelman analyses. The exact decomposition supports a Bader-specific domain-migration channel. Spatial permutations provide secondary evidence that error organization matters, while the near-null periodic-shift control argues against a simple alignment-only explanation. These results do not redefine Protocol A.1 or alter the primary benchmark.
 
-**Sources:** `mechanism/independent_bader_20260908/outcomes/*.jsonl`; `stability_comparison.csv`; `mechanism_domain_decomposition.csv`; `mechanism_spatial_pairs.csv`; protocol and scope in `mechanism/independent_bader_20260908/README.md`.
+**Sources:** `mechanism/independent_bader_20260908/outcomes/*.jsonl`; `stability_comparison.csv`; `mechanism_domain_decomposition.csv`; `mechanism_spatial_pairs.csv`; protocol/scope in `mechanism/independent_bader_20260908/README.md`.
