@@ -1,144 +1,173 @@
-# Citation audit for `MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`
+# Full-manuscript citation audit — 2026-09-11
 
-**Audit date:** 2026-09-11  
-**Reference universe:** `paper/REFERENCES.md`, refs. 1–21  
-**Scope:** Introduction, Discussion, and Methods claims most likely to be scrutinized for prior-art positioning, missing attribution, miscitation, or citation dumping.
+**Submission manuscript:** `paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`  
+**Stable literature library:** `paper/REFERENCES.md`  
+**Submission-number crosswalk:** `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`  
+**Scope:** Abstract, Introduction, Results, Discussion, Methods, bibliography order, missing attribution, miscitation, and citation dumping.
 
 ## Audit outcome
 
-**Status: PASS with conservative novelty framing.**
+**Status: PASS after correction of citation-order numbering.**
 
-All 21 canonical references are now used in the polished manuscript for a defined evidentiary purpose. The revised citation structure deliberately avoids using the 2026 TOPIQ preprint as the sole support for any foundational claim, avoids presenting established Bader/grid sensitivity as novelty, and avoids describing adjacent quantum-chemistry compression papers as prior work on real-space electron-density-field compression.
+The 21-reference literature structure is sufficient for the present manuscript architecture. The main issue identified in this round was not a missing paper but a numbering defect: stable reference-library IDs had been used directly in the reader-facing manuscript, causing the first Introduction paragraph to jump from refs. [1–4] to [18], [21] and [19] before returning to [5]. The submission manuscript has now been renumbered strictly by first appearance while the Notion/PDF archive retains stable library IDs.
 
-The central novelty boundary remains:
+No foundational claim depends solely on the 2026 TOPIQ preprint. Established Bader numerical sensitivity is explicitly attributed to prior QTAIM/grid-analysis literature rather than presented as novelty. Adjacent quantum-chemistry compression papers are described at the level of the object they actually compress and are not misrepresented as prior real-space electron-density-field compression.
 
-> Prior work establishes error-bounded scientific compression, QoI-aware error control, topology-aware compression, and numerical sensitivity in grid-based downstream analysis. The present contribution is the **pre-certification eligibility step**: testing whether a requested downstream tolerance is numerically identifiable on the reference data before that tolerance is used to assign codec success or failure.
+The approved novelty boundary remains:
 
-## Claim-level audit
+> Existing work develops error-bounded compression, QoI-aware error control, QoI-preserving pipelines, topology-aware reconstruction and QoI-error prediction. The present contribution adds a logically prior benchmark-validity condition: a requested downstream tolerance must first be shown to be numerically identifiable on the reference data before that tolerance can support codec pass/fail attribution.
 
-| Manuscript claim | Final citation(s) | Audit decision |
+## Submission citation sequence
+
+The first appearance order in the polished manuscript is now continuous:
+
+**[1–4] → [5] → [6] → [7] → [8] → [9] → [10] → [11–13] → [14,15] → [16] → [17] → [18–20] → [21].**
+
+The corresponding stable-library sequence is:
+
+`1, 2, 3, 4, 18, 21, 19, 5, 6, 12, 13, 14, 20, 7, 15, 11, 17, 8, 9, 16, 10`.
+
+The exact mapping is frozen in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`.
+
+## Section-level reviewer audit
+
+### Abstract
+
+**Decision: no citations required in the working submission draft.**
+
+The abstract contains study design, internally generated numerical results and the study's interpretation. It does not make a historical priority claim such as “first” or “unprecedented.” The mechanistic statement that re-derived Bader charges respond irregularly because basin boundaries migrate is supported by the paper's own mechanism experiment and is intentionally not padded with external citations in the abstract.
+
+### Introduction
+
+**Decision: PASS.**
+
+The literature is introduced in functional layers rather than as citation bundles:
+
+1. scientific-compression maturity and codec families: submission refs. **[1–4]**;
+2. broad scientific-workflow and chemistry-compression precedent: **[5–7]**;
+3. post-compression assessment: **[8]**;
+4. QoI mathematical control: **[9,10]**;
+5. operational QoI-preserving pipelines: **[11–13]**;
+6. topology-aware compression: **[14,15]**;
+7. recent QoI uncertainty prediction: **[16]**;
+8. QTAIM foundation and grid-based Bader numerical analysis: **[17–21]**.
+
+The novelty question appears only after the strongest competing prior art is acknowledged. No Introduction sentence carries an indiscriminate long bibliography. The largest groups correspond to a defined method family or to the four codec/foundation papers required by the sentence.
+
+### Results
+
+**Decision: PASS with one citation clarification added.**
+
+Most Results statements are generated by the present benchmark and therefore should not receive external citations. The following are correctly left uncited and should instead be traced to figures/SI/frozen data:
+
+- 3,205 / 1,383 electron-count negative-control counts;
+- Hartree slope 1.02 and codec-resolved material-level $R^2$ values;
+- Bader monotonicity, local exponent range and 22,296-fold illustrative jump;
+- 79.9%, 41.4% and 9.7% non-evaluable fractions;
+- Figure 3 counts and 97.2%, 95.5%, 56.5%, 46.3% reclassification statistics;
+- Protocol A.1 seed-flip counts and the ~8.7×10^3 archived-to-A.1 floor shift;
+- floor-normalized Bader error ratios;
+- fixed-basin versus re-derived mechanism results;
+- realized-$L_\infty$ ratios and matched codec effect sizes;
+- development and external certified compression ratios.
+
+One sentence in the Protocol A.1 result previously referred to an “on-grid watershed partition” without an explicit literature anchor. It has been tightened to “on-grid basin-assignment procedure” and now cites **[18–20]**, which directly cover the practical Bader partition/integration algorithms. This supports the algorithmic background while leaving the observed float32-versus-noise behaviour as an internal result.
+
+The Bader mechanism subsection cites **[17–20]** only for the density-defined basin construction. The actual decomposition and dominance of domain migration are internal results and remain uncited.
+
+### Discussion
+
+**Decision: PASS.**
+
+The Discussion now distinguishes four prior-art questions rather than citing them as one undifferentiated block:
+
+- controlling prescribed derived quantities: **[9,10]**;
+- preserving/guaranteeing QoIs in operational pipelines: **[11–13]**;
+- preserving selected topological descriptors: **[14,15]**;
+- predicting QoI bias/uncertainty: **[16]**.
+
+The Bader paragraph uses **[17]** for the QTAIM/topological definition and **[18–21]** for grid-based numerical formulation, integration and arbitrary-grid topology. The chemistry-scope paragraph uses **[3,5–7]** and explicitly distinguishes GAMESS use cases, two-electron-integral compression and AO-basis compression from the present stored-real-space-density benchmark.
+
+Internal conclusions—three-state reclassification, floor-scale behaviour, matched-distortion results and external confirmation—remain uncited because they are supported by the study's own evidence.
+
+### Methods
+
+**Decision: PASS.**
+
+Only method components inherited from prior literature receive external references:
+
+- codec implementations/families: **[2–4]**;
+- QTAIM definition: **[17]**;
+- practical Bader/grid numerical formulation: **[18–21]**.
+
+Study-specific procedures do not receive decorative citations: Protocol A.1, eligibility, certification, binary-to-three-state reclassification, caliper matching, bootstrap design, mechanism decomposition, failure taxonomy and the external freeze are definitions or analyses introduced in this work.
+
+The periodic Hartree $G=0$ gauge convention and use of electron number/Hartree as controls are stated as operational definitions in this benchmark. No external citation is necessary unless a target journal specifically requests a methodological source for the Hartree implementation.
+
+## Claim-level citation map using submission numbers
+
+| Claim | Submission citation(s) | Audit decision |
 |---|---:|---|
-| Error-bounded lossy compression is mature scientific-data infrastructure; ZFP, SZ3 and SPERR are representative codecs used here. | [1–4] | Appropriate. Survey + primary codec papers. Four references are justified because three named codecs require three primary citations. |
-| Lossy compression reduces storage/I/O burdens in scientific workflows. | [18] | Appropriate. Broad scientific-use-case paper; no need to attach all codec references again. |
-| Quantum-chemistry/electronic-structure workflows already contain lossy-compression work. | [3,19,21] | Appropriate with object-level qualification. SZ3 includes GAMESS use cases; PaSTRI compresses two-electron integrals; Lara et al. compress an AO/NAO representation. None is described as real-space density-field compression. |
-| Post-compression scientific-data assessment is established. | [5] | Appropriate. Z-checker is used only for the assessment-framework claim. |
-| QoI-aware compression/error control is established prior art. | [6,12] | Appropriate. Jiao et al. + Ainsworth et al. carry the theoretical/mathematical burden. |
-| Application-specific pipelines preserve or guarantee QoIs. | [13,14,20] | Appropriate. These are separated from the mathematical QoI-control papers rather than bundled into one citation dump. |
-| Pointwise error bounds need not preserve selected topological descriptors; explicit topology guarantees exist. | [7,15] | Appropriate. The text specifies selected topological descriptors and does not imply Bader preservation. |
-| QoI-level bias/uncertainty prediction is emerging. | [11] | Appropriate only as recent context. The manuscript labels this as recent statistical work; foundational claims remain anchored by peer-reviewed [6,12–15,20]. |
-| QTAIM/Bader basins are defined by electron-density topology. | [17] | Appropriate. Foundational monograph carries the conceptual definition. |
-| Grid-based Bader analysis has established numerical issues involving basin assignment/integration, lattice bias and convergence. | [8–10,16] | Appropriate. Primary algorithm and modern numerical/topological treatments. This background is explicitly not claimed as novel. |
-| Codec-specific control mechanisms mean equal nominal settings are not automatically comparable across codecs. | [1–4] | Appropriate as contextual support; the actual realized-distortion asymmetry is an internal empirical result and therefore does not require an external citation. |
+| Error-bounded scientific compression is mature; ZFP/SZ3/SPERR are representative codecs used here | [1–4] | Appropriate: survey + primary codec papers |
+| Lossy compression reduces scientific storage/I/O burden | [5] | Appropriate broad use-case source |
+| Quantum-chemistry/electronic-structure lossy compression already exists | [3,5–7] | Appropriate only with object-level qualification |
+| Systematic post-compression assessment is established | [8] | Z-checker used for its actual role |
+| QoI-aware mathematical error control is prior art | [9,10] | Strong peer-reviewed anchors |
+| Operational pipelines preserve/guarantee selected QoIs | [11–13] | Function-specific group; not citation dumping |
+| Pointwise bounds need not preserve selected topological descriptors | [14,15] | Correct topology-aware prior art; not described as Bader preservation |
+| QoI-level bias/uncertainty prediction is emerging | [16] | Preprint used only as recent context |
+| QTAIM atomic basins are density-topology-defined | [17] | Foundational source |
+| Grid-based Bader algorithms involve basin assignment, lattice bias, integration and convergence | [18–21] | Appropriate numerical-method sources |
+| Equal nominal codec settings need not imply equal realized perturbation | [1–4] in Discussion context | External refs support codec-specific mechanisms; quantitative asymmetry is internal |
 
-## Reference-by-reference usage map
+## Miscitation checks
 
-1. **Di et al., survey** — broad error-bounded scientific-compression context; also supports codec-comparison context.
-2. **Lindstrom, ZFP** — primary ZFP method citation in Introduction/Methods.
-3. **Liang et al., SZ3** — primary SZ3 citation; also supports GAMESS application context.
-4. **Li et al., SPERR** — primary SPERR method citation.
-5. **Tao et al., Z-checker** — post-compression assessment framework.
-6. **Jiao et al.** — rigorous QoI-preserving compression prior art.
-7. **Yan et al., TopoSZ** — topology preservation beyond pointwise bounds.
-8. **Henkelman et al.** — practical Bader decomposition algorithm.
-9. **Tang et al.** — lattice-bias-aware grid Bader analysis.
-10. **Hutcheon & Teale** — arbitrary-grid topological analysis and numerical/discretization context.
-11. **Liu et al., TOPIQ** — recent QoI bias/uncertainty propagation context only.
-12. **Ainsworth et al.** — mathematical error control for derived quantities.
-13. **Gong et al.** — application-specific QoI-preserving scientific-data reduction.
-14. **Lee et al.** — learned error-bounded compression with derived-quantity preservation.
-15. **Gorski et al.** — general augmentation framework for topological guarantees.
-16. **Yu & Trinkle** — accurate Bader basin integration and convergence.
-17. **Bader monograph** — foundational QTAIM definition of atomic basins.
-18. **Cappello et al.** — broad scientific lossy-compression use cases, storage/I/O motivation.
-19. **Lara et al.** — recent adjacent DFT lossy-compression work; explicitly identified as AO-basis compression rather than electron-density-field compression.
-20. **Banerjee et al.** — scalable compression pipeline with QoI guarantees.
-21. **Gok et al., PaSTRI** — quantum-chemistry two-electron-integral compression context.
+**Ref. 7 (submission; Lara et al.).** The manuscript states that this work compresses an atom-centred atomic-orbital representation in DFT, not a stored real-space electron-density field. PASS.
 
-## Introduction audit
+**Refs. 14–15 (TopoSZ/topological guarantees).** The manuscript does not imply that these methods preserve Bader charges or solve the present certification problem. PASS.
 
-### What changed
+**Ref. 16 (TOPIQ).** Used only for recent QoI bias/uncertainty prediction; it does not carry foundational prior-art or novelty claims. PASS.
 
-The literature is now introduced in functional layers rather than as a long undifferentiated citation bundle:
+**Refs. 17–21 (Bader/QTAIM).** Used to acknowledge established density topology, grid algorithms, numerical integration and discretization effects. The manuscript does not present these facts as discoveries of this work. PASS.
 
-1. **Scientific-compression maturity and codecs:** [1–4,18].
-2. **Domain-specific chemistry/electronic-structure precedent:** [3,19,21].
-3. **QoI-aware mathematical control:** [6,12].
-4. **QoI-preserving scientific pipelines:** [13,14,20].
-5. **Topology-aware guarantees:** [7,15].
-6. **Emerging QoI uncertainty prediction:** [11].
-7. **Bader/QTAIM foundations and numerical analysis:** [8–10,16,17].
+**Refs. 3,5–7 (chemistry/electronic structure).** Used as adjacent domain context with compressed objects named explicitly. PASS.
 
-This ordering lets the novelty question appear only after the strongest competing prior art has been acknowledged.
+## Citation-dumping audit
 
-### Missing-citation check
+No sentence in the polished reader-facing manuscript contains a broad “all related literature” dump. Multi-reference groups are retained only when the sentence has a correspondingly narrow literature-family claim:
 
-No major external factual claim in the Introduction remains unsupported. The paragraph defining the paper's proposed eligibility logic is intentionally uncited because it states the present study's conceptual framework rather than a claim about prior literature.
+- **[1–4]**: survey + three named codec families;
+- **[11–13]**: three operational QoI-preserving pipeline papers;
+- **[18–21]**: four complementary Bader/grid numerical sources.
 
-### Miscitation check
+The manuscript intentionally avoids groups such as `[1–21]`, `[5–16]`, or a single sentence mixing assessment, QoI preservation, topology preservation and Bader algorithms.
 
-- [19] is no longer vulnerable to being read as prior electron-density-field compression; the compressed object is named explicitly as the atomic-orbital representation.
-- [7,15] are not described as Bader-preserving methods.
-- [11] is not used to establish the historical existence of QoI-aware compression.
-- [8–10,16,17] are used to acknowledge established Bader/QTAIM numerical structure rather than to imply a new discovery.
+## Claims that should remain internally sourced
 
-### Citation-dumping check
+Do not add literature citations to the following merely to make the paper “look more referenced”:
 
-No Introduction sentence carries more than four citations. Multi-reference groups correspond to distinct named methods or a tightly defined literature family. The prior-art paragraph is deliberately split into theory, workflow, topology, and uncertainty sentences.
+- all benchmark counts and denominators;
+- Protocol A.1 eligibility fractions;
+- Figure 3 reclassification percentages;
+- Hartree response statistics;
+- Bader ladder response statistics;
+- error-to-floor distributions;
+- mechanism-decomposition effect sizes;
+- realized-distortion matching estimates and confidence intervals;
+- rate–fidelity rankings;
+- external-cohort reproduction results;
+- failure/reproduction audit counts.
 
-## Discussion audit
+These need figure/table/Supplementary cross-references and machine-readable provenance, not external literature.
 
-### What changed
+## Remaining pre-submission citation tasks
 
-The earlier sentence citing `[5–7,11]` for all QoI-aware prior art was too coarse. It mixed assessment, QoI preservation, topology preservation, and uncertainty prediction into one bundle and omitted several directly relevant works. It has been replaced by four claim-specific sentences:
+1. Convert working bracketed callouts to the exact typography required by the selected journal (for example, superscript numbering where required).
+2. Keep stable library IDs out of the reader-facing manuscript; use the crosswalk whenever importing references from project notes.
+3. Re-check TOPIQ immediately before submission and replace the preprint metadata if a peer-reviewed version appears.
+4. During Word generation, verify that reference callouts remain attached to the exact clause they support and do not drift across sentence edits.
+5. Do not add references solely to increase bibliography length. The current 21-reference core has complete functional coverage for the present argument.
 
-- mathematical QoI control: [6,12];
-- operational QoI-preserving pipelines: [13,14,20];
-- topology-aware methods: [7,15];
-- recent statistical QoI prediction: [11].
+## Final audit verdict
 
-This makes the novelty boundary auditable and reduces the chance that a reviewer interprets the manuscript as overlooking closely related work.
-
-The Bader mechanism paragraph now cites [17] for the conceptual topology and [8–10,16] for grid-based implementation/numerical integration. The codec-comparison paragraph cites [1–4] only for general codec-specific control mechanisms; all quantitative matched-distortion results remain supported by the paper's own data.
-
-A new chemistry-scope paragraph cites [3,18,19,21] to pre-empt the objection that electronic-structure compression already exists. It states precisely why those papers are adjacent rather than overlapping: they compress other objects or address other validation targets.
-
-### Missing-citation check
-
-No major prior-art statement in the Discussion remains uncited. Claims that derive directly from this benchmark—97.2%/95.5% reclassification, floor-scale behaviour, matching results, and external replication—correctly remain uncited because their support is the study's own figures/tables/data.
-
-### Citation-dumping check
-
-No Discussion sentence uses an indiscriminate long list. The largest bundles are [1–4], where all four are needed to support a statement about the codec families used, and [8–10,16], where the sentence explicitly summarizes the grid-based Bader numerical literature.
-
-## Methods audit
-
-- `Benchmark design` now cites the primary method papers for the actual codec families: [2–4].
-- `Re-derived Bader charge` now distinguishes the foundational QTAIM definition [17] from grid-based algorithm/numerical integration literature [8–10,16].
-- Protocol A.1, three-state eligibility, reclassification, matching settings, and external confirmation are study-specific procedures and therefore do not receive decorative external citations.
-
-## Claims deliberately left uncited
-
-The following are internally generated results or study definitions and should not be padded with external references:
-
-- 6,343 reconstruction rows; 254 development systems; 63 external systems.
-- Protocol A.1 five-seed floor values and eligibility fractions.
-- 97.2%, 95.5%, 56.5% failure reclassification and 46.3% non-evaluable naive passes.
-- Hartree scaling exponent and material-level $R^2$ values.
-- Bader monotonicity, local exponents and jump statistics.
-- error-to-floor ratios.
-- fixed-basin/domain-migration decomposition results.
-- nominal-vs-realized $L_\infty$ ratios and matched-error ratios.
-- certified compression-ratio rankings and external-cohort results.
-
-These should be traced to figures, supplementary tables, frozen CSVs, and the claim–evidence matrix rather than to external literature.
-
-## Final novelty sentence approved for submission drafting
-
-> Existing work has developed error-bounded compression, QoI-aware error control, QoI-preserving pipelines and topology-preserving reconstruction. We add a distinct precondition for scientific benchmark validity: the requested downstream tolerance must first be shown to be numerically identifiable on the reference data before pass/fail attribution to compression is meaningful.
-
-## Remaining reference work before final submission
-
-1. Convert the Markdown numeric references into the exact target-journal reference style only after the journal is selected.
-2. Verify every DOI, author list, year, volume and page range against Crossref/publisher metadata in the final bibliography pass.
-3. If TOPIQ receives a peer-reviewed publication before submission, replace the arXiv entry with the published version without changing the role it plays in the narrative.
-4. Avoid adding more references unless they close a genuine conceptual gap; the present 21-reference core is sufficient for the current Introduction/Discussion architecture.
+**PASS.** The full manuscript now separates prior knowledge from study-specific evidence, uses the literature conservatively, avoids obvious miscitation and citation dumping, and numbers the submission references in order of first appearance. The strongest remaining manuscript-quality risk is no longer bibliography coverage; it is numerical/cross-reference consistency between main text, figures and Supplementary Information.
