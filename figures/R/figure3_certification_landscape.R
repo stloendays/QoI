@@ -117,7 +117,7 @@ p_b <- ggplot(S, aes(x = x)) +
   scale_fill_manual(values = c("Certified" = col_teal, "Eligible failure" = col_red, "Non-evaluable" = col_orange)) +
   scale_x_continuous(breaks = 1:3, labels = threshold_labels, limits = c(0.5,3.5), expand = c(0,0)) +
   scale_y_continuous(breaks = seq(0,800,100), limits = c(0,815), expand = c(0,0)) +
-  labs(title = "B  Protocol A.1 three-state certification", subtitle = "Eligibility is established before codec success or failure is assigned", x = "Bader threshold", y = "Number of decisions") +
+  labs(title = "B  QSQ three-state certification", subtitle = "Eligibility is established before codec success or failure is assigned", x = "Bader threshold", y = "Number of decisions") +
   guides(fill = guide_legend(nrow = 1, byrow = TRUE)) + base_theme +
   theme(legend.position = "bottom", legend.box.margin = margin(t = -4))
 
@@ -132,7 +132,7 @@ p_c <- ggplot(S_c, aes(x = x)) +
   scale_fill_manual(values = c("Genuine eligible failure" = col_red, "Reclassified non-evaluable" = col_orange)) +
   scale_x_continuous(breaks = 1:3, labels = threshold_labels, limits = c(0.5,3.5), expand = c(0,0)) +
   scale_y_continuous(breaks = seq(0,700,100), limits = c(0,720), expand = c(0,0)) +
-  labs(title = "C  Reclassification of naive failures", subtitle = "Protocol A.1 separates genuine failures from non-evaluable targets", x = "Bader threshold", y = "Number of naive failures") +
+  labs(title = "C  Reclassification of naive failures", subtitle = "QSQ separates genuine failures from non-evaluable targets", x = "Bader threshold", y = "Number of naive failures") +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) + base_theme +
   theme(legend.position = "bottom", legend.box.margin = margin(t = -4))
 
@@ -142,7 +142,7 @@ p_key <- ggplot() + coord_cartesian(xlim = c(0,1), ylim = c(0,1), clip = "off") 
   annotate("text", x=.082, y=.50, label="Key takeaway", fontface="bold", size=5.8, colour=col_text) +
   annotate("segment", x=.175, xend=.175, y=.16, yend=.84, colour="#94A3B8", linewidth=.45) +
   annotate("text", x=.195, y=.61, hjust=0, label="At strict Bader contracts, most apparent codec failures are not genuine compressor failures;", fontface="bold", size=4.35, colour=col_text) +
-  annotate("text", x=.195, y=.37, hjust=0, label="they occur on material-threshold pairs that are non-evaluable under the independent Protocol A.1 stability qualification.", size=4.05, colour=col_text) +
+  annotate("text", x=.195, y=.37, hjust=0, label="they occur on material-threshold pairs that are non-evaluable under independent QoI Stability Qualification (QSQ).", size=4.05, colour=col_text) +
   annotate("text", x=.195, y=.19, hjust=0, label="Eligibility also invalidates apparent passes: 106/229 (46.3%) at 10^-4 e.", size=3.65, colour="#4B5563")
 
 fig <- ((p_a | p_b | p_c) / p_key) + plot_layout(heights = c(8.4,1.6)) +
