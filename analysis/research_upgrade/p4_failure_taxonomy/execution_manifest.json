@@ -1,0 +1,28 @@
+{
+  "status": "FAILURE_TAXONOMY_COMPLETE_BEFORE_RETRY",
+  "first_run_failures": 144,
+  "unclassified_failures": 0,
+  "failure_family_counts": {
+    "SPERR_WORKDIR_NOT_CREATED": 72,
+    "HENKELMAN_WORKDIR_NOT_CREATED": 72
+  },
+  "stage_counts": {
+    "codec": 72,
+    "henkelman": 72
+  },
+  "codec_counts": {
+    "SPERR": 72,
+    "SZ3": 36,
+    "ZFP": 36
+  },
+  "solver_counts": {
+    "baderkit_ongrid": 36,
+    "henkelman_ongrid": 108
+  },
+  "unique_affected_states": 9,
+  "scientific_parameter_change_authorized": false,
+  "allowed_engineering_fixes": [
+    "create SPERR codec work directory before frozen codec_roundtrip",
+    "create Henkelman solver work directory before validated adapter call"
+  ]
+}
