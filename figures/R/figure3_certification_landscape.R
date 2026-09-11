@@ -23,7 +23,8 @@ stopifnot(nrow(p1) == 3L, all(p1$design == "completed_common_tight"))
 stopifnot(identical(as.integer(p1$n_decisions), c(762L, 762L, 762L)))
 stopifnot(all(abs(p1$no_pass_risk_eligible - c(0.10869565217391304, 0.03263403263403263, 0.0)) < 1e-15))
 stopifnot(all(abs(p1$no_pass_risk_non_evaluable - c(0.7932692307692307, 0.6636636636636637, 0.68)) < 1e-15))
-stopifnot(nrow(p2) == 6L, sum(p2$planned_trials) == 29972L) # each physical fresh trial appears once per gate row at one tau
+stopifnot(nrow(p2) == 6L)
+stopifnot(all(tapply(p2$planned_trials, p2$tau_e, sum) == 14986L)) # same 14,986 physical trials summarized at each threshold
 p2_primary <- p2[p2$tau_e == 1e-3, , drop = FALSE]
 stopifnot(nrow(p2_primary) == 2L)
 stopifnot(sum(p2_primary$valid_trials) == 14986L, sum(p2_primary$unresolved_trials) == 0L)
