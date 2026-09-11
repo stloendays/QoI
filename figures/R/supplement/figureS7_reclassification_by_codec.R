@@ -94,7 +94,7 @@ fig <- (pA / (pB | pC)) +
   plot_annotation(
     title = "Supplementary Figure S7 | Codec-resolved consequences of stability qualification",
     subtitle = "At 10^-4 and 10^-3 e, more than 93% of naive failures for every codec lie on non-evaluable material-threshold pairs.",
-    caption = "Each codec contributes 254 development decisions per threshold. Protocol A.1 removes invalid successes as well as invalid failures; non-evaluable is neither pass nor failure.",
+    caption = "Each codec contributes 254 development decisions per threshold. QoI Stability Qualification (QSQ) invalidates unsupported successes as well as unsupported failures; non-evaluable is neither pass nor failure.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
                   plot.title = element_text(face = "bold", size = 14.1, colour = ink, margin = margin(b = 4)),
                   plot.subtitle = element_text(size = 9.6, colour = muted, margin = margin(b = 8)),
