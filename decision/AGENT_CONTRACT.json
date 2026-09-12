@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "role": "non-authoritative orchestration and explanation",
+  "scientific_authority": [
+    "QSQ eligibility",
+    "frozen endpoint-specific certification rules",
+    "deterministic decision ranking over measured certified candidates"
+  ],
+  "agent_may": [
+    "translate natural-language preferences into a structured decision request",
+    "invoke qualification, certification, and ranking tools",
+    "explain recommendation, alternatives, margins, and missing evidence",
+    "propose additional measurements when no certified candidate exists",
+    "write an auditable decision trace"
+  ],
+  "agent_must_not": [
+    "override QSQ eligibility",
+    "change frozen thresholds or perturbation semantics",
+    "certify unmeasured codec settings",
+    "silently change the scientific endpoint",
+    "generalize the P4 coarse-endpoint result beyond its validated scope"
+  ],
+  "default_contract": {
+    "endpoint": "absolute re-derived Bader-charge error",
+    "required_parameters": ["material_id", "tau_e"],
+    "decision_objectives": ["max-compression", "max-margin", "min-runtime", "balanced"]
+  }
+}
