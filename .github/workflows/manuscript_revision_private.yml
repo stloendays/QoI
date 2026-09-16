@@ -1,0 +1,118 @@
+name: Private manuscript revision QA
+
+on:
+  push:
+    branches: [review/manuscript-audit-20260916]
+    paths:
+      - 'scripts/manuscript_revision_private.py'
+      - '.github/workflows/manuscript_revision_private.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SOURCE_COMMIT: 5eabc39476b3e9d3a1ddebd46169bc29aaca877c
+  MANUSCRIPT_PATH: paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+  EXPECTED_REVISED_SHA256: 441ee283e003b3f9584dfdb4750525c273979aa42fea8880fe9e4daffaa346b7
+
+jobs:
+  revise-and-verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Recover frozen manuscript and apply deterministic revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show "${SOURCE_COMMIT}:${MANUSCRIPT_PATH}" > manuscript_source.md
+          python scripts/manuscript_revision_private.py manuscript_source.md manuscript_revised.md
+          sha256sum manuscript_revised.md | awk '{print $1}' > REVISION_SHA256.txt
+          test "$(cat REVISION_SHA256.txt)" = "$EXPECTED_REVISED_SHA256"
+          printf '%s\n' "$SOURCE_COMMIT" > SOURCE_COMMIT.txt
+          sha256sum scripts/manuscript_revision_private.py > REVISION_SCRIPT_SHA256.txt
+
+      - name: Guard frozen claims and submission structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          t=Path('manuscript_revised.md').read_text(encoding='utf-8')
+          def wc(s): return len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'\-]*\b", s))
+          abstract=re.search(r'(?s)^## Abstract\n\n(.*?)(?=\n\n\*\*Keywords:)',t,re.M).group(1)
+          assert wc(abstract) == 224, wc(abstract)
+          required=['20.34-fold','50.83','14,986','1.600%','81.325%','24/24','60/60','$\\kappa=1.000$','$\\rho=0.995$','$\\rho=0.754$']
+          for x in required: assert x in t, x
+          forbidden=['Protocol A.1','Protocol A','_A1','pre-registered','RuO$_2$','CO$_2$RR','$\nho=','public `stloendays/QoI` repository','<!--']
+          for x in forbidden: assert x not in t, x
+          results=re.search(r'(?s)## Results\n(.*?)\n## Discussion',t).group(1)
+          rh=re.findall(r'(?m)^### (.+)$',results)
+          expected=[
+          'Downstream operators respond differently to the same field perturbation',
+          'QSQ qualification separates benchmark validity from codec agreement',
+          'Prospective validation quantifies the separation across thresholds',
+          'A valid stability probe must excite the numerical failure mode',
+          'QSQ transfers across an independent on-grid Bader implementation',
+          'A coarse chemical direction can remain stable outside a strict numerical contract',
+          'Basin migration provides a Bader-specific mechanism for irregular amplification',
+          'The strictest certified regime approaches the analysis floor',
+          'Realized distortion, not nominal tolerance, is required for fair codec comparison',
+          'Stability-qualified rate–fidelity rankings depend on the scientific contract',
+          'Frozen decision rules reproduce on an untouched external cohort']
+          assert rh == expected, rh
+          methods=re.search(r'(?s)## Methods\n(.*?)\n## Data and code availability',t).group(1)
+          mh=re.findall(r'(?m)^### (.+)$',methods)
+          assert mh.index('QoI Stability Qualification and eligibility') < mh.index('Common-ladder completion and prospective perturbation validation') < mh.index('Independent implementation-transfer validation')
+          assert 'private version-controlled research archive' in t
+          figs=[]
+          for n in range(1,8):
+              p=t.find(f'Fig. {n}')
+              assert p>=0, n
+              figs.append(p)
+          assert figs == sorted(figs), figs
+          qa=f'''# Manuscript revision QA — 2026-09-16\n\n- Source commit: `{Path('SOURCE_COMMIT.txt').read_text().strip()}`\n- Revised SHA-256: `{Path('REVISION_SHA256.txt').read_text().strip()}`\n- Abstract words: **{wc(abstract)}**\n- Results subsections: **{len(rh)}**\n- P3A has dedicated Results heading: **yes**\n- Reader-facing internal Protocol A/A.1 residues: **0**\n- Malformed rho residues: **0**\n- Legacy RuO2/CO2RR Markdown tokens: **0**\n- Stale public-repository availability statement: **0**\n- Figure first-citation order 1→7: **PASS**\n- Frozen anchors P1/P2/P3A/P4: **PASS**\n- Scientific data, thresholds, cohorts and endpoints: **not modified by this editorial pass**\n'''
+          Path('REVISION_QA_PUBLIC.md').write_text(qa,encoding='utf-8')
+          PY
+          cat REVISION_QA_PUBLIC.md
+
+      - name: Encrypt revised manuscript for short-lived transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > recipient_public.pem <<'EOF'
+          -----BEGIN PUBLIC KEY-----
+          MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAuvRxrODxBZRoJ8O3RRQ/
+          RlUcQv2noPy7te57DeZfNEBMTB8bvvWGR31UKeXcm+rVf5nvTBXRrZIYSU3dbAQT
+          YpdOJQ0gJFnJ8yNN9P8n8jx+R2ix6OsABYPAJRiOvXyLPIFolL0QiPGn6t6bLIat
+          Xnz31JsDXoZgTRaJB1m7EqrhmZcYeN5Ibh5XZDNiRxZIS2cP1wa4GKLu+kTUQPEz
+          eJgCcHA6RgsSNyrBKWHoRueD7gNzTEcEA8D8zIPHN1RE6bgLZvTCsrfLoOnLeSbj
+          4at6oSxJfxE50uNAzCpETS+w9ggFoqk4UC4viG/tzpPYXAyxFatlyNb43A/IaU0a
+          Yuc/aLF2jQHtbaZLPOUko0vG6u7GhwJYZrkDcOStbEH4fWNVxGM2iEDRhlIwbkur
+          qvsXiGFKIee3XDgjwFgIpWKR+sECN14sdsM3LiMHQcrDYdW9F0mHu0TuBEJIKrKV
+          7ZNFCQfsNdIduFP7BgF6WoM1G7nRA/UWL9pqw8kpnNNPAgMBAAE=
+          -----END PUBLIC KEY-----
+          EOF
+          openssl rand -hex 32 > artifact.pass
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in manuscript_revised.md -out manuscript_revised.md.enc -pass file:artifact.pass
+          openssl pkeyutl -encrypt -pubin -inkey recipient_public.pem -in artifact.pass -out artifact.pass.enc -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+          rm -f artifact.pass manuscript_revised.md manuscript_source.md recipient_public.pem
+
+      - name: Upload encrypted transfer and public QA only
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-revision-encrypted-20260916
+          path: |
+            manuscript_revised.md.enc
+            artifact.pass.enc
+            REVISION_QA_PUBLIC.md
+            REVISION_SHA256.txt
+            REVISION_SCRIPT_SHA256.txt
+            SOURCE_COMMIT.txt
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
