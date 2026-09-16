@@ -1,0 +1,260 @@
+name: Manuscript quality audit
+
+on:
+  push:
+    branches: [review/manuscript-audit-20260916]
+    paths:
+      - .github/workflows/manuscript_quality_audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      SOURCE_COMMIT: 5eabc39476b3e9d3a1ddebd46169bc29aaca877c
+      MANUSCRIPT_PATH: paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Recover frozen manuscript from pre-cleanup history
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show "${SOURCE_COMMIT}:${MANUSCRIPT_PATH}" > manuscript.md
+          printf '%s\n' "$SOURCE_COMMIT" > SOURCE_COMMIT.txt
+
+      - name: Run structural and editorial audit
+        shell: bash
+        run: |
+          cat > audit.py <<'PY'
+          from __future__ import annotations
+          import csv
+          import re
+          from pathlib import Path
+
+          path = Path('manuscript.md')
+          text = path.read_text(encoding='utf-8')
+          lines = text.splitlines()
+
+          def word_count(s: str) -> int:
+              s = re.sub(r'<!--.*?-->', ' ', s, flags=re.S)
+              s = re.sub(r'https?://\S+', ' ', s)
+              return len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'\-]*\b", s))
+
+          def line_of(token: str) -> int | None:
+              low = token.lower()
+              for i, line in enumerate(lines, 1):
+                  if low in line.lower():
+                      return i
+              return None
+
+          headings = []
+          current_h2 = None
+          section_words = {}
+          section_lines = {}
+          current_key = 'Preamble'
+          buf = []
+          start = 1
+          for i, line in enumerate(lines, 1):
+              m2 = re.match(r'^##\s+(.+)$', line)
+              if m2:
+                  if buf:
+                      section_words[current_key] = word_count('\n'.join(buf))
+                      section_lines[current_key] = (start, i - 1)
+                  current_h2 = m2.group(1).strip()
+                  current_key = current_h2
+                  start = i
+                  buf = [line]
+                  headings.append((2, current_h2, i))
+                  continue
+              m3 = re.match(r'^###\s+(.+)$', line)
+              if m3:
+                  headings.append((3, m3.group(1).strip(), i))
+              buf.append(line)
+          if buf:
+              section_words[current_key] = word_count('\n'.join(buf))
+              section_lines[current_key] = (start, len(lines))
+
+          abstract_match = re.search(r'^## Abstract\s*(.*?)(?=^##\s+)', text, re.M | re.S)
+          abstract_words = word_count(abstract_match.group(1)) if abstract_match else 0
+
+          paras = []
+          for chunk in re.split(r'\n\s*\n', text):
+              c = chunk.strip()
+              if not c or c.startswith('#') or c.startswith('$$') or c.startswith('<!--'):
+                  continue
+              n = word_count(c)
+              if n:
+                  first_line = text[:text.find(chunk)].count('\n') + 1 if chunk in text else 0
+                  paras.append((n, first_line))
+          long_paras = sorted([p for p in paras if p[0] >= 180], reverse=True)
+
+          sentence_lengths = []
+          current_section = 'Preamble'
+          for i, line in enumerate(lines, 1):
+              h = re.match(r'^##?\s+(.+)$', line)
+              if h:
+                  current_section = h.group(1).strip()
+              if line.startswith('#') or line.startswith('<!--'):
+                  continue
+              for sent in re.split(r'(?<=[.!?])\s+', line.strip()):
+                  n = word_count(sent)
+                  if n >= 55:
+                      sentence_lengths.append((n, i, current_section))
+          sentence_lengths.sort(reverse=True)
+
+          anchor_tokens = [
+              '20.34', '50.83', '14,986', '1.600%', '81.325%', '24/24',
+              '60/60', '97.2%', '95.5%', '56.3%'
+          ]
+          anchor_counts = {t: text.count(t) for t in anchor_tokens}
+
+          result_headings = []
+          in_results = False
+          for level, title, line in headings:
+              if level == 2:
+                  in_results = title == 'Results'
+              elif level == 3 and in_results:
+                  result_headings.append((title, line))
+
+          html_comments = re.findall(r'<!--.*?-->', text, flags=re.S)
+          internal_terms = {
+              'Protocol A': len(re.findall(r'Protocol A(?!\.)', text)),
+              'Protocol A.1': text.count('Protocol A.1'),
+              '_A1': text.count('_A1'),
+          }
+          malformed_rho = len(re.findall(r'\nho=|\rho=|Spearman\s+\$\s*ho=', text, flags=re.I))
+          raw_subscripts = text.count('RuO$_2$') + text.count('CO$_2$RR')
+          stale_public_availability = 'public `stloendays/QoI` repository' in text
+          repo_retains_language = 'The repository retains the failure registry' in text
+          placeholders = re.findall(r'\b(?:TODO|FIXME|TBD)\b|\?\?+', text, flags=re.I)
+          valid_benchmark_questions = len(re.findall(r'valid benchmark\?', text, flags=re.I))
+
+          p3_idx = text.find('<!-- P3A_RESOLVED_EVIDENCE -->')
+          p3_missing_heading = False
+          if p3_idx >= 0:
+              tail = text[p3_idx:].splitlines()[1:6]
+              first_nonblank = next((x.strip() for x in tail if x.strip()), '')
+              p3_missing_heading = not first_nonblank.startswith('### ')
+
+          total_words = word_count(text)
+          intro_line = line_of('when is the requested QoI tolerance itself a valid benchmark?')
+          intro_line_2 = line_of('when is a requested downstream tolerance itself a valid benchmark?')
+          p2_line = line_of('Prospective validation quantifies the separation across thresholds')
+          central_line = line_of('The central validation is not the historical fraction')
+
+          priorities = []
+          if stale_public_availability or repo_retains_language:
+              priorities.append(('HIGH', 'Availability/reproducibility language is now factually stale after the private-archive transition; revise before any new manuscript export.'))
+          if p3_missing_heading:
+              priorities.append(('HIGH', 'P3A implementation-transfer evidence has no Results subheading, so a major validation stage is visually buried between mechanism and P4.'))
+          if valid_benchmark_questions >= 2:
+              priorities.append(('HIGH', 'The Introduction asks the same core "valid benchmark" question twice; convert the final occurrence into a concise contribution/evidence paragraph.'))
+          if anchor_counts['14,986'] >= 3 or anchor_counts['1.600%'] >= 3:
+              priorities.append(('HIGH', 'P2 prospective evidence is repeated across Abstract, overview Results, dedicated Results and Discussion; consolidate one layer of repetition.'))
+          if malformed_rho:
+              priorities.append(('HIGH', 'Source manuscript still contains malformed rho rendering in the P3A paragraph; fix the Markdown source, not only the exported Word/PDF.'))
+          if raw_subscripts:
+              priorities.append(('MEDIUM', 'Reader-facing source still uses RuO$_2$/CO$_2$RR inline subscript syntax that previously rendered poorly in Word; normalize source text.'))
+          if html_comments:
+              priorities.append(('MEDIUM', f'Remove {len(html_comments)} internal HTML integration markers from the submission-facing source.'))
+          if abstract_words > 250:
+              priorities.append(('MEDIUM', f'Abstract is {abstract_words} words and numerically dense; target a shorter version centered on problem -> QSQ -> P2 validation -> implementation transfer -> scope boundary.'))
+          if result_headings and result_headings[0][0].startswith('Identical field perturbations'):
+              priorities.append(('STRUCTURAL', 'The Results open with operator controls rather than the P1/P2 benchmark-validity result. Consider leading with the central qualification result and moving controls/mechanism later.'))
+          if p2_line and central_line and p2_line > central_line:
+              priorities.append(('STRUCTURAL', 'The manuscript first summarizes P2 inside the benchmark-axes section and then gives a dedicated P2 section. Choose one as the quantitative home and make the other a short bridge.'))
+          if len(long_paras) >= 3:
+              priorities.append(('MEDIUM', f'{len(long_paras)} paragraphs are >=180 words; several can be split to reduce cognitive load.'))
+          if sentence_lengths:
+              priorities.append(('LOW', f'{len(sentence_lengths)} sentences are >=55 words; trim the densest method/result sentences.'))
+
+          out = []
+          out.append('# Manuscript quality audit — 2026-09-16')
+          out.append('')
+          out.append('Source commit: `5eabc39476b3e9d3a1ddebd46169bc29aaca877c`')
+          out.append('')
+          out.append('## Executive checks')
+          out.append('')
+          out.append(f'- Total manuscript words (including references/metadata tokens): **{total_words}**')
+          out.append(f'- Abstract words: **{abstract_words}**')
+          out.append(f'- Internal HTML integration comments: **{len(html_comments)}**')
+          out.append(f'- Core "valid benchmark?" question occurrences: **{valid_benchmark_questions}**')
+          out.append(f'- P3A missing a Results subheading: **{p3_missing_heading}**')
+          out.append(f'- Stale public-repository availability statement: **{stale_public_availability}**')
+          out.append(f'- Stale repository-retains language: **{repo_retains_language}**')
+          out.append(f'- Malformed rho patterns detected: **{malformed_rho}**')
+          out.append(f'- RuO2/CO2RR legacy subscript tokens detected: **{raw_subscripts}**')
+          out.append(f'- TODO/FIXME/TBD/?? placeholders: **{len(placeholders)}**')
+          out.append('')
+          out.append('## Prioritized editorial/structural findings')
+          out.append('')
+          for level, msg in priorities:
+              out.append(f'- **{level}** — {msg}')
+          out.append('')
+          out.append('## Results-section order')
+          out.append('')
+          for title, line in result_headings:
+              out.append(f'- L{line}: {title}')
+          out.append('')
+          out.append('## Key-result repetition counts')
+          out.append('')
+          for token, count in anchor_counts.items():
+              out.append(f'- `{token}`: {count}')
+          out.append('')
+          out.append('## Section word counts')
+          out.append('')
+          for name, count in section_words.items():
+              a, b = section_lines[name]
+              out.append(f'- {name}: {count} words (L{a}–L{b})')
+          out.append('')
+          out.append('## Density checks')
+          out.append('')
+          out.append(f'- Paragraphs >=180 words: {len(long_paras)}')
+          for n, line in long_paras[:12]:
+              out.append(f'  - ~{n} words, starts near L{line}')
+          out.append(f'- Sentences >=55 words: {len(sentence_lengths)}')
+          for n, line, sec in sentence_lengths[:12]:
+              out.append(f'  - {n} words at L{line} ({sec})')
+          out.append('')
+          out.append('## Internal terminology residue')
+          out.append('')
+          for term, count in internal_terms.items():
+              out.append(f'- `{term}`: {count}')
+          out.append('')
+          out.append('## Narrative-location diagnostics')
+          out.append('')
+          out.append(f'- First core-question occurrence line: {intro_line}')
+          out.append(f'- Second core-question occurrence line: {intro_line_2}')
+          out.append(f'- "central validation" bridge line: {central_line}')
+          out.append(f'- dedicated prospective-validation heading line: {p2_line}')
+          out.append('')
+          out.append('This audit is editorial/structural only. It does not alter frozen P1–P4 data, thresholds, cohorts, endpoints or scientific conclusions.')
+          Path('MANUSCRIPT_QUALITY_AUDIT_20260916.md').write_text('\n'.join(out) + '\n', encoding='utf-8')
+
+          with Path('SECTION_METRICS_20260916.csv').open('w', newline='', encoding='utf-8') as f:
+              w = csv.writer(f)
+              w.writerow(['section', 'word_count', 'start_line', 'end_line'])
+              for name, count in section_words.items():
+                  a, b = section_lines[name]
+                  w.writerow([name, count, a, b])
+          PY
+          python audit.py
+          cat MANUSCRIPT_QUALITY_AUDIT_20260916.md
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-quality-audit-20260916
+          path: |
+            MANUSCRIPT_QUALITY_AUDIT_20260916.md
+            SECTION_METRICS_20260916.csv
+            SOURCE_COMMIT.txt
+          if-no-files-found: error
+          retention-days: 30
