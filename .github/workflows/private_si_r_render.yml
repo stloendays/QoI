@@ -5,6 +5,7 @@ on:
     branches: [review/private-si-assets-build-20260916]
     paths:
       - '.github/workflows/private_si_r_render.yml'
+      - 'ci/private_si_handoff_public.pem'
 
 permissions:
   contents: read
@@ -45,7 +46,21 @@ jobs:
           perl -0pi -e 's/Within-material log10 floor span across five seeds \(decades\)/Within-material log10 QSQ-response-scale span across five seeds (decades)/g; s/x0\.1 -> x10 floor shift/x0.1 -> x10 response-scale shift/g; s/The floor is qualification-defined, not amplitude-free/The response scale is qualification-defined, not amplitude-free/g; s/Re-derived Bader floor \(e\)/Re-derived Bader response scale (e)/g' figures/R/supplement/figureS2_probe_seed_amplitude.R
           perl -0pi -e 's/Certified Bader error is floor-scale only at the strictest contract/Certified Bader error approaches the QSQ response scale only at the strictest contract/g; s/Re-derived Bader error \/ QSQ floor/Re-derived Bader error \/ QSQ response scale/g; s/Error versus floor/Error versus QSQ response scale/g; s/QSQ stability floor \(e\)/Operational QSQ response scale (e)/g; s/relative to the floor/relative to the QSQ response scale/g; s/The strictest certified Bader regime is floor-scale, not a universal plateau/The strictest certified Bader regime approaches the QSQ response scale, not a universal plateau/g; s/Independent QSQ stability floors provide the numerical reference scale/Independent operational QSQ response scales provide the numerical reference scale/g; s/error\/floor summaries/error\/response-scale summaries/g; s/the QSQ floor/the QSQ response scale/g' figures/R/supplement/figureS4_tight_floor_scale.R
           perl -0pi -e 's/Absolute stability floors depend on the basin implementation/Operational QSQ response scales depend on basin implementation/g; s/BaderKit on-grid QSQ floor \(e\)/BaderKit on-grid QSQ response scale (e)/g; s/Independent implementation QSQ floor \(e\)/Independent implementation QSQ response scale (e)/g; s/stability-floor cross-checks/response-scale cross-checks/g; s/absolute numerical floor/operational numerical response scale/g' figures/R/supplement/figureS5_bader_implementation_robustness.R
-          grep -RniE '"[^"\n]*(QSQ stability floor|QSQ floor|Absolute stability floors|Re-derived Bader floor|The floor is qualification-defined)[^"\n]*"' figures/R/supplement/*.R && exit 1 || true
+          for bad in \
+            'Archived float32-probe floor (e)' \
+            'QSQ stability floor (e)' \
+            'The floor is qualification-defined, not amplitude-free' \
+            'Re-derived Bader floor (e)' \
+            'Re-derived Bader error / QSQ floor' \
+            'Absolute stability floors depend on the basin implementation' \
+            'BaderKit on-grid QSQ floor (e)' \
+            'Independent implementation QSQ floor (e)' \
+            'absolute numerical floor'; do
+              if grep -RFn -- "$bad" figures/R/supplement/*.R; then
+                echo "stale visible label remains: $bad" >&2
+                exit 1
+              fi
+          done
       - name: Render all publication supplementary figures from R
         shell: bash
         run: |
@@ -74,25 +89,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat > build_pub.pem <<'EOF'
-          -----BEGIN PUBLIC KEY-----
-          MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA3Mt1XQSu1ofV3Q+YqH6p
-          +FYGge7cfzwjQ0ugghpp1aVvxhhlFZOPdOQZe7L3MPuCL43RT1C7tibtok+lggNp
-          bzPMhwb53wU+BbauagscmIO8u53ZQ2whv4EcDV1HKh6mWM9ycv4gmyC9jLanknZE
-          CwIbSffqmoRAFBT5WP30OwwjYqghi7cA6PrriVQnA6yv2VfEdPURnYTR263W1/MA
-          2y3/8lv4MA5sab2CdJGq4nJtkAuglnu6Jr+zwa1NeifJiQmJG1Jj/PGC+DuGPzxA
-          uMtl2eHVyW0Pd2IlH6H0zPbhq/FbBsmAGffkZUVvzF9jPREO24EGJDUupsevadSy
-          xmIU2YozNjtDeJtijMvZQUJW08v3hb4jxiA+VtvwpKER/4Y5bHaKcNcp3ea6pSJ1
-          UQCftsNBoUCZ9VYfaQbnfLSbh7YnOKQqDoVw/gcSkJetlp0MyyIAt6IyGM1rgjhU
-          W1BZRSzw0P676ZomsM6EUnAgW0hkA84UbIBKCaCOFDqdAgMBAAE=
-          -----END PUBLIC KEY-----
-          EOF
-          sed -i 's/^          //' build_pub.pem
           tar -C bundle -czf si-figures-private.tgz .
           openssl rand -hex 32 > handoff.key
           openssl enc -aes-256-cbc -salt -pbkdf2 -in si-figures-private.tgz -out si-figures-private.tgz.enc -pass file:handoff.key
-          openssl pkeyutl -encrypt -pubin -inkey build_pub.pem -in handoff.key -out handoff.key.enc
-          rm -f handoff.key si-figures-private.tgz build_pub.pem
+          openssl pkeyutl -encrypt -pubin -inkey ci/private_si_handoff_public.pem -in handoff.key -out handoff.key.enc
+          rm -f handoff.key si-figures-private.tgz
           printf 'source_commit=%s\nfigure_sets=8\nformats_per_figure=3\nrendered_files=24\nplaintext_uploaded=false\n' "$SOURCE_COMMIT" > PUBLIC_QA.txt
           sha256sum si-figures-private.tgz.enc handoff.key.enc >> PUBLIC_QA.txt
           cat PUBLIC_QA.txt
