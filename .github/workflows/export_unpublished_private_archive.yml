@@ -1,0 +1,50 @@
+name: Export unpublished private archive
+
+on:
+  push:
+    branches: [privacy/unpublished-archive-20260916]
+    paths:
+      - .github/workflows/export_unpublished_private_archive.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Build private archive
+        run: |
+          mkdir -p private_export
+          git archive --format=zip --output=private_export/RhoCodec_full_repo_snapshot_20260916.zip HEAD
+          cat > private_export/PRIVATE_ASSET_SCOPE.txt <<'EOF'
+          Unpublished/private research assets currently present in the repository include, at minimum:
+          - paper/
+          - benchmark/
+          - stability/
+          - figures/
+          - supplement/
+          - validation/
+          - analysis/
+          - mechanism/
+          - protocol/
+          - RESULTS.md
+          - external_test_MANIFEST.json
+          - failure_registry.csv
+          - materials_metadata.csv
+          The full-repository snapshot is archived privately so no research asset is lost during public-branch cleanup.
+          EOF
+          printf '%s\n' '${{ github.sha }}' > private_export/SOURCE_COMMIT.txt
+          sha256sum private_export/RhoCodec_full_repo_snapshot_20260916.zip > private_export/SHA256SUMS.txt
+      - name: Upload private archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rhocodec-unpublished-private-archive-20260916
+          path: private_export/
+          if-no-files-found: error
+          compression-level: 0
