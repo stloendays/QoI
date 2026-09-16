@@ -5,11 +5,11 @@ Data release for the RhoCodec project (NUS, 2026). Every reported number is gene
 
 ## Data storage and Agent map
 
-Large codec benchmark payloads are mirrored to the frozen Google Drive dataset [RhoCodec_QSQ_Data/frozen_codec_benchmark_20260916](https://drive.google.com/drive/folders/1X62ZTw5kYJVbLhImz7zz0VvMIfPjIBVg). The machine-readable cross-store map is .
+Large codec benchmark payloads are mirrored to the frozen Google Drive dataset [RhoCodec_QSQ_Data/frozen_codec_benchmark_20260916](https://drive.google.com/drive/folders/1X62ZTw5kYJVbLhImz7zz0VvMIfPjIBVg). The machine-readable cross-store map is `data/DRIVE_DATA_MANIFEST.json`.
 
-**Authority split.** Google Drive is the long-term bulk-data archive for the migrated codec tables. GitHub  remains authoritative for code, schema semantics, QSQ/certification rules, manifests, and frozen scientific claims. GitHub copies of benchmark files are intentionally retained where CI, reproducibility, or the deterministic recommendation layer reads them directly; this migration is not a scientific redefinition.
+**Authority split.** Google Drive is the long-term bulk-data archive for the migrated codec tables. GitHub `main` remains authoritative for code, schema semantics, QSQ/certification rules, manifests, and frozen scientific claims. GitHub copies of benchmark files are intentionally retained where CI, reproducibility, or the deterministic recommendation layer reads them directly; this migration is not a scientific redefinition.
 
-**Agent rule.** Before using migrated codec data, read , verify the recorded source commit and SHA-256, and stop on a Drive/GitHub provenance mismatch. Reader-facing terminology is **QoI Stability Qualification (QSQ)**; , , and  names remain historical provenance or frozen-schema identifiers only. Storage location must never change P1-P4, thresholds, cohorts, endpoints, eligibility, certification semantics, or the rule that recommendations rank only measured QSQ-eligible certified operating points.
+**Agent rule.** Before using migrated codec data, read `data/DRIVE_DATA_MANIFEST.json`, verify the recorded source commit and SHA-256, and stop on a Drive/GitHub provenance mismatch. Reader-facing terminology is **QoI Stability Qualification (QSQ)**; `A`, `A1`, and `_A1` names remain historical provenance or frozen-schema identifiers only. Storage location must never change P1-P4, thresholds, cohorts, endpoints, eligibility, certification semantics, or the rule that recommendations rank only measured QSQ-eligible certified operating points.
 
 ## Central question
 
