@@ -17,13 +17,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 1
-      - name: Build private archive
+      - name: Build private archive from public main
         run: |
           mkdir -p private_export
-          git archive --format=zip --output=private_export/RhoCodec_full_repo_snapshot_20260916.zip HEAD
+          SOURCE_COMMIT="$(git rev-parse HEAD)"
+          git archive --format=zip --output=private_export/RhoCodec_main_snapshot_before_privacy_cleanup_20260916.zip HEAD
           cat > private_export/PRIVATE_ASSET_SCOPE.txt <<'EOF'
-          Unpublished/private research assets currently present in the repository include, at minimum:
+          This is the exact public-main snapshot taken immediately before privacy cleanup.
+          Unpublished/private research assets include, at minimum:
           - paper/
           - benchmark/
           - stability/
@@ -37,14 +40,14 @@ jobs:
           - external_test_MANIFEST.json
           - failure_registry.csv
           - materials_metadata.csv
-          The full-repository snapshot is archived privately so no research asset is lost during public-branch cleanup.
+          The full main snapshot is archived privately so no research asset is lost during cleanup.
           EOF
-          printf '%s\n' '${{ github.sha }}' > private_export/SOURCE_COMMIT.txt
-          sha256sum private_export/RhoCodec_full_repo_snapshot_20260916.zip > private_export/SHA256SUMS.txt
+          printf '%s\n' "$SOURCE_COMMIT" > private_export/SOURCE_COMMIT.txt
+          sha256sum private_export/RhoCodec_main_snapshot_before_privacy_cleanup_20260916.zip > private_export/SHA256SUMS.txt
       - name: Upload private archive artifact
         uses: actions/upload-artifact@v4
         with:
-          name: rhocodec-unpublished-private-archive-20260916
+          name: rhocodec-public-main-private-backup-20260916
           path: private_export/
           if-no-files-found: error
           compression-level: 0
