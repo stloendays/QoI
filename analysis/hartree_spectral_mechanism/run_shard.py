@@ -24,7 +24,7 @@ PAIR_A = "ZFP"
 PAIR_B = "SZ3"
 LOW_Q = 0.25
 HIGH_Q = 0.75
-MAP_CALIPER_DEX = 1e-4
+MAP_CALIPER_DEX = 1e-9
 REPRO_CALIPER_DEX = 5e-6
 HARTREE_REPRO_CALIPER_DEX = 5e-6
 
@@ -83,52 +83,63 @@ def load_pairs(repo: Path) -> list[dict[str, Any]]:
     return out
 
 
-def load_benchmark_rows(repo: Path, materials: set[str]) -> dict[str, dict[str, list[dict[str, Any]]]]:
-    path = repo / "benchmark" / "master_benchmark_full.csv"
+def load_full_hartree_rows(
+    repo: Path,
+    materials: set[str],
+) -> dict[str, dict[str, list[dict[str, Any]]]]:
+    path = repo / "analysis" / "hartree_qsq_full" / "results" / "hartree_codec_rows.csv"
     out: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: defaultdict(list))
-    with path.open(newline="", encoding="utf-8-sig") as f:
-        for global_idx, row in enumerate(csv.DictReader(f)):
+    with path.open(newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
             mid = row["material_id"]
             codec = row["codec"].strip().upper()
             if mid not in materials or codec not in {PAIR_A, PAIR_B}:
                 continue
-            linf = finite_float(row.get("realized_Linf"))
+            gate = str(row.get("scientific_reproduction_gate_pass", "")).strip().lower()
+            if gate not in {"true", "1", "yes", "t"}:
+                continue
+            linf = finite_float(row.get("reproduced_realized_Linf"))
+            herr = finite_float(row.get("hartree_error_rel_RMSE"))
             tol = finite_float(row.get("nominal_tolerance_absolute"))
-            if linf is None or linf <= 0 or tol is None or tol <= 0:
+            if linf is None or linf <= 0 or herr is None or herr <= 0 or tol is None or tol <= 0:
                 continue
             r = dict(row)
-            r["_global_index"] = global_idx
-            r["_frozen_linf"] = float(linf)
+            r["_reproduced_linf"] = float(linf)
+            r["_historical_hartree"] = float(herr)
             r["_abs_bound"] = float(tol)
+            r["_frozen_linf"] = float(row["frozen_realized_Linf"])
+            r["_frozen_row_index"] = int(float(row["frozen_row_index_within_material"]))
             out[mid][codec].append(r)
     return out
 
 
 def greedy_map_targets(
-    targets: list[tuple[int, float]],
+    targets: list[tuple[int, float, float]],
     candidates: list[dict[str, Any]],
 ) -> dict[int, tuple[dict[str, Any], float]]:
-    edges: list[tuple[float, int, int, int]] = []
-    for ti, (pair_id, target) in enumerate(targets):
-        lt = math.log10(target)
+    edges: list[tuple[float, float, int, int, int]] = []
+    for ti, (pair_id, target_linf, target_h) in enumerate(targets):
+        ll = math.log10(target_linf)
+        lh = math.log10(target_h)
         for ci, row in enumerate(candidates):
-            d = abs(lt - math.log10(float(row["_frozen_linf"])))
-            if d <= MAP_CALIPER_DEX + 1e-15:
-                edges.append((d, int(row["_global_index"]), ti, ci))
+            d_linf = abs(ll - math.log10(float(row["_reproduced_linf"])))
+            d_h = abs(lh - math.log10(float(row["_historical_hartree"])))
+            if d_linf <= MAP_CALIPER_DEX + 1e-15 and d_h <= MAP_CALIPER_DEX + 1e-15:
+                edges.append((max(d_linf, d_h), d_linf + d_h, int(row["_frozen_row_index"]), ti, ci))
     edges.sort()
     used_t: set[int] = set()
     used_c: set[int] = set()
     result: dict[int, tuple[dict[str, Any], float]] = {}
-    for d, _, ti, ci in edges:
+    for max_d, _, _, ti, ci in edges:
         if ti in used_t or ci in used_c:
             continue
         used_t.add(ti)
         used_c.add(ci)
         pair_id = targets[ti][0]
-        result[pair_id] = (candidates[ci], d)
+        result[pair_id] = (candidates[ci], max_d)
     if len(result) != len(targets):
-        missing = sorted(set(pid for pid, _ in targets) - set(result))
-        raise RuntimeError(f"could not uniquely map targets to frozen benchmark rows: {missing[:8]}")
+        missing = sorted(set(pid for pid, _, _ in targets) - set(result))
+        raise RuntimeError(f"could not uniquely map matched-pair rows to full Hartree rows: {missing[:8]}")
     return result
 
 
@@ -289,7 +300,7 @@ def main() -> int:
         by_material[p["material_id"]].append(p)
     planned = [m for m in sorted(by_material) if shard_for(m, args.shard_count) == args.shard_index]
     metadata = load_metadata(repo)
-    benchmark = load_benchmark_rows(repo, set(planned))
+    full_rows = load_full_hartree_rows(repo, set(planned))
 
     detail_rows: list[dict[str, Any]] = []
     pair_rows: list[dict[str, Any]] = []
@@ -364,7 +375,7 @@ def main() -> int:
                         "loader": loader,
                         "codec_config": codec_config,
                         "target_matched_Linf": target_linf,
-                        "frozen_benchmark_Linf": float(frozen["_frozen_linf"]),
+                        "frozen_benchmark_Linf": float(frozen["_frozen_linf"]),\n                        "full_population_reproduced_Linf": float(frozen["_reproduced_linf"]),\n                        "full_population_historical_hartree_rel_RMSE": float(frozen["_historical_hartree"]),
                         "reproduced_Linf": linf,
                         "frozen_to_target_map_distance_dex": map_dist,
                         "reproduced_to_target_distance_dex": repro_dex,
@@ -374,7 +385,7 @@ def main() -> int:
                         "nyquist_safe_hartree_rel_RMSE": safe_rel,
                         "safe_parseval_relative_error": parseval_rel,
                         "nominal_tolerance_absolute": float(frozen["_abs_bound"]),
-                        "frozen_row_global_index": int(frozen["_global_index"]),
+                        "frozen_row_index_within_material": int(frozen["_frozen_row_index"]),
                         **sm,
                     }
                     detail_rows.append(row)
