@@ -1,4 +1,4 @@
-# Figure 4 — QSQ perturbation-probe validation against the archived float32 probe
+# Figure 4 — QSQ perturbation validation against an order-preserving control
 suppressPackageStartupMessages({
   library(ggplot2)
   library(dplyr)
@@ -41,7 +41,7 @@ th <- theme_minimal(base_size=10.4) + theme(
 
 # A — paired development-material shift from the archived float32 probe to QSQ.
 L <- m %>% mutate(id=row_number()) %>%
-  select(id, `Archived probe`=archived, QSQ=stability_floor_A1_e) %>%
+  select(id, `Order-preserving control`=archived, QSQ=stability_floor_A1_e) %>%
   pivot_longer(c(`Archived probe`, QSQ), names_to="procedure", values_to="floor")
 L$procedure <- factor(L$procedure, levels=c("Archived probe","QSQ"))
 
@@ -66,7 +66,7 @@ p2 <- ggplot(m, aes(archived, stability_floor_A1_e)) +
   scale_y_log10(labels=label_scientific(digits=1)) +
   labs(title="B | The correction is heterogeneous, not a global rescaling",
        subtitle="Dashed line is equality; points above it have a larger QSQ floor",
-       x="Archived float32-probe floor (e)", y="QSQ stability floor (e)") + th
+       x="Order-preserving control response (e)", y="QSQ stability floor (e)") + th
 
 # C — all QSQ systems define the scientific eligibility ceiling.
 thresholds <- data.frame(x=c(1e-4,1e-3,1e-2), lab=c("10^-4","10^-3","10^-2"),
@@ -91,7 +91,7 @@ fig <- ((p1 | p2) / p3) +
   plot_annotation(
     title="Figure 4 | Stability is a property of the observable and its measurement procedure",
     subtitle="QSQ uses five fixed-seed uniform-noise probes at the material-specific float32 L-infinity amplitude.",
-    caption="The archived float32 probe remains frozen for provenance. Panels A-B compare the paired development subset with both predecessor and QSQ outputs.\nPanel C uses all available QSQ systems and defines the eligibility ceiling used for headline certification.",
+    caption="Panels A-B compare an order-preserving round-trip control with QSQ on the paired development subset.\nPanel C uses all systems with a finite QSQ floor and shows how the requested tolerance determines the eligible cohort.",
     theme=theme(plot.background=element_rect(fill=bg, colour=NA),
                 plot.title=element_text(face="bold", size=14, colour=ink, margin=margin(b=4)),
                 plot.subtitle=element_text(size=9.8, colour="#4F545C", margin=margin(b=8)),
