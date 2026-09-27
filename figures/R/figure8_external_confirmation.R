@@ -100,14 +100,14 @@ pD <- ggplot(d, aes(tau, eligible, group=1)) +
   annotate("label", x=2, y=9, label=audit_text, hjust=.5, vjust=.5, size=2.75, label.size=.18,
            fill=alpha("white",.94), colour=ink) +
   scale_y_continuous(limits=c(0,66), breaks=c(0,20,40,60)) +
-  labs(title="D | A.1 qualification defines the measurable cohort",
-       subtitle="Eligibility rises with requested Bader tolerance without retuning",
+  labs(title="D | QSQ defines the measurable cohort",
+       subtitle="QSQ eligibility rises with requested Bader tolerance without retuning",
        x="Bader contract tau (e)", y="Eligible external materials") + th + theme(legend.position="none")
 
 fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title="Figure 8 | Untouched external systems reproduce the stability-qualified decision frontier",
-    subtitle="A pre-frozen 63-system cohort preserves the codec-ordering transition, realized-distortion asymmetry, and Protocol A.1 eligibility logic without retuning.",
+    subtitle="A pre-frozen 63-system cohort preserves the codec-ordering transition, realized-distortion asymmetry, and QSQ eligibility logic without retuning.",
     caption="External confirmatory cohort: 63/63 observed systems completed, 1,689 retained scientific rows, zero material-level pipeline failures and zero codec-bound violations.\nPairwise intervals and compression-ratio intervals are the frozen external bootstrap summaries.",
     theme=theme(plot.background=element_rect(fill=bg, colour=NA),
                 plot.title=element_text(face="bold", size=14, colour=ink, margin=margin(b=4)),
