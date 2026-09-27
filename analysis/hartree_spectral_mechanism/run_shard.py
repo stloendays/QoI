@@ -263,6 +263,14 @@ def spectral_metrics(
     return metrics, bins
 
 
+def safe_ratio(num: float, den: float) -> float:
+    num = float(num)
+    den = float(den)
+    if not (np.isfinite(num) and np.isfinite(den)) or den <= 0 or num < 0:
+        return np.nan
+    return num / den
+
+
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     if not rows:
@@ -324,10 +332,16 @@ def main() -> int:
                 raise RuntimeError(f"invalid reference Hartree RMS for {mid}")
 
             material_pairs = by_material[mid]
-            targets_a = [(int(p["pair_id"]), float(p["linf_a"])) for p in material_pairs]
-            targets_b = [(int(p["pair_id"]), float(p["linf_b"])) for p in material_pairs]
-            map_a = greedy_map_targets(targets_a, benchmark[mid][PAIR_A])
-            map_b = greedy_map_targets(targets_b, benchmark[mid][PAIR_B])
+            targets_a = [
+                (int(p["pair_id"]), float(p["linf_a"]), float(p["hartree_error_a"]))
+                for p in material_pairs
+            ]
+            targets_b = [
+                (int(p["pair_id"]), float(p["linf_b"]), float(p["hartree_error_b"]))
+                for p in material_pairs
+            ]
+            map_a = greedy_map_targets(targets_a, full_rows[mid][PAIR_A])
+            map_b = greedy_map_targets(targets_b, full_rows[mid][PAIR_B])
 
             selected_metrics: dict[tuple[int, str], dict[str, Any]] = {}
             by_pair_id = {int(p["pair_id"]): p for p in material_pairs}
@@ -430,12 +444,13 @@ def main() -> int:
                     "sqrt_hartree_weighted_ratio": weighted_factor,
                     "sqrt_total_safe_error_energy_ratio": energy_factor,
                     "sqrt_spectral_hartree_susceptibility_ratio": susceptibility_factor,
-                    "low_G_fraction_ratio": float(a["low_G_fraction"]) / float(b["low_G_fraction"]),
-                    "high_G_fraction_ratio": float(a["high_G_fraction"]) / float(b["high_G_fraction"]),
+                    "low_G_fraction_ratio": safe_ratio(a["low_G_fraction"], b["low_G_fraction"]),
+                    "high_G_fraction_ratio": safe_ratio(a["high_G_fraction"], b["high_G_fraction"]),
                     "spectral_centroid_delta_qmax": float(a["spectral_centroid_qmax"]) - float(b["spectral_centroid_qmax"]),
-                    "hartree_weighted_low_G_fraction_ratio":
-                        float(a["hartree_weighted_low_G_fraction"]) /
-                        float(b["hartree_weighted_low_G_fraction"]),
+                    "hartree_weighted_low_G_fraction_ratio": safe_ratio(
+                        a["hartree_weighted_low_G_fraction"],
+                        b["hartree_weighted_low_G_fraction"],
+                    ),
                     "nyquist_energy_fraction_ZFP": float(a["nyquist_error_energy_fraction_total"]),
                     "nyquist_energy_fraction_SZ3": float(b["nyquist_error_energy_fraction_total"]),
                     "max_safe_parseval_relative_error": max(
