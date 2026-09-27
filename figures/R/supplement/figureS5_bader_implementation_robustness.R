@@ -27,7 +27,9 @@ stopifnot(sum(!read_bool(dec$sentinel) & dec$kind == "noise") == 60)
 stopifnot(sum(!read_bool(dec$sentinel) & dec$kind == "spatial_control") == 324)
 stopifnot(sum(!read_bool(dec$sentinel) & dec$kind == "float32") == 12)
 stopifnot(length(unique(stab$material[!read_bool(stab$sentinel)])) == 12)
-stopifnot(nrow(pairs) == 144)
+stopifnot(nrow(pairs) == 140)
+stopifnot(sum(pairs$comparison_solver == "henkelman_ongrid") == 70)
+stopifnot(sum(pairs$comparison_solver == "henkelman_neargrid") == 70)
 stopifnot(nrow(spatial) == 9)
 
 get_impl <- function(solver_name, filter_name) {
