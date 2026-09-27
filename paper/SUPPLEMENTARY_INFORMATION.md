@@ -29,31 +29,31 @@ Primary provenance assets are `materials_metadata.csv`, `external_test_MANIFEST.
 
 ## Supplementary Note 2 — QoI Stability Qualification and archived probe provenance
 
-The archived float32 qualification probe is retained as a provenance record. It used a deterministic float64 → float32 → float64 round trip to probe numerical Bader stability. During tight-ladder extension, this perturbation was found to be strongly order-preserving and therefore unusually benign for an on-grid watershed partition.
+An order-preserving round-trip control uses a deterministic float64 → float32 → float64 conversion at the same material-specific amplitude scale. This control is unusually benign for an on-grid watershed partition because it preserves much of the local value ordering.
 
-QoI Stability Qualification (QSQ) uses a perturbation-based numerical identifiability test. For material \(m\), let
+QoI Stability Qualification (QSQ) uses a perturbation-based numerical identifiability test. For material $m$, let
 
-\[
+$
 \epsilon_m = \|\mathrm{float32}(\rho_m)-\rho_m\|_\infty.
-\]
+$
 
-Five pre-registered uniform perturbations \(U(-\epsilon_m,+\epsilon_m)\) are applied with seeds \(\{20260905,1,2,3,4\}\). Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
+Five pre-registered uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
 
-\[
+$
 f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
-\]
+$
 
-A Bader tolerance \(\tau\) is eligible only when \(f_m<\tau\). If \(f_m\ge\tau\), the material–threshold pair is assigned `NON_EVALUABLE_BADER_UNSTABLE` and is neither a codec pass nor a codec failure.
+A Bader tolerance $\tau$ is eligible only when $f_m<\tau$. If $f_m\ge\tau$, the material–threshold pair is assigned `NON_EVALUABLE_BADER_UNSTABLE` and is neither a codec pass nor a codec failure.
 
 The 18-material calibration panel shows why perturbation structure matters (probe calibration panel and QSQ method record; repository reader-facing provenance index):
 
 - the archived float32 probe produced a median of **82 exact neighbouring ties** and reassigned zero voxels in **9/18** calibration systems;
 - the non-order-preserving QSQ perturbation probe produced no exact ties and reassigned zero voxels in only **2/18** systems;
 - across five seeds, the per-material log10 floor span had a median of **0.47 decades** and reached **2.4 decades**;
-- a single-seed eligibility verdict changed across seeds in 3/18 materials at \(10^{-4}\,e\), 2/18 at \(10^{-3}\,e\), and 1/18 at \(10^{-2}\,e\);
+- a single-seed eligibility verdict changed across seeds in 3/18 materials at $10^{-4}\,e$, 2/18 at $10^{-3}\,e$, and 1/18 at $10^{-2}\,e$;
 - over a two-decade amplitude sweep (×0.1 to ×10), the floor changed by a median of **0.76 decades** (P10 0.00; P90 2.02), demonstrating that the reported floor is qualification-defined rather than an amplitude-free material constant.
 
-Across the complete 319-system stability corpus, the QSQ non-evaluable fractions are **79.9%** at \(10^{-4}\,e\), **41.4%** at \(10^{-3}\,e\), and **9.7%** at \(10^{-2}\,e\) (QSQ eligibility summary; repository reader-facing provenance index).
+Across the complete 319-system stability corpus, the QSQ non-evaluable fractions are **79.9%** at $10^{-4}\,e$, **41.4%** at $10^{-3}\,e$, and **9.7%** at $10^{-2}\,e$ (QSQ eligibility summary; repository reader-facing provenance index).
 
 One extreme QSQ response, `aflow-Al8Cu4U1_ICSD_601801`, corresponds to a permutation of symmetry-equivalent Al basins rather than a literal multi-electron chemical transfer. It is retained as `basin_relabelling_symmetry_equivalent` in `failure_registry.csv` and remains non-evaluable for a position-indexed atomic-charge QoI.
 
@@ -71,11 +71,11 @@ The principal benchmark uses QSQ eligibility exactly as frozen. Four sensitivity
 
 ### S2 — Error relative to the independent stability floor
 
-For certified reconstructions, `supplement/S2_floor_relative.csv` reports \(\Delta Q_\mathrm{Bader}/f_m\). At \(10^{-4}\,e\), median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At \(10^{-3}\,e\), median ratios broaden to 2.78–3.55, and at \(10^{-2}\,e\) to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the QSQ floor.
+For certified reconstructions, `supplement/S2_floor_relative.csv` reports $\Delta Q_\mathrm{Bader}/f_m$. At $10^{-4}\,e$, median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At $10^{-3}\,e$, median ratios broaden to 2.78–3.55, and at $10^{-2}\,e$ to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the QSQ floor.
 
 ### S3 — Inflated-threshold stress test
 
-`S3_inflated_threshold` evaluates alternative thresholds multiplied by \(k=2,5,10\). This analysis tests whether qualitative codec conclusions arise only from a particular hard cutoff. It is a robustness analysis and must not replace the pre-specified chemical contracts. Machine-readable source: `supplement/S1_S3_sensitivity.csv`.
+`S3_inflated_threshold` evaluates alternative thresholds multiplied by $k=2,5,10$. This analysis tests whether qualitative codec conclusions arise only from a particular hard cutoff. It is a robustness analysis and must not replace the pre-specified chemical contracts. Machine-readable source: `supplement/S1_S3_sensitivity.csv`.
 
 ### S4 — Probe-amplitude sensitivity
 
@@ -87,11 +87,11 @@ The 18-material amplitude sweep in `supplement/S4_amplitude_sensitivity.csv` rep
 
 ### Electron-count negative control
 
-All **6,343** development reconstruction rows were examined for total-electron-count fidelity (`analysis/electron_count_qoi/`). Among **3,205** rows with \(|\Delta N_e|<10^{-4}\,e\) and a finite re-derived Bader result, **1,383 (43.15%)** still have Bader error \(\ge10^{-3}\,e\). Global electron-number conservation is therefore not a sufficient certificate of atom-resolved chemical fidelity.
+All **6,343** development reconstruction rows were examined for total-electron-count fidelity (`analysis/electron_count_qoi/`). Among **3,205** rows with $|\Delta N_e|<10^{-4}\,e$ and a finite re-derived Bader result, **1,383 (43.15%)** still have Bader error $\ge10^{-3}\,e$. Global electron-number conservation is therefore not a sufficient certificate of atom-resolved chemical fidelity.
 
 ### Hartree-potential control
 
-The full Hartree expansion targets the same 6,343 reconstruction rows. A reproduction gate retains **6,270** rows for formal statistics (`analysis/hartree_potential_expansion/RESULTS_DETAIL.md`). The pooled relation between Hartree error and realized \(L_\infty\) has a log–log slope of **1.02**. Across 678 material–codec pairs with at least five gate-passing points, median material-level Hartree \(R^2\) is approximately **0.994–0.997** by codec, whereas Bader response is much less regular. Hartree is strictly monotone in 88.6% of such pairs versus 32.4% for Bader.
+The full Hartree expansion targets the same 6,343 reconstruction rows. A reproduction gate retains **6,270** rows for formal statistics (`analysis/hartree_potential_expansion/RESULTS_DETAIL.md`). The pooled relation between Hartree error and realized $L_\infty$ has a log–log slope of **1.02**. Across 678 material–codec pairs with at least five gate-passing points, median material-level Hartree $R^2$ is approximately **0.994–0.997** by codec, whereas Bader response is much less regular. Hartree is strictly monotone in 88.6% of such pairs versus 32.4% for Bader.
 
 The 73 Hartree reproduction-gate failures are all SZ3 rows with reconstruction distortion reproduced to within approximately 2×10^-5 relative, but compressed byte counts differing across platforms. They are classified as infrastructure `reproduction_mismatch` and excluded from formal Hartree statistics; they are not codec or numerical failures.
 
@@ -101,7 +101,7 @@ At matched Hartree error, Bader response remains dispersed: **55.4%** of gate-pa
 
 The full-population mechanism audit uses the **exact 457 ZFP/SZ3 within-material realized-$L_\infty$ matched pairs across 214 materials** from the Hartree analysis. The corresponding **914 reconstructions** were regenerated from the versioned codec rows. A reconstruction entered the spectral audit only after both its realized $L_\infty$ and its reference-implementation Hartree relative RMSE reproduced the stored matched-pair target.
 
-The reference-implementation matched-pair Hartree center is **0.0776220566**, and the regenerated calculation reproduces it at **0.0776220566**. To test whether this large codec effect could arise from a discrete-FFT implementation artifact, the audit also defines a Nyquist-safe Hermitian Poisson operator. For even grids in non-orthogonal cells, Nyquist-plane modes are alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. The mechanism operator therefore sets $G=0$ and all even-grid Nyquist-plane modes to zero and applies $4\pi/|G|^2$ to all remaining modes. This gives a Hartree ratio of **0.0776219202**, essentially unchanged from the historical result.
+The reference-implementation matched-pair Hartree center is **0.0776220566**, and the regenerated calculation reproduces it at **0.0776220566**. To test whether this large codec effect could arise from a discrete-FFT implementation artifact, the audit also defines a Nyquist-safe Hermitian Poisson operator. For even grids in non-orthogonal cells, Nyquist-plane modes are alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. The mechanism operator therefore sets $G=0$ and all even-grid Nyquist-plane modes to zero and applies $4\pi/|G|^2$ to all remaining modes. This gives a Hartree ratio of **0.0776219202**, essentially unchanged from the reference-implementation result.
 
 Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For the Nyquist-safe operator,
 
@@ -145,9 +145,9 @@ Machine-readable sources are `analysis/hartree_spectral_mechanism/results/matche
 
 The primary Figure 3 audit uses one material–codec decision per Bader threshold, giving **254 materials × 3 codecs = 762 decisions per threshold**. The pooled results are frozen in `analysis/certifiability_reclassification_pooled_20260911.csv`; codec-resolved counts are in `analysis/certifiability_reclassification_by_codec_20260911.csv`.
 
-At \(10^{-4}\,e\), a naive binary benchmark reports 533 failures, of which **518 (97.2%)** occur on non-evaluable material–threshold pairs; only 15 remain genuine eligible failures. At \(10^{-3}\,e\), **296/310 (95.5%)** naive failures are non-evaluable, leaving 14 genuine failures. At \(10^{-2}\,e\), **61/108 (56.5%)** are non-evaluable, leaving 47 genuine failures.
+At $10^{-4}\,e$, a naive binary benchmark reports 533 failures, of which **518 (97.2%)** occur on non-evaluable material–threshold pairs; only 15 remain genuine eligible failures. At $10^{-3}\,e$, **296/310 (95.5%)** naive failures are non-evaluable, leaving 14 genuine failures. At $10^{-2}\,e$, **61/108 (56.5%)** are non-evaluable, leaving 47 genuine failures.
 
-The qualification is not a permissive rescue rule: at \(10^{-4}\,e\), **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 reports the codec-by-codec decomposition beyond the pooled Figure 3 presentation.
+The qualification is not a permissive rescue rule: at $10^{-4}\,e$, **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 reports the codec-by-codec decomposition beyond the pooled Figure 3 presentation.
 
 ---
 
@@ -157,15 +157,15 @@ The scientific Bader metric re-derives atom-centred basins after every reconstru
 
 The mechanism tables evaluate representative systems across three codecs and three chemical tolerances, separating the charge change into an integrand contribution on the reference domain and a residual domain-migration contribution. Supplementary Table S10 and Supplementary Fig. S5 report the full representative-case matrix beyond the selected main-text examples.
 
-A separate independent-Bader study in `mechanism/independent_bader_20260908/` provides an implementation-robustness check. It contains **1,560/1,560 expected outcome rows** across a stratified panel and three solver modes. Henkelman on-grid reproduces BaderKit on-grid codec response with a median ratio of **1.00** (IQR approximately 0.92–1.005), aside from systems whose unperturbed basin sets differ. Codec ordering at relative tolerance \(10^{-4}\) is preserved across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. These results remain supplementary because they validate robustness rather than define the central benchmark claim.
+A separate independent-Bader study in `mechanism/independent_bader_20260908/` provides an implementation-robustness check. It contains **1,560/1,560 expected outcome rows** across a stratified panel and three solver modes. Henkelman on-grid reproduces BaderKit on-grid codec response with a median ratio of **1.00** (IQR approximately 0.92–1.005), aside from systems whose unperturbed basin sets differ. Codec ordering at relative tolerance $10^{-4}$ is preserved across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. These results remain supplementary because they validate robustness rather than define the central benchmark claim.
 
 ---
 
 ## Supplementary Note 7 — Realized-distortion matching diagnostics
 
-Equal nominal codec tolerance is not a common realized-distortion scale. At equal nominal settings, median realized-\(L_\infty\) ratios are approximately **0.170** for ZFP/SZ3, **0.170** for ZFP/SPERR and **1.00** for SZ3/SPERR (`analysis/matched_realized_linf_v1/REPORT.md`).
+Equal nominal codec tolerance is not a common realized-distortion scale. At equal nominal settings, median realized-$L_\infty$ ratios are approximately **0.170** for ZFP/SZ3, **0.170** for ZFP/SPERR and **1.00** for SZ3/SPERR (`analysis/matched_realized_linf_v1/REPORT.md`).
 
-The primary within-material match uses a **0.10-dex** caliper in \(\log_{10}(L_\infty)\), without replacement, and bootstraps materials rather than rows. At this caliper, the matched datasets contain 457 ZFP–SZ3 pairs from 214 materials, 465 ZFP–SPERR pairs from 206 materials, and 1,848 SZ3–SPERR pairs from 254 materials. Median larger/smaller realized-\(L_\infty\) is approximately 1.14 for the ZFP comparisons and 1.00 for SZ3/SPERR.
+The primary within-material match uses a **0.10-dex** caliper in $\log_{10}(L_\infty)$, without replacement, and bootstraps materials rather than rows. At this caliper, the matched datasets contain 457 ZFP–SZ3 pairs from 214 materials, 465 ZFP–SPERR pairs from 206 materials, and 1,848 SZ3–SPERR pairs from 254 materials. Median larger/smaller realized-$L_\infty$ is approximately 1.14 for the ZFP comparisons and 1.00 for SZ3/SPERR.
 
 After matching, re-derived Bader-error ratios are **0.557** for ZFP/SZ3 (95% material-bootstrap CI 0.525–0.598), **0.601** for ZFP/SPERR (0.534–0.662), and **1.033** for SZ3/SPERR (0.976–1.072). Supplementary Figure S6 shows sensitivity across 0.05, 0.10, 0.20 and 0.30 dex together with common-support counts; the main text reports the primary 0.10-dex result and notes that the direction is robust across the pre-specified calipers.
 
@@ -175,7 +175,7 @@ After matching, re-derived Bader-error ratios are **0.557** for ZFP/SZ3 (95% mat
 
 For each eligible material–threshold pair, the benchmark selects the highest compression ratio on the fixed codec ladder that satisfies the re-derived Bader contract. The QSQ-certified benchmark summary, pairwise codec summary and best certified operating-point table are mapped through the repository reader-facing provenance index.
 
-Supplementary Table S13 reports, for each \(\tau\), stratum and codec, the admitted denominator, non-evaluable denominator, certified count/fraction, median best-certified compression ratio, bootstrap confidence interval and distributional quantiles. Pairwise win fractions are reported separately rather than folded into a single ranking label.
+Supplementary Table S13 reports, for each $\tau$, stratum and codec, the admitted denominator, non-evaluable denominator, certified count/fraction, median best-certified compression ratio, bootstrap confidence interval and distributional quantiles. Pairwise win fractions are reported separately rather than folded into a single ranking label.
 
 Supplementary Table S13 is generated directly from the current machine-readable development and external rate–fidelity summaries.
 
@@ -185,7 +185,7 @@ Supplementary Table S13 is generated directly from the current machine-readable 
 
 The primary external confirmatory cohort contains **63/63 completed systems**, **1,689 retained scientific rows**, **0 material-level pipeline failures**, **0 codec-bound violations** and **3 preserved row-level Bader solver failures** affecting two materials (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`). The 65-system descriptive aggregate contains **65/65 systems** and **1,755 rows**, also with zero material-level failures and zero bound violations.
 
-For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at \(10^{-4}\), \(10^{-3}\) and \(10^{-2}\,e\), respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at \(10^{-4}\,e\), ZFP ≈ SZ3 > SPERR at \(10^{-3}\,e\), and SZ3 > ZFP > SPERR at \(10^{-2}\,e\). The ZFP–SZ3 separation at the strictest threshold is narrower than in development and is treated as a modest external difference.
+For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$, respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at $10^{-4}\,e$, ZFP ≈ SZ3 > SPERR at $10^{-3}\,e$, and SZ3 > ZFP > SPERR at $10^{-2}\,e$. The ZFP–SZ3 separation at the strictest threshold is narrower than in development and is treated as a modest external difference.
 
 Row-level solver failures and recovery provenance are retained in the repository audit. The SI separately reports the 65-system descriptive aggregate and distinguishes vacuum-containing 2D systems from development adsorbate slabs.
 
