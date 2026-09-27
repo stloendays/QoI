@@ -146,7 +146,7 @@ pC <- ggplot(tight_summary, aes(nominal_tolerance_relative, median, colour = cod
   scale_y_log10(labels = label_number()) +
   labs(
     title = "C | Tight-ladder response remains heterogeneous relative to the floor",
-    subtitle = "Median and IQR across the frozen tight-ladder materials; descriptive, not a plateau fit",
+    subtitle = "Median and IQR across the tight-ladder materials; descriptive, not a plateau fit",
     x = "Nominal relative codec tolerance", y = "Re-derived Bader error / QSQ floor"
   ) + theme_si + theme(legend.position = "top")
 
@@ -155,7 +155,7 @@ fig <- ((pA | pB) / pC) +
   plot_annotation(
     title = "Supplementary Figure S4 | The strictest certified Bader regime is floor-scale, not a universal plateau",
     subtitle = "Independent QSQ stability floors provide the numerical reference scale; certified compression error increasingly exceeds that scale at looser contracts.",
-    caption = "A, frozen error/floor summaries for certified points. B, strict-contract material-level relationship. C, full tight-ladder diagnostic. These data are consistent with an emerging analysis-limited regime at 10^-4 e but do not establish a universal material-level identity between a compression plateau and the QSQ floor.",
+    caption = "A, error/floor summaries for certified points. B, strict-contract material-level relationship. C, full tight-ladder diagnostic. These data are consistent with an emerging analysis-limited regime at 10^-4 e but do not establish a universal material-level identity between a compression plateau and the QSQ floor.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
                   plot.title = element_text(face = "bold", size = 13.8, colour = ink, margin = margin(b = 4)),
                   plot.subtitle = element_text(size = 9.4, colour = muted, margin = margin(b = 8)),
