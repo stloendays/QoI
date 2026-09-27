@@ -66,7 +66,7 @@ pA <- ggplot(paired, aes(floor_resolved_e, stability_floor_A1_e, colour = corpus
   labs(
     title = "A | QSQ exposes substantially larger Bader instability",
     subtitle = sprintf("Paired order-preserving control vs five-seed QSQ floors; n = %d", nrow(paired)),
-    x = "Archived float32-probe floor (e)", y = "QSQ stability floor (e)"
+    x = "Order-preserving control response (e)", y = "QSQ stability floor (e)"
   ) + theme_si + theme(legend.position = "top")
 
 overall <- elig %>%
@@ -80,10 +80,10 @@ overall <- elig %>%
 
 pB <- ggplot(overall) +
   geom_segment(aes(x = Archived, xend = QSQ, y = tau, yend = tau), colour = "#C7CBD1", linewidth = 1.2) +
-  geom_point(aes(x = Archived, y = tau, colour = "Archived probe"), size = 3.2) +
+  geom_point(aes(x = Archived, y = tau, colour = "Order-preserving control"), size = 3.2) +
   geom_point(aes(x = QSQ, y = tau, colour = "QSQ"), size = 3.2) +
   geom_text(aes(x = QSQ, y = tau, label = percent(QSQ, accuracy = .1)), hjust = -0.28, size = 3.05, colour = ink) +
-  scale_colour_manual(values = c("Archived probe" = "#9AA0A6", "QSQ" = "#E9B13A")) +
+  scale_colour_manual(values = c("Order-preserving control" = "#9AA0A6", "QSQ" = "#E9B13A")) +
   scale_x_continuous(limits = c(0, .91), breaks = seq(0, .8, .2), labels = label_percent(), expand = c(0, 0)) +
   labs(
     title = "B | Stability qualification changes the non-evaluable rate",
