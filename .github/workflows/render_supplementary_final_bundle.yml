@@ -3,7 +3,7 @@ name: Render final Supplementary S5 S6 S8 bundle
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [paper/fourier-mechanism-integration-20260927]
     paths:
       - '.github/workflows/render_supplementary_final_bundle.yml'
       - 'figures/R/supplement/figureS5_bader_implementation_robustness.R'
@@ -69,15 +69,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          tmp=$(mktemp -d)
-          cp figures/R/rendered/supplementary_figureS5_bader_implementation_robustness_R.* "$tmp"/
-          cp figures/R/rendered/supplementary_figureS6_matching_sensitivity_R.* "$tmp"/
-          cp figures/R/rendered/supplementary_figureS8_external_confirmation_R.* "$tmp"/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --hard origin/main
-          cp "$tmp"/* figures/R/rendered/
           git add \
             figures/R/rendered/supplementary_figureS5_bader_implementation_robustness_R.* \
             figures/R/rendered/supplementary_figureS6_matching_sensitivity_R.* \
@@ -86,5 +79,6 @@ jobs:
             echo "Bundle outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render final Supplementary S5 S6 S8 bundle"
-          git push origin HEAD:main
+          git commit -m "figure: render Supplementary S5 S6 S8 reader-facing bundle"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
