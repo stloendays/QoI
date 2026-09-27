@@ -1,24 +1,24 @@
 # Figure map
 
-Updated 2026-09-12. Canonical figure-numbering, narrative-role, source, and provenance registry for the frozen submission scope.
+Updated 2026-09-27. Canonical figure-numbering, narrative role, source, and provenance registry for the current submission scope.
 
-**Working title:** *Stability-qualified benchmarks for scientific compression of electronic densities*
+**Active title:** *Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities*
 
 ## Narrative spine
 
 The manuscript is organized around a benchmark-validity and measurement-contract principle:
 
-> **A downstream scientific tolerance should be used to score scientific compression only after the QoI has been independently qualified for numerical stability at that tolerance.**
+> **Scientific compression should be scored only after the reference QoI is qualified at the requested tolerance, and codec comparisons should be interpreted through the downstream operator and realized reconstruction-error structure rather than nominal pointwise bounds alone.**
 
 The reader-facing framework is **QoI Stability Qualification (QSQ)**. The operative decision order is:
 
 `QoI Stability Qualification -> eligibility -> compression evaluation -> certification`
 
-The manuscript does **not** claim novelty for the general observation that small pointwise reconstruction error can coexist with large downstream QoI error. That is motivation. The novelty-bearing evidence hierarchy is now frozen as:
+The manuscript does **not** claim novelty for the general observation that small pointwise reconstruction error can coexist with large downstream QoI error. That is motivation. The validation hierarchy is:
 
 `P1 equal-search control -> P2 prospective fresh-perturbation validation -> P3A independent on-grid implementation transfer`
 
-with **P4** retained as a secondary measurement-contract boundary / null-correctness case study.
+with **P4** as a secondary measurement-contract boundary case study and the Fourier audit as operator-resolved mechanism support.
 
 ## Canonical figure registry
 
@@ -27,10 +27,11 @@ with **P4** retained as a secondary measurement-contract boundary / null-correct
 | 1 | Scientific-compression measurement contract | `figures/R/figure1_qoi_contract.R` | `figures/R/rendered/figure1_qoi_contract_R.{png,pdf,svg}` | **LOCKED** |
 | 2 | Operator hierarchy on identical reconstructions | `figures/R/figure2_qoi_hierarchy.R` | `figures/R/rendered/figure2_qoi_hierarchy_R.{png,pdf,svg}` | **LOCKED** |
 | 3 | **Central validation: equal-search control + prospective QSQ risk stratification** | `figures/R/figure3_certification_landscape.R` | `figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg}` | **LOCKED — P1/P2 version** |
-| 4 | Archived float32 probe -> validated QSQ perturbation probe | `figures/R/figure4_stability_protocol.R` | `figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}` | **LOCKED** |
+| 4 | Order-preserving control vs validated QSQ perturbation | `figures/R/figure4_stability_protocol.R` | `figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}` | **LOCKED** |
 | 5 | Basin migration and topology-sensitive Bader amplification | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | **LOCKED** |
 | 6 | Nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | **LOCKED** |
-| 7 | Untouched external confirmation | `figures/R/figure7_external_confirmation.R` | `figures/R/rendered/figure7_external_confirmation_R.{png,pdf,svg}` | **LOCKED** |
+| 7 | Fourier-spectrum mechanism at matched realized distortion | `figures/R/figure7_fourier_spectrum_mechanism.R` | `figures/R/rendered/figure7_fourier_spectrum_mechanism_R.{png,pdf,svg}` | **LOCKED** |
+| 8 | Untouched external confirmation | `figures/R/figure8_external_confirmation.R` | `figures/R/rendered/figure8_external_confirmation_R.{png,pdf,svg}` | **LOCKED** |
 
 ## Figure 1 — Measurement contract
 
@@ -215,7 +216,7 @@ Locked formal runs retained for provenance:
 - Figure 5: run `34349558487`, artifact `10103144848`.
 - Figure 6: run `34340308601`, artifact `10099481566`.
 - Figure 7: source `figures/R/figure7_fourier_spectrum_mechanism.R`; final caption `paper/FIGURE7_CAPTION_FINAL_20260927.md`; rendered from `analysis/hartree_spectral_mechanism/results/` on the manuscript-integration branch.
-- Figure 8 (external confirmation; previously reader-facing Figure 7 before the author-authorized scope extension): source alias `figures/R/figure8_external_confirmation.R`; underlying external analysis is unchanged.
+- Figure 8: source `figures/R/figure8_external_confirmation.R`; outputs `figures/R/rendered/figure8_external_confirmation_R.{png,pdf,svg}`.
 
 ## Submission scope lock
 
