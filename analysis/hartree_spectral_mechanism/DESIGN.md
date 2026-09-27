@@ -61,6 +61,9 @@ operator**:
 - modes on any even-grid Nyquist plane are set to zero;
 - all remaining modes use `4 pi Delta rho(G)/|G|^2`.
 
+Let `G_s` denote the retained non-zero modes outside those excluded Nyquist
+planes, and define
+`W_H = sum_{G in G_s} |Delta rho(G)|^2 / |G|^4`.
 This makes the discrete operator Hermitian and restores the exact identity
 
 `RMS(Delta V_H)^2 = (4 pi)^2 / N^2 * W_H`.
