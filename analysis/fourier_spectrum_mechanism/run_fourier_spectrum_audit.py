@@ -120,19 +120,28 @@ def spectrum_metrics(err: np.ndarray, g2: np.ndarray) -> dict[str, float]:
     if not np.isfinite(total) or total <= 0:
         raise RuntimeError("zero/non-finite spectral error energy")
 
-    low = float(Ew[q <= LOW_Q].sum())
-    high = float(Ew[q >= HIGH_Q].sum())
-    centroid = float((Ew * q).sum() / total)
-
     mask = g2 > 0
+    nonzero_total = float(Ew[mask].sum())
+    if nonzero_total <= 0:
+        raise RuntimeError("zero nonzero-G spectral energy")
+    low_mask = mask & (q <= LOW_Q)
+    high_mask = mask & (q >= HIGH_Q)
+    low = float(Ew[low_mask].sum())
+    high = float(Ew[high_mask].sum())
+    centroid = float((Ew[mask] * q[mask]).sum() / nonzero_total)
+    g0_energy = float(Ew[~mask].sum())
+
     hw = float((Ew[mask] / (g2[mask] ** 2)).sum())
-    hw_low = float((Ew[(mask) & (q <= LOW_Q)] / (g2[(mask) & (q <= LOW_Q)] ** 2)).sum())
+    hw_low = float((Ew[low_mask] / (g2[low_mask] ** 2)).sum())
     return {
         "error_energy": total,
+        "nonzero_G_error_energy": nonzero_total,
+        "G0_error_energy": g0_energy,
+        "G0_error_fraction_total": g0_energy / total,
         "low_G_error_energy": low,
         "high_G_error_energy": high,
-        "low_G_fraction": low / total,
-        "high_G_fraction": high / total,
+        "low_G_fraction": low / nonzero_total,
+        "high_G_fraction": high / nonzero_total,
         "spectral_centroid_qmax": centroid,
         "hartree_weighted_error": hw,
         "hartree_weighted_low_G_fraction": hw_low / hw if hw > 0 else np.nan,
@@ -148,36 +157,37 @@ def greedy_triples(sub: pd.DataFrame) -> list[dict]:
     if any(g.empty for g in groups.values()):
         return []
 
-    # Anchor on ZFP rows. Match the nearest unused SZ3 and SPERR rows within
-    # the frozen 0.10-dex caliper. This produces true three-way common support.
-    used = {"SZ3": set(), "SPERR": set()}
-    triples = []
+    # Build all admissible three-way tuples and require the FULL tuple span
+    # max(log10 Linf)-min(log10 Linf) <= CALIPER_DEX. Greedily accept the
+    # smallest-span unused tuple, which prevents SZ3 and SPERR from being
+    # farther apart than the stated common-support caliper.
+    candidates = []
     for iz, rz in groups["ZFP"].iterrows():
         lz = math.log10(float(rz.realized_Linf))
-        chosen = {}
-        ok = True
-        for c in ("SZ3", "SPERR"):
-            candidates = []
-            for i, r in groups[c].iterrows():
-                if i in used[c]:
-                    continue
-                d = abs(math.log10(float(r.realized_Linf)) - lz)
-                if d <= CALIPER_DEX + 1e-15:
-                    candidates.append((d, int(i), r))
-            if not candidates:
-                ok = False
-                break
-            candidates.sort(key=lambda x: (x[0], x[1]))
-            chosen[c] = candidates[0]
-        if not ok:
+        for isz, rsz in groups["SZ3"].iterrows():
+            lsz = math.log10(float(rsz.realized_Linf))
+            for isp, rsp in groups["SPERR"].iterrows():
+                lsp = math.log10(float(rsp.realized_Linf))
+                logs = (lz, lsz, lsp)
+                span = max(logs) - min(logs)
+                if span <= CALIPER_DEX + 1e-15:
+                    center = abs(lz - (lsz + lsp) / 2.0)
+                    candidates.append((span, center, int(iz), int(isz), int(isp), rz, rsz, rsp))
+
+    candidates.sort(key=lambda x: x[:5])
+    used = {c: set() for c in CODECS}
+    triples = []
+    for span, _, iz, isz, isp, rz, rsz, rsp in candidates:
+        if iz in used["ZFP"] or isz in used["SZ3"] or isp in used["SPERR"]:
             continue
-        for c in ("SZ3", "SPERR"):
-            used[c].add(chosen[c][1])
+        used["ZFP"].add(iz)
+        used["SZ3"].add(isz)
+        used["SPERR"].add(isp)
         triples.append({
             "ZFP": rz,
-            "SZ3": chosen["SZ3"][2],
-            "SPERR": chosen["SPERR"][2],
-            "max_pairwise_distance_dex": max(chosen["SZ3"][0], chosen["SPERR"][0]),
+            "SZ3": rsz,
+            "SPERR": rsp,
+            "max_pairwise_distance_dex": float(span),
         })
     return triples
 
@@ -367,7 +377,7 @@ def main() -> int:
         "scope": "12-material frozen Hartree cohort; three-codec matched realized-Linf triples; frozen manuscript untouched",
         "definitions": {
             "matched_realized_Linf_caliper_dex": CALIPER_DEX,
-            "low_G": f"|G|/Gmax <= {LOW_Q}",
+            "low_G": f"0 < |G|/Gmax <= {LOW_Q}; G=0 reported separately and excluded from mechanism fractions",
             "high_G": f"|G|/Gmax >= {HIGH_Q}",
             "spectral_centroid": "sum |Delta rho(G)|^2 q / sum |Delta rho(G)|^2, q=|G|/Gmax",
             "hartree_weighted_error": "sum_{G!=0} |Delta rho(G)|^2 / |G|^4",
