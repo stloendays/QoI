@@ -39,8 +39,8 @@ cal_pair <- cal %>%
   mutate(seed_chr = as.character(seed)) %>%
   filter(amplitude_factor == 1, seed_chr %in% c("float32", "20260905")) %>%
   mutate(
-    probe = ifelse(seed_chr == "float32", "Archived float32", "QSQ noise"),
-    probe = factor(probe, levels = c("Archived float32", "QSQ noise"))
+    probe = ifelse(seed_chr == "float32", "Order-preserving control", "QSQ perturbation"),
+    probe = factor(probe, levels = c("Order-preserving control", "QSQ perturbation"))
   )
 stopifnot(nrow(cal_pair) == 36)
 
@@ -53,13 +53,13 @@ cal_stats <- cal_pair %>% group_by(probe) %>% summarise(
 pA <- ggplot(cal_pair, aes(probe, log10(1 + n_exact_neighbour_ties_created), fill = probe)) +
   geom_boxplot(width = .55, outlier.shape = NA, alpha = .75) +
   geom_jitter(width = .10, size = 1.45, alpha = .60, colour = ink) +
-  scale_fill_manual(values = c("Archived float32" = col_arch, "QSQ noise" = col_noise), guide = "none") +
+  scale_fill_manual(values = c("Order-preserving control" = col_arch, "QSQ perturbation" = col_noise), guide = "none") +
   scale_y_continuous(breaks = 0:4, labels = c("0", "9", "99", "999", "9,999")) +
   annotate("text", x = 1, y = max(log10(1 + cal_pair$n_exact_neighbour_ties_created)) * .95,
-           label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "Archived float32"]),
+           label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "Order-preserving control"]),
            size = 3.0, colour = ink) +
   annotate("text", x = 2, y = max(log10(1 + cal_pair$n_exact_neighbour_ties_created)) * .95,
-           label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "QSQ noise"]),
+           label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "QSQ perturbation"]),
            size = 3.0, colour = ink) +
   labs(title = "A | Order-preserving rounding creates exact ties", subtitle = "18-material calibration panel; matched perturbation amplitude", x = NULL, y = "Exact neighbour ties created") +
   theme_si
@@ -67,15 +67,15 @@ pA <- ggplot(cal_pair, aes(probe, log10(1 + n_exact_neighbour_ties_created), fil
 pB <- ggplot(cal_pair, aes(probe, log10(1 + n_voxels_reassigned), fill = probe)) +
   geom_boxplot(width = .55, outlier.shape = NA, alpha = .75) +
   geom_jitter(width = .10, size = 1.45, alpha = .60, colour = ink) +
-  scale_fill_manual(values = c("Archived float32" = col_arch, "QSQ noise" = col_noise), guide = "none") +
+  scale_fill_manual(values = c("Order-preserving control" = col_arch, "QSQ perturbation" = col_noise), guide = "none") +
   scale_y_continuous(breaks = 0:5, labels = c("0", "9", "99", "999", "9,999", "99,999")) +
   annotate("label", x = 1, y = max(log10(1 + cal_pair$n_voxels_reassigned)) * .90,
-           label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "Archived float32"], cal_stats$n[cal_stats$probe == "Archived float32"]),
+           label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "Order-preserving control"], cal_stats$n[cal_stats$probe == "Order-preserving control"]),
            size = 2.9, label.size = .18, fill = alpha("white", .94)) +
   annotate("label", x = 2, y = max(log10(1 + cal_pair$n_voxels_reassigned)) * .90,
-           label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "QSQ noise"], cal_stats$n[cal_stats$probe == "QSQ noise"]),
+           label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "QSQ perturbation"], cal_stats$n[cal_stats$probe == "QSQ perturbation"]),
            size = 2.9, label.size = .18, fill = alpha("white", .94)) +
-  labs(title = "B | Noise excites basin reassignment", subtitle = "QSQ removes the order-preserving control's blind spot", x = NULL, y = "Voxels reassigned") +
+  labs(title = "B | QSQ perturbations excite basin reassignment", subtitle = "QSQ removes the order-preserving control's blind spot", x = NULL, y = "Voxels reassigned") +
   theme_si
 
 # Full 319-system seed sensitivity. This is deliberately distinguished from
