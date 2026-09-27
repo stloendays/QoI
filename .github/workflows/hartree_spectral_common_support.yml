@@ -6,7 +6,9 @@ on:
     branches:
       - research/hartree-spectral-common-support-20260927
     paths:
-      - analysis/hartree_spectral_common_support/**
+      - analysis/hartree_spectral_common_support/build_common_support.py
+      - analysis/hartree_spectral_common_support/run_triple_shard.py
+      - analysis/hartree_spectral_common_support/aggregate_common_support.py
       - .github/workflows/hartree_spectral_common_support.yml
 
 permissions:
