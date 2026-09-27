@@ -4,6 +4,8 @@ name: Render Figure 2 QoI hierarchy
 on:
   workflow_dispatch:
   push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
     paths:
       - 'figures/R/figure2_qoi_hierarchy.R'
       - '.github/workflows/render_figure2_qoi_hierarchy.yml'
@@ -56,5 +58,6 @@ jobs:
             echo "Rendered Figure 2 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 2 QoI hierarchy"
-          git push
+          git commit -m "figure: render Figure 2 reader-facing outputs"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
