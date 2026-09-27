@@ -19,7 +19,6 @@ The tables below report the reader-facing supplementary analyses for the current
 
 **Evidence provenance:** cohort metadata, QSQ eligibility summary, external manifest and confirmatory summary; exact repository paths are mapped in the reader-facing provenance index.
 
----
 
 ## Supplementary Table S2 | QSQ definition and order-preserving control
 
@@ -41,7 +40,6 @@ The tables below report the reader-facing supplementary analyses for the current
 
 **Evidence provenance:** QSQ method record, order-preserving control record and probe-calibration panel.
 
----
 
 ## Supplementary Table S3 | QSQ eligibility by threshold and stratum
 
@@ -67,7 +65,6 @@ The tables below report the reader-facing supplementary analyses for the current
 
 **Evidence provenance:** QSQ eligibility summary.
 
----
 
 ## Supplementary Table S4 | Codec-resolved binary-to-three-state reclassification in the 254-system development cohort
 
@@ -87,7 +84,6 @@ The tables below report the reader-facing supplementary analyses for the current
 
 **Evidence provenance:** codec-resolved reclassification summary.
 
----
 
 ## Supplementary Table S5 | Sensitivity to omission of eligibility and inflation of the Bader threshold
 
@@ -145,7 +141,6 @@ Here the analysis threshold is multiplied by `k = 2, 5, 10` as a post hoc robust
 
 **Evidence provenance:** threshold-sensitivity analysis, including bulk/slab-resolved rows and distributional quantiles.
 
----
 
 ## Supplementary Table S6 | Re-derived Bader error relative to each material's independent QSQ stability floor
 
@@ -167,7 +162,6 @@ At the strictest certified contract, median `DeltaQ/floor` is only 1.09-1.33 acr
 
 **Evidence provenance:** certified-error-to-QSQ-floor summary.
 
----
 
 ## Supplementary Table S7 | QSQ seed and amplitude sensitivity
 
@@ -176,7 +170,7 @@ At the strictest certified contract, median `DeltaQ/floor` is only 1.09-1.33 acr
 | Diagnostic | Calibration result | Qualification implication |
 |---|---:|---|
 | Exact neighbouring ties created | median 82 under order-preserving control; 0 under same-amplitude QSQ perturbation | An order-preserving round trip is unusually benign for an order-dependent watershed |
-| Systems with zero voxel reassignment | 9/18 order-preserving control; 2/18 same-amplitude QSQ perturbation | QSQ noise more effectively probes the relevant partition-instability channel |
+| Systems with zero voxel reassignment | 9/18 order-preserving control; 2/18 same-amplitude QSQ perturbation | QSQ perturbation more effectively probes the relevant partition-instability channel |
 | Five-seed log10 floor span | median 0.47 decades; maximum 2.4 decades | A single seed is insufficient for the five-seed qualification rule |
 | Seed-dependent eligibility at 1e-4 e | 3/18 materials | Five pre-specified seeds retained |
 | Seed-dependent eligibility at 1e-3 e | 2/18 materials | Five pre-specified seeds retained |
@@ -202,7 +196,6 @@ The 0.47-decade median / 2.4-decade maximum in S7a describe the calibration pane
 
 Tables S5-S7 are sensitivity and audit material. They support transparency of the measurement contract, but they do not redefine the primary chemical thresholds, change the pre-specified QSQ seed set or amplitude, or turn a non-evaluable material-threshold pair into a codec pass.
 
----
 
 ## Supplementary Table S8 | Electron-count preservation does not certify Bader-charge fidelity
 
@@ -236,7 +229,6 @@ Tables S5-S7 are sensitivity and audit material. They support transparency of th
 
 **Evidence provenance:** electron-count/Bader decoupling analysis.
 
----
 
 ## Supplementary Table S9 | Hartree-potential response is smoother than re-derived Bader response on the same reconstructions
 
@@ -273,7 +265,6 @@ The all-codec pooled Hartree log–log exponent in the pooled analysis is **1.02
 
 **Interpretation.** Tables S8–S9 are operator-control analyses. They show why downstream observables must be evaluated explicitly; the prospective QSQ validation remains a separate endpoint.
 
----
 
 ## Supplementary Table S10 | Representative Bader decomposition confirms a dominant domain-migration channel
 
@@ -293,7 +284,6 @@ Across the full representative matrix (n=106 material–codec–tolerance cases)
 
 **Evidence provenance:** representative Bader mechanism decomposition and per-atom decomposition tables.
 
----
 
 ## Supplementary Table S11 | Independent Bader implementations preserve the mechanism and strict-response ordering
 
@@ -325,7 +315,7 @@ Across the full representative matrix (n=106 material–codec–tolerance cases)
 | Eligibility concordance at 0.001 e | Henkelman near-grid | 12 materials | 91.7% | — |
 | Eligibility concordance at 0.01 e | Henkelman near-grid | 12 materials | 91.7% | — |
 
-Codec-response ratios above use successful paired outputs above the 2e-6 e Henkelman print-resolution region. The additional on-grid baseline-compatible row requires the unperturbed Henkelman/BaderKit atomic charges to agree within 1e-3 e. All paired points, including flagged baseline differences, remain in `supplement/S11_cross_implementation_pairs.csv`.
+Codec-response ratios above use successful paired outputs above the 2e-6 e Henkelman print-resolution region. The additional on-grid baseline-compatible row requires the unperturbed Henkelman/BaderKit atomic charges to agree within 1e-3 e. All paired points, including flagged baseline differences, are retained in the machine-readable implementation-transfer audit.
 
 ### S11c. Relative 1e-4 codec-response ordering by implementation
 
@@ -379,13 +369,11 @@ Floor-rank Spearman correlation with primary BaderKit is **0.995** for Henkelman
 
 **Evidence provenance:** resolved 24-system implementation-transfer classification and floor-rank summaries.
 
----
 
 **Interpretation.** This deliberately stratified 12-system panel is a mechanism/implementation robustness study, not a prevalence estimate. Henkelman on-grid reproduces the BaderKit codec response essentially one-for-one above print resolution, and the strict SZ3/ZFP and SPERR/ZFP ordering remains qualitatively similar under on-grid and near-grid Henkelman analyses. The exact decomposition supports a Bader-specific domain-migration channel. Spatial permutations provide secondary evidence that error organization matters, while the near-null periodic-shift control argues against a simple alignment-only explanation. These results do not redefine QSQ or alter the primary benchmark.
 
 **Evidence provenance:** independent-Bader outcome, stability-comparison, mechanism-decomposition and spatial-control summaries.
 
----
 
 ## Supplementary Table S12 | Realized-L∞ matching sensitivity across pre-specified calipers
 
@@ -448,7 +436,6 @@ The primary analysis uses a 0.10-dex caliper; 0.05, 0.20 and 0.30 dex are pre-sp
 
 **Evidence provenance:** realized-distortion matching diagnostics and caliper-sensitivity summary.
 
----
 
 ## Supplementary Table S13 | Stability-qualified rate–fidelity in development and untouched external confirmation
 
@@ -557,7 +544,6 @@ Development and external summaries use the same pre-specified QSQ eligibility an
 
 **Evidence provenance:** development/external rate–fidelity summary and SZ3/ZFP pairwise comparison table.
 
----
 
 ## Supplementary Table S14 | Failure taxonomy, exclusions and negative-result audit
 
@@ -566,10 +552,10 @@ Development and external summaries use the same pre-specified QSQ eligibility an
 
 | State / category | Meaning | Scored as codec pass/fail? | Evidence class |
 |---|---|---|---|
-| `NON_EVALUABLE_BADER_UNSTABLE` | Reference Bader QoI fails **QSQ eligibility** at the requested tolerance | **No** — neither pass nor fail | QSQ eligibility summary |
-| `bader_solver_failure` | Downstream Bader analysis did not return a valid row-level result | **No automatic codec attribution**; retained in audit | failure registry |
-| `reproduction_mismatch` | Reproduction/platform check failed despite reconstructed scientific field remaining consistent | **No**; infrastructure exclusion from the affected formal analysis | Hartree reproduction records |
-| `basin_relabelling_symmetry_equivalent` | Apparent large atom-indexed charge change is a permutation among symmetry-equivalent basins | **Non-evaluable for position-indexed charge**, separately flagged | failure registry |
+| Reference-QoI non-evaluability | Reference Bader QoI fails **QSQ eligibility** at the requested tolerance | **No** — neither pass nor fail | QSQ eligibility summary |
+| Bader solver failure | Downstream Bader analysis did not return a valid row-level result | **No automatic codec attribution**; retained in audit | failure registry |
+| Reproduction mismatch | Reproduction/platform check failed despite reconstructed scientific field remaining consistent | **No**; infrastructure exclusion from the affected formal analysis | Hartree reproduction records |
+| Symmetry-equivalent basin relabelling | Apparent large atom-indexed charge change is a permutation among symmetry-equivalent basins | **Non-evaluable for position-indexed charge**, separately flagged | failure registry |
 | eligible + not certified | Reference QoI is numerically eligible but compressed reconstruction exceeds the requested Bader contract | **Yes: genuine failure** | development benchmark |
 | eligible + certified | Reference QoI is eligible and the reconstruction satisfies the contract | **Yes: certified success** | development benchmark |
 
@@ -577,8 +563,8 @@ Development and external summaries use the same pre-specified QSQ eligibility an
 
 | Registry category | Row records |
 |---|---:|
-| `bader_solver_failure` | 78 |
-| `basin_relabelling_symmetry_equivalent` | 1 |
+| Bader solver failure | 78 |
+| Symmetry-equivalent basin relabelling | 1 |
 
 ### Bader-solver failures by corpus and codec
 
@@ -601,7 +587,6 @@ These counts describe explicit row-level failure records, not material-level non
 
 **Evidence provenance:** failure-registry summary and claim–evidence audit.
 
----
 
 ## Supplementary Table S15 | Outcome-blind chemistry pairs and two-implementation source references
 
@@ -635,7 +620,6 @@ Reference acceptance was pre-specified before compression outcomes: identical no
 
 Interpretation: no policy improves sign correctness because the unqualified common-tight baseline already has zero adverse decisions. QSQ is more conservative than this coarse sign contract. The lower independent-solver call count for targeted escalation is an audit-cost comparison only.
 
----
 
 ## Supplementary Table S17 | Operator-resolved Fourier diagnostics for realized-$L_\infty$-matched ZFP/SZ3 reconstructions.
 
