@@ -50,7 +50,7 @@ pA <- ggplot(a, aes(tau, ratio_median, colour=codec, group=codec)) +
   scale_colour_manual(values=codec_cols) +
   scale_y_log10(breaks=c(5,10,20,40,80,160), labels=label_number(accuracy=.1, suffix="x")) +
   labs(title="A | External systems reproduce the rate-fidelity transition",
-       subtitle="Median best-certified ratio; error bars are frozen bootstrap intervals",
+       subtitle="Median best-certified ratio; error bars are 95% bootstrap intervals",
        x="Bader contract tau (e)", y="Best-certified compression ratio") + th
 
 b <- P %>% filter(stratum=="overall", codec_a=="sz3", codec_b=="zfp", threshold_e %in% tau_levels) %>%
@@ -107,8 +107,8 @@ pD <- ggplot(d, aes(tau, eligible, group=1)) +
 fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title="Figure 8 | Untouched external systems reproduce the stability-qualified decision frontier",
-    subtitle="A pre-frozen 63-system cohort preserves the codec-ordering transition, realized-distortion asymmetry, and QSQ eligibility logic without retuning.",
-    caption="External confirmatory cohort: 63/63 observed systems completed, 1,689 retained scientific rows, zero material-level pipeline failures and zero codec-bound violations.\nPairwise intervals and compression-ratio intervals are the frozen external bootstrap summaries.",
+    subtitle="The pre-specified 63-system cohort preserves the codec-ordering transition, realized-distortion asymmetry, and QSQ eligibility logic without retuning.",
+    caption="External confirmatory cohort: 63/63 observed systems completed, 1,689 retained scientific rows, zero material-level pipeline failures and zero codec-bound violations.\nPairwise intervals and compression-ratio intervals are the external bootstrap summaries.",
     theme=theme(plot.background=element_rect(fill=bg, colour=NA),
                 plot.title=element_text(face="bold", size=14, colour=ink, margin=margin(b=4)),
                 plot.subtitle=element_text(size=9.8, colour="#4F545C", margin=margin(b=8)),
