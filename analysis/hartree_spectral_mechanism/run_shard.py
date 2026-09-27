@@ -263,7 +263,7 @@ def spectral_metrics(
     return metrics, bins
 
 
-def safe_ratio(num: float, den: float) -> float:
+def ratio_or_nan(num: float, den: float) -> float:
     num = float(num)
     den = float(den)
     if not (np.isfinite(num) and np.isfinite(den)) or den <= 0 or num < 0:
@@ -444,8 +444,8 @@ def main() -> int:
                     "sqrt_hartree_weighted_ratio": weighted_factor,
                     "sqrt_total_safe_error_energy_ratio": energy_factor,
                     "sqrt_spectral_hartree_susceptibility_ratio": susceptibility_factor,
-                    "low_G_fraction_ratio": safe_ratio(a["low_G_fraction"], b["low_G_fraction"]),
-                    "high_G_fraction_ratio": safe_ratio(a["high_G_fraction"], b["high_G_fraction"]),
+                    "low_G_fraction_ratio": ratio_or_nan(a["low_G_fraction"], b["low_G_fraction"]),
+                    "high_G_fraction_ratio": ratio_or_nan(a["high_G_fraction"], b["high_G_fraction"]),
                     "spectral_centroid_delta_qmax": float(a["spectral_centroid_qmax"]) - float(b["spectral_centroid_qmax"]),
                     "hartree_weighted_low_G_fraction_ratio": safe_ratio(
                         a["hartree_weighted_low_G_fraction"],
