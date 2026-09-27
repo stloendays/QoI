@@ -1,0 +1,170 @@
+name: Three-way common-support Hartree spectral audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hartree-spectral-common-support-20260927
+    paths:
+      - analysis/hartree_spectral_common_support/**
+      - .github/workflows/hartree_spectral_common_support.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hartree-spectral-common-support-20260927
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile common-support audit
+        run: |
+          python -m py_compile repo/analysis/hartree_spectral_common_support/build_common_support.py
+          python -m py_compile repo/analysis/hartree_spectral_common_support/run_triple_shard.py
+          python -m py_compile repo/analysis/hartree_spectral_common_support/aggregate_common_support.py
+      - name: Build frozen common-support protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/common_support_protocol"
+          mkdir -p "$out"
+          python repo/analysis/hartree_spectral_common_support/build_common_support.py \
+            --repo-root repo \
+            --output-dir "$out"
+          cat "$out/MATCHING_SUMMARY.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-common-support-protocol
+          path: ${{ runner.temp }}/common_support_protocol
+          if-no-files-found: error
+          retention-days: 90
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/download-artifact@v4
+        with:
+          name: hartree-common-support-protocol
+          path: protocol
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen codec/source stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Execute common-support shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/common_support_${{ matrix.shard }}"
+          python repo/analysis/hartree_spectral_common_support/run_triple_shard.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --protocol protocol/common_support_triples.csv \
+            --shard-count 16 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-common-support-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/common_support_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: [preflight, shard]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: hartree-common-support-protocol
+          path: protocol
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hartree-common-support-shard-*
+          path: shards
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install aggregation stack
+        run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - name: Aggregate common-support audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/analysis/hartree_spectral_common_support/results
+          python repo/analysis/hartree_spectral_common_support/aggregate_common_support.py \
+            --protocol-dir protocol \
+            --shards-root shards \
+            --output-dir repo/analysis/hartree_spectral_common_support/results
+          cp protocol/MATCHING_SUMMARY.json repo/analysis/hartree_spectral_common_support/results/MATCHING_SUMMARY.json
+          python --version > repo/analysis/hartree_spectral_common_support/results/aggregate_python_version.txt 2>&1
+          python -m pip freeze | sort > repo/analysis/hartree_spectral_common_support/results/aggregate_pip_freeze.txt
+          git -C repo rev-parse HEAD > repo/analysis/hartree_spectral_common_support/results/research_branch_commit_before_results.txt
+          echo "c4edc46ca64d1275e21aa6e63f367a08bb563d42" > repo/analysis/hartree_spectral_common_support/results/frozen_allcodec_parent_commit.txt
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > repo/analysis/hartree_spectral_common_support/results/frozen_scientific_commit.txt
+      - name: Commit common-support results
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/hartree_spectral_common_support/results
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'research: complete three-way common-support spectral audit'
+            git pull --rebase origin research/hartree-spectral-common-support-20260927
+            git push origin HEAD:research/hartree-spectral-common-support-20260927
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hartree-common-support-aggregate
+          path: repo/analysis/hartree_spectral_common_support/results
+          if-no-files-found: warn
+          retention-days: 90
