@@ -398,6 +398,9 @@ def main() -> int:
 
                     row = {
                         "pair_id": pair_id,
+                        "pair_label": f"{PAIR_A}/{PAIR_B}",
+                        "codec_a": PAIR_A,
+                        "codec_b": PAIR_B,
                         "material_id": mid,
                         "system_type": target["system_type"],
                         "codec": codec,
@@ -425,6 +428,9 @@ def main() -> int:
                     for br in bins:
                         radial_rows.append({
                             "pair_id": pair_id,
+                            "pair_label": f"{PAIR_A}/{PAIR_B}",
+                            "codec_a": PAIR_A,
+                            "codec_b": PAIR_B,
                             "material_id": mid,
                             "system_type": target["system_type"],
                             "codec": codec,
