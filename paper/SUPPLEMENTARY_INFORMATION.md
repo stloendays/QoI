@@ -223,7 +223,7 @@ Negative algorithmic results are valuable supplementary evidence because they de
 
 # Proposed Supplementary Figures
 
-All final supplementary figures should be generated from R sources and exported as PNG/PDF/SVG, following the same reproducibility standard as Figures 1–8.
+All supplementary figures are generated from R sources and exported as PNG/PDF/SVG, following the same reproducibility standard as Figures 1–8.
 
 | Figure | Content | Source data | Status |
 |---|---|---|---|
@@ -232,9 +232,9 @@ All final supplementary figures should be generated from R sources and exported 
 | **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **LOCKED** |
 | **Fig. S4** | Tight-regime Bader error/QSQ-floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
 | **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | `mechanism/basin_error_decomposition_*`; `mechanism/independent_bader_20260908/` | **PLANNED R** |
-| **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | `analysis/matched_realized_linf_v1/` | **PLANNED R** |
+| **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | realized-distortion matching outputs (repository provenance index) | **LOCKED R** |
 | **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **LOCKED** |
-| **Fig. S8** | External confirmatory per-system/pairwise distributions and audit summary | `validation/final_external_confirmatory63_20260908/confirmatory63/` | **PLANNED R** |
+| **Fig. S8** | External confirmatory per-system/pairwise distributions and audit summary | external confirmation (repository provenance index) | **LOCKED R** |
 
 # Submission boundaries
 
