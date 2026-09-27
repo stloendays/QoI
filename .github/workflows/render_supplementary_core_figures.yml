@@ -3,6 +3,8 @@ name: Render supplementary core figures S1 S2 S7
 on:
   workflow_dispatch:
   push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
     paths:
       - 'figures/R/supplement/figureS1_stability_floor_landscape.R'
       - 'figures/R/supplement/figureS2_probe_seed_amplitude.R'
@@ -20,8 +22,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: qoi-formal-figure-writeback
-  cancel-in-progress: false
+  group: supplementary-core-s1-s2-s7-writeback
+  cancel-in-progress: true
 
 jobs:
   render:
@@ -76,22 +78,22 @@ jobs:
         run: |
           set -euo pipefail
           tmp=$(mktemp -d)
-          cp figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.* "$tmp"/
-          cp figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.* "$tmp"/
-          cp figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.* "$tmp"/
+          cp figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.{png,pdf,svg} "$tmp"/
+          cp figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.{png,pdf,svg} "$tmp"/
+          cp figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.{png,pdf,svg} "$tmp"/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --hard origin/main
+          git fetch origin "$GITHUB_REF_NAME"
+          git reset --hard "origin/$GITHUB_REF_NAME"
           cp "$tmp"/supplementary_figureS1_stability_floor_landscape_R.* figures/R/rendered/
           cp "$tmp"/supplementary_figureS2_probe_seed_amplitude_R.* figures/R/rendered/
           cp "$tmp"/supplementary_figureS7_reclassification_by_codec_R.* figures/R/rendered/
-          git add figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.*
-          git add figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.*
-          git add figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.*
+          git add figures/R/rendered/supplementary_figureS1_stability_floor_landscape_R.{png,pdf,svg}
+          git add figures/R/rendered/supplementary_figureS2_probe_seed_amplitude_R.{png,pdf,svg}
+          git add figures/R/rendered/supplementary_figureS7_reclassification_by_codec_R.{png,pdf,svg}
           if git diff --cached --quiet; then
             echo "Supplementary outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Supplementary Figures S1 S2 S7"
-          git push origin HEAD:main
+          git commit -m "figure: render reader-facing supplementary outputs"
+          git push origin "HEAD:$GITHUB_REF_NAME"
