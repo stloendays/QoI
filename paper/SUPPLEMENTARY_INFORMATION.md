@@ -1,6 +1,6 @@
 # Supplementary Information
 
-## Stability-qualified benchmarks for scientific compression of electronic densities
+## Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities
 
 This Supplementary Information (SI) is organized to support the main-text benchmark-validity claim without duplicating the primary narrative. The main manuscript establishes the three-state certification logic and its headline consequence. The SI documents denominator conventions, qualification provenance, sensitivity analyses, extended operator controls, mechanistic robustness, matching diagnostics, rate–fidelity tables, external confirmation, and failure semantics.
 
@@ -12,7 +12,7 @@ The SI uses frozen data assets already versioned in the repository. No supplemen
 
 The development benchmark contains **254 electronic-density fields**, comprising **186 bulk** and **68 slab** systems. Across ZFP, SZ3 and SPERR and the frozen base/tight tolerance ladders, the merged development master table contains **6,343 retained reconstruction rows** (`benchmark/master_benchmark_full.csv`).
 
-The numerical-stability qualification has a broader frozen universe of **319 systems**. This total is composed of 186 development bulk systems, 68 development slabs, 37 external bulk systems and 28 external vacuum-containing 2D systems (`stability/eligibility_summary_A1.csv`). The external stability set therefore contains **65 records** and should not be conflated with the **63-system primary external rate–fidelity confirmatory cohort**. The latter was frozen separately for confirmatory scoring and contains 1,689 retained scientific rows. A final 65-system external descriptive aggregate also exists and contains 1,755 rows (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`).
+The numerical-stability qualification has a broader fixed universe of **319 systems**. This total is composed of 186 development bulk systems, 68 development slabs, 37 external bulk systems and 28 external vacuum-containing 2D systems (QSQ eligibility summary; repository reader-facing provenance index). The external stability set therefore contains **65 records** and should not be conflated with the **63-system primary external rate–fidelity confirmatory cohort**. The latter was frozen separately for confirmatory scoring and contains 1,689 retained scientific rows. A final 65-system external descriptive aggregate also exists and contains 1,755 rows (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`).
 
 This distinction is important because different questions use different denominators:
 
@@ -45,7 +45,7 @@ f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
 
 A Bader tolerance \(\tau\) is eligible only when \(f_m<\tau\). If \(f_m\ge\tau\), the material–threshold pair is assigned `NON_EVALUABLE_BADER_UNSTABLE` and is neither a codec pass nor a codec failure.
 
-The 18-material calibration run showed why the probe had to change (`stability/probe_calibration.csv`; `protocol/PROTOCOL_A1.md`):
+The 18-material calibration panel shows why perturbation structure matters (probe calibration panel and QSQ method record; repository reader-facing provenance index):
 
 - the archived float32 probe produced a median of **82 exact neighbouring ties** and reassigned zero voxels in **9/18** calibration systems;
 - the non-order-preserving QSQ perturbation probe produced no exact ties and reassigned zero voxels in only **2/18** systems;
@@ -53,11 +53,11 @@ The 18-material calibration run showed why the probe had to change (`stability/p
 - a single-seed eligibility verdict changed across seeds in 3/18 materials at \(10^{-4}\,e\), 2/18 at \(10^{-3}\,e\), and 1/18 at \(10^{-2}\,e\);
 - over a two-decade amplitude sweep (×0.1 to ×10), the floor changed by a median of **0.76 decades** (P10 0.00; P90 2.02), demonstrating that the reported floor is qualification-defined rather than an amplitude-free material constant.
 
-Across the complete 319-system stability corpus, the QSQ non-evaluable fractions are **79.9%** at \(10^{-4}\,e\), **41.4%** at \(10^{-3}\,e\), and **9.7%** at \(10^{-2}\,e\) (`stability/eligibility_summary_A1.csv`).
+Across the complete 319-system stability corpus, the QSQ non-evaluable fractions are **79.9%** at \(10^{-4}\,e\), **41.4%** at \(10^{-3}\,e\), and **9.7%** at \(10^{-2}\,e\) (QSQ eligibility summary; repository reader-facing provenance index).
 
 One extreme QSQ response, `aflow-Al8Cu4U1_ICSD_601801`, corresponds to a permutation of symmetry-equivalent Al basins rather than a literal multi-electron chemical transfer. It is retained as `basin_relabelling_symmetry_equivalent` in `failure_registry.csv` and remains non-evaluable for a position-indexed atomic-charge QoI.
 
-Historical repository identifiers such as `Protocol A`, `Protocol A.1`, and filenames containing `_A1` are retained only to preserve the frozen development record and machine-readable provenance; they are not the preferred scientific names of the qualification method.
+Exact implementation filenames and superseded controls are mapped in the repository reader-facing provenance index and are not used as scientific method names here.
 
 ---
 
@@ -204,12 +204,12 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | Table | Content | Primary source | Status |
 |---|---|---|---|
 | **Table S1** | Cohort composition, denominator conventions and provenance | `materials_metadata.csv`; `external_test_MANIFEST.json`; `validation/EXTERNAL_CONFIRMATORY63_20260908.md` | **READY** |
-| **Table S2** | QSQ definition, seeds, amplitudes, decision semantics and archived float32-probe provenance | `protocol/PROTOCOL_A1.md`; `protocol/PROTOCOL_A_archived.md` | **READY** |
-| **Table S3** | QSQ eligibility by threshold and stratum; archived float32 probe shown only as provenance | `stability/eligibility_summary_A1.csv` | **READY** |
+| **Table S2** | QSQ definition, seeds, amplitudes, decision semantics and order-preserving control | QSQ method record + archived order-preserving control (repository provenance index) | **READY** |
+| **Table S3** | QSQ eligibility by threshold and stratum | QSQ eligibility summary (repository provenance index) | **READY** |
 | **Table S4** | Binary-to-three-state reclassification by codec | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **READY** |
 | **Table S5** | No-exclusion and inflated-threshold sensitivity | `supplement/S1_S3_sensitivity.csv` | **READY** |
 | **Table S6** | Certified Bader error relative to QSQ floor | `supplement/S2_floor_relative.csv` | **READY** |
-| **Table S7** | QSQ probe seed and amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **READY** |
+| **Table S7** | QSQ probe seed and amplitude sensitivity | QSQ per-seed responses + amplitude-sensitivity table (repository provenance index) | **READY** |
 | **Table S8** | Electron-count control by codec/tolerance | `analysis/electron_count_qoi/electron_bader_decoupling.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `matched_error_dispersion.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S10** | Bader domain decomposition across representative systems | `mechanism/basin_error_decomposition_summary.csv`; `..._per_atom.csv` | **READY** |
@@ -227,8 +227,8 @@ All final supplementary figures should be generated from R sources and exported 
 
 | Figure | Content | Source data | Status |
 |---|---|---|---|
-| **Fig. S1** | Archived float32-probe vs QSQ stability-floor distribution and threshold eligibility | `stability/stability_floor_A1.csv`; archived predecessor; `eligibility_summary_A1.csv` | **LOCKED** |
-| **Fig. S2** | QSQ five-seed spread and ×0.1/×1/×10 amplitude sensitivity | `stability/stability_floor_A1_per_seed.csv`; `supplement/S4_amplitude_sensitivity.csv` | **LOCKED** |
+| **Fig. S1** | Order-preserving control vs QSQ stability-floor distribution and threshold eligibility | QSQ stability floors + QSQ eligibility summary + archived control (repository provenance index) | **LOCKED** |
+| **Fig. S2** | QSQ five-seed spread and ×0.1/×1/×10 amplitude sensitivity | QSQ per-seed responses + amplitude-sensitivity table (repository provenance index) | **LOCKED** |
 | **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **LOCKED** |
 | **Fig. S4** | Tight-regime Bader error/QSQ-floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
 | **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | `mechanism/basin_error_decomposition_*`; `mechanism/independent_bader_20260908/` | **PLANNED R** |
