@@ -217,6 +217,8 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | **Table S12** | Realized-L∞ matching quality and caliper sensitivity | `analysis/matched_realized_linf_v1/` | **READY** |
 | **Table S13** | Development and external stability-qualified rate–fidelity summaries | `benchmark/summary_a1.csv`; `validation/final_external_confirmatory63_20260908/confirmatory63/` | **READY, regenerate at final build** |
 | **Table S14** | Failure taxonomy and negative algorithm results | `failure_registry.csv`; `paper/CLAIM_EVIDENCE_MATRIX.md` | **READY, needs compact aggregation** |
+| **Table S15** | Outcome-blind chemical-pair source-reference adjudication and decision margins | `validation/qsq_prospective/p4_reference_adjudication/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
+| **Table S16** | Compressed qualitative charge-transfer decisions and optional independent-solver audit accounting | `validation/qsq_prospective/p4_chemical_decisions_resolved/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
 | **Table S17** | Fourier-spectrum mechanism diagnostics: matched-pair Hartree ratios, spectral-energy/susceptibility decomposition, low/high-G fractions, centroid directionality and Nyquist/Parseval parity | `analysis/hartree_spectral_mechanism/results/matched_pair_mechanism.csv`; `mechanism_ratio_summary.csv`; `reconstruction_spectral_metrics.csv` | **READY** |
 
 # Proposed Supplementary Figures
