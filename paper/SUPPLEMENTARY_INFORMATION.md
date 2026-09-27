@@ -199,66 +199,11 @@ Negative algorithmic results are valuable supplementary evidence because they de
 
 ---
 
-# Supplementary Tables
+---
 
-| Table | Content | Primary source | Status |
-|---|---|---|---|
-| **Table S1** | Cohort composition, denominator conventions and provenance | `materials_metadata.csv`; `external_test_MANIFEST.json`; `validation/EXTERNAL_CONFIRMATORY63_20260908.md` | **READY** |
-| **Table S2** | QSQ definition, seeds, amplitudes, decision semantics and order-preserving control | QSQ method record + archived order-preserving control (repository provenance index) | **READY** |
-| **Table S3** | QSQ eligibility by threshold and stratum | QSQ eligibility summary (repository provenance index) | **READY** |
-| **Table S4** | Binary-to-three-state reclassification by codec | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **READY** |
-| **Table S5** | No-exclusion and inflated-threshold sensitivity | `supplement/S1_S3_sensitivity.csv` | **READY** |
-| **Table S6** | Certified Bader error relative to QSQ floor | `supplement/S2_floor_relative.csv` | **READY** |
-| **Table S7** | QSQ probe seed and amplitude sensitivity | QSQ per-seed responses + amplitude-sensitivity table (repository provenance index) | **READY** |
-| **Table S8** | Electron-count control by codec/tolerance | `analysis/electron_count_qoi/electron_bader_decoupling.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
-| **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `matched_error_dispersion.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
-| **Table S10** | Bader domain decomposition across representative systems | `mechanism/basin_error_decomposition_summary.csv`; `..._per_atom.csv` | **READY** |
-| **Table S11** | Cross-implementation Bader robustness + resolved 24-system QSQ classification transfer | `mechanism/independent_bader_20260908/`; `validation/qsq_prospective/p3a_implementation_transfer_resolved/` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md` |
-| **Table S12** | Realized-L∞ matching quality and caliper sensitivity | realized-distortion matching outputs (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S12_20260911.md` |
-| **Table S13** | Development and external stability-qualified rate–fidelity summaries | QSQ-certified benchmark summary + external confirmation (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S13_20260911.md` |
-| **Table S14** | Failure taxonomy and negative algorithm results | failure registry + claim–evidence matrix | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S14_20260911.md` |
-| **Table S15** | Outcome-blind chemical-pair source-reference adjudication and decision margins | `validation/qsq_prospective/p4_reference_adjudication/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
-| **Table S16** | Compressed qualitative charge-transfer decisions and optional independent-solver audit accounting | `validation/qsq_prospective/p4_chemical_decisions_resolved/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
-| **Table S17** | Fourier-spectrum mechanism diagnostics: matched-pair Hartree ratios, spectral-energy/susceptibility decomposition, low/high-G fractions, centroid directionality and Nyquist/Parseval parity | Fourier-spectrum mechanism audit (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S17_20260927.md` |
-
-# Supplementary Figures
-
-All supplementary figures are generated from R sources and exported as PNG/PDF/SVG, following the same reproducibility standard as Figures 1–8.
-
-| Figure | Content | Source data | Status |
-|---|---|---|---|
-| **Fig. S1** | Order-preserving control vs QSQ stability-floor distribution and threshold eligibility | QSQ stability floors + QSQ eligibility summary + archived control (repository provenance index) | **LOCKED** |
-| **Fig. S2** | QSQ five-seed spread and ×0.1/×1/×10 amplitude sensitivity | QSQ per-seed responses + amplitude-sensitivity table (repository provenance index) | **LOCKED** |
-| **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **LOCKED** |
-| **Fig. S4** | Tight-regime Bader error/QSQ-floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
-| **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | mechanism decomposition + independent implementation study | **LOCKED R** — PNG/PDF/SVG rendered |
-| **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | realized-distortion matching outputs (repository provenance index) | **LOCKED R** |
-| **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **LOCKED** |
-| **Fig. S8** | External confirmatory per-system/pairwise distributions and audit summary | external confirmation (repository provenance index) | **LOCKED R** |
-
-# Submission boundaries
-
-1. The SI must not reintroduce withdrawn claims from earlier qualification stages.
-2. The order-preserving round-trip control is a method-validation control, not an active qualification procedure.
-3. `NON_EVALUABLE_BADER_UNSTABLE` is neither pass nor failure.
-4. The 319-system stability universe and 63-system primary external confirmatory cohort use different denominators and must be labelled separately.
-5. Tight-ladder data support “floor-scale, consistent with an emerging analysis-limited regime”, not universal `plateau = floor`.
-6. The resolved 24-system implementation-transfer panel validates classification transfer across the tested independent on-grid implementation, while near-grid threshold switches demonstrate implementation dependence. It does not redefine the primary metric and does not establish grid convergence.
-7. Supplementary figures are generated in R from versioned analysis outputs and exported as PNG/PDF/SVG.
-8. Negative algorithm results remain in the SI to document tested and falsified directions without competing with the benchmark-validity narrative.
-9. The Fourier-spectrum mechanism is established for the linear Hartree control. It must not be presented as the unique mechanism for the nonlinear re-derived Bader residual; the transferable conclusion is that downstream fidelity depends on how reconstruction-error structure couples to the downstream operator.
-
-# Current completion assessment
-
-- **Raw evidence coverage:** complete for the current submission scope; all SI claims are tied to versioned machine-readable sources or explicit provenance records.
-- **Submission-facing SI prose:** integrated and cross-checked against the current canonical manuscript.
-- **Supplementary tables:** S1–S17 are built as reader-facing table objects or consolidated table files; no new scientific experiment is required.
-- **Supplementary figures:** S1–S8 are generated from versioned R sources and have publication-format rendered outputs.
-- **Remaining pre-export work:** final source audit, archival snapshot/DOI assignment, and Word/PDF assembly.
-
-
-## Supplementary Note | Outcome-blind chemical-decision boundary case study
+## Supplementary Note 11 — Outcome-blind chemical-decision boundary case study
 
 An outcome-blind chemistry and geometry audit of the 68 NOMAD development slabs selected five paired states before QSQ, codec or Bader outcomes were inspected for inclusion. All five passed the pre-specified two-implementation source-reference rule. Across ZFP, SZ3 and SPERR on the four common tight settings, all 60 direct qualitative target-atom charge-transfer directions were preserved after compression. QSQ at $10^{-3}\,e$ retained 36/60 trials from three pairs, while the unqualified baseline retained all 60; both had zero observed sign errors. This deliberately negative result shows that the strict numerical Bader contract and a coarse sign-level chemical interpretation are different fidelity targets. Full pair-level reference values and policy accounting are provided in Supplementary Tables S15-S16.
 
 The resolved compressed analysis contains 216/216 successful solver cells. No new electronic-structure calculation was used; the source reference is a BaderKit/Henkelman on-grid consensus under the declared density representation.
+
