@@ -30,6 +30,19 @@ stopifnot(length(unique(P$material_id)) == 214)
 stopifnot(S$status == "FREQUENCY_STRUCTURE_DOMINANT")
 stopifnot(S$checks$safe_parseval_identity)
 stopifnot(S$checks$safe_hartree_equals_weighted_spectrum_identity)
+stopifnot(all(R$n == 457))
+
+metric_center <- function(name) {
+  x <- M$material_level_center[M$metric == name]
+  stopifnot(length(x) == 1, is.finite(x))
+  as.numeric(x)
+}
+stopifnot(abs(metric_center("nyquist_safe_hartree_ratio") -
+              S$headline_centers$nyquist_safe_hartree_ratio) < 1e-12)
+stopifnot(abs(metric_center("sqrt_total_safe_error_energy_ratio") -
+              S$headline_centers$sqrt_total_safe_error_energy_ratio) < 1e-12)
+stopifnot(abs(metric_center("sqrt_spectral_hartree_susceptibility_ratio") -
+              S$headline_centers$sqrt_spectral_hartree_susceptibility_ratio) < 1e-12)
 
 bg <- "#FAFAF8"
 ink <- "#1A1A1A"
