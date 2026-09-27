@@ -103,12 +103,12 @@ The full-population mechanism audit uses the **exact 457 ZFP/SZ3 within-material
 
 The historical matched-pair Hartree center is **0.0776220566**, and the regenerated historical calculation reproduces it at **0.0776220566**. To test whether this large codec effect could arise from a discrete-FFT implementation artifact, the audit also defines a Nyquist-safe Hermitian Poisson operator. For even grids in non-orthogonal cells, Nyquist-plane modes are alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. The mechanism operator therefore sets $G=0$ and all even-grid Nyquist-plane modes to zero and applies $4\pi/|G|^2$ to all remaining modes. This gives a Hartree ratio of **0.0776219202**, essentially unchanged from the historical result.
 
-For the Nyquist-safe operator,
+Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For the Nyquist-safe operator,
 
 $
 \mathrm{RMS}(\Delta V_H)^2=
 \frac{(4\pi)^2}{N^2}
-\sum_{G\neq0}\frac{|\Delta\rho(G)|^2}{|G|^4},
+\sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
 $
 
 and the maximum relative discrepancy between the direct real-space Hartree RMS and the Fourier-space expression is **1.30×10$^{-15}$** across all selected reconstructions. The corresponding direct Hartree ratio and square root of the Hartree-weighted spectral ratio agree to numerical precision.
@@ -116,9 +116,9 @@ and the maximum relative discrepancy between the direct real-space Hartree RMS a
 Define
 
 $
-E=\sum_{G\neq0}|\Delta\rho(G)|^2,
+E=\sum_{G\in\mathcal{G}_s}|\Delta\rho(G)|^2,
 \qquad
-W_H=\sum_{G\neq0}\frac{|\Delta\rho(G)|^2}{|G|^4},
+W_H=\sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
 \qquad
 S_H=\frac{W_H}{E}.
 $
