@@ -91,13 +91,13 @@ The comparison therefore requires two distinct qualifications: the downstream sc
 
 We audited the exact 457 ZFP/SZ3 matched pairs from the full-population Hartree analysis, spanning 214 materials, and regenerated the corresponding 914 reconstructions (Fig. 7). The previously observed material-level Hartree-error ratio was reproduced exactly at 0.0776221. To exclude a discrete-FFT artifact, we repeated the calculation with a Nyquist-safe Hermitian Poisson operator. The resulting ratio was 0.0776219, and the direct real-space Hartree error agreed with the Fourier-space Parseval expression to a maximum relative discrepancy of $1.30\times10^{-15}$. The codec effect therefore survives the operator-parity correction.
 
-For each reconstruction error field $\Delta\rho$, the Hartree-weighted spectral energy is
+Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For each reconstruction error field $\Delta\rho$, the Nyquist-safe Hartree-weighted spectral energy is
 
 $
-W_H = \sum_{G\neq 0}\frac{|\Delta\rho(G)|^2}{|G|^4},
+W_H = \sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
 $
 
-and we define the spectral Hartree susceptibility as $S_H=W_H/E$, where $E=\sum |\Delta\rho(G)|^2$ over the same non-zero, Nyquist-safe modes. Pairwise, the matched-distortion Hartree ratio decomposes exactly as
+and we define the spectral Hartree susceptibility as $S_H=W_H/E$, where $E=\sum_{G\in\mathcal{G}_s}|\Delta\rho(G)|^2$. Pairwise, the matched-distortion Hartree ratio decomposes exactly as
 
 $
 R_H=
@@ -172,13 +172,13 @@ Total electron number was evaluated as a global linear control. The periodic Har
 
 The mechanistic audit used the exact 457 ZFP/SZ3 pairs from the full-population within-material realized-$L_\infty$ matching analysis, covering 214 materials. The corresponding 914 reconstructions were regenerated from the frozen codec rows, and each regenerated realized $L_\infty$ value and historical Hartree relative RMSE had to reproduce the stored matched-pair target before the pair entered the spectral analysis.
 
-For reconstruction error $\Delta\rho(\mathbf r)=\tilde{\rho}(\mathbf r)-\rho(\mathbf r)$, we evaluated the real-to-complex discrete Fourier transform $\Delta\rho(\mathbf G)$. On even grids in non-orthogonal cells, Nyquist-plane modes can be alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. We therefore retained the historical Hartree implementation only as a reproduction diagnostic and defined a Nyquist-safe Hermitian operator for the mechanism audit by setting $G=0$ and all even-grid Nyquist-plane modes to zero and applying $4\pi/|G|^2$ to all remaining modes. The resulting operator obeys
+For reconstruction error $\Delta\rho(\mathbf r)=\tilde{\rho}(\mathbf r)-\rho(\mathbf r)$, we evaluated the real-to-complex discrete Fourier transform $\Delta\rho(\mathbf G)$. On even grids in non-orthogonal cells, Nyquist-plane modes can be alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. We therefore retained the historical Hartree implementation only as a reproduction diagnostic and defined a Nyquist-safe Hermitian operator for the mechanism audit by setting $G=0$ and all even-grid Nyquist-plane modes to zero and applying $4\pi/|G|^2$ to all remaining modes. Let $\mathcal{G}_s$ denote the non-zero modes outside those excluded Nyquist planes. The resulting operator obeys
 
 $
 \mathrm{RMS}(\Delta V_H)^2
 =
 \frac{(4\pi)^2}{N^2}
-\sum_{G\neq 0}\frac{|\Delta\rho(G)|^2}{|G|^4}
+\sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4}
 $
 
 to numerical precision, where $N$ is the number of real-space grid points.
