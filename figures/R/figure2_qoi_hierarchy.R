@@ -187,8 +187,8 @@ fig <- ((pA | pB) / (pC | pD)) + plot_layout(guides="keep") +
     title="Figure 2 | QoI hierarchy reveals operator-dependent error propagation",
     subtitle="global linear: electron count  ->  smooth nonlocal: Hartree potential  ->  topology-dependent: Bader charge",
     caption=paste0(
-      "Hartree statistics use reproduction-gate-passing rows; 73 SZ3 stream-size mismatches are excluded by the pre-specified reproduction gate.\n",
-      "Slab conclusions rely on R2, local elasticity and jump magnitude rather than universal rung-wise monotonicity."
+      "Hartree statistics use rows that pass the pre-specified reconstruction and reproduction checks.\n",
+      "Bader irregularity is summarized by material-level smoothness and matched-Hartree dispersion rather than universal rung-wise monotonicity."
     ),
     theme=theme(
       plot.background=element_rect(fill=bg, colour=NA),
