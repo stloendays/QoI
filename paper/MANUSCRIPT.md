@@ -86,17 +86,17 @@ We audited the exact 457 ZFP/SZ3 matched pairs from the full-population Hartree 
 
 Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For each reconstruction error field $\Delta\rho$, the Nyquist-safe Hartree-weighted spectral energy is
 
-$
+$$
 W_H = \sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
-$
+$$
 
 and we define the spectral Hartree susceptibility as $S_H=W_H/E$, where $E=\sum_{G\in\mathcal{G}_s}|\Delta\rho(G)|^2$. Pairwise, the matched-distortion Hartree ratio decomposes exactly as
 
-$
+$$
 R_H=
 \sqrt{\frac{E_{\mathrm{ZFP}}}{E_{\mathrm{SZ3}}}}
 \sqrt{\frac{S_{H,\mathrm{ZFP}}}{S_{H,\mathrm{SZ3}}}}.
-$
+$$
 
 The separately aggregated material-level centers are 0.376 for the total spectral-energy factor and 0.203 for the spectral-susceptibility factor; the exact multiplicative identity is enforced pairwise rather than between these separately aggregated centers. Frequency allocation contributes a material-median 62.0% of the absolute log-scale effect. Consistently, 99.5% of materials have lower ZFP spectral Hartree susceptibility, 98.1% have a higher ZFP spectral centroid, and 99.1% have a lower ZFP low-$G$ error-energy fraction; the material-level low-$G$ fraction ratio is 0.416.
 
@@ -158,12 +158,12 @@ The mechanistic audit used the exact 457 ZFP/SZ3 pairs from the full-population 
 
 For reconstruction error $\Delta\rho(\mathbf r)=\tilde{\rho}(\mathbf r)-\rho(\mathbf r)$, we evaluated the real-to-complex discrete Fourier transform $\Delta\rho(\mathbf G)$. On even grids in non-orthogonal cells, Nyquist-plane modes can be alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. We therefore retained the historical Hartree implementation only as a reproduction diagnostic and defined a Nyquist-safe Hermitian operator for the mechanism audit by setting $G=0$ and all even-grid Nyquist-plane modes to zero and applying $4\pi/|G|^2$ to all remaining modes. Let $\mathcal{G}_s$ denote the non-zero modes outside those excluded Nyquist planes. The resulting operator obeys
 
-$
+$$
 \mathrm{RMS}(\Delta V_H)^2
 =
 \frac{(4\pi)^2}{N^2}
 \sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4}
-$
+$$
 
 to numerical precision, where $N$ is the number of real-space grid points.
 
