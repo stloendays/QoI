@@ -61,7 +61,7 @@ pA <- ggplot(cal_pair, aes(probe, log10(1 + n_exact_neighbour_ties_created), fil
   annotate("text", x = 2, y = max(log10(1 + cal_pair$n_exact_neighbour_ties_created)) * .95,
            label = sprintf("median = %.0f ties", cal_stats$median_ties[cal_stats$probe == "QSQ noise"]),
            size = 3.0, colour = ink) +
-  labs(title = "A | Order-preserving rounding creates exact ties", subtitle = "18-material pre-freeze calibration; matched perturbation amplitude", x = NULL, y = "Exact neighbour ties created") +
+  labs(title = "A | Order-preserving rounding creates exact ties", subtitle = "18-material calibration panel; matched perturbation amplitude", x = NULL, y = "Exact neighbour ties created") +
   theme_si
 
 pB <- ggplot(cal_pair, aes(probe, log10(1 + n_voxels_reassigned), fill = probe)) +
@@ -75,7 +75,7 @@ pB <- ggplot(cal_pair, aes(probe, log10(1 + n_voxels_reassigned), fill = probe))
   annotate("label", x = 2, y = max(log10(1 + cal_pair$n_voxels_reassigned)) * .90,
            label = sprintf("zero reassignment\n%d / %d", cal_stats$zero_reassign[cal_stats$probe == "QSQ noise"], cal_stats$n[cal_stats$probe == "QSQ noise"]),
            size = 2.9, label.size = .18, fill = alpha("white", .94)) +
-  labs(title = "B | Noise excites basin reassignment", subtitle = "QSQ removes the archived probe's order-preserving blind spot", x = NULL, y = "Voxels reassigned") +
+  labs(title = "B | Noise excites basin reassignment", subtitle = "QSQ removes the order-preserving control's blind spot", x = NULL, y = "Voxels reassigned") +
   theme_si
 
 # Full 319-system seed sensitivity. This is deliberately distinguished from
@@ -105,7 +105,7 @@ pC <- ggplot(spread, aes(log10_span)) +
            label = sprintf("Full-corpus median = %.2f decades\nMaximum = %.2f decades\nPrimary seed vs five-seed max eligibility flips:\n10^-4 e: %d/319   10^-3 e: %d/319   10^-2 e: %d/319",
                            med_span, max_span, flips[1], flips[2], flips[3]),
            size = 2.95, lineheight = .98, label.size = .2, fill = alpha("white", .95), colour = ink) +
-  labs(title = "C | A single seed is insufficient for conservative qualification", subtitle = "Full 319-system corpus under the frozen QSQ procedure", x = "Within-material log10 floor span across five seeds (decades)", y = "Number of materials") +
+  labs(title = "C | A single seed is insufficient for conservative qualification", subtitle = "Full 319-system corpus under the pre-specified QSQ procedure", x = "Within-material log10 floor span across five seeds (decades)", y = "Number of materials") +
   theme_si
 
 # Amplitude sensitivity in the pre-freeze 18-material panel.
@@ -129,14 +129,14 @@ pD <- ggplot(amp_long, aes(amplitude, floor_e, group = material_id, colour = dom
   annotate("label", x = .12, y = max(amp_long$floor_e, na.rm = TRUE), hjust = 0, vjust = 1,
            label = sprintf("x0.1 -> x10 floor shift\nmedian %.2f decades\nP10 %.2f, P90 %.2f", med_shift, p10_shift, p90_shift),
            size = 2.9, label.size = .2, fill = alpha("white", .95), colour = ink) +
-  labs(title = "D | The floor is qualification-defined, not amplitude-free", subtitle = "Pre-freeze amplitude sweep on the 18 calibration materials", x = "Noise amplitude relative to the QSQ definition", y = "Re-derived Bader floor (e)") +
+  labs(title = "D | The floor is qualification-defined, not amplitude-free", subtitle = "Amplitude sweep on the 18 calibration materials", x = "Noise amplitude relative to the QSQ definition", y = "Re-derived Bader floor (e)") +
   theme_si + theme(legend.position = "top")
 
 fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Supplementary Figure S2 | QSQ probe validation, seed sensitivity and amplitude sensitivity",
-    subtitle = "The calibration justifies a non-order-preserving, multi-seed probe; full-corpus statistics quantify its deployment behavior without retuning.",
-    caption = "A-B, 18-material pre-freeze probe calibration. C, five-seed variability in all 319 systems. D, pre-freeze two-decade amplitude sensitivity. The QSQ amplitude and seed set remained frozen.",
+    subtitle = "The calibration justifies a non-order-preserving, multi-seed probe; full-corpus statistics quantify its behavior without retuning.",
+    caption = "A-B, 18-material probe calibration. C, five-seed variability in all 319 systems. D, two-decade amplitude sensitivity. The QSQ amplitude and seed set were pre-specified before validation.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
                   plot.title = element_text(face = "bold", size = 13.9, colour = ink, margin = margin(b = 4)),
                   plot.subtitle = element_text(size = 9.5, colour = muted, margin = margin(b = 8)),
