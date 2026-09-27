@@ -81,8 +81,35 @@ These fields must not be invented during export.
 
 The repository also does not yet contain a final DOI-backed archival release for the exact submission commit. Data/Code Availability correctly describes this as a release-stage item rather than a completed DOI.
 
+## Artifact/render gate
+
+Anonymous/content proof input snapshot:
+- proof packaging head SHA: `4124d3501c2ba870d4ae84b20471963ff214d60b`;
+- canonical scientific inputs: current `paper/MANUSCRIPT.md`, `paper/FIGURE_CAPTIONS.md`, and rendered Figures 1-8;
+- later repository commits in `paper/export/` document the deterministic export layer and do not change the scientific source used for the inspected proof.
+
+Resolved export defects found by visual QA:
+- Figure 1 was rebuilt to match its intended measurement-contract role rather than duplicating Figure 2's operator hierarchy;
+- caption-registry escape defects were corrected for `\\times`, `\\,e` and `L_\\infty`;
+- empty-base chemical subscripts were replaced by export-safe text forms `RuO₂` and `CO₂RR`;
+- semantic math labels use Word-safe `\\text{...}` forms where OMML/LibreOffice split `\\mathrm{...}` into spaced letters;
+- bibliography paragraphs are left-aligned and compact rather than fully justified.
+
+Final anonymous/content proof checks:
+- rendered page count: **18**;
+- embedded main figures: **8**;
+- native OMML equation elements: **134**;
+- DOCX structural audit: **0 blockers, 0 warnings**;
+- PDF preflight: **18 pages**, unencrypted, openable, not scan-like;
+- every rendered page inspected visually;
+- post-scrub render comparison: **18/18 pages pixel-identical (AE=0)** to the inspected pre-scrub proof.
+
+The generic two-renderer PDF parity helper was also run. Its report is not used as a release blocker because its current filename ordering pairs `page-2` with `page-10` and so on. Same-page manual/primary-render inspection found no renderer-specific scientific or layout defect.
+
 ## Release decision
 
 **Scientific/content source gate: PASS.**
 
-The manuscript can proceed to DOCX/PDF proof generation as an anonymous/content proof. A submission-ready author-identifiable release remains gated only by authoritative author/affiliation metadata and the final archival snapshot/DOI, not by unresolved scientific analysis.
+**Anonymous/content artifact gate: PASS.**
+
+The inspected DOCX/PDF proof is suitable for content review. A submission-ready author-identifiable release remains gated only by authoritative author/affiliation metadata and the final archival snapshot/DOI, not by unresolved scientific analysis.
