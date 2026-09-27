@@ -265,7 +265,7 @@ pD <- ggplot(dd_show, aes(reassign_frac, jump_factor, colour=codec)) +
            fill=alpha("white", .92), colour=ink) +
   labs(
     title="D | Basin reassignment tracks jump severity",
-    subtitle="Full frozen benchmark; descriptive association only",
+    subtitle="Full development benchmark; descriptive association only",
     x="Reassigned voxel fraction",
     y="Consecutive Bader-error jump factor"
   ) + base_theme
@@ -276,7 +276,7 @@ fig <- ((pA | pB) / (pC | pD)) +
     title="Figure 5 | Topology-induced amplification explains irregular Bader response",
     subtitle="re-solved Bader error = integrand perturbation + topology-driven domain migration",
     caption=paste0(
-      "Panels A–B use the frozen representative mechanism decomposition; Panels C–D use the full frozen benchmark. ",
+      "Panels A–B use the representative mechanism decomposition; Panels C–D use the full development benchmark. ",
       "Figure 5 supports a Bader-specific topological mechanism and should not be generalized to all downstream QoIs."
     ),
     theme=theme(
