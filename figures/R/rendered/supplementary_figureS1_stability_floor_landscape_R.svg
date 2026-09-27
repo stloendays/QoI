@@ -358,7 +358,7 @@
 <text x='198.65' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>1e-08</text>
 <text x='322.47' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>1e-05</text>
 <text x='446.28' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>1e-02</text>
-<text x='291.48' y='325.83' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='144.83px' lengthAdjust='spacingAndGlyphs'>Archived float32-probe floor (e)</text>
+<text x='291.48' y='325.83' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='175.77px' lengthAdjust='spacingAndGlyphs'>Order-preserving control response (e)</text>
 <text transform='translate(20.67,208.12) rotate(-90)' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='100.41px' lengthAdjust='spacingAndGlyphs'>QSQ stability floor (e)</text>
 <circle cx='203.89' cy='88.15' r='1.89' style='stroke-width: 0.68; stroke: #4A5F7E; stroke-opacity: 0.48; fill: #4A5F7E; fill-opacity: 0.48;' />
 <circle cx='302.74' cy='88.15' r='1.89' style='stroke-width: 0.68; stroke: #D55E00; stroke-opacity: 0.48; fill: #D55E00; fill-opacity: 0.48;' />
@@ -402,10 +402,10 @@
 <text x='771.40' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='16.80px' lengthAdjust='spacingAndGlyphs'>60%</text>
 <text x='852.82' y='314.25' text-anchor='middle' style='font-size: 8.40px;fill: #202124; font-family: "Liberation Sans";' textLength='16.80px' lengthAdjust='spacingAndGlyphs'>80%</text>
 <text x='712.36' y='325.83' text-anchor='middle' style='font-size: 10.50px;fill: #202124; font-family: "Liberation Sans";' textLength='105.11px' lengthAdjust='spacingAndGlyphs'>Non-evaluable fraction</text>
-<circle cx='656.11' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #9AA0A6; fill: #9AA0A6;' />
-<circle cx='743.60' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #E9B13A; fill: #E9B13A;' />
-<text x='669.98' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='59.75px' lengthAdjust='spacingAndGlyphs'>Archived probe</text>
-<text x='757.47' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='19.78px' lengthAdjust='spacingAndGlyphs'>QSQ</text>
+<circle cx='637.86' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #9AA0A6; fill: #9AA0A6;' />
+<circle cx='761.85' cy='88.15' r='3.75' style='stroke-width: 0.68; stroke: #E9B13A; fill: #E9B13A;' />
+<text x='651.73' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='96.25px' lengthAdjust='spacingAndGlyphs'>Order-preserving control</text>
+<text x='775.72' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='19.78px' lengthAdjust='spacingAndGlyphs'>QSQ</text>
 <text x='527.12' y='66.41' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='148.16px' lengthAdjust='spacingAndGlyphs'>Overall 319-system stability universe</text>
 <text x='527.12' y='53.95' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='286.80px' lengthAdjust='spacingAndGlyphs'>B | Stability qualification changes the non-evaluable rate</text>
 </g>
