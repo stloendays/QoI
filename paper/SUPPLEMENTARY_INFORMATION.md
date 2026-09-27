@@ -231,7 +231,7 @@ All supplementary figures are generated from R sources and exported as PNG/PDF/S
 | **Fig. S2** | QSQ five-seed spread and ×0.1/×1/×10 amplitude sensitivity | QSQ per-seed responses + amplitude-sensitivity table (repository provenance index) | **LOCKED** |
 | **Fig. S3** | Full electron-count and Hartree control distributions | `analysis/electron_count_qoi/`; `analysis/hartree_potential_expansion/` | **LOCKED** |
 | **Fig. S4** | Tight-regime Bader error/QSQ-floor ratios and tight-ladder diagnostic | `supplement/S2_floor_relative.csv`; `benchmark/master_benchmark_tight_ladder.csv` | **LOCKED** |
-| **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | `mechanism/basin_error_decomposition_*`; `mechanism/independent_bader_20260908/` | **PLANNED R** |
+| **Fig. S5** | Extended fixed-basin/re-derived decomposition plus cross-implementation check | mechanism decomposition + independent implementation study | **LOCKED R** — PNG/PDF/SVG rendered |
 | **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | realized-distortion matching outputs (repository provenance index) | **LOCKED R** |
 | **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **LOCKED** |
 | **Fig. S8** | External confirmatory per-system/pairwise distributions and audit summary | external confirmation (repository provenance index) | **LOCKED R** |
@@ -251,10 +251,10 @@ All supplementary figures are generated from R sources and exported as PNG/PDF/S
 # Current completion assessment
 
 - **Raw evidence coverage:** high; nearly all intended SI claims already have frozen machine-readable sources.
-- **Submission-facing SI prose:** first structured draft completed here.
+- **Submission-facing SI prose:** integrated and cross-checked against the current canonical manuscript.
 - **Supplementary tables:** S1–S9 and S17 are supported by current machine-readable outputs; S10–S12/S14 require compact aggregation and S13 requires deterministic final regeneration. S15–S16 contain the chemical-decision boundary case study. No new core scientific experiment is required.
-- **Supplementary figures:** S1–S4 and S7 are locked R figures; S5, S6 and S8 remain to be built/locked from existing frozen analyses. S9 is a mechanism-parity diagnostic that can be rendered directly from the completed Fourier audit if required by reviewers.
-- **Highest-priority remaining build:** complete S10–S14 and Figures S5/S6/S8, then rerun the final manuscript ↔ SI cross-reference audit.
+- **Supplementary figures:** S1–S8 are generated from versioned R sources and have publication-format rendered outputs where required.
+- **Remaining pre-export work:** final manuscript ↔ SI ↔ figure cross-reference audit, archival snapshot/DOI assignment, and Word/PDF assembly.
 
 
 <!-- P4_CONTRACT_BOUNDARY_SI -->
