@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "ZFP_has_lower_spectral_hartree_susceptibility_than_SZ3": true,
+    "frequency_structure_contributes_more_than_half_absolute_log_effect": true,
+    "frozen_target_center_recomputed_exactly": true,
+    "historical_hartree_reproduction": true,
+    "nyquist_correction_does_not_materially_change_codec_ratio": true,
+    "safe_hartree_equals_weighted_spectrum_identity": true,
+    "safe_parseval_identity": true,
+    "total_unweighted_spectral_energy_alone_is_insufficient": true
+  },
+  "headline_centers": {
+    "frozen_target_historical_hartree_ratio": 0.07762205663818565,
+    "low_G_fraction_ratio": 0.41611754351242103,
+    "nyquist_safe_hartree_ratio": 0.07762192015367703,
+    "reproduced_historical_hartree_ratio": 0.07762205663817522,
+    "sqrt_hartree_weighted_ratio": 0.07762192015367703,
+    "sqrt_spectral_hartree_susceptibility_ratio": 0.20268341641011717,
+    "sqrt_total_safe_error_energy_ratio": 0.3759627781516041,
+    "target_pair_file_recomputed_center": 0.07762205663818553
+  },
+  "mechanism_diagnostics": {
+    "materials_with_ZFP_centroid_higher_than_SZ3_fraction": 0.9813084112149533,
+    "materials_with_ZFP_low_G_fraction_lt_SZ3_fraction": 0.9906542056074766,
+    "materials_with_spectral_susceptibility_ZFP_lt_SZ3_fraction": 0.9953271028037384,
+    "max_abs_log10_safe_vs_weighted_identity_error": 1.9984014443252818e-15,
+    "max_safe_parseval_relative_error": 1.2958380637519117e-15,
+    "median_material_spectral_structure_abs_log_share": 0.6197249373928673
+  },
+  "population": {
+    "matched_pairs": 457,
+    "materials": 214,
+    "reconstructions": 914
+  },
+  "status": "FREQUENCY_STRUCTURE_DOMINANT"
+}
