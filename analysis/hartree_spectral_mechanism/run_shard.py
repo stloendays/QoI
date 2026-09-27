@@ -447,7 +447,7 @@ def main() -> int:
                     "low_G_fraction_ratio": ratio_or_nan(a["low_G_fraction"], b["low_G_fraction"]),
                     "high_G_fraction_ratio": ratio_or_nan(a["high_G_fraction"], b["high_G_fraction"]),
                     "spectral_centroid_delta_qmax": float(a["spectral_centroid_qmax"]) - float(b["spectral_centroid_qmax"]),
-                    "hartree_weighted_low_G_fraction_ratio": safe_ratio(
+                    "hartree_weighted_low_G_fraction_ratio": ratio_or_nan(
                         a["hartree_weighted_low_G_fraction"],
                         b["hartree_weighted_low_G_fraction"],
                     ),
