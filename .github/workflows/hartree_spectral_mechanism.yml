@@ -1,0 +1,162 @@
+name: Hartree spectral mechanism audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hartree-spectral-mechanism-20260927
+    paths:
+      - analysis/hartree_spectral_mechanism/DESIGN.md
+      - analysis/hartree_spectral_mechanism/run_shard.py
+      - analysis/hartree_spectral_mechanism/aggregate.py
+      - .github/workflows/hartree_spectral_mechanism.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hartree-spectral-mechanism-20260927
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile mechanism audit
+        run: |
+          python -m py_compile repo/analysis/hartree_spectral_mechanism/run_shard.py
+          python -m py_compile repo/analysis/hartree_spectral_mechanism/aggregate.py
+      - name: Verify frozen matched-pair population
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('repo/analysis/hartree_qsq_full/results/matched_realized_linf_pairs_0p10dex.csv')
+          rows=[]
+          with p.open(newline='',encoding='utf-8') as f:
+              for r in csv.DictReader(f):
+                  if r['codec_a']=='ZFP' and r['codec_b']=='SZ3':
+                      rows.append(r)
+          assert len(rows)==457, len(rows)
+          assert len({r['material_id'] for r in rows})==214
+          print('HARTREE_SPECTRAL_PREFLIGHT_PASS pairs=457 materials=214')
+          PY
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen codec/source stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Execute mechanism shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/hartree_spectral_${{ matrix.shard }}"
+          python repo/analysis/hartree_spectral_mechanism/run_shard.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --shard-count 16 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          sha256sum repo/analysis/hartree_spectral_mechanism/run_shard.py > "$out/runner_sha256.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-spectral-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/hartree_spectral_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install aggregation stack
+        run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - name: Download completed shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hartree-spectral-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate confirmatory mechanism audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/analysis/hartree_spectral_mechanism/results
+          python repo/analysis/hartree_spectral_mechanism/aggregate.py \
+            --shards-root shards \
+            --output-dir repo/analysis/hartree_spectral_mechanism/results
+          python --version > repo/analysis/hartree_spectral_mechanism/results/aggregate_python_version.txt 2>&1
+          python -m pip freeze | sort > repo/analysis/hartree_spectral_mechanism/results/aggregate_pip_freeze.txt
+          git -C repo rev-parse HEAD > repo/analysis/hartree_spectral_mechanism/results/research_branch_commit_before_results.txt
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > repo/analysis/hartree_spectral_mechanism/results/frozen_scientific_commit.txt
+      - name: Commit mechanism results
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/hartree_spectral_mechanism/results
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'research: complete Hartree spectral mechanism audit'
+            git pull --rebase origin research/hartree-spectral-mechanism-20260927
+            git push origin HEAD:research/hartree-spectral-mechanism-20260927
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hartree-spectral-mechanism-aggregate
+          path: repo/analysis/hartree_spectral_mechanism/results
+          if-no-files-found: warn
+          retention-days: 90
