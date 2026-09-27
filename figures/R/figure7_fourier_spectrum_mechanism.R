@@ -148,8 +148,8 @@ pC <- ggplot(C, aes(material_level_center, label)) +
     labels=label_number(accuracy=.01)
   ) +
   labs(
-    title="C | The matched-distortion effect separates into magnitude and structure",
-    subtitle="Material-level centers with 95% bootstrap intervals; exact multiplicative closure is pairwise",
+    title="C | Decomposition of the Hartree codec effect",
+    subtitle="Material-level centers with 95% bootstrap intervals; exact closure is pairwise",
     x="ZFP / SZ3 factor",
     y=NULL
   ) + theme_qoi
@@ -181,8 +181,8 @@ pD <- ggplot(D, aes(structure_share)) +
     labels=label_percent(accuracy=1)
   ) +
   labs(
-    title="D | Frequency structure dominates across materials",
-    subtitle="Within-material median absolute-log share attributed to spectral Hartree susceptibility",
+    title="D | Frequency structure dominates",
+    subtitle="Material-level share of the absolute-log effect from spectral susceptibility",
     x="Spectral-structure share of |log effect|",
     y="Materials"
   ) + theme_qoi + theme(legend.position="none")
@@ -193,9 +193,8 @@ fig <- ((pA | pB) / (pC | pD)) +
     title=expression("Figure 7 | Frequency allocation of reconstruction error controls Hartree fidelity at matched " * L[infinity]),
     subtitle="Exact ZFP/SZ3 common-support audit: 457 matched pairs across 214 materials. The Nyquist-safe operator reproduces the historical codec effect while restoring exact Fourier/real-space parity.",
     caption=paste0(
-      "Historical Hartree ratio = 0.0776221; Nyquist-safe ratio = 0.0776219; maximum Parseval relative error = 1.30 x 10^-15. ",
-      "For each matched pair, R_H = sqrt(E_ZFP/E_SZ3) x sqrt(S_H,ZFP/S_H,SZ3), with S_H = [sum |Delta rho(G)|^2/|G|^4] / [sum |Delta rho(G)|^2]. ",
-      "Panel C reports separately aggregated material-level centers, so the displayed centers need not multiply exactly."
+      "Historical Hartree ratio = 0.0776221; Nyquist-safe ratio = 0.0776219; maximum Parseval relative error = 1.30 x 10^-15.\n",
+      "Exact pairwise identity: R_H = sqrt(E_ZFP/E_SZ3) x sqrt(S_H,ZFP/S_H,SZ3). Panel C reports separately aggregated material-level centers."
     ),
     theme=theme(
       plot.background=element_rect(fill=bg, colour=NA),
