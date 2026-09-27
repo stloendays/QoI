@@ -94,8 +94,8 @@ and we define the spectral Hartree susceptibility as $S_H=W_H/E$, where $E=\sum_
 
 $$
 R_H=
-\sqrt{\frac{E_{\mathrm{ZFP}}}{E_{\mathrm{SZ3}}}}
-\sqrt{\frac{S_{H,\mathrm{ZFP}}}{S_{H,\mathrm{SZ3}}}}.
+\sqrt{\frac{E_{\text{ZFP}}}{E_{\text{SZ3}}}}
+\sqrt{\frac{S_{H,\text{ZFP}}}{S_{H,\text{SZ3}}}}.
 $$
 
 The separately aggregated material-level centers are 0.376 for the total spectral-energy factor and 0.203 for the spectral-susceptibility factor; the exact multiplicative identity is enforced pairwise rather than between these separately aggregated centers. Frequency allocation contributes a material-median 62.0% of the absolute log-scale effect. Consistently, 99.5% of materials have lower ZFP spectral Hartree susceptibility, 98.1% have a higher ZFP spectral centroid, and 99.1% have a lower ZFP low-$G$ error-energy fraction; the material-level low-$G$ fraction ratio is 0.416.
@@ -159,7 +159,7 @@ The mechanistic audit used the exact 457 ZFP/SZ3 pairs from the full-population 
 For reconstruction error $\Delta\rho(\mathbf r)=\tilde{\rho}(\mathbf r)-\rho(\mathbf r)$, we evaluated the real-to-complex discrete Fourier transform $\Delta\rho(\mathbf G)$. On even grids in non-orthogonal cells, Nyquist-plane modes can be alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. We therefore retained the reference Hartree implementation as a reproduction diagnostic and defined a Nyquist-safe Hermitian operator for the mechanism audit by setting $G=0$ and all even-grid Nyquist-plane modes to zero and applying $4\pi/|G|^2$ to all remaining modes. Let $\mathcal{G}_s$ denote the non-zero modes outside those excluded Nyquist planes. The resulting operator obeys
 
 $$
-\mathrm{RMS}(\Delta V_H)^2
+\text{RMS}(\Delta V_H)^2
 =
 \frac{(4\pi)^2}{N^2}
 \sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4}
@@ -183,7 +183,7 @@ This test evaluates transfer across numerical Bader implementations on fixed den
 
 The chemical-decision case-study cohort was constructed before reading QSQ, codec or Bader outcomes for candidate inclusion. Starting from the 68 NOMAD development slab states, primary pairs were required to share the same NOMAD upload provenance, density-grid shape and lattice within fixed tolerances; state B had to add one to four H/C/O atoms; all state-A atoms had to map to same-element atoms in state B within 0.35 Å; and a persistent host atom within 3.0 Å of an added atom was selected as the target using geometry only. This yielded five pairs across two source uploads.
 
-For each pair and solver $s$, the qualitative endpoint was the sign of $\Delta q_s=q_s(B,\mathrm{target}_B)-q_s(A,\mathrm{target}_A)$. A binary source reference was accepted only when BaderKit 0.10.2 on-grid and Henkelman Bader 1.05 on-grid gave the same non-zero sign, both had $|\Delta q|\ge0.02\,e$, and their $\Delta q$ values differed by at most $0.01\,e$. All five pairs met this rule. Each state was then compressed with ZFP, SZ3 and SPERR at the common tight relative-tolerance ladder $\{10^{-7},3\times10^{-7},10^{-6},3\times10^{-6}\}$, giving 60 pair-codec-setting decisions. QSQ retention required both states in a pair to pass the five-seed QSQ screen at $10^{-3}\,e$.
+For each pair and solver $s$, the qualitative endpoint was the sign of $\Delta q_s=q_s(B,\text{target}_B)-q_s(A,\text{target}_A)$. A binary source reference was accepted only when BaderKit 0.10.2 on-grid and Henkelman Bader 1.05 on-grid gave the same non-zero sign, both had $|\Delta q|\ge0.02\,e$, and their $\Delta q$ values differed by at most $0.01\,e$. All five pairs met this rule. Each state was then compressed with ZFP, SZ3 and SPERR at the common tight relative-tolerance ladder $\{10^{-7},3\times10^{-7},10^{-6},3\times10^{-6}\}$, giving 60 pair-codec-setting decisions. QSQ retention required both states in a pair to pass the five-seed QSQ screen at $10^{-3}\,e$.
 
 The resolved analysis contains 216/216 successful compressed solver cells. No new electronic-structure calculation was used in this case study; the source reference is a two-implementation on-grid consensus rather than a grid-converged physical Bader truth.
 
@@ -194,13 +194,13 @@ For material $m$, QSQ applies five pre-specified fixed-seed uniform perturbation
 For a requested Bader tolerance $\tau$,
 
 $$
-\mathrm{eligible}(m,\tau) \equiv f_m < \tau.
+\text{eligible}(m,\tau) \equiv f_m < \tau.
 $$
 
 For reconstruction $r$ of material $m$ with re-derived Bader error $\Delta Q_B(r)$,
 
 $$
-\mathrm{certified}(r,\tau) \equiv \mathrm{eligible}(m,\tau) \land \Delta Q_B(r)<\tau.
+\text{certified}(r,\tau) \equiv \text{eligible}(m,\tau) \land \Delta Q_B(r)<\tau.
 $$
 
 If $f_m\geq\tau$, the material–threshold pair is assigned `NON_EVALUABLE_BADER_UNSTABLE` under the operational QSQ classification. Numerical agreement or disagreement is still retained on a separate axis. Here, certified denotes this finite-panel rule, not a worst-case or calibrated probabilistic guarantee.
