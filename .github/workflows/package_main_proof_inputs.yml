@@ -1,0 +1,51 @@
+name: Package main manuscript proof inputs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
+    paths:
+      - 'paper/MANUSCRIPT.md'
+      - 'paper/FIGURE_CAPTIONS.md'
+      - 'figures/R/rendered/figure*_R.png'
+      - '.github/workflows/package_main_proof_inputs.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qoi-main-proof-package
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact proof inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s paper/MANUSCRIPT.md
+          test -s paper/FIGURE_CAPTIONS.md
+          for n in 1 2 3 4 5 6 7 8; do
+            f=$(find figures/R/rendered -maxdepth 1 -type f -name "figure${n}_*_R.png" | head -n 1)
+            test -n "$f" && test -s "$f" || { echo "Missing Figure $n PNG"; exit 1; }
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: main-manuscript-proof-inputs
+          path: |
+            paper/MANUSCRIPT.md
+            paper/FIGURE_CAPTIONS.md
+            figures/R/rendered/figure1_*_R.png
+            figures/R/rendered/figure2_*_R.png
+            figures/R/rendered/figure3_*_R.png
+            figures/R/rendered/figure4_*_R.png
+            figures/R/rendered/figure5_*_R.png
+            figures/R/rendered/figure6_*_R.png
+            figures/R/rendered/figure7_*_R.png
+            figures/R/rendered/figure8_*_R.png
+          if-no-files-found: error
+          retention-days: 7
