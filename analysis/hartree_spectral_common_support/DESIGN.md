@@ -98,8 +98,9 @@ and the same-direction low-G ordering
 
 `SPERR < ZFP < SZ3`.
 
-These are **post-pairwise hypotheses** and are tested here on an independent
-three-way matched population.
+These are **post-pairwise hypotheses** and are tested here on a distinct
+three-way matched population drawn from the same underlying corpus. This is a
+common-support robustness test, not a statistically independent external validation.
 
 Primary support requires:
 
