@@ -1,0 +1,71 @@
+{
+  "by_codec": [
+    {
+      "bound_respected_fraction": 1.0,
+      "codec": [
+        "SPERR"
+      ],
+      "compressed_bytes_exact_fraction": 1.0,
+      "linf_match_fraction": 1.0,
+      "n_compressed_bytes_exact": 1956,
+      "n_rows": 1956,
+      "scientific_gate_pass_fraction": 1.0
+    },
+    {
+      "bound_respected_fraction": 1.0,
+      "codec": [
+        "SZ3"
+      ],
+      "compressed_bytes_exact_fraction": 0.9623128549303046,
+      "linf_match_fraction": 0.9994837377387713,
+      "n_compressed_bytes_exact": 1864,
+      "n_rows": 1937,
+      "scientific_gate_pass_fraction": 0.9994837377387713
+    },
+    {
+      "bound_respected_fraction": 1.0,
+      "codec": [
+        "ZFP"
+      ],
+      "compressed_bytes_exact_fraction": 1.0,
+      "linf_match_fraction": 1.0,
+      "n_compressed_bytes_exact": 2450,
+      "n_rows": 2450,
+      "scientific_gate_pass_fraction": 1.0
+    }
+  ],
+  "compressed_bytes_exact_fraction": 0.9884912501970676,
+  "direct_cross_operator_pairwise_interpretation_safe_only_when_both_reconstructions_exact": true,
+  "matched_pair_parity": [
+    {
+      "both_compressed_bytes_exact_fraction": 0.9803063457330415,
+      "both_compressed_bytes_exact_pairs": 448,
+      "codec_a": "ZFP",
+      "codec_b": "SZ3",
+      "matched_materials": 214,
+      "matched_pairs": 457,
+      "materials_with_at_least_one_exact_pair": 213
+    },
+    {
+      "both_compressed_bytes_exact_fraction": 1.0,
+      "both_compressed_bytes_exact_pairs": 465,
+      "codec_a": "ZFP",
+      "codec_b": "SPERR",
+      "matched_materials": 206,
+      "matched_pairs": 465,
+      "materials_with_at_least_one_exact_pair": 206
+    },
+    {
+      "both_compressed_bytes_exact_fraction": 0.9626421223605848,
+      "both_compressed_bytes_exact_pairs": 1778,
+      "codec_a": "SZ3",
+      "codec_b": "SPERR",
+      "matched_materials": 254,
+      "matched_pairs": 1847,
+      "materials_with_at_least_one_exact_pair": 254
+    }
+  ],
+  "n_compressed_bytes_exact": 6270,
+  "n_rows": 6343,
+  "n_scientific_gate_fail": 1
+}
