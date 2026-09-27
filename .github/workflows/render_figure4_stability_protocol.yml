@@ -3,6 +3,8 @@ name: Render Figure 4 stability protocol
 on:
   workflow_dispatch:
   push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
     paths:
       - 'figures/R/figure4_stability_protocol.R'
       - '.github/workflows/render_figure4_stability_protocol.yml'
@@ -55,17 +57,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          tmp=$(mktemp -d)
-          cp figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg} "$tmp"/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --hard origin/main
-          cp "$tmp"/figure4_stability_protocol_R.* figures/R/rendered/
           git add figures/R/rendered/figure4_stability_protocol_R.{png,pdf,svg}
           if git diff --cached --quiet; then
             echo "Figure 4 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 4 formal outputs"
-          git push origin HEAD:main
+          git commit -m "figure: render Figure 4 reader-facing outputs"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
