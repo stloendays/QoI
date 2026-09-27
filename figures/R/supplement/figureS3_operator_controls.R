@@ -136,7 +136,7 @@ pD <- ggplot(disp2, aes(hartree_log10_center, bader_p90_over_p10, colour = codec
 fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Supplementary Figure S3 | Extended controls separate global, smooth nonlocal and topology-sensitive QoIs",
-    subtitle = "The same frozen corpus is interrogated with electron count, periodic Hartree potential and re-derived Bader charge.",
+    subtitle = "The same versioned development corpus is interrogated with electron count, periodic Hartree potential and re-derived Bader charge.",
     caption = "A, electron-count negative control. B-C, material-level Hartree/Bader smoothness. D, Bader dispersion at matched Hartree-error scale. These are operator controls, not the benchmark-validity novelty claim.",
     theme = theme(plot.background = element_rect(fill = bg, colour = NA),
                   plot.title = element_text(face = "bold", size = 13.7, colour = ink, margin = margin(b = 4)),
