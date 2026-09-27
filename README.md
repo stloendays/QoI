@@ -27,7 +27,7 @@ Accordingly, the benchmark distinguishes three states:
 
 This makes the project a benchmark of **QoI certifiability and benchmark validity**, rather than a generic QoI-aware compression study.
 
-**Reader-facing method name:** **QoI Stability Qualification (QSQ)**. The concrete operation is a **perturbation-based numerical identifiability test**, or simply a **stability probe**. The historical files `protocol/PROTOCOL_A1.md` and `protocol/PROTOCOL_A_archived.md` are retained as frozen provenance; their version-style identifiers are not the preferred scientific names. Claim-by-claim status: `paper/CLAIM_EVIDENCE_MATRIX.md`. Current narrative: `paper/CURRENT_PAPER_STORY_20260911.md`.
+**Reader-facing method name:** **QoI Stability Qualification (QSQ)**. The concrete operation is a **perturbation-based numerical identifiability test**, or simply a **stability probe**. The historical files `protocol/PROTOCOL_A1.md` and `protocol/PROTOCOL_A_archived.md` are retained as frozen provenance; their version-style identifiers are not the preferred scientific names. Claim-by-claim status: `paper/CLAIM_EVIDENCE_MATRIX.md`. Current narrative: `paper/CURRENT_PAPER_STORY.md`.
 
 ## Headline benchmark-validity result
 
@@ -68,8 +68,12 @@ Executed analysis: `analysis/research_upgrade/REPORT.md`; source `scripts/audit_
 | `failure_registry.csv` | Every Bader-solver failure and excluded case, with reason. Failures are not counted as passes. |
 | `external_test_MANIFEST.json` | The frozen strict-external corpus, scored once. |
 | `protocol/` | Frozen internal protocol/provenance records. Reader-facing method terminology is defined in `paper/NAMING_AND_TERMINOLOGY_POLICY.md`. |
-| `paper/CURRENT_PAPER_STORY_20260911.md` | Compact canonical statement of what the paper now claims, the headline numbers, supporting evidence, and claim boundaries. |
-| `paper/` | Claim–evidence matrix, figure map, polished manuscript, SI, naming policy, reference audits and provenance drafts. |
+| `paper/CURRENT_PAPER_STORY.md` | Compact canonical statement of what the paper now claims, the headline numbers, supporting evidence, and claim boundaries. |
+| `paper/MANUSCRIPT.md` | Current semantic canonical manuscript, including the Fourier-spectrum mechanism integration. |
+| `paper/SUPPLEMENTARY_INFORMATION.md` | Current semantic canonical SI, including operator-parity and full Fourier-mechanism diagnostics. |
+| `analysis/hartree_spectral_mechanism/results/` | Exact matched-pair Fourier-spectrum mechanism audit: 457 ZFP/SZ3 pairs across 214 materials, reconstruction-level spectra, operator-parity checks and decomposition summaries. |
+| `figures/R/figure7_fourier_spectrum_mechanism.R` | Data-driven main-text Fourier-spectrum mechanism figure source; rendered PNG/PDF/SVG outputs live in `figures/R/rendered/`. |
+| `paper/` | Claim–evidence matrix, figure map, canonical manuscript/SI, naming policy, reference audits and provenance records. |
 | `figures/R/figure3_certification_landscape.R` | Formal R source for the central binary → three-state certification figure; PNG/PDF/SVG outputs are in `figures/R/rendered/`. |
 | `RESULTS.md` | Full chronological record with the command behind every number, including corrections of record. |
 
@@ -126,11 +130,13 @@ The manuscript now separates five layers of evidence:
 2. **Audited benchmark interpretation:** reference stability and numerical agreement are separate axes. The full-record Figure 3 percentages are sensitive to targeted tight-ladder access; common-base fractions are 83.2% and 56.5%, and must be interpreted with exclusion prevalence. See the research audit rather than quoting >95% as a universal correction.
 3. **Qualification-method validation:** QSQ replaces the archived order-preserving float32 probe with a calibrated five-seed perturbation procedure that can excite the relevant Bader partition sensitivity.
 4. **Bader-specific mechanism:** density-dependent basin migration explains why the local charge response can become irregular and why fixed-basin scoring can substantially understate the re-derived Bader error.
-5. **Fair comparison and confirmation:** realized-distortion matching controls nominal-tolerance confounding, and the untouched 63-system cohort tests the frozen decision logic without retuning.
+5. **Fair comparison:** realized-distortion matching controls nominal-tolerance confounding before codecs are compared.
+6. **Operator–error-structure mechanism:** across the exact 457 matched ZFP/SZ3 Hartree pairs, the historical error ratio 0.0776221 is reproduced at 0.0776219 with a Nyquist-safe Hermitian Poisson operator. Frequency allocation is the dominant component of the matched-distortion effect: ZFP has lower spectral Hartree susceptibility in 99.5% of materials and a material-median 62.0% absolute-log contribution from spectral structure.
+7. **External confirmation:** the untouched 63-system cohort tests the frozen QSQ decision logic without retuning.
 
 The tight-ladder evidence is intentionally phrased conservatively. At `1e-4 e`, certified Bader errors are on the same scale as the independent **QSQ stability floor** (median error/floor ≈ 1.09–1.33× across codecs), supporting the statement that the **strictest certified regime is floor-scale, consistent with an emerging analysis-limited regime**. The current evidence does not justify a universal material-level claim that `plateau = floor`.
 
-The paper's output is therefore not an unconditional codec leaderboard. It is a **stability-qualified rate–fidelity decision problem**: only eligible material-threshold pairs enter codec success/failure scoring, and codec comparison must account for realized rather than nominal reconstruction distortion.
+The paper's output is therefore not an unconditional codec leaderboard. It is a **stability-qualified rate–fidelity decision problem**: only eligible material-threshold pairs enter codec success/failure scoring, and codec comparison must account for realized rather than nominal reconstruction distortion. The Fourier audit further shows that scalar realized distortion may still be insufficient when the downstream operator weights spatial or reciprocal-space error non-uniformly. The current manuscript therefore treats meaningful certification as jointly dependent on reference stability, the downstream operator, and reconstruction-error structure.
 
 ## Naming and provenance
 
