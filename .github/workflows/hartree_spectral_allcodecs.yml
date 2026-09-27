@@ -1,0 +1,230 @@
+name: Three-codec Hartree spectral generalization
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hartree-spectral-allcodecs-20260927
+    paths:
+      - analysis/hartree_spectral_allcodecs/**
+      - .github/workflows/hartree_spectral_allcodecs.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hartree-spectral-allcodecs-20260927
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile all-codec audit
+        run: |
+          python -m py_compile repo/analysis/hartree_spectral_allcodecs/run_pair_shard.py
+          python -m py_compile repo/analysis/hartree_spectral_allcodecs/aggregate_allcodecs.py
+      - name: Verify frozen pair populations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          from collections import Counter, defaultdict
+          from pathlib import Path
+          p=Path('repo/analysis/hartree_qsq_full/results/matched_realized_linf_pairs_0p10dex.csv')
+          counts=Counter()
+          mats=defaultdict(set)
+          with p.open(newline='',encoding='utf-8') as f:
+              for r in csv.DictReader(f):
+                  key=f"{r['codec_a']}/{r['codec_b']}"
+                  counts[key]+=1
+                  mats[key].add(r['material_id'])
+          assert counts['ZFP/SPERR']==465 and len(mats['ZFP/SPERR'])==206
+          assert counts['SZ3/SPERR']==1847 and len(mats['SZ3/SPERR'])==254
+          assert counts['ZFP/SZ3']==457 and len(mats['ZFP/SZ3'])==214
+          print('ALLCODEC_PREFLIGHT_PASS')
+          PY
+
+  zfp_sperr:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen codec/source stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Execute ZFP/SPERR spectral shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/zfp_sperr_${{ matrix.shard }}"
+          python repo/analysis/hartree_spectral_allcodecs/run_pair_shard.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --shard-count 16 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out" \
+            --codec-a ZFP \
+            --codec-b SPERR \
+            --expected-pairs 465 \
+            --expected-materials 206
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-spectral-zfp-sperr-${{ matrix.shard }}
+          path: ${{ runner.temp }}/zfp_sperr_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  sz3_sperr:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen codec/source stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Execute SZ3/SPERR spectral shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/sz3_sperr_${{ matrix.shard }}"
+          python repo/analysis/hartree_spectral_allcodecs/run_pair_shard.py \
+            --repo-root repo \
+            --frozen-validation-dir frozen/validation \
+            --shard-count 16 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out" \
+            --codec-a SZ3 \
+            --codec-b SPERR \
+            --expected-pairs 1847 \
+            --expected-materials 254
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-spectral-sz3-sperr-${{ matrix.shard }}
+          path: ${{ runner.temp }}/sz3_sperr_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: [zfp_sperr, sz3_sperr]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install aggregation stack
+        run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - name: Download ZFP/SPERR shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hartree-spectral-zfp-sperr-*
+          path: shards
+          merge-multiple: true
+      - name: Download SZ3/SPERR shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hartree-spectral-sz3-sperr-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate all-codec mechanism
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/analysis/hartree_spectral_allcodecs/results
+          python repo/analysis/hartree_spectral_allcodecs/aggregate_allcodecs.py \
+            --repo-root repo \
+            --shards-root shards \
+            --output-dir repo/analysis/hartree_spectral_allcodecs/results
+          python --version > repo/analysis/hartree_spectral_allcodecs/results/aggregate_python_version.txt 2>&1
+          python -m pip freeze | sort > repo/analysis/hartree_spectral_allcodecs/results/aggregate_pip_freeze.txt
+          git -C repo rev-parse HEAD > repo/analysis/hartree_spectral_allcodecs/results/research_branch_commit_before_results.txt
+          echo "dc2b1675d3fc401ed7c72f4c21b609ba3e4a3a18" > repo/analysis/hartree_spectral_allcodecs/results/frozen_zfp_sz3_mechanism_commit.txt
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > repo/analysis/hartree_spectral_allcodecs/results/frozen_scientific_commit.txt
+      - name: Commit all-codec results
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/hartree_spectral_allcodecs/results
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'research: complete three-codec Hartree spectral generalization'
+            git pull --rebase origin research/hartree-spectral-allcodecs-20260927
+            git push origin HEAD:research/hartree-spectral-allcodecs-20260927
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hartree-spectral-allcodecs-aggregate
+          path: repo/analysis/hartree_spectral_allcodecs/results
+          if-no-files-found: warn
+          retention-days: 90
