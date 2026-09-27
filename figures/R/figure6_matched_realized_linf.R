@@ -156,7 +156,7 @@ pD <- ggplot(cert, aes(caliper_dex, effect_pp, colour = pair, group = pair)) +
   scale_y_continuous(labels = label_number(accuracy = 1, suffix = " pp")) +
   labs(
     title = "D | The residual geometry effect is decision-relevant",
-    subtitle = "Certification-rate difference at tau = 0.01 e; jointly A.1-eligible pairs",
+    subtitle = "Certification-rate difference at tau = 0.01 e; jointly QSQ-eligible pairs",
     x = "Matching caliper (dex in log10 realized L-inf)",
     y = "Certification difference (A - B)"
   ) + theme_qoi
