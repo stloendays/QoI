@@ -4,6 +4,8 @@ name: Render Figure 5 topology mechanism
 on:
   workflow_dispatch:
   push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
     paths:
       - 'figures/R/figure5_topology_mechanism.R'
       - '.github/workflows/render_figure5_topology_mechanism.yml'
@@ -59,5 +61,6 @@ jobs:
             echo "Rendered Figure 5 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 5 topology mechanism"
-          git push
+          git commit -m "figure: render Figure 5 reader-facing outputs"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
