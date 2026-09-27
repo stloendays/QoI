@@ -1,0 +1,110 @@
+{
+  "cross_codec_checks": {
+    "all_reproduction_and_operator_identity_checks_pass": true,
+    "low_G_fraction_order_ZFP_lt_SPERR_lt_SZ3": false,
+    "spectral_centroid_order_ZFP_gt_SPERR_gt_SZ3": false,
+    "spectral_hartree_susceptibility_order_ZFP_lt_SPERR_lt_SZ3": false
+  },
+  "interpretation_rule": "Operator susceptibility is primary because it is defined by the exact Hartree weighting. Centroid and low-G fractions are supporting coarse spectral summaries.",
+  "pair_diagnostics": {
+    "SZ3/SPERR": {
+      "centers": {
+        "hartree_weighted_low_G_fraction_ratio": 1.0037396909958207,
+        "high_G_fraction_ratio": 0.6838143400381999,
+        "low_G_fraction_ratio": 3.289400626242543,
+        "nyquist_safe_hartree_ratio": 6.768938785243365,
+        "reproduced_historical_hartree_ratio": 6.768201959031757,
+        "sqrt_hartree_weighted_ratio": 6.768938785243365,
+        "sqrt_spectral_hartree_susceptibility_ratio": 4.976783701935782,
+        "sqrt_total_safe_error_energy_ratio": 1.2900950823797737,
+        "target_historical_hartree_ratio": 6.768201959029507
+      },
+      "checks": {
+        "historical_hartree_reproduced": true,
+        "nyquist_correction_robust": true,
+        "safe_hartree_equals_weighted_spectrum": true,
+        "safe_parseval_identity": true,
+        "target_center_matches_frozen": true
+      },
+      "magnitude_alone_insufficient": true,
+      "materials_low_G_fraction_in_historical_effect_direction_fraction": 0.9645669291338582,
+      "materials_spectral_susceptibility_in_historical_effect_direction_fraction": 1.0,
+      "max_abs_log10_safe_vs_weighted_identity_error": 4.440892098500626e-16,
+      "max_safe_parseval_relative_error": 1.7038227046777417e-15,
+      "median_material_spectral_centroid_delta_qmax": -0.08802014792515025,
+      "median_material_spectral_structure_abs_log_share": 0.8719665339916353,
+      "target_ratio": 6.768201959029507
+    },
+    "ZFP/SPERR": {
+      "centers": {
+        "hartree_weighted_low_G_fraction_ratio": 1.0008968883027878,
+        "high_G_fraction_ratio": 0.30178649783019873,
+        "low_G_fraction_ratio": 1.884403947485828,
+        "nyquist_safe_hartree_ratio": 0.6702132757275208,
+        "reproduced_historical_hartree_ratio": 0.6701967245270835,
+        "sqrt_hartree_weighted_ratio": 0.6702132757275207,
+        "sqrt_spectral_hartree_susceptibility_ratio": 1.4446784056988706,
+        "sqrt_total_safe_error_energy_ratio": 0.4400739461086696,
+        "target_historical_hartree_ratio": 0.6701967245270835
+      },
+      "checks": {
+        "historical_hartree_reproduced": true,
+        "nyquist_correction_robust": true,
+        "safe_hartree_equals_weighted_spectrum": true,
+        "safe_parseval_identity": true,
+        "target_center_matches_frozen": true
+      },
+      "magnitude_alone_insufficient": false,
+      "materials_low_G_fraction_in_historical_effect_direction_fraction": 0.24757281553398058,
+      "materials_spectral_susceptibility_in_historical_effect_direction_fraction": 0.2524271844660194,
+      "max_abs_log10_safe_vs_weighted_identity_error": 3.3306690738754696e-16,
+      "max_safe_parseval_relative_error": 1.2834154444111525e-15,
+      "median_material_spectral_centroid_delta_qmax": -0.07702728415203271,
+      "median_material_spectral_structure_abs_log_share": 0.4782837647359962,
+      "target_ratio": 0.6701967245270835
+    },
+    "ZFP/SZ3": {
+      "centers": {
+        "hartree_weighted_low_G_fraction_ratio": 0.9965204342507752,
+        "high_G_fraction_ratio": 0.6255505223048847,
+        "low_G_fraction_ratio": 0.41611754351242103,
+        "nyquist_safe_hartree_ratio": 0.07762192015367703,
+        "reproduced_historical_hartree_ratio": 0.07762205663817522,
+        "sqrt_hartree_weighted_ratio": 0.07762192015367703,
+        "sqrt_spectral_hartree_susceptibility_ratio": 0.20268341641011717,
+        "sqrt_total_safe_error_energy_ratio": 0.3759627781516041,
+        "target_historical_hartree_ratio": 0.07762205663818553
+      },
+      "checks": {
+        "historical_hartree_reproduced": true,
+        "nyquist_correction_robust": true,
+        "safe_hartree_equals_weighted_spectrum": true,
+        "safe_parseval_identity": true,
+        "target_center_matches_frozen": true
+      },
+      "magnitude_alone_insufficient": true,
+      "materials_low_G_fraction_in_historical_effect_direction_fraction": 0.9906542056074766,
+      "materials_spectral_susceptibility_in_historical_effect_direction_fraction": 0.9953271028037384,
+      "max_abs_log10_safe_vs_weighted_identity_error": 1.9984014443252818e-15,
+      "max_safe_parseval_relative_error": 1.2958380637519117e-15,
+      "median_material_spectral_centroid_delta_qmax": 0.10361667871713798,
+      "median_material_spectral_structure_abs_log_share": 0.6197249373928673,
+      "target_ratio": 0.07762205663818565
+    }
+  },
+  "population": {
+    "SZ3/SPERR": {
+      "matched_pairs": 1847,
+      "materials": 254
+    },
+    "ZFP/SPERR": {
+      "matched_pairs": 465,
+      "materials": 206
+    },
+    "ZFP/SZ3": {
+      "matched_pairs": 457,
+      "materials": 214
+    }
+  },
+  "status": "THREE_CODEC_GENERALIZATION_NOT_CLOSED"
+}
