@@ -75,7 +75,7 @@ A <- data.frame(
 p_a <- ggplot() +
   coord_cartesian(xlim = c(0, 1), ylim = c(0, 1), clip = "off") +
   annotate("rect", xmin = 0.02, xmax = 0.29, ymin = 0.35, ymax = 0.67, fill = col_box, colour = "#94A3B8", linewidth = 0.55) +
-  annotate("text", x = 0.155, y = 0.57, label = "Frozen QSQ gate", fontface = "bold", size = 4.5, colour = col_text) +
+  annotate("text", x = 0.155, y = 0.57, label = "Pre-specified QSQ screen", fontface = "bold", size = 4.5, colour = col_text) +
   annotate("text", x = 0.155, y = 0.47, label = "254 development materials", size = 3.75, colour = col_mid) +
   annotate("text", x = 0.155, y = 0.395, label = expression(tau == 10^-3~e), size = 3.8, colour = col_mid) +
   annotate("segment", x = 0.29, xend = 0.42, y = 0.55, yend = 0.73, colour = "#94A3B8", linewidth = 0.65) +
@@ -88,7 +88,7 @@ p_a <- ggplot() +
   annotate("text", x = 0.455, y = 0.39, hjust = 0, label = "Screen-rejected  |  111 materials", fontface = "bold", size = 4.15, colour = col_red) +
   annotate("text", x = 0.455, y = 0.28, hjust = 0, label = "5,326 / 6,549 fresh trials exceed threshold", size = 3.55, colour = col_text) +
   annotate("text", x = 0.455, y = 0.17, hjust = 0, label = "81.33%  [75.98–86.26%]", fontface = "bold", size = 4.35, colour = col_red) +
-  labs(title = "A  Frozen gate predicts fresh perturbation risk",
+  labs(title = "A  Pre-specified screen predicts fresh perturbation risk",
        subtitle = "Primary endpoint; 59 pre-registered unseen streams per material") +
   theme_void(base_size = 11.2) +
   theme(plot.title = element_text(face = "bold", colour = col_text, size = 13.4, margin = margin(b = 4)),
@@ -145,7 +145,7 @@ p_key <- ggplot() + coord_cartesian(xlim = c(0,1), ylim = c(0,1), clip = "off") 
   annotate("rect", xmin=.005, xmax=.17, ymin=.08, ymax=.92, fill=col_box, colour="#94A3B8", linewidth=.45) +
   annotate("text", x=.087, y=.50, label="Primary result", fontface="bold", size=5.5, colour=col_text) +
   annotate("segment", x=.185, xend=.185, y=.16, yend=.84, colour="#94A3B8", linewidth=.45) +
-  annotate("text", x=.205, y=.62, hjust=0, label="At 10^-3 e, the frozen five-seed QSQ gate retains 56.3% of materials while separating", fontface="bold", size=4.2, colour=col_text) +
+  annotate("text", x=.205, y=.62, hjust=0, label="At 10^-3 e, the five-seed QSQ screen retains 56.3% of materials while separating", fontface="bold", size=4.2, colour=col_text) +
   annotate("text", x=.205, y=.40, hjust=0, label="1.60% fresh exceedance risk in admitted materials from 81.33% in screen-rejected materials (50.83×).", size=4.05, colour=col_text) +
   annotate("text", x=.205, y=.20, hjust=0, label="This is prospective risk stratification under the declared iid-uniform model — not a worst-case stability guarantee.", size=3.7, colour=col_mid)
 
