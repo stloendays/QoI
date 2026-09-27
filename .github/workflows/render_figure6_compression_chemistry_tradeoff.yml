@@ -3,6 +3,8 @@ name: Render Figure 6 matched realized Linf
 on:
   workflow_dispatch:
   push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
     paths:
       - 'figures/R/figure6_matched_realized_linf.R'
       - '.github/workflows/render_figure6_compression_chemistry_tradeoff.yml'
@@ -68,5 +70,6 @@ jobs:
             echo "Rendered Figure 6 outputs unchanged."
             exit 0
           fi
-          git commit -m "figure: render Figure 6 matched realized Linf"
-          git push
+          git commit -m "figure: render Figure 6 reader-facing outputs"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
