@@ -1,14 +1,16 @@
-# Current paper story — 2026-09-11
+# Current paper story — 2026-09-27
+
+**Active title:** *Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities*
 
 ## One-sentence thesis
 
-**A downstream scientific tolerance should be used to score scientific compression only after the reference QoI has been qualified for numerical stability at that tolerance; otherwise fixed-pipeline reconstruction agreement and robustness of the scientific interpretation are mixed into one binary label.**
+**Scientific compression should be scored only after the reference QoI is qualified at the requested tolerance, and codec comparisons should be interpreted through the downstream operator and realized reconstruction-error structure rather than nominal pointwise bounds alone.**
 
 ## What the paper is actually about
 
 The manuscript is not framed around the established observation that small pointwise reconstruction error need not imply small downstream QoI error. That is background motivation.
 
-The contribution is a **benchmark-validity and measurement-contract framework** for scientific compression. The reader-facing qualification framework is **QoI Stability Qualification (QSQ)**. The evaluation order is:
+The contribution is a **measurement contract for benchmark validity** in scientific compression. The reader-facing qualification framework is **QoI Stability Qualification (QSQ)**. The evaluation order is:
 
 `QoI Stability Qualification (QSQ) -> eligibility -> compression evaluation -> certification`
 
@@ -52,17 +54,13 @@ This is the strongest evidence for QSQ: the frozen five-seed screen prospectivel
 
 ### P3A — independent implementation transfer
 
-A deterministic 24-system panel, stratified across bulk/slab and four frozen QSQ floor bands, was evaluated with BaderKit on-grid, independent Henkelman on-grid and Henkelman near-grid implementations using the same historical five perturbation fields.
-
-The first execution contained 360 recorded failures, but all were frozen and classified before retry as one pre-solver provenance-comparison error caused by applying a binary-ULP equality gate to decimal-serialized historical amplitudes. No recorded failure had reached a Bader solver. The engineering-only retry changed only the serialization-aware compatibility check and exit-code capture; the scientific panel, perturbations, solvers, density identities and thresholds were unchanged. The retry completed **360/360 with zero failures**, yielding **72/72 complete material–solver summaries**.
+A deterministic 24-system panel, stratified across bulk/slab and four QSQ floor bands, was evaluated with the primary on-grid analysis, independent Henkelman on-grid analysis and Henkelman near-grid analysis using the same five perturbation fields.
 
 Resolved results:
+- **Henkelman on-grid:** 24/24 classification agreement at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$, Cohen's $\kappa=1.000$ at every threshold; Spearman floor-rank $\rho=0.995$.
+- **Henkelman near-grid:** agreement **82.6% / 83.3% / 95.8%** across the same thresholds; $\rho=0.754$.
 
-- recreated BaderKit floors match the frozen floors to maximum absolute difference **8.71338e-11 e**;
-- **Henkelman on-grid: 24/24 classification agreement at `1e-4`, `1e-3`, and `1e-2 e`, Cohen kappa = 1.000 at every threshold; Spearman floor-rank rho = 0.995**;
-- **Henkelman near-grid:** agreement **82.6% / 83.3% / 95.8%** across the same thresholds; floor-rank rho = **0.754**.
-
-The interpretation is deliberately two-sided: QSQ stratification is not merely an artifact of the original BaderKit implementation when the same on-grid basin-assignment class is used, but changing the numerical basin-assignment algorithm creates a measurable implementation-sensitive boundary. **P3A does not establish electronic-structure grid convergence or a unique physical Bader reference.**
+The scientific conclusion is that QSQ classification transfers across an independent implementation when basin-assignment semantics are matched, but is not implementation-free. Engineering failure taxonomy and retry provenance remain in the repository audit rather than the scientific story.
 
 ### P4 — outcome-blind chemical-decision boundary case
 
@@ -111,7 +109,7 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 - **Figure 1:** scientific-compression measurement contract.
 - **Figure 2:** operator hierarchy / motivation.
 - **Figure 3:** **central validation figure — equal-search benchmark test + prospective fresh-perturbation risk stratification.**
-- **Figure 4:** archived float32 probe -> QSQ perturbation-probe validation.
+- **Figure 4:** order-preserving control versus QSQ perturbation validation.
 - **Figure 5:** Bader basin-migration mechanism; implementation transfer remains supporting evidence rather than a second headline.
 - **Figure 6:** nominal-vs-realized distortion confounding control.
 - **Figure 7:** Fourier-spectrum mechanism audit of matched ZFP/SZ3 Hartree pairs.
@@ -142,4 +140,4 @@ The canonical contribution is **validated QoI stability qualification before sci
 
 ## Naming boundary
 
-Reader-facing text uses **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **stability probe**, and **archived float32 probe**. Historical repository identifiers such as `Protocol A`, `Protocol A.1`, and filenames containing `_A1` remain unchanged only where needed for frozen provenance and reproducibility.
+Reader-facing text uses **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **stability probe**, and **order-preserving control**. Exact implementation filenames and historical identifiers are kept in `paper/READER_FACING_PROVENANCE_INDEX.md` rather than surfaced in manuscript prose.
