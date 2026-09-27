@@ -65,7 +65,7 @@ pA <- ggplot(paired, aes(floor_resolved_e, stability_floor_A1_e, colour = corpus
   scale_y_log10(labels = label_scientific(digits = 1)) +
   labs(
     title = "A | QSQ exposes substantially larger Bader instability",
-    subtitle = sprintf("Paired archived float32-probe vs five-seed QSQ floors; n = %d", nrow(paired)),
+    subtitle = sprintf("Paired order-preserving control vs five-seed QSQ floors; n = %d", nrow(paired)),
     x = "Archived float32-probe floor (e)", y = "QSQ stability floor (e)"
   ) + theme_si + theme(legend.position = "top")
 
@@ -114,8 +114,8 @@ fig <- ((pA | pB) / pC) +
   plot_layout(heights = c(1.05, .95)) +
   plot_annotation(
     title = "Supplementary Figure S1 | QSQ defines the measurable Bader-fidelity landscape",
-    subtitle = "The archived order-preserving float32 probe is provenance only; all current eligibility and certification use QSQ.",
-    caption = "A, paired archived and QSQ floors. B, overall non-evaluable fractions. C, QSQ rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.",
+    subtitle = "The order-preserving round-trip control is a method-validation control; current eligibility and certification use QSQ.",
+    caption = "A, paired order-preserving-control and QSQ floors. B, overall non-evaluable fractions. C, QSQ rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.",
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
       plot.title = element_text(face = "bold", size = 14.0, colour = ink, margin = margin(b = 4)),
