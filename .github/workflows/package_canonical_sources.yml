@@ -1,0 +1,38 @@
+name: Package canonical manuscript sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - paper/fourier-mechanism-integration-20260927
+    paths:
+      - 'paper/MANUSCRIPT.md'
+      - 'paper/SUPPLEMENTARY_INFORMATION.md'
+      - '.github/workflows/package_canonical_sources.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qoi-canonical-source-package
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate canonical source presence
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s paper/MANUSCRIPT.md
+          test -s paper/SUPPLEMENTARY_INFORMATION.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canonical-manuscript-sources
+          path: |
+            paper/MANUSCRIPT.md
+            paper/SUPPLEMENTARY_INFORMATION.md
+          if-no-files-found: error
+          retention-days: 7
