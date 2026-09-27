@@ -42,12 +42,12 @@ th <- theme_minimal(base_size=10.4) + theme(
 # A — paired development-material shift from the archived float32 probe to QSQ.
 L <- m %>% mutate(id=row_number()) %>%
   select(id, `Order-preserving control`=archived, QSQ=stability_floor_A1_e) %>%
-  pivot_longer(c(`Archived probe`, QSQ), names_to="procedure", values_to="floor")
-L$procedure <- factor(L$procedure, levels=c("Archived probe","QSQ"))
+  pivot_longer(c(`Order-preserving control`, QSQ), names_to="procedure", values_to="floor")
+L$procedure <- factor(L$procedure, levels=c("Order-preserving control","QSQ"))
 
 p1 <- ggplot(L, aes(procedure, floor, group=id)) +
   geom_line(alpha=.12, colour="#969B9F", linewidth=.34) +
-  geom_point(data=L %>% filter(procedure=="Archived probe"), colour="#B7BABD", alpha=.42, size=.8) +
+  geom_point(data=L %>% filter(procedure=="Order-preserving control"), colour="#B7BABD", alpha=.42, size=.8) +
   geom_point(data=L %>% filter(procedure=="QSQ"), colour=pal[["blue"]], alpha=.48, size=.85) +
   scale_y_log10(labels=label_scientific(digits=1)) +
   labs(title="A | The stability probe materially changes the inferred floor",
