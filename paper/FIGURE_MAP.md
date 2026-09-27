@@ -134,7 +134,28 @@ At equal nominal tolerance, ZFP realizes approximately 0.17× the L-infinity per
 
 **Take-home:** after benchmark validity is established, fair codec comparison still requires realized rather than nominal distortion control.
 
-## Figure 7 — Untouched external confirmation
+## Figure 7 — Fourier-spectrum mechanism at matched realized distortion
+
+**Function:** convert the residual codec effect from a descriptive matched-$L_\infty$ observation into an operator-resolved mechanism result.
+
+Primary population: the exact **457 ZFP/SZ3 matched pairs across 214 materials** from the full Hartree analysis.
+
+Required panels:
+- **A:** radial reconstruction-error energy versus normalized reciprocal magnitude, showing the ZFP spectrum shifted away from low $G$ relative to SZ3;
+- **B:** Hartree-weighted radial spectrum / $|G|^{-4}$ operator emphasis;
+- **C:** exact pairwise decomposition into total spectral-energy and spectral Hartree-susceptibility factors, with material-level centers **0.376**, **0.203**, and Hartree ratio **0.07762**;
+- **D:** material-level distribution of the absolute-log contribution from spectral structure, median **62.0%**, with annotations for lower ZFP susceptibility (**99.5%**), higher ZFP centroid (**98.1%**) and lower ZFP low-$G$ fraction (**99.1%**).
+
+Parity checks that must be stated in the caption or SI:
+- historical Hartree ratio: **0.0776221**;
+- Nyquist-safe Hartree ratio: **0.0776219**;
+- maximum Parseval relative error: **1.30×10^-15**.
+
+**Take-home:** matched pointwise distortion is not a complete reconstruction condition. Frequency allocation matters because the Hartree operator weights long-wavelength error much more strongly.
+
+Do **not** state that this Fourier statistic uniquely explains the Bader residual.
+
+## Figure 8 — Untouched external confirmation
 
 **Function:** close the empirical chain using the frozen decision rules on the 63-system untouched external cohort.
 
@@ -166,8 +187,9 @@ Frozen result:
 7. **Figure 5:** explain basin migration and report P3A implementation transfer as support.
 8. Report **P4** as a null correctness / contract-boundary case study.
 9. **Figure 6:** control nominal-versus-realized distortion for codec comparison.
-10. Report stability-qualified rate–fidelity only among eligible material–threshold pairs.
-11. **Figure 7:** close with untouched external confirmation.
+10. **Figure 7:** close the matched-distortion residual mechanistically with the Fourier-spectrum Hartree audit.
+11. Report stability-qualified rate–fidelity only among eligible material–threshold pairs.
+12. **Figure 8:** close with untouched external confirmation.
 
 ## Main-text claim hierarchy
 
@@ -179,7 +201,8 @@ Frozen result:
 6. **Contract-boundary evidence:** a coarse qualitative charge-transfer sign remains correct in all 60/60 tested reconstructions, so strict numerical qualification and qualitative decision preservation are not interchangeable.
 7. **Mechanistic support:** density-dependent basin migration explains irregular Bader amplification.
 8. **Fair codec comparison:** nominal tolerance is not a common realized-distortion scale.
-9. **Practical output:** among eligible systems, the certified compression frontier depends on the requested scientific contract.
+9. **Operator-resolved mechanism:** after realized-$L_\infty$ matching, reciprocal-space error allocation explains the Hartree codec effect through the $|G|^{-4}$ weighting of squared error.
+10. **Practical output:** among eligible systems, the certified compression frontier depends on the requested scientific contract.
 
 ## Figure provenance
 
@@ -191,10 +214,13 @@ Locked formal runs retained for provenance:
 - Figure 4: run `34370291570`, artifact `10111673650`.
 - Figure 5: run `34349558487`, artifact `10103144848`.
 - Figure 6: run `34340308601`, artifact `10099481566`.
-- Figure 7: run `34369886843`, artifact `10111557054`.
+- Figure 7: source `figures/R/figure7_fourier_spectrum_mechanism.R`; rendered from `analysis/hartree_spectral_mechanism/results/` on the manuscript-integration branch.
+- Figure 8 (external confirmation; previously reader-facing Figure 7 before the author-authorized scope extension): source alias `figures/R/figure8_external_confirmation.R`; underlying external analysis is unchanged.
 
 ## Submission scope lock
 
-P0–P4 are resolved. P3B new DFT grid convergence is deferred. P5 is **NO-GO for the current submission**. No new scientific endpoint, perturbation family, primary cohort, DFT convergence experiment, or primary threshold should be added before submission without an explicit scope-reopening addendum.
+P0–P4 remain resolved. P3B new DFT grid convergence is deferred. P5 remains **NO-GO for the current submission**. The only reopened line is the author-authorized Fourier-spectrum mechanism integration documented in `paper/FOURIER_MECHANISM_SCOPE_ADDENDUM_20260927.md`; it uses the existing Hartree control and does not alter QSQ cohorts, thresholds or perturbation definitions.
+
+The scope is re-frozen after this integration. No further scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or primary threshold should be added before submission without another explicit scope-reopening addendum.
 
 Remaining work is manuscript/figure/SI alignment, archival DOI, journal-specific formatting, and final Word/PDF assembly.
