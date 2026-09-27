@@ -1,0 +1,98 @@
+name: Hartree-QSQ generality pilot private handoff
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hartree-qsq-generality-20260927
+    paths:
+      - analysis/hartree_qsq_generality/**
+      - ci/hartree_qsq_handoff_public.pem
+      - .github/workflows/hartree_qsq_generality.yml
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+
+      - name: Install pinned pilot dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.3.3 zfpy==1.0.1
+
+      - name: Download and verify the frozen 12-material source cohort
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/hartree_qsq_cache"
+          python - <<'PY'
+          import hashlib
+          import pathlib
+          import urllib.request
+          import pandas as pd
+
+          full = pd.read_csv('analysis/hartree_potential_pilot/full_ladder_rows.csv')
+          mids = list(dict.fromkeys(full['material_id'].astype(str).tolist()))
+          assert len(mids) == 12, len(mids)
+          meta = pd.read_csv('materials_metadata.csv').set_index('material_id')
+          cache = pathlib.Path(__import__('os').environ['RUNNER_TEMP']) / 'hartree_qsq_cache'
+          for mid in mids:
+              row = meta.loc[mid]
+              path = cache / f'{mid}.json.gz'
+              urllib.request.urlretrieve(str(row['url']), path)
+              got = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert got == str(row['sha256']), mid
+          print('SOURCE_PROVENANCE_PASS')
+          PY
+
+      - name: Execute Hartree-QSQ pilot without publishing scientific values
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/hartree_qsq_private"
+          rm -rf "$out"
+          mkdir -p "$out"
+          python analysis/hartree_qsq_generality/run_hartree_qsq_generality.py             --cache "$RUNNER_TEMP/hartree_qsq_cache"             --output "$out"             > "$RUNNER_TEMP/pilot_stdout.txt" 2> "$RUNNER_TEMP/pilot_stderr.txt" || {
+              cat "$RUNNER_TEMP/pilot_stderr.txt" >&2
+              exit 1
+            }
+          grep -qx 'HARTREE_QSQ_PIPELINE_PASS' "$RUNNER_TEMP/pilot_stdout.txt"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git rev-parse HEAD > "$out/git_head.txt"
+          git rev-parse analysis/hartree-potential-pilot-20260909 > "$out/parent_hartree_branch_head.txt" 2>/dev/null || true
+
+      - name: Encrypt private scientific outputs before artifact upload
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -C "$RUNNER_TEMP/hartree_qsq_private" -czf "$RUNNER_TEMP/hartree_qsq_private.tgz" .
+          openssl rand -hex 32 > "$RUNNER_TEMP/handoff.key"
+          openssl enc -aes-256-cbc -salt -pbkdf2             -in "$RUNNER_TEMP/hartree_qsq_private.tgz"             -out "$RUNNER_TEMP/hartree_qsq_private.tgz.enc"             -pass file:"$RUNNER_TEMP/handoff.key"
+          openssl pkeyutl -encrypt -pubin             -inkey ci/hartree_qsq_handoff_public.pem             -in "$RUNNER_TEMP/handoff.key"             -out "$RUNNER_TEMP/handoff.key.enc"
+          rm -f "$RUNNER_TEMP/handoff.key" "$RUNNER_TEMP/hartree_qsq_private.tgz"
+          {
+            echo "status=PASS"
+            echo "scientific_outputs=encrypted"
+            echo "branch=research/hartree-qsq-generality-20260927"
+            echo "head_sha=$GITHUB_SHA"
+          } > "$RUNNER_TEMP/PUBLIC_QA.txt"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-qsq-generality-private
+          path: |
+            ${{ runner.temp }}/hartree_qsq_private.tgz.enc
+            ${{ runner.temp }}/handoff.key.enc
+            ${{ runner.temp }}/PUBLIC_QA.txt
+          if-no-files-found: error
+          retention-days: 1
