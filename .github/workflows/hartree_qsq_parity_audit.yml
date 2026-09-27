@@ -1,0 +1,47 @@
+name: Audit Hartree-QSQ reconstruction parity
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hartree-qsq-full-20260927
+    paths:
+      - analysis/hartree_qsq_full/audit_results.py
+      - .github/workflows/hartree_qsq_parity_audit.yml
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install pandas==2.3.3
+      - name: Run parity audit
+        run: python analysis/hartree_qsq_full/audit_results.py
+      - name: Commit audit outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/hartree_qsq_full/audit
+          if git diff --cached --quiet; then
+            echo 'No audit changes.'
+          else
+            git commit -m 'audit: record Hartree-QSQ reconstruction parity'
+            git pull --rebase origin research/hartree-qsq-full-20260927
+            git push origin HEAD:research/hartree-qsq-full-20260927
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hartree-qsq-parity-audit
+          path: analysis/hartree_qsq_full/audit
+          retention-days: 90
