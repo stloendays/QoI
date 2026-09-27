@@ -364,7 +364,7 @@
 <circle cx='302.74' cy='88.15' r='1.89' style='stroke-width: 0.68; stroke: #D55E00; stroke-opacity: 0.48; fill: #D55E00; fill-opacity: 0.48;' />
 <text x='217.76' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='71.11px' lengthAdjust='spacingAndGlyphs'>Development bulk</text>
 <text x='316.61' y='91.21' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='71.11px' lengthAdjust='spacingAndGlyphs'>Development slab</text>
-<text x='106.24' y='66.41' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='253.69px' lengthAdjust='spacingAndGlyphs'>Paired archived float32-probe vs five-seed QSQ floors; n = 254</text>
+<text x='106.24' y='66.41' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='259.73px' lengthAdjust='spacingAndGlyphs'>Paired order-preserving control vs five-seed QSQ floors; n = 254</text>
 <text x='106.24' y='53.95' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='272.75px' lengthAdjust='spacingAndGlyphs'>A | QSQ exposes substantially larger Bader instability</text>
 </g>
 <defs>
@@ -475,8 +475,8 @@
 <text x='935.81' y='418.16' style='font-size: 8.90px; font-family: "Liberation Sans";' textLength='22.72px' lengthAdjust='spacingAndGlyphs'>100%</text>
 <text x='106.24' y='363.76' style='font-size: 9.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='199.77px' lengthAdjust='spacingAndGlyphs'>QSQ; the structural-class contrast is not universal</text>
 <text x='106.24' y='351.30' style='font-size: 10.70px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='306.98px' lengthAdjust='spacingAndGlyphs'>C | Numerical eligibility is material- and tolerance-dependent</text>
-<text x='13.45' y='590.44' style='font-size: 8.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='571.22px' lengthAdjust='spacingAndGlyphs'>A, paired archived and QSQ floors. B, overall non-evaluable fractions. C, QSQ rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.</text>
-<text x='13.45' y='28.65' style='font-size: 9.70px;fill: #5F6368; font-family: "Liberation Sans";' textLength='475.50px' lengthAdjust='spacingAndGlyphs'>The archived order-preserving float32 probe is provenance only; all current eligibility and certification use QSQ.</text>
+<text x='13.45' y='590.44' style='font-size: 8.10px;fill: #5F6368; font-family: "Liberation Sans";' textLength='626.94px' lengthAdjust='spacingAndGlyphs'>A, paired order-preserving-control and QSQ floors. B, overall non-evaluable fractions. C, QSQ rates by analysis stratum. Non-evaluable is neither codec pass nor codec failure.</text>
+<text x='13.45' y='28.65' style='font-size: 9.70px;fill: #5F6368; font-family: "Liberation Sans";' textLength='485.67px' lengthAdjust='spacingAndGlyphs'>The order-preserving round-trip control is a method-validation control; current eligibility and certification use QSQ.</text>
 <text x='13.45' y='15.11' style='font-size: 14.00px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='536.69px' lengthAdjust='spacingAndGlyphs'>Supplementary Figure S1 | QSQ defines the measurable Bader-fidelity landscape</text>
 </g>
 </g>
