@@ -65,12 +65,12 @@ dec_plot <- dec %>%
   filter(!read_bool(sentinel)) %>%
   mutate(
     kind = factor(kind, levels = c("codec", "noise", "spatial_control", "float32"),
-                  labels = c("Codec", "QSQ noise", "Spatial control", "Float32")),
+                  labels = c("Codec", "QSQ perturbation", "Spatial control", "Order-preserving control")),
     integrand_plot = pmax(integrand_max_e, 1e-12),
     domain_plot = pmax(domain_max_e, 1e-12)
   )
-kind_cols_lab <- c("Codec" = kind_cols[["codec"]], "QSQ noise" = kind_cols[["noise"]],
-                   "Spatial control" = kind_cols[["spatial_control"]], "Float32" = kind_cols[["float32"]])
+kind_cols_lab <- c("Codec" = kind_cols[["codec"]], "QSQ perturbation" = kind_cols[["noise"]],
+                   "Spatial control" = kind_cols[["spatial_control"]], "Order-preserving control" = kind_cols[["float32"]])
 
 pA <- ggplot(dec_plot, aes(integrand_plot, domain_plot, colour = kind)) +
   geom_abline(slope = 1, intercept = 0, linetype = 2, linewidth = .65, colour = "#70757A") +
@@ -181,7 +181,7 @@ fig <- ((pA | pB) / (pC | pD)) +
   plot_annotation(
     title = "Supplementary Figure S5 | Bader mechanism is robust to an independent implementation",
     subtitle = "Exact decomposition, stability-floor cross-checks and error-reorganization controls on a deliberately stratified 12-system panel.",
-    caption = "A, density-dependent basin migration dominates codec, QSQ-noise and spatial-control perturbations; float32 is heterogeneous. B, changing the basin implementation can shift the absolute numerical floor. C, the independent on-grid implementation reproduces codec responses nearly one-for-one, whereas near-grid basins broaden the absolute response scale. D, shuffling error values modestly changes Bader response, while a periodic shift is near-null. This is a mechanism/implementation robustness study, not a prevalence estimate, and it does not alter the frozen QSQ benchmark definition.",
+    caption = "A, density-dependent basin migration dominates codec, QSQ and spatial-control perturbations; the order-preserving control is heterogeneous. B, changing the basin implementation can shift the absolute numerical floor. C, the independent on-grid implementation reproduces codec responses nearly one-for-one, whereas near-grid basins broaden the absolute response scale. D, shuffling error values modestly changes Bader response, while a periodic shift is near-null. This is a mechanism/implementation robustness study, not a prevalence estimate, and it does not alter the QSQ benchmark definition.",
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
       plot.title = element_text(face = "bold", size = 13.8, colour = ink, margin = margin(b = 4)),
