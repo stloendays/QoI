@@ -1,0 +1,170 @@
+name: Full-population Hartree-QSQ generality
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hartree-qsq-full-20260927
+    paths:
+      - analysis/hartree_qsq_full/DESIGN.md
+      - analysis/hartree_qsq_full/run_shard.py
+      - analysis/hartree_qsq_full/aggregate.py
+      - .github/workflows/hartree_qsq_full.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hartree-qsq-full-20260927
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile analysis code
+        run: |
+          python -m py_compile repo/analysis/hartree_qsq_full/run_shard.py
+          python -m py_compile repo/analysis/hartree_qsq_full/aggregate.py
+      - name: Verify frozen design inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          root=Path('repo')
+          p=root/'analysis/research_upgrade/p2_fresh_probe_material_summary.csv'
+          mids=[]
+          seen=set()
+          with p.open(newline='',encoding='utf-8') as f:
+              for r in csv.DictReader(f):
+                  if r['material_id'] not in seen:
+                      seen.add(r['material_id']); mids.append(r['material_id'])
+          assert len(mids)==254, len(mids)
+          for path in [
+              root/'benchmark/master_benchmark_full.csv',
+              root/'materials_metadata.csv',
+              root/'stability/stability_floor_A1_per_seed.csv',
+              root/'analysis/hartree_potential_pilot/run_hartree_pilot.py',
+              root/'validation/qsq_prospective/development_compatibility_smoke.py',
+          ]:
+              assert path.is_file(), path
+          design=(root/'analysis/hartree_qsq_full/DESIGN.md').read_text(encoding='utf-8')
+          for token in ['1e-6', '0.10-dex', '254', 'ZFP', 'SZ3', 'SPERR']:
+              assert token in design, token
+          print('FULL_HARTREE_QSQ_PREFLIGHT_PASS cohort=254')
+          PY
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen codec/source stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Execute shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/hartree_qsq_shard_${{ matrix.shard }}"
+          python repo/analysis/hartree_qsq_full/run_shard.py             --repo-root repo             --frozen-validation-dir frozen/validation             --shard-count 32             --shard-index ${{ matrix.shard }}             --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          sha256sum repo/analysis/hartree_qsq_full/run_shard.py > "$out/runner_sha256.txt"
+      - name: Upload shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: hartree-qsq-full-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/hartree_qsq_shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out research branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install aggregation stack
+        run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - name: Download completed shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hartree-qsq-full-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate and enforce frozen GO criteria
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf repo/analysis/hartree_qsq_full/results
+          python repo/analysis/hartree_qsq_full/aggregate.py             --shards-root shards             --output-dir repo/analysis/hartree_qsq_full/results
+          python --version > repo/analysis/hartree_qsq_full/results/aggregate_python_version.txt 2>&1
+          python -m pip freeze | sort > repo/analysis/hartree_qsq_full/results/aggregate_pip_freeze.txt
+          git -C repo rev-parse HEAD > repo/analysis/hartree_qsq_full/results/research_branch_commit_before_results.txt
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > repo/analysis/hartree_qsq_full/results/frozen_scientific_commit.txt
+          sha256sum repo/analysis/hartree_qsq_full/aggregate.py > repo/analysis/hartree_qsq_full/results/aggregator_sha256.txt
+      - name: Commit public research outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/hartree_qsq_full/results
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'research: complete full Hartree-QSQ generality study'
+            git pull --rebase origin research/hartree-qsq-full-20260927
+            git push origin HEAD:research/hartree-qsq-full-20260927
+          fi
+      - name: Upload aggregate bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hartree-qsq-full-aggregate
+          path: repo/analysis/hartree_qsq_full/results
+          if-no-files-found: warn
+          retention-days: 90
