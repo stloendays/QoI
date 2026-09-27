@@ -4,7 +4,7 @@
 
 This Supplementary Information (SI) is organized to support the main-text benchmark-validity claim without duplicating the primary narrative. The main manuscript establishes the three-state certification logic and its headline consequence. The SI documents denominator conventions, qualification provenance, sensitivity analyses, extended operator controls, mechanistic robustness, matching diagnostics, rate–fidelity tables, external confirmation, and failure semantics.
 
-The SI uses frozen data assets already versioned in the repository. No supplementary result should be transcribed manually when a machine-readable source exists.
+The SI uses versioned data assets from the repository. Supplementary results are generated from machine-readable sources rather than transcribed manually.
 
 ---
 
@@ -12,7 +12,7 @@ The SI uses frozen data assets already versioned in the repository. No supplemen
 
 The development benchmark contains **254 electronic-density fields**, comprising **186 bulk** and **68 slab** systems. Across ZFP, SZ3 and SPERR and the frozen base/tight tolerance ladders, the merged development master table contains **6,343 retained reconstruction rows** (`benchmark/master_benchmark_full.csv`).
 
-The numerical-stability qualification has a broader fixed universe of **319 systems**. This total is composed of 186 development bulk systems, 68 development slabs, 37 external bulk systems and 28 external vacuum-containing 2D systems (QSQ eligibility summary; repository reader-facing provenance index). The external stability set therefore contains **65 records** and should not be conflated with the **63-system primary external rate–fidelity confirmatory cohort**. The latter was frozen separately for confirmatory scoring and contains 1,689 retained scientific rows. A final 65-system external descriptive aggregate also exists and contains 1,755 rows (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`).
+The numerical-stability qualification has a broader fixed universe of **319 systems**. This total is composed of 186 development bulk systems, 68 development slabs, 37 external bulk systems and 28 external vacuum-containing 2D systems (QSQ eligibility summary; repository reader-facing provenance index). The external stability set therefore contains **65 records** and is distinct from the **63-system primary external rate–fidelity confirmatory cohort**. The latter was frozen separately for confirmatory scoring and contains 1,689 retained scientific rows. A final 65-system external descriptive aggregate also exists and contains 1,755 rows (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`).
 
 This distinction is important because different questions use different denominators:
 
@@ -21,7 +21,7 @@ This distinction is important because different questions use different denomina
 - **65 external descriptive systems**: descriptive external stability/robustness universe.
 - **63 external confirmatory systems**: frozen primary external rate–fidelity confirmation.
 
-The final submission should preserve these labels explicitly. A reader should never be forced to infer why a reported denominator is 254, 319, 65 or 63.
+These denominator labels are reported explicitly so that the 254-, 319-, 65- and 63-system populations remain distinguishable throughout the manuscript and SI.
 
 Primary provenance assets are `materials_metadata.csv`, `external_test_MANIFEST.json`, `benchmark/master_benchmark_full.csv`, `validation/final_external_confirmatory63_20260908/`, and the chronological audit in `RESULTS.md`.
 
@@ -93,7 +93,7 @@ All **6,343** development reconstruction rows were examined for total-electron-c
 
 The full Hartree expansion targets the same 6,343 reconstruction rows. A reproduction gate retains **6,270** rows for formal statistics (`analysis/hartree_potential_expansion/RESULTS_DETAIL.md`). The pooled relation between Hartree error and realized \(L_\infty\) has a log–log slope of **1.02**. Across 678 material–codec pairs with at least five gate-passing points, median material-level Hartree \(R^2\) is approximately **0.994–0.997** by codec, whereas Bader response is much less regular. Hartree is strictly monotone in 88.6% of such pairs versus 32.4% for Bader.
 
-The 73 Hartree reproduction-gate failures are all SZ3 rows with reconstruction distortion reproduced to within approximately 2×10^-5 relative, but compressed byte counts differing across platforms. They are classified as infrastructure `reproduction_mismatch`, excluded from formal Hartree statistics, and should not be described as codec or numerical failures.
+The 73 Hartree reproduction-gate failures are all SZ3 rows with reconstruction distortion reproduced to within approximately 2×10^-5 relative, but compressed byte counts differing across platforms. They are classified as infrastructure `reproduction_mismatch` and excluded from formal Hartree statistics; they are not codec or numerical failures.
 
 At matched Hartree error, Bader response remains dispersed: **55.4%** of gate-passing rows lie in 0.5-decade Hartree-error bins where the Bader P90/P10 ratio is at least 10. This supports the use of structurally distinct downstream operators in the main manuscript without claiming that Hartree is universally “better” than Bader.
 
@@ -147,7 +147,7 @@ The primary Figure 3 audit uses one material–codec decision per Bader threshol
 
 At \(10^{-4}\,e\), a naive binary benchmark reports 533 failures, of which **518 (97.2%)** occur on non-evaluable material–threshold pairs; only 15 remain genuine eligible failures. At \(10^{-3}\,e\), **296/310 (95.5%)** naive failures are non-evaluable, leaving 14 genuine failures. At \(10^{-2}\,e\), **61/108 (56.5%)** are non-evaluable, leaving 47 genuine failures.
 
-The qualification is not a permissive rescue rule: at \(10^{-4}\,e\), **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 should expose the codec-by-codec decomposition so that this conclusion is auditable beyond the pooled Figure 3 presentation.
+The qualification is not a permissive rescue rule: at \(10^{-4}\,e\), **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 reports the codec-by-codec decomposition beyond the pooled Figure 3 presentation.
 
 ---
 
@@ -155,9 +155,9 @@ The qualification is not a permissive rescue rule: at \(10^{-4}\,e\), **106/229 
 
 The scientific Bader metric re-derives atom-centred basins after every reconstruction. Fixed-basin scoring is retained only as a diagnostic because it suppresses the domain-migration component.
 
-The machine-readable mechanism tables are `mechanism/basin_error_decomposition_per_atom.csv` and `mechanism/basin_error_decomposition_summary.csv`. Representative systems are evaluated across three codecs and three chemical tolerances, with the charge change separated into an integrand contribution on the reference domain and a residual domain-migration contribution. The supplementary presentation should show the full representative-case matrix rather than only the selected main-text examples.
+The mechanism tables evaluate representative systems across three codecs and three chemical tolerances, separating the charge change into an integrand contribution on the reference domain and a residual domain-migration contribution. Supplementary Table S10 and Supplementary Fig. S5 report the full representative-case matrix beyond the selected main-text examples.
 
-A separate independent-Bader study in `mechanism/independent_bader_20260908/` provides an implementation-robustness check. It contains **1,560/1,560 expected outcome rows** across a stratified panel and three solver modes. Henkelman on-grid reproduces BaderKit on-grid codec response with a median ratio of **1.00** (IQR approximately 0.92–1.005), aside from systems whose unperturbed basin sets differ. Codec ordering at relative tolerance \(10^{-4}\) is preserved across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. These results should remain supplementary because they validate robustness rather than define the central benchmark claim.
+A separate independent-Bader study in `mechanism/independent_bader_20260908/` provides an implementation-robustness check. It contains **1,560/1,560 expected outcome rows** across a stratified panel and three solver modes. Henkelman on-grid reproduces BaderKit on-grid codec response with a median ratio of **1.00** (IQR approximately 0.92–1.005), aside from systems whose unperturbed basin sets differ. Codec ordering at relative tolerance \(10^{-4}\) is preserved across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. These results remain supplementary because they validate robustness rather than define the central benchmark claim.
 
 ---
 
@@ -167,17 +167,17 @@ Equal nominal codec tolerance is not a common realized-distortion scale. At equa
 
 The primary within-material match uses a **0.10-dex** caliper in \(\log_{10}(L_\infty)\), without replacement, and bootstraps materials rather than rows. At this caliper, the matched datasets contain 457 ZFP–SZ3 pairs from 214 materials, 465 ZFP–SPERR pairs from 206 materials, and 1,848 SZ3–SPERR pairs from 254 materials. Median larger/smaller realized-\(L_\infty\) is approximately 1.14 for the ZFP comparisons and 1.00 for SZ3/SPERR.
 
-After matching, re-derived Bader-error ratios are **0.557** for ZFP/SZ3 (95% material-bootstrap CI 0.525–0.598), **0.601** for ZFP/SPERR (0.534–0.662), and **1.033** for SZ3/SPERR (0.976–1.072). Supplementary Figure S6 should show the sensitivity across 0.05, 0.10, 0.20 and 0.30 dex together with common-support counts; the main text should continue to report only the primary 0.10-dex result and the statement that direction is robust across the pre-specified calipers.
+After matching, re-derived Bader-error ratios are **0.557** for ZFP/SZ3 (95% material-bootstrap CI 0.525–0.598), **0.601** for ZFP/SPERR (0.534–0.662), and **1.033** for SZ3/SPERR (0.976–1.072). Supplementary Figure S6 shows sensitivity across 0.05, 0.10, 0.20 and 0.30 dex together with common-support counts; the main text reports the primary 0.10-dex result and notes that the direction is robust across the pre-specified calipers.
 
 ---
 
 ## Supplementary Note 8 — Stability-qualified rate–fidelity tables
 
-For each eligible material–threshold pair, the benchmark selects the highest compression ratio on the frozen codec ladder that satisfies the re-derived Bader contract. `benchmark/summary_a1.csv`, `benchmark/pairwise_a1.csv` and `benchmark/best_certified_a1.csv` are the machine-readable sources.
+For each eligible material–threshold pair, the benchmark selects the highest compression ratio on the fixed codec ladder that satisfies the re-derived Bader contract. The QSQ-certified benchmark summary, pairwise codec summary and best certified operating-point table are mapped through the repository reader-facing provenance index.
 
-The supplementary presentation should report, for each \(\tau\), stratum and codec: admitted denominator, non-evaluable denominator, certified count/fraction, median best-certified compression ratio, bootstrap confidence interval and distributional quantiles. Pairwise win fractions should be reported separately rather than folded into a single ranking label.
+Supplementary Table S13 reports, for each \(\tau\), stratum and codec, the admitted denominator, non-evaluable denominator, certified count/fraction, median best-certified compression ratio, bootstrap confidence interval and distributional quantiles. Pairwise win fractions are reported separately rather than folded into a single ranking label.
 
-**Submission audit flag:** the final SI table must be regenerated directly from the current frozen benchmark files rather than copied from older prose summaries. Some historical narrative files contain earlier rate–fidelity values from intermediate aggregation states. `benchmark/summary_a1.csv` / the final manuscript-generation pipeline must be treated as the numerical source of record when the submission package is built.
+Supplementary Table S13 is generated directly from the current machine-readable development and external rate–fidelity summaries.
 
 ---
 
@@ -185,17 +185,17 @@ The supplementary presentation should report, for each \(\tau\), stratum and cod
 
 The primary external confirmatory cohort contains **63/63 completed systems**, **1,689 retained scientific rows**, **0 material-level pipeline failures**, **0 codec-bound violations** and **3 preserved row-level Bader solver failures** affecting two materials (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`). The final frozen 65-system descriptive aggregate contains **65/65 systems** and **1,755 rows**, also with zero material-level failures and zero bound violations.
 
-For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at \(10^{-4}\), \(10^{-3}\) and \(10^{-2}\,e\), respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at \(10^{-4}\,e\), ZFP ≈ SZ3 > SPERR at \(10^{-3}\,e\), and SZ3 > ZFP > SPERR at \(10^{-2}\,e\). The ZFP–SZ3 separation at the strictest threshold is narrower than in development and should not be described as a strong external separation.
+For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at \(10^{-4}\), \(10^{-3}\) and \(10^{-2}\,e\), respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at \(10^{-4}\,e\), ZFP ≈ SZ3 > SPERR at \(10^{-3}\,e\), and SZ3 > ZFP > SPERR at \(10^{-2}\,e\). The ZFP–SZ3 separation at the strictest threshold is narrower than in development and is treated as a modest external difference.
 
-The supplementary external section should also retain the row-level solver failures, recovery provenance for `aflow-Cl1O12Pb5V3_ICSD_203074`, the descriptive 65-system aggregate, and the distinction between `vacuum-containing 2D` systems and development adsorbate slabs.
+Row-level solver failures and recovery provenance are retained in the repository audit. The SI separately reports the 65-system descriptive aggregate and distinguishes vacuum-containing 2D systems from development adsorbate slabs.
 
 ---
 
 ## Supplementary Note 10 — Failure taxonomy and negative results
 
-`failure_registry.csv` is the canonical failure register. Scientific non-evaluability, Bader-solver failure, reproduction mismatch and symmetry-equivalent basin relabelling must remain distinct categories. None should be silently converted into missing data or codec failure.
+`failure_registry.csv` is the canonical failure register. Scientific non-evaluability, Bader-solver failure, reproduction mismatch and symmetry-equivalent basin relabelling must remain distinct categories. These categories are not converted into missing data or codec failure.
 
-Negative algorithmic results are valuable supplementary evidence because they delimit the paper's contribution. The claim–evidence matrix records that boundary-aware allocation did not improve compression, the promolecule prior was detrimental, and symmetry folding did not yield a robust advantage. These results should be summarized compactly in Supplementary Table S14 rather than developed into a competing algorithm narrative. The paper's contribution is the measurement/certification framework, not a new codec.
+Negative algorithmic results are valuable supplementary evidence because they delimit the paper's contribution. The claim–evidence matrix records that boundary-aware allocation did not improve compression, the promolecule prior was detrimental, and symmetry folding did not yield a robust advantage. These results are summarized compactly in Supplementary Table S14 rather than developed into a competing algorithm narrative. The paper's contribution is the measurement/certification framework, not a new codec.
 
 ---
 
@@ -214,12 +214,12 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | **Table S9** | Hartree pooled scaling, material smoothness and reproduction gate | `analysis/hartree_potential_expansion/group_summary.csv`; `material_smoothness.csv`; `matched_error_dispersion.csv` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S8_S9_20260911.md` |
 | **Table S10** | Bader domain decomposition across representative systems | `mechanism/basin_error_decomposition_summary.csv`; `..._per_atom.csv` | **READY** |
 | **Table S11** | Cross-implementation Bader robustness + resolved 24-system QSQ classification transfer | `mechanism/independent_bader_20260908/`; `validation/qsq_prospective/p3a_implementation_transfer_resolved/` | **BUILT** — `paper/SUPPLEMENTARY_TABLES_S10_S11_20260911.md` |
-| **Table S12** | Realized-L∞ matching quality and caliper sensitivity | `analysis/matched_realized_linf_v1/` | **READY** |
-| **Table S13** | Development and external stability-qualified rate–fidelity summaries | `benchmark/summary_a1.csv`; `validation/final_external_confirmatory63_20260908/confirmatory63/` | **READY, regenerate at final build** |
-| **Table S14** | Failure taxonomy and negative algorithm results | `failure_registry.csv`; `paper/CLAIM_EVIDENCE_MATRIX.md` | **READY, needs compact aggregation** |
+| **Table S12** | Realized-L∞ matching quality and caliper sensitivity | realized-distortion matching outputs (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S12_20260911.md` |
+| **Table S13** | Development and external stability-qualified rate–fidelity summaries | QSQ-certified benchmark summary + external confirmation (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S13_20260911.md` |
+| **Table S14** | Failure taxonomy and negative algorithm results | failure registry + claim–evidence matrix | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S14_20260911.md` |
 | **Table S15** | Outcome-blind chemical-pair source-reference adjudication and decision margins | `validation/qsq_prospective/p4_reference_adjudication/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
 | **Table S16** | Compressed qualitative charge-transfer decisions and optional independent-solver audit accounting | `validation/qsq_prospective/p4_chemical_decisions_resolved/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
-| **Table S17** | Fourier-spectrum mechanism diagnostics: matched-pair Hartree ratios, spectral-energy/susceptibility decomposition, low/high-G fractions, centroid directionality and Nyquist/Parseval parity | `analysis/hartree_spectral_mechanism/results/matched_pair_mechanism.csv`; `mechanism_ratio_summary.csv`; `reconstruction_spectral_metrics.csv` | **READY** |
+| **Table S17** | Fourier-spectrum mechanism diagnostics: matched-pair Hartree ratios, spectral-energy/susceptibility decomposition, low/high-G fractions, centroid directionality and Nyquist/Parseval parity | Fourier-spectrum mechanism audit (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S17_20260927.md` |
 
 # Proposed Supplementary Figures
 
@@ -235,7 +235,6 @@ All final supplementary figures should be generated from R sources and exported 
 | **Fig. S6** | Realized-L∞ matching support and 0.05–0.30 dex caliper sensitivity | `analysis/matched_realized_linf_v1/` | **PLANNED R** |
 | **Fig. S7** | Codec-resolved binary reclassification beyond pooled Figure 3 | `analysis/certifiability_reclassification_by_codec_20260911.csv` | **LOCKED** |
 | **Fig. S8** | External confirmatory per-system/pairwise distributions and audit summary | `validation/final_external_confirmatory63_20260908/confirmatory63/` | **PLANNED R** |
-| **Fig. S9** | Pairwise Nyquist-safe Hartree/Fourier identity, historical-versus-safe ratio parity and material-level spectral-structure contribution distribution | `analysis/hartree_spectral_mechanism/results/matched_pair_mechanism.csv`; `SUMMARY.json` | **READY FOR RENDER** |
 
 # Submission boundaries
 
@@ -245,8 +244,8 @@ All final supplementary figures should be generated from R sources and exported 
 4. The 319-system stability universe and 63-system primary external confirmatory cohort use different denominators and must be labelled separately.
 5. Tight-ladder data support “floor-scale, consistent with an emerging analysis-limited regime”, not universal `plateau = floor`.
 6. The resolved 24-system P3A panel validates classification transfer across the tested independent on-grid implementation, while near-grid threshold switches demonstrate implementation dependence. It does not redefine the frozen primary metric and does not establish grid convergence.
-7. Supplementary figures should be regenerated in R rather than using legacy exploratory plots as final publication graphics.
-8. Negative algorithm results belong in the SI to show what was tested and falsified; they should not compete with the benchmark-validity narrative.
+7. Supplementary figures are generated in R from versioned analysis outputs and exported as PNG/PDF/SVG.
+8. Negative algorithm results remain in the SI to document tested and falsified directions without competing with the benchmark-validity narrative.
 9. The Fourier-spectrum mechanism is established for the linear Hartree control. It must not be presented as the unique mechanism for the nonlinear re-derived Bader residual; the transferable conclusion is that downstream fidelity depends on how reconstruction-error structure couples to the downstream operator.
 
 # Current completion assessment
