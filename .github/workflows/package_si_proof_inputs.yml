@@ -7,7 +7,8 @@ on:
       - paper/fourier-mechanism-integration-20260927
     paths:
       - 'paper/SUPPLEMENTARY_INFORMATION.md'
-      - 'paper/SUPPLEMENTARY_TABLE*.md'
+      - 'paper/SUPPLEMENTARY_TABLES_FINAL.md'
+      - 'paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md'
       - 'figures/R/rendered/supplementary_figureS*_R.png'
       - '.github/workflows/package_si_proof_inputs.yml'
 
@@ -32,13 +33,15 @@ jobs:
             f=$(find figures/R/rendered -maxdepth 1 -type f -name "supplementary_figureS${n}_*_R.png" | head -n 1)
             test -n "$f" && test -s "$f" || { echo "Missing Supplementary Figure S$n PNG"; exit 1; }
           done
-          for f in paper/SUPPLEMENTARY_TABLE*.md; do test -s "$f"; done
+          test -s paper/SUPPLEMENTARY_TABLES_FINAL.md
+          test -s paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md
       - uses: actions/upload-artifact@v4
         with:
           name: si-proof-inputs
           path: |
             paper/SUPPLEMENTARY_INFORMATION.md
-            paper/SUPPLEMENTARY_TABLE*.md
+            paper/SUPPLEMENTARY_TABLES_FINAL.md
+            paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md
             figures/R/rendered/supplementary_figureS1_*_R.png
             figures/R/rendered/supplementary_figureS2_*_R.png
             figures/R/rendered/supplementary_figureS3_*_R.png
