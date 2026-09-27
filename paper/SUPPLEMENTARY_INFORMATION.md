@@ -99,37 +99,37 @@ At matched Hartree error, Bader response remains dispersed: **55.4%** of gate-pa
 
 ### Fourier-spectrum mechanism audit
 
-The full-population mechanism audit uses the **exact 457 ZFP/SZ3 within-material realized-$L_\infty$ matched pairs across 214 materials** from the Hartree analysis. The corresponding **914 reconstructions** were regenerated from the frozen codec rows. A reconstruction entered the spectral audit only after both its realized $L_\infty$ and its historical Hartree relative RMSE reproduced the stored matched-pair target.
+The full-population mechanism audit uses the **exact 457 ZFP/SZ3 within-material realized-$L_\infty$ matched pairs across 214 materials** from the Hartree analysis. The corresponding **914 reconstructions** were regenerated from the versioned codec rows. A reconstruction entered the spectral audit only after both its realized $L_\infty$ and its reference-implementation Hartree relative RMSE reproduced the stored matched-pair target.
 
-The historical matched-pair Hartree center is **0.0776220566**, and the regenerated historical calculation reproduces it at **0.0776220566**. To test whether this large codec effect could arise from a discrete-FFT implementation artifact, the audit also defines a Nyquist-safe Hermitian Poisson operator. For even grids in non-orthogonal cells, Nyquist-plane modes are alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. The mechanism operator therefore sets $G=0$ and all even-grid Nyquist-plane modes to zero and applies $4\pi/|G|^2$ to all remaining modes. This gives a Hartree ratio of **0.0776219202**, essentially unchanged from the historical result.
+The reference-implementation matched-pair Hartree center is **0.0776220566**, and the regenerated calculation reproduces it at **0.0776220566**. To test whether this large codec effect could arise from a discrete-FFT implementation artifact, the audit also defines a Nyquist-safe Hermitian Poisson operator. For even grids in non-orthogonal cells, Nyquist-plane modes are alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. The mechanism operator therefore sets $G=0$ and all even-grid Nyquist-plane modes to zero and applies $4\pi/|G|^2$ to all remaining modes. This gives a Hartree ratio of **0.0776219202**, essentially unchanged from the historical result.
 
 Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For the Nyquist-safe operator,
 
-$
+$$
 \mathrm{RMS}(\Delta V_H)^2=
 \frac{(4\pi)^2}{N^2}
 \sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
-$
+$$
 
 and the maximum relative discrepancy between the direct real-space Hartree RMS and the Fourier-space expression is **1.30×10$^{-15}$** across all selected reconstructions. The corresponding direct Hartree ratio and square root of the Hartree-weighted spectral ratio agree to numerical precision.
 
 Define
 
-$
+$$
 E=\sum_{G\in\mathcal{G}_s}|\Delta\rho(G)|^2,
 \qquad
 W_H=\sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
 \qquad
 S_H=\frac{W_H}{E}.
-$
+$$
 
 For every matched pair,
 
-$
+$$
 R_H=
 \sqrt{\frac{E_{\mathrm{ZFP}}}{E_{\mathrm{SZ3}}}}
 \sqrt{\frac{S_{H,\mathrm{ZFP}}}{S_{H,\mathrm{SZ3}}}}.
-$
+$$
 
 The separately aggregated material-level centers are **0.376** for the total spectral-energy factor and **0.203** for the spectral Hartree-susceptibility factor. These separately aggregated centers are descriptive and are not expected to multiply exactly; the multiplicative identity is checked and satisfied pairwise. The material-median absolute-log contribution from spectral susceptibility is **62.0%**, showing that frequency allocation is the dominant component of the matched-distortion Hartree codec effect.
 
@@ -183,7 +183,7 @@ Supplementary Table S13 is generated directly from the current machine-readable 
 
 ## Supplementary Note 9 — External confirmation
 
-The primary external confirmatory cohort contains **63/63 completed systems**, **1,689 retained scientific rows**, **0 material-level pipeline failures**, **0 codec-bound violations** and **3 preserved row-level Bader solver failures** affecting two materials (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`). The final frozen 65-system descriptive aggregate contains **65/65 systems** and **1,755 rows**, also with zero material-level failures and zero bound violations.
+The primary external confirmatory cohort contains **63/63 completed systems**, **1,689 retained scientific rows**, **0 material-level pipeline failures**, **0 codec-bound violations** and **3 preserved row-level Bader solver failures** affecting two materials (`validation/EXTERNAL_CONFIRMATORY63_20260908.md`). The 65-system descriptive aggregate contains **65/65 systems** and **1,755 rows**, also with zero material-level failures and zero bound violations.
 
 For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at \(10^{-4}\), \(10^{-3}\) and \(10^{-2}\,e\), respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at \(10^{-4}\,e\), ZFP ≈ SZ3 > SPERR at \(10^{-3}\,e\), and SZ3 > ZFP > SPERR at \(10^{-2}\,e\). The ZFP–SZ3 separation at the strictest threshold is narrower than in development and is treated as a modest external difference.
 
@@ -193,13 +193,13 @@ Row-level solver failures and recovery provenance are retained in the repository
 
 ## Supplementary Note 10 — Failure taxonomy and negative results
 
-`failure_registry.csv` is the canonical failure register. Scientific non-evaluability, Bader-solver failure, reproduction mismatch and symmetry-equivalent basin relabelling must remain distinct categories. These categories are not converted into missing data or codec failure.
+`failure_registry.csv` is the canonical failure register. Scientific non-evaluability, Bader-solver failure, reproduction mismatch and symmetry-equivalent basin relabelling are treated as distinct categories. These categories are not converted into missing data or codec failure.
 
 Negative algorithmic results are valuable supplementary evidence because they delimit the paper's contribution. The claim–evidence matrix records that boundary-aware allocation did not improve compression, the promolecule prior was detrimental, and symmetry folding did not yield a robust advantage. These results are summarized compactly in Supplementary Table S14 rather than developed into a competing algorithm narrative. The paper's contribution is the measurement/certification framework, not a new codec.
 
 ---
 
-# Proposed Supplementary Tables
+# Supplementary Tables
 
 | Table | Content | Primary source | Status |
 |---|---|---|---|
@@ -221,7 +221,7 @@ Negative algorithmic results are valuable supplementary evidence because they de
 | **Table S16** | Compressed qualitative charge-transfer decisions and optional independent-solver audit accounting | `validation/qsq_prospective/p4_chemical_decisions_resolved/`; `paper/SUPPLEMENTARY_TABLES_S15_S16_20260911.md` | **BUILT** |
 | **Table S17** | Fourier-spectrum mechanism diagnostics: matched-pair Hartree ratios, spectral-energy/susceptibility decomposition, low/high-G fractions, centroid directionality and Nyquist/Parseval parity | Fourier-spectrum mechanism audit (repository provenance index) | **BUILT** — `paper/SUPPLEMENTARY_TABLE_S17_20260927.md` |
 
-# Proposed Supplementary Figures
+# Supplementary Figures
 
 All supplementary figures are generated from R sources and exported as PNG/PDF/SVG, following the same reproducibility standard as Figures 1–8.
 
@@ -239,27 +239,26 @@ All supplementary figures are generated from R sources and exported as PNG/PDF/S
 # Submission boundaries
 
 1. The SI must not reintroduce withdrawn claims from earlier qualification stages.
-2. Archived float32-probe results are provenance only and must be visibly labelled archived/provisional.
+2. The order-preserving round-trip control is a method-validation control, not an active qualification procedure.
 3. `NON_EVALUABLE_BADER_UNSTABLE` is neither pass nor failure.
 4. The 319-system stability universe and 63-system primary external confirmatory cohort use different denominators and must be labelled separately.
 5. Tight-ladder data support “floor-scale, consistent with an emerging analysis-limited regime”, not universal `plateau = floor`.
-6. The resolved 24-system P3A panel validates classification transfer across the tested independent on-grid implementation, while near-grid threshold switches demonstrate implementation dependence. It does not redefine the frozen primary metric and does not establish grid convergence.
+6. The resolved 24-system implementation-transfer panel validates classification transfer across the tested independent on-grid implementation, while near-grid threshold switches demonstrate implementation dependence. It does not redefine the primary metric and does not establish grid convergence.
 7. Supplementary figures are generated in R from versioned analysis outputs and exported as PNG/PDF/SVG.
 8. Negative algorithm results remain in the SI to document tested and falsified directions without competing with the benchmark-validity narrative.
 9. The Fourier-spectrum mechanism is established for the linear Hartree control. It must not be presented as the unique mechanism for the nonlinear re-derived Bader residual; the transferable conclusion is that downstream fidelity depends on how reconstruction-error structure couples to the downstream operator.
 
 # Current completion assessment
 
-- **Raw evidence coverage:** high; nearly all intended SI claims already have frozen machine-readable sources.
+- **Raw evidence coverage:** complete for the current submission scope; all SI claims are tied to versioned machine-readable sources or explicit provenance records.
 - **Submission-facing SI prose:** integrated and cross-checked against the current canonical manuscript.
-- **Supplementary tables:** S1–S9 and S17 are supported by current machine-readable outputs; S10–S12/S14 require compact aggregation and S13 requires deterministic final regeneration. S15–S16 contain the chemical-decision boundary case study. No new core scientific experiment is required.
-- **Supplementary figures:** S1–S8 are generated from versioned R sources and have publication-format rendered outputs where required.
-- **Remaining pre-export work:** final manuscript ↔ SI ↔ figure cross-reference audit, archival snapshot/DOI assignment, and Word/PDF assembly.
+- **Supplementary tables:** S1–S17 are built as reader-facing table objects or consolidated table files; no new scientific experiment is required.
+- **Supplementary figures:** S1–S8 are generated from versioned R sources and have publication-format rendered outputs.
+- **Remaining pre-export work:** final source audit, archival snapshot/DOI assignment, and Word/PDF assembly.
 
 
-<!-- P4_CONTRACT_BOUNDARY_SI -->
 ## Supplementary Note | Outcome-blind chemical-decision boundary case study
 
-An outcome-blind chemistry/provenance/geometry audit of the 68 NOMAD development slabs froze five paired states before QSQ, codec or Bader outcomes were inspected for inclusion. All five passed the independently frozen two-implementation source-reference rule. Across ZFP, SZ3 and SPERR on the four common tight settings, all 60 direct qualitative target-atom charge-transfer directions were preserved after compression. QSQ at $10^{-3}\,e$ retained 36/60 trials from three pairs, while the unqualified baseline retained all 60; both had zero observed sign errors. This deliberately negative result shows that the strict numerical Bader contract and a coarse sign-level chemical interpretation are different fidelity targets. Full pair-level reference values and policy accounting are provided in Supplementary Tables S15-S16.
+An outcome-blind chemistry and geometry audit of the 68 NOMAD development slabs selected five paired states before QSQ, codec or Bader outcomes were inspected for inclusion. All five passed the pre-specified two-implementation source-reference rule. Across ZFP, SZ3 and SPERR on the four common tight settings, all 60 direct qualitative target-atom charge-transfer directions were preserved after compression. QSQ at $10^{-3}\,e$ retained 36/60 trials from three pairs, while the unqualified baseline retained all 60; both had zero observed sign errors. This deliberately negative result shows that the strict numerical Bader contract and a coarse sign-level chemical interpretation are different fidelity targets. Full pair-level reference values and policy accounting are provided in Supplementary Tables S15-S16.
 
-The resolved compressed analysis contains 216/216 successful solver cells. The first execution's 144 failures were classified before retry as missing-work-directory engineering errors, and the retry executed exactly those failed keys without changing the scientific design. P3B new-DFT grid convergence was not used; the source reference is a BaderKit/Henkelman on-grid consensus under the declared density representation.
+The resolved compressed analysis contains 216/216 successful solver cells. No new electronic-structure calculation was used; the source reference is a BaderKit/Henkelman on-grid consensus under the declared density representation.
