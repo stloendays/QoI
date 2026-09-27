@@ -118,12 +118,12 @@ pD <- ggplot(d, aes(threshold, frac_certified, colour = codec, group = codec)) +
 fig <- ((pA | pB) / (pC | pD)) +
   plot_layout(heights = c(1, 1)) +
   plot_annotation(
-    title = "Supplementary Figure S8 | Frozen rate-fidelity conclusions reproduce on the untouched external cohort",
+    title = "Supplementary Figure S8 | Pre-specified rate-fidelity conclusions reproduce on the untouched external cohort",
     subtitle = "Eligibility expands with tolerance and the codec ordering changes with the scientific contract; no qualification or scoring rule was retuned for external evaluation.",
     caption = paste0(
       "A, pooled development and external rate-fidelity frontiers. B, external QSQ eligibility. ",
       "C, pairwise SZ3-versus-ZFP crossover. D, certification conditional on eligibility.\n",
-      "The 63-system confirmatory cohort is distinct from the 65-system external descriptive/stability set; external rate-fidelity claims use only the frozen 63-system confirmatory outputs."
+      "The 63-system confirmatory cohort is distinct from the 65-system external descriptive/stability set; external rate-fidelity claims use only the pre-specified 63-system confirmatory analysis."
     ),
     theme = theme(
       plot.background = element_rect(fill = bg, colour = NA),
