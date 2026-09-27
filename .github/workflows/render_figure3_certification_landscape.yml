@@ -15,8 +15,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: qoi-formal-figure-writeback
-  cancel-in-progress: false
+  group: figure3_certification_landscape_R-writeback
+  cancel-in-progress: true
 
 jobs:
   render:
@@ -56,13 +56,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          tmp=$(mktemp -d)
+          cp figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg} "$tmp"/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$GITHUB_REF_NAME"
+          git reset --hard "origin/$GITHUB_REF_NAME"
+          cp "$tmp"/figure3_certification_landscape_R.* figures/R/rendered/
           git add figures/R/rendered/figure3_certification_landscape_R.{png,pdf,svg}
           if git diff --cached --quiet; then
-            echo "Figure 3 outputs unchanged."
+            echo "Figure 3 reader-facing outputs unchanged."
             exit 0
           fi
           git commit -m "figure: render Figure 3 reader-facing outputs"
-          git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
