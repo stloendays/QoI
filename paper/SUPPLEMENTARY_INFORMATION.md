@@ -27,21 +27,21 @@ Primary provenance assets are `materials_metadata.csv`, `external_test_MANIFEST.
 
 ---
 
-## Supplementary Note 2 — QoI Stability Qualification and archived probe provenance
+## Supplementary Note 2 — QoI Stability Qualification and order-preserving control
 
 An order-preserving round-trip control uses a deterministic float64 → float32 → float64 conversion at the same material-specific amplitude scale. This control is unusually benign for an on-grid watershed partition because it preserves much of the local value ordering.
 
 QoI Stability Qualification (QSQ) uses a perturbation-based numerical identifiability test. For material $m$, let
 
-$
+$$
 \epsilon_m = \|\mathrm{float32}(\rho_m)-\rho_m\|_\infty.
-$
+$$
 
-Five pre-registered uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
+Five pre-specified uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
 
-$
+$$
 f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
-$
+$$
 
 A Bader tolerance $\tau$ is eligible only when $f_m<\tau$. If $f_m\ge\tau$, the material–threshold pair is assigned `NON_EVALUABLE_BADER_UNSTABLE` and is neither a codec pass nor a codec failure.
 
