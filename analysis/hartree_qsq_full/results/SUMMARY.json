@@ -1,0 +1,120 @@
+{
+  "codec_rows_scientific_gate_fail": 1,
+  "codec_rows_scientific_gate_pass": 6342,
+  "codec_rows_total": 6343,
+  "codec_smoothness": [
+    {
+      "codec": "ZFP",
+      "median_loglog_R2": 0.9969375161654853,
+      "median_loglog_slope": 1.0473926040891315,
+      "monotone_fraction": 0.8518518518518519,
+      "n_material_series_ge4": 243,
+      "p10_loglog_slope": 0.9589018529124341,
+      "p90_loglog_slope": 1.0992019939294013
+    },
+    {
+      "codec": "SZ3",
+      "median_loglog_R2": 0.9939176542888457,
+      "median_loglog_slope": 1.1706305041219116,
+      "monotone_fraction": 0.8468085106382979,
+      "n_material_series_ge4": 235,
+      "p10_loglog_slope": 0.9115035239186497,
+      "p90_loglog_slope": 1.2298640177529494
+    },
+    {
+      "codec": "SPERR",
+      "median_loglog_R2": 0.9960533838257182,
+      "median_loglog_slope": 1.0122393748702505,
+      "monotone_fraction": 0.9559471365638766,
+      "n_material_series_ge4": 227,
+      "p10_loglog_slope": 0.9720680976565347,
+      "p90_loglog_slope": 1.075334618832473
+    }
+  ],
+  "criteria": {
+    "all_254_materials_planned_accounted": true,
+    "all_successful_reference_materials_have_five_seed_measurements": true,
+    "at_least_one_nontrivial_contract": true,
+    "per_codec_smoothness_criteria": {
+      "SPERR": {
+        "median_R2_at_least_0_90": true,
+        "median_slope_in_0_70_to_1_30": true,
+        "monotone_fraction_at_least_0_80": true
+      },
+      "SZ3": {
+        "median_R2_at_least_0_90": true,
+        "median_slope_in_0_70_to_1_30": true,
+        "monotone_fraction_at_least_0_80": true
+      },
+      "ZFP": {
+        "median_R2_at_least_0_90": true,
+        "median_slope_in_0_70_to_1_30": true,
+        "monotone_fraction_at_least_0_80": true
+      }
+    },
+    "primary_1e-6_eligibility_fraction_at_least_0_90": true
+  },
+  "interpretation_boundary": "This extension tests downstream-operator generality on the development cohort. It does not modify the frozen P1-P4 submission scope and the Hartree contract ladder is a numerical measurement contract, not a universal chemistry threshold.",
+  "matched_realized_linf": [
+    {
+      "bader_material_median_ratio_a_over_b": 1.0325070260736608,
+      "bader_median_abs_log10_ratio": 0.1664206277515047,
+      "bader_n_materials": 254,
+      "bader_n_pairs": 1847,
+      "bader_ratio_ci_high": 1.0733375228528281,
+      "bader_ratio_ci_low": 0.9777379312658766,
+      "caliper_dex": 0.1,
+      "codec_a": "SZ3",
+      "codec_b": "SPERR",
+      "hartree_material_median_ratio_a_over_b": 6.768201959029507,
+      "hartree_median_abs_log10_ratio": 0.8652959042782116,
+      "hartree_ratio_ci_high": 7.612598893654359,
+      "hartree_ratio_ci_low": 6.161708188709247,
+      "n_materials": 254,
+      "n_pairs": 1847
+    },
+    {
+      "bader_material_median_ratio_a_over_b": 0.6007474002367663,
+      "bader_median_abs_log10_ratio": 0.28645121921891087,
+      "bader_n_materials": 206,
+      "bader_n_pairs": 465,
+      "bader_ratio_ci_high": 0.6702740165730328,
+      "bader_ratio_ci_low": 0.5338566672348355,
+      "caliper_dex": 0.1,
+      "codec_a": "ZFP",
+      "codec_b": "SPERR",
+      "hartree_material_median_ratio_a_over_b": 0.6701967245270835,
+      "hartree_median_abs_log10_ratio": 0.22899985719363328,
+      "hartree_ratio_ci_high": 0.7412435213335209,
+      "hartree_ratio_ci_low": 0.6385047916396345,
+      "n_materials": 206,
+      "n_pairs": 465
+    },
+    {
+      "bader_material_median_ratio_a_over_b": 0.5574478963397762,
+      "bader_median_abs_log10_ratio": 0.2579536723127475,
+      "bader_n_materials": 214,
+      "bader_n_pairs": 457,
+      "bader_ratio_ci_high": 0.5974926291176728,
+      "bader_ratio_ci_low": 0.5250540093860762,
+      "caliper_dex": 0.1,
+      "codec_a": "ZFP",
+      "codec_b": "SZ3",
+      "hartree_material_median_ratio_a_over_b": 0.07762205663818565,
+      "hartree_median_abs_log10_ratio": 1.1081706283730552,
+      "hartree_ratio_ci_high": 0.08443741539917356,
+      "hartree_ratio_ci_low": 0.06951401970682766,
+      "n_materials": 214,
+      "n_pairs": 457
+    }
+  ],
+  "materials_with_any_failure_record": 0,
+  "materials_with_source_or_reference_failure": 0,
+  "planned_materials": 254,
+  "primary_eligibility_fraction_conservative_denominator_254": 1.0,
+  "primary_eligible_materials_conservative_denominator_254": 254,
+  "primary_tau_rel_RMSE": 1e-06,
+  "qsq_seed_rows": 1270,
+  "reference_complete_materials": 254,
+  "status": "GO_FULL_POPULATION_GENERALITY_SUPPORTED"
+}
