@@ -859,11 +859,11 @@
 <text x='46.61' y='231.28' text-anchor='end' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-08</text>
 <text x='46.61' y='179.93' text-anchor='end' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-05</text>
 <text x='46.61' y='128.59' text-anchor='end' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-02</text>
-<text x='150.14' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='32.34px' lengthAdjust='spacingAndGlyphs'>Archived</text>
-<text x='314.92' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='12.48px' lengthAdjust='spacingAndGlyphs'>A.1</text>
+<text x='150.14' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='90.09px' lengthAdjust='spacingAndGlyphs'>Order-preserving control</text>
+<text x='314.92' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='18.48px' lengthAdjust='spacingAndGlyphs'>QSQ</text>
 <text transform='translate(20.60,171.65) rotate(-90)' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='157.72px' lengthAdjust='spacingAndGlyphs'>Re-derived Bader stability floor (e)</text>
 <text x='51.27' y='66.89' style='font-size: 9.00px;fill: #4F545C; font-family: "Liberation Sans";' textLength='230.00px' lengthAdjust='spacingAndGlyphs'>Paired development comparison across 254 density fields</text>
-<text x='51.27' y='54.40' style='font-size: 11.20px; font-weight: bold; font-family: "Liberation Sans";' textLength='320.84px' lengthAdjust='spacingAndGlyphs'>A | The probe definition materially changes the inferred floor</text>
+<text x='51.27' y='54.40' style='font-size: 11.20px; font-weight: bold; font-family: "Liberation Sans";' textLength='312.80px' lengthAdjust='spacingAndGlyphs'>A | The stability probe materially changes the inferred floor</text>
 </g>
 <defs>
   <clipPath id='cpNDcxLjY0fDgzNC4xNnw3NC43NHwyNjguNTc='>
@@ -1146,9 +1146,9 @@
 <text x='562.07' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-08</text>
 <text x='683.21' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-05</text>
 <text x='804.36' y='278.95' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-02</text>
-<text x='652.90' y='290.42' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='128.84px' lengthAdjust='spacingAndGlyphs'>Archived Protocol A floor (e)</text>
-<text transform='translate(438.87,171.65) rotate(-90)' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='94.75px' lengthAdjust='spacingAndGlyphs'>Protocol A.1 floor (e)</text>
-<text x='471.64' y='66.89' style='font-size: 9.00px;fill: #4F545C; font-family: "Liberation Sans";' textLength='243.50px' lengthAdjust='spacingAndGlyphs'>Dashed line is equality; points above it have a larger A.1 floor</text>
+<text x='652.90' y='290.42' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='173.86px' lengthAdjust='spacingAndGlyphs'>Order-preserving control response (e)</text>
+<text transform='translate(438.87,171.65) rotate(-90)' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='99.36px' lengthAdjust='spacingAndGlyphs'>QSQ stability floor (e)</text>
+<text x='471.64' y='66.89' style='font-size: 9.00px;fill: #4F545C; font-family: "Liberation Sans";' textLength='250.50px' lengthAdjust='spacingAndGlyphs'>Dashed line is equality; points above it have a larger QSQ floor</text>
 <text x='471.64' y='54.40' style='font-size: 11.20px; font-weight: bold; font-family: "Liberation Sans";' textLength='311.95px' lengthAdjust='spacingAndGlyphs'>B | The correction is heterogeneous, not a global rescaling</text>
 </g>
 <defs>
@@ -1185,14 +1185,14 @@
 <text x='259.52' y='533.16' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-06</text>
 <text x='509.68' y='533.16' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='21.27px' lengthAdjust='spacingAndGlyphs'>1e-03</text>
 <text x='759.85' y='533.16' text-anchor='middle' style='font-size: 8.32px;fill: #202124; font-family: "Liberation Sans";' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>1e+00</text>
-<text x='442.71' y='544.63' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='132.33px' lengthAdjust='spacingAndGlyphs'>Protocol A.1 stability floor (e)</text>
+<text x='442.71' y='544.63' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='99.36px' lengthAdjust='spacingAndGlyphs'>QSQ stability floor (e)</text>
 <text transform='translate(20.60,429.66) rotate(-90)' text-anchor='middle' style='font-size: 10.40px;fill: #202124; font-family: "Liberation Sans";' textLength='128.84px' lengthAdjust='spacingAndGlyphs'>Cumulative material fraction</text>
-<text x='51.27' y='328.71' style='font-size: 9.00px;fill: #4F545C; font-family: "Liberation Sans";' textLength='242.25px' lengthAdjust='spacingAndGlyphs'>All 319 development + external systems with a finite A.1 floor</text>
-<text x='51.27' y='316.21' style='font-size: 11.20px; font-weight: bold; font-family: "Liberation Sans";' textLength='392.42px' lengthAdjust='spacingAndGlyphs'>C | Protocol A.1 directly defines which chemical contracts are measurable</text>
-<text x='13.45' y='567.29' style='font-size: 8.10px;fill: #646A73; font-family: "Liberation Sans";' textLength='483.09px' lengthAdjust='spacingAndGlyphs'>Protocol A remains archived and unchanged. Panels A-B compare the paired development subset for which both protocol outputs exist.</text>
-<text x='13.45' y='576.04' style='font-size: 8.10px;fill: #646A73; font-family: "Liberation Sans";' textLength='363.91px' lengthAdjust='spacingAndGlyphs'>Panel C uses all available A.1 systems and defines the eligibility ceiling used for headline certification.</text>
-<text x='13.45' y='28.73' style='font-size: 9.80px;fill: #4F545C; font-family: "Liberation Sans";' textLength='607.39px' lengthAdjust='spacingAndGlyphs'>Protocol A.1 replaces the archived float32 round-trip probe with five fixed-seed uniform-noise probes at the same float32 L-infinity amplitude.</text>
-<text x='13.45' y='15.11' style='font-size: 14.00px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='531.97px' lengthAdjust='spacingAndGlyphs'>Figure 4 | Stability is a property of the observable and its measurement protocol</text>
+<text x='51.27' y='328.71' style='font-size: 9.00px;fill: #4F545C; font-family: "Liberation Sans";' textLength='249.25px' lengthAdjust='spacingAndGlyphs'>All 319 development + external systems with a finite QSQ floor</text>
+<text x='51.27' y='316.21' style='font-size: 11.20px; font-weight: bold; font-family: "Liberation Sans";' textLength='308.95px' lengthAdjust='spacingAndGlyphs'>C | QSQ defines which chemical contracts are measurable</text>
+<text x='13.45' y='567.29' style='font-size: 8.10px;fill: #646A73; font-family: "Liberation Sans";' textLength='373.28px' lengthAdjust='spacingAndGlyphs'>Panels A-B compare an order-preserving round-trip control with QSQ on the paired development subset.</text>
+<text x='13.45' y='576.04' style='font-size: 8.10px;fill: #646A73; font-family: "Liberation Sans";' textLength='426.86px' lengthAdjust='spacingAndGlyphs'>Panel C uses all systems with a finite QSQ floor and shows how the requested tolerance determines the eligible cohort.</text>
+<text x='13.45' y='28.73' style='font-size: 9.80px;fill: #4F545C; font-family: "Liberation Sans";' textLength='425.95px' lengthAdjust='spacingAndGlyphs'>QSQ uses five fixed-seed uniform-noise probes at the material-specific float32 L-infinity amplitude.</text>
+<text x='13.45' y='15.11' style='font-size: 14.00px; font-weight: bold;fill: #202124; font-family: "Liberation Sans";' textLength='544.44px' lengthAdjust='spacingAndGlyphs'>Figure 4 | Stability is a property of the observable and its measurement procedure</text>
 </g>
 </g>
 </svg>
