@@ -1,0 +1,28 @@
+{
+  "bulk_materials": 159,
+  "bulk_triples": 350,
+  "matched_materials": 203,
+  "matched_triples": 428,
+  "matching_rule": {
+    "caliper_dex": 0.1,
+    "candidate_order": [
+      "span_dex",
+      "sum_abs_dev_from_logLinf_mean",
+      "ZFP_frozen_row_index",
+      "SZ3_frozen_row_index",
+      "SPERR_frozen_row_index"
+    ],
+    "without_replacement": true
+  },
+  "protocol_sha256": "5622f3acf5826cc149aa20a95bf6a7489ce69ed6c92614eec9471d13dc994dae",
+  "slab_materials": 44,
+  "slab_triples": 78,
+  "source_sha256": "59e3c827cb6222b57a849cf9783177a4301620acd27c6675e9077098bed73006",
+  "span_dex_max": 0.0999931141512227,
+  "span_dex_median": 0.056961804323227616,
+  "span_dex_min": 0.0005531989858749697,
+  "span_dex_p95": 0.09672512709169112,
+  "triples_per_material_max": 5,
+  "triples_per_material_median": 2,
+  "triples_per_material_min": 1
+}

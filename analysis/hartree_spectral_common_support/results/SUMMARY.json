@@ -1,0 +1,180 @@
+{
+  "checks": {
+    "material_order_fraction_at_least_0p75": true,
+    "safe_hartree_equals_weighted_spectrum_identity": true,
+    "safe_parseval_identity": true,
+    "susceptibility_pairwise_CIs_support_SPERR_lt_ZFP_lt_SZ3": true
+  },
+  "material_ordering": {
+    "SPERR_gt_ZFP_gt_SZ3_centroid_fraction": 0.7536945812807881,
+    "SPERR_lt_ZFP_lt_SZ3_low_G_fraction": 0.7635467980295566,
+    "SPERR_lt_ZFP_lt_SZ3_susceptibility_fraction": 0.7586206896551724,
+    "centroid_n_materials": 203,
+    "low_G_n_materials": 203,
+    "n_materials": 203,
+    "pre_registered_primary_threshold": 0.75
+  },
+  "operator_identity_diagnostics": {
+    "max_abs_log10_safe_vs_weighted_identity_error": 1.5543122344752192e-15,
+    "max_safe_parseval_relative_error": 1.2958380637519117e-15
+  },
+  "pair_centers": {
+    "SZ3/SPERR": {
+      "high_G_fraction_ratio": {
+        "center": 0.5392070881219527,
+        "ci_high": 0.6059481435301717,
+        "ci_low": 0.4741879224680624
+      },
+      "historical_hartree_ratio": {
+        "center": 9.7995526231124,
+        "ci_high": 10.588769045389402,
+        "ci_low": 8.426407277491224
+      },
+      "low_G_fraction_ratio": {
+        "center": 4.438212270269534,
+        "ci_high": 4.810677073022721,
+        "ci_low": 4.230232956478157
+      },
+      "nyquist_safe_hartree_ratio": {
+        "center": 9.799876156873387,
+        "ci_high": 10.588781257216853,
+        "ci_low": 8.4267246931915
+      },
+      "sqrt_hartree_weighted_ratio": {
+        "center": 9.799876156873387,
+        "ci_high": 10.588781257216848,
+        "ci_low": 8.426724693191499
+      },
+      "sqrt_spectral_hartree_susceptibility_ratio": {
+        "center": 7.49353599662643,
+        "ci_high": 8.358277416889662,
+        "ci_low": 6.821152793281793
+      },
+      "sqrt_total_safe_error_energy_ratio": {
+        "center": 1.214167055948854,
+        "ci_high": 1.2542978404219878,
+        "ci_low": 1.153497447276443
+      }
+    },
+    "ZFP/SPERR": {
+      "high_G_fraction_ratio": {
+        "center": 0.30131509083151786,
+        "ci_high": 0.3368597564490356,
+        "ci_low": 0.2687114770093924
+      },
+      "historical_hartree_ratio": {
+        "center": 0.6767875238703992,
+        "ci_high": 0.743246206618263,
+        "ci_low": 0.628347563502731
+      },
+      "low_G_fraction_ratio": {
+        "center": 1.8885319747255684,
+        "ci_high": 1.943213279707937,
+        "ci_low": 1.8386175444641233
+      },
+      "nyquist_safe_hartree_ratio": {
+        "center": 0.6768293405563817,
+        "ci_high": 0.743282167209743,
+        "ci_low": 0.6283716649930606
+      },
+      "sqrt_hartree_weighted_ratio": {
+        "center": 0.6768293405563816,
+        "ci_high": 0.7432821672097432,
+        "ci_low": 0.6283716649930604
+      },
+      "sqrt_spectral_hartree_susceptibility_ratio": {
+        "center": 1.4466894192165571,
+        "ci_high": 1.540057601398385,
+        "ci_low": 1.3434998174169932
+      },
+      "sqrt_total_safe_error_energy_ratio": {
+        "center": 0.439756161572833,
+        "ci_high": 0.4521215002513417,
+        "ci_low": 0.4282429317655513
+      }
+    },
+    "ZFP/SZ3": {
+      "high_G_fraction_ratio": {
+        "center": 0.6134165593353562,
+        "ci_high": 0.6450777138098763,
+        "ci_low": 0.5830219089390898
+      },
+      "historical_hartree_ratio": {
+        "center": 0.07781413954592857,
+        "ci_high": 0.08621474186732046,
+        "ci_low": 0.06923681322423209
+      },
+      "low_G_fraction_ratio": {
+        "center": 0.4179432545939012,
+        "ci_high": 0.4313001761707842,
+        "ci_low": 0.4001419264156902
+      },
+      "nyquist_safe_hartree_ratio": {
+        "center": 0.0778141364328514,
+        "ci_high": 0.08621464948473588,
+        "ci_low": 0.06923624177985341
+      },
+      "sqrt_hartree_weighted_ratio": {
+        "center": 0.07781413643285137,
+        "ci_high": 0.08621464948473592,
+        "ci_low": 0.06923624177985341
+      },
+      "sqrt_spectral_hartree_susceptibility_ratio": {
+        "center": 0.2028222268907355,
+        "ci_high": 0.22559802154793987,
+        "ci_low": 0.18676063433139586
+      },
+      "sqrt_total_safe_error_energy_ratio": {
+        "center": 0.3775083822800153,
+        "ci_high": 0.3837841210452478,
+        "ci_low": 0.365628173104798
+      }
+    }
+  },
+  "population": {
+    "bulk_materials": 159,
+    "bulk_triples": 350,
+    "matched_materials": 203,
+    "matched_triples": 428,
+    "matching_rule": {
+      "caliper_dex": 0.1,
+      "candidate_order": [
+        "span_dex",
+        "sum_abs_dev_from_logLinf_mean",
+        "ZFP_frozen_row_index",
+        "SZ3_frozen_row_index",
+        "SPERR_frozen_row_index"
+      ],
+      "without_replacement": true
+    },
+    "protocol_sha256": "5622f3acf5826cc149aa20a95bf6a7489ce69ed6c92614eec9471d13dc994dae",
+    "slab_materials": 44,
+    "slab_triples": 78,
+    "source_sha256": "59e3c827cb6222b57a849cf9783177a4301620acd27c6675e9077098bed73006",
+    "span_dex_max": 0.0999931141512227,
+    "span_dex_median": 0.056961804323227616,
+    "span_dex_min": 0.0005531989858749697,
+    "span_dex_p95": 0.09672512709169112,
+    "triples_per_material_max": 5,
+    "triples_per_material_median": 2,
+    "triples_per_material_min": 1
+  },
+  "spectral_structure_abs_log_share": {
+    "SZ3/SPERR": {
+      "bootstrap_ci_high": 0.937473723271968,
+      "bootstrap_ci_low": 0.8968851836933928,
+      "median_material_abs_log_share": 0.919995958236516
+    },
+    "ZFP/SPERR": {
+      "bootstrap_ci_high": 0.5166874317249286,
+      "bootstrap_ci_low": 0.4029504826427728,
+      "median_material_abs_log_share": 0.4460261306053876
+    },
+    "ZFP/SZ3": {
+      "bootstrap_ci_high": 0.6359793528904086,
+      "bootstrap_ci_low": 0.6068086688520129,
+      "median_material_abs_log_share": 0.623014955945471
+    }
+  },
+  "status": "COMMON_SUPPORT_OPERATOR_ORDER_SUPPORTED"
+}
