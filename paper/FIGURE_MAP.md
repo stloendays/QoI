@@ -214,7 +214,7 @@ Locked formal runs retained for provenance:
 - Figure 4: run `34370291570`, artifact `10111673650`.
 - Figure 5: run `34349558487`, artifact `10103144848`.
 - Figure 6: run `34340308601`, artifact `10099481566`.
-- Figure 7: source `figures/R/figure7_fourier_spectrum_mechanism.R`; rendered from `analysis/hartree_spectral_mechanism/results/` on the manuscript-integration branch.
+- Figure 7: source `figures/R/figure7_fourier_spectrum_mechanism.R`; final caption `paper/FIGURE7_CAPTION_FINAL_20260927.md`; rendered from `analysis/hartree_spectral_mechanism/results/` on the manuscript-integration branch.
 - Figure 8 (external confirmation; previously reader-facing Figure 7 before the author-authorized scope extension): source alias `figures/R/figure8_external_confirmation.R`; underlying external analysis is unchanged.
 
 ## Submission scope lock
