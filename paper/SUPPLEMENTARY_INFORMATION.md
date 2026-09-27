@@ -34,7 +34,7 @@ An order-preserving round-trip control uses a deterministic float64 → float32 
 QoI Stability Qualification (QSQ) uses a perturbation-based numerical identifiability test. For material $m$, let
 
 $$
-\epsilon_m = \|\mathrm{float32}(\rho_m)-\rho_m\|_\infty.
+\epsilon_m = \|\text{float32}(\rho_m)-\rho_m\|_\infty.
 $$
 
 Five pre-specified uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
@@ -71,7 +71,7 @@ The principal benchmark uses QSQ eligibility exactly as frozen. Four sensitivity
 
 ### S2 — Error relative to the independent stability floor
 
-For certified reconstructions, `supplement/S2_floor_relative.csv` reports $\Delta Q_\mathrm{Bader}/f_m$. At $10^{-4}\,e$, median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At $10^{-3}\,e$, median ratios broaden to 2.78–3.55, and at $10^{-2}\,e$ to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the QSQ floor.
+For certified reconstructions, `supplement/S2_floor_relative.csv` reports $\Delta Q_\text{Bader}/f_m$. At $10^{-4}\,e$, median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At $10^{-3}\,e$, median ratios broaden to 2.78–3.55, and at $10^{-2}\,e$ to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the QSQ floor.
 
 ### S3 — Inflated-threshold stress test
 
@@ -106,7 +106,7 @@ The reference-implementation matched-pair Hartree center is **0.0776220566**, an
 Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For the Nyquist-safe operator,
 
 $$
-\mathrm{RMS}(\Delta V_H)^2=
+\text{RMS}(\Delta V_H)^2=
 \frac{(4\pi)^2}{N^2}
 \sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
 $$
@@ -127,8 +127,8 @@ For every matched pair,
 
 $$
 R_H=
-\sqrt{\frac{E_{\mathrm{ZFP}}}{E_{\mathrm{SZ3}}}}
-\sqrt{\frac{S_{H,\mathrm{ZFP}}}{S_{H,\mathrm{SZ3}}}}.
+\sqrt{\frac{E_{\text{ZFP}}}{E_{\text{SZ3}}}}
+\sqrt{\frac{S_{H,\text{ZFP}}}{S_{H,\text{SZ3}}}}.
 $$
 
 The separately aggregated material-level centers are **0.376** for the total spectral-energy factor and **0.203** for the spectral Hartree-susceptibility factor. These separately aggregated centers are descriptive and are not expected to multiply exactly; the multiplicative identity is checked and satisfied pairwise. The material-median absolute-log contribution from spectral susceptibility is **62.0%**, showing that frequency allocation is the dominant component of the matched-distortion Hartree codec effect.
