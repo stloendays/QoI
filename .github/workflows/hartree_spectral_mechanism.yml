@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: hartree-spectral-mechanism-20260927
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   preflight:
