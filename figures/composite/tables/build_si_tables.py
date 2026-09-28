@@ -33,10 +33,15 @@ INK, MID, LINE = "#1B1B1B", "#6B6F76", "#1B1B1B"
 
 SUP = str.maketrans("0123456789-+", "\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u207b\u207a")
 SUB = str.maketrans("0123456789", "\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089")
+SUBL = str.maketrans("aehijklmnoprstuvx", "\u2090\u2091\u2095\u1d62\u2c7c\u2096\u2097\u2098\u2099\u2092\u209a\u1d63\u209b\u209c\u1d64\u1d65\u2093")
 GREEK = {r"\tau": "\u03c4", r"\epsilon": "\u03b5", r"\rho": "\u03c1", r"\Delta": "\u0394", r"\infty": "\u221e",
          r"\times": "\u00d7", r"\ge": "\u2265", r"\geq": "\u2265", r"\le": "\u2264", r"\leq": "\u2264",
          r"\pm": "\u00b1", r"\sum": "\u03a3", r"\in": "\u2208", r"\mathcal{G}_s": "G\u209b", r"\qquad": "   ",
-         r"\,": "\u2009", r"\;": " ", r"\to": "\u2192", r"\rightarrow": "\u2192", r"\ldots": "\u2026"}
+         r"\,": "\u2009", r"\;": " ", r"\to": "\u2192", r"\rightarrow": "\u2192", r"\ldots": "\u2026",
+         r"\delta": "\u03b4", r"\Omega": "\u03a9", r"\kappa": "\u03ba", r"\lVert": "\u2016", r"\rVert": "\u2016",
+         r"\|": "\u2016", r"\equiv": "\u2261", r"\land": "\u2227", r"\max": "max", r"\min": "min",
+         r"\mathbf": "", r"\mathcal": "", r"\tilde": "", r"\cdot": "\u00b7", r"\approx": "\u2248", r"\ne": "\u2260",
+         r"\log": "log", r"\pi": "\u03c0"}
 
 
 def tex(s):
@@ -44,15 +49,20 @@ def tex(s):
     def frag(m):
         t = m.group(1)
         t = re.sub(r"\\text\{([^}]*)\}", r"\1", t)
-        t = re.sub(r"\\sqrt\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}", lambda k: "\u221a(" + k.group(1) + ")", t)
-        t = re.sub(r"\\frac\{([^{}]*)\}\{([^{}]*)\}", r"(\1)/(\2)", t)
         for k, v in sorted(GREEK.items(), key=lambda kv: -len(kv[0])):
             t = t.replace(k, v)
+        # scripts first, so that \frac / \sqrt arguments no longer contain braces
         t = re.sub(r"\^\{([^}]*)\}", lambda k: k.group(1).translate(SUP), t)
         t = re.sub(r"\^([0-9\-+])", lambda k: k.group(1).translate(SUP), t)
-        t = re.sub(r"_\{([^}]*)\}", lambda k: k.group(1).translate(SUB) if k.group(1).isdigit() else "\u2009" + k.group(1), t)
+        t = re.sub(r"_\{([^}]*)\}", lambda k: k.group(1).translate(SUB) if k.group(1).isdigit()
+                   else (k.group(1).translate(SUBL) if re.fullmatch(r"[a-z]", k.group(1)) else "\u2009" + k.group(1)), t)
         t = re.sub(r"_([0-9])", lambda k: k.group(1).translate(SUB), t)
+        t = re.sub(r"_([a-z])(?![A-Za-z])", lambda k: k.group(1).translate(SUBL), t)
         t = re.sub(r"_([A-Za-z])", r"\1", t)
+        t = t.replace("_", "")
+        for _ in range(4):   # innermost first: \frac{a}{b}, then \sqrt{...}; repeated for nesting
+            t = re.sub(r"\\frac\{([^{}]*)\}\{([^{}]*)\}", r"(\1)/(\2)", t)
+            t = re.sub(r"\\sqrt\{([^{}]*)\}", lambda k: "\u221a(" + k.group(1) + ")", t)
         return t.replace("{", "").replace("}", "").replace("\\", "")
     s = re.sub(r"\\\((.*?)\\\)", frag, s)
     s = re.sub(r"\$\$(.*?)\$\$", frag, s, flags=re.S)

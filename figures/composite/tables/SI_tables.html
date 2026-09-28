@@ -37,7 +37,7 @@ th:last-child, td:last-child { padding-right: 0; }
 <table><thead><tr><th class='l'>Property</th><th class='l'>Order-preserving round-trip control</th><th class='l'>QSQ perturbation</th></tr></thead><tbody>
 <tr><td class='l'>Role</td><td class='l'><b>Method-validation control</b></td><td class='l'><b>Active qualification procedure</b></td></tr>
 <tr><td class='l'>Stability perturbation</td><td class='l'>float64 → float32 → float64 round trip</td><td class='l'>additive uniform noise U(-ε,+ε)</td></tr>
-<tr><td class='l'>Perturbation amplitude</td><td class='l'>implicit float32 round-trip amplitude</td><td class='l'>ε equals that material&#x27;s measured float32 L_∞ round-trip error</td></tr>
+<tr><td class='l'>Perturbation amplitude</td><td class='l'>implicit float32 round-trip amplitude</td><td class='l'>ε equals that material&#x27;s measured float32 L∞ round-trip error</td></tr>
 <tr><td class='l'>Seeds</td><td class='l'>deterministic; not applicable</td><td class='l'>five pre-specified seeds: 20260905, 1, 2, 3, 4</td></tr>
 <tr><td class='l'>Stability floor</td><td class='l'>one deterministic response</td><td class='l'>maximum Bader response across five seeds</td></tr>
 <tr><td class='l'>Bader basins</td><td class='l'>BaderKit, on-grid, re-derived</td><td class='l'>unchanged</td></tr>
@@ -494,7 +494,7 @@ th:last-child, td:last-child { padding-right: 0; }
 <tr><td class='l'>Escalate all</td><td class='r'>60 / 60</td><td class='r'>0</td><td class='r'>0</td><td class='r'>108</td><td class='r'>733.3</td></tr>
 </tbody></table>
 <p class=''>Interpretation: no policy improves sign correctness because the unqualified common-tight baseline already has zero adverse decisions. QSQ is more conservative than this coarse sign contract. The lower independent-solver call count for targeted escalation is an audit-cost comparison only.</p>
-<h2>Supplementary Table S17 | Operator-resolved Fourier diagnostics for realized-L_∞-matched ZFP/SZ3 reconstructions.</h2>
+<h2>Supplementary Table S17 | Operator-resolved Fourier diagnostics for realized-L∞-matched ZFP/SZ3 reconstructions.</h2>
 <p class=''>The mechanism population contains 457 matched pairs from 214 materials (914 reconstructions). Material-level centers are computed after within-material aggregation on the log scale unless otherwise stated. The exact multiplicative Hartree decomposition is evaluated pairwise; separately aggregated centers are descriptive and are not expected to multiply exactly.</p>
 <table><thead><tr><th class='l'>Diagnostic</th><th class='r'>Value</th><th class='l'>Interpretation</th></tr></thead><tbody>
 <tr><td class='l'>Reference-implementation Hartree error ratio, ZFP/SZ3</td><td class='r'>0.0776221</td><td class='l'>Reproduces the matched-pair Hartree effect used as the mechanism target</td></tr>
@@ -512,6 +512,6 @@ th:last-child, td:last-child { padding-right: 0; }
 <p class=''>For the Nyquist-safe reciprocal-space set Gₛ,</p>
 <p class='eq'>E=Σ G∈Gₛ|Δρ(G)|²,     WH=Σ G∈Gₛ(|Δρ(G)|²)/(|G|⁴),     SH=(WH)/(E).</p>
 <p class=''>For every matched pair,</p>
-<p class='eq'>RH= sqrtfracE ZFPE SZ3 sqrtfracS H,ZFPS H,SZ3.</p>
+<p class='eq'>RH= √((E ZFP)/(E SZ3)) √((S H,ZFP)/(S H,SZ3)).</p>
 <p class='prov'><b>Machine-readable evidence:</b> Fourier-spectrum mechanism audit in the repository reader-facing provenance index, including the matched-pair mechanism table, reconstruction spectral metrics, radial-spectrum summary, mechanism-ratio summary and audit summary.</p>
 </body>
