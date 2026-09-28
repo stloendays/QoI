@@ -1,0 +1,135 @@
+{
+  "package": "WP-A",
+  "protocol": "analysis/extensions_20260928/PROTOCOL.md",
+  "protocol_sha256": "c2002d615bf3b52b2a884a44a24c6883720d538fb7415cfb7935156164cb91d0",
+  "repo_head_commit": "b74ede818658f65e20696ed442954e40f782f141",
+  "repo_base_branch": "paper-20260927",
+  "scientific_source_commit_codecs_bader": "893f931b3045b0b628329db81999c2f439d4e830",
+  "inputs_sha256": {
+    "outcomes": {
+      "path": "validation/qsq_prospective/p2_fresh_probes/outcomes.csv",
+      "sha256": "784fad387a9d0a567ec0857f3a50b24cf0545d9ee2532cee8a5b886959503fa5",
+      "bytes": 17605625
+    },
+    "floor": {
+      "path": "stability/stability_floor_A1.csv",
+      "sha256": "1642efe7688ff172d3a0a949685315c5b5afe6d58f836b21670819c137bbb161",
+      "bytes": 19331
+    },
+    "floor_per_seed": {
+      "path": "stability/stability_floor_A1_per_seed.csv",
+      "sha256": "19140e66f7fad9826675e68fca72daf378be59383f25350075526f123db2177c",
+      "bytes": 262318
+    },
+    "metadata": {
+      "path": "materials_metadata.csv",
+      "sha256": "6fcd7ca4c5061af3aaba5400317659fc2992be8aa6f03176cb86030c3301692b",
+      "bytes": 88338
+    }
+  },
+  "anchors": {
+    "n_rows": 14986,
+    "n_materials": 254,
+    "trials_per_material": 59,
+    "n_nonfinite_response": 0,
+    "tau_1e-3_eligible_materials": 143,
+    "tau_1e-3_eligible_exceedances": 135,
+    "tau_1e-3_eligible_trials": 8437,
+    "tau_1e-3_rejected_materials": 111,
+    "tau_1e-3_rejected_exceedances": 5326,
+    "tau_1e-3_rejected_trials": 6549
+  },
+  "seed": 20260928,
+  "n_folds": 10,
+  "n_bootstrap": 2000,
+  "taus_e": [
+    0.0001,
+    0.001,
+    0.01
+  ],
+  "p_stars": [
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1
+  ],
+  "fold_rule": "fold = int(sha256('20260928|' + material_id).hexdigest(), 16) mod 10",
+  "fold_sizes_materials": {
+    "0": 23,
+    "1": 23,
+    "2": 32,
+    "3": 27,
+    "4": 19,
+    "5": 19,
+    "6": 28,
+    "7": 28,
+    "8": 26,
+    "9": 29
+  },
+  "gate_risks": {
+    "x_lt_0": 0.016,
+    "x_ge_0": 0.81325
+  },
+  "logloss_clip_eps": 1e-06,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "package_versions": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2"
+  },
+  "pip_freeze": [
+    "cloudpickle==3.1.2",
+    "contourpy==1.4.0",
+    "cycler==0.12.1",
+    "fonttools==4.66.0",
+    "formulaic==1.2.2",
+    "interface-meta==2.0.1",
+    "joblib==1.6.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.11.2",
+    "narwhals==2.26.0",
+    "numpy==2.5.3",
+    "packaging==26.3",
+    "pandas==3.0.6",
+    "patsy==1.0.3",
+    "pillow==12.3.0",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "scikit-learn==1.9.1",
+    "scipy==1.18.1",
+    "six==1.17.0",
+    "statsmodels==0.15.0",
+    "threadpoolctl==3.7.0",
+    "typing-extensions==4.16.0",
+    "tzdata==2026.4",
+    "wrapt==2.5.0"
+  ],
+  "verdict": {
+    "condition_i_isotonic_brier_below_gate_ci_excludes_zero": true,
+    "condition_i_best_model": "logistic_x_secondary",
+    "condition_i_best_model_brier_below_gate_ci_excludes_zero": true,
+    "condition_ii_coverage_at_p2pct_tau1e-3_exceeds_0.563": false,
+    "coverage_at_p2pct_tau1e-3": 0.452755905511811,
+    "n_admitted_at_p2pct_tau1e-3": 115,
+    "accepted_isotonic_contract": false,
+    "accepted_any_model": false
+  },
+  "wall_time_seconds": 152.2,
+  "outputs": [
+    "material_risk.csv",
+    "cv_metrics.csv",
+    "reliability.csv",
+    "contract_table.csv",
+    "coefficients.csv",
+    "cv_folds.csv",
+    "fig_calibration.png",
+    "fig_calibration.svg",
+    "RESULTS.md",
+    "provenance.json"
+  ]
+}
