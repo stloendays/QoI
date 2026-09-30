@@ -195,3 +195,9 @@ An outcome-blind chemistry and geometry audit of the 68 NOMAD development slabs 
 
 The resolved compressed analysis contains 216/216 successful solver cells. No new electronic-structure calculation was used; the source reference is a BaderKit/Henkelman on-grid consensus under the declared density representation.
 
+
+
+
+## Supplementary extension — QoI generality and qualification robustness
+
+The pre-declared cross-QoI generality, continuous-risk calibration, codec-shaped probe, and stability-floor predictability analyses are collected in `paper/SUPPLEMENTARY_QOI_GENERALITY.md` (Supplementary Notes S12–S15). These analyses preserve the original QSQ definition and primary cohorts; only the grid-local-extrema result is promoted into the main scientific narrative.
