@@ -1,10 +1,13 @@
 """Figure 5 -- topology-dependent basin migration explains irregular amplification of re-derived Bader error.
 
-2x2 (four coordinate claims), 183 x 150 mm:
+2x2 (four coordinate claims) + a render row, 183 x 204 mm:
   a  re-solving amplifies the fixed-basin error       mechanism/basin_error_decomposition_summary.csv
   b  per-atom: domain term dominates large deviations  mechanism/basin_error_decomposition_per_atom.csv
   c  three representative full ladders                 benchmark/master_benchmark_full.csv
   d  jump severity vs basin reassignment               benchmark/master_benchmark_full.csv
+  e  where the jump happens: the Fig. 5c jump-case ladder rendered in 3D (KCN, ZFP), three rungs, one
+     camera. Red = voxels whose Bader owner changes. OVITO renders from render3d/build_kcn.py; the
+     voxels are the pinned-stack re-solve (render3d/prep_fields.py), the numbers the frozen rows.
 
 Representative ladders in c are chosen exactly as the frozen R script chose them: among ZFP
 material ladders with >= 5 rungs, the smallest, median and largest maximum consecutive jump.
@@ -23,8 +26,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 import figdata as D  # noqa: E402
 import layout  # noqa: E402
-from style import (CODEC, CODEC_DARK, CODECS, DARK_B, DARK_G, GREEN, INK, MID, OTHER, PALE, PALE_G, RED,  # noqa: E402
-                   Page, grid, log_ticks, note, open_frame)
+from style import (CODEC, CODEC_DARK, CODECS, DARK_B, DARK_G, ELEM, GREEN, INK, MID, OTHER, PALE, PALE_G,  # noqa: E402
+                   RED, Page, grid, log_ticks, note, open_frame, place_render)
 
 # ---- data ---------------------------------------------------------------------------------
 ms = D.mechanism_summary()
@@ -57,12 +60,13 @@ rho = spearmanr(np.log10(dd.frac_voxels_reassigned), np.log10(dd.jump)).statisti
 assert abs(rho - 0.18) < 0.01, rho
 
 # ---- page --------------------------------------------------------------------------------
-pg = Page(183.0, 150.0)
+OFF = 54.0                                  # height of the render row e under the original 2x2
+pg = Page(183.0, 150.0 + OFF)
 LX, RX, PW, PH = 14.0, 106.0, 68.0, 52.0
-TOP, BOT = 92.0, 14.0
+TOP, BOT = 92.0 + OFF, 14.0 + OFF
 
 # ---- a --------------------------------------------------------------------------------------
-pg.letter("a", 2.0, 149.0)
+pg.letter("a", 2.0, 149.0 + OFF)
 ax = pg.ax(LX, TOP, PW, PH)
 lo, hi = a.integrand.min() * 0.5, a.total.max() * 2
 ax.plot([lo, hi], [lo, hi], color=INK, lw=0.6, ls=(0, (4, 2)), zorder=2)
@@ -78,12 +82,12 @@ cb = pg.fig.colorbar(sc, cax=cax, orientation="horizontal")
 cb.set_ticks([0, 0.1, 0.2, 0.3]); cb.ax.tick_params(labelsize=5.4, length=1.5, pad=1)
 cb.outline.set_linewidth(0.4)
 cax.set_title("reassigned voxel fraction", fontsize=5.4, pad=2)
-ax.text(hi * 0.5, hi * 0.5, "identity ", ha="right", va="top", fontsize=5.4, color=MID)
+ax.text(hi * 0.12, hi * 0.5, "identity", ha="right", va="top", fontsize=5.4, color=MID)
 ax.text(0.97, 0.30, "%d representative material \u00d7 codec\n\u00d7 tolerance cases" % len(a), transform=ax.transAxes,
         fontsize=5.4, color=MID, va="bottom", ha="right")
 
 # ---- b --------------------------------------------------------------------------------------
-pg.letter("b", 94.0, 149.0)
+pg.letter("b", 94.0, 149.0 + OFF)
 ax = pg.ax(RX, TOP, PW, PH)
 LT = 1e-7
 ax.axhline(0, color=OTHER, lw=0.5, zorder=1); ax.axvline(0, color=OTHER, lw=0.5, zorder=1)
@@ -109,7 +113,7 @@ ax.text(0.97, 0.03, r"$\Delta q_{\rm total} = \Delta q_{\rm integrand} + \Delta 
         ha="right", va="bottom", fontsize=5.6, color=INK)
 
 # ---- c: three representative ladders, stacked with a shared x ------------------------------------------
-pg.letter("c", 2.0, 71.0)
+pg.letter("c", 2.0, 71.0 + OFF)
 GAP = 4.5
 h3 = (PH - 2 * GAP) / 3
 for i, (_, ch) in enumerate(chosen.iterrows()):
@@ -129,7 +133,8 @@ for i, (_, ch) in enumerate(chosen.iterrows()):
     ax.yaxis.set_major_locator(__import__("matplotlib").ticker.LogLocator(base=10, numticks=4))
     ax.yaxis.set_minor_locator(__import__("matplotlib").ticker.NullLocator())
     open_frame(ax); grid(ax)
-    ax.set_title("%s case  (%s, %s; max consecutive jump %.0f\u00d7)" % (ch.case, ch.material_id, ch.codec, ch.max_jump),
+    ax.set_title("%s case  (%s, %s; max consecutive jump %s\u00d7)" % (ch.case, ch.material_id, ch.codec,
+                                                                        format(int(round(ch.max_jump)), ",")),
                  loc="left", fontsize=5.8, fontweight="bold", pad=1.5)
     if i < 2:
         ax.set_xticklabels([])
@@ -145,7 +150,7 @@ for i, (_, ch) in enumerate(chosen.iterrows()):
                       title="marker size = reassigned voxels")
 
 # ---- d --------------------------------------------------------------------------------------
-pg.letter("d", 94.0, 71.0)
+pg.letter("d", 94.0, 71.0 + OFF)
 ax = pg.ax(RX, BOT, PW, PH)
 rng = np.random.default_rng(20260909)
 for c in CODECS:
@@ -162,8 +167,52 @@ ax.set_ylabel("consecutive-rung Bader-error jump factor")
 open_frame(ax); grid(ax)
 note(ax, 0.03, 0.96, "Spearman \u03c1 = %.2f  (n = %s rung steps)\ndescriptive association only" % (rho, format(len(dd), ",")))
 handles = [Line2D([], [], color=CODEC_DARK[c], lw=1.0, label=c) for c in CODECS]
-layout.legend(ax, handles=handles, labels=[h.get_label() for h in handles], loc="upper right", ncol=3)
+layout.legend(ax, handles=handles, labels=[h.get_label() for h in handles], loc="upper right", ncol=1)
 # the cloud sits at jump < 10 along the bottom; the upper right is empty
+
+# ---- e: the jump-case ladder in 3D ------------------------------------------------------------
+def sci(v):
+    m, e = ("%.1e" % v).split("e")
+    return r"%s$\times10^{%d}$" % (m, int(e))
+
+
+
+assert chosen.iloc[2].material_id == "mp-676693" and chosen.iloc[2].codec == "ZFP"
+pg.letter("e", 2.0, OFF - 0.5)
+kcn = bench[(bench.material_id == "mp-676693") & (bench.codec == "ZFP")].set_index("nominal_tolerance_relative")
+rungs = ((1e-7, "kcn_moved_zfp_1e-7.png"), (3e-7, "kcn_moved_zfp_3e-7.png"), (1e-2, "kcn_moved_zfp_1e-2.png"))
+xs = (32.0, 91.5, 151.0)
+for (rel, png), xc in zip(rungs, xs):
+    r = kcn.loc[kcn.index[np.isclose(kcn.index, rel)][0]]
+    place_render(pg, png, xc - 24.0, 12.5, 48.0, OFF - 16.0, anchor="S")
+    k = int(round(np.log10(rel / (3 if np.isclose(rel, 3e-7) else 1))))
+    tol = (r"$3 \times 10^{%d}$" % k) if np.isclose(rel, 3e-7) else (r"$10^{%d}$" % k)
+    pg.fig.text(xc / pg.W, 11.0 / pg.H, "ZFP nominal %s  (realized $L_\\infty$/range %s)"
+                % (tol, sci(r.realized_Linf / r.value_ptp)), fontsize=5.8, fontweight="bold", ha="center", va="top")
+    pct = 100 * r.frac_voxels_reassigned
+    what = ("%d voxels change owner" % int(r.n_voxels_reassigned)) if r.n_voxels_reassigned < 100 else \
+           ("%s voxels (%.1f %%) change owner" % (format(int(r.n_voxels_reassigned), ","), pct))
+    pg.fig.text(xc / pg.W, 7.6 / pg.H, "%s;  Bader error %s e" % (what, sci(r.Bader_error_resolved_e)),
+                fontsize=5.6, color=INK, ha="center", va="top")
+j = kcn.Bader_error_resolved_e.loc[kcn.index[np.isclose(kcn.index, 3e-7)][0]] / \
+    kcn.Bader_error_resolved_e.loc[kcn.index[np.isclose(kcn.index, 1e-7)][0]]
+assert abs(j - chosen.iloc[2].max_jump) < 1e-6 * j
+ca = pg.canvas(0, 0, 183.0, OFF)
+ya = 12.5 + (OFF - 16.0) * 0.55
+ca.annotate("", xy=(67.0, ya), xytext=(57.0, ya), arrowprops=dict(arrowstyle="-|>", lw=0.8, color=RED,
+                                                                  mutation_scale=7, shrinkA=0, shrinkB=0))
+ca.text(62.0, ya + 1.5, "%s\u00d7" % format(int(round(j)), ","), fontsize=6.2, fontweight="bold", color=RED,
+        ha="center", va="bottom")
+ca.text(62.0, ya - 1.5, "Bader error", fontsize=5.4, color=RED, ha="center", va="top")
+ca.annotate("", xy=(127.0, ya), xytext=(117.0, ya), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK,
+                                                                    mutation_scale=6, shrinkA=0, shrinkB=0))
+ca.text(122.0, ya + 1.5, "coarser", fontsize=5.4, color=INK, ha="center", va="bottom")
+for jx, (s, c) in enumerate(ELEM.items()):
+    ca.scatter([12.0 + 7.0 * jx], [OFF - 3.0], s=9, color=c, lw=0)
+    ca.text(13.4 + 7.0 * jx, OFF - 3.0, s, fontsize=5.4, va="center")
+ca.scatter([36.0], [OFF - 3.0], s=9, color=RED, lw=0)
+ca.text(37.4, OFF - 3.0, "voxel whose Bader owner changes (drawn enlarged in the first two renders)",
+        fontsize=5.4, va="center")
 
 layout.audit(pg.fig)
 pg.save(HERE, "Fig5")
