@@ -98,11 +98,18 @@ However, the evaluability boundary does not transfer from Bader charge. Agreemen
 
 > **The qualification principle generalizes across topology-sensitive QoIs, but the set of scientifically evaluable systems is QoI-specific.**
 
-### Probe-family robustness and measurement necessity
+### Probe-family robustness
 
 A codec-shaped perturbation extension tests whether the codec-independent iid probe misses compressor-specific failure directions. At the primary `1e-3 e` endpoint, iid versus codec-shaped eligibility agreement is **0.902 for ZFP** and **0.937 for SZ3 and SPERR**. The iid floor is conservative on aggregate for ZFP and SPERR and statistically indistinguishable from the codec-shaped floor for SZ3 under the pre-declared rule. Among the 143 iid-admitted materials, codec-shaped floors do not improve prospective prediction of fresh iid exceedance risk and are worse for ZFP. This supports retaining a codec-independent qualification probe rather than making evaluability codec-specific.
 
-The measured Bader stability floor also cannot yet be replaced by a cheap predictor. Reference-density descriptors reveal interpretable boundary-fragility correlations, but a model trained on the 254 development systems reaches only **external held-out R² = 0.134** with **1.208 decades RMSE** on 64 descriptor-complete external systems. QSQ is therefore a measured property of the declared analysis contract in the present benchmark, not a reliably inferred metadata label.
+### Discussion-only interpretive evidence
+
+Two completed extensions are intentionally excluded from the Results hierarchy, main figures and Abstract.
+
+- **Continuous risk calibration:** the measured floor contains graded prospective-risk information, but a stringent calibrated risk cutoff moves inside the binary eligibility boundary and reduces coverage. This explains why the transparent binary rule is retained as a qualification boundary rather than promoted as a per-material probability guarantee.
+- **Reference-density predictors:** boundary-gap descriptors correlate with the measured Bader floor, but external prediction is weak. This is consistent with a nonlinear collective basin-reassignment problem in which local ordering margins matter without fully determining the response. These descriptors inform mechanism but do not replace direct QSQ measurement.
+
+If either point remains in the submitted paper, it should appear only in Discussion, with quantitative details in the SI.
 
 ### Fair codec comparison requires realized-distortion control
 
@@ -133,7 +140,7 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 
 ## Current research scope
 
-**The submission scope has been re-frozen after the author-authorized QoI-generality extension.** P0–P4 remain unchanged; P3B new-DFT grid convergence remains deferred and P5 remains NO-GO. The Fourier-spectrum Hartree mechanism remains the operator-specific mechanism line. The pre-declared WP-A–WP-D extension package has now been adjudicated under `paper/QOI_GENERALITY_SCOPE_ADDENDUM_20260930.md`: WP-B enters the main scientific story as a second topology-sensitive QoI; WP-C supports probe-family robustness; WP-A supports retention of the binary qualification contract; and WP-D establishes that the measured floor is not yet reliably replaceable by cheap predictors.
+**The submission scope has been re-frozen after the author-authorized QoI-generality extension.** P0–P4 remain unchanged; P3B new-DFT grid convergence remains deferred and P5 remains NO-GO. The Fourier-spectrum Hartree mechanism remains the operator-specific mechanism line. The pre-declared WP-A–WP-D extension package has now been adjudicated under `paper/QOI_GENERALITY_SCOPE_ADDENDUM_20260930.md`: WP-B enters the main scientific story as a second topology-sensitive QoI; WP-C supports probe-family robustness; WP-A and WP-D are explicitly Discussion-only interpretive evidence and do not define new Results, Methods, Abstract claims or main figures.
 
 The validation hierarchy remains **P1 equal-search control → P2 prospective fresh-perturbation validation → P3A independent on-grid implementation transfer**, with P4 as a secondary measurement-contract boundary/null case. The Fourier audit is mechanistic support for codec-error structure and operator weighting; it does not replace QSQ as the central contribution or alter any primary QSQ cohort, threshold or perturbation definition.
 
