@@ -28,17 +28,17 @@ Among the 143 iid-admitted materials, the codec-shaped floor does not improve pr
 
 Reader-facing conclusion: the codec-independent iid QSQ probe remains the primary qualification procedure; perturbation-family robustness is supportive, not a new main endpoint.
 
-### WP-A — retain as method justification in SI
+### WP-A — Discussion-only interpretive evidence
 
-Continuous risk models based on log10(f_m/tau) predict prospective exceedance risk more accurately than the binary gate, but the pre-declared low-risk contract does not improve operational coverage. At tau=1e-3 e and p*=2%, the cross-validated isotonic contract admits 115/254 materials (45.3%) versus 143/254 (56.3%) for the binary gate.
+Continuous risk models based on log10(f_m/tau) predict prospective exceedance risk more accurately than the binary gate, but the pre-declared low-risk contract does not improve operational coverage. At tau=1e-3 e and p*=2%, the cross-validated isotonic contract admits 115/254 materials (45.3%) versus 143/254 (56.3%) for the gate.
 
-Reader-facing conclusion: continuous QSQ statistics contain graded risk information, but these data do not justify replacing the simpler binary eligibility contract used by the benchmark.
+This analysis must not become a separate Results or Methods line, headline statistic, abstract claim, or main figure. If retained in the submitted manuscript, it belongs only in Discussion, with numerical details in the SI. Its role is explanatory: the continuous floor contains graded risk information, but risk rises sharply as f_m approaches tau, so a stringent probabilistic cutoff moves inside the binary eligibility boundary and necessarily sacrifices coverage. The binary QSQ rule is therefore retained as a transparent qualification boundary rather than presented as a calibrated per-material risk guarantee.
 
-### WP-D — retain as limitation/mechanistic support in SI and Discussion
+### WP-D — Discussion-only limitation and mechanism evidence
 
 Cheap reference-density descriptors show interpretable associations with the measured Bader QSQ floor, especially basin-boundary gap statistics, but do not predict the floor reliably out of domain. A development-trained ridge model gives external held-out R2=0.134 with RMSE=1.208 decades, failing the pre-declared replacement criterion.
 
-Reader-facing conclusion: numerical fragility has measurable structural correlates but must still be measured directly for the present benchmark.
+This analysis must not become a separate Results or Methods line, headline statistic, abstract claim, or main figure. If retained in the submitted manuscript, it belongs only in Discussion, with numerical details in the SI. Its role is explanatory: local boundary-gap descriptors capture one physically plausible source of basin fragility, but Bader stability reflects a nonlinear, collective response of density ordering, basin topology, grid semantics and material class. Those relationships shift between development and external domains, so cheap proxies can reveal mechanism without replacing direct measurement.
 
 ## Revised manuscript-level thesis
 
@@ -46,7 +46,7 @@ Reader-facing conclusion: numerical fragility has measurable structural correlat
 
 ## Figure policy
 
-The existing eight-figure main-text architecture remains unchanged for this integration. WP-B is introduced as a compact main-text generality result supported by SI tables rather than by adding a ninth main figure. WP-A, WP-C and WP-D remain SI/Discussion evidence. A later figure redesign may promote the WP-B result only if it replaces, rather than simply appends to, an existing panel.
+The existing eight-figure main-text architecture remains unchanged for this integration. WP-B is introduced as a compact main-text generality result supported by SI tables rather than by adding a ninth main figure. WP-C remains SI/Discussion robustness evidence. WP-A and WP-D are Discussion-only interpretive evidence, with full numerical details confined to the SI/repository; they must not define new Results, Methods, abstract claims or main figures. A later figure redesign may promote the WP-B result only if it replaces, rather than simply appends to, an existing panel.
 
 ## Claim boundaries
 
