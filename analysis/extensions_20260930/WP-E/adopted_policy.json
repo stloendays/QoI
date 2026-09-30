@@ -1,0 +1,29 @@
+{
+ "adopted_policy": "BISECT",
+ "reason": "fewest mean solves among multi-codec policies meeting >= 0.98 of oracle archive compression and <= 2% misses at 1e-3 e",
+ "tau_e": 0.001,
+ "fraction_of_oracle": 0.9847552960579671,
+ "miss_rate": 0.0,
+ "mean_solves_eligible": 16.664335664335663,
+ "candidates": [
+  {
+   "policy": "BISECT",
+   "fraction_of_oracle": 0.9847552960579671,
+   "miss_rate": 0.0,
+   "mean_solves_eligible": 16.664335664335663
+  },
+  {
+   "policy": "EXHAUSTIVE",
+   "fraction_of_oracle": 1.0,
+   "miss_rate": 0.0,
+   "mean_solves_eligible": 37.04195804195804
+  },
+  {
+   "policy": "SCAN",
+   "fraction_of_oracle": 1.0,
+   "miss_rate": 0.0,
+   "mean_solves_eligible": 26.846153846153847
+  }
+ ],
+ "decided_utc": "2026-09-30T11:03:47Z"
+}

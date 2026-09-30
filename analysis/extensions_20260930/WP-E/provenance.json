@@ -1,0 +1,17 @@
+{
+ "package": "WP-E",
+ "protocol": "analysis/extensions_20260930/PROTOCOL.md (WP-E)",
+ "commit": "cb6438ce20d682b72d77a041738745622b2b66a2",
+ "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+ "executable": "D:\\Research\\CatalystForge\\.venv\\Scripts\\python.exe",
+ "platform": "Windows-11-10.0.26200-SP0",
+ "packages": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "inputs": {
+  "benchmark\\master_benchmark_full.csv": "ee07236394f3d3a6f7735d77d83873790ec2617b5b856237749856c2a515433c",
+  "stability\\stability_floor_A1.csv": "1642efe7688ff172d3a0a949685315c5b5afe6d58f836b21670819c137bbb161"
+ },
+ "wall_seconds": 10.37967300415039
+}
