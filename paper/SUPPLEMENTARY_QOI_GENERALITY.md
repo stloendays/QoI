@@ -1,6 +1,6 @@
 # Supplementary extension — QoI generality and qualification robustness
 
-This supplementary extension records the four pre-declared analyses in `analysis/extensions_20260928/PROTOCOL.md`. The main manuscript promotes only the second-QoI generality result; the other work packages remain robustness, method-selection, and limitation evidence.
+This supplementary extension records the four pre-declared analyses in `analysis/extensions_20260928/PROTOCOL.md`. The main manuscript promotes only the second-QoI generality result as a Results-level extension. Codec-shaped perturbations remain robustness evidence. Continuous risk calibration (S12) and reference-density prediction (S15) are retained only to support Discussion-level interpretation; their numerical detail belongs here rather than in the main Results or Methods.
 
 ## S12. Continuous QSQ risk calibration
 
@@ -8,7 +8,7 @@ The measured stability floor contains graded risk information beyond the binary 
 
 Across 44,958 trial-threshold outcomes, all calibrated models reduced held-out Brier score relative to the binary gate. The best logistic model reached 0.0412 versus 0.0651 for the gate, while isotonic regression reached 0.0464. The pre-declared replacement criterion also required greater coverage under a 2% risk contract at (10^{-3} e). This was not met: cross-validated isotonic admission was 115/254 materials (45.3%) versus 143/254 (56.3%) for the binary gate. The admitted isotonic subset showed 16/6,785 fresh exceedances (0.236%).
 
-The continuous statistic is therefore a sharper prospective risk predictor, but these data do not justify replacing the simpler binary QSQ eligibility contract.
+The continuous statistic is therefore a sharper prospective risk predictor, but these data do not justify replacing the simpler binary QSQ eligibility contract. The reason is structural rather than paradoxical: prospective risk increases steeply as the measured floor approaches the requested tolerance, so imposing a stringent probability threshold shifts the operational cutoff inside the simple condition $f_m<\tau$ and sacrifices coverage. The analysis therefore explains why a transparent binary qualification boundary remains preferable for the primary benchmark even though the underlying floor carries graded information.
 
 ## S13. Qualification of grid-local density extrema
 
@@ -44,4 +44,4 @@ The strongest univariate association with (log_{10} f_m) is the fraction of basi
 
 Nested 10-fold cross-validation of the pre-declared ridge model gives (R^2=0.238) and RMSE 0.932 decades over the 318 descriptor-complete systems. More importantly, fitting on the 254 development systems and evaluating on the 64 descriptor-complete external systems gives held-out (R^2=0.134) (95% CI -0.410 to 0.385) and RMSE 1.208 decades. The pre-declared external (R^2\ge 0.5) replacement criterion is not met.
 
-These descriptors are scientifically informative but are not sufficient to replace direct QSQ measurement. In the present benchmark, stability remains an empirically measured property of a specified density, QoI, and downstream algorithm.
+These descriptors are scientifically informative but are not sufficient to replace direct QSQ measurement. Their partial success is mechanistically plausible because small ordering gaps near basin boundaries identify locally fragile regions. Their limited external transfer is also plausible because the final Bader response is a collective, nonlinear consequence of ascent-path changes, basin topology, grid semantics, chemistry and system class rather than a single local descriptor. In the present benchmark, stability therefore remains an empirically measured property of a specified density, QoI and downstream algorithm.
