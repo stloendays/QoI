@@ -1,7 +1,7 @@
 <!-- QSQ_RESEARCH_AUDIT_INTEGRATED -->
 # Claim–evidence matrix
 
-> **Submission-scope interpretation lock (re-frozen 2026-09-27).** The research-strengthening programme remains complete through P4. One author-authorized extension adds the completed Fourier-spectrum mechanism audit of the existing Hartree control; P1–P4 definitions and conclusions are unchanged. Full-record 97.2%/95.5% values remain historical ladder-dependent fractions, not causal misattribution estimates. The central evidence is P1 equal-search separation plus P2 prospective fresh-perturbation discrimination, supported by P3A independent on-grid implementation transfer. P4 is a prespecified null correctness result for a coarse chemical-direction endpoint and is retained as measurement-contract boundary evidence. P3B new DFT is deferred and P5 is no-go for the current submission. Numerical agreement remains defined even when the reference fails QSQ.
+> **Submission-scope interpretation lock (re-frozen 2026-09-30).** The research-strengthening programme remains complete through P4. One author-authorized extension adds the completed Fourier-spectrum mechanism audit of the existing Hartree control; P1–P4 definitions and conclusions are unchanged. Full-record 97.2%/95.5% values remain historical ladder-dependent fractions, not causal misattribution estimates. The central evidence is P1 equal-search separation plus P2 prospective fresh-perturbation discrimination, supported by P3A independent on-grid implementation transfer. P4 is a prespecified null correctness result for a coarse chemical-direction endpoint and is retained as measurement-contract boundary evidence. P3B new DFT is deferred and P5 is no-go for the current submission. Numerical agreement remains defined even when the reference fails QSQ.
 
 
 Status vocabulary is restricted to **CONFIRMED**, **PROVISIONAL**, **FALSIFIED**,
@@ -9,7 +9,7 @@ Status vocabulary is restricted to **CONFIRMED**, **PROVISIONAL**, **FALSIFIED**
 permitted. Every claim names the data file that supports it; a claim with no
 data file cannot leave PENDING.
 
-Last updated: 2026-09-27 (Claims 15–17 retain the prospective, implementation-transfer and chemical-contract-boundary upgrades; Claim 18 adds the completed Fourier-spectrum mechanism audit; Claim 14 remains the audited historical ladder-design sensitivity result).
+Last updated: 2026-09-30 (Claims 15–17 retain the prospective, implementation-transfer and chemical-contract-boundary upgrades; Claim 18 adds the completed Fourier-spectrum mechanism audit; Claim 14 remains the audited historical ladder-design sensitivity result).
 
 **Reader-facing terminology.** The operative qualification framework is **QoI Stability Qualification (QSQ)**. The superseded order-preserving test is the **archived float32 probe**. Historical repository identifiers such as `Protocol A`, `Protocol A.1`, and `_A1` are retained only in paths and provenance records.
 
@@ -87,3 +87,16 @@ CHGCAR bytes-per-value was **measured** at 18.200, not taken from the literature
 No mechanism survived under the corrected metric. The contribution of this work
 is the evaluation framework, not a codec. Reopening the algorithm track requires
 a gap in the evidence chain that measurement and validation cannot close.
+
+
+
+## Author-authorized QoI-generality extension — 2026-09-30
+
+The pre-declared WP-A–WP-D package was adjudicated after completion. WP-B changes the reader-facing generality claim; WP-A, WP-C and WP-D remain supporting evidence. The governing scope record is `paper/QOI_GENERALITY_SCOPE_ADDENDUM_20260930.md`.
+
+| Claim | Evidence | Dataset | Status | Remaining risk |
+|---|---|---|---|---|
+| QSQ generalizes as a qualification principle to a second topology-sensitive QoI, but the evaluability boundary is QoI-specific | For strict grid-local-extrema qualification, 118/254 materials are eligible; fresh maximum-count changes are 0/6,962 in eligible versus 6,444/8,024 in rejected materials. Bader-versus-extrema eligibility kappa = 0.1337; floor Spearman rho = 0.1389 | `analysis/extensions_20260928/WP-B/summary.csv`, `cp_material_floors.csv`, `cp_probes.csv` | **CONFIRMED** | Observable is discrete grid-local extrema, not continuous QTAIM critical points |
+| Codec-shaped perturbations do not justify replacing the codec-independent iid QSQ probe | At 1e-3 e, iid-versus-codec-shaped eligibility agreement is 0.902 ZFP and 0.937 SZ3/SPERR. Codec-shaped floors do not improve prospective prediction; ZFP is significantly worse | `analysis/extensions_20260928/WP-C/agreement.csv`, `predictive.csv` | **CONFIRMED** | Aggregate conservativeness does not imply per-material dominance; eligibility flips occur in both directions |
+| Continuous QSQ statistics improve risk prediction but do not improve the pre-declared low-risk operational contract | Best held-out Brier 0.0412 versus 0.0651 for binary gate, but 2% isotonic contract at 1e-3 e admits 115/254 versus 143/254 for the gate | `analysis/extensions_20260928/WP-A/cv_metrics.csv`, `contract_table.csv` | **CONFIRMED** | Calibration is conditional on the development cohort and declared iid perturbation model |
+| Cheap reference-density descriptors reveal fragility structure but cannot yet replace direct QSQ measurement | Strongest univariate rho = 0.554 for boundary-gap fragility; development-to-external held-out ridge R2 = 0.134 with RMSE 1.208 decades | `analysis/extensions_20260928/WP-D/univariate.csv`, `external_holdout.csv` | **CONFIRMED** | External descriptor-complete n=64; subgroup performance is exploratory and does not override failed replacement criterion |
