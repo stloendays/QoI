@@ -4,7 +4,7 @@
 
 ## One-sentence thesis
 
-**Scientific compression should be scored only after the reference QoI is qualified at the requested tolerance, and codec comparisons should be interpreted through the downstream operator and realized reconstruction-error structure rather than nominal pointwise bounds alone.**
+**Scientific compression should be scored only after the reference QoI is qualified at the requested tolerance; qualification itself is QoI-specific, while codec performance further depends on the downstream operator and the spatial/frequency structure of reconstruction error.**
 
 ## What the paper is actually about
 
@@ -88,6 +88,22 @@ Supported wording:
 
 Do not claim a universal material-level identity `plateau = floor`.
 
+### Qualification generalizes, but evaluability is QoI-specific
+
+The pre-declared second-topology-QoI extension applies the same qualification logic to **grid-local density extrema**: strict local maxima and minima of the sampled density relative to their 26-neighbour voxel neighbourhood. This is a discrete grid observable and is not presented as a continuous QTAIM critical-point calculation.
+
+At the strict maximum-set endpoint, **118/254** development materials are qualified. Across the 59 fresh perturbations per material, qualified materials show **0/6,962** maximum-count changes versus **6,444/8,024 = 80.31%** among screen-rejected materials; the secondary maximum-set endpoint changes in **3/6,962** versus **7,509/8,024 = 93.58%** trials. The qualification principle therefore transfers to a second topology-sensitive QoI.
+
+However, the evaluability boundary does not transfer from Bader charge. Agreement between Bader eligibility at `1e-3 e` and grid-local-extrema eligibility is only **Cohen's kappa = 0.1337**, and the corresponding stability floors have **Spearman rho = 0.1389**. The reader-facing conclusion is:
+
+> **The qualification principle generalizes across topology-sensitive QoIs, but the set of scientifically evaluable systems is QoI-specific.**
+
+### Probe-family robustness and measurement necessity
+
+A codec-shaped perturbation extension tests whether the codec-independent iid probe misses compressor-specific failure directions. At the primary `1e-3 e` endpoint, iid versus codec-shaped eligibility agreement is **0.902 for ZFP** and **0.937 for SZ3 and SPERR**. The iid floor is conservative on aggregate for ZFP and SPERR and statistically indistinguishable from the codec-shaped floor for SZ3 under the pre-declared rule. Among the 143 iid-admitted materials, codec-shaped floors do not improve prospective prediction of fresh iid exceedance risk and are worse for ZFP. This supports retaining a codec-independent qualification probe rather than making evaluability codec-specific.
+
+The measured Bader stability floor also cannot yet be replaced by a cheap predictor. Reference-density descriptors reveal interpretable boundary-fragility correlations, but a model trained on the 254 development systems reaches only **external held-out R² = 0.134** with **1.208 decades RMSE** on 64 descriptor-complete external systems. QSQ is therefore a measured property of the declared analysis contract in the present benchmark, not a reliably inferred metadata label.
+
 ### Fair codec comparison requires realized-distortion control
 
 Equal nominal codec tolerances do not produce equal realized perturbations. At matched nominal tolerance, realized L-infinity ratios are approximately ZFP/SZ3 = 0.17 and ZFP/SPERR = 0.17. Within-material matching on realized L-infinity reduces this confounding; the remaining Bader difference supports a residual error-structure contribution, but the nonlinear Bader residual is not assigned to a single Fourier descriptor.
@@ -117,11 +133,11 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 
 ## Current research scope
 
-**The submission scope has been re-frozen after one author-authorized extension.** P0–P4 remain unchanged; P3B new-DFT grid convergence remains deferred and P5 remains NO-GO. The only added scientific line is the completed Fourier-spectrum mechanism audit of the already-established Hartree control, documented in `paper/FOURIER_MECHANISM_SCOPE_ADDENDUM_20260927.md`.
+**The submission scope has been re-frozen after the author-authorized QoI-generality extension.** P0–P4 remain unchanged; P3B new-DFT grid convergence remains deferred and P5 remains NO-GO. The Fourier-spectrum Hartree mechanism remains the operator-specific mechanism line. The pre-declared WP-A–WP-D extension package has now been adjudicated under `paper/QOI_GENERALITY_SCOPE_ADDENDUM_20260930.md`: WP-B enters the main scientific story as a second topology-sensitive QoI; WP-C supports probe-family robustness; WP-A supports retention of the binary qualification contract; and WP-D establishes that the measured floor is not yet reliably replaceable by cheap predictors.
 
 The validation hierarchy remains **P1 equal-search control → P2 prospective fresh-perturbation validation → P3A independent on-grid implementation transfer**, with P4 as a secondary measurement-contract boundary/null case. The Fourier audit is mechanistic support for codec-error structure and operator weighting; it does not replace QSQ as the central contribution or alter any primary QSQ cohort, threshold or perturbation definition.
 
-No further scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or primary threshold should be added before submission without another explicit scope-reopening addendum. Remaining work is archival DOI, journal-specific formatting, figure/SI assembly and final Word/PDF generation.
+No further scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or primary threshold should be added before submission without another explicit scope-reopening addendum. The current eight-figure main-text architecture remains unchanged; the second-QoI generality result is integrated as a compact Results subsection with detailed supporting evidence in the SI. Remaining work is claim-evidence synchronization, figure/SI assembly, archival DOI, journal-specific formatting and final Word/PDF generation.
 
 ## Claim boundaries
 
