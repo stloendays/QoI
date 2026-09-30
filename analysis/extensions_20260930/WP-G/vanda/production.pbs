@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N qoi_wpg_prod
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=24:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-wpg-20260930/logs/production.pbs.log
+set -e
+cd /scratch/junbotong/qoi-wpg-20260930
+set +e; source /etc/profile; set -e
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f INSTALL_COMPLETE && test -f tasks.json
+# one process per material, 34 at a time; each skips a material whose checkpoint is already SUCCESS
+xargs -P 34 -I{} sh -c 'venv/bin/python run_wpg_henkelman.py --material {} > logs/prod_{}.log 2>&1' < material_ids.txt
+echo PRODUCTION_DONE

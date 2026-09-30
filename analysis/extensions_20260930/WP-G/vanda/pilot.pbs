@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -N qoi_wpg_pilot
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=4:mpiprocs=4:ompthreads=1:mem=32GB
+#PBS -l walltime=02:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-wpg-20260930/logs/pilot.pbs.log
+set -e
+cd /scratch/junbotong/qoi-wpg-20260930
+set +e; source /etc/profile; set -e
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+m=$(tail -n 1 material_ids.txt)          # the smallest grid
+venv/bin/python run_wpg_henkelman.py --material "$m" > "logs/pilot_$m.log" 2>&1
+echo PILOT_DONE "$m"
