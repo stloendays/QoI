@@ -1,0 +1,17 @@
+{
+ "material_id": "mp-776331",
+ "task_id": "mp-2301727",
+ "status": "FAILED",
+ "probes": [],
+ "rows": [],
+ "failures": [
+  {
+   "material_id": "mp-776331",
+   "stage": "inputs",
+   "error": "RuntimeError: non-finite AECCAR values: {'aeccar0': 987840, 'aeccar2': 0} of 987840 voxels"
+  }
+ ],
+ "pbs_job_id": null,
+ "bader_sha256": "afca3da25013dfa773b1befa354669dedff5f46676e2d5474e9f7238898a7dc0",
+ "traceback": "Traceback (most recent call last):\n  File \"/scratch/junbotong/qoi-wpg-20260930/run_wpg_henkelman.py\", line 127, in run\n    raise RuntimeError(\"non-finite AECCAR values: %s of %d voxels\" % (bad, a0.size))\nRuntimeError: non-finite AECCAR values: {'aeccar0': 987840, 'aeccar2': 0} of 987840 voxels\n"
+}

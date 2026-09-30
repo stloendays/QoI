@@ -1,0 +1,55 @@
+{
+ "material_id": "mp-776331",
+ "task_id": "mp-2301727",
+ "status": "FAILED",
+ "probes": [],
+ "rows": [],
+ "failures": [
+  {
+   "material_id": "mp-776331",
+   "stage": "qsq",
+   "error": "OverflowError: high - low range exceeds valid bounds"
+  }
+ ],
+ "pbs_job_id": "1417944.stdct-mgmt-02",
+ "bader_sha256": "afca3da25013dfa773b1befa354669dedff5f46676e2d5474e9f7238898a7dc0",
+ "shape": "84x84x140",
+ "natoms": 12,
+ "epsilon_chgcar": 6.1028124946460593e-05,
+ "epsilon_ae": NaN,
+ "ae_ptp": NaN,
+ "ae_min": NaN,
+ "chg_ptp": 1185.2702153276,
+ "reference": {
+  "q_valence": [
+   9.846121,
+   9.780353,
+   9.794061,
+   9.84661,
+   9.784642,
+   6.679347,
+   6.654405,
+   6.655946,
+   6.647677,
+   6.655117,
+   7.324898,
+   7.330823
+  ],
+  "q_ae": [
+   9.745792,
+   9.700469,
+   9.708496,
+   9.738246,
+   9.683012,
+   6.694676,
+   6.645128,
+   6.696348,
+   6.68659,
+   6.645473,
+   7.529209,
+   7.526562
+  ]
+ },
+ "traceback": "Traceback (most recent call last):\n  File \"/scratch/junbotong/qoi-wpg-20260930/run_wpg_henkelman.py\", line 152, in run\n    n_a = np.random.Generator(np.random.PCG64(ae_seed(mid, s))).uniform(-eps_a, eps_a, size=ae.shape)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"numpy/random/_generator.pyx\", line 1092, in numpy.random._generator.Generator.uniform\nOverflowError: high - low range exceeds valid bounds\n",
+ "wall_seconds": 12.723006248474121
+}

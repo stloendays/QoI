@@ -40,3 +40,13 @@ changed; the comparisons are made within one Bader implementation.
    every table as failed. Analyses (1)–(4) and the acceptance statements are evaluated on the 50
    processed materials; RESULTS.md also states the acceptance outcome with the three failures counted
    against each claim.
+
+6. **Aggregation (2026-09-30 22:1x, takeover agent).** All 53 checkpoints (50 SUCCESS, 3 FAILED at the input
+   stage, note 5) plus the logs and `tasks.json` were copied into `vanda_results/`. All 118 files match the
+   server's `sha256sum` (`vanda_results/SHA256SUMS_server.txt`). After that the staging directory
+   `/scratch/junbotong/qoi-wpg-20260930` was deleted (note 4). Three corrections were made to `analyze_wpg.py`
+   before its first successful run. None of them changes an analysis or an acceptance rule: (a) the
+   compressed-ratio denominator now reads the `shape` column (`["shape"]`), not the DataFrame attribute
+   `.shape`, which raised AttributeError; (b) RESULTS.md now also prints the acceptance statements with the
+   3 failed materials counted against each claim (n = 53), as note 5 requires, computed by the script;
+   (c) the panel-b legend moved above the bars, which it had covered.

@@ -86,7 +86,7 @@ def main():
                           frac_increased=float(np.mean(x > 0))))
     # (3) certification: best certified ratio per codec and arm; codec ranking
     Wok = W[(W.status == "OK") & W.material_id.isin(ok.material_id)].copy()
-    npts = ok.set_index("material_id").shape.map(lambda s: int(np.prod([int(v) for v in s.split("x")])))
+    npts = ok.set_index("material_id")["shape"].map(lambda s: int(np.prod([int(v) for v in s.split("x")])))
     Wok["raw"] = Wok.material_id.map(npts) * 8
     Wok["cr_v"] = Wok.raw / Wok.chgcar_bytes
     Wok["cr_g1"] = Wok.raw / Wok.chgcar_bytes                      # AE reference stored exactly, not counted here
@@ -119,6 +119,11 @@ def main():
     v1 = "QSQ is needed under the standard practice" if g2_ne >= 0.10 * n else "not met (G2 leaves <10% non-evaluable)"
     v2 = ("an exact all-electron reference removes the instability" if (g1_el >= 0.95 * n and e3.eligible_g2 < 0.95 * n)
           else "not met (G1 %d/%d eligible, G2 %d/%d)" % (g1_el, n, e3.eligible_g2, n))
+    # DEVIATIONS.md 5: the same acceptance statements with the failed materials counted against each claim (denominator 53)
+    N = len(R); nf = N - n
+    v1_all = "QSQ is needed under the standard practice" if g2_ne + nf >= 0.10 * N else "not met (G2 leaves <10% non-evaluable)"
+    v2_all = ("an exact all-electron reference removes the instability" if (g1_el >= 0.95 * N and e3.eligible_g2 < 0.95 * N)
+              else "not met (G1 %d/%d eligible, G2 %d/%d)" % (g1_el, N, e3.eligible_g2, N))
     figure(ok, SM)
     L = ["# WP-G — Qualification under all-electron-reference Bader", "",
          "Henkelman Bader 1.05 on-grid (`-b ongrid -vac 0.001`) on NUS Vanda (DEVIATIONS.md 1–3); %d of 53 materials"
@@ -126,7 +131,10 @@ def main():
          " perturbed/compressed." % (n, len(F)), "",
          "## Acceptance (τ = 1e-3 e)", "",
          "- G2 non-evaluable: %d/%d (%.0f%%) → **%s**." % (g2_ne, n, 100 * g2_ne / n, v1),
-         "- G1 eligible: %d/%d, G2 eligible: %d/%d → **%s**." % (g1_el, n, e3.eligible_g2, n, v2), "",
+         "- G1 eligible: %d/%d, G2 eligible: %d/%d → **%s**." % (g1_el, n, e3.eligible_g2, n, v2),
+         "- With the %d failed materials counted against each claim (n = %d): G2 non-evaluable %d/%d (%.0f%%) → **%s**;"
+         " G1 eligible %d/%d, G2 eligible %d/%d → **%s**." % (nf, N, g2_ne + nf, N, 100 * (g2_ne + nf) / N, v1_all,
+                                                             g1_el, N, e3.eligible_g2, N, v2_all), "",
          "## Eligibility (paired, n = %d)" % n, "",
          "| τ (e) | frozen baderkit (valence) | V | G1 | G2 | McNemar V→G1 (gain/loss, p) | V→G2 | G1→G2 |", "|---:|---:|---:|---:|---:|---|---|---|"]
     for _, r in SM[SM.analysis == "eligibility"].iterrows():
@@ -180,10 +188,10 @@ def figure(ok, SM):
     for j, (a, c, lab) in enumerate((("frozen", OTHER, "frozen baderkit (V)"), ("v", DARK_B, "Henkelman V"), ("g1", DARK_G, "G1"), ("g2", RED, "G2"))):
         ax.bar(x + (j - 1.5) * 0.2, el["eligible_%s" % a].values / el.n.values, width=0.19, color=c, label=lab, zorder=2)
     ax.set_xticks(x); ax.set_xticklabels([r"$10^{-4}$ e", r"$10^{-3}$ e", r"$10^{-2}$ e"])
-    ax.set_ylim(0, 1.05); ax.set_ylabel("QSQ-eligible fraction (n = %d)" % int(el.n.iloc[0]))
+    ax.set_ylim(0, 1.32); ax.set_yticks(np.arange(0, 1.01, 0.2)); ax.set_ylabel("QSQ-eligible fraction (n = %d)" % int(el.n.iloc[0]))
     ax.set_xlabel(r"Bader tolerance $\tau$")
     open_frame(ax); grid(ax, "y")
-    layout.legend(ax, loc="upper left")
+    layout.legend(ax, loc="upper center", ncol=4)
     layout.audit(pg.fig)
     pg.save(str(HERE), "fig_ae_reference")
 

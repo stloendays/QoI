@@ -1,0 +1,250 @@
+gfortran -O2 -c -Wunused  kind_mod.f90
+gfortran -O2 -c -Wunused  matrix_mod.f90
+gfortran -O2 -c -Wunused  ions_mod.f90
+gfortran -O2 -c -Wunused  options_mod.f90
+gfortran -O2 -c -Wunused  charge_mod.f90
+charge_mod.f90:41:26:
+
+   41 |   SUBROUTINE assign_charge(chg1,chg2)
+      |                          ^
+Warning: ‘assign_charge’ defined but not used [-Wunused-function]
+gfortran -O2 -c -Wunused  chgcar_mod.f90
+gfortran -O2 -c -Wunused  cube_mod.f90
+gfortran -O2 -c -Wunused  io_mod.f90
+gfortran -O2 -c -Wunused  bader_mod.f90
+bader_mod.f90:1622:36:
+
+ 1622 |   SUBROUTINE assign_surrounding_pts2(bdr,chg,p)
+      |                                    ^
+Warning: ‘assign_surrounding_pts2’ defined but not used [-Wunused-function]
+bader_mod.f90:1714:35:
+
+ 1714 |   SUBROUTINE reassign_volnum_ongrid(bdr,chg,p)
+      |                                   ^
+Warning: ‘reassign_volnum_ongrid’ defined but not used [-Wunused-function]
+gfortran -O2 -c -Wunused  voronoi_mod.f90
+gfortran -O2 -c -Wunused  multipole_mod.f90
+gfortran -O2 -c -Wunused  weight_mod.f90
+gfortran -O2  -c -o dsyevj3_mod.o dsyevj3_mod.f
+gfortran -O2 -c -Wunused  jacobi_mod.f90
+gfortran -O2 -c -Wunused  critpoint_mod.f90
+critpoint_mod.f90:3340:43:
+
+ 3340 |       REAL(q2),DIMENSION(3) :: trueR,r,grad
+      |                                           1
+Warning: Unused variable ‘grad’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:3339:46:
+
+ 3339 |       REAL(q2),DIMENSION(3,3) :: hessianMatrix
+      |                                              1
+Warning: Unused variable ‘hessianmatrix’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:3342:25:
+
+ 3342 |       LOGICAL :: isUnique, minimized, noRecording
+      |                         1
+Warning: Unused variable ‘isunique’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:3340:38:
+
+ 3340 |       REAL(q2),DIMENSION(3) :: trueR,r,grad
+      |                                      1
+Warning: Unused variable ‘r’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:3335:42:
+
+ 3335 |       INTEGER,DIMENSION(3) :: p,pn,trueInd
+      |                                          1
+Warning: Unused variable ‘trueind’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:2780:55:
+
+ 2780 |       INTEGER :: ucptnum, reduced_ucptnum, i, j, weight, dupCount
+      |                                                       1
+Warning: Unused variable ‘weight’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:1919:45:
+
+ 1919 |       REAL(q2), DIMENSION(3) :: eigvals, grad
+      |                                             1
+Warning: Unused variable ‘grad’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:1478:50:
+
+ 1478 |       INTEGER :: CageSearch, ucptnum, nearest_cage, n
+      |                                                  1
+Warning: Unused variable ‘nearest_cage’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:274:23:
+
+  274 |       atom_connectivity, nucleiInd, ring_connectivity
+      |                       1
+Warning: Unused variable ‘atom_connectivity’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:283:48:
+
+  283 |       avgMode, stepcount, nnlayers, averagecount
+      |                                                1
+Warning: Unused variable ‘averagecount’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:270:42:
+
+  270 |       finR, nexttem, previoustem, averager, temcap, temscale
+      |                                          1
+Warning: Unused variable ‘averager’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:254:58:
+
+  254 |     TYPE(cpc),ALLOCATABLE,DIMENSION(:) :: cpcl, cpl, cpclt
+      |                                                          1
+Warning: Unused variable ‘cpclt’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:268:42:
+
+  268 |     REAL(q2), DIMENSION(3) :: tem, eigvals, truer, grad, prevgrad, temprealr, &
+      |                                          1
+Warning: Unused variable ‘eigvals’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:266:54:
+
+  266 |     REAL(q2), DIMENSION(3,3) :: hessianMatrix, eigvecs, interpolHessian, &
+      |                                                      1
+Warning: Unused variable ‘eigvecs’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:268:55:
+
+  268 |     REAL(q2), DIMENSION(3) :: tem, eigvals, truer, grad, prevgrad, temprealr, &
+      |                                                       1
+Warning: Unused variable ‘grad’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:281:21:
+
+  281 |     INTEGER :: n1, n2, n3, cptnum, ucptnum, i, j, k, debugnum,ij, &
+      |                     1
+Warning: Unused variable ‘n2’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:281:25:
+
+  281 |     INTEGER :: n1, n2, n3, cptnum, ucptnum, i, j, k, debugnum,ij, &
+      |                         1
+Warning: Unused variable ‘n3’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:270:19:
+
+  270 |       finR, nexttem, previoustem, averager, temcap, temscale
+      |                   1
+Warning: Unused variable ‘nexttem’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:265:38:
+
+  265 |     REAL(q2), DIMENSION(8,3) :: nngrad
+      |                                      1
+Warning: Unused variable ‘nngrad’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:268:65:
+
+  268 |     REAL(q2), DIMENSION(3) :: tem, eigvals, truer, grad, prevgrad, temprealr, &
+      |                                                                 1
+Warning: Unused variable ‘prevgrad’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:270:32:
+
+  270 |       finR, nexttem, previoustem, averager, temcap, temscale
+      |                                1
+Warning: Unused variable ‘previoustem’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:274:53:
+
+  274 |       atom_connectivity, nucleiInd, ring_connectivity
+      |                                                     1
+Warning: Unused variable ‘ring_connectivity’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:264:38:
+
+  264 |     REAL(q2), DIMENSION(10,3) :: rList,temList
+      |                                      1
+Warning: Unused variable ‘rlist’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:262:19:
+
+  262 |       static_search
+      |                   1
+Warning: Unused variable ‘static_search’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:283:24:
+
+  283 |       avgMode, stepcount, nnlayers, averagecount
+      |                        1
+Warning: Unused variable ‘stepcount’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:268:33:
+
+  268 |     REAL(q2), DIMENSION(3) :: tem, eigvals, truer, grad, prevgrad, temprealr, &
+      |                                 1
+Warning: Unused variable ‘tem’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:270:50:
+
+  270 |       finR, nexttem, previoustem, averager, temcap, temscale
+      |                                                  1
+Warning: Unused variable ‘temcap’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:264:46:
+
+  264 |     REAL(q2), DIMENSION(10,3) :: rList,temList
+      |                                              1
+Warning: Unused variable ‘temlist’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:271:26:
+
+  271 |     REAL(q2) :: temnormcap
+      |                          1
+Warning: Unused variable ‘temnormcap’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:270:60:
+
+  270 |       finR, nexttem, previoustem, averager, temcap, temscale
+      |                                                            1
+Warning: Unused variable ‘temscale’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:190:61:
+
+  190 |     INTEGER, DIMENSION(:,:), ALLOCATABLE :: atom_connectivity
+      |                                                             1
+Warning: Unused variable ‘atom_connectivity’ declared at (1) [-Wunused-variable]
+critpoint_mod.f90:2417:27:
+
+ 2417 |     SUBROUTINE MakeCPRoster(cpr,cptnum,r)
+      |                           ^
+Warning: ‘makecproster’ defined but not used [-Wunused-function]
+critpoint_mod.f90:2426:31:
+
+ 2426 |     SUBROUTINE MakeFullCPRoster(cpr,cptnum,r)
+      |                               ^
+Warning: ‘makefullcproster’ defined but not used [-Wunused-function]
+critpoint_mod.f90:2912:24:
+
+ 2912 |     SUBROUTINE DebugLine(iP,fP,iS,chg)
+      |                        ^
+Warning: ‘debugline’ defined but not used [-Wunused-function]
+critpoint_mod.f90:2976:26:
+
+ 2976 |     SUBROUTINE DebugRGHLat(xmin,xmax,ymin,ymax,zmin,zmax,chg)
+      |                          ^
+Warning: ‘debugrghlat’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3011:30:
+
+ 3011 |     SUBROUTINE DiagonalOnlyHes(hes)
+      |                              ^
+Warning: ‘diagonalonlyhes’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3402:35:
+
+ 3402 |     SUBROUTINE PrintNeighborCharges(p,chg)
+      |                                   ^
+Warning: ‘printneighborcharges’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3843:4:
+
+ 3843 |     FUNCTION ReadSymOpSize()
+      |    ^
+Warning: ‘readsymopsize’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3869:30:
+
+ 3869 |     SUBROUTINE PrintFlavorText()
+      |                              ^
+Warning: ‘printflavortext’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3881:32:
+
+ 3881 |     SUBROUTINE DebugGetRhoAround(p,chg,ions)
+      |                                ^
+Warning: ‘debuggetrhoaround’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3899:27:
+
+ 3899 |     SUBROUTINE DebugGetInfo(grid,chg)
+      |                           ^
+Warning: ‘debuggetinfo’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3908:28:
+
+ 3908 |     SUBROUTINE DebugCPTracer(rt,chg,cpl,ucptnum)
+      |                            ^
+Warning: ‘debugcptracer’ defined but not used [-Wunused-function]
+critpoint_mod.f90:3927:38:
+
+ 3927 |     SUBROUTINE DebugCoreFunctionsCheck(chg)
+      |                                      ^
+Warning: ‘debugcorefunctionscheck’ defined but not used [-Wunused-function]
+gfortran -O2 -c -Wunused  automatedcp_mod.f90
+gfortran -O2 -c -Wunused  main.f90
+rm -f bader 
+#gfortran -static main.o -o bader kind_mod.o matrix_mod.o ions_mod.o options_mod.o charge_mod.o chgcar_mod.o cube_mod.o io_mod.o bader_mod.o voronoi_mod.o multipole_mod.o weight_mod.o dsyevj3_mod.o jacobi_mod.o critpoint_mod.o automatedcp_mod.o 
+gfortran  main.o -o bader kind_mod.o matrix_mod.o ions_mod.o options_mod.o charge_mod.o chgcar_mod.o cube_mod.o io_mod.o bader_mod.o voronoi_mod.o multipole_mod.o weight_mod.o dsyevj3_mod.o jacobi_mod.o critpoint_mod.o automatedcp_mod.o 
