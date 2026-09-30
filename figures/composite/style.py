@@ -91,6 +91,33 @@ def crop_rgba(path, pad=6):
     return img[max(ys.min() - pad, 0):ys.max() + pad, max(xs.min() - pad, 0):xs.max() + pad]
 
 
+RENDERS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "render3d", "renders")
+
+# OVITO element colours and delta sign colours, mirrored from render3d/scene.py for keys and legends
+ELEM = {"K": (0.62, 0.50, 0.78), "C": (0.42, 0.42, 0.44), "N": (0.33, 0.47, 0.80)}
+ELEM_ALL = dict(ELEM, Co=(0.85, 0.56, 0.62), Eu=(0.45, 0.72, 0.70), Si=(0.93, 0.78, 0.53), O=(0.88, 0.35, 0.33),
+                Hf=(0.55, 0.68, 0.86), Au=(0.84, 0.70, 0.35), Be=(0.70, 0.86, 0.55), Sn=(0.55, 0.60, 0.65),
+                As=(0.72, 0.52, 0.86))
+POS_C, NEG_C = "#D8894E", "#4F86B0"
+
+
+def place_render(pg, name, x, y, w, h, pad=6, anchor="C"):
+    """Crop a transparent OVITO render to its content and fit it, aspect kept, in an x/y/w/h mm box.
+
+    anchor: "C" centre, "S" bottom-centre, "N" top-centre. Returns (axes, (x0, y0, w, h) actually used).
+    """
+    img = crop_rgba(os.path.join(RENDERS, name), pad=pad)
+    ih, iw = img.shape[:2]
+    s = min(w / iw, h / ih)
+    ww, hh = iw * s, ih * s
+    x0 = x + (w - ww) / 2
+    y0 = {"C": y + (h - hh) / 2, "S": y, "N": y + h - hh}[anchor]
+    ax = pg.ax(x0, y0, ww, hh)
+    ax.imshow(img, interpolation="lanczos")
+    ax.axis("off")
+    return ax, (x0, y0, ww, hh)
+
+
 def boxed(ax):
     for s in ax.spines.values():
         s.set_linewidth(0.6)

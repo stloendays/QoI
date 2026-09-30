@@ -1,4 +1,4 @@
-# Composite figures — QSQ manuscript (main Figs. 1–8, Supplementary Figs. S1–S8, Tables S1–S17)
+# Composite figures — QSQ manuscript (main Figs. 1–8, Supplementary Figs. S1–S9, TOC, Tables S1–S17)
 
 Built 2026-09-28 in the AI4S house visual system (`style.py`, a per-project copy of the
 Catalyst-Essay canon). Every panel reads the frozen repository tables through `figdata.py`;
@@ -45,8 +45,41 @@ through headless Chrome.
 - SI tables: hairline top/bottom rules and header rule only, no vertical rules, no banded rows,
   tabular numerals right-aligned, TeX fragments converted to Unicode.
 
+## 3D structure renders (added 2026-09-30)
+
+Fig. 1a, Fig. 5e, Fig. 7e, Supplementary Fig. S9 and the TOC graphic carry OVITO renders of real fields.
+They follow the two-stage pattern: the renders are slow and deterministic, the composition is fast.
+
+```
+render3d/prep_fields.py    frozen venv   D:\Research\QoI-final4-local\venv\Scripts\python.exe
+                           -> D:\Research\QoI-ext-cache\figure3d\*.npz (outside the repo, regenerable)
+render3d/build_kcn.py      render-venv   D:\Tools\render-venv\Scripts\python.exe   -> renders/kcn_*.png
+render3d/build_gallery.py  render-venv                                             -> renders/gallery_*.png
+render3d/scene.py          shared OVITO helpers (Tachyon + ambient occlusion, transparent PNG)
+figS9/make_figS9.py, toc/make_toc.py                                               -> FigS9, TOC
+```
+
+- **Material.** KCN (mp-676693): the Fig. 5c jump case and Fig. 7 matched pair 266, so all three main
+  figures show the same cell under one orthographic camera.
+- **Gates in `prep_fields.py`.** Source SHA-256; value range equal to the frozen `value_ptp`; realized L∞
+  within 0.95–1.05 of the frozen row; Bader re-solve identical to WP-B's pinned-stack re-solve of the same
+  row (`cp_rows.csv`: error to 1e-9 relative, reassigned-voxel count exact). The re-solve differs from the
+  frozen Ubuntu rows by the cross-platform amount WP-B documents, so the in-figure numbers are the frozen
+  rows while the drawn voxels are the re-solve.
+- **Hartree.** `build_kcn.py` imports `run_shard.safe_hartree` from the spectral audit and asserts that
+  the ZFP/SZ3 RMS ratio of pair 266 reproduces its frozen value (0.1532). V (eV) = 14.40 × safe_hartree.
+- **Isolevels.** ρ 0.60 e Å⁻³; Δρ ±0.5 × the smaller realized L∞ of pair 266; ΔV_H ±0.5 × the SZ3 max,
+  shared by both codecs. Both codecs put ~99 % of their Hartree-weighted error at low G, so a per-codec
+  level would invent a shape contrast that the data do not have. Gallery: each isosurface encloses the
+  densest 15 % of non-vacuum voxels. Values are written to `renders/*_params.json`, and the figures read them.
+- **Structure.** The MP KCN file has its C/N atoms in a periodic C–N–N–C–C–N–N–C chain (1.36–1.47 Å). It is
+  drawn as the file gives it, with periodic-image bonds.
+- Sheets: the right column of the main sheet is scaled to 0.60 because it carries the render rows.
+
 ## Cautions
 
 - `paper/SUPPLEMENTARY_TABLES_FINAL.md` is read, never written. Fix a number upstream and rebuild.
 - The overlap audit does not see data marks; look at the PNG after any change.
-- `Sheet_*` scale figures to 0.70; per-figure PDF/SVG are the submission artefacts.
+- `Sheet_*` scale figures to 0.70 (main right column 0.60); per-figure PDF/SVG are the submission artefacts.
+- `render3d/prep_fields.py` gates against WP-B's `cp_rows.csv`, which currently lives in the WP-B agent
+  worktree (path in the script); repoint `WPB_ROWS` if that branch is merged or moved.
