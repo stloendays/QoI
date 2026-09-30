@@ -30,3 +30,13 @@ changed; the comparisons are made within one Bader implementation.
 
 4. **Cleanup.** Everything staged under `/scratch/junbotong/qoi-wpg-20260930` is deleted after the
    checkpoints and logs are copied back (standing Vanda rule).
+
+5. **Published AECCAR0 entirely non-finite for 3 materials (2026-09-30, before any WP-G outcome was
+   read).** For mp-1192831, mp-1193567 and mp-776331 every voxel of the published AECCAR0 is NaN
+   (2,099,520 / 1,959,552 / 987,840 voxels); the other 50 materials have finite AECCAR0 and AECCAR2.
+   The runner now rejects non-finite AECCAR input at the input stage (the first production attempt had
+   passed the NaN reference on and failed later at the QSQ stage; those three records are kept under
+   `logs/superseded_nan_checkpoints/` and replaced by input-stage failure records). The three stay in
+   every table as failed. Analyses (1)–(4) and the acceptance statements are evaluated on the 50
+   processed materials; RESULTS.md also states the acceptance outcome with the three failures counted
+   against each claim.

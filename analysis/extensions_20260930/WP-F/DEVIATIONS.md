@@ -24,3 +24,10 @@ acceptance criterion is changed.
    (the pool reports it; typically memory) is re-run once on its own after its group finishes; the
    second outcome is final and is what the protocol's "attempted once, then counted as failed" refers
    to, so that a failure reflects the object and not the scheduling.
+
+5. **Known baderkit failure on the coarsest ZFP rung (execution note, 2026-09-30).** A few objects raise
+   baderkit 0.10.2's `IndexError: index 3 is out of bounds for axis … with size 3` on the ZFP 1e-1 rung,
+   the same crash WP-B recorded (WP-B `DEVIATIONS.md` 7). The rung is recorded in `failures.csv` with the
+   object, is never certified, and the object's other rungs and its storage outcome are unaffected
+   (a 1e-1 ZFP rung is far above any certifiable tolerance in these data). Object-level failures remain
+   governed by the storage rule.

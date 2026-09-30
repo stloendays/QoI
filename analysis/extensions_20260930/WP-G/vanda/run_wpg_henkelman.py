@@ -122,6 +122,9 @@ def run(mid):
         _, a2 = load(inp / ("%s_aeccar2.json.gz" % mid))
         if not (a0.shape == a2.shape == chg.shape):
             raise RuntimeError("grid mismatch chg %s a0 %s a2 %s" % (chg.shape, a0.shape, a2.shape))
+        bad = {k: int((~np.isfinite(v)).sum()) for k, v in (("aeccar0", a0), ("aeccar2", a2))}
+        if any(bad.values()):                         # published AECCAR with non-finite values (DEVIATIONS.md 5)
+            raise RuntimeError("non-finite AECCAR values: %s of %d voxels" % (bad, a0.size))
         ae = a0 + a2
         del a0, a2
         if abs(float(np.ptp(chg)) - task["value_ptp"]) > 1e-9 * max(1.0, abs(task["value_ptp"])):
