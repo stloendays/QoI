@@ -1,16 +1,22 @@
 #!/bin/bash
-#PBS -N qoi_wpi_pilot
-#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -N qoi_wpi_p
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=4:mpiprocs=4:ompthreads=1:mem=32GB
 #PBS -l walltime=02:00:00
 #PBS -j oe
+#PBS -o /scratch/junbotong/qoi-wpi-20261001/logs/pilot.pbs.log
 
 set -euo pipefail
-cd "$PBS_O_WORKDIR"
+cd /scratch/junbotong/qoi-wpi-20261001
+set +e; source /etc/profile; set -e
 module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f PREPARED
 
-# Three analyzable materials spanning very small, intermediate, and large WP-G G2 floors.
 for mid in mp-214 mp-1065204 mp-30772; do
-  python run_wpi_reference_only.py --material "$mid"
+  venv/bin/python run_wpi_reference_only.py --material "$mid" > "logs/pilot_$mid.log" 2>&1
 done
-
-python validate_pilot.py
+venv/bin/python validate_pilot.py
+touch PILOT_VALIDATED
+echo WP_I_PILOT_DONE
