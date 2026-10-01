@@ -173,4 +173,4 @@ The canonical contribution is **validated QoI stability qualification before sci
 
 ## Naming boundary
 
-Reader-facing text uses only **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **stability probe**, **measurement contract**, and **order-preserving control**. There is no reader-facing distinction such as “upgraded QSQ”, “QSQ 2.0” or “contract-aware QSQ”: the complete measurement-contract definition is the canonical QSQ definition. Exact implementation filenames and development history remain only in provenance.
+Reader-facing text uses **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **stability probe**, **measurement contract**, and **order-preserving control**. The complete measurement-contract definition is the canonical QSQ definition. Exact implementation filenames and development history remain only in provenance.
