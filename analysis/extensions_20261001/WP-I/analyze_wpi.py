@@ -10,7 +10,7 @@ import pandas as pd
 from scipy.stats import binomtest
 
 HERE = Path(__file__).resolve().parent
-WPG = HERE.parents[2] / "extensions_20260930" / "WP-G"
+WPG = HERE.parents[1] / "extensions_20260930" / "WP-G"
 CK = HERE / "vanda" / "results" / "checkpoints"
 TAUS = (1e-4, 1e-3, 1e-2)
 SEED = 20261001
