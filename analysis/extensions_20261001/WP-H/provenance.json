@@ -1,0 +1,23 @@
+{
+  "package": "WP-H",
+  "protocol": "analysis/extensions_20261001/QSQ_OPTIMIZATION_PROTOCOL.md",
+  "source": "stability/stability_floor_A1_per_seed.csv",
+  "source_blob_sha": "0f5cb9fd6374e498831b6050031cbe79a4900db3",
+  "population": "254 development materials",
+  "seed_order": [
+    "20260905",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "thresholds_e": [
+    0.0001,
+    0.001,
+    0.01
+  ],
+  "result": "ACCEPTED",
+  "primary_tau_e": 0.001,
+  "primary_agreement": "254/254",
+  "primary_probe_reduction": 0.3330708661417323
+}

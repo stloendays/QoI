@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -N qoi_wpi_prod
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-wpi-20261001/logs/production.pbs.log
+
+set -euo pipefail
+cd /scratch/junbotong/qoi-wpi-20261001
+set +eu; source /etc/profile; set -eu
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f PREPARED
+test -f PILOT_VALIDATED
+
+# One process per material, 34 concurrent workers. Successful pilot checkpoints
+# are skipped by the runner, so the pilot is not recomputed.
+xargs -P 34 -I{} sh -c 'venv/bin/python run_wpi_reference_only.py --material "{}" > "logs/prod_{}.log" 2>&1' < material_ids.txt
+touch PRODUCTION_DONE
+echo WP_I_PRODUCTION_DONE
