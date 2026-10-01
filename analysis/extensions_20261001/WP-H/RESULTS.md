@@ -29,4 +29,8 @@ The gain is largest when the requested tolerance rejects many materials, because
 
 Sequential early rejection preserves **binary eligibility at a specified tolerance**, but it does not recover the exact five-seed floor for materials stopped early. Full five-seed evaluation is still required when the numerical value of the floor is itself an analysis endpoint, for example continuous-risk calibration or mechanistic correlation. The optimization is therefore suitable for deployment/certification workflows that need a yes/no qualification at a declared tolerance.
 
-Files: `sequential_material.csv`, `sequential_summary.csv`, `analyze_sequential_qsq.py`, `provenance.json`.
+## Effect on the certifying writer
+
+Replacing the fixed six-solve QSQ cost (one reference plus five probes) in the adopted WP-E BISECT writer with exact sequential QSQ leaves archive compression and miss rate unchanged, because only already-doomed probe evaluations are skipped. At the primary `1e-3 e` threshold, mean end-to-end writer cost over all 254 development materials falls from **12.004 to 10.339 Bader solves per material**, a further **13.9% reduction**, while retaining **98.48% of oracle archive compression** and **0 misses**. The reduction is larger at `1e-4 e` (39.0%) and smaller at `1e-2 e` (2.5%), reflecting the threshold-dependent fraction of screen-rejected materials.
+
+Files: `sequential_material.csv`, `sequential_summary.csv`, `writer_cost_impact.csv`, `analyze_sequential_qsq.py`, `provenance.json`.
