@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -N qoi_wpi_pilot
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=02:00:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+module load Python/3.12.3-GCCcore-13.3.0
+
+# Three analyzable materials spanning very small, intermediate, and large WP-G G2 floors.
+for mid in mp-214 mp-1065204 mp-30772; do
+  python run_wpi_reference_only.py --material "$mid"
+done
+
+python validate_pilot.py
