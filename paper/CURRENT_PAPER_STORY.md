@@ -1,16 +1,16 @@
-# Current paper story — 2026-09-27
+# Current paper story — 2026-10-01
 
 **Active title:** *Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities*
 
 ## One-sentence thesis
 
-**Scientific compression should be scored only after the reference QoI is qualified at the requested tolerance; qualification itself is QoI-specific, while codec performance further depends on the downstream operator and the spatial/frequency structure of reconstruction error.**
+**Scientific compression should be scored only after the complete measurement contract is qualified at the requested tolerance; evaluability depends on the QoI, numerical algorithm and exact-versus-approximate input roles, while codec performance further depends on the downstream operator and the spatial/frequency structure of reconstruction error.**
 
 ## What the paper is actually about
 
 The manuscript is not framed around the established observation that small pointwise reconstruction error need not imply small downstream QoI error. That is background motivation.
 
-The contribution is a **measurement contract for benchmark validity** in scientific compression. The reader-facing qualification framework is **QoI Stability Qualification (QSQ)**. The evaluation order is:
+The contribution is a **measurement contract for benchmark validity** in scientific compression. The reader-facing qualification framework is **QoI Stability Qualification (QSQ)**. QSQ is defined from the outset on the complete contract: QoI, numerical algorithm, scientific tolerance and the role of every input as exact or approximate. Only approximate inputs are perturbed. The evaluation order is:
 
 `QoI Stability Qualification (QSQ) -> eligibility -> compression evaluation -> certification`
 
@@ -62,6 +62,12 @@ Resolved results:
 
 The scientific conclusion is that QSQ classification transfers across an independent implementation when basin-assignment semantics are matched, but is not implementation-free. Engineering failure taxonomy and retry provenance remain in the repository audit rather than the scientific story.
 
+### Measurement-contract decomposition — partition-defining reference field
+
+QSQ treats input roles as part of the scientific contract. A dedicated all-electron-reference Bader experiment separates the integrated charge field from the partition-defining field. At the primary $10^{-3}\,e$ threshold, exact all-electron reference + perturbed CHGCAR is 50/50 eligible, while perturbing the all-electron reference gives 3/50 eligibility whether CHGCAR is exact or perturbed. The reference-only/joint floor ratio and median basin-reassignment ratio are both 1.000.
+
+This is direct mechanism evidence that, under the tested standard all-electron-reference Bader contract, numerical instability is dominated by the partition-defining field. It also demonstrates why QSQ must qualify the complete material–QoI–algorithm–input-handling contract rather than assign a material-level stability label.
+
 ### P4 — outcome-blind chemical-decision boundary case
 
 A chemistry/provenance/geometry-only audit of the 68 NOMAD development slabs froze **five paired chemical states** before QSQ, codec, P2/P3A or Bader outcomes were used for inclusion. All five passed the pre-specified BaderKit/Henkelman on-grid reference gate. The resolved compression analysis contains **216/216 successful solver cells** and **60/60** common-tight qualitative target-atom charge-transfer directions matching the frozen reference.
@@ -76,7 +82,11 @@ Electron number and periodic Hartree potential provide smoother controls on the 
 
 ### Bader-specific mechanism
 
-Bader integration domains are re-derived from the reconstructed density. Compression can therefore perturb both density values and basin assignment. Fixed-basin scoring suppresses the domain-migration contribution and can substantially understate the response obtained by rerunning the actual downstream analysis. The mechanism is Bader-specific and is not generalized to arbitrary QoIs.
+Bader stability depends on the field that defines the partition topology. In the primary self-partitioned contract, the same density is both the integrated charge field and the partition-defining field, so perturbation can change values and basin assignment together. In the all-electron-reference contract, these roles can be separated.
+
+Across 53 planned development materials with published all-electron inputs, 50 are analyzable and three retain non-finite AECCAR0 input failures. At $10^{-3}\,e$, keeping the all-electron partition reference exact while perturbing CHGCAR leaves **50/50 eligible**. Perturbing both fields gives **3/50 eligible**. Holding CHGCAR exact and perturbing only the all-electron reference also gives **3/50 eligible**. The material-median reference-only/joint stability-floor ratio is **1.000**, the median basin-reassignment ratio is **1.000**, and all 50 analyzable materials satisfy $f_{\mathrm{ref-only}}\ge0.9f_{\mathrm{joint}}$.
+
+Thus, under the tested contract, the observed Bader instability is controlled overwhelmingly by perturbation of the partition-defining reference field. Fixed-partition scoring suppresses this channel. This mechanism is Bader-specific and is not generalized to arbitrary QoIs.
 
 ### Analysis-limited regime: supported wording
 
@@ -163,4 +173,4 @@ The canonical contribution is **validated QoI stability qualification before sci
 
 ## Naming boundary
 
-Reader-facing text uses **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **stability probe**, and **order-preserving control**. Exact implementation filenames and historical identifiers are kept in `paper/READER_FACING_PROVENANCE_INDEX.md` rather than surfaced in manuscript prose.
+Reader-facing text uses only **QoI Stability Qualification (QSQ)**, **QSQ stability floor**, **QSQ eligibility**, **stability probe**, **measurement contract**, and **order-preserving control**. There is no reader-facing distinction such as “upgraded QSQ”, “QSQ 2.0” or “contract-aware QSQ”: the complete measurement-contract definition is the canonical QSQ definition. Exact implementation filenames and development history remain only in provenance.
