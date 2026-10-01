@@ -1,0 +1,38 @@
+[Reading 34 lines from start (total: 34 lines, 0 remaining)]
+
+{
+  "n_reference": 64,
+  "n_samples": 64,
+  "primary_acceptance_met": false,
+  "cross_qoi": {
+    "agreement": 0.96875,
+    "kappa": 0.0,
+    "floor_spearman": 0.5422468970522505
+  },
+  "mechanism": {
+    "gradient_amplification_median": 199.66450027487792,
+    "gradient_amplification_p10": 198.7098431455569,
+    "gradient_amplification_p90": 200.4795180501648
+  },
+  "primary_mask": {
+    "metric": "mask_response_1mIoU",
+    "tau": 0.05,
+    "n_samples": 64,
+    "n_eligible": 62,
+    "n_rejected": 2,
+    "fresh_trials_eligible": 3658,
+    "fresh_exceed_eligible": 0,
+    "fresh_risk_eligible": 0.0,
+    "fresh_trials_rejected": 118,
+    "fresh_exceed_rejected": 3,
+    "fresh_risk_rejected": 0.025423728813559324,
+    "risk_ratio_rejected_over_eligible": Infinity,
+    "risk_difference": 0.025423728813559324,
+    "risk_difference_ci_low": 0.0,
+    "risk_difference_ci_high": 0.05084745762711865,
+    "cutouts_any_exceed_eligible": 0,
+    "cutouts_any_exceed_rejected": 1
+  }
+}
+
+[executed on device: LAPTOP-UDBCIUHV (3b8f874d-b5a4-42f4-87b6-73945edc26f9)]
