@@ -16,9 +16,22 @@ This optimization may replace the implementation of binary eligibility at a decl
 
 ## WP-I — partition-reference-only sensitivity decomposition
 
-**Status: PREDECLARED / implementation ready / no scientific result yet.**
+**Status: COMPLETE / pre-declared dominance criterion met.**
 
-The G3 arm is implemented and packaged for pilot -> production -> aggregation:
+The G3 arm completed on Vanda using PBS jobs `1419834` (pilot), `1419835` (production), and `1419836` (finalize). Finalized denominator: 53 planned, 50 analyzable successes, 3 pre-documented AECCAR input failures.
+
+Primary result at `tau = 1e-3 e`:
+- G1 eligible: 50/50;
+- G2 eligible: 3/50;
+- G3 eligible: 3/50;
+- G3 non-evaluable: 47/50 (94.0%);
+- median `f_G3/f_G2 = 1.000`;
+- median basin-reassignment ratio G3/G2 = 1.000;
+- all 50 analyzable materials satisfy `f_G3 >= 0.9 f_G2`.
+
+All three pre-declared dominance criteria are met. The result supports the interpretation that perturbation of the partition-defining all-electron reference is the dominant source of the observed G2 instability under the frozen protocol.
+
+Execution details:
 - exact CHGCAR;
 - perturbed AECCAR0+AECCAR2 reference only;
 - same WP-G perturbation amplitude and seed mapping;
@@ -28,7 +41,7 @@ The G3 arm is implemented and packaged for pilot -> production -> aggregation:
 - three-material pilot with deterministic validation before full production;
 - checkpoint status utility and full 53-material PBS job.
 
-The acceptance rule and mechanism claim were committed before any G3 outcome was observed. Reader-facing conclusions must wait for the 53 checkpoint records and aggregation.
+The acceptance rule and mechanism claim were committed before any G3 outcome was observed. The 53 checkpoints have now been finalized and aggregated; reader-facing integration still requires explicit manuscript adjudication.
 
 ## Manuscript status
 
