@@ -9,7 +9,7 @@
 
 set -euo pipefail
 cd /scratch/junbotong/qoi-wpi-20261001
-set +e; source /etc/profile; set -e
+set +eu; source /etc/profile; set -eu
 module load Python/3.12.3-GCCcore-13.3.0
 export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 test -f PREPARED
