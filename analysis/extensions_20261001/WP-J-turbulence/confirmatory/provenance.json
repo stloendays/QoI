@@ -1,0 +1,42 @@
+{
+  "n_samples": 64,
+  "vortex_confirmed": false,
+  "enstrophy_confirmed": false,
+  "cross_qoi": {
+    "agreement": 0.640625,
+    "kappa": 0.28820116054158607,
+    "floor_spearman": 0.4168847379918133
+  },
+  "endpoints": [
+    {
+      "metric": "mask_response_1mIoU",
+      "tau": 0.01,
+      "n_eligible": 34,
+      "n_rejected": 30,
+      "fresh_risk_eligible": 0.1061814556331007,
+      "fresh_risk_rejected": 0.3943502824858757,
+      "risk_ratio": 3.713928012519562,
+      "risk_difference": 0.288168826852775,
+      "ci_low": 0.18271269524759054,
+      "ci_high": 0.3880046671796422,
+      "acceptance_met": false,
+      "eligible_any_exceed": 23,
+      "rejected_any_exceed": 30
+    },
+    {
+      "metric": "enstrophy_relative_response",
+      "tau": 0.0001,
+      "n_eligible": 27,
+      "n_rejected": 37,
+      "fresh_risk_eligible": 0.08286252354048965,
+      "fresh_risk_rejected": 0.26339899221255153,
+      "risk_ratio": 3.1787469287469285,
+      "risk_difference": 0.18053646867206188,
+      "ci_low": 0.1163109860701297,
+      "ci_high": 0.2440815369930839,
+      "acceptance_met": false,
+      "eligible_any_exceed": 23,
+      "rejected_any_exceed": 36
+    }
+  ]
+}
