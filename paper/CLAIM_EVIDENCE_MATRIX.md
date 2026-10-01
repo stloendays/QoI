@@ -11,7 +11,7 @@ data file cannot leave PENDING.
 
 Last updated: 2026-10-01 (Claims 15–18 retain the prospective, implementation-transfer, chemical-contract-boundary and Fourier mechanism evidence; Claim 19 adds the all-electron-reference measurement-contract decomposition).
 
-**Reader-facing terminology.** The operative qualification framework is **QoI Stability Qualification (QSQ)**, defined on the complete measurement contract: QoI, numerical algorithm, scientific tolerance and exact-versus-approximate input roles. There is no reader-facing `QSQ 2.0`, `upgraded QSQ` or `contract-aware QSQ`; those are not separate methods. The superseded order-preserving test is the **archived float32 probe**. Historical repository identifiers are retained only in paths and provenance records.
+**Reader-facing terminology.** The operative qualification framework is **QoI Stability Qualification (QSQ)**, defined on the complete measurement contract: QoI, numerical algorithm, scientific tolerance and exact-versus-approximate input roles. The superseded order-preserving test is the **archived float32 probe**. Historical repository identifiers are retained only in paths and provenance records.
 
 **Correction of record (2026-09-04).** An earlier statement that bulk crystals
 show "0% above 1e-3" came from a 10-material pilot and is **false on the full
