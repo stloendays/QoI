@@ -33,3 +33,18 @@ The acceptance rule and mechanism claim were committed before any G3 outcome was
 ## Manuscript status
 
 No current manuscript claim, figure, threshold, or frozen QSQ endpoint has been changed by this branch.
+
+
+## Contract-aware QSQ interface
+
+**Status: SPECIFICATION FROZEN FOR THIS EXTENSION.**
+
+`CONTRACT_AWARE_QSQ_SPEC.md` now defines a reusable measurement-contract interface:
+- every input field is declared exact, approximate, derived, or excluded;
+- QSQ perturbs only approximate inputs;
+- binary qualification uses the same finite-panel max-response rule;
+- exact sequential early rejection is permitted for fixed-threshold eligibility;
+- full five-seed execution remains required when the numerical floor itself is an endpoint;
+- certificates record the contract hash and input-handling semantics, not only the selected codec.
+
+This specification is development-layer infrastructure and does not alter the current manuscript until WP-I and manuscript integration are explicitly adjudicated.
