@@ -29,19 +29,21 @@ Exact cohort manifests and machine-readable benchmark assets are mapped in the r
 
 An order-preserving round-trip control uses a deterministic float64 → float32 → float64 conversion at the same material-specific amplitude scale. This control is unusually benign for an on-grid watershed partition because it preserves much of the local value ordering.
 
-QoI Stability Qualification (QSQ) uses a perturbation-based numerical identifiability test. For material $m$, let
+QoI Stability Qualification (QSQ) is a perturbation-based numerical identifiability test defined on a complete measurement contract. The contract specifies the QoI, downstream numerical algorithm, scientific tolerance and the role of each input as exact or approximate. Exact inputs remain fixed; only approximate inputs are perturbed.
 
-$$
+For the primary self-partitioned Bader contract, the density is the sole approximate input and serves both as the integrated charge field and the partition-defining field. Let
+
+$
 \epsilon_m = \|\text{float32}(\rho_m)-\rho_m\|_\infty.
-$$
+$
 
-Five pre-specified uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The material-specific QSQ stability floor is
+Five pre-specified uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The QSQ stability floor for this contract is
 
-$$
+$
 f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
-$$
+$
 
-A Bader tolerance $\tau$ is eligible only when $f_m<\tau$. If $f_m\ge\tau$, the material–threshold pair is assigned `NON_EVALUABLE_BADER_UNSTABLE` and is neither a codec pass nor a codec failure.
+A Bader tolerance $\tau$ is eligible only when $f_m<\tau$. If $f_m\ge\tau$, the material–contract pair is non-evaluable under that QSQ test and is neither a codec pass nor a codec failure. For fixed-threshold binary qualification, evaluation may stop after the first probe with response $\ge\tau$ because the full five-seed maximum must then fail the same contract; the complete panel is retained whenever the numerical value of $f_m$ is required.
 
 The 18-material calibration panel shows why perturbation structure matters (probe calibration panel and QSQ method record; repository reader-facing provenance index):
 
@@ -200,4 +202,4 @@ The resolved compressed analysis contains 216/216 successful solver cells. No ne
 
 ## Supplementary extension — QoI generality and qualification robustness
 
-The pre-declared cross-QoI generality, continuous-risk calibration, codec-shaped probe, and stability-floor predictability analyses are collected in `paper/SUPPLEMENTARY_QOI_GENERALITY.md` (Supplementary Notes S12–S15). These analyses preserve the original QSQ definition and primary cohorts; only the grid-local-extrema result is promoted into the main scientific narrative.
+The cross-QoI generality, continuous-risk calibration, codec-shaped probe, stability-floor predictability and all-electron-reference Bader decomposition are collected in `paper/SUPPLEMENTARY_QOI_GENERALITY.md` (Supplementary Notes S12–S16). The grid-local-extrema and all-electron-reference results support the main scientific narrative; the calibration and descriptor analyses remain interpretive support.
