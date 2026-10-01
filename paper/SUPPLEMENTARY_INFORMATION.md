@@ -200,6 +200,6 @@ The resolved compressed analysis contains 216/216 successful solver cells. No ne
 
 
 
-## Supplementary extension — QoI generality and qualification robustness
+## Supplementary Notes 12–16 — QoI generality, robustness and measurement contracts
 
 The cross-QoI generality, continuous-risk calibration, codec-shaped probe, stability-floor predictability and all-electron-reference Bader decomposition are collected in `paper/SUPPLEMENTARY_QOI_GENERALITY.md` (Supplementary Notes S12–S16). The grid-local-extrema and all-electron-reference results support the main scientific narrative; the calibration and descriptor analyses remain interpretive support.
