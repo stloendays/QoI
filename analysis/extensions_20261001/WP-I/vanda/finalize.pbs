@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N qoi_wpi_fin
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=1:mpiprocs=1:ompthreads=1:mem=4GB
+#PBS -l walltime=00:30:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-wpi-20261001/logs/finalize.pbs.log
+
+set -euo pipefail
+cd /scratch/junbotong/qoi-wpi-20261001
+set +e; source /etc/profile; set -e
+module load Python/3.12.3-GCCcore-13.3.0
+test -f PRODUCTION_DONE
+venv/bin/python finalize_vanda.py
+tar -czf wpi_results.tar.gz results/checkpoints logs CHECKPOINT_SHA256.json SOURCE_COMMIT tasks.json wpg_reference.csv
+echo WP_I_FINALIZE_DONE
