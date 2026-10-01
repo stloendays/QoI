@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N qoi_wpi
+#PBS -l select=1:ncpus=4:mem=24gb
+#PBS -l walltime=08:00:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+module load Python/3.12.3-GCCcore-13.3.0
+
+IDS="../../../../extensions_20260930/WP-G/vanda_results/material_ids.txt"
+while read -r mid; do
+  python run_wpi_reference_only.py --material "$mid"
+done < "$IDS"
