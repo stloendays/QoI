@@ -28,7 +28,7 @@ cp -f "$WPI"/production.pbs "$STAGE/"
 cp -f "$WPI"/finalize_vanda.py "$STAGE/"
 cp -f "$WPI"/finalize.pbs "$STAGE/"
 cp -f "$WPI"/submit_pipeline.sh "$STAGE/"
-cp -f "$WPG"/requirements.txt "$STAGE/"
+cp -f "$WPI"/requirements_wpi.txt "$STAGE/"
 cp -f "$WPG"/tasks_base.json "$STAGE/"
 cp -f "$WPG"/prefetch.py "$STAGE/"
 cp -f "$WPG_RESULT"/reference.csv "$STAGE/wpg_reference.csv"
@@ -43,7 +43,7 @@ module load Python/3.12.3-GCCcore-13.3.0
 export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 
 test -x venv/bin/python || python -m venv venv
-venv/bin/python -m pip install -q -r requirements.txt > logs/install.log 2>&1
+venv/bin/python -m pip install -q -r requirements_wpi.txt > logs/install.log 2>&1
 venv/bin/python -m pip freeze > logs/pip_freeze.txt
 
 (cd reference_source && make -f makefile.lnx_ifort > ../logs/build_bader.log 2>&1)
