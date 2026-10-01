@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 """WP-I on Vanda: perturb only the partition-defining all-electron reference.
 
-G3 semantics:
+Self-contained staging semantics:
   charge field: exact CHGCAR
   partition field: AECCAR0 + AECCAR2 + frozen WP-G reference perturbation
 
-The implementation intentionally reuses the completed WP-G Henkelman 1.05 on-grid
-measurement semantics. It performs one exact-reference solve plus five G3 probe
-solves per analyzable material and does not rerun any codec ladder.
+The stage directory contains:
+  frozen/                  exact decoder/runtime copied from commit 893f931
+  reference_source/bader   Henkelman Bader 1.05 binary
+  inputs/                  SHA-verified CHGCAR/AECCAR payloads
+  tasks.json               WP-G task registry with AECCAR hashes
+  wpg_reference.csv        completed WP-G G1/G2 floors and epsilon_AE
+
+One exact-reference solve plus five G3 probe solves are performed per analyzable
+material. No codec ladder is rerun.
 """
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import itertools
 import json
@@ -26,15 +33,13 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parent
-WPG = ROOT.parents[2] / "extensions_20260930" / "WP-G" / "vanda"
-sys.path.insert(0, str(WPG / "frozen"))
-import external_end_to_end as core  # noqa: E402
-from development_compatibility_smoke import decode_mp_chgcar  # noqa: E402
+sys.path.insert(0, str(ROOT / "frozen"))
+from development_compatibility_smoke import decode_mp_chgcar  # type: ignore  # noqa: E402
 
-BADER = WPG / "reference_source" / "bader"
-TASKS = ROOT.parents[2] / "extensions_20260930" / "WP-G" / "vanda_results" / "tasks.json"
-WPG_CKPT = ROOT.parents[2] / "extensions_20260930" / "WP-G" / "vanda_results" / "checkpoints"
-INPUTS = WPG / "inputs"
+BADER = ROOT / "reference_source" / "bader"
+TASKS = ROOT / "tasks.json"
+WPG_REFERENCE = ROOT / "wpg_reference.csv"
+INPUTS = ROOT / "inputs"
 SEEDS = (20260905, 1, 2, 3, 4)
 CKPT = ROOT / "results" / "checkpoints"
 
@@ -64,10 +69,14 @@ def read_atindex(path, shape):
 
 class Solver:
     def __init__(self, lattice, frac, symbols, shape, work):
-        self.lattice, self.frac, self.symbols, self.shape, self.work = lattice, frac, symbols, shape, work
+        self.lattice = lattice
+        self.frac = frac
+        self.symbols = symbols
+        self.shape = shape
+        self.work = work
         self.n = 0
 
-    def __call__(self, charge, ref, ref_key):
+    def __call__(self, charge, ref):
         w = self.work
         for p in w.glob("*.dat"):
             p.unlink()
@@ -99,25 +108,42 @@ def load(path):
     return c, np.ascontiguousarray(np.asarray(c.data["total"], dtype=np.float64))
 
 
+def read_wpg_reference(mid):
+    with WPG_REFERENCE.open(encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            if r["material_id"] == mid:
+                return r
+    raise KeyError(mid)
+
+
 def run(mid):
     tasks = json.loads(TASKS.read_text())
     task = tasks[mid]
-    wpg = json.loads((WPG_CKPT / (mid + ".json")).read_text())
-    if wpg.get("status") != "SUCCESS":
+    wpg = read_wpg_reference(mid)
+    if wpg["status"] != "SUCCESS":
         return {
-            "material_id": mid, "task_id": task["task_id"], "status": "FAILED",
-            "stage": "wp_g_input", "error": "WP-G material was not analyzable",
-            "probes": [], "wpg_status": wpg.get("status"),
+            "material_id": mid,
+            "task_id": task["task_id"],
+            "status": "FAILED",
+            "stage": "wp_g_input",
+            "error": "WP-G material was not analyzable",
+            "probes": [],
+            "wpg_status": wpg["status"],
         }
 
     t0 = time.time()
     out = {
-        "material_id": mid, "task_id": task["task_id"], "status": "SUCCESS",
-        "probes": [], "epsilon_ae_wp_g": wpg.get("epsilon_ae"),
-        "g1_floor_e": wpg.get("g1_floor_e"), "g2_floor_e": wpg.get("g2_floor_e"),
+        "material_id": mid,
+        "task_id": task["task_id"],
+        "status": "SUCCESS",
+        "probes": [],
+        "epsilon_ae_wp_g": float(wpg["epsilon_ae"]),
+        "g1_floor_e": float(wpg["g1_floor_e"]),
+        "g2_floor_e": float(wpg["g2_floor_e"]),
         "bader_sha256": hashlib.sha256(BADER.read_bytes()).hexdigest(),
         "pbs_job_id": os.environ.get("PBS_JOBID"),
     }
+
     try:
         chg_path = INPUTS / ("%s_chgcar.json.gz" % mid)
         a0_path = INPUTS / ("%s_aeccar0.json.gz" % mid)
@@ -143,7 +169,9 @@ def run(mid):
         if not np.isclose(eps_a, float(wpg["epsilon_ae"]), rtol=1e-12, atol=0.0):
             raise RuntimeError("epsilon_AE reproduction mismatch")
         st = cc.structure
-        lattice, frac, symbols = st.lattice.matrix, st.frac_coords, [s.specie.symbol for s in st]
+        lattice = st.lattice.matrix
+        frac = st.frac_coords
+        symbols = [s.specie.symbol for s in st]
         out.update(shape="x".join(map(str, chg.shape)), natoms=len(symbols), epsilon_ae=eps_a)
     except Exception as e:
         out.update(status="FAILED", stage="inputs", error="%s: %s" % (type(e).__name__, e), traceback=traceback.format_exc())
@@ -151,13 +179,13 @@ def run(mid):
 
     (ROOT / "temp").mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="wpi_%s_" % mid, dir=ROOT / "temp") as td:
-        S = Solver(lattice, frac, symbols, chg.shape, Path(td))
+        solver = Solver(lattice, frac, symbols, chg.shape, Path(td))
         try:
-            q0, l0 = S(chg, ae, "ae_exact")
+            q0, l0 = solver(chg, ae)
             for seed in SEEDS:
                 rng = np.random.Generator(np.random.PCG64(ae_seed(mid, seed)))
                 noise = rng.uniform(-eps_a, eps_a, size=ae.shape)
-                q, lab = S(chg, ae + noise, "ae_probe_%s" % seed)
+                q, lab = solver(chg, ae + noise)
                 response = float(np.max(np.abs(q - q0)))
                 reassigned = float(np.mean(lab != l0))
                 out["probes"].append({
@@ -167,9 +195,10 @@ def run(mid):
                 })
             out["g3_floor_e"] = max(p["g3_response_e"] for p in out["probes"])
             out["g3_reassigned_median"] = float(np.median([p["g3_reassigned_frac"] for p in out["probes"]]))
-            out["bader_solves"] = S.n
+            out["bader_solves"] = solver.n
         except Exception as e:
             out.update(status="FAILED", stage="g3", error="%s: %s" % (type(e).__name__, e), traceback=traceback.format_exc())
+
     out["wall_seconds"] = time.time() - t0
     return out
 
