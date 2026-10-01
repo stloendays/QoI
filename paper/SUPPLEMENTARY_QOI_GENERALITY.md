@@ -1,4 +1,4 @@
-# Supplementary extension — QoI generality and qualification robustness
+# Supplementary Notes — QoI generality, robustness and measurement contracts
 
 This supplementary file collects supporting analyses for QSQ generality, robustness and measurement-contract interpretation. Grid-local density extrema and the all-electron-reference Bader decomposition support Results-level claims in the main manuscript. Codec-shaped perturbations remain robustness evidence, while continuous risk calibration (S12) and reference-density prediction (S15) support Discussion-level interpretation.
 
