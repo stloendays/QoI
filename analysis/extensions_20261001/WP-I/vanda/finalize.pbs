@@ -9,7 +9,7 @@
 
 set -euo pipefail
 cd /scratch/junbotong/qoi-wpi-20261001
-set +e; source /etc/profile; set -e
+set +eu; source /etc/profile; set -eu
 module load Python/3.12.3-GCCcore-13.3.0
 test -f PRODUCTION_DONE
 venv/bin/python finalize_vanda.py
