@@ -21,5 +21,3 @@ Completed cutouts: **64/64**.
 ## Differential-operator audit
 
 - Median gradient/noise L2 amplification: **200** (P10 199, P90 200).
-
-[executed on device: LAPTOP-UDBCIUHV (3b8f874d-b5a4-42f4-87b6-73945edc26f9)]
