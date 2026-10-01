@@ -38,7 +38,7 @@ rm -rf "$STAGE/reference_source"
 cp -a "$REPO/mechanism/independent_bader_20260908/reference_source" "$STAGE/reference_source"
 
 cd "$STAGE"
-set +e; source /etc/profile >/dev/null 2>&1; set -e
+set +eu; source /etc/profile >/dev/null 2>&1; set -eu
 module load Python/3.12.3-GCCcore-13.3.0
 export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 
