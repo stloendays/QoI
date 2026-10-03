@@ -1,5 +1,3 @@
-[Reading 21 lines from start (total: 21 lines, 0 remaining)]
-
 # WP-J — JHTDB turbulence QSQ generality
 
 Completed cutouts: **64/64**.
