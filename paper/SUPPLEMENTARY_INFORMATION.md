@@ -289,3 +289,31 @@ At $10^{-2}\,e$, two of the 229 eligible materials have no certifiable row on th
 **Sequential qualification.** Replacing the fixed six-solve QSQ cost by exact sequential early rejection changes no returned row, stored size, certificate or miss. Mean end-to-end cost over all 254 materials falls from 7.93 to 4.84 solves at $10^{-4}\,e$ (−39.0%), from 12.00 to 10.34 at $10^{-3}\,e$ (−13.9%) and from 14.91 to 14.54 at $10^{-2}\,e$ (−2.5%).
 
 **Certificate.** For every material and $\tau$ the writer records the outcome, the returned codec and setting, the compression ratio and the number of Bader solves; the certified Bader error and the QSQ floor are those of the evaluated frozen row. A deployed certificate carries the contract (QoI, algorithm, tolerance, roles and hashes of the inputs), the perturbation scale and seed panel, the number of probes evaluated, the outcome code (`QOI_CERTIFIED`, `QOI_NOT_CERTIFIED` or `REFERENCE_NOT_RESOLVED`), the selected codec and operating point, the verified downstream error, the compressed size and the provenance commit, so that what was qualified can be reconstructed and not only which codec was used.
+
+## Supplementary Note 18 — Finite-panel admission bound and probe exchangeability
+
+**Bound.** QSQ admits a contract when the maximum of $n$ qualification responses is below $\tau$. Let $p$ be the probability that one probe from the declared perturbation family gives a response of at least $\tau$. If the $n$ qualification probes and a later probe are exchangeable, the probability that the contract is admitted and the later probe still exceeds $\tau$ is $\mathbb{E}[p(1-p)^{n}]$, whatever the response distribution. Since $p(1-p)^{n}$ is maximized at $p=1/(n+1)$, this joint probability is at most $n^{n}/(n+1)^{n+1}$:
+
+| Panel size $n$ | 5 | 10 | 19 | 37 |
+|---:|---:|---:|---:|---:|
+| Bound on joint admission and exceedance | 6.70% | 3.50% | 1.89% | 0.98% |
+
+Exchangeability also implies that a later response exceeds the maximum of the panel with probability $1/(n+1)$ for continuous responses (one-sided tolerance limits; Wilks, main-text ref. 23). The bound is a property of the finite-panel rule over the draw of the probes; it is not a conditional risk among admitted contracts and not a worst-case statement.
+
+**Shared seeds in the frozen design.** The five frozen QSQ seeds are used directly as PCG64 seeds, so every material receives the same five random streams, whereas the 59 prospective streams are material-specific. The pooled fraction of fresh responses above the frozen five-probe floor is 19.08% (2,859/14,986; material-cluster 95% CI 17.16–21.01%) against the exchangeable value 1/6. With shared streams the 254 materials do not average over independent panels, so the pooled fraction is one realization rather than an estimate of 1/6.
+
+**Local recomputation.** A package declared before any probe was evaluated (repository `analysis/extensions_20261003/QSQ-exchangeability/`) re-solved, for all 254 development materials, the reference and the five frozen probes in the frozen pipeline, and added a second five-probe panel whose streams are drawn independently for each material (SHA-256 of material identity and label). All 2,794 Bader solves succeeded.
+
+- The recomputed frozen floor matches the published floor exactly ($|\Delta|\le10^{-9}\,e$) in 252/254 materials; the two exceptions (`mp-1296`, 0.181 versus 2.632 $e$; `nomad-3ermMygSkKxT`, 2.058 versus 2.028 $\times10^{-4}\,e$) do not change eligibility. Eligibility agrees in 254/254 materials at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$.
+- With material-independent streams, 16.52% of fresh responses exceed the five-probe maximum (2,475/14,986; 95% CI 14.74–18.39%). The interval contains 1/6, meeting the pre-declared exchangeability criterion.
+- Eligibility under the independent panel agrees with the frozen panel in 237/254, 242/254 and 253/254 materials ($\kappa$ = 0.776, 0.904 and 0.977 at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$).
+
+**Observed joint admission and exceedance** (all 14,986 fresh trials; bound 6.70% for $n=5$):
+
+| $\tau$ ($e$) | Frozen panel: joint rate | Conditional risk among admitted | Coverage | Independent panel: joint rate | Conditional risk among admitted | Coverage |
+|---:|---:|---:|---:|---:|---:|---:|
+| $10^{-4}$ | 0.727% (109) | 4.016% | 46/254 | 0.928% (139) | 5.013% | 47/254 |
+| $10^{-3}$ | 0.901% (135) | 1.600% | 143/254 | 0.721% (108) | 1.317% | 139/254 |
+| $10^{-2}$ | 0.133% (20) | 0.148% | 229/254 | 0.207% (31) | 0.228% | 230/254 |
+
+The Bader contract operates far below the ceiling because its responses are well separated across materials: most materials respond either far below or far above $\tau$. The ceiling is approached only when many contracts have an exceedance probability near $1/(n+1)$, which is the regime in which a larger panel is needed; the table above gives the panel size for a target joint rate.

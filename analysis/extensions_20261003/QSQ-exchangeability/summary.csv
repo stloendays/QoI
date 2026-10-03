@@ -1,0 +1,32 @@
+analysis,metric,value,ci95_low,ci95_high,numerator,denominator,note
+A_floor_reproduction,exact_floor_matches,0.9921259842519685,,,252,254,|diff| <= 1e-9 e
+A_floor_reproduction,max_abs_floor_diff_e,2.451095430826787,,,,,
+A_floor_reproduction,eligibility_agreement_tau_0.0001,1.0,,,254,254,
+A_floor_reproduction,eligibility_agreement_tau_0.001,1.0,,,254,254,
+A_floor_reproduction,eligibility_agreement_tau_0.01,1.0,,,254,254,
+B_exchangeability,P_fresh_above_max5_panel_I_independent,0.16515414386760977,0.1474042439610303,0.18390998265047376,2475,14986,ACCEPTED: CI contains 1/6
+B_exchangeability,P_fresh_above_max5_panel_F_frozen_shared,0.19077805952222074,0.17162685172827974,0.21006272521019617,2859,14986,reported alongside; shared seeds
+C_admission_bound,joint_rate_panel_F_frozen_shared_tau_0.0001,0.007273455224876551,,,109,14986,bound n=5: 0.0670
+C_admission_bound,conditional_risk_panel_F_frozen_shared_tau_0.0001,0.04016212232866617,,,109,2714,
+C_admission_bound,coverage_panel_F_frozen_shared_tau_0.0001,0.18110236220472442,,,46,254,
+C_admission_bound,joint_rate_panel_F_frozen_shared_tau_0.001,0.009008407847324169,,,135,14986,bound n=5: 0.0670
+C_admission_bound,conditional_risk_panel_F_frozen_shared_tau_0.001,0.016000948204338034,,,135,8437,
+C_admission_bound,coverage_panel_F_frozen_shared_tau_0.001,0.562992125984252,,,143,254,
+C_admission_bound,joint_rate_panel_F_frozen_shared_tau_0.01,0.0013345789403443214,,,20,14986,bound n=5: 0.0670
+C_admission_bound,conditional_risk_panel_F_frozen_shared_tau_0.01,0.0014802753312116053,,,20,13511,
+C_admission_bound,coverage_panel_F_frozen_shared_tau_0.01,0.9015748031496063,,,229,254,
+C_admission_bound,joint_rate_panel_I_independent_tau_0.0001,0.009275323635393034,,,139,14986,bound n=5: 0.0670
+C_admission_bound,conditional_risk_panel_I_independent_tau_0.0001,0.05012621709340065,,,139,2773,
+C_admission_bound,coverage_panel_I_independent_tau_0.0001,0.18503937007874016,,,47,254,
+C_admission_bound,joint_rate_panel_I_independent_tau_0.001,0.0072067262778593355,,,108,14986,bound n=5: 0.0670
+C_admission_bound,conditional_risk_panel_I_independent_tau_0.001,0.013169125716376053,,,108,8201,
+C_admission_bound,coverage_panel_I_independent_tau_0.001,0.547244094488189,,,139,254,
+C_admission_bound,joint_rate_panel_I_independent_tau_0.01,0.002068597357533698,,,31,14986,bound n=5: 0.0670
+C_admission_bound,conditional_risk_panel_I_independent_tau_0.01,0.0022844509948415624,,,31,13570,
+C_admission_bound,coverage_panel_I_independent_tau_0.01,0.905511811023622,,,230,254,
+D_panel_agreement,agreement_tau_0.0001,0.9330708661417323,,,237,254,
+D_panel_agreement,kappa_tau_0.0001,0.7762462431340036,,,,,
+D_panel_agreement,agreement_tau_0.001,0.952755905511811,,,242,254,
+D_panel_agreement,kappa_tau_0.001,0.9043734705402522,,,,,
+D_panel_agreement,agreement_tau_0.01,0.9960629921259843,,,253,254,
+D_panel_agreement,kappa_tau_0.01,0.977414191712609,,,,,

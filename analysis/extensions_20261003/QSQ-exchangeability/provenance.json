@@ -1,0 +1,17 @@
+{
+ "script": "analyze_exch.py",
+ "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+ "platform": "Windows-11-10.0.26200-SP0",
+ "inputs_sha256": {
+  "stability\\stability_floor_A1.csv": "1642efe7688ff172d3a0a949685315c5b5afe6d58f836b21670819c137bbb161",
+  "validation\\qsq_prospective\\p2_fresh_probes\\outcomes.csv": "784fad387a9d0a567ec0857f3a50b24cf0545d9ee2532cee8a5b886959503fa5"
+ },
+ "checkpoint_dir": "D:\\Research\\QoI-ext-cache\\QSQ-exch\\checkpoints",
+ "n_checkpoints": 254,
+ "bootstrap": [
+  2000,
+  20261003
+ ],
+ "bound_n5": 0.06697959533607682,
+ "wall_seconds": 4.554743051528931
+}

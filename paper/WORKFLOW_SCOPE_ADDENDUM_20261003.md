@@ -79,6 +79,11 @@ reproduces the frozen five-seed floor locally and tests exchangeability with mat
 Results sentence reports the observed joint rate (0.901% at 1e-3 e, 135/14,986) against the bound. Methods states
 that the frozen seeds are shared across materials, so the bound holds per contract on average over the seed draw.
 
+Outcome (2026-10-03, 254/254 materials, 2,794 Bader solves, 0 failures): frozen floor reproduced exactly in 252/254,
+eligibility 254/254 at every threshold; with material-independent streams 16.52% of fresh responses exceed the
+five-probe maximum (95% CI 14.74–18.39%, contains 1/6), so the pre-declared exchangeability criterion is met. The
+frozen shared seeds give 19.08% (CI 17.16–21.01%). Recorded as Claim 21 and Supplementary Note 18.
+
 ### Positioning — Compression Safeguards
 
 Tyree et al. (EGUsphere 2026-4266) is cited with Jiao et al. and TOPIQ. Distinction: safeguards enforce

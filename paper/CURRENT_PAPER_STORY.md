@@ -17,7 +17,9 @@ Governing record: `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`. No experiment add
   1e-3 e (14.90× vs 15.13×), 0/143 misses, 16.7 vs 37.0 Bader solves per eligible material; sequential QSQ brings
   end-to-end cost to 10.3 solves per material.
 - **Finite-panel admission bound (Methods + one Results sentence + SI Note 18):** P(admitted ∧ later probe ≥ τ)
-  ≤ nⁿ/(n+1)ⁿ⁺¹ = 6.70% for n = 5 under exchangeable probes; observed 0.901% at 1e-3 e.
+  ≤ nⁿ/(n+1)ⁿ⁺¹ = 6.70% for n = 5 under exchangeable probes; observed 0.901% at 1e-3 e. Local recomputation:
+  floor reproduced 252/254, eligibility 254/254; independent-stream panel 16.52% above the five-probe maximum
+  (CI 14.74–18.39%, contains 1/6).
 - **Positioning:** Compression Safeguards (Tyree et al. 2026) cited with Jiao et al. and TOPIQ; QSQ is a
   precondition for enforcing or predicting a QoI requirement.
 - **Discussion:** what each outcome licenses (contract change, coarser decision, tolerance matching, codec search).
