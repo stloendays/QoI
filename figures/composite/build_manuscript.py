@@ -53,9 +53,10 @@ def parse_md(md):
             blocks.append(("h2", ln[3:].strip()))
         elif ln.startswith("### "):
             blocks.append(("h3", ln[4:].strip()))
-        elif ln.startswith("$$"):
+        elif ln.startswith("$$") or ln.strip() == "$":
+            close = "$$" if ln.startswith("$$") else "$"
             eq, i = [], i + 1
-            while i < len(lines) and not lines[i].startswith("$$"):
+            while i < len(lines) and lines[i].strip() != close and not lines[i].startswith("$$"):
                 eq.append(lines[i].strip()); i += 1
             blocks.append(("eq", " ".join(eq)))
         elif ln.startswith("|"):

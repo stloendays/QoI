@@ -246,10 +246,10 @@ If $f_C\geq\tau$, the material–contract pair is classified as non-evaluable un
 **Finite-panel admission bound.** Let $p_C(\tau)$ denote the probability that a single probe drawn from the declared perturbation family gives a response of at least $\tau$. If the $n$ qualification responses and a later response $r^{\ast}$ are exchangeable—for example, independent draws from the same family—then
 
 $$
-P\left[\text{eligible}(C,\tau)\land r^{\ast}\ge\tau\right]=\mathbb{E}\left[p_C(1-p_C)^{n}\right]\le\max_{0\le p\le1}p(1-p)^{n}=\frac{n^{n}}{(n+1)^{n+1}}
+P[\text{eligible}(C,\tau)\land r^{\ast}\ge\tau]=\mathbb{E}[p_C(1-p_C)^{n}]\le\frac{n^{n}}{(n+1)^{n+1}}
 $$
 
-for every contract and every response distribution, with the maximum at $p_C=1/(n+1)$. The bound is 6.70% for $n=5$ and decreases approximately as $1/[e(n+1)]$, for example to 1.89% for $n=19$. Exchangeability also gives $P(r^{\ast}>f_C)=1/(n+1)$ for continuous responses, the one-sided tolerance-limit argument of Wilks [23]. The bound concerns joint admission and exceedance for one later probe; it does not bound the conditional risk among admitted contracts and is not a worst-case statement over all admissible perturbations. In the frozen design the five seeds are shared by all materials, so the bound holds for each contract on average over the draw of the seed panel rather than independently across materials (Supplementary Note 18).
+for every contract and every response distribution, because $p(1-p)^{n}$ is maximized over $0\le p\le1$ at $p=1/(n+1)$. The bound is 6.70% for $n=5$ and decreases approximately as $1/[e(n+1)]$, for example to 1.89% for $n=19$. Exchangeability also gives $P(r^{\ast}>f_C)=1/(n+1)$ for continuous responses, the one-sided tolerance-limit argument of Wilks [23]. The bound concerns joint admission and exceedance for one later probe; it does not bound the conditional risk among admitted contracts and is not a worst-case statement over all admissible perturbations. In the frozen design the five seeds are shared by all materials, so the bound holds for each contract on average over the draw of the seed panel rather than independently across materials (Supplementary Note 18).
 
 ### All-electron-reference Bader contract decomposition
 

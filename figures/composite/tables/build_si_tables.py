@@ -31,7 +31,8 @@ SRC = os.path.join(REPO, "paper", "SUPPLEMENTARY_TABLES_FINAL.md")
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 INK, MID, LINE = "#1B1B1B", "#6B6F76", "#1B1B1B"
 
-SUP = str.maketrans("0123456789-+", "\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u207b\u207a")
+SUP = str.maketrans("0123456789-+nickmT", "\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u207b\u207a"
+                    "\u207f\u2071\u1d9c\u1d4f\u1d50\u1d40")
 SUB = str.maketrans("0123456789", "\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089")
 SUBL = str.maketrans("aehijklmnoprstuvx", "\u2090\u2091\u2095\u1d62\u2c7c\u2096\u2097\u2098\u2099\u2092\u209a\u1d63\u209b\u209c\u1d64\u1d65\u2093")
 GREEK = {r"\tau": "\u03c4", r"\epsilon": "\u03b5", r"\rho": "\u03c1", r"\Delta": "\u0394", r"\infty": "\u221e",
@@ -44,16 +45,28 @@ GREEK = {r"\tau": "\u03c4", r"\epsilon": "\u03b5", r"\rho": "\u03c1", r"\Delta":
          r"\log": "log", r"\pi": "\u03c0"}
 
 
+BLACKBOARD = {"E": "\U0001d53c", "P": "\u2119", "R": "\u211d", "N": "\u2115", "Z": "\u2124"}
+COMMANDS = {k[1:]: v for k, v in GREEK.items() if re.fullmatch(r"\\[A-Za-z]+", k)}
+COMMANDS.update({"ast": "\u2217", "mid": "|", "infty": "\u221e", "sim": "\u223c", "propto": "\u221d"})
+SYMBOLS = {k: v for k, v in GREEK.items() if re.fullmatch(r"\\[^A-Za-z]", k)}
+
+
 def tex(s):
-    """Convert the small TeX vocabulary used in the tables to Unicode."""
+    """Convert the small TeX vocabulary used in the manuscript and tables to Unicode.
+
+    Commands are matched by their full name, so a short command never rewrites part of a longer one
+    (\\le inside \\left, \\in inside \\infty)."""
     def frag(m):
         t = m.group(1)
-        t = re.sub(r"\\text\{([^}]*)\}", r"\1", t)
-        for k, v in sorted(GREEK.items(), key=lambda kv: -len(kv[0])):
-            t = t.replace(k, v)
+        t = re.sub(r"\\(?:left|right|big|Big|bigg|Bigg)(?![A-Za-z])", "", t)
+        t = re.sub(r"\\(?:text|mathrm|mathit|mathbf|operatorname)\{([^{}]*)\}", r"\1", t)
+        t = re.sub(r"\\mathbb\{([A-Z])\}", lambda k: BLACKBOARD.get(k.group(1), k.group(1)), t)
+        t = re.sub(r"\\tilde\{\\?([A-Za-z]+)\}", lambda k: COMMANDS.get(k.group(1), k.group(1)) + "\u0303", t)
+        t = re.sub(r"\\([A-Za-z]+)", lambda k: COMMANDS.get(k.group(1), k.group(0)), t)
+        t = re.sub(r"\\[^A-Za-z]", lambda k: SYMBOLS.get(k.group(0), k.group(0)), t)
         # scripts first, so that \frac / \sqrt arguments no longer contain braces
         t = re.sub(r"\^\{([^}]*)\}", lambda k: k.group(1).translate(SUP), t)
-        t = re.sub(r"\^([0-9\-+])", lambda k: k.group(1).translate(SUP), t)
+        t = re.sub(r"\^([0-9\-+]|[nickmT](?![A-Za-z]))", lambda k: k.group(1).translate(SUP), t)
         t = re.sub(r"_\{([^}]*)\}", lambda k: k.group(1).translate(SUB) if k.group(1).isdigit()
                    else (k.group(1).translate(SUBL) if re.fullmatch(r"[a-z]", k.group(1)) else "\u2009" + k.group(1)), t)
         t = re.sub(r"_([0-9])", lambda k: k.group(1).translate(SUB), t)
