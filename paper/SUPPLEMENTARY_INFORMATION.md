@@ -140,11 +140,11 @@ The matched-pair mechanism table, reconstruction-level spectral metrics, radial 
 
 ## Supplementary Note 5 — Binary-to-three-state reclassification
 
-The primary Figure 3 audit uses one material–codec decision per Bader threshold, giving **254 materials × 3 codecs = 762 decisions per threshold**. Versioned pooled and codec-resolved summaries support the reported counts.
+The binary-to-three-state audit uses one material–codec decision per Bader threshold on the full benchmark record, giving **254 materials × 3 codecs = 762 decisions per threshold** (Supplementary Fig. S7 and Supplementary Table S4). Versioned pooled and codec-resolved summaries support the reported counts.
 
-At $10^{-4}\,e$, a naive binary benchmark reports 533 failures, of which **518 (97.2%)** occur on non-evaluable material–threshold pairs; only 15 remain genuine eligible failures. At $10^{-3}\,e$, **296/310 (95.5%)** naive failures are non-evaluable, leaving 14 genuine failures. At $10^{-2}\,e$, **61/108 (56.5%)** are non-evaluable, leaving 47 genuine failures.
+At $10^{-4}\,e$, a naive binary benchmark reports 533 failures, of which **518 (97.2%)** occur on non-evaluable material–threshold pairs; only 15 remain genuine eligible failures. At $10^{-3}\,e$, **296/310 (95.5%)** naive failures are non-evaluable, leaving 14 genuine failures. At $10^{-2}\,e$, **61/108 (56.5%)** are non-evaluable, leaving 47 genuine failures. These fractions describe the full record as it was built, in which the extra tight ladder was run only for the materials eligible at $10^{-3}\,e$, so screen-rejected materials had fewer settings at which to pass. With the same tight settings completed for every material, the no-pass risk at $10^{-3}\,e$ is 3.3% for eligible versus 66.4% for screen-rejected material–codec pairs, a 20.34-fold ratio (main-text Fig. 3c); this equal-search ratio is the measure reported in the main text.
 
-The qualification is not a permissive rescue rule: at $10^{-4}\,e$, **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 reports the codec-by-codec decomposition beyond the pooled Figure 3 presentation.
+The qualification is not a permissive rescue rule: at $10^{-4}\,e$, **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 reports the codec-by-codec decomposition.
 
 
 ## Supplementary Note 6 — Extended Bader mechanism and cross-implementation robustness

@@ -163,7 +163,7 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 
 - **Figure 1:** three-stage workflow (qualification → certification → diagnosis) with the three outcome labels.
 - **Figure 2:** operator hierarchy / motivation.
-- **Figure 3:** **central validation figure — equal-search benchmark test + prospective fresh-perturbation risk stratification.**
+- **Figure 3:** **central validation figure — per-material floor vs fresh risk (a), the finite-panel admission bound with every material on it (b), equal-search control (c), prospective risk at three thresholds (d).**
 - **Figure 4:** order-preserving control versus QSQ perturbation validation.
 - **Figure 5:** Bader basin-migration mechanism, with panel f for the all-electron-reference contract decomposition; implementation transfer remains supporting evidence rather than a second headline.
 - **Figure 6:** nominal-vs-realized distortion confounding control.

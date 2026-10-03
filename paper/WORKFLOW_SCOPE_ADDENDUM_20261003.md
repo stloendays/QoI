@@ -110,6 +110,12 @@ actually protected (P4: 60/60 directions preserved), or matched to a tolerance t
   partition-field contracts at 1e-3 e). The existing panels are kept.
 - WP-E enters as Supplementary Fig. S10 (writer cost versus fraction of oracle). The eight-figure main-text
   architecture is unchanged.
+- **Further redraws authorized by the author (2026-10-03, "作图，统一风格，耳目一新的图表"):** Fig. 3a's box-and-arrow
+  split is replaced by every material's floor against its fresh exceedance fraction, and a new Fig. 3b draws the
+  finite-panel admission bound $p(1-p)^5$ with every material placed on it (equal-search and threshold panels become
+  3c and 3d); Fig. 4a's paired-line slopegraph becomes rainclouds of the two floor distributions; Fig. 5d becomes a
+  density-coloured scatter; Fig. 8 no longer joins the three discrete contracts by lines, shows every certified row
+  per codec in 8c and the eligible / non-evaluable composition of the 63 systems in 8d. No plotted value changes.
 
 ## Not included
 
