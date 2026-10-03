@@ -157,7 +157,7 @@ scientific field
 
 For electronic-structure data, examples include charge density feeding Bader or Hartree-related analyses. For turbulence, velocity fields can feed derivative-based observables such as vorticity or Q-criterion.
 
-Status of the turbulence example (2026-10-03): the JHTDB pilot and independent confirmation (`ext/turbulence-generality-20261001`, WP-J) did not meet the pre-declared acceptance criteria (confirmatory rejected/eligible risk ratios 3.71 and 3.18 against a required 5). The example therefore illustrates the abstraction and is not cited as validated cross-domain evidence. A new cohort with the qualification panel sized from the finite-panel admission bound is pre-registered on that branch.
+Status of the turbulence example (2026-10-03): the JHTDB pilot and independent confirmation (`ext/turbulence-generality-20261001`, WP-J) did not meet the pre-declared acceptance criteria (confirmatory rejected/eligible risk ratios 3.71 and 3.18 against a required 5). A second independent cohort with a 19-probe qualification panel sized from the finite-panel admission bound was then pre-registered and run on `ext/turbulence-n19-20261003`, and met acceptance on both endpoints (vortex mask RR 17.7, enstrophy RR 13.4; joint admission-and-exceedance 0.79% and 0.45% against the 1.89% bound). It stays outside the electronic-density manuscript unless the author decides otherwise.
 
 The general claim to test is therefore not that one frequency band is universally important. It is that scientific compressibility is jointly conditioned by:
 

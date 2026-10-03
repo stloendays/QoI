@@ -106,9 +106,13 @@ actually protected (P4: 60/60 directions preserved), or matched to a tolerance t
 
 - **WP-F** (Materials Project archive estimate): 235/300 sampled objects complete; no reader-facing number until the
   pre-declared estimator runs on the complete sample.
-- **WP-J** (JHTDB turbulence): pilot and confirmatory acceptance NOT MET; outside the electronic-density title. A new
-  cohort with the qualification panel sized from the admission bound is pre-registered on
-  `ext/turbulence-generality-20261001` and does not enter this manuscript.
+- **WP-J** (JHTDB turbulence): outside the electronic-density title and kept out of this manuscript by author
+  decision ("可以先不放"). Pilot and first confirmation (five-probe panel) did not meet acceptance. A second
+  independent cohort with a 19-probe panel sized from the admission bound was pre-registered and run on
+  `ext/turbulence-n19-20261003` (commits `7c19643` protocol, `92ef24a` manifest, `c6cf348` results) and **met
+  acceptance on both endpoints**: vortex mask 22/42 eligible/rejected, fresh risk 2.311% vs 40.799%, RR 17.7,
+  CI [0.294, 0.480]; enstrophy 15/49, 1.921% vs 25.666%, RR 13.4, CI [0.189, 0.287]; joint admission-and-exceedance
+  0.79% and 0.45% against the 1.89% bound. Entering it into a manuscript requires a further author decision.
 
 ## Claim boundaries
 
