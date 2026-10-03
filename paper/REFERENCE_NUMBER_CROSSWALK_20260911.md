@@ -51,3 +51,23 @@ The submission manuscript instead numbers references in order of first appearanc
 ## Audit rule
 
 Stable library IDs should be used in literature-management/provenance files. Submission citation numbers should be used only in reader-facing manuscript and journal-style bibliography renderings. DOI/title metadata, rather than the integer alone, remains the authoritative identity of a reference.
+
+## Update 2026-10-03 (workflow integration)
+
+Two library IDs were added and the submission order was extended by first appearance. Compression Safeguards is
+first cited in the Introduction directly after TOPIQ, so it takes submission number 17 and the five Bader/topology
+references move from 17–21 to 18–22. Wilks is first cited in Methods (finite-panel admission bound) and takes 23.
+
+| Stable library ID | Submission citation no. | Reference shorthand |
+|---:|---:|---|
+| 22 | 17 | Tyree et al., Compression Safeguards preprint |
+| 17 | 18 | Bader, QTAIM monograph |
+| 8 | 19 | Henkelman et al., Bader decomposition |
+| 9 | 20 | Tang et al., lattice-bias-free Bader analysis |
+| 16 | 21 | Yu & Trinkle, Bader charge integration |
+| 10 | 22 | Hutcheon & Teale, arbitrary-grid topological analysis |
+| 23 | 23 | Wilks, tolerance limits |
+
+Submission-order reference sequence (current):
+
+`1, 2, 3, 4, 18, 21, 19, 5, 6, 12, 13, 14, 20, 7, 15, 11, 22, 17, 8, 9, 16, 10, 23`

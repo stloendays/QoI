@@ -4,6 +4,8 @@ Date: 2026-10-03
 
 Status: research/design note. This document records the current conceptual interpretation of the workflow. It does **not** replace frozen protocols or claim-evidence tables, and it should not be treated as new experimental evidence until the corresponding analyses are implemented and audited.
 
+**Terminology alignment (2026-10-03).** The reader-facing outcome labels are **certified**, **not certified** and **non-evaluable** (`paper/NAMING_AND_TERMINOLOGY_POLICY.md`). The label originally written here as "NOT CERTIFIABLE" is the paper's **non-evaluable** outcome and has been renamed throughout this note. The integrated manuscript wording is governed by `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`.
+
 ## 1. What problem the workflow is intended to answer
 
 The workflow is not designed to decide whether a scientific dataset is "true" in an absolute sense. Its operational question is narrower and auditable:
@@ -34,7 +36,7 @@ If the reference uncertainty / perturbation floor is too large relative to the r
 
 This outcome should be reported as:
 
-**NOT CERTIFIABLE**
+**NON-EVALUABLE**
 
 It does not mean that the original field is wrong, nor that a compressor failed. It means that the current reference pipeline cannot resolve a compression-induced effect at the requested scale.
 
@@ -84,11 +86,11 @@ The workflow should preserve three distinct outcomes:
 
 | Reference stability at target tolerance | Compression QoI criterion | Outcome | Meaning |
 |---|---|---|---|
-| insufficient | not evaluated as a certification decision | NOT CERTIFIABLE | reference resolution is insufficient for the requested claim |
+| insufficient | not evaluated as a certification decision | NON-EVALUABLE | reference resolution is insufficient for the requested claim |
 | sufficient | satisfied | CERTIFIED | compressed representation is supported for this QoI/tolerance/protocol |
 | sufficient | violated | NOT CERTIFIED | this compression setting is not supported for this QoI/tolerance/protocol |
 
-These labels must not be collapsed. In particular, NOT CERTIFIABLE is a measurement/reference limitation, whereas NOT CERTIFIED is a compression-use limitation after eligibility has been established.
+These labels must not be collapsed. In particular, NON-EVALUABLE is a measurement/reference limitation, whereas NOT CERTIFIED is a compression-use limitation after eligibility has been established.
 
 ## 4. Practical value
 
@@ -117,7 +119,7 @@ uncompressed charge density
         v
 reference QoI + stability assessment
         |
-        +-- insufficient at tau_Q --> NOT CERTIFIABLE
+        +-- insufficient at tau_Q --> NON-EVALUABLE
         |
         v
 compress -> decompress
@@ -154,6 +156,8 @@ scientific field
 ```
 
 For electronic-structure data, examples include charge density feeding Bader or Hartree-related analyses. For turbulence, velocity fields can feed derivative-based observables such as vorticity or Q-criterion.
+
+Status of the turbulence example (2026-10-03): the JHTDB pilot and independent confirmation (`ext/turbulence-generality-20261001`, WP-J) did not meet the pre-declared acceptance criteria (confirmatory rejected/eligible risk ratios 3.71 and 3.18 against a required 5). The example therefore illustrates the abstraction and is not cited as validated cross-domain evidence. A new cohort with the qualification panel sized from the finite-panel admission bound is pre-registered on that branch.
 
 The general claim to test is therefore not that one frequency band is universally important. It is that scientific compressibility is jointly conditioned by:
 

@@ -51,3 +51,20 @@ The terms have distinct roles:
 - **certification**: evaluates codec performance only after eligibility has been established.
 
 `Protocol A` and `Protocol A.1` remain historical/internal labels for provenance and reproducibility. They should not be used as the preferred reader-facing method name in future manuscript revisions.
+
+## Workflow stages and outcome labels (2026-10-03)
+
+Reader-facing organization: **qualification → certification → diagnosis**.
+
+Every material–contract–tolerance decision ends in exactly one outcome. Use these labels verbatim in text,
+figures, captions and SI:
+
+| Outcome | Condition | Reason code (machine-readable certificates) |
+|---|---|---|
+| **certified** | eligible and re-derived QoI error < τ | `QOI_CERTIFIED` |
+| **not certified** | eligible, and no evaluated reconstruction meets τ | `QOI_NOT_CERTIFIED` |
+| **non-evaluable** | QSQ floor ≥ τ | `REFERENCE_NOT_RESOLVED` |
+
+Do not use "not certifiable" as a reader-facing label: it reads as a codec outcome, whereas non-evaluable is a
+property of the reference analysis. "Eligible, not certified" is acceptable where the eligibility state must be
+explicit. The governing record is `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`.

@@ -99,3 +99,7 @@ The manuscript's literature claim should remain conservative:
 > Prior work establishes QoI-aware compression, topology-aware compression, and numerical sensitivity in grid-based downstream analysis. Our contribution is the stability-qualified certification logic that asks whether a requested downstream tolerance is itself numerically identifiable before it is used to score a compressor, and then quantifies the consequences of that qualification on a frozen electronic-density benchmark.
 
 Do not use an absolute “first ever” statement unless a later systematic review supports it.
+
+22. Tyree, J., Underwood, R., Bouvier, C., Köhler, D., Reichelt, T., Dueben, P., Faghih-Naini, S., Järvinen, H. & Klöwer, M. Compression Safeguards: Building trust into lossy data compression. **EGUsphere** preprint egusphere-2026-4266 (2026). https://doi.org/10.5194/egusphere-2026-4266. *(added 2026-10-03; QoI-requirement enforcement on decoded data — positioning against QSQ.)*
+
+23. Wilks, S. S. Determination of sample sizes for setting tolerance limits. **The Annals of Mathematical Statistics** **12**, 91–96 (1941). https://doi.org/10.1214/aoms/1177731788. *(added 2026-10-03; order-statistic tolerance limits behind the finite-panel admission bound.)*

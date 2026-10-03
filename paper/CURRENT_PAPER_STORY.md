@@ -1,6 +1,26 @@
-# Current paper story — 2026-10-01
+# Current paper story — 2026-10-03
 
 **Active title:** *Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities*
+
+## 2026-10-03 workflow integration
+
+Governing record: `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`. No experiment added, no claim removed.
+
+- **Organization:** qualification → certification → diagnosis (Fig. 1 redrawn accordingly). Five stated contributions
+  close the Introduction: contract-level qualification; validation (equal search, prospective, implementation
+  transfer, finite-panel admission bound); QoI-specific evaluability (grid-local extrema); per-operator diagnosis
+  (Bader partition field, Hartree Fourier allocation); scientific-use decisions (frontier, certifying writer, P4,
+  external cohort).
+- **Outcome labels:** certified / not certified / non-evaluable, with reason codes `QOI_CERTIFIED`,
+  `QOI_NOT_CERTIFIED`, `REFERENCE_NOT_RESOLVED`.
+- **Certifying writer (Results + SI Note 17 + Supplementary Fig. S9):** 98.5% of oracle archive compression at
+  1e-3 e (14.90× vs 15.13×), 0/143 misses, 16.7 vs 37.0 Bader solves per eligible material; sequential QSQ brings
+  end-to-end cost to 10.3 solves per material.
+- **Finite-panel admission bound (Methods + one Results sentence + SI Note 18):** P(admitted ∧ later probe ≥ τ)
+  ≤ nⁿ/(n+1)ⁿ⁺¹ = 6.70% for n = 5 under exchangeable probes; observed 0.901% at 1e-3 e.
+- **Positioning:** Compression Safeguards (Tyree et al. 2026) cited with Jiao et al. and TOPIQ; QSQ is a
+  precondition for enforcing or predicting a QoI requirement.
+- **Discussion:** what each outcome licenses (contract change, coarser decision, tolerance matching, codec search).
 
 ## One-sentence thesis
 
@@ -139,11 +159,11 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 
 ## Figure logic
 
-- **Figure 1:** scientific-compression measurement contract.
+- **Figure 1:** three-stage workflow (qualification → certification → diagnosis) with the three outcome labels.
 - **Figure 2:** operator hierarchy / motivation.
 - **Figure 3:** **central validation figure — equal-search benchmark test + prospective fresh-perturbation risk stratification.**
 - **Figure 4:** order-preserving control versus QSQ perturbation validation.
-- **Figure 5:** Bader basin-migration mechanism; implementation transfer remains supporting evidence rather than a second headline.
+- **Figure 5:** Bader basin-migration mechanism, with panel e for the all-electron-reference contract decomposition; implementation transfer remains supporting evidence rather than a second headline.
 - **Figure 6:** nominal-vs-realized distortion confounding control.
 - **Figure 7:** Fourier-spectrum mechanism audit of matched ZFP/SZ3 Hartree pairs.
 - **Figure 8:** untouched external confirmation.
