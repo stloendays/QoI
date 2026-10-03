@@ -262,7 +262,7 @@ These results show that, under the tested all-electron-reference Bader contract 
 
 ## Supplementary Note 17 — Certifying writer
 
-The certifying writer turns qualification and certification into one per-field procedure: run QSQ, leave a non-evaluable field uncompressed, search the codec ladders of an eligible field, and return the selected reconstruction with its certificate. It was evaluated on the 6,343 frozen development rows of 254 materials without new computation. QSQ costs one reference and five probe Bader solves; each queried rung costs one solve.
+The certifying writer turns qualification and certification into one per-field procedure: run QSQ, leave a non-evaluable field uncompressed, search the codec ladders of an eligible field, and return the selected reconstruction with its certificate. It was evaluated on the 6,343 frozen development rows of 254 materials without new computation (Supplementary Fig. S10). QSQ costs one reference and five probe Bader solves; each queried rung costs one solve.
 
 **Policies.** EXHAUSTIVE evaluates every rung of every codec (the oracle). SCAN evaluates each codec from its loosest rung downwards and stops at the first certified rung. BISECT bisects each codec's ladder over rung index, moving looser after a certified rung and tighter otherwise. Each multi-codec policy returns the certified row with the largest compression ratio among the rows it evaluated across ZFP, SZ3 and SPERR; single-codec SCAN and BISECT variants were evaluated for comparison. The adoption rule was fixed before any policy outcome was computed: the fewest mean solves among multi-codec policies whose archive compression at $10^{-3}\,e$ is at least 0.98 times the oracle and whose miss rate is at most 2%. BISECT met the rule.
 
