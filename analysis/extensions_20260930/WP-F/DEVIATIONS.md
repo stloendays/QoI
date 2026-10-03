@@ -31,3 +31,14 @@ acceptance criterion is changed.
    object, is never certified, and the object's other rungs and its storage outcome are unaffected
    (a 1e-1 ZFP rung is far above any certifiable tolerance in these data). Object-level failures remain
    governed by the storage rule.
+
+6. **Interruption and resumption (execution note, 2026-10-03, before the resumed run).** The detached run
+   `qoi-WP-F-main-0930-1913` stopped without an error or exit code after the checkpoint of `mp-2013545`
+   (2026-10-02 08:09:45); its log ends mid-group and the supervising monitor had already exited, so the
+   process was ended from outside (no object failed). At that point 235/300 objects had checkpoints
+   (D01–D07 30/30 each, D08 25/30, D09 0/30, D10a–D10c 0/30), all `SUCCESS`. The run is resumed with the
+   recorded command (`run_wpf.py --group all --workers 3`); `run_wpf.py` skips objects that already have a
+   checkpoint, so the 235 completed objects are reused unchanged and the remaining 65 run under the same
+   code, stack, sample, order and storage rule. The pre-declared 30 h reduction rule is not invoked: the
+   small group is close to complete under the full ladder and the large group already runs the adopted
+   WP-E policy, as the protocol specifies.
