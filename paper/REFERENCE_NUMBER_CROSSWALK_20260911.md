@@ -71,3 +71,19 @@ references move from 17–21 to 18–22. Wilks is first cited in Methods (finite
 Submission-order reference sequence (current):
 
 `1, 2, 3, 4, 18, 21, 19, 5, 6, 12, 13, 14, 20, 7, 15, 11, 22, 17, 8, 9, 16, 10, 23`
+
+## Update 2026-10-03 (measurement-science framing)
+
+Two library IDs were added. Currie (IUPAC 1995) and the AIAG MSA manual are first cited in the Introduction paragraph
+that precedes "Here we establish QSQ…", so they take submission numbers 23 and 24; Wilks, first cited in Methods, moves
+from 23 to 25 (main-text Methods citation and SI Note 18 "main-text ref. 25" updated).
+
+| Stable library ID | Submission citation no. | Reference shorthand |
+|---:|---:|---|
+| 24 | 23 | Currie, IUPAC 1995 detection/quantification nomenclature |
+| 25 | 24 | AIAG, Measurement Systems Analysis manual (4th edn) |
+| 23 | 25 | Wilks, tolerance limits |
+
+Submission-order reference sequence (current):
+
+`1, 2, 3, 4, 18, 21, 19, 5, 6, 12, 13, 14, 20, 7, 15, 11, 22, 17, 8, 9, 16, 10, 24, 25, 23`
