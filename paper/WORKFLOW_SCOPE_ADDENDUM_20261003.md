@@ -141,3 +141,13 @@ Do not claim:
 - cross-domain (turbulence) generality.
 
 This addendum re-freezes the scope after the 2026-10-03 workflow integration.
+
+## Measurement-science framing (author request, 2026-10-03; merged from `paper/metrology-framing-20261003`)
+
+QSQ is related to two established measurement-capability practices: the limit of quantification of an analytical
+method (Currie, IUPAC 1995; reference 23) and the precision-to-tolerance comparison of measurement-system analysis
+(AIAG MSA, 4th edn; reference 24). The manuscript states the correspondence as an analogy in Methods ("Relation to
+measurement-capability analysis"), adds one Introduction paragraph and a closing Discussion paragraph that reuse only
+existing results (20.34-fold equal-search ratio, codec preference changing between 1e-4 and 1e-2 e, kappa = 0.134,
+median certified error 1.09–1.33 times the floor at 1e-4 e), and ends the Abstract with the same framing. Wilks moves
+to reference 25. No result, threshold or claim changes.
