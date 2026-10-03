@@ -43,12 +43,12 @@ SHEETS = {
           ("fig2/Fig2.svg", "Figure 2   Downstream operator structure controls error propagation", 0.70),
           ("fig3/Fig3.svg", "Figure 3   QSQ prospectively stratifies downstream numerical risk", 0.70),
           ("fig4/Fig4.svg", "Figure 4   A stability probe must excite the numerical failure mode", 0.70)],
-         [("fig5/Fig5.svg", "Figure 5   Basin migration explains irregular Bader amplification", 0.70),
-          ("fig6/Fig6.svg", "Figure 6   Equal nominal tolerance conflates distortion with error structure", 0.70),
-          ("fig7/Fig7.svg", "Figure 7   Frequency allocation of error controls Hartree fidelity", 0.70),
-          ("fig8/Fig8.svg", "Figure 8   Untouched external systems reproduce the decision frontier", 0.70)]]),
+         [("fig5/Fig5.svg", "Figure 5   Basin migration explains irregular Bader amplification", 0.60),
+          ("fig6/Fig6.svg", "Figure 6   Equal nominal tolerance conflates distortion with error structure", 0.60),
+          ("fig7/Fig7.svg", "Figure 7   Frequency allocation of error controls Hartree fidelity", 0.60),
+          ("fig8/Fig8.svg", "Figure 8   Untouched external systems reproduce the decision frontier", 0.60)]]),
     "Sheet_supplementary_figures": (
-        "QSQ supplementary figures S1–S8",
+        "QSQ supplementary figures S1–S9",
         [[("figS1/FigS1.svg", "Figure S1   QSQ defines the measurable Bader-fidelity landscape", 0.70),
           ("figS2/FigS2.svg", "Figure S2   Probe validation, seed and amplitude sensitivity", 0.70),
           ("figS3/FigS3.svg", "Figure S3   Extended operator controls", 0.70),
@@ -56,7 +56,8 @@ SHEETS = {
          [("figS5/FigS5.svg", "Figure S5   Mechanism robust to an independent implementation", 0.70),
           ("figS6/FigS6.svg", "Figure S6   Matching conclusions robust to the caliper", 0.70),
           ("figS7/FigS7.svg", "Figure S7   Codec-resolved consequences of qualification", 0.70),
-          ("figS8/FigS8.svg", "Figure S8   Rate-fidelity conclusions reproduce externally", 0.70)]]),
+          ("figS8/FigS8.svg", "Figure S8   Rate-fidelity conclusions reproduce externally", 0.70),
+          ("figS9/FigS9.svg", "Figure S9   Reference densities of five development materials", 0.70)]]),
 }
 
 
@@ -93,7 +94,9 @@ def compose(title, columns):
             items.append(dict(path=path, caption=caption, vb=vb, body=body,
                               w=w * scale, h=h * scale, y=y))
             y += CAP + h * scale + GAP
-        cols.append(dict(items=items, w=max(i["w"] for i in items), h=y - GAP))
+        # a column is as wide as its widest figure or caption (Arial bold ~0.58 em per character at 3.4 mm)
+        cap_w = max(len(i["caption"]) * 3.4 * 0.58 for i in items)
+        cols.append(dict(items=items, w=max(max(i["w"] for i in items), cap_w), h=y - GAP))
 
     x = PAD
     for col in cols:
