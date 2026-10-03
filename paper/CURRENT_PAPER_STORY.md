@@ -13,7 +13,7 @@ Governing record: `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`. No experiment add
   external cohort).
 - **Outcome labels:** certified / not certified / non-evaluable, with reason codes `QOI_CERTIFIED`,
   `QOI_NOT_CERTIFIED`, `REFERENCE_NOT_RESOLVED`.
-- **Certifying writer (Results + SI Note 17 + Supplementary Fig. S9):** 98.5% of oracle archive compression at
+- **Certifying writer (Results + SI Note 17 + Supplementary Fig. S10):** 98.5% of oracle archive compression at
   1e-3 e (14.90× vs 15.13×), 0/143 misses, 16.7 vs 37.0 Bader solves per eligible material; sequential QSQ brings
   end-to-end cost to 10.3 solves per material.
 - **Finite-panel admission bound (Methods + one Results sentence + SI Note 18):** P(admitted ∧ later probe ≥ τ)
@@ -163,7 +163,7 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 - **Figure 2:** operator hierarchy / motivation.
 - **Figure 3:** **central validation figure — equal-search benchmark test + prospective fresh-perturbation risk stratification.**
 - **Figure 4:** order-preserving control versus QSQ perturbation validation.
-- **Figure 5:** Bader basin-migration mechanism, with panel e for the all-electron-reference contract decomposition; implementation transfer remains supporting evidence rather than a second headline.
+- **Figure 5:** Bader basin-migration mechanism, with panel f for the all-electron-reference contract decomposition; implementation transfer remains supporting evidence rather than a second headline.
 - **Figure 6:** nominal-vs-realized distortion confounding control.
 - **Figure 7:** Fourier-spectrum mechanism audit of matched ZFP/SZ3 Hartree pairs.
 - **Figure 8:** untouched external confirmation.

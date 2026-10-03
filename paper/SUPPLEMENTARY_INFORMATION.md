@@ -254,7 +254,7 @@ The exact baseline integrates CHGCAR over basins defined by the exact all-electr
 2. **Joint perturbation:** CHGCAR approximate; all-electron reference approximate.
 3. **Partition-field perturbation:** CHGCAR exact; all-electron reference approximate.
 
-At $10^{-3}\,e$, the charge-field contract is eligible for **50/50** analyzable materials, whereas the joint and partition-field contracts are each eligible for only **3/50**. At $10^{-4}\,e$, the corresponding counts are 50/50, 0/50 and 0/50; at $10^{-2}\,e$, they are 50/50, 17/50 and 17/50 (main-text Fig. 5e).
+At $10^{-3}\,e$, the charge-field contract is eligible for **50/50** analyzable materials, whereas the joint and partition-field contracts are each eligible for only **3/50**. At $10^{-4}\,e$, the corresponding counts are 50/50, 0/50 and 0/50; at $10^{-2}\,e$, they are 50/50, 17/50 and 17/50 (main-text Fig. 5f).
 
 The partition-field perturbation reproduces the joint-perturbation response essentially exactly at the population level. The material-median ratio of the partition-field stability floor to the joint floor is **1.000** (bootstrap 95% interval numerically indistinguishable from 1.000 at the reported precision). The fraction of analyzable materials satisfying $f_{\mathrm{partition}}\ge0.5f_{\mathrm{joint}}$ is 1.000, and the fraction satisfying $f_{\mathrm{partition}}\ge0.9f_{\mathrm{joint}}$ is also 1.000. Median basin-reassignment fractions are **0.0196262** for both the joint and partition-field contracts, giving a median reassignment ratio of **1.000**.
 

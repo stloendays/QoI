@@ -95,11 +95,15 @@ actually protected (P4: 60/60 directions preserved), or matched to a tolerance t
 
 ## Figure policy
 
+- **Figure line port.** The 2026-09-30 figure upgrade on `paper-20260927` (OVITO renders for Figs. 1a, 5e and 7e,
+  SI Fig. S9 density gallery, TOC graphic, metro-track Fig. 1b, fixed overlaps in Figs. 5a, 5d and 7c) and the
+  2026-10-03 Fig. 2 rebuild were never merged into the manuscript line. They are ported figure-only via
+  `paper/figure-port-20261003` (no manuscript text from that line), and the redraws below build on them.
 - **Fig. 1** is redrawn as the three-stage workflow with the three outcome labels, as a designed schematic (metro-map
   track, no box-and-arrow flowchart). It replaces the current Fig. 1; it does not add a figure.
-- **Fig. 5** gains one panel for the all-electron-reference contract decomposition (charge-field, joint and
+- **Fig. 5** gains one panel (f) for the all-electron-reference contract decomposition (charge-field, joint and
   partition-field contracts at 1e-3 e). The existing panels are kept.
-- WP-E enters as Supplementary Fig. S9 (writer cost versus fraction of oracle). The eight-figure main-text
+- WP-E enters as Supplementary Fig. S10 (writer cost versus fraction of oracle). The eight-figure main-text
   architecture is unchanged.
 
 ## Not included
