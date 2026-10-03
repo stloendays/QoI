@@ -37,6 +37,11 @@ through headless Chrome.
 - Panel letters lowercase bold, outside the axes; 183 mm double-column pages, heights by content.
 - Fig. 2b plots absolute realized L∞, which is the regressor behind the frozen pooled slope 1.02 /
   r 0.89; the R render plotted L∞/range under the same annotation (slope there is 1.08 / 0.93).
+- Fig. 2 rebuilt 2026-09-30 with `advanced.py` (copied from the figure-studio skill): every row drawn
+  and KDE-density coloured (a, b); per-codec x material-class slopes with material-cluster bootstrap CIs
+  beside b; c as a raincloud of 1 - R^2 on a log axis with paired Wilcoxon tests; d as a bubble matrix
+  over matched Hartree bins, colour centred on P90/P10 = 10. The new statistics are asserted in
+  `fig2/make_fig2.py`.
 - Fig. 3: the "Primary result" banner is gone; the numbers sit in the panel a flow boxes.
 - Fig. 5c: the three ladders are the R script's own selection rule (ZFP pairs with ≥ 5 rungs, min /
   median / max consecutive jump) and are named in the panel titles.
