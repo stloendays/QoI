@@ -1,6 +1,6 @@
-# Supplementary extension — QoI generality and qualification robustness
+# Supplementary Notes — QoI generality, robustness and measurement contracts
 
-This supplementary extension records the four pre-declared analyses in `analysis/extensions_20260928/PROTOCOL.md`. The main manuscript promotes only the second-QoI generality result as a Results-level extension. Codec-shaped perturbations remain robustness evidence. Continuous risk calibration (S12) and reference-density prediction (S15) are retained only to support Discussion-level interpretation; their numerical detail belongs here rather than in the main Results or Methods.
+This supplementary file collects supporting analyses for QSQ generality, robustness and measurement-contract interpretation. Grid-local density extrema and the all-electron-reference Bader decomposition support Results-level claims in the main manuscript. Codec-shaped perturbations remain robustness evidence, while continuous risk calibration (S12) and reference-density prediction (S15) support Discussion-level interpretation.
 
 ## S12. Continuous QSQ risk calibration
 
@@ -45,3 +45,21 @@ The strongest univariate association with (log_{10} f_m) is the fraction of basi
 Nested 10-fold cross-validation of the pre-declared ridge model gives (R^2=0.238) and RMSE 0.932 decades over the 318 descriptor-complete systems. More importantly, fitting on the 254 development systems and evaluating on the 64 descriptor-complete external systems gives held-out (R^2=0.134) (95% CI -0.410 to 0.385) and RMSE 1.208 decades. The pre-declared external (R^2\ge 0.5) replacement criterion is not met.
 
 These descriptors are scientifically informative but are not sufficient to replace direct QSQ measurement. Their partial success is mechanistically plausible because small ordering gaps near basin boundaries identify locally fragile regions. Their limited external transfer is also plausible because the final Bader response is a collective, nonlinear consequence of ascent-path changes, basin topology, grid semantics, chemistry and system class rather than a single local descriptor. In the present benchmark, stability therefore remains an empirically measured property of a specified density, QoI and downstream algorithm.
+
+
+## S16. All-electron-reference Bader measurement contracts
+
+Bader analysis can use separate fields for the quantity being integrated and for the topology that defines the atomic basins. To quantify the effect of these input roles, 53 development materials with published CHGCAR, AECCAR0 and AECCAR2 data were evaluated using Henkelman Bader 1.05 in on-grid mode with vacuum threshold 0.001. Three materials had entirely non-finite published AECCAR0 inputs and were retained as input failures, leaving 50 analyzable materials.
+
+The exact baseline integrates CHGCAR over basins defined by the exact all-electron reference
+$\rho_{\mathrm{AE}}=\mathrm{AECCAR0}+\mathrm{AECCAR2}$. Three QSQ contracts were evaluated with the same five seed labels and material-specific float32 $L_\infty$ amplitudes:
+
+1. **Charge-field perturbation:** CHGCAR approximate; all-electron reference exact.
+2. **Joint perturbation:** CHGCAR approximate; all-electron reference approximate.
+3. **Partition-field perturbation:** CHGCAR exact; all-electron reference approximate.
+
+At $10^{-3}\,e$, the charge-field contract is eligible for **50/50** analyzable materials, whereas the joint and partition-field contracts are each eligible for only **3/50**. At $10^{-4}\,e$, the corresponding counts are 50/50, 0/50 and 0/50; at $10^{-2}\,e$, they are 50/50, 17/50 and 17/50.
+
+The partition-field perturbation reproduces the joint-perturbation response essentially exactly at the population level. The material-median ratio of the partition-field stability floor to the joint floor is **1.000** (bootstrap 95% interval numerically indistinguishable from 1.000 at the reported precision). The fraction of analyzable materials satisfying $f_{\mathrm{partition}}\ge0.5f_{\mathrm{joint}}$ is 1.000, and the fraction satisfying $f_{\mathrm{partition}}\ge0.9f_{\mathrm{joint}}$ is also 1.000. Median basin-reassignment fractions are **0.0196262** for both the joint and partition-field contracts, giving a median reassignment ratio of **1.000**.
+
+These results show that, under the tested all-electron-reference Bader contract and perturbation scales, numerical instability is dominated by the field that defines the partition topology. They do not imply that CHGCAR error is universally irrelevant to Bader charge; rather, they show that the exact-versus-approximate role of each input is part of the scientific measurement contract that QSQ must qualify.
