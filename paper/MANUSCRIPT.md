@@ -291,7 +291,7 @@ The external cohort was kept separate from development analyses. All scientific 
 
 ### Reproducibility
 
-Formal figures are generated from versioned Python sources and versioned data tables, with PNG, PDF and SVG exported from the same code; each figure script asserts the reported anchor values before drawing. QSQ is the operative qualification procedure; superseded controls are retained only in repository provenance. A reader-facing provenance index maps the stable scientific names used in the manuscript to exact machine-readable artifacts without exposing development identifiers in the scientific narrative. The repository also retains the failure registry, external manifest, mechanism decompositions, matching outputs and claim–evidence records required to reconstruct the reported decisions.
+Formal figures are generated from versioned Python sources (matplotlib; OVITO for the three-dimensional density renders, which are regenerated from the checksum-verified source densities with the frozen loader and codecs) and versioned data tables, with PNG, PDF and SVG exported from the same code; each figure script asserts the reported anchor values before drawing. QSQ is the operative qualification procedure; superseded controls are retained only in repository provenance. A reader-facing provenance index maps the stable scientific names used in the manuscript to exact machine-readable artifacts without exposing development identifiers in the scientific narrative. The repository also retains the failure registry, external manifest, mechanism decompositions, matching outputs and claim–evidence records required to reconstruct the reported decisions.
 
 ## Data and code availability
 

@@ -263,7 +263,12 @@ def supplementary():
     caps = captions(os.path.join(PAPER, "SUPPLEMENTARY_FIGURE_CAPTIONS.md"), "Supplementary Figure")
     blocks = parse_md(md)
     blocks.append(("h2", "Supplementary Figures"))
-    for n in range(1, 9):
+    numbers = sorted(int(m.group(1)) for d in os.listdir(HERE) for m in [re.fullmatch(r"figS(\d+)", d)]
+                     if m and os.path.exists(os.path.join(HERE, d, "FigS%s.png" % m.group(1))))
+    missing = [n for n in numbers if "S%d" % n not in caps]
+    if missing:
+        raise SystemExit("Supplementary figures without a caption: %s" % missing)
+    for n in numbers:
         png = embed_png(os.path.join(HERE, "figS%d" % n, "FigS%d.png" % n), "FigS%d" % n)
         blocks.append(("fig", png, caps["S%d" % n]))
     tmd = open(T.SRC, encoding="utf-8").read()
