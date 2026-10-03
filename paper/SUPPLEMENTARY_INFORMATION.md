@@ -298,7 +298,7 @@ At $10^{-2}\,e$, two of the 229 eligible materials have no certifiable row on th
 |---:|---:|---:|---:|---:|
 | Bound on joint admission and exceedance | 6.70% | 3.50% | 1.89% | 0.98% |
 
-Exchangeability also implies that a later response exceeds the maximum of the panel with probability $1/(n+1)$ for continuous responses (one-sided tolerance limits; Wilks, main-text ref. 23). The bound is a property of the finite-panel rule over the draw of the probes; it is not a conditional risk among admitted contracts and not a worst-case statement.
+Exchangeability also implies that a later response exceeds the maximum of the panel with probability $1/(n+1)$ for continuous responses (one-sided tolerance limits; Wilks, main-text ref. 25). The bound is a property of the finite-panel rule over the draw of the probes; it is not a conditional risk among admitted contracts and not a worst-case statement.
 
 **Shared seeds in the frozen design.** The five frozen QSQ seeds are used directly as PCG64 seeds, so every material receives the same five random streams, whereas the 59 prospective streams are material-specific. The pooled fraction of fresh responses above the frozen five-probe floor is 19.08% (2,859/14,986; material-cluster 95% CI 17.16–21.01%) against the exchangeable value 1/6. With shared streams the 254 materials do not average over independent panels, so the pooled fraction is one realization rather than an estimate of 1/6.
 

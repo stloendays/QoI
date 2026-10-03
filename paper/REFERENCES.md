@@ -103,3 +103,6 @@ Do not use an absolute “first ever” statement unless a later systematic revi
 22. Tyree, J., Underwood, R., Bouvier, C., Köhler, D., Reichelt, T., Dueben, P., Faghih-Naini, S., Järvinen, H. & Klöwer, M. Compression Safeguards: Building trust into lossy data compression. **EGUsphere** preprint egusphere-2026-4266 (2026). https://doi.org/10.5194/egusphere-2026-4266. *(added 2026-10-03; QoI-requirement enforcement on decoded data — positioning against QSQ.)*
 
 23. Wilks, S. S. Determination of sample sizes for setting tolerance limits. **The Annals of Mathematical Statistics** **12**, 91–96 (1941). https://doi.org/10.1214/aoms/1177731788. *(added 2026-10-03; order-statistic tolerance limits behind the finite-panel admission bound.)*
+24. Currie, L. A. Nomenclature in evaluation of analytical methods including detection and quantification capabilities (IUPAC Recommendations 1995). **Pure and Applied Chemistry** **67**, 1699–1723 (1995). https://doi.org/10.1351/pac199567101699. *(added 2026-10-03; limit of quantification — measurement-science counterpart of the QSQ floor; analogy, not identity.)*
+
+25. Automotive Industry Action Group. **Measurement Systems Analysis Reference Manual**, 4th edn (AIAG, 2010). *(added 2026-10-03; gauge capability and precision-to-tolerance comparison — counterpart of eligibility f_C < τ.)*
