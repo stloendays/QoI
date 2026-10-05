@@ -1,6 +1,6 @@
-# Nature-style reference list — 2026-09-11
+# Nature-style reference list — current through 2026-10-05
 
-This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`: references are numbered by first appearance. Stable literature-library IDs remain unchanged in `paper/REFERENCES.md`; the mapping is recorded in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`. Article titles are retained; journal titles are abbreviated; all authors are listed for five or fewer authors and the first author followed by *et al.* is used for more than five authors.
+This rendering follows the current submission citation order in `paper/MANUSCRIPT.md`. Stable literature-library IDs remain in `paper/REFERENCES.md`; the current mapping is in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`.
 
 1. Di, S. *et al.* A survey on error-bounded lossy compression for scientific datasets. *ACM Comput. Surv.* **57**, 287 (2025).
 
@@ -22,7 +22,7 @@ This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_J
 
 10. Ainsworth, M., Tugluk, O., Whitney, B. & Klasky, S. Multilevel techniques for compression and reduction of scientific data—quantitative control of accuracy in derived quantities. *SIAM J. Sci. Comput.* **41**, A2146–A2171 (2019).
 
-11. Gong, Q. *et al.* Maintaining trust in reduction: Preserving the accuracy of quantities of interest for lossy compression. In *Driving Scientific and Engineering Discoveries Through the Integration of Experiment, Big Data, and Modeling and Simulation* 22–39 (Springer, Cham, 2022).
+11. Gong, Q. *et al.* Maintaining trust in reduction: Preserving the accuracy of quantities of interest for lossy compression. In *Driving Scientific and Engineering Discoveries Through the Integration of Experiment, Big Data, and Modeling and Simulation* 22–39 (Springer, 2022).
 
 12. Lee, J. *et al.* Error-bounded learned scientific data compression with preservation of derived quantities. *Appl. Sci.* **12**, 6718 (2022).
 
@@ -34,19 +34,32 @@ This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_J
 
 16. Liu, Y. *et al.* TOPIQ: Statistical error propagation for quantity-of-interest prediction under lossy compression. Preprint at https://arxiv.org/abs/2608.26912 (2026).
 
-17. Bader, R. F. W. *Atoms in Molecules: A Quantum Theory* (Oxford Univ. Press, Oxford, 1990).
+17. Tyree, J. *et al.* Compression Safeguards: Building trust into lossy data compression. *EGUsphere* egusphere-2026-4266 (2026).
 
-18. Henkelman, G., Arnaldsson, A. & Jónsson, H. A fast and robust algorithm for Bader decomposition of charge density. *Comput. Mater. Sci.* **36**, 354–360 (2006).
+18. Bader, R. F. W. *Atoms in Molecules: A Quantum Theory* (Oxford Univ. Press, 1990).
 
-19. Tang, W., Sanville, E. & Henkelman, G. A grid-based Bader analysis algorithm without lattice bias. *J. Phys.: Condens. Matter* **21**, 084204 (2009).
+19. Henkelman, G., Arnaldsson, A. & Jónsson, H. A fast and robust algorithm for Bader decomposition of charge density. *Comput. Mater. Sci.* **36**, 354–360 (2006).
 
-20. Yu, M. & Trinkle, D. R. Accurate and efficient algorithm for Bader charge integration. *J. Chem. Phys.* **134**, 064111 (2011).
+20. Tang, W., Sanville, E. & Henkelman, G. A grid-based Bader analysis algorithm without lattice bias. *J. Phys.: Condens. Matter* **21**, 084204 (2009).
 
-21. Hutcheon, M. J. & Teale, A. M. Topological analysis of functions on arbitrary grids: Applications to quantum chemistry. *J. Chem. Theory Comput.* **18**, 6077–6091 (2022).
+21. Yu, M. & Trinkle, D. R. Accurate and efficient algorithm for Bader charge integration. *J. Chem. Phys.* **134**, 064111 (2011).
+
+22. Hutcheon, M. J. & Teale, A. M. Topological analysis of functions on arbitrary grids: Applications to quantum chemistry. *J. Chem. Theory Comput.* **18**, 6077–6091 (2022).
+
+23. Currie, L. A. Nomenclature in evaluation of analytical methods including detection and quantification capabilities (IUPAC Recommendations 1995). *Pure Appl. Chem.* **67**, 1699–1723 (1995).
+
+24. Automotive Industry Action Group. *Measurement Systems Analysis Reference Manual*, 4th edn (AIAG, 2010).
+
+25. Liu, J. *et al.* QPET: A versatile and portable quantity-of-interest-preservation framework for error-bounded lossy compression. *Proc. VLDB Endow.* **18**, 2440–2453 (2025).
+
+26. Goyal, V. K. Theoretical foundations of transform coding. *IEEE Signal Process. Mag.* **18**, 9–21 (2001).
+
+27. Chinnamsetty, S. R., Espig, M., Khoromskij, B. N., Hackbusch, W. & Flad, H.-J. Tensor product approximation with optimal rank in quantum chemistry. *J. Chem. Phys.* **127**, 084110 (2007).
+
+28. Wilks, S. S. Determination of sample sizes for setting tolerance limits. *Ann. Math. Stat.* **12**, 91–96 (1941).
 
 ## Nature submission notes
 
-- Convert bracketed manuscript citations to superscript reference numbers at final typesetting; the current Markdown brackets are only a working representation.
-- Ref. 16 is a recognized preprint and is bibliographically admissible as recent context, but it does not carry any foundational novelty-boundary claim.
-- The stable archive numbering in `paper/REFERENCES.md` must not be used directly in the submission manuscript; use the crosswalk when moving citations between literature-management notes and the reader-facing paper.
-- The final journal-specific pass should be made after the exact Nature Portfolio target is selected, because individual journals can add section- or format-level requirements.
+- Convert working bracketed citations to the target journal's required style only after the journal is fixed.
+- Ref. 16 is a recent preprint and is not the sole support for a foundational prior-art statement.
+- QOAC-H novelty is not generic QoI-aware compression, transform coding or operator-aware error control; refs. 9–13 and 25–27 define those boundaries.
