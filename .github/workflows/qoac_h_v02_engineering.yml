@@ -81,7 +81,7 @@ jobs:
             --repo-root repo \
             --manifest repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv \
             --shard-count 6 \
-            --shard-index ${{ matrix.shard ${{ \
+            --shard-index ${{ matrix.shard }} \
             --output-dir "$out"
           git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
           git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
