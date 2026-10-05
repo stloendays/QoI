@@ -106,3 +106,17 @@ Do not use an absolute “first ever” statement unless a later systematic revi
 24. Currie, L. A. Nomenclature in evaluation of analytical methods including detection and quantification capabilities (IUPAC Recommendations 1995). **Pure and Applied Chemistry** **67**, 1699–1723 (1995). https://doi.org/10.1351/pac199567101699. *(added 2026-10-03; limit of quantification — measurement-science counterpart of the QSQ floor; analogy, not identity.)*
 
 25. Automotive Industry Action Group. **Measurement Systems Analysis Reference Manual**, 4th edn (AIAG, 2010). *(added 2026-10-03; gauge capability and precision-to-tolerance comparison — counterpart of eligibility f_C < τ.)*
+
+
+26. Liu, J., Jiao, P., Zhao, K., Liang, X., Di, S. & Cappello, F. QPET: A versatile and portable quantity-of-interest-preservation framework for error-bounded lossy compression. **Proceedings of the VLDB Endowment** **18**, 2440–2453 (2025). https://doi.org/10.14778/3742728.3742739.
+
+27. Goyal, V. K. Theoretical foundations of transform coding. **IEEE Signal Processing Magazine** **18**(5), 9–21 (2001). https://doi.org/10.1109/79.952802.
+
+28. Chinnamsetty, S. R., Espig, M., Khoromskij, B. N., Hackbusch, W. & Flad, H.-J. Tensor product approximation with optimal rank in quantum chemistry. **The Journal of Chemical Physics** **127**, 084110 (2007). https://doi.org/10.1063/1.2761871.
+
+## QOAC-H positioning addendum (2026-10-05)
+
+- **[6,12–14,20,26] QoI-preserving compression prior art.** These works prevent a generic novelty claim for QoI-aware compression, downstream-error control, or QoI-specific error-bound tuning. QPET [26] is the closest recent portable framework and should be cited whenever QOAC-H is positioned against differentiable-QoI error-bound tuning.
+- **[12,13] Linear-operator/QoI control prior art.** MGARD establishes operator-aware control for bounded-linear QoIs. QOAC-H must therefore be positioned as an exact-operator-eigenbasis diagnosis-to-design method, not as the first operator-aware compressor.
+- **[27] Transform-coding prior art.** Weighted transform-domain bit allocation and coefficient-dependent quantization are established. The manuscript novelty is the scientific identification of the Hartree weighting and its integration with QSQ/certification, not the Lagrange-multiplier form alone.
+- **[7,21,28] Electronic-structure compression context.** Chinnamsetty et al. [28] compressed electron-density and Hartree-potential tensor representations; Lara et al. [19 in the stable library above] compress the AO basis; PaSTRI compresses two-electron integrals. These establish adjacent quantum-chemistry compression without reproducing the QSQ-qualified Hartree-certified stored-density codec developed here.
