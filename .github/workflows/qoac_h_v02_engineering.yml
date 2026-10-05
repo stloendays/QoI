@@ -1,0 +1,178 @@
+name: QOAC-H v0.2 Nyquist engineering
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-h-v02-nyquist-20261005
+    paths:
+      - analysis/operator_aware_codec_hartree_v02/DESIGN.md
+      - analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py
+      - analysis/operator_aware_codec_hartree_v02/test_codec_qoac_h_v02.py
+      - analysis/operator_aware_codec_hartree_v02/run_engineering.py
+      - analysis/operator_aware_codec_hartree_v02/aggregate_engineering.py
+      - .github/workflows/qoac_h_v02_engineering.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-h-v02-nyquist-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install unit-test dependency
+        run: python -m pip install numpy==2.3.5
+      - name: Compile and test v0.2 codec
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            repo/analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py \
+            repo/analysis/operator_aware_codec_hartree_v02/test_codec_qoac_h_v02.py \
+            repo/analysis/operator_aware_codec_hartree_v02/run_engineering.py \
+            repo/analysis/operator_aware_codec_hartree_v02/aggregate_engineering.py
+          cd repo/analysis/operator_aware_codec_hartree_v02
+          python -m unittest -v test_codec_qoac_h_v02.py
+      - name: Verify inherited v0.1 engineering cohort
+        shell: bash
+        run: |
+          set -euo pipefail
+          manifest='repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv'
+          test -f "$manifest"
+          test "$(( $(wc -l < "$manifest") - 1 ))" -eq 12
+          python - <<'PY'
+import csv
+from pathlib import Path
+p=Path('repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv')
+with p.open(newline='',encoding='utf-8') as f:
+    rows=list(csv.DictReader(f))
+assert len(rows)==12
+assert len({r['material_id'] for r in rows})==12
+print('QOAC_H_V02_MANIFEST_PASS', [r['material_id'] for r in rows])
+PY
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out v0.2 branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen source/scientific stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Execute v0.2 engineering shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_h_v02_${{ matrix.shard }}"
+          python repo/analysis/operator_aware_codec_hartree_v02/run_engineering.py \
+            --repo-root repo \
+            --manifest repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv \
+            --shard-count 6 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          sha256sum repo/analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py > "$out/codec_sha256.txt"
+          sha256sum repo/analysis/operator_aware_codec_hartree_v02/run_engineering.py > "$out/runner_sha256.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-h-v02-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_h_v02_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out v0.2 branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install aggregation stack
+        run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - name: Download completed engineering shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-h-v02-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate engineering promotion audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_codec_hartree_v02/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_codec_hartree_v02/aggregate_engineering.py \
+            --repo-root repo \
+            --shards-root shards \
+            --manifest repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv \
+            --output-dir "$out"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+          sha256sum repo/analysis/operator_aware_codec_hartree_v02/aggregate_engineering.py > "$out/aggregator_sha256.txt"
+      - name: Commit v0.2 engineering result package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_codec_hartree_v02/results
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'research: complete QOAC-H v0.2 Nyquist engineering audit'
+            git pull --rebase origin research/qoac-h-v02-nyquist-20261005
+            git push origin HEAD:research/qoac-h-v02-nyquist-20261005
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-h-v02-engineering-aggregate
+          path: repo/analysis/operator_aware_codec_hartree_v02/results
+          if-no-files-found: warn
+          retention-days: 90
