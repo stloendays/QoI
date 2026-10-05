@@ -34,8 +34,8 @@ def one_pair_summary(g,bother):
     b=g[g.beta==float(bother)].copy()
     ratios=[]
     for ia,ib,d in greedy_match(a,b):
-        ea=float(a.loc[ia,"electric_field_error_rel_RMSE_historical"])
-        eb=float(b.loc[ib,"electric_field_error_rel_RMSE_historical"])
+        ea=float(a.loc[ia,"electric_field_error_rel_RMSE_safe"])
+        eb=float(b.loc[ib,"electric_field_error_rel_RMSE_safe"])
         if ea>=0 and eb>0 and np.isfinite(ea) and np.isfinite(eb):
             ratios.append(ea/eb)
     return len(ratios), (float(np.median(ratios)) if ratios else np.nan)
