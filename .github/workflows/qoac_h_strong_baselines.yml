@@ -1,0 +1,159 @@
+name: QOAC-H strongest baselines
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-h-strong-baselines-20261005
+    paths:
+      - analysis/qoac_h_strong_baselines/*.py
+      - .github/workflows/qoac_h_strong_baselines.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-h-strong-baselines-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Unit tests
+        run: |
+          python -m pip install numpy==2.4.6
+          cd repo/analysis/qoac_h_strong_baselines
+          python -m unittest -v test_truncation_codec.py
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: mgard
+          create-args: mgard
+          condarc: |
+            channels: [conda-forge]
+      - name: Probe MGARD CLI
+        run: |
+          set -u
+          mkdir -p probe
+          { micromamba list -n mgard | grep -i mgard; which mgard; mgard --help 2>&1 | head -40; } > probe/mgard_probe.txt 2>&1 || true
+          python - <<'EOF' >> probe/mgard_probe.txt 2>&1 || true
+          import numpy as np, subprocess
+          x=np.random.default_rng(0).normal(size=(16,16,16)); x.tofile("probe/in.dat")
+          for s in ("inf","0","-1"):
+              r=subprocess.run(["mgard","compress","--datatype","double","--shape","16x16x16","--smoothness",s,"--tolerance","0.01","--input","probe/in.dat","--output","probe/o.mgard"],capture_output=True,text=True)
+              print("s=",s,"rc=",r.returncode,r.stderr[-300:])
+          EOF
+          cat probe/mgard_probe.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-h-sb-mgard-probe
+          path: probe/mgard_probe.txt
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: mgard
+          create-args: mgard
+          condarc: |
+            channels: [conda-forge]
+      - name: Execute baseline shard
+        run: |
+          set -euo pipefail
+          PY="$pythonLocation/bin/python"
+          out="$RUNNER_TEMP/qoac_h_sb_${{ matrix.shard }}"
+          "$PY" repo/analysis/qoac_h_strong_baselines/run_baselines.py \
+            --repo-root repo \
+            --frozen-root frozen \
+            --manifest repo/analysis/operator_aware_codec_hartree_v02_confirmatory/results/CONFIRMATORY_MANIFEST.csv \
+            --shard-count 12 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out"
+          micromamba list -n mgard | grep -i mgard > "$out/mgard_version.txt" || echo unavailable > "$out/mgard_version.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-h-sb-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_h_sb_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-h-sb-*
+          path: shards
+      - name: Aggregate
+        run: |
+          set -euo pipefail
+          out=repo/analysis/qoac_h_strong_baselines/results
+          rm -rf "$out"
+          python repo/analysis/qoac_h_strong_baselines/aggregate_baselines.py --repo-root repo --shards-root shards --output-dir "$out"
+          cp shards/qoac-h-sb-mgard-probe/mgard_probe.txt "$out/" || true
+          cat shards/qoac-h-sb-shard-*/mgard_version.txt | sort -u > "$out/mgard_version.txt" || true
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+          python -m pip freeze | sort > "$out/pip_freeze_aggregate.txt"
+      - name: Commit results
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/qoac_h_strong_baselines/results
+          if git diff --cached --quiet; then echo 'No result changes.'; else
+            git commit -m 'research: complete QOAC-H strongest-baseline study'
+            git pull --rebase origin research/qoac-h-strong-baselines-20261005
+            git push origin HEAD:research/qoac-h-strong-baselines-20261005
+          fi
