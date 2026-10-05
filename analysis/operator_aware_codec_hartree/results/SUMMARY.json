@@ -1,0 +1,23 @@
+{
+  "status": "COMPLETE",
+  "pilot_materials": 12,
+  "rows_success": 600,
+  "failures": 0,
+  "primary_tau_historical_rel_RMSE": 1e-06,
+  "mechanism_gate": {
+    "evaluable_materials": 12,
+    "fraction_materials_beta2_better": 0.0,
+    "median_material_hartree_ratio_beta2_over_beta0": 1.0,
+    "go": false
+  },
+  "competitive_gate": {
+    "comparable_materials": 0,
+    "median_cr_ratio_qoac_over_best_baseline": NaN,
+    "bootstrap_95_ci": [
+      NaN,
+      NaN
+    ],
+    "go": false
+  },
+  "interpretation": "MECHANISM_NO_GO"
+}
