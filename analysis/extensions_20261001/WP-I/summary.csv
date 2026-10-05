@@ -1,0 +1,7 @@
+analysis,tau_e,n,eligible_g1,eligible_g2,eligible_g3,mcnemar_g3_vs_g1,mcnemar_g3_vs_g2,comparison,median,ci_low,ci_high,frac_g3_ge_0p5_g2,frac_g3_ge_0p9_g2,median_g2_reassigned,median_g3_reassigned,reassignment_ratio
+eligibility,0.0001,50,50,0,0,50/0 p=1.78e-15,0/0 p=1,,,,,,,,,
+eligibility,0.001,50,50,3,3,47/0 p=1.42e-14,0/0 p=1,,,,,,,,,
+eligibility,0.01,50,50,17,17,33/0 p=2.33e-10,0/0 p=1,,,,,,,,,
+floor_ratio,,50,,,,,,g3_over_g2,1.0000000000000018,1.0000000000000007,1.0000000000000029,,,,,
+floor_ratio,,50,,,,,,g3_over_g1,9860500000.000717,1920000000.000588,24995000000.000546,,,,,
+mechanism,,50,,,,,,,,,,1.0,1.0,0.01962619357638885,0.019626193576388888,1.000000000000002
