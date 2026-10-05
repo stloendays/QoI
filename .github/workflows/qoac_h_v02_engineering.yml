@@ -52,16 +52,7 @@ jobs:
           manifest='repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv'
           test -f "$manifest"
           test "$(( $(wc -l < "$manifest") - 1 ))" -eq 12
-          python - <<'PY'
-import csv
-from pathlib import Path
-p=Path('repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv')
-with p.open(newline='',encoding='utf-8') as f:
-    rows=list(csv.DictReader(f))
-assert len(rows)==12
-assert len({r['material_id'] for r in rows})==12
-print('QOAC_H_V02_MANIFEST_PASS', [r['material_id'] for r in rows])
-PY
+          python -c "import csv; from pathlib import Path; p=Path('repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv'); rows=list(csv.DictReader(p.open(newline='',encoding='utf-8'))); assert len(rows)==12 and len({r['material_id'] for r in rows})==12; print('QOAC_H_V02_MANIFEST_PASS',[r['material_id'] for r in rows])"
 
   shard:
     needs: preflight
