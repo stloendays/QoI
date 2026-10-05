@@ -38,7 +38,7 @@ CAP = 4.6                           # caption strip above each figure
 # follows the manuscript: 1 and 2 down the left, 3 to 5 down the right.
 SHEETS = {
     "Sheet_main_figures": (
-        "QSQ manuscript figures 1–8",
+        "QSQ manuscript figures 1–9",
         [[("fig1/Fig1.svg", "Figure 1   Qualification, certification and diagnosis of a measurement contract", 0.70),
           ("fig2/Fig2.svg", "Figure 2   Downstream operator structure controls error propagation", 0.70),
           ("fig3/Fig3.svg", "Figure 3   The frozen QSQ screen prospectively stratifies numerical risk", 0.70),
@@ -46,7 +46,8 @@ SHEETS = {
          [("fig5/Fig5.svg", "Figure 5   Partition-field basin migration explains Bader instability", 0.60),
           ("fig6/Fig6.svg", "Figure 6   Equal nominal tolerance conflates distortion with error structure", 0.60),
           ("fig7/Fig7.svg", "Figure 7   Frequency allocation of error controls Hartree fidelity", 0.60),
-          ("fig8/Fig8.svg", "Figure 8   Untouched external systems reproduce the decision frontier", 0.60)]]),
+          ("../R/rendered/figure8_qoac_h_R.svg", "Figure 8   The Hartree operator converts diagnosis into compression design", 0.60),
+          ("../R/rendered/figure8_external_confirmation_R.svg", "Figure 9   Untouched external systems reproduce the decision frontier", 0.60)]]),
     "Sheet_supplementary_figures": (
         "QSQ supplementary figures S1–S10",
         [[("figS1/FigS1.svg", "Figure S1   QSQ defines the measurable Bader-fidelity landscape", 0.70),
