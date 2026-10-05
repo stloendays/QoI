@@ -23,47 +23,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Verify exact proof inputs
         shell: bash
         run: |
           set -euo pipefail
           test -s paper/MANUSCRIPT.md
           test -s paper/FIGURE_CAPTIONS.md
-          if grep -n -E '^[[:space:]]*\$[[:space:]]*
-            f=$(find figures/R/rendered -maxdepth 1 -type f -name "figure${n}_*_R.png" | head -n 1)
-            test -n "$f" && test -s "$f" || { echo "Missing Figure $n PNG"; exit 1; }
-          done
-          test -s figures/R/rendered/figure8_qoac_h_R.png
-          test -s figures/R/rendered/figure8_external_confirmation_R.png
-      - uses: actions/upload-artifact@v4
-        with:
-          name: main-manuscript-proof-inputs
-          path: |
-            paper/MANUSCRIPT.md
-            paper/FIGURE_CAPTIONS.md
-            figures/R/rendered/figure1_*_R.png
-            figures/R/rendered/figure2_*_R.png
-            figures/R/rendered/figure3_*_R.png
-            figures/R/rendered/figure4_*_R.png
-            figures/R/rendered/figure5_*_R.png
-            figures/R/rendered/figure6_*_R.png
-            figures/R/rendered/figure7_*_R.png
-            figures/R/rendered/figure8_qoac_h_R.png
-            figures/R/rendered/figure8_external_confirmation_R.png
-          if-no-files-found: error
-          retention-days: 7
- paper/MANUSCRIPT.md; then
-            echo "Standalone single-dollar display delimiter remains"; exit 1
+
+          if grep -n -E '^[[:space:]]*\$[[:space:]]*$' paper/MANUSCRIPT.md; then
+            echo "Standalone single-dollar display delimiter remains in MANUSCRIPT.md"
+            exit 1
           fi
+
           for n in 1 2 3 4 5 6 7 8 9; do
-            grep -q "^## Figure $n$" paper/FIGURE_CAPTIONS.md || { echo "Missing Figure $n caption"; exit 1; }
+            grep -q "^## Figure ${n}$" paper/FIGURE_CAPTIONS.md || {
+              echo "Missing Figure ${n} caption"
+              exit 1
+            }
           done
+
           for n in 1 2 3 4 5 6 7; do
             f=$(find figures/R/rendered -maxdepth 1 -type f -name "figure${n}_*_R.png" | head -n 1)
-            test -n "$f" && test -s "$f" || { echo "Missing Figure $n PNG"; exit 1; }
+            test -n "$f" && test -s "$f" || {
+              echo "Missing Figure ${n} PNG"
+              exit 1
+            }
           done
+
           test -s figures/R/rendered/figure8_qoac_h_R.png
           test -s figures/R/rendered/figure8_external_confirmation_R.png
+
       - uses: actions/upload-artifact@v4
         with:
           name: main-manuscript-proof-inputs
