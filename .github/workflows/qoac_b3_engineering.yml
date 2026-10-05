@@ -1,0 +1,150 @@
+name: QOAC-B3 compiled partition engineering
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-b3-partition-compiled-20261005
+    paths:
+      - analysis/operator_aware_bader_partition_compiled/**
+      - .github/workflows/qoac_b3_engineering.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-b3-engineering-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Test partition codec and frozen inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.3.5
+          python -m py_compile repo/analysis/operator_aware_bader_partition_compiled/*.py
+          cd repo/analysis/operator_aware_bader_partition_compiled
+          python -m unittest -v test_partition_codec.py
+          test "$(( $(wc -l < ../operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv) - 1 ))" -eq 12
+
+  material:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install stack and Bader compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gfortran
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Build Henkelman Bader
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r repo/mechanism/independent_bader_20260908/reference_source "$RUNNER_TEMP/bader_source"
+          cd "$RUNNER_TEMP/bader_source"
+          sed -i 's/^LINK = -static/LINK =/' makefile.osx_gfortran
+          make -f makefile.osx_gfortran
+          test -x bader
+      - name: Run compiled-partition material
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_b3_${{ matrix.index }}"
+          mkdir -p "$out"
+          python repo/analysis/operator_aware_bader_partition_compiled/run_engineering.py \
+            --repo-root repo \
+            --frozen-root frozen \
+            --engineering-manifest repo/analysis/operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv \
+            --b2-frontier repo/analysis/operator_aware_bader_projection/results/engineering_frontier.csv \
+            --index ${{ matrix.index }} \
+            --bader "$RUNNER_TEMP/bader_source/bader" \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b3-material-${{ matrix.index }}
+          path: ${{ runner.temp }}/qoac_b3_${{ matrix.index }}
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: material
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-b3-material-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate B3 engineering
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_bader_partition_compiled/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_bader_partition_compiled/aggregate_engineering.py \
+            --engineering-manifest repo/analysis/operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv \
+            --shards-root shards \
+            --output-dir "$out"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+      - name: Commit B3 results
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_bader_partition_compiled/results
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m 'research: complete QOAC-B3 compiled-partition engineering'
+            git pull --rebase origin research/qoac-b3-partition-compiled-20261005
+            git push origin HEAD:research/qoac-b3-partition-compiled-20261005
+          fi
