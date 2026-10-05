@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETE",
+  "role": "ENGINEERING_TUNING_NOT_CONFIRMATORY",
+  "pilot_materials": 12,
+  "rows_success": 300,
+  "failures": 0,
+  "primary_tau": 1e-06,
+  "dual_certified_materials": 12,
+  "median_cr_ratio_v02_over_v01": 10.869527361576353,
+  "median_cr_ratio_v02_over_best_existing_baseline": 10.760482587075433,
+  "materials_v02_beats_best_existing_baseline": 12,
+  "sperr_floor_cases": {
+    "materials": [
+      "mp-1103974",
+      "mp-1188002",
+      "mp-22490"
+    ],
+    "all_max_cr_exceed_baseline": true,
+    "detail": {
+      "mp-1103974": {
+        "max_v02_cr": 1495.0476546439918,
+        "baseline_cr": 27.897310001883067,
+        "ceiling_ratio": 53.59110446645487
+      },
+      "mp-1188002": {
+        "max_v02_cr": 715.0344827586207,
+        "baseline_cr": 22.54304415772666,
+        "ceiling_ratio": 31.718630268199234
+      },
+      "mp-22490": {
+        "max_v02_cr": 2986.6666666666665,
+        "baseline_cr": 38.71229422190088,
+        "ceiling_ratio": 77.1503401360544
+      }
+    }
+  },
+  "promotion_criteria": {
+    "all_12_accounted_zero_failures": true,
+    "all_12_dual_certified": true,
+    "median_v02_over_v01_gt_1p05": true,
+    "median_v02_over_baseline_gt_1p05": true,
+    "wins_ge_9_of_12": true,
+    "all_three_sperr_floor_ceiling_fixed": true
+  },
+  "promotion_ready_for_held_out_confirmation": true,
+  "interpretation": "PROMOTION_READY_FOR_HELD_OUT_CONFIRMATION"
+}
