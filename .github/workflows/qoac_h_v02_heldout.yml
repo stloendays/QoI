@@ -1,0 +1,182 @@
+name: QOAC-H v0.2 held-out confirmation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-h-v02-heldout-20261005
+    paths:
+      - analysis/operator_aware_codec_hartree_v02_confirm/DESIGN.md
+      - analysis/operator_aware_codec_hartree_v02_confirm/HELDOUT_MANIFEST.csv
+      - analysis/operator_aware_codec_hartree_v02_confirm/run_confirmatory.py
+      - analysis/operator_aware_codec_hartree_v02_confirm/aggregate_confirmatory.py
+      - analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py
+      - analysis/operator_aware_codec_hartree/codec_qoac_h.py
+      - .github/workflows/qoac_h_v02_heldout.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-h-v02-heldout-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify frozen algorithm and evaluation blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C repo rev-parse HEAD:analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py)" = "0a37a3cad2eeb94706ddfbed289229f8c0f4aa78"
+          test "$(git -C repo rev-parse HEAD:analysis/operator_aware_codec_hartree/codec_qoac_h.py)" = "1d50b591aac5e5adee8c2813b435ad7a9bbc791f"
+      - name: Install unit-test dependency
+        run: python -m pip install numpy==2.3.5
+      - name: Compile confirmatory code and rerun frozen codec invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            repo/analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py \
+            repo/analysis/operator_aware_codec_hartree_v02_confirm/run_confirmatory.py \
+            repo/analysis/operator_aware_codec_hartree_v02_confirm/aggregate_confirmatory.py
+          cd repo/analysis/operator_aware_codec_hartree_v02
+          python -m unittest -v test_codec_qoac_h_v02.py
+      - name: Verify exact frozen held-out manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          manifest='repo/analysis/operator_aware_codec_hartree_v02_confirm/HELDOUT_MANIFEST.csv'
+          test -f "$manifest"
+          test "$(( $(wc -l < "$manifest") - 1 ))" -eq 242
+          python -c "import csv; p='repo/analysis/operator_aware_codec_hartree_v02_confirm/HELDOUT_MANIFEST.csv'; r=list(csv.DictReader(open(p,newline='',encoding='utf-8'))); assert len(r)==242 and len({x['material_id'] for x in r})==242; assert all(float(x['hartree_qsq_response_scale_rel_RMSE'])<1e-6 for x in r); assert sorted({int(x['confirmatory_shard']) for x in r})==list(range(24)); print('QOAC_H_V02_HELDOUT_MANIFEST_PASS',len(r))"
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out held-out branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - name: Check out frozen scientific environment
+        uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install frozen source/scientific stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Re-verify frozen Git objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C repo rev-parse HEAD:analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py)" = "0a37a3cad2eeb94706ddfbed289229f8c0f4aa78"
+          test "$(git -C repo rev-parse HEAD:analysis/operator_aware_codec_hartree/codec_qoac_h.py)" = "1d50b591aac5e5adee8c2813b435ad7a9bbc791f"
+      - name: Execute held-out shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_h_v02_confirm_${{ matrix.shard }}"
+          python repo/analysis/operator_aware_codec_hartree_v02_confirm/run_confirmatory.py \
+            --repo-root repo \
+            --manifest repo/analysis/operator_aware_codec_hartree_v02_confirm/HELDOUT_MANIFEST.csv \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+          git -C repo rev-parse HEAD:analysis/operator_aware_codec_hartree_v02/codec_qoac_h_v02.py > "$out/frozen_codec_blob_sha.txt"
+          git -C repo rev-parse HEAD:analysis/operator_aware_codec_hartree/codec_qoac_h.py > "$out/frozen_hartree_helper_blob_sha.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-h-v02-confirm-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_h_v02_confirm_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out held-out branch
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install aggregation stack
+        run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - name: Download completed confirmatory shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-h-v02-confirm-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate frozen confirmatory analysis
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_codec_hartree_v02_confirm/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_codec_hartree_v02_confirm/aggregate_confirmatory.py \
+            --repo-root repo \
+            --shards-root shards \
+            --manifest repo/analysis/operator_aware_codec_hartree_v02_confirm/HELDOUT_MANIFEST.csv \
+            --output-dir "$out"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+          echo "0a37a3cad2eeb94706ddfbed289229f8c0f4aa78" > "$out/frozen_codec_blob_sha.txt"
+          echo "1d50b591aac5e5adee8c2813b435ad7a9bbc791f" > "$out/frozen_hartree_helper_blob_sha.txt"
+          sha256sum repo/analysis/operator_aware_codec_hartree_v02_confirm/aggregate_confirmatory.py > "$out/aggregator_sha256.txt"
+      - name: Commit held-out result package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_codec_hartree_v02_confirm/results
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'research: complete QOAC-H v0.2 disjoint held-out confirmation'
+            git pull --rebase origin research/qoac-h-v02-heldout-20261005
+            git push origin HEAD:research/qoac-h-v02-heldout-20261005
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-h-v02-heldout-aggregate
+          path: repo/analysis/operator_aware_codec_hartree_v02_confirm/results
+          if-no-files-found: warn
+          retention-days: 90
