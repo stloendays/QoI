@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-MAGIC = b"QOACB1\0"
+MAGIC = b"QOACB1\0\0"
 HEADER = struct.Struct("<8sII")  # magic, number of labels, version
 VERSION = 1
 
