@@ -1,0 +1,31 @@
+{
+  "status": "COMPLETE",
+  "materials": 12,
+  "settings": 900,
+  "failures": 0,
+  "prediction": {
+    "operator": "Hartree electric field",
+    "weight_squared": "1/|G|^2",
+    "predicted_beta": 1.0
+  },
+  "gate_A_operator_blind": {
+    "go": false,
+    "evaluable": 12,
+    "wins": 12,
+    "median_material_error_ratio_beta1_over_beta0": 0.806368326888173
+  },
+  "gate_B_operator_specific": {
+    "go": false,
+    "evaluable": 12,
+    "wins": 10,
+    "median_material_error_ratio_beta1_over_beta2": 0.9280490839888995
+  },
+  "gate_C_certified_rate": {
+    "go": false,
+    "comparable": 12,
+    "wins": 7,
+    "median_cr_ratio_beta1_over_best_wrong": 1.0312829279148585,
+    "tau_electric_field_rel_RMSE": 1e-06
+  },
+  "confirmatory_authorized": false
+}
