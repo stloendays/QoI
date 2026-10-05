@@ -1,4 +1,4 @@
-# Composite figures — QSQ manuscript (main Figs. 1–8, Supplementary Figs. S1–S9, TOC, Tables S1–S17)
+# Composite figures — QSQ/QOAC-H manuscript (main Figs. 1–9, Supplementary figures, TOC and SI tables)
 
 Built 2026-09-28 in the AI4S house visual system (`style.py`, a per-project copy of the
 Catalyst-Essay canon). Every panel reads the frozen repository tables through `figdata.py`;
@@ -45,8 +45,7 @@ through headless Chrome.
 - Fig. 3: the "Primary result" banner is gone; the numbers sit in the panel a flow boxes.
 - Fig. 5c: the three ladders are the R script's own selection rule (ZFP pairs with ≥ 5 rungs, min /
   median / max consecutive jump) and are named in the panel titles.
-- Fig. 8 (external confirmation) is the former Figure 7; Fig. 7 is the Fourier mechanism figure, as
-  on branch `paper/fourier-mechanism-integration-20260927`.
+- Fig. 7 is the Fourier mechanism figure. The 2026-10-05 QOAC-H integration adds reader-facing Fig. 8 from `figures/R/rendered/figure8_qoac_h_R.*`; the existing external-confirmation render is now reader-facing Fig. 9 while retaining its historical `figure8_external_confirmation` filename for provenance.
 - SI tables: hairline top/bottom rules and header rule only, no vertical rules, no banded rows,
   tabular numerals right-aligned, TeX fragments converted to Unicode.
 
@@ -79,7 +78,7 @@ figS9/make_figS9.py, toc/make_toc.py                                            
   densest 15 % of non-vacuum voxels. Values are written to `renders/*_params.json`, and the figures read them.
 - **Structure.** The MP KCN file has its C/N atoms in a periodic C–N–N–C–C–N–N–C chain (1.36–1.47 Å). It is
   drawn as the file gives it, with periodic-image bonds.
-- Sheets: the right column of the main sheet is scaled to 0.60 because it carries the render rows.
+- Sheets: the main sheet now contains nine reader-facing figures; the right column includes the QOAC-H Fig. 8 and external-confirmation Fig. 9 through provenance-preserving paths.
 
 ## Cautions
 
