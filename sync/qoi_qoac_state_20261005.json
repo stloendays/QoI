@@ -1,0 +1,101 @@
+{
+  "snapshot_date": "2026-10-05",
+  "repo": "stloendays/QoI",
+  "system_of_record": "GitHub",
+  "branches": {
+    "paper": {
+      "name": "paper/qoac-integration-20261005",
+      "commit": "10d3d3755a50f9884c93fa2d7267adbcb9fecc31"
+    },
+    "qoac_b1": {
+      "name": "research/qoac-b-fixed-partition-20261005",
+      "commit": "ac374bac459fe4d02f44ad708bacd09d63cd69b5"
+    },
+    "qoac_b2_engineering": {
+      "name": "research/qoac-b2-projection-aware-20261005",
+      "commit": "892bedbe87715ecd8152dc9e0d8f6b1038845c1c"
+    },
+    "qoac_b2_confirmatory": {
+      "name": "research/qoac-b2-confirmatory-20261005",
+      "commit": "34076deb9b7de19b922b0dd2d4a51ea449eebf51"
+    },
+    "electric_field": {
+      "name": "research/general-qoac-electric-field-20261005",
+      "commit": "3e0dc72a70b5393583656373ea91a64a035d4057"
+    }
+  },
+  "results": {
+    "qoac_h": {
+      "status": "confirmed",
+      "mechanism_wins": "12/12",
+      "median_error_ratio_beta2_beta0": 0.0767117,
+      "confirmatory_wins": "48/48",
+      "confirmatory_median_cr_ratio": 15.016,
+      "confirmatory_ci95": [
+        11.204,
+        21.461
+      ],
+      "census_materials": 254,
+      "census_settings": 6350,
+      "census_primary_comparable_wins": "253/253",
+      "census_primary_median_cr_ratio": 12.463
+    },
+    "qoac_b1": {
+      "status": "mechanism_go_transform_no_go",
+      "engineering_materials": 12,
+      "max_bader_error_e": 0,
+      "max_reassignment": 0,
+      "median_cr_ratio_residual_vs_g1": 0.4010479940206533,
+      "median_cr_ratio_residual_vs_projection": 0.29853266338112855
+    },
+    "qoac_b2_engineering": {
+      "status": "go",
+      "engineering_materials": 12,
+      "kappa": 4,
+      "tau_bader_e": 0.001,
+      "wins": 11,
+      "median_cr_ratio": 1.7820228100359512,
+      "max_bader_error_e": 0,
+      "max_reassignment": 0,
+      "max_side_channel_fraction": 0.0071168621107966035
+    },
+    "qoac_b2_confirmatory": {
+      "status": "pass",
+      "materials": 38,
+      "wins": 34,
+      "win_fraction": 0.8947368421052632,
+      "median_cr_ratio": 1.8646197342236888,
+      "ci95": [
+        1.7591564222029554,
+        1.9854905386114934
+      ],
+      "min_cr_ratio": 0.9966631135004865,
+      "max_bader_error_e": 0,
+      "max_reassignment": 0,
+      "max_side_channel_fraction": 0.00999000999000999
+    },
+    "electric_field": {
+      "status": "engineering_no_go",
+      "materials": 12,
+      "settings": 900,
+      "failures": 0,
+      "predicted_beta": 1,
+      "gate_a": {
+        "go": false,
+        "wins": 12,
+        "median_error_ratio": 0.806368326888173
+      },
+      "gate_b": {
+        "go": false,
+        "wins": 10,
+        "median_error_ratio": 0.9280490839888995
+      },
+      "gate_c": {
+        "go": false,
+        "wins": 7,
+        "median_cr_ratio": 1.0312829279148585
+      },
+      "confirmatory_authorized": false
+    }
+  }
+}
