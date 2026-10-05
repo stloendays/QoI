@@ -51,13 +51,17 @@ def electric_field_energy(field: np.ndarray, lattice: np.ndarray, safe: bool=Fal
     if safe:
         mask &= ~nyquist_mask_rfft(tuple(x.shape))
     val=float(np.sum(w[mask]*(np.abs(f[mask])**2)/g2[mask]))
-    if not (math.isfinite(val) and val>0.0):
+    if not math.isfinite(val) or val<0.0:
         raise ValueError("invalid electric-field energy")
     return val
 
 
 def reference_energies(field: np.ndarray, lattice: np.ndarray) -> tuple[float,float]:
-    return electric_field_energy(field,lattice,False),electric_field_energy(field,lattice,True)
+    hist=electric_field_energy(field,lattice,False)
+    safe=electric_field_energy(field,lattice,True)
+    if not (hist>0.0 and safe>0.0):
+        raise ValueError("reference electric-field energy must be positive")
+    return hist,safe
 
 
 def relative_error(
@@ -68,6 +72,8 @@ def relative_error(
 ) -> tuple[float,float]:
     eh=electric_field_energy(error,lattice,False)
     es=electric_field_energy(error,lattice,True)
+    if not (reference_historical_energy>0.0 and reference_safe_energy>0.0):
+        raise ValueError("reference energies must be positive")
     return (
         float(math.sqrt(eh/float(reference_historical_energy))),
         float(math.sqrt(es/float(reference_safe_energy))),
@@ -96,6 +102,6 @@ def explicit_vector_rms(field: np.ndarray, lattice: np.ndarray, safe: bool=False
     for comp in range(3):
         ek=np.zeros_like(f,dtype=np.complex128)
         ek[mask]=-1j*4.0*np.pi*f[mask]*gv[...,comp][mask]/g2[mask]
-        e=np.fft.irfftn(ek,s=x.shape)
+        e=np.fft.irfftn(ek,s=x.shape,axes=(0,1,2))
         ss += e*e
     return float(np.sqrt(np.mean(ss)))
