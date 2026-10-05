@@ -71,19 +71,19 @@ theme_qoi <- theme_minimal(base_size=10.5) + theme(
 # A — exact Hartree operator weighting translated into the frozen quantization law.
 q <- 10^seq(log10(0.05), 0, length.out=240)
 A <- bind_rows(
-  data.frame(q=q, value=q^-4, curve="Hartree sensitivity  |G|^-4"),
-  data.frame(q=q, value=q^2, curve="Allowed step  Delta_G ~ |G|^2")
+  data.frame(q=q, value=q^-4, curve="Hartree sensitivity ∝ |G|⁻⁴"),
+  data.frame(q=q, value=q^2, curve="Allowed step ΔG ∝ |G|²")
 )
 A$curve <- factor(A$curve, levels=c(
-  "Hartree sensitivity  |G|^-4",
-  "Allowed step  Delta_G ~ |G|^2"
+  "Hartree sensitivity ∝ |G|⁻⁴",
+  "Allowed step ΔG ∝ |G|²"
 ))
 
 pA <- ggplot(A, aes(q, value, colour=curve)) +
   geom_line(linewidth=1.15) +
   scale_colour_manual(values=c(
-    "Hartree sensitivity  |G|^-4"=purple,
-    "Allowed step  Delta_G ~ |G|^2"=teal
+    "Hartree sensitivity ∝ |G|⁻⁴"=purple,
+    "Allowed step ΔG ∝ |G|²"=teal
   )) +
   scale_x_log10(
     limits=c(.05,1),
@@ -92,8 +92,8 @@ pA <- ggplot(A, aes(q, value, colour=curve)) +
   ) +
   scale_y_log10(
     limits=c(1e-3,2e5),
-    breaks=10^seq(-2,5,1),
-    labels=label_math()
+    breaks=c(.01,.1,1,10,100,1000,10000,100000),
+    labels=c("0.01","0.1","1","10","100","1k","10k","100k")
   ) +
   annotate("text", x=.066, y=6e4, label="protect low G", colour=purple,
            fontface="bold", hjust=0, size=3.0) +
@@ -128,7 +128,7 @@ pB <- ggplot(M, aes(x=1, y=median_hartree_ratio_beta2_over_beta0)) +
   ) +
   scale_x_continuous(limits=c(.62,1.72), breaks=NULL) +
   labs(
-    title="B | Operator-derived beta=2 beats operator-blind beta=0",
+    title="B | Operator-derived β=2 beats operator-blind β=0",
     subtitle="12/12 engineering materials; matched serialized storage",
     x=NULL,
     y=expression(D[H](beta==2) / D[H](beta==0))
@@ -168,8 +168,8 @@ pC <- ggplot(C, aes(system_type, ratio_qoac_over_baseline, colour=system_type, f
 T <- T %>%
   mutate(
     tau_label=factor(
-      sprintf("10^%d", round(log10(tau))),
-      levels=sprintf("10^%d", -8:-3)
+      c("10⁻⁸","10⁻⁷","10⁻⁶","10⁻⁵","10⁻⁴","10⁻³")[match(round(log10(tau)), -8:-3)],
+      levels=c("10⁻⁸","10⁻⁷","10⁻⁶","10⁻⁵","10⁻⁴","10⁻³")
     ),
     denom=sprintf("n=%d", comparable)
   )
@@ -198,11 +198,14 @@ fig <- ((pA | pB) / (pC | pD)) +
   plot_layout(guides="collect") +
   plot_annotation(
     title="Figure 8 | The downstream operator converts compression diagnosis into design",
-    subtitle="QOAC-H allocates reciprocal-space error from the Hartree operator, verifies the allocation against an operator-blind ablation, and preserves the gain on a disjoint cohort and the full development population.",
+    subtitle=paste0(
+      "QOAC-H allocates reciprocal-space error from the Hartree operator and verifies the allocation against an operator-blind ablation.\n",
+      "The frozen design is then tested on a disjoint cohort and the complete development population."
+    ),
     caption=paste0(
-      "Primary Hartree contract: relative RMSE < 10^-6. Confirmatory cohort: 48/48 wins, median CR ratio 15.016x ",
-      "(bootstrap 95% CI 11.204-21.461), with 48/48 Nyquist-safe guardrails passed. ",
-      "Full census at 10^-6: 253/253 comparable wins, median 12.463x, P05 4.459x, minimum 2.444x. ",
+      "Primary Hartree contract: relative RMSE < 10⁻⁶. Confirmatory cohort: 48/48 wins; median CR ratio 15.016× ",
+      "(bootstrap 95% CI 11.204–21.461); 48/48 Nyquist-safe guardrails passed.\n",
+      "Full census at 10⁻⁶: 253/253 comparable wins; median 12.463×; P05 4.459×; minimum 2.444×. ",
       "Eligibility and baseline availability define the denominator at each tolerance."
     ),
     theme=theme(
