@@ -2,7 +2,7 @@
 """Deterministic post-processing for the anonymous main-manuscript DOCX proof.
 
 Input DOCX is expected to come from Pandoc after assembling the canonical
-MANUSCRIPT.md, FIGURE_CAPTIONS.md and current Figure 1-8 PNG assets.
+MANUSCRIPT.md, FIGURE_CAPTIONS.md and current Figure 1-9 PNG assets.
 
 This script changes presentation only. It does not edit scientific content.
 """
