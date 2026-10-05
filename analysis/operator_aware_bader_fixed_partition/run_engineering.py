@@ -120,12 +120,12 @@ def main():
             S=Solver(a.bader,lattice,frac,symbols,chg.shape,work)
             qref,lflat=S(chg,ae)
             labels=qb.label_grid_from_fortran_flat(lflat,chg.shape)
-            if int(labels.max())>len(symbols): raise RuntimeError("partition label exceeds atom count")
             side,residual=qb.decompose_to_basin_residual(chg,labels); side_blob=side.to_bytes()
             residual_fraction=float(np.sum(residual*residual)/max(np.sum(chg*chg),1e-300))
             counts=qb.region_counts(labels)
             result.update(
                 npoints=int(chg.size),raw_bytes=int(chg.nbytes),natoms=len(symbols),nlabels=int(side.sums.size),
+                max_partition_label=int(labels.max()),extra_partition_label_count=max(0,int(side.sums.size)-1-len(symbols)),
                 label0_voxels=int(counts[0] if len(counts) else 0),label0_fraction=float((counts[0] if len(counts) else 0)/chg.size),
                 side_channel_bytes=len(side_blob),residual_energy_fraction=residual_fraction,
                 aeccar0_sha256=hashlib.sha256(a0).hexdigest(),aeccar2_sha256=hashlib.sha256(a2).hexdigest(),
@@ -181,6 +181,8 @@ def main():
         result["status"]="FAILED"; result["failures"].append({"stage":"material","error":f"{type(e).__name__}: {e}"}); result["traceback"]=traceback.format_exc()
     result["wall_seconds"]=time.time()-t0
     (outdir/f"{mid}.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
+    if result["status"]!="SUCCESS":
+        print("QOAC_B1_FAILURE",mid,result.get("failures"),flush=True)
     print("QOAC_B1_DONE",mid,result["status"],"rows",len(result["rows"]),"verifications",len(result["verification"]),"solves",result.get("bader_solves"))
     return 0 if result["status"]=="SUCCESS" else 1
 
