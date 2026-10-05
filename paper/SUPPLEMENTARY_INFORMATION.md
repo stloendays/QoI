@@ -347,9 +347,9 @@ The final codec uses a full orthonormal FFT. Reciprocal indices are partitioned 
 Even-grid Nyquist coordinates require special care in non-orthogonal cells. A coordinate at $N/2$ is alias-equivalent to both $+N/2$ and $-N/2$, and reciprocal-metric cross terms can make the continuum $|G|^2$ depend on that sign choice. For every mode containing one or more Nyquist coordinates, QOAC-H enumerates the alias-equivalent sign choices and defines
 
 $$
-|G|_{\mathrm{safe}}^2
+|G|_{\text{safe}}^2
 =
-\min_{\mathrm{alias\ choices}} |G|^2.
+\min_{\text{alias choices}} |G|^2.
 $$
 
 The frozen quantizer is then
@@ -359,8 +359,8 @@ $$
 =
 \alpha
 \left(
-\frac{|G|_{\mathrm{safe}}}
-{G_{\max,\mathrm{safe}}}
+\frac{|G|_{\text{safe}}}
+{G_{\max,\text{safe}}}
 \right)^2.
 $$
 
