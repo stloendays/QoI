@@ -1,6 +1,6 @@
-# ACS-style reference list — 2026-09-11
+# ACS-style reference list — current through 2026-10-05
 
-This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_JOURNAL_POLISHED_20260911.md`: references are numbered by first appearance. Stable literature-library IDs remain unchanged in `paper/REFERENCES.md`; the mapping is recorded in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`. The entries follow ACS-style numbered-reference conventions, with semicolon-separated authors, article title, abbreviated journal title, year, volume, issue where useful, pages/article number, and DOI.
+This rendering follows the current submission citation order in `paper/MANUSCRIPT.md`.
 
 1. Di, S.; Liu, J.; Zhao, K.; Liang, X.; Underwood, R.; Zhang, Z.; Shah, M.; Huang, Y.; Huang, J.; Yu, X.; et al. A Survey on Error-Bounded Lossy Compression for Scientific Datasets. *ACM Comput. Surv.* **2025**, *57* (11), Article 287, 1–38. DOI: 10.1145/3733104.
 
@@ -12,7 +12,7 @@ This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_J
 
 5. Cappello, F.; Di, S.; Li, S.; Liang, X.; Gok, A. M.; Tao, D.; Yoon, C. H.; Wu, X.-C.; Alexeev, Y.; Chong, F. T. Use Cases of Lossy Compression for Floating-Point Data in Scientific Data Sets. *Int. J. High Perform. Comput. Appl.* **2019**, *33* (6), 1201–1220. DOI: 10.1177/1094342019853336.
 
-6. Gok, A. M.; Di, S.; Alexeev, Y.; Tao, D.; Mironov, V.; Liang, X.; Cappello, F. PaSTRI: Error-Bounded Lossy Compression for Two-Electron Integrals in Quantum Chemistry. In *2018 IEEE International Conference on Cluster Computing (CLUSTER)*; IEEE, 2018; pp 1–11. DOI: 10.1109/CLUSTER.2018.00013.
+6. Gok, A. M.; Di, S.; Alexeev, Y.; Tao, D.; Mironov, V.; Liang, X.; Cappello, F. PaSTRI: Error-Bounded Lossy Compression for Two-Electron Integrals in Quantum Chemistry. In *2018 IEEE International Conference on Cluster Computing (CLUSTER)*; IEEE, 2018; pp 1–11. DOI: 10.1109/CLUSTER2018.00013.
 
 7. Lara, A. O.; Talbot, J. J.; Wang, Z.; Head-Gordon, M. An Algorithm for Atom-Centered Lossy Compression of the Atomic Orbital Basis in Density Functional Theory Calculations. *J. Chem. Theory Comput.* **2026**, *22* (7), 3327–3340. DOI: 10.1021/acs.jctc.5c01988.
 
@@ -22,7 +22,7 @@ This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_J
 
 10. Ainsworth, M.; Tugluk, O.; Whitney, B.; Klasky, S. Multilevel Techniques for Compression and Reduction of Scientific Data—Quantitative Control of Accuracy in Derived Quantities. *SIAM J. Sci. Comput.* **2019**, *41* (4), A2146–A2171. DOI: 10.1137/18M1208885.
 
-11. Gong, Q.; Liang, X.; Whitney, B.; Choi, J. Y.; Chen, J.; Wan, L.; Ethier, S.; Ku, S. H.; Churchill, R. M.; Chang, C. S.; et al. Maintaining Trust in Reduction: Preserving the Accuracy of Quantities of Interest for Lossy Compression. In *Driving Scientific and Engineering Discoveries Through the Integration of Experiment, Big Data, and Modeling and Simulation*; Nichols, J.; Maccabe, A. B.; Nutaro, J.; Pophale, S.; Devineni, P.; Ahearn, T.; Verastegui, B., Eds.; Communications in Computer and Information Science; Springer: Cham, 2022; Vol. 1512, pp 22–39. DOI: 10.1007/978-3-030-96498-6_2.
+11. Gong, Q.; Liang, X.; Whitney, B.; Choi, J. Y.; Chen, J.; Wan, L.; Ethier, S.; Ku, S. H.; Churchill, R. M.; Chang, C. S.; et al. Maintaining Trust in Reduction: Preserving the Accuracy of Quantities of Interest for Lossy Compression. In *Driving Scientific and Engineering Discoveries Through the Integration of Experiment, Big Data, and Modeling and Simulation*; Springer: Cham, 2022; Vol. 1512, pp 22–39. DOI: 10.1007/978-3-030-96498-6_2.
 
 12. Lee, J.; Gong, Q.; Choi, J.; Banerjee, T.; Klasky, S.; Ranka, S.; Rangarajan, A. Error-Bounded Learned Scientific Data Compression with Preservation of Derived Quantities. *Appl. Sci.* **2022**, *12* (13), 6718. DOI: 10.3390/app12136718.
 
@@ -32,21 +32,33 @@ This rendering uses the **submission citation order** of `paper/MANUSCRIPT_TOP_J
 
 15. Gorski, N.; Liang, X.; Guo, H.; Yan, L.; Wang, B. A General Framework for Augmenting Lossy Compressors With Topological Guarantees. *IEEE Trans. Vis. Comput. Graph.* **2025**, *31* (6), 3693–3705. DOI: 10.1109/TVCG.2025.3567054.
 
-16. Liu, Y.; Jiang, B.; Yang, T.; Di, S.; Underwood, R.; Jin, S. TOPIQ: Statistical Error Propagation for Quantity-of-Interest Prediction under Lossy Compression. *arXiv* **2026**, arXiv:2608.26912. DOI: 10.48550/arXiv.2608.26912.
+16. Liu, Y.; Jiang, B.; Yang, T.; Di, S.; Underwood, R.; Jin, S. TOPIQ: Statistical Error Propagation for Quantity-of-Interest Prediction under Lossy Compression. *arXiv* **2026**, arXiv:2608.26912.
 
-17. Bader, R. F. W. *Atoms in Molecules: A Quantum Theory*; Oxford University Press: Oxford, 1990. DOI: 10.1093/oso/9780198551683.001.0001.
+17. Tyree, J.; Underwood, R.; Bouvier, C.; Köhler, D.; Reichelt, T.; Dueben, P.; Faghih-Naini, S.; Järvinen, H.; Klöwer, M. Compression Safeguards: Building Trust into Lossy Data Compression. *EGUsphere* **2026**, egusphere-2026-4266. DOI: 10.5194/egusphere-2026-4266.
 
-18. Henkelman, G.; Arnaldsson, A.; Jónsson, H. A Fast and Robust Algorithm for Bader Decomposition of Charge Density. *Comput. Mater. Sci.* **2006**, *36* (3), 354–360. DOI: 10.1016/j.commatsci.2005.04.010.
+18. Bader, R. F. W. *Atoms in Molecules: A Quantum Theory*; Oxford University Press: Oxford, 1990. DOI: 10.1093/oso/9780198551683.001.0001.
 
-19. Tang, W.; Sanville, E.; Henkelman, G. A Grid-Based Bader Analysis Algorithm without Lattice Bias. *J. Phys.: Condens. Matter* **2009**, *21* (8), 084204. DOI: 10.1088/0953-8984/21/8/084204.
+19. Henkelman, G.; Arnaldsson, A.; Jónsson, H. A Fast and Robust Algorithm for Bader Decomposition of Charge Density. *Comput. Mater. Sci.* **2006**, *36* (3), 354–360. DOI: 10.1016/j.commatsci.2005.04.010.
 
-20. Yu, M.; Trinkle, D. R. Accurate and Efficient Algorithm for Bader Charge Integration. *J. Chem. Phys.* **2011**, *134* (6), 064111. DOI: 10.1063/1.3553716.
+20. Tang, W.; Sanville, E.; Henkelman, G. A Grid-Based Bader Analysis Algorithm without Lattice Bias. *J. Phys.: Condens. Matter* **2009**, *21* (8), 084204. DOI: 10.1088/0953-8984/21/8/084204.
 
-21. Hutcheon, M. J.; Teale, A. M. Topological Analysis of Functions on Arbitrary Grids: Applications to Quantum Chemistry. *J. Chem. Theory Comput.* **2022**, *18* (10), 6077–6091. DOI: 10.1021/acs.jctc.2c00649.
+21. Yu, M.; Trinkle, D. R. Accurate and Efficient Algorithm for Bader Charge Integration. *J. Chem. Phys.* **2011**, *134* (6), 064111. DOI: 10.1063/1.3553716.
+
+22. Hutcheon, M. J.; Teale, A. M. Topological Analysis of Functions on Arbitrary Grids: Applications to Quantum Chemistry. *J. Chem. Theory Comput.* **2022**, *18* (10), 6077–6091. DOI: 10.1021/acs.jctc.2c00649.
+
+23. Currie, L. A. Nomenclature in Evaluation of Analytical Methods Including Detection and Quantification Capabilities (IUPAC Recommendations 1995). *Pure Appl. Chem.* **1995**, *67*, 1699–1723. DOI: 10.1351/pac199567101699.
+
+24. Automotive Industry Action Group. *Measurement Systems Analysis Reference Manual*, 4th ed.; AIAG: Southfield, MI, 2010.
+
+25. Liu, J.; Jiao, P.; Zhao, K.; Liang, X.; Di, S.; Cappello, F. QPET: A Versatile and Portable Quantity-of-Interest-Preservation Framework for Error-Bounded Lossy Compression. *Proc. VLDB Endow.* **2025**, *18* (8), 2440–2453. DOI: 10.14778/3742728.3742739.
+
+26. Goyal, V. K. Theoretical Foundations of Transform Coding. *IEEE Signal Process. Mag.* **2001**, *18* (5), 9–21. DOI: 10.1109/79.952802.
+
+27. Chinnamsetty, S. R.; Espig, M.; Khoromskij, B. N.; Hackbusch, W.; Flad, H.-J. Tensor Product Approximation with Optimal Rank in Quantum Chemistry. *J. Chem. Phys.* **2007**, *127* (8), 084110. DOI: 10.1063/1.2761871.
+
+28. Wilks, S. S. Determination of Sample Sizes for Setting Tolerance Limits. *Ann. Math. Stat.* **1941**, *12*, 91–96. DOI: 10.1214/aoms/1177731788.
 
 ## ACS submission notes
 
-- The manuscript now uses first-appearance submission numbering; the stable archive numbers in `paper/REFERENCES.md` are literature-library IDs only.
-- Individual ACS journals can differ on how many authors must be listed before *et al.*; the selected journal's Author Guidelines should override this draft where necessary.
-- The manuscript currently uses bracketed numerical citations as a working format. Many ACS journals use superscript Arabic numbers; convert citation callouts only after the target journal is fixed.
-- Ref. 16 is the TOPIQ preprint and is retained only as recent context; peer-reviewed submission refs. 9–15 carry the core prior-art argument.
+- The selected ACS journal's current author instructions override punctuation and author-list details.
+- QOAC-H should be positioned against refs. 9–13 and 25–27; none supports a generic "first QoI-aware/operator-aware compressor" claim.
