@@ -99,6 +99,9 @@ def direct_atomic_charges(field,labels,lattice,natoms):
     rho=np.asarray(field,dtype=np.float64)
     lab=np.asarray(labels,dtype=np.int64)
     if rho.shape!=lab.shape: raise ValueError("shape mismatch")
-    scale=abs(float(np.linalg.det(np.asarray(lattice,dtype=np.float64))))/rho.size
+    # VASP CHGCAR grid values in the repository decoder integrate to
+    # electron count by the grid average: sum(values) / N_grid.
+    # The cell-volume factor is already contained in the stored convention.
+    scale=1.0/rho.size
     sums=np.bincount(lab.ravel(),weights=rho.ravel(),minlength=max(int(lab.max())+1,natoms+1))
     return sums[1:natoms+1]*scale
