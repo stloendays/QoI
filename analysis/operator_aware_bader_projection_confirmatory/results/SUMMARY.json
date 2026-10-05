@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETE",
+  "confirmatory_pass": true,
+  "materials": 38,
+  "kappa": 4.0,
+  "tau_bader_e": 0.001,
+  "wins": 34,
+  "win_fraction": 0.8947368421052632,
+  "median_cr_ratio": 1.8646197342236888,
+  "bootstrap_median_95_ci": [
+    1.7591564222029554,
+    1.9854905386114934
+  ],
+  "min_cr_ratio": 0.9966631135004865,
+  "p05_cr_ratio": 0.9994400910274166,
+  "p25_cr_ratio": 1.7149799703343964,
+  "p75_cr_ratio": 2.111801805911534,
+  "p95_cr_ratio": 7.0211921821867245,
+  "max_cr_ratio": 10.97806173504734,
+  "median_linf_ratio": 3.088497387546329,
+  "max_linf_ratio": 3.6061736313167687,
+  "max_bader_error_e": 0.0,
+  "max_reassigned_frac": 0.0,
+  "max_side_channel_fraction": 0.00999000999000999,
+  "criteria": {
+    "all_38_analyzable_zero_failures": true,
+    "all_38_bader_error_le_2e-6": true,
+    "all_38_zero_reassignment": true,
+    "wins_at_least_30_of_38": true,
+    "median_ratio_gt_1p30": true,
+    "bootstrap_lower_gt_1p10": true,
+    "all_side_channel_lt_1pct": true
+  }
+}
