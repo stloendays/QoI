@@ -94,7 +94,7 @@ jobs:
             --repo-root repo \
             --manifest manifest/PILOT_MANIFEST.csv \
             --shard-count 6 \
-            --shard-index ${{ matrix.shard ${{ \
+            --shard-index ${{ matrix.shard }} \
             --output-dir "$out"
           python --version > "$out/python_version.txt" 2>&1
           python -m pip freeze | sort > "$out/pip_freeze.txt"
