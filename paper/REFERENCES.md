@@ -1,10 +1,10 @@
 # References for the QoI manuscript
 
-Numbering below is the **stable reference-library ID** used by the project literature archive and Notion/PDF records. These IDs are intentionally not renumbered. The reader-facing submission manuscript numbers the same 21 references by order of first appearance; the exact library-ID ↔ submission-number mapping is frozen in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`. This separation preserves archival provenance while keeping the submission bibliography compliant with numbered-journal citation order.
+Numbering below is the **stable reference-library ID** used by the project literature archive and Notion/PDF records. These IDs are intentionally not renumbered. The reader-facing submission manuscript numbers the current 28 references by order of first appearance; the exact library-ID ↔ submission-number mapping is frozen in `paper/REFERENCE_NUMBER_CROSSWALK_20260911.md`. This separation preserves archival provenance while keeping the submission bibliography compliant with numbered-journal citation order.
 
-The bibliography is organized around four evidence layers: scientific-compression foundations, QoI-aware/error-propagation prior art, topology/Bader numerical analysis, and chemistry/electronic-structure compression context.
+The bibliography spans scientific-compression foundations, QoI-aware/error-propagation prior art, topology/Bader numerical analysis, measurement-science context, transform coding, and chemistry/electronic-structure compression.
 
-**Metadata audit:** 2026-09-11. Bibliographic metadata were checked against publisher, PubMed, institutional-repository, DBLP, arXiv, or author-hosted records as appropriate. Journal-specific renderings are maintained separately in `paper/REFERENCES_NATURE_STYLE_20260911.md` and `paper/REFERENCES_ACS_STYLE_20260911.md`.
+**Metadata audit:** core library 2026-09-11; QSQ measurement-science and QOAC-H additions refreshed through 2026-10-05. Bibliographic metadata were checked against publisher, PubMed, institutional-repository, DBLP, arXiv, or author-hosted records as appropriate. Journal-specific renderings are maintained separately in `paper/REFERENCES_NATURE_STYLE_20260911.md` and `paper/REFERENCES_ACS_STYLE_20260911.md`.
 
 1. Di, S. *et al.* A survey on error-bounded lossy compression for scientific datasets. **ACM Computing Surveys** **57**(11), Article 287, 1–38 (2025). https://doi.org/10.1145/3733104.
 
