@@ -1,8 +1,8 @@
 # Figure map
 
-Updated 2026-09-27. Canonical figure-numbering, narrative role, source, and provenance registry for the current submission scope.
+Updated 2026-10-05. Canonical figure-numbering, narrative role, source, and provenance registry for the current submission scope.
 
-**Active title:** *Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities*
+**Active title:** *Numerical stability qualification and operator-aware compression of electronic densities*
 
 ## Narrative spine
 
@@ -18,7 +18,7 @@ The manuscript does **not** claim novelty for the general observation that small
 
 `P1 equal-search control -> P2 prospective fresh-perturbation validation -> P3A independent on-grid implementation transfer`
 
-with **P4** as a secondary measurement-contract boundary case study and the Fourier audit as operator-resolved mechanism support.
+with **P4** as a secondary measurement-contract boundary case study, the Fourier audit as operator-resolved mechanism support, and QOAC-H as the author-authorized diagnosis-to-design extension.
 
 ## Canonical figure registry
 
@@ -31,7 +31,8 @@ with **P4** as a secondary measurement-contract boundary case study and the Four
 | 5 | Basin migration and topology-sensitive Bader amplification | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | **LOCKED** |
 | 6 | Nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | **LOCKED** |
 | 7 | Fourier-spectrum mechanism at matched realized distortion | `figures/R/figure7_fourier_spectrum_mechanism.R` | `figures/R/rendered/figure7_fourier_spectrum_mechanism_R.{png,pdf,svg}` | **LOCKED** |
-| 8 | Untouched external confirmation | `figures/R/figure8_external_confirmation.R` | `figures/R/rendered/figure8_external_confirmation_R.{png,pdf,svg}` | **LOCKED** |
+| 8 | **QOAC-H: operator-derived compression design and certified rate gain** | `figures/R/figure8_qoac_h.R` | `figures/R/rendered/figure8_qoac_h_R.{png,pdf,svg}` | **NEW — TO BUILD FROM FROZEN RESULTS** |
+| 9 | Untouched external confirmation | `figures/R/figure8_external_confirmation.R` | `figures/R/rendered/figure8_external_confirmation_R.{png,pdf,svg}` | **LOCKED — reader-facing renumber to Fig. 9** |
 
 ## Figure 1 — Measurement contract
 
@@ -156,13 +157,31 @@ Parity checks that must be stated in the caption or SI:
 
 Do **not** state that this Fourier statistic uniquely explains the Bader residual.
 
-## Figure 8 — Untouched external confirmation
+## Figure 8 — QOAC-H diagnosis-to-design result
 
-**Function:** close the empirical chain using the frozen decision rules on the 63-system untouched external cohort.
+**Function:** show that the operator-resolved Hartree mechanism is actionable, not merely explanatory.
+
+Required panels:
+- **A — physical distortion geometry:** paired reciprocal-space visual showing Hartree sensitivity $|G|^{-4}$ and the derived quantization-step law $\Delta_G\propto|G|^2$. This is a scientific schematic backed by the exact operator, not a fitted curve.
+- **B — mechanism ablation:** material-level matched-storage Hartree-error ratio for frozen operator-derived $\beta=2$ versus operator-blind $\beta=0$ across the 12 engineering materials. Anchor: **12/12 favor $\beta=2$; median ratio 0.0767**.
+- **C — disjoint confirmation:** one point per previously unseen material for $CR_{\mathrm{QOAC-H}}/CR_{\mathrm{best\ baseline}}$ at $\tau_H=10^{-6}$, separated by bulk/slab. Anchors: **48/48 wins; median 15.016×; bootstrap 95% CI 11.204–21.461; bulk median 11.203×; slab median 25.699×**.
+- **D — full-population tolerance census:** distribution or interval summary of QOAC-H/best-baseline CR ratio across $10^{-8}$–$10^{-3}$ using only comparable material–tolerance pairs. Median anchors: **4.324×, 6.911×, 12.463×, 14.749×, 14.017×, 7.593×**. Show comparable denominators explicitly.
+
+Required guardrails:
+- State that all 48 confirmatory selected rows also satisfy the Nyquist-safe Hartree contract.
+- At $10^{-6}$ full census, report **253/253 comparable wins**, median **12.463×**, P05 **4.459×**, minimum **2.444×**.
+- Do not hide QSQ eligibility or baseline-availability denominators.
+- Do not present the 254-material census as a new external cohort.
+
+**Take-home:** the same physical operator that explains codec-dependent Hartree error determines a transform-domain error allocation that greatly improves certified compression.
+
+## Figure 9 — Untouched external confirmation
+
+**Function:** close the QSQ empirical chain using the frozen decision rules on the 63-system untouched external cohort.
 
 External QSQ eligibility is 16/63 at `1e-4 e`, 42/63 at `1e-3 e`, and 57/63 at `1e-2 e`. Certified rate–fidelity ordering changes with the requested scientific contract.
 
-**Take-home:** the frozen stability-qualified evaluation logic reproduces without retuning, while the preferred codec remains tolerance dependent.
+**Take-home:** the frozen stability-qualified evaluation logic reproduces without retuning, while the preferred generic codec remains tolerance dependent.
 
 ## P4 — Chemical contract boundary
 
@@ -189,8 +208,9 @@ Frozen result:
 8. Report **P4** as a null correctness / contract-boundary case study.
 9. **Figure 6:** control nominal-versus-realized distortion for codec comparison.
 10. **Figure 7:** close the matched-distortion residual mechanistically with the Fourier-spectrum Hartree audit.
-11. Report stability-qualified rate–fidelity only among eligible material–threshold pairs.
-12. **Figure 8:** close with untouched external confirmation.
+11. **Figure 8:** convert the Hartree diagnosis into QOAC-H, show the frozen operator-blind ablation, disjoint confirmation and full-population tolerance census.
+12. Report stability-qualified rate–fidelity only among eligible material–threshold pairs.
+13. **Figure 9:** close the QSQ validation chain with untouched external confirmation.
 
 ## Main-text claim hierarchy
 
@@ -203,7 +223,9 @@ Frozen result:
 7. **Mechanistic support:** density-dependent basin migration explains irregular Bader amplification.
 8. **Fair codec comparison:** nominal tolerance is not a common realized-distortion scale.
 9. **Operator-resolved mechanism:** after realized-$L_\infty$ matching, reciprocal-space error allocation explains the Hartree codec effect through the $|G|^{-4}$ weighting of squared error.
-10. **Practical output:** among eligible systems, the certified compression frontier depends on the requested scientific contract.
+10. **Diagnosis-to-design result:** the operator-derived $\Delta_G\propto|G|^2$ allocation beats the operator-blind ablation and QOAC-H wins 48/48 disjoint confirmatory materials at the primary Hartree contract.
+11. **Population evidence:** at $10^{-6}$ the 254-material census yields 253/253 comparable wins with median 12.463× CR advantage; the direction persists across all comparable systems over six Hartree tolerances.
+12. **Practical output:** qualification and certification remain contract-specific even when an operator-aware codec is substantially more efficient.
 
 ## Figure provenance
 
@@ -216,12 +238,13 @@ Locked formal runs retained for provenance:
 - Figure 5: run `34349558487`, artifact `10103144848`.
 - Figure 6: run `34340308601`, artifact `10099481566`.
 - Figure 7: source `figures/R/figure7_fourier_spectrum_mechanism.R`; final caption `paper/FIGURE7_CAPTION_FINAL_20260927.md`; rendered from `analysis/hartree_spectral_mechanism/results/` on the manuscript-integration branch.
-- Figure 8: source `figures/R/figure8_external_confirmation.R`; outputs `figures/R/rendered/figure8_external_confirmation_R.{png,pdf,svg}`.
+- Figure 8: **to be generated** from frozen QOAC-H engineering, confirmatory and census outputs; source path reserved as `figures/R/figure8_qoac_h.R`.
+- Figure 9: existing external-confirmation source remains `figures/R/figure8_external_confirmation.R`; reader-facing numbering becomes Fig. 9 without renaming provenance files.
 
 ## Submission scope lock
 
-P0–P4 remain resolved. P3B new DFT grid convergence is deferred. P5 remains **NO-GO for the current submission**. The only reopened line is the author-authorized Fourier-spectrum mechanism integration documented in `paper/FOURIER_MECHANISM_SCOPE_ADDENDUM_20260927.md`; it uses the existing Hartree control and does not alter QSQ cohorts, thresholds or perturbation definitions.
+The author explicitly reopened the submission scope on 2026-10-05 after the QOAC-H engineering, disjoint confirmation and full-population census completed. The governing record is `paper/QOAC_SCOPE_ADDENDUM_20261005.md`.
 
-The scope is re-frozen after this integration. No further scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or primary threshold should be added before submission without another explicit scope-reopening addendum.
+P0–P4, the QSQ cohorts and thresholds, and the Bader conclusions remain unchanged. QOAC-H is a new Hartree-specific design result derived from the already established Fourier mechanism. The main-text architecture is now **nine figures**: the new QOAC-H figure is Fig. 8 and the previously locked external-confirmation figure becomes reader-facing Fig. 9.
 
-Remaining work is manuscript/figure/SI alignment, archival DOI, journal-specific formatting, and final Word/PDF assembly.
+No further new scientific endpoint or primary cohort should be added before submission without another explicit author-authorized scope reopening. Remaining work is QOAC-H figure construction, SI/figure-caption synchronization, reference-style regeneration, archival DOI, journal-specific formatting and final Word/PDF assembly.
