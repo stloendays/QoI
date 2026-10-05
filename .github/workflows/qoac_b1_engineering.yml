@@ -1,0 +1,192 @@
+name: QOAC-B1 fixed-partition engineering
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-b-fixed-partition-20261005
+    paths:
+      - analysis/operator_aware_bader_fixed_partition/DESIGN.md
+      - analysis/operator_aware_bader_fixed_partition/qoac_b_core.py
+      - analysis/operator_aware_bader_fixed_partition/test_qoac_b_core.py
+      - analysis/operator_aware_bader_fixed_partition/freeze_split.py
+      - analysis/operator_aware_bader_fixed_partition/run_engineering.py
+      - analysis/operator_aware_bader_fixed_partition/aggregate_engineering.py
+      - .github/workflows/qoac_b1_engineering.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-b1-engineering-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Test basin-nullspace core
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.3.5
+          python -m py_compile repo/analysis/operator_aware_bader_fixed_partition/*.py
+          cd repo/analysis/operator_aware_bader_fixed_partition
+          python -m unittest -v test_qoac_b_core.py
+      - name: Freeze 12/38 split
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p split
+          python repo/analysis/operator_aware_bader_fixed_partition/freeze_split.py \
+            --repo-root repo \
+            --engineering split/ENGINEERING_MANIFEST.csv \
+            --holdout split/FROZEN_HOLDOUT_MANIFEST.csv \
+            --provenance split/SPLIT_PROVENANCE.json
+          test "$(( $(wc -l < split/ENGINEERING_MANIFEST.csv) - 1 ))" -eq 12
+          test "$(( $(wc -l < split/FROZEN_HOLDOUT_MANIFEST.csv) - 1 ))" -eq 38
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-b1-frozen-split
+          path: split
+          if-no-files-found: error
+          retention-days: 90
+
+  material:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install scientific stack and Fortran compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gfortran
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Build Henkelman Bader
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r repo/mechanism/independent_bader_20260908/reference_source "$RUNNER_TEMP/bader_source"
+          cd "$RUNNER_TEMP/bader_source"
+          sed -i 's/^LINK = -static/LINK =/' makefile.osx_gfortran
+          make -f makefile.osx_gfortran
+          test -x bader
+          sha256sum bader
+      - uses: actions/download-artifact@v4
+        with:
+          name: qoac-b1-frozen-split
+          path: split
+      - name: Run engineering material
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_b1_${{ matrix.index }}"
+          mkdir -p "$out"
+          python repo/analysis/operator_aware_bader_fixed_partition/run_engineering.py \
+            --repo-root repo \
+            --frozen-root frozen \
+            --engineering-manifest split/ENGINEERING_MANIFEST.csv \
+            --index ${{ matrix.index }} \
+            --bader "$RUNNER_TEMP/bader_source/bader" \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-b1-material-${{ matrix.index }}
+          path: ${{ runner.temp }}/qoac_b1_${{ matrix.index }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: material
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-b1-material-*
+          path: shards
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: qoac-b1-frozen-split
+          path: split
+      - name: Aggregate frozen engineering gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_bader_fixed_partition/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_bader_fixed_partition/aggregate_engineering.py \
+            --engineering-manifest split/ENGINEERING_MANIFEST.csv \
+            --holdout-manifest split/FROZEN_HOLDOUT_MANIFEST.csv \
+            --shards-root shards \
+            --output-dir "$out"
+          cp split/SPLIT_PROVENANCE.json "$out/"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+      - name: Commit engineering result package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_bader_fixed_partition/results
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m 'research: complete QOAC-B1 fixed-partition engineering pilot'
+            git pull --rebase origin research/qoac-b-fixed-partition-20261005
+            git push origin HEAD:research/qoac-b-fixed-partition-20261005
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b1-engineering-aggregate
+          path: repo/analysis/operator_aware_bader_fixed_partition/results
+          if-no-files-found: warn
+          retention-days: 90
