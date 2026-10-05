@@ -16,6 +16,14 @@ Frozen Git blob SHA:
 
     0a37a3cad2eeb94706ddfbed289229f8c0f4aa78
 
+Historical/Nyquist-safe Hartree evaluation helper:
+
+    analysis/operator_aware_codec_hartree/codec_qoac_h.py
+
+Frozen evaluation-helper Git blob SHA:
+
+    1d50b591aac5e5adee8c2813b435ad7a9bbc791f
+
 Parent engineering result commit:
 
     4f24b3c9672b0b2367792dd50a2bf858c7959c41
