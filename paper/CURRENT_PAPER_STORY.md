@@ -1,6 +1,18 @@
-# Current paper story — 2026-10-03
+# Current paper story — 2026-10-05
 
-**Active title:** *Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities*
+**Active title:** *Numerical stability qualification and operator-aware compression of electronic densities*
+
+## 2026-10-05 QOAC-H diagnosis-to-design integration
+
+Governing record: `paper/QOAC_SCOPE_ADDENDUM_20261005.md`. This is an author-authorized scope reopening after the Hartree codec design, disjoint confirmation and full-population census completed.
+
+- **Scientific transition:** the Hartree line no longer ends at Fourier diagnosis. The verified sequence is now `QSQ qualification -> matched-distortion Fourier diagnosis -> operator-derived error allocation -> QOAC-H -> decoded-field Hartree certification`.
+- **Design law:** Hartree squared error weights reciprocal density error by $|G|^{-4}$; the frozen high-rate transform model therefore gives $\Delta_G\propto|G|^2$. The exponent 2 was frozen before QOAC-H outcomes and compared with operator-blind exponent 0.
+- **Mechanism test:** 12/12 materials favor the operator-derived allocation at matched serialized storage; median Hartree-error ratio = **0.0767117**.
+- **Disjoint confirmation:** 48/48 previously unseen materials favor QOAC-H over each material's best certified ZFP/SZ3/SPERR baseline at $10^{-6}$ Hartree relative RMSE; median CR ratio **15.016×**, bootstrap 95% CI **11.204–21.461**, bulk **11.203×**, slab **25.699×**, safe guardrail **48/48**.
+- **Full development census:** 254 materials, 6,350 settings, 0 failures. At $10^{-6}$, **253/253 comparable wins**, median **12.463×**, P05 **4.459×**, minimum **2.444×**. Every comparable system favors QOAC-H across the six tested Hartree tolerances.
+- **Novelty boundary:** generic QoI-aware compression, operator-aware error control and transform-domain bit allocation are established prior art. The differentiated contribution is the QSQ-qualified **diagnosis-to-design loop** in which the exact physical operator first explains the codec effect and then defines the compression distortion, followed by direct downstream recertification.
+- **Figure architecture:** new Fig. 8 carries QOAC-H; the existing untouched external confirmation becomes reader-facing Fig. 9.
 
 ## 2026-10-03 workflow integration
 
@@ -26,7 +38,7 @@ Governing record: `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`. No experiment add
 
 ## One-sentence thesis
 
-**Scientific compression should be scored only after the complete measurement contract is qualified at the requested tolerance; evaluability depends on the QoI, numerical algorithm and exact-versus-approximate input roles, while codec performance further depends on the downstream operator and the spatial/frequency structure of reconstruction error.**
+**Scientific compression should be scored only after the complete measurement contract is qualified at the requested tolerance; once that ruler is valid, the downstream operator can diagnose which reconstruction errors matter and can directly define where compression error should be allocated, with the decoded object recertified under the same scientific contract.**
 
 ## What the paper is actually about
 
@@ -168,15 +180,16 @@ The untouched 63-system external cohort is evaluated under the same frozen quali
 - **Figure 5:** Bader basin-migration mechanism, with panel f for the all-electron-reference contract decomposition; implementation transfer remains supporting evidence rather than a second headline.
 - **Figure 6:** nominal-vs-realized distortion confounding control.
 - **Figure 7:** Fourier-spectrum mechanism audit of matched ZFP/SZ3 Hartree pairs.
-- **Figure 8:** untouched external confirmation.
+- **Figure 8:** QOAC-H diagnosis-to-design: operator-derived allocation, mechanism ablation, 48-material disjoint confirmation and 254-material tolerance census.
+- **Figure 9:** untouched external confirmation.
 
 ## Current research scope
 
-**The submission scope has been re-frozen after the author-authorized QoI-generality extension.** P0–P4 remain unchanged; P3B new-DFT grid convergence remains deferred and P5 remains NO-GO. The Fourier-spectrum Hartree mechanism remains the operator-specific mechanism line. The pre-declared WP-A–WP-D extension package has now been adjudicated under `paper/QOI_GENERALITY_SCOPE_ADDENDUM_20260930.md`: WP-B enters the main scientific story as a second topology-sensitive QoI; WP-C supports probe-family robustness; WP-A and WP-D are explicitly Discussion-only interpretive evidence and do not define new Results, Methods, Abstract claims or main figures.
+**The submission scope was explicitly reopened and re-frozen on 2026-10-05 for QOAC-H.** The governing record is `paper/QOAC_SCOPE_ADDENDUM_20261005.md`.
 
-The validation hierarchy remains **P1 equal-search control → P2 prospective fresh-perturbation validation → P3A independent on-grid implementation transfer**, with P4 as a secondary measurement-contract boundary/null case. The Fourier audit is mechanistic support for codec-error structure and operator weighting; it does not replace QSQ as the central contribution or alter any primary QSQ cohort, threshold or perturbation definition.
+P0–P4, the QSQ definition, primary Bader cohorts, perturbation model and thresholds remain unchanged. The new reader-facing scientific line is Hartree-specific and uses already completed evidence: the matched-distortion Fourier mechanism, prospective operator-derived quantizer, disjoint 48-material confirmation and 254-material development census. The qualification framework remains logically prior to codec scoring; QOAC-H does not replace QSQ.
 
-No further scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or primary threshold should be added before submission without another explicit scope-reopening addendum. The current eight-figure main-text architecture remains unchanged; the second-QoI generality result is integrated as a compact Results subsection with detailed supporting evidence in the SI. Remaining work is claim-evidence synchronization, figure/SI assembly, archival DOI, journal-specific formatting and final Word/PDF generation.
+The main-text architecture is now nine figures. No further new scientific endpoint, perturbation family, primary cohort, DFT convergence experiment or new operator-specific codec should be added before submission without another explicit author decision. Remaining work is Figure 8 construction, figure/caption/SI synchronization, reference-style regeneration, archival DOI, and final DOCX/PDF QA.
 
 ## Claim boundaries
 
@@ -191,7 +204,7 @@ Do not use the following as headline novelty:
 - “24-system P3A proves grid convergence” — false;
 - “plateau equals the QSQ floor” — stronger than the data support.
 
-The canonical contribution is **validated QoI stability qualification before scientifically interpreting benchmark scoring**, with explicit reporting of the qualification model and its limits. The Fourier audit strengthens the supporting physical logic: after reference stability and scalar realized distortion are controlled, downstream error can still depend strongly on how codec reconstruction error is distributed relative to the downstream operator.
+The canonical contribution is now **validated QoI stability qualification coupled to a diagnosis-to-design demonstration**: first establish whether a scientific tolerance is numerically resolvable, then use the downstream operator to diagnose and, for the Hartree control, actively allocate reconstruction error, and finally recertify the decoded field. The Hartree codec result is specific to that linear operator and does not transfer the $|G|^2$ law to Bader.
 
 ## Naming boundary
 
