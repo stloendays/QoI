@@ -49,7 +49,8 @@ jobs:
         run: |
           set -u
           mkdir -p probe
-          sudo apt-get update -q && sudo apt-get install -y -q cmake libzstd-dev libprotobuf-dev protobuf-compiler libtclap-dev zlib1g-dev pkg-config > /dev/null
+          sudo apt-get update -q && sudo apt-get install -y -q cmake libzstd-dev libprotobuf-dev protobuf-compiler zlib1g-dev libopenmpi-dev openmpi-bin pkg-config > /dev/null
+          git clone -q --depth 1 -b 1.4 https://github.com/mirror/tclap tclap-src && sudo cp -r tclap-src/include/tclap /usr/local/include/ && echo "tclap=$(git -C tclap-src rev-parse HEAD)" >> probe/mgard_probe.txt
           git clone -q https://github.com/CODARcode/MGARD mgard-src
           git -C mgard-src rev-parse HEAD > probe/mgard_commit.txt
           cmake -S mgard-src -B mgard-build -DCMAKE_BUILD_TYPE=Release -DMGARD_ENABLE_CLI=ON -DMGARD_ENABLE_OPENMP=ON -DCMAKE_INSTALL_PREFIX=$PWD/mgard-install > probe/mgard_build.log 2>&1             && cmake --build mgard-build -j4 >> probe/mgard_build.log 2>&1             && cmake --install mgard-build >> probe/mgard_build.log 2>&1             && echo BUILD_OK >> probe/mgard_probe.txt || echo BUILD_FAILED >> probe/mgard_probe.txt
@@ -113,7 +114,7 @@ jobs:
           name: mgard-install
       - name: Install MGARD runtime
         run: |
-          sudo apt-get update -q && sudo apt-get install -y -q libzstd1 libprotobuf32t64 > /dev/null || true
+          sudo apt-get update -q && sudo apt-get install -y -q libzstd1 libprotobuf32t64 libopenmpi3t64 > /dev/null || true
           if [ -f mgard-install.tgz ]; then tar xzf mgard-install.tgz; echo "$PWD/mgard-install/bin" >> "$GITHUB_PATH"; echo "LD_LIBRARY_PATH=$PWD/mgard-install/lib:${LD_LIBRARY_PATH:-}" >> "$GITHUB_ENV"; fi
       - name: Execute baseline shard
         run: |
@@ -158,6 +159,12 @@ jobs:
         run: |
           set -euo pipefail
           out=repo/analysis/qoac_h_strong_baselines/results
+          mkdir -p prior && cp "$out/baseline_rows.csv" prior/rows_shard_prior.csv
+          python - <<'PYEOF'
+          import pandas as pd
+          r=pd.read_csv("prior/rows_shard_prior.csv"); r[r.arm!="M"].to_csv("prior/rows_shard_prior.csv",index=False)
+          PYEOF
+          mv prior shards/prior_t1_v_run_37333223318
           rm -rf "$out"
           python repo/analysis/qoac_h_strong_baselines/aggregate_baselines.py --repo-root repo --shards-root shards --output-dir "$out"
           cp shards/qoac-h-sb-mgard-probe/* "$out/" 2>/dev/null || true; rm -f "$out/in.dat" "$out/o.mgard" "$out/r.dat"

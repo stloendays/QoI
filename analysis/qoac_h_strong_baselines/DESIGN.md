@@ -122,3 +122,12 @@ fails, arm M is reported as infeasible with the build log, as already specified.
 GitHub Actions, ubuntu-24.04, shards by SHA-256 of "QOAC-H-STRONG-BASELINES|" + material_id. Results
 committed with the frozen-commit hash. No alpha, q_c, s or tolerance value may be added after the first
 material result exists.
+
+## Amendment 2 (2026-10-05, before any MGARD result)
+
+Run 37333223318 completed T1 and V on all 48 materials. Its MGARD source build failed (MGARD needs MPI and
+TCLAP 1.4; Ubuntu ships TCLAP 1.2), so every M setting failed with "mgard CLI not found". A probe run
+(37335285191, branch `ci/mgard-build-probe-20261005`) confirmed a working build with OpenMPI and TCLAP 1.4
+headers (tclap commit recorded). Arm M is therefore executed in a second run with the identical frozen s and
+tolerance ladders. The T1 and V rows of run 37333223318 are reused unchanged, and the aggregation is
+repeated over T1 + M + V. No ladder, certificate or reading band changes.
