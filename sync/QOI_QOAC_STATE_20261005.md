@@ -249,3 +249,14 @@ MGARD install route) before any baseline result. Arms on the 48 frozen confirmat
 truncation, M MGARD with s in {inf, 0, -1}, and V (stored Hartree potential, a contract-changing reference).
 Motivation: the certified QOAC-H rows have median density Linf 1.89, so a low-pass baseline is the relevant
 competitor. Not part of the frozen manuscript.
+
+### 8d. QOAC-H strongest-baseline study — COMPLETE (pre-declared band: advantage retained)
+
+Branch `research/qoac-h-strong-baselines-20261005`, commit `0c8b550`. 48 materials, 0 failures in every arm.
+- Best new baseline = spectral truncation T1 (48/48): QOAC-H wins 45/48, median 1.564x, CI [1.376, 1.622],
+  minimum 0.843x. Median certified CR: QOAC-H 383, T1 233, ZFP/SZ3/SPERR 22.1, MGARD 16.0.
+- MGARD (s = inf/0/-1; upstream commit ac53ff9): QOAC-H 48/48, 19.4x. Stored V_H with ZFP/SZ3/SPERR: 48/48, 19.4x.
+- QOAC-H also has lower density error than T1 (median Linf 1.89 vs 2.82).
+- Reading: most of the 15x gain over pointwise codecs comes from working in the Hartree eigenbasis; the
+  operator-derived |G|^2 allocation adds about 1.56x over the best truncation. Manuscript integration
+  requires the scope-reopening steps.
