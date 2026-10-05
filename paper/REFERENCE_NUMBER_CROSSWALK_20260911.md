@@ -87,3 +87,45 @@ from 23 to 25 (main-text Methods citation and SI Note 18 "main-text ref. 25" upd
 Submission-order reference sequence (current):
 
 `1, 2, 3, 4, 18, 21, 19, 5, 6, 12, 13, 14, 20, 7, 15, 11, 22, 17, 8, 9, 16, 10, 24, 25, 23`
+
+
+## Update 2026-10-05 — QOAC-H integration (current authoritative submission order)
+
+QOAC-H introduces three prior-art references before the Methods-only Wilks citation: QPET, transform-coding theory, and the electron-density/Hartree tensor-compression precedent. They take submission numbers 25–27. Wilks therefore moves from 25 to 28.
+
+| Stable library ID | Submission citation no. | Reference shorthand |
+|---:|---:|---|
+| 1 | 1 | Di et al., error-bounded compression survey |
+| 2 | 2 | Lindstrom, ZFP |
+| 3 | 3 | Liang et al., SZ3 |
+| 4 | 4 | Li et al., SPERR |
+| 18 | 5 | Cappello et al., scientific lossy-compression use cases |
+| 21 | 6 | Gok et al., PaSTRI |
+| 19 | 7 | Lara et al., DFT AO-basis compression |
+| 5 | 8 | Tao et al., Z-checker |
+| 6 | 9 | Jiao et al., QoI-preserving compression |
+| 12 | 10 | Ainsworth et al., MGARD derived-quantity control |
+| 13 | 11 | Gong et al., QoI-preserving reduction |
+| 14 | 12 | Lee et al., learned compression with derived-quantity preservation |
+| 20 | 13 | Banerjee et al., scalable QoI-guaranteed pipeline |
+| 7 | 14 | Yan et al., TopoSZ |
+| 15 | 15 | Gorski et al., topological guarantees |
+| 11 | 16 | Liu et al., TOPIQ |
+| 22 | 17 | Tyree et al., Compression Safeguards |
+| 17 | 18 | Bader, QTAIM monograph |
+| 8 | 19 | Henkelman et al., Bader decomposition |
+| 9 | 20 | Tang et al., lattice-bias-free Bader analysis |
+| 16 | 21 | Yu & Trinkle, Bader integration |
+| 10 | 22 | Hutcheon & Teale, arbitrary-grid topological analysis |
+| 24 | 23 | Currie, IUPAC quantification nomenclature |
+| 25 | 24 | AIAG, Measurement Systems Analysis |
+| 26 | 25 | Liu et al., QPET |
+| 27 | 26 | Goyal, transform coding |
+| 28 | 27 | Chinnamsetty et al., density/Hartree tensor approximation |
+| 23 | 28 | Wilks, tolerance limits |
+
+Submission-order stable-library sequence (current):
+
+`1, 2, 3, 4, 18, 21, 19, 5, 6, 12, 13, 14, 20, 7, 15, 11, 22, 17, 8, 9, 16, 10, 24, 25, 26, 27, 28, 23`
+
+This 2026-10-05 mapping supersedes earlier submission-number tables while preserving all stable library IDs.
