@@ -1,0 +1,190 @@
+name: QOAC-B3 full 50-material census
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-b3-full-50-census-20261005
+    paths:
+      - analysis/operator_aware_bader_partition_compiled_census/**
+      - .github/workflows/qoac_b3_census.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-b3-census-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify authorization and freeze 50-material census
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile repo/analysis/operator_aware_bader_partition_compiled_census/*.py
+          python - <<'PY'
+          import json, pathlib
+          s=json.loads(pathlib.Path("repo/analysis/operator_aware_bader_partition_compiled/results/SUMMARY.json").read_text())
+          assert s["full_50_census_authorized"] is True, s
+          PY
+          mkdir -p manifest
+          python repo/analysis/operator_aware_bader_partition_compiled_census/freeze_manifest.py \
+            --repo-root repo \
+            --output manifest/CENSUS_MANIFEST.csv \
+            --provenance manifest/MANIFEST_PROVENANCE.json
+          test "$(( $(wc -l < manifest/CENSUS_MANIFEST.csv) - 1 ))" -eq 50
+          python - <<'PY'
+          import csv
+          e=[r for r in csv.DictReader(open("repo/analysis/operator_aware_bader_projection/results/engineering_frontier.csv")) if abs(float(r["kappa"])-4.0)<1e-12]
+          h=list(csv.DictReader(open("repo/analysis/operator_aware_bader_projection_confirmatory/results/confirmatory_material.csv")))
+          ids=[r["material_id"] for r in e]+[r["material_id"] for r in h]
+          assert len(e)==12 and len(h)==38 and len(set(ids))==50
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-b3-census-manifest
+          path: manifest
+          if-no-files-found: error
+          retention-days: 90
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install stack and Bader compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gfortran
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Build Henkelman Bader
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r repo/mechanism/independent_bader_20260908/reference_source "$RUNNER_TEMP/bader_source"
+          cd "$RUNNER_TEMP/bader_source"
+          sed -i 's/^LINK = -static/LINK =/' makefile.osx_gfortran
+          make -f makefile.osx_gfortran
+          test -x bader
+      - uses: actions/download-artifact@v4
+        with:
+          name: qoac-b3-census-manifest
+          path: manifest
+      - name: Run census shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_b3_census_${{ matrix.shard }}"
+          mkdir -p "$out"
+          python repo/analysis/operator_aware_bader_partition_compiled_census/run_census.py \
+            --repo-root repo \
+            --frozen-root frozen \
+            --manifest manifest/CENSUS_MANIFEST.csv \
+            --shard-count 25 \
+            --shard-index ${{ matrix.shard }} \
+            --bader "$RUNNER_TEMP/bader_source/bader" \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b3-census-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_b3_census_${{ matrix.shard }}
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-b3-census-shard-*
+          path: shards
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: qoac-b3-census-manifest
+          path: manifest
+      - name: Aggregate 50-material census
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_bader_partition_compiled_census/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_bader_partition_compiled_census/aggregate_census.py \
+            --manifest manifest/CENSUS_MANIFEST.csv \
+            --shards-root shards \
+            --output-dir "$out"
+          cp manifest/MANIFEST_PROVENANCE.json "$out/"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+      - name: Commit census results
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_bader_partition_compiled_census/results
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m 'research: complete QOAC-B3 full 50-material census'
+            git pull --rebase origin research/qoac-b3-full-50-census-20261005
+            git push origin HEAD:research/qoac-b3-full-50-census-20261005
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b3-census-aggregate
+          path: repo/analysis/operator_aware_bader_partition_compiled_census/results
+          if-no-files-found: warn
+          retention-days: 90
