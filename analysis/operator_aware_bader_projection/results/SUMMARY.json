@@ -1,0 +1,64 @@
+{
+  "status": "COMPLETE",
+  "confirmatory_pass": false,
+  "materials": 38,
+  "rows": 935,
+  "failures": 0,
+  "gate_A_actual_bader_guarantee": {
+    "go": true,
+    "max_bader_error_e": 0.0,
+    "max_reassigned_frac": 0.0,
+    "max_closure_scaled": 1.2286879034721961e-11
+  },
+  "gate_B_rate_overhead": {
+    "go": false,
+    "median": 0.0003286936954020809,
+    "p95": 0.005422957642286527,
+    "max": 0.05536332179930796
+  },
+  "gate_C_field_fidelity": {
+    "go": true,
+    "median_linf_ratio": 1.002162816672199,
+    "p95_linf_ratio": 1.0453584578908552,
+    "max_linf_ratio": 1.1377657417810962
+  },
+  "gate_D_primary_rescue": {
+    "go": true,
+    "tau_e": 0.001,
+    "generic_failure_rows": 199,
+    "rescued_rows": 177,
+    "rescued_row_fraction": 0.8894472361809045,
+    "generic_failure_materials": 36,
+    "materials_with_rescue": 36,
+    "rescued_material_fraction": 1.0
+  },
+  "rescue_by_tau": [
+    {
+      "tau_e": 0.0001,
+      "generic_failure_rows": 398,
+      "rescued_rows": 373,
+      "rescued_row_fraction": 0.9371859296482412,
+      "generic_failure_materials": 37,
+      "materials_with_rescue": 36,
+      "rescued_material_fraction": 0.972972972972973
+    },
+    {
+      "tau_e": 0.001,
+      "generic_failure_rows": 199,
+      "rescued_rows": 177,
+      "rescued_row_fraction": 0.8894472361809045,
+      "generic_failure_materials": 36,
+      "materials_with_rescue": 36,
+      "rescued_material_fraction": 1.0
+    },
+    {
+      "tau_e": 0.01,
+      "generic_failure_rows": 52,
+      "rescued_rows": 37,
+      "rescued_row_fraction": 0.7115384615384616,
+      "generic_failure_materials": 27,
+      "materials_with_rescue": 24,
+      "rescued_material_fraction": 0.8888888888888888
+    }
+  ]
+}
