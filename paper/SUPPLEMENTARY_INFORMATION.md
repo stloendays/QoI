@@ -33,15 +33,15 @@ QoI Stability Qualification (QSQ) is a perturbation-based numerical identifiabil
 
 For the primary self-partitioned Bader contract, the density is the sole approximate input and serves both as the integrated charge field and the partition-defining field. Let
 
-$
+$$
 \epsilon_m = \|\text{float32}(\rho_m)-\rho_m\|_\infty.
-$
+$$
 
 Five pre-specified uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The QSQ stability floor for this contract is
 
-$
+$$
 f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
-$
+$$
 
 A Bader tolerance $\tau$ is eligible only when $f_m<\tau$. If $f_m\ge\tau$, the material–contract pair is non-evaluable under that QSQ test and is neither a codec pass nor a codec failure. For fixed-threshold binary qualification, evaluation may stop after the first probe with response $\ge\tau$ because the full five-seed maximum must then fail the same contract; the complete panel is retained whenever the numerical value of $f_m$ is required.
 
