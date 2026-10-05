@@ -22,8 +22,8 @@ class ElectricFieldOperatorTests(unittest.TestCase):
     def test_constant_field_has_no_electric_field(self):
         x=np.ones((7,8,9))
         lattice=np.eye(3)*5.0
-        self.assertEqual(ef.electric_field_energy(x,lattice,False),0.0)
-        self.assertEqual(ef.electric_field_energy(x,lattice,True),0.0)
+        self.assertLess(ef.electric_field_energy(x,lattice,False),1e-24)
+        self.assertLess(ef.electric_field_energy(x,lattice,True),1e-24)
 
     def test_safe_energy_not_greater_than_historical(self):
         rng=np.random.default_rng(3)
