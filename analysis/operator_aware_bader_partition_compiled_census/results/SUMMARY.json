@@ -1,0 +1,46 @@
+{
+  "status": "COMPLETE",
+  "materials": 50,
+  "failures": 0,
+  "semantic_equivalence": {
+    "exact_decode": 50,
+    "max_direct_charge_error_e": 4.969364653106823e-07
+  },
+  "partition_encoding_method_counts": {
+    "rle_zlib": 27,
+    "packed_zlib": 23
+  },
+  "partition_replacement_ratio_lossless_AE_over_map": {
+    "min": 121.26059932285614,
+    "p05": 125.2477302160225,
+    "p25": 152.27289342452386,
+    "median": 210.66262487994638,
+    "p75": 340.3646178616799,
+    "p95": 841.0481902477519,
+    "max": 1522.474358974359
+  },
+  "complete_archive_ratio_baseline_over_compiled": {
+    "min": 12.291872190066258,
+    "p05": 46.54763283463469,
+    "p25": 72.85926294323804,
+    "median": 92.51512450561947,
+    "p75": 119.73216578222912,
+    "p95": 190.17721676580126,
+    "max": 270.35702355583715,
+    "wins": 50,
+    "win_fraction": 1.0
+  },
+  "partition_fraction_of_compiled_archive": {
+    "min": 0.04886537658360017,
+    "p05": 0.11543252520059664,
+    "p25": 0.2505033753429349,
+    "median": 0.4166989139141558,
+    "p75": 0.6485739808590445,
+    "p95": 0.7308209507147952,
+    "max": 0.838762899434993
+  },
+  "b2_source_counts": {
+    "holdout": 38,
+    "engineering": 12
+  }
+}
