@@ -1,0 +1,23 @@
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenMP_CXX: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5")
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Checking for one of the modules 'libzstd'
+-- Found ZSTD: /usr/lib/x86_64-linux-gnu/libzstd.so
+-- Checking for module 'mpi-cxx'
+--   Package 'mpi-cxx', required by 'virtual:world', not found
+-- Could NOT find MPI_CXX (missing: MPI_CXX_LIB_NAMES MPI_CXX_HEADER_DIR MPI_CXX_WORKS) 
+CMake Error at /usr/local/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake:233 (message):
+  Could NOT find MPI (missing: MPI_CXX_FOUND)
+Call Stack (most recent call first):
+  /usr/local/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake:603 (_FPHSA_FAILURE_MESSAGE)
+  /usr/local/share/cmake-3.31/Modules/FindMPI.cmake:1842 (find_package_handle_standard_args)
+  CMakeLists.txt:147 (find_package)
+
+
+-- Configuring incomplete, errors occurred!

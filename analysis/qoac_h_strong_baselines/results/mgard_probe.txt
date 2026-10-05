@@ -1,0 +1,12 @@
+BUILD_FAILED
+/home/runner/work/_temp/647f845e-26d6-4d3f-8bae-0cc348d624f1.sh: line 8: mgard: command not found
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'mgard'

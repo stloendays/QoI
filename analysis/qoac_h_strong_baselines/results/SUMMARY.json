@@ -1,0 +1,76 @@
+{
+  "status": "COMPLETE",
+  "materials": 48,
+  "tau_hartree": 1e-06,
+  "arm_status": {
+    "T1": {
+      "rows": 10800,
+      "failures": 0,
+      "params_with_rows": [
+        "q_cut=0.05",
+        "q_cut=0.075",
+        "q_cut=0.1",
+        "q_cut=0.15",
+        "q_cut=0.2",
+        "q_cut=0.3",
+        "q_cut=0.5",
+        "q_cut=0.75",
+        "q_cut=1.0"
+      ]
+    },
+    "M": {
+      "rows": 0,
+      "failures": 3600,
+      "params_with_rows": []
+    },
+    "V": {
+      "rows": 3600,
+      "failures": 0,
+      "params_with_rows": [
+        "codec=sperr",
+        "codec=sz3",
+        "codec=zfp"
+      ]
+    }
+  },
+  "primary_R_new": {
+    "wins": 45,
+    "median": 1.564465518708138,
+    "bootstrap_ci95": [
+      1.375682338439866,
+      1.6224437089893444
+    ],
+    "min": 0.8425202344404129,
+    "materials_without_certified_new_baseline": 0,
+    "reading_band": "advantage_retained"
+  },
+  "R_T1": {
+    "n": 48,
+    "wins": 45,
+    "median": 1.564465518708138,
+    "min": 0.8425202344404129,
+    "bootstrap_ci95": [
+      1.375682338439866,
+      1.6224437089893444
+    ]
+  },
+  "R_M": {
+    "n": 0,
+    "wins": 0,
+    "median": null,
+    "min": null,
+    "bootstrap_ci95": null
+  },
+  "R_V_contract_changing_reference": {
+    "n": 48,
+    "wins": 48,
+    "median": 19.410785576731755,
+    "min": 4.95025435847355,
+    "bootstrap_ci95": [
+      16.499813476105363,
+      21.158430717863105
+    ]
+  },
+  "bulk_median_R_new": 1.3505955701299015,
+  "slab_median_R_new": 1.5710321985706073
+}
