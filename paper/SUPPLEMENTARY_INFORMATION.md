@@ -408,8 +408,4 @@ At the strictest $10^{-8}$ tolerance, QSQ admits 193/254 materials but only 107 
 
 QOAC-H is an operator-specific demonstration. A density reconstruction can have comparatively large raw-space $L_\infty$ or RMSE while satisfying the Hartree contract because long- and short-wavelength errors have very different downstream costs. This is not permission to reuse the same reconstruction for another QoI without qualification and certification. In particular, the $\Delta_G\propto|G|^2$ law is **not** proposed for Bader charge, whose nonlinear basin reassignment is not diagonalized by the Hartree Fourier descriptor.
 
-Machine-readable evidence is stored under:
-- `analysis/operator_aware_codec_hartree/results/` (mechanism ablation);
-- `analysis/operator_aware_codec_hartree_v02/SANITY_AUDIT.md` (implementation audit);
-- `analysis/operator_aware_codec_hartree_v02_confirmatory/results/` (disjoint confirmation);
-- `analysis/operator_aware_codec_hartree_v02_census/results/` (full census).
+Machine-readable evidence is available through the semantic reader-facing mappings in `paper/READER_FACING_PROVENANCE_INDEX.md`: **QOAC-H mechanism ablation**, **QOAC-H implementation audit**, **QOAC-H disjoint confirmation**, and **QOAC-H full-population census**. Internal repository development identifiers are retained only in that provenance mapping.
