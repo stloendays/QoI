@@ -1,0 +1,130 @@
+name: QOAC-E electric-field operator generality
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-electric-field-20261005
+    paths:
+      - analysis/operator_aware_electric_field/**
+      - .github/workflows/qoac_e_engineering.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-e-engineering-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Test electric-field operator and compile scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.3.5 pandas==2.3.3
+          python -m py_compile repo/analysis/operator_aware_electric_field/*.py
+          cd repo/analysis/operator_aware_electric_field
+          python -m unittest -v test_electric_field_metrics.py
+          test "$(( $(wc -l < ../operator_aware_codec_hartree/results/PILOT_MANIFEST.csv) - 1 ))" -eq 12
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: repo/validation/requirements-external-e2e.txt
+      - name: Install scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r repo/validation/requirements-external-e2e.txt
+      - name: Execute QOAC-E shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_e_${{ matrix.shard }}"
+          python repo/analysis/operator_aware_electric_field/run_engineering.py \
+            --repo-root repo \
+            --manifest repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv \
+            --shard-count 6 \
+            --shard-index ${{ matrix.shard }} \
+            --output-dir "$out"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-e-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_e_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-e-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate frozen electric-field gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_electric_field/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_electric_field/aggregate_engineering.py \
+            --shards-root shards \
+            --manifest repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+      - name: Commit QOAC-E result package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_electric_field/results
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m 'research: complete QOAC-E electric-field engineering'
+            git pull --rebase origin research/qoac-electric-field-20261005
+            git push origin HEAD:research/qoac-electric-field-20261005
+          fi
