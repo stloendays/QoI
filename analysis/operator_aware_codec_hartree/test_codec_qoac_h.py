@@ -30,6 +30,27 @@ class QoacHTests(unittest.TestCase):
         s=q.quantization_steps(prep,alpha=0.5,beta=2.0)
         idx=np.argwhere(prep.active); a=tuple(idx[0]); b=tuple(idx[len(idx)//2])
         self.assertAlmostEqual(float(s[a]/s[b]),float(prep.g2[a]/prep.g2[b]),places=12)
+    def test_active_modes_are_written_back_to_complex_spectrum(self):
+        prep=q.prepare_field(self.field,self.lattice,shell_count=8)
+        alpha=1e-2
+        blob,_=q.encode_prepared(prep,alpha=alpha,beta=2.0,zlib_level=1)
+        _,frecon,_,_=q.decode_blob(blob,return_spectrum=True)
+        steps=q.quantization_steps(prep,alpha=alpha,beta=2.0)
+        expected=np.empty_like(prep.spectrum)
+        expected[:]=prep.spectrum
+        expected.real[prep.active]=np.rint(prep.spectrum.real[prep.active]/steps[prep.active])*steps[prep.active]
+        expected.imag[prep.active]=np.rint(prep.spectrum.imag[prep.active]/steps[prep.active])*steps[prep.active]
+        np.testing.assert_allclose(frecon[prep.active],expected[prep.active],rtol=0.0,atol=0.0)
+        self.assertGreater(float(np.max(np.abs(frecon[prep.active]))),0.0)
+
+    def test_different_alpha_changes_reconstruction(self):
+        prep=q.prepare_field(self.field,self.lattice,shell_count=8)
+        b1,_=q.encode_prepared(prep,alpha=1e-3,beta=2.0,zlib_level=1)
+        b2,_=q.encode_prepared(prep,alpha=1e-1,beta=2.0,zlib_level=1)
+        r1,_,_=q.decode_blob(b1)
+        r2,_,_=q.decode_blob(b2)
+        self.assertGreater(float(np.max(np.abs(r1-r2))),0.0)
+
     def test_hartree_error_finite(self):
         prep=q.prepare_field(self.field,self.lattice,shell_count=8)
         blob,_=q.encode_prepared(prep,alpha=1e-2,beta=2.0,zlib_level=1)
@@ -38,4 +59,5 @@ class QoacHTests(unittest.TestCase):
         eh,es=q.hartree_error_metrics(recon-self.field,self.lattice,rh,rs)
         self.assertTrue(np.isfinite(eh) and eh>=0)
         self.assertTrue(np.isfinite(es) and es>=0)
+        self.assertLess(eh,1.0)
 if __name__=="__main__": unittest.main()
