@@ -109,6 +109,14 @@ Also reported: R_T1 and R_M separately; R_V = CR_QOAC-H / CR_V (contract-changin
 medians; density Linf and RMSE of every selected row so that the fidelity cost of each certified stream is
 visible; encode/decode wall time.
 
+## Amendment 1 (2026-10-05, before any baseline result on any confirmatory material)
+
+The first CI preflight (run 37332779966) showed that MGARD is not packaged on conda-forge
+(`libmamba Could not solve for environment specs`). No shard ran. MGARD is instead built from the upstream
+source `github.com/CODARcode/MGARD` (default branch, commit hash recorded with the results) with
+`-DMGARD_ENABLE_CLI=ON`. Arms, ladders, certificate and reading bands are unchanged. If the source build
+fails, arm M is reported as infeasible with the build log, as already specified.
+
 ## Execution
 
 GitHub Actions, ubuntu-24.04, shards by SHA-256 of "QOAC-H-STRONG-BASELINES|" + material_id. Results
