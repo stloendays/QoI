@@ -33,10 +33,10 @@ T <- read.csv(census_path, stringsAsFactors=FALSE, check.names=FALSE)
 TS <- jsonlite::fromJSON(census_summary_path)
 
 # Frozen evidence assertions.
-stopifnot(nrow(M) == 12, all(M$evaluable), all(M$beta2_better))
+stopifnot(nrow(M) == 12, all(tolower(M$evaluable) == "true"), all(tolower(M$beta2_better) == "true"))
 stopifnot(abs(median(M$median_hartree_ratio_beta2_over_beta0) -
               MS$mechanism_gate$median_material_hartree_ratio_beta2_over_beta0) < 1e-12)
-stopifnot(nrow(C) == 48, all(C$qoac_certified), all(C$baseline_certified), all(C$safe_guardrail))
+stopifnot(nrow(C) == 48, all(tolower(C$qoac_certified) == "true"), all(tolower(C$baseline_certified) == "true"), all(tolower(C$safe_guardrail) == "true"))
 stopifnot(sum(C$ratio_qoac_over_baseline > 1) == 48)
 stopifnot(abs(median(C$ratio_qoac_over_baseline) - CS$median_ratio_qoac_over_best_baseline) < 1e-12)
 stopifnot(nrow(T) == 6, all(T$win_fraction == 1))
@@ -116,10 +116,8 @@ med_mech <- median(M$median_hartree_ratio_beta2_over_beta0)
 pB <- ggplot(M, aes(x=1, y=median_hartree_ratio_beta2_over_beta0)) +
   geom_hline(yintercept=1, linetype=2, colour="#777777", linewidth=.55) +
   geom_jitter(width=.095, height=0, size=2.5, alpha=.86, colour=purple) +
-  geom_segment(
-    aes(x=.76, xend=1.24, y=med_mech, yend=med_mech),
-    linewidth=1.15, colour=ink
-  ) +
+  annotate("segment", x=.76, xend=1.24, y=med_mech, yend=med_mech,
+           linewidth=1.15, colour=ink) +
   annotate("label", x=1.32, y=med_mech,
            label=sprintf("median = %.3f", med_mech),
            hjust=0, size=2.9, label.size=.18, fill=alpha("white",.94)) +
@@ -130,7 +128,7 @@ pB <- ggplot(M, aes(x=1, y=median_hartree_ratio_beta2_over_beta0)) +
   ) +
   scale_x_continuous(limits=c(.62,1.72), breaks=NULL) +
   labs(
-    title=expression("B | Operator-derived " * beta==2 * " beats operator-blind " * beta==0),
+    title="B | Operator-derived beta=2 beats operator-blind beta=0",
     subtitle="12/12 engineering materials; matched serialized storage",
     x=NULL,
     y=expression(D[H](beta==2) / D[H](beta==0))
