@@ -110,6 +110,8 @@ For each of the 241 pre-comparable materials define
 
     R_i = CR_QOAC-H,i / CR_best-existing,i.
 
+If a pre-comparable material has no dual-certified QOAC-H setting on the frozen ladder, it remains in the primary paired population and is assigned R_i = 0, i.e. a competitive failure. It is never dropped from primary ratio or win-fraction statistics. A certified-only sensitivity summary is reported separately.
+
 Primary summaries:
 - median R;
 - geometric mean R;
