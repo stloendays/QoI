@@ -1,6 +1,6 @@
 # Supplementary Information
 
-## Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities
+## Numerical stability qualification and operator-aware compression of electronic densities
 
 This Supplementary Information (SI) is organized to support the main-text benchmark-validity claim without duplicating the primary narrative. The main manuscript establishes the three-state certification logic and its headline consequence. The SI documents denominator conventions, qualification provenance, sensitivity analyses, extended operator controls, mechanistic robustness, matching diagnostics, rate–fidelity tables, external confirmation, and failure semantics.
 
@@ -298,7 +298,7 @@ At $10^{-2}\,e$, two of the 229 eligible materials have no certifiable row on th
 |---:|---:|---:|---:|---:|
 | Bound on joint admission and exceedance | 6.70% | 3.50% | 1.89% | 0.98% |
 
-Exchangeability also implies that a later response exceeds the maximum of the panel with probability $1/(n+1)$ for continuous responses (one-sided tolerance limits; Wilks, main-text ref. 25). The bound is a property of the finite-panel rule over the draw of the probes; it is not a conditional risk among admitted contracts and not a worst-case statement.
+Exchangeability also implies that a later response exceeds the maximum of the panel with probability $1/(n+1)$ for continuous responses (one-sided tolerance limits; Wilks, main-text ref. 28). The bound is a property of the finite-panel rule over the draw of the probes; it is not a conditional risk among admitted contracts and not a worst-case statement.
 
 **Shared seeds in the frozen design.** The five frozen QSQ seeds are used directly as PCG64 seeds, so every material receives the same five random streams, whereas the 59 prospective streams are material-specific. The pooled fraction of fresh responses above the frozen five-probe floor is 19.08% (2,859/14,986; material-cluster 95% CI 17.16–21.01%) against the exchangeable value 1/6. With shared streams the 254 materials do not average over independent panels, so the pooled fraction is one realization rather than an estimate of 1/6.
 
@@ -317,3 +317,99 @@ Exchangeability also implies that a later response exceeds the maximum of the pa
 | $10^{-2}$ | 0.133% (20) | 0.148% | 229/254 | 0.207% (31) | 0.228% | 230/254 |
 
 The Bader contract operates far below the ceiling because its responses are well separated across materials: most materials respond either far below or far above $\tau$. The ceiling is approached only when many contracts have an exceedance probability near $1/(n+1)$, which is the regime in which a larger panel is needed; the table above gives the panel size for a target joint rate.
+
+
+## Supplementary Note 19 — QOAC-H operator-derived compression
+
+### Diagnosis-to-design derivation
+
+For a periodic density error $\delta\rho(\mathbf r)$, the reciprocal-space Hartree response is
+
+$$
+\delta V_H(\mathbf G)=\frac{4\pi\,\delta\rho(\mathbf G)}{|\mathbf G|^2},
+\qquad \mathbf G\ne0.
+$$
+
+With an orthonormal Fourier convention, the squared real-space Hartree RMS numerator is therefore proportional to
+
+$$
+\sum_{\mathbf G\ne0}\frac{|\delta\rho(\mathbf G)|^2}{|\mathbf G|^4}.
+$$
+
+Under the high-rate scalar-quantization approximation, the expected coefficient-error variance is proportional to $\Delta_G^2$. Combining this weighted quadratic distortion with the standard logarithmic high-rate coefficient-rate model gives the first-order allocation $\Delta_G\propto|G|^2$. This derivation determines the **relative precision across reciprocal modes**; the global multiplier $\alpha$ controls the rate–distortion operating point. The exponent 2 was frozen before QOAC-H outcomes were evaluated.
+
+This algebra is not presented as a new transform-coding theorem. Weighted transform-domain bit allocation is established (main-text ref. 26), and prior scientific-compression methods preserve or bound QoIs through operator norms, derived error controls or pointwise bound tuning (refs. 9–13,25). The role of the present derivation is to translate the **experimentally resolved Hartree mechanism** into the distortion geometry of a scientific codec.
+
+### Hermitian representation and conservative Nyquist handling
+
+The final codec uses a full orthonormal FFT. Reciprocal indices are partitioned into Hermitian orbits under $\mathbf k\mapsto-\mathbf k\pmod{\mathbf N}$; one canonical coefficient is stored for each orbit and its partner is reconstructed by conjugation. Self-conjugate nonzero modes are real by construction. $G=0$ is the **only** reciprocal coefficient stored exactly.
+
+Even-grid Nyquist coordinates require special care in non-orthogonal cells. A coordinate at $N/2$ is alias-equivalent to both $+N/2$ and $-N/2$, and reciprocal-metric cross terms can make the continuum $|G|^2$ depend on that sign choice. For every mode containing one or more Nyquist coordinates, QOAC-H enumerates the alias-equivalent sign choices and defines
+
+$$
+|G|_{\mathrm{safe}}^2
+=
+\min_{\mathrm{alias\ choices}} |G|^2.
+$$
+
+The frozen quantizer is then
+
+$$
+\Delta_G
+=
+\alpha
+\left(
+\frac{|G|_{\mathrm{safe}}}
+{G_{\max,\mathrm{safe}}}
+\right)^2.
+$$
+
+Using the minimum reciprocal norm is conservative because it cannot loosen a quantization step merely because of an arbitrary FFT Nyquist sign convention. The decoded spectrum is Hermitian by construction and the inverse transform is checked for imaginary leakage. Across the engineering audit, maximum imaginary leakage was $2.47\times10^{-12}$ and maximum mean-density deviation was $3.98\times10^{-13}$.
+
+Quantized canonical real and imaginary components are rounded to nearest integers, grouped into 32 radial storage shells, encoded using the smallest signed integer type sufficient for each shell and compressed with zlib level 6. Compression ratio uses the complete serialized stream, including shape, lattice, $\alpha$, shell metadata, exact $G=0$ value, integer payload and zlib framing. No entropy-only estimate is used as the primary rate.
+
+### Frozen mechanism ablation
+
+The engineering mechanism experiment used 12 development materials selected by a metadata-only deterministic size-stratified rule before QOAC-H outcomes were available. Both the operator-derived exponent $\beta=2$ and operator-blind $\beta=0$ were evaluated over the same 25-point $\alpha/\operatorname{ptp}(\rho)$ ladder from $10^{-7}$ to $10^{1}$. Within each material the two methods were matched on serialized compression ratio.
+
+All **12/12** evaluable materials have lower Hartree error with $\beta=2$. The material-median matched-storage ratio is
+
+$$
+\operatorname{median}
+\frac{D_H(\beta=2)}{D_H(\beta=0)}
+=
+0.0767117.
+$$
+
+Thus the operator-derived allocation uses the same storage to produce a median Hartree error only 7.7% of the operator-blind spectral quantizer.
+
+### Disjoint confirmatory cohort
+
+After the Hermitian representation passed its implementation audit, a new confirmatory cohort was frozen without inspecting QOAC-H outcomes for those materials. The 12 engineering materials were excluded first. The remaining development population was sorted by grid size separately for bulk and slab systems, divided into 24 contiguous size strata per system type and one material per stratum was selected by the minimum SHA-256 of a fixed string plus material identity. The resulting cohort contains **24 bulk and 24 slab materials**.
+
+The codec, exponent, 32-shell representation, zlib level, 25-point $\alpha$ ladder and primary $10^{-6}$ Hartree contract were unchanged. All 1,200 settings completed with zero failures. QOAC-H beat the best certified frozen ZFP/SZ3/SPERR baseline for **48/48 materials**. The median ratio of certified compression ratios was **15.016** (bootstrap 95% CI **11.204–21.461**), with bulk median **11.203** and slab median **25.699**. The Wilson 95% interval for the 48/48 win fraction is 0.926–1.000. Every selected QOAC-H row also satisfied the Nyquist-safe Hartree threshold.
+
+### Full development-population census
+
+The final census applied the identical frozen codec and 25-point ladder to every development material: **186 bulk + 68 slab = 254 total**. All **6,350/6,350** settings completed with zero failures. QSQ eligibility was evaluated first at every requested Hartree tolerance, after which the highest-compression QOAC-H row satisfying the historical Hartree threshold was selected and required to satisfy the Nyquist-safe threshold. The frozen ZFP/SZ3/SPERR tables supplied the best certified baseline.
+
+| Hartree relative-RMSE tolerance | QSQ eligible | Comparable | QOAC-H wins | Median CR ratio | P05 | Minimum | Bulk median | Slab median |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| $10^{-8}$ | 193 | 107 | 107/107 | 4.324× | 1.507× | 1.222× | 2.799× | 6.400× |
+| $10^{-7}$ | 254 | 204 | 204/204 | 6.911× | 2.239× | 1.461× | 5.139× | 16.263× |
+| $10^{-6}$ | 254 | 253 | 253/253 | 12.463× | 4.459× | 2.444× | 10.960× | 27.733× |
+| $10^{-5}$ | 254 | 254 | 254/254 | 14.749× | 5.575× | 3.068× | 12.908× | 30.879× |
+| $10^{-4}$ | 254 | 254 | 254/254 | 14.017× | 4.348× | 1.707× | 11.467× | 21.384× |
+| $10^{-3}$ | 254 | 254 | 254/254 | 7.593× | 1.953× | 1.032× | 7.335× | 7.686× |
+
+At the strictest $10^{-8}$ tolerance, QSQ admits 193/254 materials but only 107 have a comparable certified generic-codec baseline. The 107/107 win count therefore does not use the non-evaluable or baseline-unavailable systems as implicit failures or successes. At $10^{-6}$, QOAC-H is comparable on 253/254 systems and wins all 253; the single non-comparable system lacks a qualifying frozen generic-codec operating point rather than a QOAC-H certificate.
+
+### Scope boundary
+
+QOAC-H is an operator-specific demonstration. A density reconstruction can have comparatively large raw-space $L_\infty$ or RMSE while satisfying the Hartree contract because long- and short-wavelength errors have very different downstream costs. This is not permission to reuse the same reconstruction for another QoI without qualification and certification. In particular, the $\Delta_G\propto|G|^2$ law is **not** proposed for Bader charge, whose nonlinear basin reassignment is not diagonalized by the Hartree Fourier descriptor.
+
+Machine-readable evidence is stored under:
+- `analysis/operator_aware_codec_hartree/results/` (mechanism ablation);
+- `analysis/operator_aware_codec_hartree_v02/SANITY_AUDIT.md` (implementation audit);
+- `analysis/operator_aware_codec_hartree_v02_confirmatory/results/` (disjoint confirmation);
+- `analysis/operator_aware_codec_hartree_v02_census/results/` (full census).
