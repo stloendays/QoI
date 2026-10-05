@@ -1,0 +1,163 @@
+name: QOAC-B2 projection-aware engineering
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-b2-projection-aware-20261005
+    paths:
+      - analysis/operator_aware_bader_projection/**
+      - .github/workflows/qoac_b2_engineering.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-b2-engineering-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Compile B2 and verify frozen inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile repo/analysis/operator_aware_bader_projection/*.py
+          test "$(( $(wc -l < repo/analysis/operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv) - 1 ))" -eq 12
+          test "$(( $(wc -l < repo/analysis/operator_aware_bader_fixed_partition/results/FROZEN_HOLDOUT_MANIFEST.csv) - 1 ))" -eq 38
+          test -s repo/analysis/operator_aware_bader_fixed_partition/results/engineering_rows.csv
+          test -s repo/analysis/operator_aware_bader_fixed_partition/results/engineering_verification.csv
+
+  material:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install scientific stack and Fortran compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gfortran
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Build Henkelman Bader
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r repo/mechanism/independent_bader_20260908/reference_source "$RUNNER_TEMP/bader_source"
+          cd "$RUNNER_TEMP/bader_source"
+          sed -i 's/^LINK = -static/LINK =/' makefile.osx_gfortran
+          make -f makefile.osx_gfortran
+          test -x bader
+      - name: Run projection frontier verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_b2_${{ matrix.index }}"
+          mkdir -p "$out"
+          python repo/analysis/operator_aware_bader_projection/run_engineering.py \
+            --repo-root repo \
+            --frozen-root frozen \
+            --engineering-manifest repo/analysis/operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv \
+            --engineering-rows repo/analysis/operator_aware_bader_fixed_partition/results/engineering_rows.csv \
+            --engineering-verification repo/analysis/operator_aware_bader_fixed_partition/results/engineering_verification.csv \
+            --index ${{ matrix.index }} \
+            --bader "$RUNNER_TEMP/bader_source/bader" \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b2-material-${{ matrix.index }}
+          path: ${{ runner.temp }}/qoac_b2_${{ matrix.index }}
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: material
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-b2-material-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate B2 engineering frontier
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_bader_projection/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_bader_projection/aggregate_engineering.py \
+            --engineering-manifest repo/analysis/operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv \
+            --holdout-manifest repo/analysis/operator_aware_bader_fixed_partition/results/FROZEN_HOLDOUT_MANIFEST.csv \
+            --shards-root shards \
+            --output-dir "$out"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+      - name: Commit B2 engineering result package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_bader_projection/results
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m 'research: complete QOAC-B2 projection-aware engineering'
+            git pull --rebase origin research/qoac-b2-projection-aware-20261005
+            git push origin HEAD:research/qoac-b2-projection-aware-20261005
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b2-engineering-aggregate
+          path: repo/analysis/operator_aware_bader_projection/results
+          if-no-files-found: warn
+          retention-days: 90
