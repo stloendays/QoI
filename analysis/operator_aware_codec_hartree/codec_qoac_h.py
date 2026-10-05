@@ -226,7 +226,11 @@ def decode_blob(blob: bytes, return_spectrum: bool = False):
         raise ValueError("special block count mismatch")
     f.real[special], f.imag[special] = vals[0::2], vals[1::2]
 
-    flat_r, flat_i = f.real.ravel(), f.imag.ravel()
+    # IMPORTANT: f.real / f.imag are strided views of a complex array.
+    # ravel() on them may allocate a copy, so assigning through those arrays
+    # would silently leave f unchanged. Mutate the contiguous complex flat
+    # view directly instead.
+    f_flat = f.ravel()
     shell_flat, step_flat = shells.ravel(), steps.ravel()
     for rec in header["shells"]:
         count = int(rec["count"])
@@ -243,8 +247,9 @@ def decode_blob(blob: bytes, return_spectrum: bool = False):
         idx = shell_flat == int(rec["shell"])
         if int(np.count_nonzero(idx)) != count:
             raise ValueError("shell topology mismatch")
-        flat_r[idx] = arr[0::2].astype(np.float64) * step_flat[idx]
-        flat_i[idx] = arr[1::2].astype(np.float64) * step_flat[idx]
+        rr = arr[0::2].astype(np.float64) * step_flat[idx]
+        ii = arr[1::2].astype(np.float64) * step_flat[idx]
+        f_flat[idx] = rr + 1j * ii
     if p != len(blob):
         raise ValueError("unexpected trailing bytes")
 
