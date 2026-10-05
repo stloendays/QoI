@@ -6,7 +6,12 @@ on:
     branches:
       - research/qoac-h-v01-20261005
     paths:
-      - analysis/operator_aware_codec_hartree/**
+      - analysis/operator_aware_codec_hartree/DESIGN.md
+      - analysis/operator_aware_codec_hartree/codec_qoac_h.py
+      - analysis/operator_aware_codec_hartree/freeze_pilot_manifest.py
+      - analysis/operator_aware_codec_hartree/run_pilot.py
+      - analysis/operator_aware_codec_hartree/aggregate_pilot.py
+      - analysis/operator_aware_codec_hartree/test_codec_qoac_h.py
       - .github/workflows/qoac_h_v01_pilot.yml
 
 permissions:
