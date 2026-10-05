@@ -1,12 +1,16 @@
-BUILD_FAILED
-/home/runner/work/_temp/647f845e-26d6-4d3f-8bae-0cc348d624f1.sh: line 8: mgard: command not found
-Traceback (most recent call last):
-  File "<stdin>", line 4, in <module>
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/subprocess.py", line 548, in run
-    with Popen(*popenargs, **kwargs) as process:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/subprocess.py", line 1026, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: 'mgard'
+tclap=61cfae16ceba4cadc3d74439fa1e9fd4fce16bc9
+BUILD_OK
+usage: mgard --version -h subcommand [<args>]
+
+arguments and options:
+  --version
+    Displays version information and exits.
+  -h,  --help
+    Displays usage information and exits.
+  subcommand <compress|decompress>
+    (required) Operation to perform.
+
+Run 'mgard <command> --help' for more information.
+s= inf compress_rc= 0 decompress_rc= 0 Linf= 0.00021752466692398498  
+s= 0 compress_rc= 0 decompress_rc= 0 Linf= 0.017587335921591174  
+s= -1 compress_rc= 0 decompress_rc= 0 Linf= 0.32354744473502406  

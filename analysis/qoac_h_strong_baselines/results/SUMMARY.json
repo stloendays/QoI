@@ -4,7 +4,7 @@
   "tau_hartree": 1e-06,
   "arm_status": {
     "T1": {
-      "rows": 10800,
+      "rows": 21600,
       "failures": 0,
       "params_with_rows": [
         "q_cut=0.05",
@@ -19,12 +19,16 @@
       ]
     },
     "M": {
-      "rows": 0,
-      "failures": 3600,
-      "params_with_rows": []
+      "rows": 3600,
+      "failures": 0,
+      "params_with_rows": [
+        "s=-1",
+        "s=0",
+        "s=inf"
+      ]
     },
     "V": {
-      "rows": 3600,
+      "rows": 7200,
       "failures": 0,
       "params_with_rows": [
         "codec=sperr",
@@ -55,11 +59,14 @@
     ]
   },
   "R_M": {
-    "n": 0,
-    "wins": 0,
-    "median": null,
-    "min": null,
-    "bootstrap_ci95": null
+    "n": 48,
+    "wins": 48,
+    "median": 19.356364259494093,
+    "min": 5.815103063761515,
+    "bootstrap_ci95": [
+      16.404995966455918,
+      23.953174178353496
+    ]
   },
   "R_V_contract_changing_reference": {
     "n": 48,
@@ -71,6 +78,6 @@
       21.158430717863105
     ]
   },
-  "bulk_median_R_new": 1.3505955701299015,
+  "bulk_median_R_new": 1.3505907706290496,
   "slab_median_R_new": 1.5710321985706073
 }
