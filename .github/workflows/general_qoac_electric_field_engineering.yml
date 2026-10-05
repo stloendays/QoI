@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: general-qoac-electric-field-engineering-20261005
+  group: general-qoac-electric-field-engineering-v2-20261005
   cancel-in-progress: true
 
 jobs:
