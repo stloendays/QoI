@@ -31,7 +31,7 @@ with **P4** as a secondary measurement-contract boundary case study, the Fourier
 | 5 | Basin migration and topology-sensitive Bader amplification | `figures/R/figure5_topology_mechanism.R` | `figures/R/rendered/figure5_topology_mechanism_R.{png,pdf,svg}` | **LOCKED** |
 | 6 | Nominal tolerance vs matched realized L-infinity | `figures/R/figure6_matched_realized_linf.R` | `figures/R/rendered/figure6_matched_realized_linf_R.{png,pdf,svg}` | **LOCKED** |
 | 7 | Fourier-spectrum mechanism at matched realized distortion | `figures/R/figure7_fourier_spectrum_mechanism.R` | `figures/R/rendered/figure7_fourier_spectrum_mechanism_R.{png,pdf,svg}` | **LOCKED** |
-| 8 | **QOAC-H: operator-derived compression design and certified rate gain** | `figures/R/figure8_qoac_h.R` | `figures/R/rendered/figure8_qoac_h_R.{png,pdf,svg}` | **NEW — TO BUILD FROM FROZEN RESULTS** |
+| 8 | **QOAC-H: operator-derived compression design and certified rate gain** | `figures/R/figure8_qoac_h.R` | `figures/R/rendered/figure8_qoac_h_R.{png,pdf,svg}` | **LOCKED — rendered from frozen results** |
 | 9 | Untouched external confirmation | `figures/R/figure8_external_confirmation.R` | `figures/R/rendered/figure8_external_confirmation_R.{png,pdf,svg}` | **LOCKED — reader-facing renumber to Fig. 9** |
 
 ## Figure 1 — Measurement contract
@@ -238,7 +238,7 @@ Locked formal runs retained for provenance:
 - Figure 5: run `34349558487`, artifact `10103144848`.
 - Figure 6: run `34340308601`, artifact `10099481566`.
 - Figure 7: source `figures/R/figure7_fourier_spectrum_mechanism.R`; final caption `paper/FIGURE7_CAPTION_FINAL_20260927.md`; rendered from `analysis/hartree_spectral_mechanism/results/` on the manuscript-integration branch.
-- Figure 8: **to be generated** from frozen QOAC-H engineering, confirmatory and census outputs; source path reserved as `figures/R/figure8_qoac_h.R`.
+- Figure 8: source `figures/R/figure8_qoac_h.R`; rendered PNG/PDF/SVG committed after successful workflow run `37280087154`, artifact `11331394795`; the source asserts the frozen 12-material mechanism, 48-material confirmatory and 254-material census anchors before rendering.
 - Figure 9: existing external-confirmation source remains `figures/R/figure8_external_confirmation.R`; reader-facing numbering becomes Fig. 9 without renaming provenance files.
 
 ## Submission scope lock
