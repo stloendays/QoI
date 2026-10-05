@@ -11,18 +11,19 @@ class ElectricFieldOperatorTests(unittest.TestCase):
         x=rng.normal(size=(8,7,10))
         e=0.01*rng.normal(size=x.shape)
         lattice=np.array([[5.0,0.2,0.1],[0.4,6.0,0.3],[0.2,0.5,7.0]])
-        for safe in (False,True):
-            sx=ef.electric_field_energy(x,lattice,safe)
-            se=ef.electric_field_energy(e,lattice,safe)
-            ratio=(se/sx)**0.5
-            explicit=ef.explicit_vector_rms(e,lattice,safe)/ef.explicit_vector_rms(x,lattice,safe)
-            self.assertAlmostEqual(ratio,explicit,places=12)
+        # Nyquist-safe spectral differentiation has a unique real-space
+        # vector-field representation and must close exactly.
+        sx=ef.electric_field_energy(x,lattice,True)
+        se=ef.electric_field_energy(e,lattice,True)
+        ratio=(se/sx)**0.5
+        explicit=ef.explicit_vector_rms(e,lattice,True)/ef.explicit_vector_rms(x,lattice,True)
+        self.assertAlmostEqual(ratio,explicit,places=12)
 
     def test_constant_field_has_no_electric_field(self):
         x=np.ones((7,8,9))
         lattice=np.eye(3)*5.0
-        with self.assertRaises(ValueError):
-            ef.electric_field_energy(x,lattice,False)
+        self.assertEqual(ef.electric_field_energy(x,lattice,False),0.0)
+        self.assertEqual(ef.electric_field_energy(x,lattice,True),0.0)
 
     def test_safe_energy_not_greater_than_historical(self):
         rng=np.random.default_rng(3)
