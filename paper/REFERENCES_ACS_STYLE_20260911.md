@@ -12,7 +12,7 @@ This rendering follows the current submission citation order in `paper/MANUSCRIP
 
 5. Cappello, F.; Di, S.; Li, S.; Liang, X.; Gok, A. M.; Tao, D.; Yoon, C. H.; Wu, X.-C.; Alexeev, Y.; Chong, F. T. Use Cases of Lossy Compression for Floating-Point Data in Scientific Data Sets. *Int. J. High Perform. Comput. Appl.* **2019**, *33* (6), 1201–1220. DOI: 10.1177/1094342019853336.
 
-6. Gok, A. M.; Di, S.; Alexeev, Y.; Tao, D.; Mironov, V.; Liang, X.; Cappello, F. PaSTRI: Error-Bounded Lossy Compression for Two-Electron Integrals in Quantum Chemistry. In *2018 IEEE International Conference on Cluster Computing (CLUSTER)*; IEEE, 2018; pp 1–11. DOI: 10.1109/CLUSTER2018.00013.
+6. Gok, A. M.; Di, S.; Alexeev, Y.; Tao, D.; Mironov, V.; Liang, X.; Cappello, F. PaSTRI: Error-Bounded Lossy Compression for Two-Electron Integrals in Quantum Chemistry. In *2018 IEEE International Conference on Cluster Computing (CLUSTER)*; IEEE, 2018; pp 1–11. DOI: 10.1109/CLUSTER.2018.00013.
 
 7. Lara, A. O.; Talbot, J. J.; Wang, Z.; Head-Gordon, M. An Algorithm for Atom-Centered Lossy Compression of the Atomic Orbital Basis in Density Functional Theory Calculations. *J. Chem. Theory Comput.* **2026**, *22* (7), 3327–3340. DOI: 10.1021/acs.jctc.5c01988.
 
