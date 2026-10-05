@@ -86,19 +86,19 @@ For an rFFT representation, Parseval gives the exact vector electric-field energ
 
 where m_G is the rFFT multiplicity.
 
-Primary metric:
-
-    electric_field_error_rel_RMSE_historical
-
-computed with the historical reciprocal-grid convention.
-
-Nyquist-safe guardrail:
+For an electric-field derivative, even-grid Nyquist modes are special: multiplying a self-conjugate density coefficient by iG does not have a unique real-valued collocation-grid derivative. Therefore the **primary scientific metric is Nyquist-safe**:
 
     electric_field_error_rel_RMSE_safe
 
-computed after excluding the even-grid Nyquist planes, matching the existing safe Hartree audit convention.
+computed after excluding every even-grid Nyquist plane. This metric closes exactly against an explicit three-component real-space spectral derivative.
 
-No claim may rely on a mode that exists only because of the historical Nyquist representation.
+A second quantity,
+
+    electric_field_error_rel_RMSE_historical,
+
+retains the formal all-mode spectral energy with the historical reciprocal-grid convention. It is a conservative diagnostic/guardrail, not the primary field definition.
+
+No claim may rely on an excluded Nyquist mode. Certified-rate candidates must satisfy both the safe primary threshold and the formal all-mode diagnostic threshold.
 
 ## Matched-storage mechanism test
 
