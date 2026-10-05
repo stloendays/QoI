@@ -10,6 +10,8 @@ on:
       - 'paper/SUPPLEMENTARY_TABLES_FINAL.md'
       - 'paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md'
       - 'figures/R/rendered/supplementary_figureS*_R.png'
+      - 'figures/composite/figS9/FigS9.png'
+      - 'figures/composite/figS10/FigS10.png'
       - '.github/workflows/package_si_proof_inputs.yml'
 
 permissions:
@@ -24,19 +26,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify SI proof inputs
+
+      - name: Verify exact SI proof inputs
         shell: bash
         run: |
           set -euo pipefail
           test -s paper/SUPPLEMENTARY_INFORMATION.md
-          for n in 1 2 3 4 5 6 7 8; do
-            f=$(find figures/R/rendered -maxdepth 1 -type f -name "supplementary_figureS${n}_*_R.png" | head -n 1)
-            test -n "$f" && test -s "$f" || { echo "Missing Supplementary Figure S$n PNG"; exit 1; }
-          done
-          test -s figures/composite/figS9/FigS9.png
-          test -s figures/composite/figS10/FigS10.png
           test -s paper/SUPPLEMENTARY_TABLES_FINAL.md
           test -s paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md
+
+          if grep -n -E '^[[:space:]]*\$[[:space:]]*$' paper/SUPPLEMENTARY_INFORMATION.md; then
+            echo "Standalone single-dollar display delimiter remains in SUPPLEMENTARY_INFORMATION.md"
+            exit 1
+          fi
+
+          for n in 1 2 3 4 5 6 7 8 9 10; do
+            grep -q "^## Supplementary Figure S${n} " paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md || {
+              echo "Missing Supplementary Figure S${n} caption"
+              exit 1
+            }
+          done
+
+          for n in 1 2 3 4 5 6 7 8; do
+            f=$(find figures/R/rendered -maxdepth 1 -type f -name "supplementary_figureS${n}_*_R.png" | head -n 1)
+            test -n "$f" && test -s "$f" || {
+              echo "Missing Supplementary Figure S${n} PNG"
+              exit 1
+            }
+          done
+
+          test -s figures/composite/figS9/FigS9.png
+          test -s figures/composite/figS10/FigS10.png
+
       - uses: actions/upload-artifact@v4
         with:
           name: si-proof-inputs
