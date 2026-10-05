@@ -81,11 +81,11 @@ This arm tests whether fixed-partition Bader error is actually the low-dimension
 6. Apply a final floating-point basin-sum projection to remove roundoff.
 7. Count the side channel in serialized bytes.
 
-The side channel contains one float64 target sum for every integer partition label from 0 through the maximum atomic label, plus an explicit fixed wrapper header. The exact AECCAR is part of the declared measurement contract and is not charged to QOAC-B1, exactly as it is not charged to the frozen G1 CHGCAR compression ratios.
+The side channel contains one float64 target sum for every integer partition label from 0 through the maximum partition label, plus an explicit fixed wrapper header. Labels beyond the atom count, if emitted by the exact-reference Henkelman partition, are preserved rather than discarded. The exact AECCAR is part of the declared measurement contract and is not charged to QOAC-B1, exactly as it is not charged to the frozen G1 CHGCAR compression ratios.
 
 ## Why region label 0 is included
 
-Henkelman may assign vacuum/unclaimed voxels label 0. QOAC-B1 preserves the discrete sum of this region as well. This keeps the total CHGCAR sum stable and avoids obtaining a Bader guarantee by silently moving charge into vacuum.
+Henkelman may assign vacuum/unclaimed voxels label 0 and may emit additional partition-region labels beyond the atom count. QOAC-B1 preserves the discrete sum of every emitted non-negative region label. This keeps the total CHGCAR sum stable and avoids obtaining a Bader guarantee by silently moving charge into vacuum.
 
 ## Backend ladder
 
