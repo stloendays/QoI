@@ -121,6 +121,23 @@ def captions(path, key):
     return {k: lower_panels(" ".join(v)) for k, v in out.items()}
 
 
+def main_figure_path(n):
+    """Reader-facing main-figure source.
+
+    Figures 1-7 retain the historical composite renders. Figure 8 is the
+    operator-aware QOAC-H result; the previously rendered external-confirmation
+    figure is reader-facing Figure 9. Keeping this mapping here prevents the
+    development filename "figure8_external_confirmation" from leaking into
+    manuscript numbering.
+    """
+    n = str(n)
+    if n == "8":
+        return os.path.join(REPO, "figures", "R", "rendered", "figure8_qoac_h_R.png")
+    if n == "9":
+        return os.path.join(REPO, "figures", "R", "rendered", "figure8_external_confirmation_R.png")
+    return os.path.join(HERE, "fig%s" % n, "Fig%s.png" % n)
+
+
 def embed_png(src, stem):
     os.makedirs(EMBED, exist_ok=True)
     dst = os.path.join(EMBED, stem + ".png")
@@ -252,9 +269,9 @@ def main_manuscript():
             for n in re.findall(r"Fig(?:\.|ure) (\d)", b[1]):
                 if n not in placed:
                     placed.add(n)
-                    png = embed_png(os.path.join(HERE, "fig%s" % n, "Fig%s.png" % n), "Fig%s" % n)
+                    png = embed_png(main_figure_path(n), "Fig%s" % n)
                     out.append(("fig", png, caps[n]))
-    assert placed == {str(i) for i in range(1, 9)}, placed
+    assert placed == {str(i) for i in range(1, 10)}, placed
     return out
 
 
@@ -303,7 +320,7 @@ def main():
 
     deliverables = []
     for stem, blocks, title in (("QSQ_manuscript_%s" % DATE, main_manuscript(),
-                                 "Numerical stability qualification for downstream-fidelity benchmarks of compressed electronic densities"),
+                                 "Numerical stability qualification and operator-aware compression of electronic densities"),
                                 ("QSQ_supplementary_information_%s" % DATE, supplementary(), "Supplementary Information")):
         pdf = write_html_pdf(blocks, stem, title)
         docx = write_docx(blocks, stem)
