@@ -1,0 +1,164 @@
+name: QOAC-B2 frozen holdout confirmation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-b2-confirmatory-20261005
+    paths:
+      - analysis/operator_aware_bader_projection_confirmatory/**
+      - .github/workflows/qoac_b2_confirmatory.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-b2-confirmatory-20261005
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Verify engineering authorization and frozen holdout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile repo/analysis/operator_aware_bader_projection_confirmatory/*.py
+          python - <<'PY'
+          import json, pathlib
+          s=json.loads(pathlib.Path("repo/analysis/operator_aware_bader_projection/results/SUMMARY.json").read_text())
+          assert s["holdout_authorized"] is True, s
+          assert float(s["primary_kappa"]) == 4.0
+          PY
+          test "$(( $(wc -l < repo/analysis/operator_aware_bader_fixed_partition/results/FROZEN_HOLDOUT_MANIFEST.csv) - 1 ))" -eq 38
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install scientific stack and Fortran compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gfortran
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Build Henkelman Bader
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r repo/mechanism/independent_bader_20260908/reference_source "$RUNNER_TEMP/bader_source"
+          cd "$RUNNER_TEMP/bader_source"
+          sed -i 's/^LINK = -static/LINK =/' makefile.osx_gfortran
+          make -f makefile.osx_gfortran
+          test -x bader
+      - name: Run frozen holdout shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qoac_b2_confirm_${{ matrix.shard }}"
+          mkdir -p "$out"
+          python repo/analysis/operator_aware_bader_projection_confirmatory/run_confirmatory.py \
+            --repo-root repo \
+            --frozen-root frozen \
+            --holdout-manifest repo/analysis/operator_aware_bader_fixed_partition/results/FROZEN_HOLDOUT_MANIFEST.csv \
+            --shard-count 19 \
+            --shard-index ${{ matrix.shard }} \
+            --bader "$RUNNER_TEMP/bader_source/bader" \
+            --output-dir "$out"
+          python --version > "$out/python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b2-confirm-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_b2_confirm_${{ matrix.shard }}
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-b2-confirm-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate frozen confirmation
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/operator_aware_bader_projection_confirmatory/results
+          rm -rf "$out"
+          python repo/analysis/operator_aware_bader_projection_confirmatory/aggregate_confirmatory.py \
+            --holdout-manifest repo/analysis/operator_aware_bader_fixed_partition/results/FROZEN_HOLDOUT_MANIFEST.csv \
+            --shards-root shards \
+            --output-dir "$out"
+          python --version > "$out/aggregate_python_version.txt" 2>&1
+          python -m pip freeze | sort > "$out/aggregate_pip_freeze.txt"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo "893f931b3045b0b628329db81999c2f439d4e830" > "$out/frozen_scientific_commit.txt"
+      - name: Commit confirmatory result package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/operator_aware_bader_projection_confirmatory/results
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m 'research: complete QOAC-B2 frozen holdout confirmation'
+            git pull --rebase origin research/qoac-b2-confirmatory-20261005
+            git push origin HEAD:research/qoac-b2-confirmatory-20261005
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qoac-b2-confirmatory-aggregate
+          path: repo/analysis/operator_aware_bader_projection_confirmatory/results
+          if-no-files-found: warn
+          retention-days: 90
