@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - paper/fourier-mechanism-integration-20260927
+      - paper/qoac-integration-20261005
     paths:
       - 'paper/MANUSCRIPT.md'
       - 'paper/FIGURE_CAPTIONS.md'
@@ -29,10 +29,12 @@ jobs:
           set -euo pipefail
           test -s paper/MANUSCRIPT.md
           test -s paper/FIGURE_CAPTIONS.md
-          for n in 1 2 3 4 5 6 7 8; do
+          for n in 1 2 3 4 5 6 7; do
             f=$(find figures/R/rendered -maxdepth 1 -type f -name "figure${n}_*_R.png" | head -n 1)
             test -n "$f" && test -s "$f" || { echo "Missing Figure $n PNG"; exit 1; }
           done
+          test -s figures/R/rendered/figure8_qoac_h_R.png
+          test -s figures/R/rendered/figure8_external_confirmation_R.png
       - uses: actions/upload-artifact@v4
         with:
           name: main-manuscript-proof-inputs
@@ -46,6 +48,7 @@ jobs:
             figures/R/rendered/figure5_*_R.png
             figures/R/rendered/figure6_*_R.png
             figures/R/rendered/figure7_*_R.png
-            figures/R/rendered/figure8_*_R.png
+            figures/R/rendered/figure8_qoac_h_R.png
+            figures/R/rendered/figure8_external_confirmation_R.png
           if-no-files-found: error
           retention-days: 7
