@@ -1,0 +1,24 @@
+{
+  "status": "COMPLETE",
+  "engineering_materials": 12,
+  "holdout_materials_frozen": 38,
+  "rows": 614,
+  "verification_rows": 72,
+  "gate_A_nullspace_mechanism": {
+    "go": true,
+    "max_actual_bader_error_e": 0.0,
+    "max_reassigned_frac": 0.0,
+    "max_closure_scaled": 8.300657394518025e-16
+  },
+  "gate_B_matched_field_utility": {
+    "go": false,
+    "wins": 0,
+    "median_cr_ratio_R_over_G1": 0.4010479940206533
+  },
+  "gate_C_transform_over_projection": {
+    "go": false,
+    "median_cr_ratio_R_over_P": 0.29853266338112855
+  },
+  "holdout_authorized": false,
+  "primary_representation": "P_or_redesign"
+}
