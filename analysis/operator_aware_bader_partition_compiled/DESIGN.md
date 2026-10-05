@@ -34,9 +34,9 @@ for every voxel.
 
 ## Direct integration equivalence
 
-For VASP CHGCAR density values rho(r) and cell volume V on an N-point uniform grid, the on-grid charge assigned to atomic region i is evaluated as
+For the VASP CHGCAR values returned by the repository decoder, the stored grid convention already contains the cell-volume factor. The on-grid electron count assigned to atomic region i is therefore evaluated as
 
-    Q_i^map = (V / N) * sum_{r : L(r)=i} rho(r).
+    Q_i^map = (1 / N) * sum_{r : L(r)=i} rho(r).
 
 For the engineering study this direct integration is compared against the Henkelman ACF atomic charge from the same exact-reference run.
 
