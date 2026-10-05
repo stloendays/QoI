@@ -6,7 +6,7 @@ Figures may be scaled down individually; a sheet does not owe anything
 submission size. The individual per-figure SVG/PDF/PNG files, written by each
 make_figN.py, remain the submission artifacts.
 
-Two sheets are built: the eight manuscript figures in reading order, and the
+Two sheets are built: the nine manuscript figures in reading order, and the
 eight supplementary figures.
 
 Things this has to get right:
@@ -35,7 +35,7 @@ CAP = 4.6                           # caption strip above each figure
 
 # stem -> (title, columns). Each column is a list of (file, caption, scale).
 # Columns are balanced by total height, and the order inside the main sheet
-# follows the manuscript: 1 and 2 down the left, 3 to 5 down the right.
+# follows the manuscript reading order within the two balanced columns.
 SHEETS = {
     "Sheet_main_figures": (
         "QSQ manuscript figures 1–9",
