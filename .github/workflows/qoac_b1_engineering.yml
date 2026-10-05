@@ -123,6 +123,7 @@ jobs:
           git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
           git -C frozen rev-parse HEAD > "$out/frozen_scientific_commit.txt"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: qoac-b1-material-${{ matrix.index }}
           path: ${{ runner.temp }}/qoac_b1_${{ matrix.index }}
