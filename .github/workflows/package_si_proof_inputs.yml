@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - paper/fourier-mechanism-integration-20260927
+      - paper/qoac-integration-20261005
     paths:
       - 'paper/SUPPLEMENTARY_INFORMATION.md'
       - 'paper/SUPPLEMENTARY_TABLES_FINAL.md'
@@ -33,6 +33,8 @@ jobs:
             f=$(find figures/R/rendered -maxdepth 1 -type f -name "supplementary_figureS${n}_*_R.png" | head -n 1)
             test -n "$f" && test -s "$f" || { echo "Missing Supplementary Figure S$n PNG"; exit 1; }
           done
+          test -s figures/composite/figS9/FigS9.png
+          test -s figures/composite/figS10/FigS10.png
           test -s paper/SUPPLEMENTARY_TABLES_FINAL.md
           test -s paper/SUPPLEMENTARY_FIGURE_CAPTIONS.md
       - uses: actions/upload-artifact@v4
@@ -50,5 +52,7 @@ jobs:
             figures/R/rendered/supplementary_figureS6_*_R.png
             figures/R/rendered/supplementary_figureS7_*_R.png
             figures/R/rendered/supplementary_figureS8_*_R.png
+            figures/composite/figS9/FigS9.png
+            figures/composite/figS10/FigS10.png
           if-no-files-found: error
           retention-days: 7
