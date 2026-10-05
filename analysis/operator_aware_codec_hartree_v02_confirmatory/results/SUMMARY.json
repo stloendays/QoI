@@ -1,0 +1,30 @@
+{
+  "status": "COMPLETE",
+  "confirmatory_pass": true,
+  "materials": 48,
+  "rows_success": 1200,
+  "failures": 0,
+  "wins": 48,
+  "win_fraction": 1.0,
+  "win_fraction_wilson_95_ci": [
+    0.9258998703338824,
+    0.9999999999999999
+  ],
+  "median_ratio_qoac_over_best_baseline": 15.016296565699172,
+  "bootstrap_median_95_ci": [
+    11.203902957408012,
+    21.460575296108285
+  ],
+  "bulk_median_ratio": 11.20275764008024,
+  "slab_median_ratio": 25.699387883531912,
+  "safe_guardrail_pass_count": 48,
+  "criteria": {
+    "all_48_analyzable_zero_failures": true,
+    "all_48_safe_guardrail": true,
+    "wins_at_least_36_of_48": true,
+    "median_ratio_gt_1p50": true,
+    "bootstrap_lower_gt_1p25": true,
+    "bulk_and_slab_medians_gt_1p25": true,
+    "wilson_win_lower_gt_0p50": true
+  }
+}
