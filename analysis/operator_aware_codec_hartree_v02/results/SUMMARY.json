@@ -1,0 +1,22 @@
+{
+  "status": "COMPLETE",
+  "materials": 12,
+  "rows_success": 312,
+  "failures": 0,
+  "tau_historical_rel_RMSE": 1e-06,
+  "gate_A_rate_floor_removed": {
+    "go": true,
+    "sperr_cases": 3,
+    "min_floor_over_baseline": 34.31528497409327
+  },
+  "gate_B_certified_representation_improvement": {
+    "go": true,
+    "median_v02_over_v01": 10.326783583992011
+  },
+  "gate_C_confirmatory_candidate": {
+    "go": true,
+    "wins_over_best_baseline": 12,
+    "median_v02_over_best_baseline": 9.990130016640986
+  },
+  "confirmatory_authorized": true
+}
