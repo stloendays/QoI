@@ -122,17 +122,17 @@ The matched-$L_\infty$ codec effect is therefore not explained by pointwise erro
 
 The Hartree diagnosis suggests a constructive compression rule: allocate reconstruction error according to downstream sensitivity rather than according to a uniform field-space tolerance (Fig. 8). For a reciprocal-space density error $\delta\rho(G)$, the periodic Hartree response is $\delta V_H(G)=4\pi\delta\rho(G)/|G|^2$, so Parseval's identity makes the squared potential-error numerator proportional to
 
-$
+$$
 D_H^2 \propto \sum_{G\ne0}\frac{|\delta\rho(G)|^2}{|G|^4}.
-$
+$$
 
 Under the standard high-resolution scalar-quantization approximation, $\mathbb{E}|\delta\rho(G)|^2\propto\Delta_G^2$. Minimizing this weighted quadratic distortion at fixed transform-code rate gives the first-order allocation $\Delta_G\propto |G|^2$. QoI-preserving compression already translates downstream requirements into data-level controls [9,10,25], and coefficient-dependent bit allocation in transform coding is established [26]. Here the role of the operator is more specific: the exact physical Fourier symbol that explained the matched-distortion codec effect becomes the distortion geometry used by the compressor.
 
 QOAC-H implements this rule with a full orthonormal Fourier transform and an explicitly Hermitian representation. One coefficient is stored per Hermitian orbit, $G=0$ is the only exact reciprocal mode, and even-grid Nyquist coordinates use the minimum $|G|^2$ over alias-equivalent sign choices so that no mode receives a looser step because of an arbitrary Nyquist convention. The frozen quantizer is
 
-$
+$$
 \Delta_G=\alpha\left(\frac{|G|_{\mathrm{safe}}}{G_{\max,\mathrm{safe}}}\right)^2,
-$
+$$
 
 with the decoded real-space density subsequently evaluated by the actual Hartree calculation. The primary certificate therefore remains a downstream measurement, not the spectral surrogate used to design the representation.
 
@@ -232,9 +232,9 @@ Frequency location was expressed as $q=|G|/G_{\max}$ over the Nyquist-safe non-z
 QOAC-H was designed prospectively from the Fourier mechanism rather than fitted to the final codec comparison. For an orthonormal Fourier representation, the Hartree-error numerator is proportional to $\sum_{G\ne0}|\delta\rho(G)|^2/|G|^4$. Under the high-resolution scalar-quantization model, independent real and imaginary quantization errors have variance proportional to $\Delta_G^2$. Minimizing the resulting weighted distortion with a logarithmic high-rate coefficient-rate model yields the first-order allocation $\Delta_G\propto|G|^2$. The exponent 2 was therefore fixed before any QOAC-H result was evaluated; exponent 0 was the operator-blind ablation.
 
 The final representation used a full orthonormal FFT and partitioned reciprocal indices into Hermitian orbits under $k\mapsto-k\pmod N$. One canonical coefficient was stored for each orbit; its partner was reconstructed by exact conjugation. $G=0$ was the only exact reciprocal coefficient. For even grids, a Nyquist coordinate is alias-equivalent to both $+N/2$ and $-N/2$; on non-orthogonal cells these choices can change the continuum reciprocal norm because of cross terms. For every mode we therefore enumerated the alias-equivalent Nyquist sign choices and used the minimum reciprocal norm $|G|_{\mathrm{safe}}^2$. This conservative choice prevents an arbitrary FFT sign convention from assigning a looser quantization step. The frozen quantizer was
-$
+$$
 \Delta_G=\alpha\left(|G|_{\mathrm{safe}}/G_{\max,\mathrm{safe}}\right)^2.
-$
+$$
 Real and imaginary components of canonical coefficients were quantized independently by nearest-integer rounding, except self-conjugate modes whose imaginary component is zero by construction. Quantized integers were grouped into 32 radial storage shells, represented with the smallest signed integer type sufficient for the shell, and compressed with zlib level 6. Complete stream bytes—including shape, lattice, quantizer metadata, shell metadata, the exact $G=0$ value and compressed integer payloads—were used to compute compression ratio.
 
 The frozen search ladder contained 25 settings with $\alpha/\operatorname{ptp}(\rho)$ logarithmically spaced from $10^{-7}$ to $10^{1}$. Every stream was decoded before evaluation. Historical and Nyquist-safe Hartree relative RMSE were recomputed from the decoded real-space field; the latter served as a guardrail against Nyquist-convention artifacts. Mean-density deviation, imaginary leakage, density $L_\infty$, density RMSE and encode/decode time were retained as secondary diagnostics.
@@ -265,15 +265,15 @@ QSQ is defined on a declared measurement contract rather than on a data field in
 
 For contract $C$, let $r_{C,k}$ denote the downstream response to the $k$th pre-specified probe, measured with the QoI-specific response metric. The finite-panel stability floor is
 
-$
+$$
 f_C=\max_k r_{C,k},
-$
+$$
 
 and qualification at tolerance $\tau$ is
 
-$
+$$
 \text{eligible}(C,\tau) \equiv f_C < \tau.
-$
+$$
 
 In the primary self-partitioned Bader contract, the density is the sole approximate input and serves both as the integrated charge field and the partition-defining field. Five fixed-seed uniform perturbations are applied at the material-specific float32 $L_\infty$ scale, Bader basins and charges are re-derived after each probe, and the response is the maximum absolute per-atom charge change. The exact seed set, order-preserving control comparison and decision semantics are given in Supplementary Table S2.
 
@@ -281,9 +281,9 @@ For binary qualification at a fixed $\tau$, probe execution may stop as soon as 
 
 For reconstruction $r$ under an eligible Bader contract with re-derived error $\Delta Q_B(r)$,
 
-$
+$$
 \text{certified}(r,C,\tau) \equiv \text{eligible}(C,\tau) \land \Delta Q_B(r)<\tau.
-$
+$$
 
 If $f_C\geq\tau$, the material–contract pair is classified as non-evaluable under that QSQ contract. An eligible pair for which no evaluated reconstruction is certified is classified as not certified. Every decision therefore carries exactly one of three outcomes, recorded in machine-readable certificates as `QOI_CERTIFIED`, `QOI_NOT_CERTIFIED` or `REFERENCE_NOT_RESOLVED`. Numerical agreement or disagreement is retained on a separate axis. Certified therefore denotes this finite-panel rule, not a worst-case or calibrated probabilistic guarantee.
 
