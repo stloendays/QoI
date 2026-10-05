@@ -66,11 +66,11 @@ SHEETS = {
 def read_svg(path):
     """Return (width_mm, height_mm, viewbox, body) for a matplotlib SVG."""
     s = open(path, encoding="utf-8").read()
-    m = re.search(r"<svg\b[^>]*>", s)
+    m = re.search(r"<svg\\b[^>]*>", s)
     head = m.group(0)
-    w = float(re.search(r'width="([0-9.]+)pt"', head).group(1))
-    h = float(re.search(r'height="([0-9.]+)pt"', head).group(1))
-    vb = re.search(r'viewBox="([^"]+)"', head).group(1)
+    w = float(re.search(r"""width=['"]([0-9.]+)pt['"]""", head).group(1))
+    h = float(re.search(r"""height=['"]([0-9.]+)pt['"]""", head).group(1))
+    vb = re.search(r"""viewBox=['"]([^'"]+)['"]""", head).group(1)
     body = s[m.end():s.rindex("</svg>")]
     return w * PT_MM, h * PT_MM, vb, body
 
