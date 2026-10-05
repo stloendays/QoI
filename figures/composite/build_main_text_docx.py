@@ -217,12 +217,12 @@ def build():
                 n_math += len(re.findall(r"\$[^$]+\$", x))
         elif k == "table":
             B.T.to_docx_table(doc, b) if hasattr(B.T, "to_docx_table") else None
-    assert placed == [str(i) for i in range(1, 9)], placed          # cited in order 1..8
+    assert placed == [str(i) for i in range(1, 10)], placed         # cited in order 1..9
     # ---- figures and legends, one per page, after the references --------------------------------
     pb = doc.add_paragraph(); pb.add_run().add_break(WD_BREAK.PAGE)
     doc.add_paragraph("Figures", style="Heading 1")
     for j, n in enumerate(placed):
-        png = B.embed_png(os.path.join(HERE, "fig%s" % n, "Fig%s.png" % n), "Fig%s" % n)
+        png = B.embed_png(B.main_figure_path(n), "Fig%s" % n)
         fp = doc.add_paragraph(); fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
         fp.paragraph_format.keep_with_next = True
         fp.paragraph_format.space_before = Pt(6 if j == 0 else 0)
