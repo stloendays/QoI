@@ -1,0 +1,76 @@
+name: Render Figure 8 QOAC-H
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - paper/qoac-integration-20261005
+    paths:
+      - 'figures/R/figure8_qoac_h.R'
+      - '.github/workflows/render_figure8_qoac_h.yml'
+      - 'analysis/operator_aware_codec_hartree/results/**'
+      - 'analysis/operator_aware_codec_hartree_v02_confirmatory/results/**'
+      - 'analysis/operator_aware_codec_hartree_v02_census/results/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoi-figure8-qoac-h
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::ggplot2
+            any::dplyr
+            any::scales
+            any::patchwork
+            any::jsonlite
+            any::svglite
+
+      - name: Render Figure 8
+        run: Rscript figures/R/figure8_qoac_h.R
+
+      - name: Validate Figure 8 outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            figures/R/rendered/figure8_qoac_h_R.png \
+            figures/R/rendered/figure8_qoac_h_R.pdf \
+            figures/R/rendered/figure8_qoac_h_R.svg; do
+            test -s "$f" || { echo "Missing or empty output: $f"; exit 1; }
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: figure8-qoac-h
+          path: |
+            figures/R/rendered/figure8_qoac_h_R.png
+            figures/R/rendered/figure8_qoac_h_R.pdf
+            figures/R/rendered/figure8_qoac_h_R.svg
+          retention-days: 90
+
+      - name: Commit rendered outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add figures/R/rendered/figure8_qoac_h_R.{png,pdf,svg}
+          if git diff --cached --quiet; then
+            echo "Figure 8 outputs unchanged."
+            exit 0
+          fi
+          git commit -m "figure: render QOAC-H diagnosis-to-design outputs"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
