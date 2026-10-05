@@ -1,0 +1,24 @@
+{
+  "status": "COMPLETE",
+  "materials": 12,
+  "gate_A_semantic_equivalence": {
+    "go": false,
+    "max_direct_charge_error_e": 6604.084578153836
+  },
+  "gate_B_partition_efficiency": {
+    "go": true,
+    "median_partition_replacement_ratio": 176.8536791688061,
+    "min_partition_replacement_ratio": 126.82197380084705,
+    "method_counts": {
+      "rle_zlib": 6,
+      "packed_zlib": 6
+    }
+  },
+  "gate_C_archive_utility": {
+    "go": true,
+    "wins": 12,
+    "median_archive_ratio": 97.38790092398106,
+    "min_archive_ratio": 49.53072016197993
+  },
+  "full_50_census_authorized": false
+}
