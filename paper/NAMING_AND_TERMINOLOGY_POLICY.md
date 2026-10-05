@@ -68,3 +68,30 @@ figures, captions and SI:
 Do not use "not certifiable" as a reader-facing label: it reads as a codec outcome, whereas non-evaluable is a
 property of the reference analysis. "Eligible, not certified" is acceptable where the eligibility state must be
 explicit. The governing record is `paper/WORKFLOW_SCOPE_ADDENDUM_20261003.md`.
+
+
+## QOAC-H reader-facing name (2026-10-05)
+
+The reader-facing Hartree compression method is:
+
+**QoI- and operator-aware Hartree compression (QOAC-H)**
+
+Expand the name once, then use **QOAC-H**.
+
+Do not expose internal labels such as `v0.1`, `v0.2`, branch names, workflow run numbers or engineering codenames in the manuscript, captions, SI narrative or talks. Those labels remain only in provenance paths.
+
+Use these phrases consistently:
+- **operator-derived allocation** for the frozen $\Delta_G\propto|G|^2$ rule;
+- **operator-blind ablation** for the $\beta=0$ spectral quantizer;
+- **disjoint confirmatory cohort** for the frozen 48-material holdout;
+- **full development-population census** for the 254-material exhaustive run;
+- **Nyquist-safe guardrail** for the secondary Hartree certificate using conservative Nyquist treatment.
+
+Do not call QOAC-H:
+- a universal QoI compressor;
+- a Bader-preserving compressor;
+- the first operator-aware compressor;
+- the first QoI-aware compressor;
+- a general Fourier-compression law.
+
+The governing novelty record is `paper/QOAC_PRIOR_ART_NOVELTY_AUDIT_20261005.md`.
