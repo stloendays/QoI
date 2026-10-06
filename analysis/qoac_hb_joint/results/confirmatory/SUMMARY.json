@@ -1,0 +1,40 @@
+{
+  "status": "COMPLETE",
+  "phase": "confirmatory",
+  "materials": 38,
+  "material_failures": 0,
+  "setting_failures": 0,
+  "arms": {
+    "J": {
+      "certified": 38,
+      "median_cr": 181.93500256376245
+    },
+    "T1P": {
+      "certified": 38,
+      "median_cr": 142.4654011648064
+    },
+    "GP": {
+      "certified": 38,
+      "median_cr": 14.909568150539455
+    }
+  },
+  "R_J": {
+    "n": 38,
+    "wins": 30,
+    "median": 1.2241666649170084,
+    "bootstrap_ci95": [
+      1.1309125079451865,
+      1.4781464231151968
+    ],
+    "min": 0.6521478281737462
+  },
+  "J_unprojected_bader_fail_count": 0,
+  "criteria": {
+    "all_38_analyzable_zero_failures": true,
+    "J_certified_ge_34": true,
+    "wins_ge_28": true,
+    "median_gt_1p25": false,
+    "bootstrap_lower_gt_1p10": true
+  },
+  "confirmatory_pass": false
+}
