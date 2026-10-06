@@ -1,0 +1,22 @@
+# Verification addendum to `QOAC_PROGRAM_PRIOR_ART_AUDIT_20261006.md` (2026-10-06)
+
+The cloud audit could not open any source (egress-blocked). The three highest-risk items it flagged were
+re-checked from an unrestricted network by opening the abstract pages directly.
+
+| item | verified facts | consequence |
+|---|---|---|
+| FFCz, arXiv:2601.01596 (C. Ren, R. Underwood, S. Di, E. Kutay, Z. Lukić, A. Yener, F. Cappello, H. Guo; submitted 2026-01-04) | Post-processing correction of SZ3/ZFP/SPERR output; frequency-domain errors written as linear combinations of spatial errors; iterative projection onto spatial and frequency-domain error-bound constraints; data: cosmology, X-ray diffraction, combustion, EEG. No downstream physical operator defines a weighting in the abstract. | Closest spectral prior art. It bounds spectra after decompression; it does not design the quantizer in a physical-operator metric. The QOAC-H distinction (operator symbol defines the quantization law, decoded field recertified under the downstream operator) stands. FFCz must be cited and discussed. |
+| BlockMGARD, arXiv:2609.00205 (Y. Li, Q. Gong, Q. Liu, J. Lee, N. Podhorszki, S. Klasky, X. Liang, J. Chen; submitted 2026-08-31) | Region-of-interest error control on GPUs on top of a multilevel MGARD-type decomposition. The abstract does not describe operator-norm (negative-Sobolev) allocation or Poisson-type operators. | Not a close match for C1/C2 on the abstract; full text still to be read before submission. |
+| Compression Safeguards, EGUsphere preprint, DOI 10.5194/egusphere-2026-4266 (J. Tyree, R. Underwood, C. Bouvier, D. Köhler, T. Reichelt, P. Dueben, S. Faghih-Naini, H. Järvinen, M. Klöwer) | Wraps a compressor with pointwise and QoI-based safeguards, including regionally varying error bounds on derived quantities; corrections stored as binary differences, optionally distributed separately. The abstract does not state exact preservation of sums over a user-supplied partition. | Supports the audit verdict that C3 (post-decode constraint correction) is methodologically incremental: credit Lee et al. 2022 and Compression Safeguards. |
+
+The DOI of Compression Safeguards (10.5194/egusphere-2026-4266) is now verified. Every other UNVERIFIED tag in the
+main audit stands until the full text has been read.
+
+## Second batch (2026-10-07)
+
+| item | verified facts | consequence |
+|---|---|---|
+| N. Shlezinger, Y. C. Eldar, M. R. D. Rodrigues, "Hardware-limited task-based quantization," *IEEE Trans. Signal Process.* 67 (2019), DOI 10.1109/TSP.2019.2935864 (arXiv:1807.08305) | Quantizers designed to recover a task parameter vector underlying the input, rather than the input itself, under bit constraints. The paper reports that accounting for the task makes the quantization error negligible with relatively few bits. | **Direct conceptual prior art for C1** (task-aware quantization). Must be cited. Difference: hardware-limited scalar quantization with analog combining for estimation, versus compression of a stored physical field whose quantizer is shaped by a physical operator symbol and recertified under that operator. |
+| X. Wu, Q. Gong, J. Chen, Q. Liu, N. Podhorszki, X. Liang, S. Klasky, "Error-controlled progressive retrieval of scientific data under derivable quantities of interest," SC'24 (arXiv:2411.05333) | Progressive retrieval with guaranteed error control on derivable QoIs, composable from a basis of derivable QoIs; QoI error below 1e-5 in the experiments. | Prior art for C4 (several QoIs controlled at once). The proceedings DOI is still to be taken from the IEEE/ACM page. |
+| J. Liu, P. Jiao, K. Zhao, X. Liang, S. Di, F. Cappello, "QPET: a versatile and portable quantity-of-interest-preservation framework for error-bounded lossy compression," arXiv:2412.02799 (PVLDB 18, 2025) | Preservation for most differentiable univariate and multivariate QoIs through numerical strategies inside error-bounded compressors. | Confirms the audit's C4 placement. |
+| J. Lee, Q. Gong, J. Choi, T. Banerjee, S. Klasky, S. Ranka, A. Rangarajan, "Error-bounded learned scientific data compression with preservation of derived quantities," *Appl. Sci.* 12(13), 2022, DOI 10.3390/app12136718 (Crossref and Semantic Scholar) | Metadata verified. The abstract confirms constraint-satisfaction post-processing followed by quantization to preserve QoIs on XGC data. | C3 credit confirmed. The exact norm minimized still needs the full text: MDPI refuses automated download, so open the PDF manually. |
