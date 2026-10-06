@@ -11,3 +11,12 @@ re-checked from an unrestricted network by opening the abstract pages directly.
 
 The DOI of Compression Safeguards (10.5194/egusphere-2026-4266) is now verified. Every other UNVERIFIED tag in the
 main audit stands until the full text has been read.
+
+## Second batch (2026-10-07)
+
+| item | verified facts | consequence |
+|---|---|---|
+| N. Shlezinger, Y. C. Eldar, M. R. D. Rodrigues, "Hardware-limited task-based quantization," *IEEE Trans. Signal Process.* 67 (2019), DOI 10.1109/TSP.2019.2935864 (arXiv:1807.08305) | Quantizers designed to recover a task parameter vector underlying the input, rather than the input itself, under bit constraints. The paper reports that accounting for the task makes the quantization error negligible with relatively few bits. | **Direct conceptual prior art for C1** (task-aware quantization). Must be cited. Difference: hardware-limited scalar quantization with analog combining for estimation, versus compression of a stored physical field whose quantizer is shaped by a physical operator symbol and recertified under that operator. |
+| X. Wu, Q. Gong, J. Chen, Q. Liu, N. Podhorszki, X. Liang, S. Klasky, "Error-controlled progressive retrieval of scientific data under derivable quantities of interest," SC'24 (arXiv:2411.05333) | Progressive retrieval with guaranteed error control on derivable QoIs, composable from a basis of derivable QoIs; QoI error below 1e-5 in the experiments. | Prior art for C4 (several QoIs controlled at once). The proceedings DOI is still to be taken from the IEEE/ACM page. |
+| J. Liu, P. Jiao, K. Zhao, X. Liang, S. Di, F. Cappello, "QPET: a versatile and portable quantity-of-interest-preservation framework for error-bounded lossy compression," arXiv:2412.02799 (PVLDB 18, 2025) | Preservation for most differentiable univariate and multivariate QoIs through numerical strategies inside error-bounded compressors. | Confirms the audit's C4 placement. |
+| J. Lee, Q. Gong, J. Choi, T. Banerjee, S. Klasky, S. Ranka, A. Rangarajan, "Error-bounded learned scientific data compression with preservation of derived quantities," *Appl. Sci.* 12(13), 2022, DOI 10.3390/app12136718 (Crossref and Semantic Scholar) | Metadata verified. The abstract confirms constraint-satisfaction post-processing followed by quantization to preserve QoIs on XGC data. | C3 credit confirmed. The exact norm minimized still needs the full text: MDPI refuses automated download, so open the PDF manually. |
