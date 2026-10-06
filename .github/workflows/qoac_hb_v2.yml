@@ -1,6 +1,12 @@
 name: QOAC-HB v2 joint Hartree+Bader
 
+# Started by workflow_dispatch, or by a push to research/qoac-hb-v2-20261006 that changes the sentinel
+# analysis/qoac_hb_v2/RUN_MANIFEST, whose content is the repository-relative manifest path to run (so the run can be
+# started without this workflow being on the default branch). A push run uses the default mu and tau_bader.
 on:
+  push:
+    branches: [research/qoac-hb-v2-20261006]
+    paths: [analysis/qoac_hb_v2/RUN_MANIFEST]
   workflow_dispatch:
     inputs:
       manifest:
@@ -12,12 +18,17 @@ on:
         required: false
         default: '1e-4 1e-2 1'
         type: string
+      tau_bader:
+        description: 'Bader tolerances tau_B (e), space-separated'
+        required: false
+        default: '1e-3 1e-4 1e-5'
+        type: string
 
 permissions:
   contents: write
 
 concurrency:
-  group: qoac-hb-v2-20261006-${{ inputs.manifest }}
+  group: qoac-hb-v2-20261006-${{ inputs.manifest || 'run-manifest-sentinel' }}
   cancel-in-progress: false
 
 jobs:
@@ -28,6 +39,7 @@ jobs:
       manifest: ${{ steps.check.outputs.manifest }}
       stem: ${{ steps.check.outputs.stem }}
       mu: ${{ steps.check.outputs.mu }}
+      tau_bader: ${{ steps.check.outputs.tau_bader }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,16 +51,26 @@ jobs:
       - id: check
         shell: bash
         env:
-          MANIFEST: ${{ inputs.manifest }}
-          MU: ${{ inputs.mu }}
+          EVENT: ${{ github.event_name }}
+          MANIFEST_INPUT: ${{ inputs.manifest }}
+          MU: ${{ inputs.mu || '1e-4 1e-2 1' }}
+          TAU_BADER: ${{ inputs.tau_bader || '1e-3 1e-4 1e-5' }}
         run: |
           set -euo pipefail
           if [ "$GITHUB_REF" != refs/heads/research/qoac-hb-v2-20261006 ]; then
             echo "dispatch this workflow from research/qoac-hb-v2-20261006 (got $GITHUB_REF)"; exit 1
           fi
-          python -m pip install -q numpy==2.4.6
+          if [ "$EVENT" = push ]; then
+            sentinel=repo/analysis/qoac_hb_v2/RUN_MANIFEST
+            test -f "$sentinel" || { echo "sentinel $sentinel is missing"; exit 1; }
+            MANIFEST="$(grep -v '^[[:space:]]*\(#\|$\)' "$sentinel" | head -n 1 | tr -d '[:space:]' || true)"
+          else
+            MANIFEST="$MANIFEST_INPUT"
+          fi
+          export MANIFEST
+          python -m pip install -q numpy==2.4.6 pandas==2.3.3
           python -m py_compile repo/analysis/qoac_hb_v2/*.py
-          (cd repo/analysis/qoac_hb_v2 && python -m unittest -q test_projection_v2.py test_codec_qoac_v03.py)
+          (cd repo/analysis/qoac_hb_v2 && python -m unittest -q test_projection_v2.py test_codec_qoac_v03.py test_runner_v2.py)
           (cd repo/analysis/qoac_h_strong_baselines && python -m unittest -q test_truncation_codec.py)
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import csv, math, os, re, sys
@@ -78,11 +100,19 @@ jobs:
               sys.exit(f"bad mu {os.environ['MU']!r}")
           if not mus or not all(math.isfinite(x) and x >= 0 for x in mus) or len({f"{x:g}" for x in mus}) != len(mus):
               sys.exit(f"bad mu {os.environ['MU']!r}")
+          ttok = os.environ["TAU_BADER"].split()
+          try:
+              taus = [float(t) for t in ttok]
+          except ValueError:
+              sys.exit(f"bad tau_bader {os.environ['TAU_BADER']!r}")
+          if not taus or not all(math.isfinite(x) and x > 0 for x in taus) or len({f"{x:g}" for x in taus}) != len(taus):
+              sys.exit(f"bad tau_bader {os.environ['TAU_BADER']!r}")
           load = Counter(rj.shard_for(i, 19) for i in ids)
           print(f"{len(ids)} materials; shard loads: {dict(sorted(load.items()))}", file=sys.stderr)
           print(f"manifest={m}")
           print(f"stem={p.stem}")
           print(f"mu={' '.join(tok)}")
+          print(f"tau_bader={' '.join(ttok)}")
           PY
 
   shard:
@@ -130,16 +160,18 @@ jobs:
         env:
           MANIFEST: ${{ needs.preflight.outputs.manifest }}
           MU: ${{ needs.preflight.outputs.mu }}
+          TAU_BADER: ${{ needs.preflight.outputs.tau_bader }}
         run: |
           set -euo pipefail
           read -r -a MUS <<< "$MU"
+          read -r -a TAUS <<< "$TAU_BADER"
           out="$RUNNER_TEMP/qoac_hb_v2_${{ matrix.shard }}"
           python repo/analysis/qoac_hb_v2/run_joint_v2.py \
             --repo-root repo --frozen-root frozen \
             --manifest "repo/$MANIFEST" \
             --shard-count 19 --shard-index ${{ matrix.shard }} \
             --bader "$RUNNER_TEMP/bader_source/bader" --output-dir "$out" \
-            --mu "${MUS[@]}"
+            --mu "${MUS[@]}" --tau-bader "${TAUS[@]}"
           git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
           python -m pip freeze > "$out/pip_freeze.txt"
       - uses: actions/upload-artifact@v4

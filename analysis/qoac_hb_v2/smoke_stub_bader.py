@@ -45,12 +45,14 @@ def main():
     p.add_argument("--frozen-root", type=Path, required=True)
     p.add_argument("--output-dir", type=Path, required=True)
     p.add_argument("--mu", nargs="+", default=["1e-6", "1e-2", "1"])
+    p.add_argument("--tau-bader", nargs="+", default=["1e-3", "1e-4", "1e-5"])
     a = p.parse_args()
     rj.b1.Solver = StubSolver
     t0 = time.time()
     rj.main(["--repo-root", str(REPO), "--frozen-root", str(a.frozen_root),
              "--manifest", str(REPO / "analysis/operator_aware_bader_fixed_partition/results/ENGINEERING_MANIFEST.csv"),
-             "--material-id", MATERIAL, "--bader", "stub", "--output-dir", str(a.output_dir), "--mu", *a.mu])
+             "--material-id", MATERIAL, "--bader", "stub", "--output-dir", str(a.output_dir), "--mu", *a.mu,
+             "--tau-bader", *a.tau_bader])
     wall = time.time() - t0
 
     def read(name):
@@ -59,7 +61,8 @@ def main():
 
     mats, rows, sel, bad, fails = (read(n) for n in ("materials", "rows", "selected", "bader", "failures"))
     mus = [float(m) for m in a.mu]
-    posts = rj.post_names(mus)
+    taus = [float(t) for t in a.tau_bader]
+    posts = [rj.HARTREE_ONLY] + rj.post_names(mus)
     bases = list(rj.REGISTRY)
     fails = [f for f in fails if f.get("material_id")]
     assert len(mats) == 1 and mats[0]["status"] == "SUCCESS", mats
@@ -67,9 +70,11 @@ def main():
     m = mats[0]
     n_cand = {b: len({r["param"] for r in rows if r["base"] == b}) for b in bases}
     assert n_cand["J"] == len(rj.ALPHA_REL) and n_cand["T1"] == len(rj.ALPHA_REL) * len(rj.Q_CUTS) and n_cand["GP"] > 0, n_cand
+    assert n_cand["GF"] == len(rj.GF_CODECS) * len(rj.GF_TOL_REL) and n_cand["R3"] == len(rj.R3_MARGINS), n_cand
     per_param = 1 + 1 + len(mus) + 2 * (1 + len(mus))  # none, uniform, hap*, ctp-uniform (U,P), ctp-hap* (U,P)
     assert len(rows) == sum(n_cand.values()) * per_param, (len(rows), n_cand, per_param)
-    assert sorted((s["base"], s["post"]) for s in sel) == sorted((b, q) for b in bases for q in posts)
+    assert sorted((s["base"], s["post"], float(s["tau_bader"])) for s in sel) == sorted(
+        (b, q, t) for b in bases for q in posts for t in taus)
     for r in rows:
         if r["stored"] != "U":
             assert float(r["closure_scaled"]) <= rj.CLOSURE, r
@@ -77,7 +82,8 @@ def main():
         assert int(b["attempt"]) <= rj.MAX_ATTEMPTS
     print(f"SMOKE OK material={MATERIAL} npoints={m['npoints']} regions={m['n_regions']} candidates={n_cand} "
           f"rows={len(rows)} selected={len(sel)} certified={sum(s['certified'] == 'True' for s in sel)} "
-          f"bader_attempt_rows={len(bad)} stub_bader_solves={m['bader_solves']}")
+          f"bader_attempt_rows={len(bad)} stub_bader_solves={m['bader_solves']} "
+          f"decodes_for_bader={m['decodes_for_bader']} tau_bader={m['tau_bader']}")
     print(f"runtime: material {float(m['seconds']):.1f} s (wall incl. download {wall:.1f} s); "
           f"HAP precompute {float(m['hap_precompute_seconds']):.2f} s for {len(mus)} mu; "
           f"{m['projections_applied']} projections in {float(m['projection_seconds_total']):.1f} s")

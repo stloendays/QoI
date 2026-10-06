@@ -12,6 +12,10 @@ Candidate selection per (base, post): options passing the Hartree certificate (a
 stored) are ordered by CR and verified with actual Henkelman Bader, up to MAX_ATTEMPTS options. For CTP each
 row offers an unprojected option (U) and a projected option (P); the encoder's Bader check on the unprojected
 stream decides which one is stored, so an option is certified only if it is the one CTP would store.
+Selection and Bader verification are done separately for every Bader tolerance tau_B (--tau-bader); decoded
+candidates, Hartree metrics and Bader solves are computed once and shared across tau_B. The Hartree certificate
+stays at TAU_H for every tau_B. Per base codec, the pseudo post-processor `hartree_only` records the best
+Hartree-certified unprojected row (no Bader requirement, no side channel) as the reference for the joint overhead.
 """
 from __future__ import annotations
 
@@ -42,7 +46,7 @@ v3 = pv._load("codec_qoac_v03", HERE / "codec_qoac_v03.py")
 assert v3.v02 is qoac
 
 TAU_H = 1e-6
-TAU_B = 1e-3
+DEFAULT_TAU_B = (1e-3, 1e-4, 1e-5)
 CLOSURE = 1e-9
 MAX_ATTEMPTS = 5
 ALPHA_REL = np.logspace(-7.0, 1.0, 25)
@@ -51,6 +55,9 @@ DEFAULT_MUS = (1e-6, 1e-4, 1e-2, 1.0)
 R3_TAU = 1e-6
 R3_MARGINS = tuple(0.995 * 0.995 ** k for k in range(6))   # least -> most conservative
 R3_D_FLOOR_REL = 1e-3 * 1e-12 / 32
+GF_CODECS = ("zfp", "sz3", "sperr")
+GF_TOL_REL = np.logspace(-9.0, -1.0, 25)   # abs_tol / ptp(rho)
+HARTREE_ONLY = "hartree_only"
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -145,10 +152,15 @@ def _r3_decode(ctx, spec):
     return np.asarray(v3.decode(blob), dtype=np.float64), len(blob)
 
 
+def _gf_cands(ctx):
+    return [(f"{c.upper()};tol_rel={tr:.6g}", (c, float(tr) * ctx.ptp)) for c in GF_CODECS for tr in GF_TOL_REL]
+
+
 register(BaseCodec("J", _j_cands, _j_decode))     # frozen QOAC-H v0.2 ladder
 register(BaseCodec("T1", _t1_cands, _t1_decode))  # frozen spectral-truncation ladder
 register(BaseCodec("GP", _gp_cands, _gp_decode))  # frozen WP-G ZFP/SZ3/SPERR rows
 register(BaseCodec("R3", _r3_cands, _r3_decode))  # QOAC v0.3 RDO streams, tau = 1e-6, six margins
+register(BaseCodec("GF", _gf_cands, _gp_decode))  # fresh generic ladder: ZFP/SZ3/SPERR, abs_tol/ptp = logspace(-9,-1,25)
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -179,6 +191,8 @@ def parse_args(argv=None):
     p.add_argument("--output-dir", type=Path, required=True)
     p.add_argument("--base", nargs="+", default=None, help="registered base codecs (default: all)")
     p.add_argument("--mu", nargs="+", type=float, default=list(DEFAULT_MUS), help="HAP weights mu")
+    p.add_argument("--tau-bader", nargs="+", type=float, default=list(DEFAULT_TAU_B),
+                   help="Bader tolerances tau_B (e); selection and verification are done for each")
     return p.parse_args(argv)
 
 
@@ -215,7 +229,7 @@ class _LRU(OrderedDict):
 # One material
 # ---------------------------------------------------------------------------------------------------------
 
-def process(meta, a, core, dev, wp_all, bases, mus):
+def process(meta, a, core, dev, wp_all, bases, mus, taus=DEFAULT_TAU_B):
     mid = meta["material_id"]
     out = {"material_id": mid, "system_type": meta["system_type"], "rows": [], "bader": [], "selected": [], "failures": []}
     chg_blob = b1.fetch(meta["url"])
@@ -315,8 +329,11 @@ def process(meta, a, core, dev, wp_all, bases, mus):
         fields = _LRU(4)
         bcache: dict[tuple[str, str, str], tuple[float, float]] = {}
 
+        n_redecode = [0]
+
         def field_of(bname, param, kind):
             def make():
+                n_redecode[0] += 1
                 rec, nb = REGISTRY[bname].decode(ctx, specs[(bname, param)])
                 if nb != metrics[(bname, param)]["payload"]:
                     raise RuntimeError("non-deterministic payload size")
@@ -331,51 +348,74 @@ def process(meta, a, core, dev, wp_all, bases, mus):
                 bcache[key] = (float(np.max(np.abs(q - qref))), float(np.mean(lab != lflat)))
             return bcache[key]
 
-        def ok(r):
-            return r[0] <= TAU_B and r[1] == 0.0
+        def ok(r, tau):
+            return r[0] <= tau and r[1] == 0.0
 
+        failed_bader: set[tuple[str, str, str]] = set()   # report each failing (base, param, post) once
         for bname in bases:
+            # Hartree-only reference: best Hartree-certified unprojected row, no Bader requirement, no side channel
+            ho = max(options.get((bname, "none"), []), key=lambda r: r["compression_ratio"], default=None)
+            for tau in taus:
+                sel = {"material_id": mid, "base": bname, "post": HARTREE_ONLY, "tau_bader": tau,
+                       "n_hartree_pass": len(options.get((bname, "none"), [])), "certified": ho is not None, "attempts": 0}
+                if ho is not None:
+                    sel.update(param=ho["param"], stored="U", ctp_decision="", compression_ratio=ho["compression_ratio"],
+                               total_bytes=ho["total_bytes"], hartree_hist=ho["hartree_hist"],
+                               hartree_safe=ho["hartree_safe"], bader_error_e=float("nan"),
+                               density_Linf=ho["density_Linf"], extra_fraction=ho["extra_fraction"])
+                out["selected"].append(sel)
             for post in posts:
                 opts = sorted(options.get((bname, post), []), key=lambda r: -r["compression_ratio"])
-                sel = {"material_id": mid, "base": bname, "post": post, "n_hartree_pass": len(opts), "certified": False,
-                       "attempts": 0}
-                for k, r in enumerate(opts[:MAX_ATTEMPTS]):
-                    try:
-                        ctp = post.startswith("ctp-")
-                        bu = bader(bname, r["param"], "U")
-                        decision = ("unprojected" if ok(bu) else "projected") if ctp else ""
-                        if r["stored"] == "U":
-                            bs = bu
-                            cert = ok(bu)
-                        elif ctp and decision == "unprojected":
-                            bs = (float("nan"), float("nan"))
-                            cert = False  # CTP would store the unprojected stream for this row
-                        else:
-                            bs = bader(bname, r["param"], r["stored"])
-                            cert = ok(bs)
-                        rowb = {"material_id": mid, "base": bname, "post": post, "param": r["param"], "stored": r["stored"],
-                                "attempt": k + 1, "compression_ratio": r["compression_ratio"], "ctp_decision": decision,
-                                "bader_error_e": bs[0], "reassigned_frac": bs[1],
-                                "unprojected_bader_error_e": bu[0], "unprojected_reassigned_frac": bu[1], "certified": cert}
-                    except Exception as exc:
-                        out["failures"].append({"material_id": mid, "base": bname, "param": r["param"], "post": post,
-                                                "error": f"bader: {type(exc).__name__}: {exc}"[:400]})
-                        continue
-                    out["bader"].append(rowb)
-                    sel["attempts"] = k + 1
-                    if cert:
-                        sel.update(certified=True, param=r["param"], stored=r["stored"], ctp_decision=decision,
-                                   compression_ratio=r["compression_ratio"], total_bytes=r["total_bytes"],
-                                   hartree_hist=r["hartree_hist"], hartree_safe=r["hartree_safe"],
-                                   bader_error_e=bs[0], density_Linf=r["density_Linf"], extra_fraction=r["extra_fraction"])
-                        break
-                out["selected"].append(sel)
+                ctp = post.startswith("ctp-")
+                for tau in taus:   # every tau_B reuses the Bader solves (and hence decodes) of the previous ones
+                    sel = {"material_id": mid, "base": bname, "post": post, "tau_bader": tau, "n_hartree_pass": len(opts),
+                           "certified": False, "attempts": 0}
+                    for k, r in enumerate(opts[:MAX_ATTEMPTS]):
+                        if (bname, r["param"], post) in failed_bader:
+                            continue
+                        try:
+                            bu = bader(bname, r["param"], "U")
+                            decision = ("unprojected" if ok(bu, tau) else "projected") if ctp else ""
+                            if r["stored"] == "U":
+                                bs = bu
+                                cert = ok(bu, tau)
+                            elif ctp and decision == "unprojected":
+                                bs = (float("nan"), float("nan"))
+                                cert = False  # CTP would store the unprojected stream for this row
+                            else:
+                                bs = bader(bname, r["param"], r["stored"])
+                                cert = ok(bs, tau)
+                            rowb = {"material_id": mid, "base": bname, "post": post, "tau_bader": tau, "param": r["param"],
+                                    "stored": r["stored"], "attempt": k + 1, "compression_ratio": r["compression_ratio"],
+                                    "ctp_decision": decision, "bader_error_e": bs[0], "reassigned_frac": bs[1],
+                                    "unprojected_bader_error_e": bu[0], "unprojected_reassigned_frac": bu[1],
+                                    "certified": cert}
+                        except Exception as exc:
+                            failed_bader.add((bname, r["param"], post))
+                            out["failures"].append({"material_id": mid, "base": bname, "param": r["param"], "post": post,
+                                                    "tau_bader": tau, "error": f"bader: {type(exc).__name__}: {exc}"[:400]})
+                            continue
+                        out["bader"].append(rowb)
+                        sel["attempts"] = k + 1
+                        if cert:
+                            sel.update(certified=True, param=r["param"], stored=r["stored"], ctp_decision=decision,
+                                       compression_ratio=r["compression_ratio"], total_bytes=r["total_bytes"],
+                                       hartree_hist=r["hartree_hist"], hartree_safe=r["hartree_safe"],
+                                       bader_error_e=bs[0], density_Linf=r["density_Linf"],
+                                       extra_fraction=r["extra_fraction"])
+                            break
+                    out["selected"].append(sel)
         out["bader_solves"] = len(bcache) + 1
+        out["decodes_for_bader"] = n_redecode[0]
+        out["tau_bader"] = " ".join(f"{t:g}" for t in taus)
     return out
 
 
 def main(argv=None):
     a = parse_args(argv)
+    taus = [float(t) for t in a.tau_bader]
+    if not taus or not all(np.isfinite(t) and t > 0 for t in taus) or len({f"{t:g}" for t in taus}) != len(taus):
+        raise SystemExit(f"bad --tau-bader {a.tau_bader}")
     out = a.output_dir.resolve(); out.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(a.frozen_root.resolve() / "validation"))
     sys.path.insert(0, str(a.repo_root.resolve() / "validation" / "qsq_prospective"))
@@ -397,7 +437,7 @@ def main(argv=None):
     for meta in planned:
         t0 = time.time()
         try:
-            r = process(meta, a, core, dev, wp_all, bases, mus)
+            r = process(meta, a, core, dev, wp_all, bases, mus, taus)
             rows += r.pop("rows"); bader += r.pop("bader"); selected += r.pop("selected"); fails += r.pop("failures")
             mats.append(r | {"status": "SUCCESS", "seconds": time.time() - t0})
         except Exception as exc:
