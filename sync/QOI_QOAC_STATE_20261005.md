@@ -220,3 +220,53 @@ Current evidence supports two design patterns, not yet a universal General-QOAC 
    - test whether the predicted beta=1 is weakened by the actual coefficient distribution.
 4. Do not execute an electric-field confirmatory cohort yet.
 5. A future topology-aware AECCAR codec remains QOAC-B3, not part of the current validated B2 claim.
+
+## 8. Addendum (2026-10-05, later the same day)
+
+### 8a. Electric-field finite-rate beta map — NO-GO (already executed before this snapshot; previously unrecorded here)
+
+Branch `research/general-qoac-electric-field-beta-map-20261005`, commit `81e4760`.
+- 12 materials, beta in {0, 0.25, ..., 2}, 2,700 settings, 0 failures.
+- beta_star = 1.25; M1 GO, M3 GO (beta1/beta_star = 1.009), M2 NO-GO (vs beta0 0.770, vs beta2 0.963).
+- confirmatory_authorized = false.
+
+### 8b. Electric-field finite-rate diagnosis — diagnosis only
+
+Branch `research/general-qoac-electric-field-diagnosis-20261005`, commit `e819813`.
+- High-rate theory evaluated on each orbit set predicts beta1/beta0 = 0.783 and beta1/beta2 = 0.913
+  (median), close to the observed 0.806 / 0.928. Frozen gates 0.70 / 0.90 lie beyond the theory in 11/12 and
+  9/12 materials. Hartree calibration: theory 0.050 vs observed 0.077.
+- ~90% of orbits sit in the quantizer dead zone; actual error is 0.19–0.75x the high-rate prediction.
+- Ideal entropy coding removes the beta1-over-beta2 edge (ratio 1.02–1.03); packing does not mask beta = 1.
+- Marginal slopes imply a finite-rate exponent of about 1.56.
+- Reading: the operator direction holds, but the electric field is too weak an operator to separate exponents.
+  The frozen NO-GO stands; no electric-field confirmatory cohort.
+
+### 8c. QOAC-H strongest-baseline study — in progress
+
+Branch `research/qoac-h-strong-baselines-20261005`. The protocol was frozen (`1c5c819`, amendment 1 for the
+MGARD install route) before any baseline result. Arms on the 48 frozen confirmatory materials: T1 spectral
+truncation, M MGARD with s in {inf, 0, -1}, and V (stored Hartree potential, a contract-changing reference).
+Motivation: the certified QOAC-H rows have median density Linf 1.89, so a low-pass baseline is the relevant
+competitor. Not part of the frozen manuscript.
+
+### 8d. QOAC-H strongest-baseline study — COMPLETE (pre-declared band: advantage retained)
+
+Branch `research/qoac-h-strong-baselines-20261005`, commit `0c8b550`. 48 materials, 0 failures in every arm.
+- Best new baseline = spectral truncation T1 (48/48): QOAC-H wins 45/48, median 1.564x, CI [1.376, 1.622],
+  minimum 0.843x. Median certified CR: QOAC-H 383, T1 233, ZFP/SZ3/SPERR 22.1, MGARD 16.0.
+- MGARD (s = inf/0/-1; upstream commit ac53ff9): QOAC-H 48/48, 19.4x. Stored V_H with ZFP/SZ3/SPERR: 48/48, 19.4x.
+- QOAC-H also has lower density error than T1 (median Linf 1.89 vs 2.82).
+- Reading: most of the 15x gain over pointwise codecs comes from working in the Hartree eigenbasis; the
+  operator-derived |G|^2 allocation adds about 1.56x over the best truncation. Manuscript integration
+  requires the scope-reopening steps.
+
+### 8e. QOAC-HB joint Hartree + Bader certification (2026-10-06)
+
+Branch `research/qoac-hb-joint-20261006`. Protocol `ad9d256`; one QOAC-H / T1 / generic stream + B2 projection,
+certified jointly (Hartree < 1e-6 hist & safe; actual Henkelman Bader <= 1e-3 e, zero reassignment; exact AECCAR).
+- Engineering 12: E1 GO (J 12/12), E2 GO (9/12, median 1.600x) -> confirmatory authorized.
+- Confirmatory 38: **formal FAIL**. 38/38 certified, 30/38 wins, CI lower bound 1.131 pass; median 1.224 < 1.25 fail.
+- Before projection, the QOAC-H stream already meets Bader in 50/50 (max 5.3e-5 e). The projection's Hartree cost
+  drops J one ladder rung in 45% of confirmatory materials. Next: certify-then-project or Hartree-aware
+  projection, under a new frozen protocol.

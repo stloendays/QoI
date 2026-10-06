@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETE",
+  "materials": 12,
+  "combined_settings": 2700,
+  "new_settings": 1800,
+  "failures": 0,
+  "beta_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0
+  ],
+  "common_rate_targets_per_material": 11,
+  "beta_star": 1.25,
+  "global_scores_log10_error_relative_to_beta1": {
+    "0": 0.11257540164613689,
+    "0.25": 0.055082508623848225,
+    "0.5": 0.027799791878012847,
+    "0.75": 0.008716259678838822,
+    "1": 0.0,
+    "1.25": -0.003952426023562383,
+    "1.5": -0.0018754438022223763,
+    "1.75": 0.003602981419686735,
+    "2": 0.008924181845824108
+  },
+  "gate_M1_near_operator_prediction": {
+    "go": true,
+    "beta_star": 1.25
+  },
+  "gate_M2_beats_wrong_geometries": {
+    "go": false,
+    "wins_vs_beta0": 12,
+    "wins_vs_beta2": 11,
+    "median_error_ratio_star_over_beta0": 0.7704102202003612,
+    "median_error_ratio_star_over_beta2": 0.9632631540912289
+  },
+  "gate_M3_beta1_near_star": {
+    "go": true,
+    "median_error_ratio_beta1_over_star": 1.0091428510222742
+  },
+  "confirmatory_authorized": false
+}
