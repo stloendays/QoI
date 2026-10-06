@@ -1,0 +1,13 @@
+material_id,status,npoints,natoms,R1_violations,R2_violations,regular,nbasins_binary,nbasins_fast,nbasins_literal,fast_volnum_agreement,fast_volnum_mismatch_voxels,fast_atom_agreement,fast_atom_mismatch_voxels,fast_maxima_match,bcf_maxima_matched,bcf_maxima_total,literal_run,literal_note,literal_volnum_agreement,literal_volnum_mismatch_voxels,literal_vs_fast_mismatch_voxels
+mp-16720,OK,592704,6,0,0,True,20,20,,1.0,0,1.0,0,True,20,20,False,skipped: npoints 592704 > 400000 (pure-Python transcription too slow),,,
+mp-1945523,OK,376320,4,0,0,True,4,4,4,1.0,0,1.0,0,True,4,4,True,ran in 9.2s,1.0,0,0
+mp-1949342,OK,1185408,6,0,0,True,6,6,,1.0,0,1.0,0,True,6,6,False,skipped: npoints 1185408 > 400000 (pure-Python transcription too slow),,,
+mp-1956443,OK,373248,4,0,0,True,4,4,4,1.0,0,1.0,0,True,4,4,True,ran in 9.7s,1.0,0,0
+mp-2027506,OK,2097152,10,0,0,True,10,10,,1.0,0,1.0,0,True,10,10,False,skipped: npoints 2097152 > 400000 (pure-Python transcription too slow),,,
+mp-2033940,OK,1411200,14,0,0,True,14,14,,1.0,0,1.0,0,True,14,14,False,skipped: npoints 1411200 > 400000 (pure-Python transcription too slow),,,
+mp-2034100,OK,1036800,12,0,0,True,12,12,,1.0,0,1.0,0,True,12,12,False,skipped: npoints 1036800 > 400000 (pure-Python transcription too slow),,,
+mp-2047758,OK,2764800,16,0,0,True,16,16,,1.0,0,1.0,0,True,16,16,False,skipped: npoints 2764800 > 400000 (pure-Python transcription too slow),,,
+mp-2229470,OK,768000,17,0,0,True,17,17,,1.0,0,1.0,0,True,17,17,False,skipped: npoints 768000 > 400000 (pure-Python transcription too slow),,,
+mp-2302539,FAILED,497664,,,,,,,,,,,,,,,,,,,
+mp-2327119,OK,193536,4,0,0,True,4448,4448,4448,1.0,0,0.9995763062169312,82,True,2034,2034,True,ran in 8.9s,1.0,0,0
+mp-2450170,OK,884736,5,0,0,True,4140,4140,,1.0,0,0.9785506637008102,18977,True,1202,1202,False,skipped: npoints 884736 > 400000 (pure-Python transcription too slow),,,
