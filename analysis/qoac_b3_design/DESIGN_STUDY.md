@@ -374,3 +374,12 @@ Robust mode is mandatory in all A arms: margin γ = 64·ulp(max|f|)·(1 + w_max)
 The 38 non-naive materials are reported with the same metrics as a secondary result.
 
 **Reported for every row:** AECCAR Linf and pointwise relative error; reassignment before correction; K; edits by level; A2 iterations; side bytes; label bytes; N_∂; R1/R2 status; encode and decode wall time; the number of emulated decisions within 10γ of a tie.
+
+**Engineering runner (prepared 2026-10-06, not executed).** `run_real_engineering.py` and `.github/workflows/qoac_b3_real_engineering.yml` implement Gate 0 and the A2/A1/L arms on the fresh P2 engineering manifest (`analysis/fresh_population_20261006/P2_ENGINEERING_MANIFEST.csv`, 12 materials). It differs from the protocol above as follows:
+- Gate 0 compares the binary's BvIndex/AtIndex, basin count and maxima with the fast emulator, and with `ongrid_literal` only when npoints ≤ 400 000. Gate 0(c), the second `-O0` build, is not run.
+- The A arms use the prototype log-domain base quantizer with δ ∈ {1e-3, 1e-2, 5e-2} and robust margin γ. They do not apply B2's CHGCAR projection, and they do not include the G1 codec ladder.
+- The binary is rerun on (exact CHGCAR, decoded REFCAR), and reassignment and Bader error are measured against the binary's own reference run.
+- Arm L round-trips the label maps through xz and checks the per-atom sums of the exact CHGCAR against `ACF.dat`.
+- Only the Gate 0 agreement statistics are aggregated. Gates A to D are not evaluated.
+- Execution is triggered by `workflow_dispatch` or by pushing `analysis/qoac_b3_design/RUN_REAL`.
+- Results go to `results/real_engineering/`.
