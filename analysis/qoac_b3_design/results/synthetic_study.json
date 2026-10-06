@@ -1,0 +1,7124 @@
+[
+ {
+  "lattice": "cubic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 15268,
+  "atom_reassigned_before": 0.027083333333333334,
+  "volnum_mismatch_before": 0.03290441176470588,
+  "label_ctx_bytes": 1256,
+  "label_lzma_bytes": 1916,
+  "label_boundary_voxels": 3990,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 2349,
+   "edits_by_level": {
+    "1": 1990,
+    "2": 300,
+    "3": 44,
+    "4": 15
+   },
+   "side_bytes": 3383,
+   "linf_over_bound": 0.9999525575592567
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 9154,
+   "edits_by_level": {
+    "1": 7383,
+    "2": 1612,
+    "3": 145,
+    "4": 14
+   },
+   "side_bytes": 10949,
+   "linf_over_bound": 0.9999525575592567
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11047,
+   "edits_by_level": {
+    "1": 8595,
+    "2": 2257,
+    "3": 183,
+    "4": 12
+   },
+   "side_bytes": 12799,
+   "linf_over_bound": 0.999893622207763
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8984,
+  "atom_reassigned_before": 0.19604779411764706,
+  "volnum_mismatch_before": 0.7825674019607843,
+  "label_ctx_bytes": 1256,
+  "label_lzma_bytes": 1916,
+  "label_boundary_voxels": 3990,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 11345,
+   "edits_by_level": {
+    "1": 9434,
+    "2": 1505,
+    "3": 306,
+    "4": 100
+   },
+   "side_bytes": 13388,
+   "linf_over_bound": 0.9999917340458145
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 22719,
+   "edits_by_level": {
+    "1": 14194,
+    "2": 6920,
+    "3": 1415,
+    "4": 190
+   },
+   "side_bytes": 28591,
+   "linf_over_bound": 0.9997832868966333
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 22595,
+   "edits_by_level": {
+    "1": 13645,
+    "2": 7220,
+    "3": 1611,
+    "4": 119
+   },
+   "side_bytes": 28031,
+   "linf_over_bound": 0.9999917340458145
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 4216,
+  "atom_reassigned_before": 0.6318014705882353,
+  "volnum_mismatch_before": 0.9470588235294117,
+  "label_ctx_bytes": 1256,
+  "label_lzma_bytes": 1916,
+  "label_boundary_voxels": 3990,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 25460,
+   "edits_by_level": {
+    "1": 16280,
+    "2": 7128,
+    "3": 1496,
+    "4": 556
+   },
+   "side_bytes": 33553,
+   "linf_over_bound": 0.999970525728304
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 9,
+   "edits": 31297,
+   "edits_by_level": {
+    "1": 10431,
+    "2": 13354,
+    "3": 5500,
+    "4": 2012
+   },
+   "side_bytes": 58201,
+   "linf_over_bound": 0.9957739934626583
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30999,
+   "edits_by_level": {
+    "1": 10798,
+    "2": 13058,
+    "3": 5929,
+    "4": 1214
+   },
+   "side_bytes": 52157,
+   "linf_over_bound": 0.9999352660848652
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 18740,
+  "atom_reassigned_before": 0.0007352941176470588,
+  "volnum_mismatch_before": 0.0007352941176470588,
+  "label_ctx_bytes": 1256,
+  "label_lzma_bytes": 1916,
+  "label_boundary_voxels": 3990,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 39,
+   "edits_by_level": {
+    "1": 39
+   },
+   "side_bytes": 121,
+   "linf_over_bound": 0.9999388553913412
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 423,
+   "edits_by_level": {
+    "1": 412,
+    "2": 11
+   },
+   "side_bytes": 870,
+   "linf_over_bound": 0.9999388553913412
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 548,
+   "edits_by_level": {
+    "1": 512,
+    "2": 29,
+    "3": 4,
+    "4": 3
+   },
+   "side_bytes": 1087,
+   "linf_over_bound": 0.9999388553913412
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10516,
+  "atom_reassigned_before": 0.008455882352941176,
+  "volnum_mismatch_before": 0.008455882352941176,
+  "label_ctx_bytes": 1256,
+  "label_lzma_bytes": 1916,
+  "label_boundary_voxels": 3990,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 3,
+   "edits": 495,
+   "edits_by_level": {
+    "1": 479,
+    "2": 10,
+    "3": 6
+   },
+   "side_bytes": 974,
+   "linf_over_bound": 0.9999323875404805
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 3970,
+   "edits_by_level": {
+    "1": 3743,
+    "2": 210,
+    "3": 15,
+    "4": 2
+   },
+   "side_bytes": 5444,
+   "linf_over_bound": 0.9999323875404805
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 4893,
+   "edits_by_level": {
+    "1": 4558,
+    "2": 309,
+    "3": 23,
+    "4": 3
+   },
+   "side_bytes": 6212,
+   "linf_over_bound": 0.9999323875404805
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8016,
+  "atom_reassigned_before": 0.038388480392156865,
+  "volnum_mismatch_before": 0.13590686274509803,
+  "label_ctx_bytes": 1256,
+  "label_lzma_bytes": 1916,
+  "label_boundary_voxels": 3990,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 2036,
+   "edits_by_level": {
+    "1": 1835,
+    "2": 182,
+    "3": 15,
+    "4": 4
+   },
+   "side_bytes": 3175,
+   "linf_over_bound": 0.9998295102574899
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 15838,
+   "edits_by_level": {
+    "1": 13625,
+    "2": 2063,
+    "3": 140,
+    "4": 10
+   },
+   "side_bytes": 17474,
+   "linf_over_bound": 0.9998295102574899
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 13908,
+   "edits_by_level": {
+    "1": 12134,
+    "2": 1691,
+    "3": 67,
+    "4": 16
+   },
+   "side_bytes": 15028,
+   "linf_over_bound": 0.9998295102574899
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13064,
+  "atom_reassigned_before": 0.04494485294117647,
+  "volnum_mismatch_before": 0.7069852941176471,
+  "label_ctx_bytes": 796,
+  "label_lzma_bytes": 1400,
+  "label_boundary_voxels": 2818,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 3302,
+   "edits_by_level": {
+    "1": 2928,
+    "2": 306,
+    "3": 59,
+    "4": 9
+   },
+   "side_bytes": 4223,
+   "linf_over_bound": 0.9999962925342761
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 12276,
+   "edits_by_level": {
+    "1": 9390,
+    "2": 2592,
+    "3": 258,
+    "4": 36
+   },
+   "side_bytes": 14531,
+   "linf_over_bound": 0.999884194116465
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12703,
+   "edits_by_level": {
+    "1": 9713,
+    "2": 2770,
+    "3": 199,
+    "4": 21
+   },
+   "side_bytes": 14306,
+   "linf_over_bound": 0.9999962925342761
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7468,
+  "atom_reassigned_before": 0.3306372549019608,
+  "volnum_mismatch_before": 0.9192708333333334,
+  "label_ctx_bytes": 796,
+  "label_lzma_bytes": 1400,
+  "label_boundary_voxels": 2818,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 15433,
+   "edits_by_level": {
+    "1": 13169,
+    "2": 1849,
+    "3": 350,
+    "4": 65
+   },
+   "side_bytes": 16752,
+   "linf_over_bound": 0.9999077298966947
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 25092,
+   "edits_by_level": {
+    "1": 14018,
+    "2": 8446,
+    "3": 2160,
+    "4": 468
+   },
+   "side_bytes": 34345,
+   "linf_over_bound": 0.9999077298966947
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 24346,
+   "edits_by_level": {
+    "1": 13978,
+    "2": 8258,
+    "3": 1974,
+    "4": 136
+   },
+   "side_bytes": 30589,
+   "linf_over_bound": 0.9999077298966947
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3396,
+  "atom_reassigned_before": 0.7317095588235294,
+  "volnum_mismatch_before": 0.9769914215686275,
+  "label_ctx_bytes": 796,
+  "label_lzma_bytes": 1400,
+  "label_boundary_voxels": 2818,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 26992,
+   "edits_by_level": {
+    "1": 14387,
+    "2": 10591,
+    "3": 1462,
+    "4": 552
+   },
+   "side_bytes": 36839,
+   "linf_over_bound": 0.9993787921412013
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31454,
+   "edits_by_level": {
+    "1": 7981,
+    "2": 14023,
+    "3": 6316,
+    "4": 3134
+   },
+   "side_bytes": 68293,
+   "linf_over_bound": 0.9987803539197123
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31190,
+   "edits_by_level": {
+    "1": 9045,
+    "2": 13708,
+    "3": 7025,
+    "4": 1412
+   },
+   "side_bytes": 55573,
+   "linf_over_bound": 0.9993787921412013
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 15924,
+  "atom_reassigned_before": 0.00015318627450980392,
+  "volnum_mismatch_before": 0.00015318627450980392,
+  "label_ctx_bytes": 796,
+  "label_lzma_bytes": 1400,
+  "label_boundary_voxels": 2818,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 15,
+   "edits_by_level": {
+    "1": 15
+   },
+   "side_bytes": 67,
+   "linf_over_bound": 0.9999943734795663
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 339,
+   "edits_by_level": {
+    "1": 323,
+    "2": 16
+   },
+   "side_bytes": 716,
+   "linf_over_bound": 0.9999943734795663
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 325,
+   "edits_by_level": {
+    "1": 305,
+    "2": 20
+   },
+   "side_bytes": 665,
+   "linf_over_bound": 0.9999943734795663
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9272,
+  "atom_reassigned_before": 0.011611519607843138,
+  "volnum_mismatch_before": 0.011611519607843138,
+  "label_ctx_bytes": 796,
+  "label_lzma_bytes": 1400,
+  "label_boundary_voxels": 2818,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 314,
+   "edits_by_level": {
+    "1": 304,
+    "2": 10
+   },
+   "side_bytes": 654,
+   "linf_over_bound": 0.9999740247988512
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 3701,
+   "edits_by_level": {
+    "1": 3464,
+    "2": 234,
+    "3": 3
+   },
+   "side_bytes": 5027,
+   "linf_over_bound": 0.9999740247988512
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3168,
+   "edits_by_level": {
+    "1": 2994,
+    "2": 164,
+    "3": 10
+   },
+   "side_bytes": 3975,
+   "linf_over_bound": 0.9999740247988512
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7588,
+  "atom_reassigned_before": 0.03943014705882353,
+  "volnum_mismatch_before": 0.03943014705882353,
+  "label_ctx_bytes": 796,
+  "label_lzma_bytes": 1400,
+  "label_boundary_voxels": 2818,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1448,
+   "edits_by_level": {
+    "1": 1308,
+    "2": 137,
+    "3": 3
+   },
+   "side_bytes": 2220,
+   "linf_over_bound": 0.9999406991791414
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 15448,
+   "edits_by_level": {
+    "1": 13353,
+    "2": 1996,
+    "3": 95,
+    "4": 4
+   },
+   "side_bytes": 16837,
+   "linf_over_bound": 0.9998254118019149
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11264,
+   "edits_by_level": {
+    "1": 10145,
+    "2": 1053,
+    "3": 66
+   },
+   "side_bytes": 11910,
+   "linf_over_bound": 0.9999406991791414
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 15828,
+  "atom_reassigned_before": 0.011213235294117647,
+  "volnum_mismatch_before": 0.011213235294117647,
+  "label_ctx_bytes": 1153,
+  "label_lzma_bytes": 1904,
+  "label_boundary_voxels": 3543,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 991,
+   "edits_by_level": {
+    "1": 908,
+    "2": 76,
+    "3": 5,
+    "4": 2
+   },
+   "side_bytes": 1711,
+   "linf_over_bound": 0.9999877182435079
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 6031,
+   "edits_by_level": {
+    "1": 5264,
+    "2": 710,
+    "3": 54,
+    "4": 3
+   },
+   "side_bytes": 7509,
+   "linf_over_bound": 0.9999877182435079
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 8668,
+   "edits_by_level": {
+    "1": 7693,
+    "2": 909,
+    "3": 57,
+    "4": 9
+   },
+   "side_bytes": 9743,
+   "linf_over_bound": 0.9999458605518551
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 9504,
+  "atom_reassigned_before": 0.11439950980392156,
+  "volnum_mismatch_before": 0.6064644607843137,
+  "label_ctx_bytes": 1153,
+  "label_lzma_bytes": 1904,
+  "label_boundary_voxels": 3543,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 7738,
+   "edits_by_level": {
+    "1": 6867,
+    "2": 710,
+    "3": 125,
+    "4": 36
+   },
+   "side_bytes": 9146,
+   "linf_over_bound": 0.999939691478102
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 20784,
+   "edits_by_level": {
+    "1": 14852,
+    "2": 5167,
+    "3": 699,
+    "4": 66
+   },
+   "side_bytes": 24173,
+   "linf_over_bound": 0.9998881190428225
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 20595,
+   "edits_by_level": {
+    "1": 13952,
+    "2": 5990,
+    "3": 602,
+    "4": 51
+   },
+   "side_bytes": 23811,
+   "linf_over_bound": 0.9998881190428225
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 4828,
+  "atom_reassigned_before": 0.5798100490196079,
+  "volnum_mismatch_before": 0.9822916666666667,
+  "label_ctx_bytes": 1153,
+  "label_lzma_bytes": 1904,
+  "label_boundary_voxels": 3543,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 24123,
+   "edits_by_level": {
+    "1": 18803,
+    "2": 4296,
+    "3": 812,
+    "4": 212
+   },
+   "side_bytes": 27216,
+   "linf_over_bound": 0.9998822272335604
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 30801,
+   "edits_by_level": {
+    "1": 12287,
+    "2": 13359,
+    "3": 4142,
+    "4": 1013
+   },
+   "side_bytes": 48502,
+   "linf_over_bound": 0.999460071306299
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30348,
+   "edits_by_level": {
+    "1": 12441,
+    "2": 13071,
+    "3": 4432,
+    "4": 404
+   },
+   "side_bytes": 43581,
+   "linf_over_bound": 0.9997755790446816
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 18464,
+  "atom_reassigned_before": 0.0004901960784313725,
+  "volnum_mismatch_before": 0.0004901960784313725,
+  "label_ctx_bytes": 1153,
+  "label_lzma_bytes": 1904,
+  "label_boundary_voxels": 3543,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 39,
+   "edits_by_level": {
+    "1": 36,
+    "2": 3
+   },
+   "side_bytes": 127,
+   "linf_over_bound": 0.9999943404769426
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 426,
+   "edits_by_level": {
+    "1": 408,
+    "2": 18
+   },
+   "side_bytes": 873,
+   "linf_over_bound": 0.9999943404769426
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 481,
+   "edits_by_level": {
+    "1": 440,
+    "2": 38,
+    "3": 3
+   },
+   "side_bytes": 952,
+   "linf_over_bound": 0.9999943404769426
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10172,
+  "atom_reassigned_before": 0.006709558823529411,
+  "volnum_mismatch_before": 0.4510416666666667,
+  "label_ctx_bytes": 1153,
+  "label_lzma_bytes": 1904,
+  "label_boundary_voxels": 3543,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 3,
+   "edits": 410,
+   "edits_by_level": {
+    "1": 383,
+    "2": 25,
+    "3": 2
+   },
+   "side_bytes": 844,
+   "linf_over_bound": 0.9998957752102089
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 3943,
+   "edits_by_level": {
+    "1": 3689,
+    "2": 240,
+    "3": 14
+   },
+   "side_bytes": 5390,
+   "linf_over_bound": 0.9998957752102089
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 4277,
+   "edits_by_level": {
+    "1": 3965,
+    "2": 289,
+    "3": 21,
+    "4": 2
+   },
+   "side_bytes": 5559,
+   "linf_over_bound": 0.9998468363163919
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8012,
+  "atom_reassigned_before": 0.028768382352941175,
+  "volnum_mismatch_before": 0.6296262254901961,
+  "label_ctx_bytes": 1153,
+  "label_lzma_bytes": 1904,
+  "label_boundary_voxels": 3543,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1712,
+   "edits_by_level": {
+    "1": 1534,
+    "2": 165,
+    "3": 13
+   },
+   "side_bytes": 2749,
+   "linf_over_bound": 0.9998921670169075
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 16207,
+   "edits_by_level": {
+    "1": 13913,
+    "2": 2143,
+    "3": 147,
+    "4": 4
+   },
+   "side_bytes": 17732,
+   "linf_over_bound": 0.9998691207392366
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 13631,
+   "edits_by_level": {
+    "1": 12032,
+    "2": 1476,
+    "3": 114,
+    "4": 9
+   },
+   "side_bytes": 14522,
+   "linf_over_bound": 0.9998921670169075
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.002573529411764706,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13400,
+  "atom_reassigned_before": 0.09120710784313725,
+  "volnum_mismatch_before": 0.6282781862745098,
+  "label_ctx_bytes": 1099,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3214,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 5150,
+   "edits_by_level": {
+    "1": 4401,
+    "2": 602,
+    "3": 109,
+    "4": 38
+   },
+   "side_bytes": 6454,
+   "linf_over_bound": 0.9999775203602502
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 13981,
+   "edits_by_level": {
+    "1": 10437,
+    "2": 3171,
+    "3": 348,
+    "4": 25
+   },
+   "side_bytes": 16282,
+   "linf_over_bound": 0.9999775203602502
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 14699,
+   "edits_by_level": {
+    "1": 10572,
+    "2": 3664,
+    "3": 429,
+    "4": 34
+   },
+   "side_bytes": 17009,
+   "linf_over_bound": 0.9999775203602502
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.002573529411764706,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7568,
+  "atom_reassigned_before": 0.40098039215686276,
+  "volnum_mismatch_before": 0.9962316176470588,
+  "label_ctx_bytes": 1099,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3214,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 16403,
+   "edits_by_level": {
+    "1": 12570,
+    "2": 3152,
+    "3": 577,
+    "4": 104
+   },
+   "side_bytes": 19006,
+   "linf_over_bound": 0.9999813213740963
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 25128,
+   "edits_by_level": {
+    "1": 12515,
+    "2": 9105,
+    "3": 2769,
+    "4": 739
+   },
+   "side_bytes": 37584,
+   "linf_over_bound": 0.9995456916013165
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 24889,
+   "edits_by_level": {
+    "1": 12425,
+    "2": 9487,
+    "3": 2677,
+    "4": 300
+   },
+   "side_bytes": 33946,
+   "linf_over_bound": 0.9999813213740963
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.002573529411764706,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3416,
+  "atom_reassigned_before": 0.7412990196078432,
+  "volnum_mismatch_before": 0.9999080882352941,
+  "label_ctx_bytes": 1099,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3214,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 26669,
+   "edits_by_level": {
+    "1": 12617,
+    "2": 11175,
+    "3": 2141,
+    "4": 736
+   },
+   "side_bytes": 39206,
+   "linf_over_bound": 0.9999300669657285
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31159,
+   "edits_by_level": {
+    "1": 7469,
+    "2": 12730,
+    "3": 7040,
+    "4": 3920
+   },
+   "side_bytes": 74164,
+   "linf_over_bound": 0.9991468747057008
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31226,
+   "edits_by_level": {
+    "1": 8243,
+    "2": 12536,
+    "3": 8285,
+    "4": 2162
+   },
+   "side_bytes": 62176,
+   "linf_over_bound": 0.9991468747057008
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.002573529411764706,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 16320,
+  "atom_reassigned_before": 0.0007965686274509804,
+  "volnum_mismatch_before": 0.0007965686274509804,
+  "label_ctx_bytes": 1099,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3214,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 34,
+   "edits_by_level": {
+    "1": 34
+   },
+   "side_bytes": 116,
+   "linf_over_bound": 0.9999587576762811
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 359,
+   "edits_by_level": {
+    "1": 349,
+    "2": 7,
+    "3": 3
+   },
+   "side_bytes": 756,
+   "linf_over_bound": 0.9999587576762811
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 455,
+   "edits_by_level": {
+    "1": 437,
+    "2": 14,
+    "3": 4
+   },
+   "side_bytes": 891,
+   "linf_over_bound": 0.9999587576762811
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.002573529411764706,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9556,
+  "atom_reassigned_before": 0.012867647058823529,
+  "volnum_mismatch_before": 0.25738357843137255,
+  "label_ctx_bytes": 1099,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3214,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 413,
+   "edits_by_level": {
+    "1": 382,
+    "2": 31
+   },
+   "side_bytes": 832,
+   "linf_over_bound": 0.9998756302359414
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 3329,
+   "edits_by_level": {
+    "1": 3099,
+    "2": 217,
+    "3": 12,
+    "4": 1
+   },
+   "side_bytes": 4649,
+   "linf_over_bound": 0.9998756302359414
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3859,
+   "edits_by_level": {
+    "1": 3556,
+    "2": 288,
+    "3": 15
+   },
+   "side_bytes": 4920,
+   "linf_over_bound": 0.9998756302359414
+  }
+ },
+ {
+  "lattice": "cubic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.002573529411764706,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7696,
+  "atom_reassigned_before": 0.048560049019607844,
+  "volnum_mismatch_before": 0.613265931372549,
+  "label_ctx_bytes": 1099,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3214,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 1881,
+   "edits_by_level": {
+    "1": 1714,
+    "2": 151,
+    "3": 16
+   },
+   "side_bytes": 2838,
+   "linf_over_bound": 0.9999244592609362
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 14624,
+   "edits_by_level": {
+    "1": 12647,
+    "2": 1840,
+    "3": 134,
+    "4": 3
+   },
+   "side_bytes": 16118,
+   "linf_over_bound": 0.999899498733079
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12308,
+   "edits_by_level": {
+    "1": 10954,
+    "2": 1245,
+    "3": 103,
+    "4": 6
+   },
+   "side_bytes": 13100,
+   "linf_over_bound": 0.9995731648517855
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.23700980392156862,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 9064,
+  "atom_reassigned_before": 0.21369485294117646,
+  "volnum_mismatch_before": 0.9973039215686275,
+  "label_ctx_bytes": 834,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3700,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 8574,
+   "edits_by_level": {
+    "1": 7951,
+    "2": 518,
+    "3": 95,
+    "4": 10
+   },
+   "side_bytes": 9586,
+   "linf_over_bound": 0.9999884186508846
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 16600,
+   "edits_by_level": {
+    "1": 11562,
+    "2": 4357,
+    "3": 607,
+    "4": 74
+   },
+   "side_bytes": 19863,
+   "linf_over_bound": 0.9997711902160524
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 23489,
+   "edits_by_level": {
+    "1": 15130,
+    "2": 7760,
+    "3": 562,
+    "4": 37
+   },
+   "side_bytes": 27069,
+   "linf_over_bound": 0.9997711902160524
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.23700980392156862,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 4308,
+  "atom_reassigned_before": 0.4953125,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 834,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3700,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 17104,
+   "edits_by_level": {
+    "1": 10471,
+    "2": 5782,
+    "3": 701,
+    "4": 150
+   },
+   "side_bytes": 21749,
+   "linf_over_bound": 0.9999913035244384
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 22258,
+   "edits_by_level": {
+    "1": 6812,
+    "2": 11323,
+    "3": 3460,
+    "4": 663
+   },
+   "side_bytes": 36816,
+   "linf_over_bound": 0.9999913035244384
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 29382,
+   "edits_by_level": {
+    "1": 7477,
+    "2": 16398,
+    "3": 5143,
+    "4": 364
+   },
+   "side_bytes": 45490,
+   "linf_over_bound": 0.9999913035244384
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.23700980392156862,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 1728,
+  "atom_reassigned_before": 0.6732536764705882,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 834,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3700,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 22605,
+   "edits_by_level": {
+    "1": 6851,
+    "2": 10849,
+    "3": 3627,
+    "4": 1278
+   },
+   "side_bytes": 41646,
+   "linf_over_bound": 0.9997303474770625
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 24977,
+   "edits_by_level": {
+    "1": 3442,
+    "2": 7720,
+    "3": 8422,
+    "4": 5393
+   },
+   "side_bytes": 78944,
+   "linf_over_bound": 0.9941554109499694
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 32129,
+   "edits_by_level": {
+    "1": 3697,
+    "2": 8146,
+    "3": 16644,
+    "4": 3642
+   },
+   "side_bytes": 81863,
+   "linf_over_bound": 0.9984505941006958
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.23700980392156862,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 20484,
+  "atom_reassigned_before": 0.0007659313725490196,
+  "volnum_mismatch_before": 0.0007659313725490196,
+  "label_ctx_bytes": 834,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3700,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 19,
+   "edits_by_level": {
+    "1": 19
+   },
+   "side_bytes": 77,
+   "linf_over_bound": 0.9999653645397719
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 182,
+   "edits_by_level": {
+    "1": 173,
+    "2": 9
+   },
+   "side_bytes": 427,
+   "linf_over_bound": 0.9999653645397719
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 199,
+   "edits_by_level": {
+    "1": 191,
+    "2": 8
+   },
+   "side_bytes": 446,
+   "linf_over_bound": 0.9999653645397719
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.23700980392156862,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 11232,
+  "atom_reassigned_before": 0.004963235294117647,
+  "volnum_mismatch_before": 0.31841299019607844,
+  "label_ctx_bytes": 834,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3700,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 239,
+   "edits_by_level": {
+    "1": 226,
+    "2": 13
+   },
+   "side_bytes": 530,
+   "linf_over_bound": 0.9999793519164728
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 1902,
+   "edits_by_level": {
+    "1": 1787,
+    "2": 108,
+    "3": 7
+   },
+   "side_bytes": 2871,
+   "linf_over_bound": 0.9999793519164728
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 1609,
+   "edits_by_level": {
+    "1": 1478,
+    "2": 129,
+    "3": 2
+   },
+   "side_bytes": 2423,
+   "linf_over_bound": 0.9999793519164728
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.23700980392156862,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8212,
+  "atom_reassigned_before": 0.021323529411764706,
+  "volnum_mismatch_before": 0.9048406862745098,
+  "label_ctx_bytes": 834,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3700,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 974,
+   "edits_by_level": {
+    "1": 890,
+    "2": 79,
+    "3": 5
+   },
+   "side_bytes": 1687,
+   "linf_over_bound": 0.9999957873799811
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 9016,
+   "edits_by_level": {
+    "1": 7956,
+    "2": 997,
+    "3": 61,
+    "4": 2
+   },
+   "side_bytes": 10410,
+   "linf_over_bound": 0.9999771160203303
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 5742,
+   "edits_by_level": {
+    "1": 5152,
+    "2": 544,
+    "3": 46
+   },
+   "side_bytes": 7016,
+   "linf_over_bound": 0.9999957873799811
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13060,
+  "atom_reassigned_before": 0.06666666666666667,
+  "volnum_mismatch_before": 0.14966299019607843,
+  "label_ctx_bytes": 826,
+  "label_lzma_bytes": 1284,
+  "label_boundary_voxels": 3837,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 4102,
+   "edits_by_level": {
+    "1": 3517,
+    "2": 466,
+    "3": 84,
+    "4": 35
+   },
+   "side_bytes": 5338,
+   "linf_over_bound": 0.9999528662281693
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 13674,
+   "edits_by_level": {
+    "1": 10174,
+    "2": 3028,
+    "3": 401,
+    "4": 71
+   },
+   "side_bytes": 16361,
+   "linf_over_bound": 0.9999528662281693
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12367,
+   "edits_by_level": {
+    "1": 9342,
+    "2": 2704,
+    "3": 300,
+    "4": 21
+   },
+   "side_bytes": 14329,
+   "linf_over_bound": 0.9999528662281693
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7452,
+  "atom_reassigned_before": 0.37074142156862744,
+  "volnum_mismatch_before": 0.9985294117647059,
+  "label_ctx_bytes": 826,
+  "label_lzma_bytes": 1284,
+  "label_boundary_voxels": 3837,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 15736,
+   "edits_by_level": {
+    "1": 12727,
+    "2": 2386,
+    "3": 422,
+    "4": 201
+   },
+   "side_bytes": 18558,
+   "linf_over_bound": 0.9999494715716767
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 26200,
+   "edits_by_level": {
+    "1": 13760,
+    "2": 9387,
+    "3": 2466,
+    "4": 587
+   },
+   "side_bytes": 37095,
+   "linf_over_bound": 0.9999193854792672
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 25022,
+   "edits_by_level": {
+    "1": 14964,
+    "2": 7815,
+    "3": 2042,
+    "4": 201
+   },
+   "side_bytes": 31518,
+   "linf_over_bound": 0.9999494715716767
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3316,
+  "atom_reassigned_before": 0.7620710784313726,
+  "volnum_mismatch_before": 0.9990808823529411,
+  "label_ctx_bytes": 826,
+  "label_lzma_bytes": 1284,
+  "label_boundary_voxels": 3837,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 27434,
+   "edits_by_level": {
+    "1": 14484,
+    "2": 10467,
+    "3": 1697,
+    "4": 786
+   },
+   "side_bytes": 39196,
+   "linf_over_bound": 0.99976621222412
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 9,
+   "edits": 31809,
+   "edits_by_level": {
+    "1": 7060,
+    "2": 13943,
+    "3": 7274,
+    "4": 3532
+   },
+   "side_bytes": 72735,
+   "linf_over_bound": 0.9996053701810981
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31472,
+   "edits_by_level": {
+    "1": 8614,
+    "2": 14814,
+    "3": 6390,
+    "4": 1654
+   },
+   "side_bytes": 57549,
+   "linf_over_bound": 0.9996053701810981
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 17396,
+  "atom_reassigned_before": 0.0008884803921568627,
+  "volnum_mismatch_before": 0.0008884803921568627,
+  "label_ctx_bytes": 826,
+  "label_lzma_bytes": 1284,
+  "label_boundary_voxels": 3837,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 36,
+   "edits_by_level": {
+    "1": 36
+   },
+   "side_bytes": 117,
+   "linf_over_bound": 0.9998923333703301
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 413,
+   "edits_by_level": {
+    "1": 401,
+    "2": 12
+   },
+   "side_bytes": 818,
+   "linf_over_bound": 0.9998923333703301
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 450,
+   "edits_by_level": {
+    "1": 423,
+    "2": 24,
+    "3": 3
+   },
+   "side_bytes": 895,
+   "linf_over_bound": 0.9998923333703301
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9972,
+  "atom_reassigned_before": 0.009099264705882354,
+  "volnum_mismatch_before": 0.009099264705882354,
+  "label_ctx_bytes": 826,
+  "label_lzma_bytes": 1284,
+  "label_boundary_voxels": 3837,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 359,
+   "edits_by_level": {
+    "1": 344,
+    "2": 15
+   },
+   "side_bytes": 729,
+   "linf_over_bound": 0.9999944793902101
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 3502,
+   "edits_by_level": {
+    "1": 3279,
+    "2": 221,
+    "3": 2
+   },
+   "side_bytes": 4788,
+   "linf_over_bound": 0.9999944793902101
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3380,
+   "edits_by_level": {
+    "1": 3077,
+    "2": 290,
+    "3": 11,
+    "4": 2
+   },
+   "side_bytes": 4538,
+   "linf_over_bound": 0.9999944793902101
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7936,
+  "atom_reassigned_before": 0.04243259803921569,
+  "volnum_mismatch_before": 0.4403186274509804,
+  "label_ctx_bytes": 826,
+  "label_lzma_bytes": 1284,
+  "label_boundary_voxels": 3837,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1608,
+   "edits_by_level": {
+    "1": 1448,
+    "2": 143,
+    "3": 15,
+    "4": 2
+   },
+   "side_bytes": 2564,
+   "linf_over_bound": 0.9999679141241862
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 14752,
+   "edits_by_level": {
+    "1": 12529,
+    "2": 2060,
+    "3": 160,
+    "4": 3
+   },
+   "side_bytes": 16341,
+   "linf_over_bound": 0.9998953303545988
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 10321,
+   "edits_by_level": {
+    "1": 9062,
+    "2": 1165,
+    "3": 87,
+    "4": 7
+   },
+   "side_bytes": 11536,
+   "linf_over_bound": 0.9998923951953729
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 14156,
+  "atom_reassigned_before": 0.033486519607843136,
+  "volnum_mismatch_before": 0.09013480392156863,
+  "label_ctx_bytes": 948,
+  "label_lzma_bytes": 1540,
+  "label_boundary_voxels": 3560,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 9,
+   "edits": 2426,
+   "edits_by_level": {
+    "1": 2001,
+    "2": 322,
+    "3": 78,
+    "4": 25
+   },
+   "side_bytes": 3779,
+   "linf_over_bound": 0.9999969564877045
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 11861,
+   "edits_by_level": {
+    "1": 9327,
+    "2": 2250,
+    "3": 252,
+    "4": 32
+   },
+   "side_bytes": 13985,
+   "linf_over_bound": 0.9999969564877045
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11573,
+   "edits_by_level": {
+    "1": 8997,
+    "2": 2410,
+    "3": 160,
+    "4": 6
+   },
+   "side_bytes": 13248,
+   "linf_over_bound": 0.9999969564877045
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8184,
+  "atom_reassigned_before": 0.254656862745098,
+  "volnum_mismatch_before": 0.7023897058823529,
+  "label_ctx_bytes": 948,
+  "label_lzma_bytes": 1540,
+  "label_boundary_voxels": 3560,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 12771,
+   "edits_by_level": {
+    "1": 10772,
+    "2": 1506,
+    "3": 337,
+    "4": 156
+   },
+   "side_bytes": 15132,
+   "linf_over_bound": 0.9998392521464664
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 10,
+   "edits": 24841,
+   "edits_by_level": {
+    "1": 14193,
+    "2": 8415,
+    "3": 1830,
+    "4": 403
+   },
+   "side_bytes": 33317,
+   "linf_over_bound": 0.9997343590598523
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 23418,
+   "edits_by_level": {
+    "1": 13889,
+    "2": 7858,
+    "3": 1551,
+    "4": 120
+   },
+   "side_bytes": 29023,
+   "linf_over_bound": 0.9997343590598523
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3872,
+  "atom_reassigned_before": 0.6641850490196078,
+  "volnum_mismatch_before": 0.9997549019607843,
+  "label_ctx_bytes": 948,
+  "label_lzma_bytes": 1540,
+  "label_boundary_voxels": 3560,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 26542,
+   "edits_by_level": {
+    "1": 15812,
+    "2": 8636,
+    "3": 1567,
+    "4": 527
+   },
+   "side_bytes": 35258,
+   "linf_over_bound": 0.9997189254543487
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 31816,
+   "edits_by_level": {
+    "1": 8859,
+    "2": 13694,
+    "3": 6604,
+    "4": 2659
+   },
+   "side_bytes": 65090,
+   "linf_over_bound": 0.9982156243374354
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31418,
+   "edits_by_level": {
+    "1": 10377,
+    "2": 13246,
+    "3": 6712,
+    "4": 1083
+   },
+   "side_bytes": 52569,
+   "linf_over_bound": 0.998949354729324
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 18320,
+  "atom_reassigned_before": 0.0013786764705882354,
+  "volnum_mismatch_before": 0.0013786764705882354,
+  "label_ctx_bytes": 948,
+  "label_lzma_bytes": 1540,
+  "label_boundary_voxels": 3560,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 51,
+   "edits_by_level": {
+    "1": 48,
+    "2": 3
+   },
+   "side_bytes": 151,
+   "linf_over_bound": 0.9999852796747855
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 415,
+   "edits_by_level": {
+    "1": 397,
+    "2": 18
+   },
+   "side_bytes": 863,
+   "linf_over_bound": 0.9999852796747855
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 615,
+   "edits_by_level": {
+    "1": 592,
+    "2": 20,
+    "3": 3
+   },
+   "side_bytes": 1158,
+   "linf_over_bound": 0.9999852796747855
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10188,
+  "atom_reassigned_before": 0.010569852941176471,
+  "volnum_mismatch_before": 0.010569852941176471,
+  "label_ctx_bytes": 948,
+  "label_lzma_bytes": 1540,
+  "label_boundary_voxels": 3560,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 3,
+   "edits": 533,
+   "edits_by_level": {
+    "1": 501,
+    "2": 28,
+    "3": 4
+   },
+   "side_bytes": 1068,
+   "linf_over_bound": 0.999989389284165
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 4371,
+   "edits_by_level": {
+    "1": 4058,
+    "2": 305,
+    "3": 8
+   },
+   "side_bytes": 5877,
+   "linf_over_bound": 0.999929598627496
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 5105,
+   "edits_by_level": {
+    "1": 4704,
+    "2": 385,
+    "3": 14,
+    "4": 2
+   },
+   "side_bytes": 6341,
+   "linf_over_bound": 0.999989389284165
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 6,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7860,
+  "atom_reassigned_before": 0.03872549019607843,
+  "volnum_mismatch_before": 0.5942401960784314,
+  "label_ctx_bytes": 948,
+  "label_lzma_bytes": 1540,
+  "label_boundary_voxels": 3560,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 2369,
+   "edits_by_level": {
+    "1": 2085,
+    "2": 257,
+    "3": 16,
+    "4": 11
+   },
+   "side_bytes": 3570,
+   "linf_over_bound": 0.9999872677249794
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 18218,
+   "edits_by_level": {
+    "1": 15531,
+    "2": 2486,
+    "3": 188,
+    "4": 13
+   },
+   "side_bytes": 19748,
+   "linf_over_bound": 0.9998657347544638
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 14106,
+   "edits_by_level": {
+    "1": 12249,
+    "2": 1711,
+    "3": 141,
+    "4": 5
+   },
+   "side_bytes": 15045,
+   "linf_over_bound": 0.9999872677249794
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 14920,
+  "atom_reassigned_before": 0.03722426470588235,
+  "volnum_mismatch_before": 0.5090379901960784,
+  "label_ctx_bytes": 1018,
+  "label_lzma_bytes": 1920,
+  "label_boundary_voxels": 3676,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 2629,
+   "edits_by_level": {
+    "1": 2339,
+    "2": 225,
+    "3": 54,
+    "4": 11
+   },
+   "side_bytes": 3746,
+   "linf_over_bound": 0.9999986686660788
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 12142,
+   "edits_by_level": {
+    "1": 9570,
+    "2": 2243,
+    "3": 290,
+    "4": 39
+   },
+   "side_bytes": 14280,
+   "linf_over_bound": 0.9999927431349815
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11796,
+   "edits_by_level": {
+    "1": 9410,
+    "2": 2218,
+    "3": 168
+   },
+   "side_bytes": 13307,
+   "linf_over_bound": 0.9999986686660788
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8660,
+  "atom_reassigned_before": 0.29105392156862747,
+  "volnum_mismatch_before": 0.9962009803921569,
+  "label_ctx_bytes": 1018,
+  "label_lzma_bytes": 1920,
+  "label_boundary_voxels": 3676,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 13279,
+   "edits_by_level": {
+    "1": 11104,
+    "2": 1686,
+    "3": 354,
+    "4": 135
+   },
+   "side_bytes": 15540,
+   "linf_over_bound": 0.9998830532363197
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 24459,
+   "edits_by_level": {
+    "1": 13541,
+    "2": 8639,
+    "3": 1869,
+    "4": 410
+   },
+   "side_bytes": 33233,
+   "linf_over_bound": 0.9998830532363197
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 23316,
+   "edits_by_level": {
+    "1": 13617,
+    "2": 8189,
+    "3": 1408,
+    "4": 102
+   },
+   "side_bytes": 28844,
+   "linf_over_bound": 0.9998830532363197
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 4068,
+  "atom_reassigned_before": 0.6618872549019608,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1018,
+  "label_lzma_bytes": 1920,
+  "label_boundary_voxels": 3676,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 25708,
+   "edits_by_level": {
+    "1": 14414,
+    "2": 9128,
+    "3": 1593,
+    "4": 573
+   },
+   "side_bytes": 35282,
+   "linf_over_bound": 0.999885702195373
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 31417,
+   "edits_by_level": {
+    "1": 8599,
+    "2": 13579,
+    "3": 6548,
+    "4": 2691
+   },
+   "side_bytes": 64899,
+   "linf_over_bound": 0.9992192314572067
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30892,
+   "edits_by_level": {
+    "1": 9793,
+    "2": 13254,
+    "3": 6891,
+    "4": 954
+   },
+   "side_bytes": 51407,
+   "linf_over_bound": 0.9992192314572067
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19552,
+  "atom_reassigned_before": 0.0005208333333333333,
+  "volnum_mismatch_before": 0.0005208333333333333,
+  "label_ctx_bytes": 1018,
+  "label_lzma_bytes": 1920,
+  "label_boundary_voxels": 3676,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 30,
+   "edits_by_level": {
+    "1": 30
+   },
+   "side_bytes": 108,
+   "linf_over_bound": 0.9999706272176987
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 348,
+   "edits_by_level": {
+    "1": 338,
+    "2": 10
+   },
+   "side_bytes": 743,
+   "linf_over_bound": 0.9999706272176987
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 374,
+   "edits_by_level": {
+    "1": 351,
+    "2": 23
+   },
+   "side_bytes": 819,
+   "linf_over_bound": 0.9999706272176987
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10632,
+  "atom_reassigned_before": 0.006893382352941176,
+  "volnum_mismatch_before": 0.006893382352941176,
+  "label_ctx_bytes": 1018,
+  "label_lzma_bytes": 1920,
+  "label_boundary_voxels": 3676,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 344,
+   "edits_by_level": {
+    "1": 331,
+    "2": 13
+   },
+   "side_bytes": 742,
+   "linf_over_bound": 0.9999366369348571
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3646,
+   "edits_by_level": {
+    "1": 3455,
+    "2": 183,
+    "3": 8
+   },
+   "side_bytes": 5082,
+   "linf_over_bound": 0.9999366369348571
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3643,
+   "edits_by_level": {
+    "1": 3400,
+    "2": 226,
+    "3": 17
+   },
+   "side_bytes": 4834,
+   "linf_over_bound": 0.9999366369348571
+  }
+ },
+ {
+  "lattice": "hexagonal",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8072,
+  "atom_reassigned_before": 0.026011029411764707,
+  "volnum_mismatch_before": 0.026011029411764707,
+  "label_ctx_bytes": 1018,
+  "label_lzma_bytes": 1920,
+  "label_boundary_voxels": 3676,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1630,
+   "edits_by_level": {
+    "1": 1468,
+    "2": 149,
+    "3": 11,
+    "4": 2
+   },
+   "side_bytes": 2655,
+   "linf_over_bound": 0.999956351883853
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 15740,
+   "edits_by_level": {
+    "1": 13483,
+    "2": 2093,
+    "3": 153,
+    "4": 11
+   },
+   "side_bytes": 17422,
+   "linf_over_bound": 0.9999510571602082
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12117,
+   "edits_by_level": {
+    "1": 10851,
+    "2": 1177,
+    "3": 89
+   },
+   "side_bytes": 13126,
+   "linf_over_bound": 0.999956351883853
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0005821078431372549,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 12636,
+  "atom_reassigned_before": 0.051470588235294115,
+  "volnum_mismatch_before": 0.9970281862745098,
+  "label_ctx_bytes": 1015,
+  "label_lzma_bytes": 1652,
+  "label_boundary_voxels": 3414,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 4477,
+   "edits_by_level": {
+    "1": 3811,
+    "2": 545,
+    "3": 86,
+    "4": 35
+   },
+   "side_bytes": 5923,
+   "linf_over_bound": 0.9999449592454125
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 15851,
+   "edits_by_level": {
+    "1": 11934,
+    "2": 3486,
+    "3": 394,
+    "4": 37
+   },
+   "side_bytes": 18362,
+   "linf_over_bound": 0.9999449592454125
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 15682,
+   "edits_by_level": {
+    "1": 11383,
+    "2": 3967,
+    "3": 302,
+    "4": 30
+   },
+   "side_bytes": 17956,
+   "linf_over_bound": 0.9999449592454125
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0005821078431372549,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7052,
+  "atom_reassigned_before": 0.388265931372549,
+  "volnum_mismatch_before": 0.9996936274509803,
+  "label_ctx_bytes": 1015,
+  "label_lzma_bytes": 1652,
+  "label_boundary_voxels": 3414,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 18104,
+   "edits_by_level": {
+    "1": 14744,
+    "2": 2578,
+    "3": 597,
+    "4": 185
+   },
+   "side_bytes": 20667,
+   "linf_over_bound": 0.9999357984866004
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 27584,
+   "edits_by_level": {
+    "1": 13378,
+    "2": 10790,
+    "3": 2803,
+    "4": 613
+   },
+   "side_bytes": 39709,
+   "linf_over_bound": 0.9999357984866004
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 26526,
+   "edits_by_level": {
+    "1": 13077,
+    "2": 10355,
+    "3": 2862,
+    "4": 232
+   },
+   "side_bytes": 35526,
+   "linf_over_bound": 0.9999357984866004
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0005821078431372549,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 2812,
+  "atom_reassigned_before": 0.8234375,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1015,
+  "label_lzma_bytes": 1652,
+  "label_boundary_voxels": 3414,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 10,
+   "edits": 28778,
+   "edits_by_level": {
+    "1": 13393,
+    "2": 12393,
+    "3": 2072,
+    "4": 920
+   },
+   "side_bytes": 42941,
+   "linf_over_bound": 0.9997654944508486
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 32153,
+   "edits_by_level": {
+    "1": 6055,
+    "2": 13789,
+    "3": 8371,
+    "4": 3938
+   },
+   "side_bytes": 77348,
+   "linf_over_bound": 0.9954784073083389
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31824,
+   "edits_by_level": {
+    "1": 7215,
+    "2": 13279,
+    "3": 9164,
+    "4": 2166
+   },
+   "side_bytes": 64227,
+   "linf_over_bound": 0.9997110507632367
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0005821078431372549,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19972,
+  "atom_reassigned_before": 0.00027573529411764705,
+  "volnum_mismatch_before": 0.00027573529411764705,
+  "label_ctx_bytes": 1015,
+  "label_lzma_bytes": 1652,
+  "label_boundary_voxels": 3414,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 24,
+   "edits_by_level": {
+    "1": 24
+   },
+   "side_bytes": 95,
+   "linf_over_bound": 0.9999846619241898
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 441,
+   "edits_by_level": {
+    "1": 431,
+    "2": 10
+   },
+   "side_bytes": 884,
+   "linf_over_bound": 0.9999846619241898
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 398,
+   "edits_by_level": {
+    "1": 372,
+    "2": 23,
+    "3": 3
+   },
+   "side_bytes": 829,
+   "linf_over_bound": 0.9999846619241898
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0005821078431372549,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10680,
+  "atom_reassigned_before": 0.004503676470588235,
+  "volnum_mismatch_before": 0.004503676470588235,
+  "label_ctx_bytes": 1015,
+  "label_lzma_bytes": 1652,
+  "label_boundary_voxels": 3414,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 321,
+   "edits_by_level": {
+    "1": 304,
+    "2": 17
+   },
+   "side_bytes": 685,
+   "linf_over_bound": 0.9999425597570263
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3768,
+   "edits_by_level": {
+    "1": 3558,
+    "2": 204,
+    "3": 6
+   },
+   "side_bytes": 5222,
+   "linf_over_bound": 0.9999425597570263
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3747,
+   "edits_by_level": {
+    "1": 3492,
+    "2": 244,
+    "3": 8,
+    "4": 3
+   },
+   "side_bytes": 5008,
+   "linf_over_bound": 0.9999425597570263
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0005821078431372549,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8012,
+  "atom_reassigned_before": 0.02077205882352941,
+  "volnum_mismatch_before": 0.992984068627451,
+  "label_ctx_bytes": 1015,
+  "label_lzma_bytes": 1652,
+  "label_boundary_voxels": 3414,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 1595,
+   "edits_by_level": {
+    "1": 1439,
+    "2": 139,
+    "3": 13,
+    "4": 4
+   },
+   "side_bytes": 2603,
+   "linf_over_bound": 0.9999882810485649
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 14638,
+   "edits_by_level": {
+    "1": 12701,
+    "2": 1811,
+    "3": 121,
+    "4": 5
+   },
+   "side_bytes": 16295,
+   "linf_over_bound": 0.9999882810485649
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12024,
+   "edits_by_level": {
+    "1": 10758,
+    "2": 1180,
+    "3": 83,
+    "4": 3
+   },
+   "side_bytes": 12914,
+   "linf_over_bound": 0.9999882810485649
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.1095281862745098,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 10616,
+  "atom_reassigned_before": 0.20542279411764705,
+  "volnum_mismatch_before": 0.7979779411764706,
+  "label_ctx_bytes": 1025,
+  "label_lzma_bytes": 1724,
+  "label_boundary_voxels": 3831,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 9074,
+   "edits_by_level": {
+    "1": 7706,
+    "2": 1233,
+    "3": 112,
+    "4": 23
+   },
+   "side_bytes": 10490,
+   "linf_over_bound": 0.9999319736255148
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 18084,
+   "edits_by_level": {
+    "1": 12358,
+    "2": 5077,
+    "3": 600,
+    "4": 49
+   },
+   "side_bytes": 21381,
+   "linf_over_bound": 0.9999319736255148
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 20901,
+   "edits_by_level": {
+    "1": 13416,
+    "2": 6897,
+    "3": 552,
+    "4": 36
+   },
+   "side_bytes": 24334,
+   "linf_over_bound": 0.9999319736255148
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.1095281862745098,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 5364,
+  "atom_reassigned_before": 0.530422794117647,
+  "volnum_mismatch_before": 0.9973651960784313,
+  "label_ctx_bytes": 1025,
+  "label_lzma_bytes": 1724,
+  "label_boundary_voxels": 3831,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 19072,
+   "edits_by_level": {
+    "1": 11854,
+    "2": 6084,
+    "3": 880,
+    "4": 254
+   },
+   "side_bytes": 24594,
+   "linf_over_bound": 0.9998282813668992
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 25248,
+   "edits_by_level": {
+    "1": 8598,
+    "2": 11979,
+    "3": 3806,
+    "4": 865
+   },
+   "side_bytes": 41696,
+   "linf_over_bound": 0.999408344957199
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 28264,
+   "edits_by_level": {
+    "1": 9248,
+    "2": 13842,
+    "3": 4821,
+    "4": 353
+   },
+   "side_bytes": 42484,
+   "linf_over_bound": 0.999149685502684
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.1095281862745098,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 2312,
+  "atom_reassigned_before": 0.7623774509803921,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1025,
+  "label_lzma_bytes": 1724,
+  "label_boundary_voxels": 3831,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 26024,
+   "edits_by_level": {
+    "1": 8606,
+    "2": 12039,
+    "3": 3984,
+    "4": 1395
+   },
+   "side_bytes": 46556,
+   "linf_over_bound": 0.9999977586981905
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 28749,
+   "edits_by_level": {
+    "1": 4511,
+    "2": 9357,
+    "3": 9074,
+    "4": 5807
+   },
+   "side_bytes": 87055,
+   "linf_over_bound": 0.9982500184724481
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31893,
+   "edits_by_level": {
+    "1": 4838,
+    "2": 9929,
+    "3": 13767,
+    "4": 3359
+   },
+   "side_bytes": 77041,
+   "linf_over_bound": 0.9989754532219434
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.1095281862745098,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 17784,
+  "atom_reassigned_before": 0.00045955882352941176,
+  "volnum_mismatch_before": 0.00045955882352941176,
+  "label_ctx_bytes": 1025,
+  "label_lzma_bytes": 1724,
+  "label_boundary_voxels": 3831,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 13,
+   "edits_by_level": {
+    "1": 13
+   },
+   "side_bytes": 65,
+   "linf_over_bound": 0.9999686016886611
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 246,
+   "edits_by_level": {
+    "1": 233,
+    "2": 13
+   },
+   "side_bytes": 558,
+   "linf_over_bound": 0.9999686016886611
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 217,
+   "edits_by_level": {
+    "1": 199,
+    "2": 16,
+    "3": 2
+   },
+   "side_bytes": 511,
+   "linf_over_bound": 0.9999686016886611
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.1095281862745098,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10012,
+  "atom_reassigned_before": 0.003860294117647059,
+  "volnum_mismatch_before": 0.003860294117647059,
+  "label_ctx_bytes": 1025,
+  "label_lzma_bytes": 1724,
+  "label_boundary_voxels": 3831,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 150,
+   "edits_by_level": {
+    "1": 141,
+    "2": 9
+   },
+   "side_bytes": 373,
+   "linf_over_bound": 0.9998977401600457
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 2455,
+   "edits_by_level": {
+    "1": 2323,
+    "2": 125,
+    "3": 7
+   },
+   "side_bytes": 3603,
+   "linf_over_bound": 0.9998977401600457
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 1965,
+   "edits_by_level": {
+    "1": 1826,
+    "2": 123,
+    "3": 16
+   },
+   "side_bytes": 2889,
+   "linf_over_bound": 0.9998977401600457
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.1095281862745098,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7904,
+  "atom_reassigned_before": 0.02977941176470588,
+  "volnum_mismatch_before": 0.02977941176470588,
+  "label_ctx_bytes": 1025,
+  "label_lzma_bytes": 1724,
+  "label_boundary_voxels": 3831,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 893,
+   "edits_by_level": {
+    "1": 827,
+    "2": 63,
+    "3": 3
+   },
+   "side_bytes": 1580,
+   "linf_over_bound": 0.9999055779866582
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 9682,
+   "edits_by_level": {
+    "1": 8527,
+    "2": 1086,
+    "3": 66,
+    "4": 3
+   },
+   "side_bytes": 11255,
+   "linf_over_bound": 0.9998725346833403
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 7731,
+   "edits_by_level": {
+    "1": 7087,
+    "2": 607,
+    "3": 31,
+    "4": 6
+   },
+   "side_bytes": 8919,
+   "linf_over_bound": 0.9998725346833403
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13940,
+  "atom_reassigned_before": 0.03406862745098039,
+  "volnum_mismatch_before": 0.03753063725490196,
+  "label_ctx_bytes": 961,
+  "label_lzma_bytes": 1604,
+  "label_boundary_voxels": 3572,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 2400,
+   "edits_by_level": {
+    "1": 2096,
+    "2": 248,
+    "3": 40,
+    "4": 16
+   },
+   "side_bytes": 3473,
+   "linf_over_bound": 0.9999696626574996
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 11952,
+   "edits_by_level": {
+    "1": 9440,
+    "2": 2191,
+    "3": 285,
+    "4": 36
+   },
+   "side_bytes": 14031,
+   "linf_over_bound": 0.9999696626574996
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12050,
+   "edits_by_level": {
+    "1": 9783,
+    "2": 2122,
+    "3": 136,
+    "4": 9
+   },
+   "side_bytes": 13334,
+   "linf_over_bound": 0.9999696626574996
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8136,
+  "atom_reassigned_before": 0.2949142156862745,
+  "volnum_mismatch_before": 0.3424938725490196,
+  "label_ctx_bytes": 961,
+  "label_lzma_bytes": 1604,
+  "label_boundary_voxels": 3572,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 13959,
+   "edits_by_level": {
+    "1": 12169,
+    "2": 1381,
+    "3": 318,
+    "4": 91
+   },
+   "side_bytes": 15369,
+   "linf_over_bound": 0.9999748098539756
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 25483,
+   "edits_by_level": {
+    "1": 14686,
+    "2": 8446,
+    "3": 1977,
+    "4": 374
+   },
+   "side_bytes": 33755,
+   "linf_over_bound": 0.9999748098539756
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 23601,
+   "edits_by_level": {
+    "1": 13710,
+    "2": 8461,
+    "3": 1342,
+    "4": 88
+   },
+   "side_bytes": 28987,
+   "linf_over_bound": 0.9999372945228107
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3628,
+  "atom_reassigned_before": 0.717248774509804,
+  "volnum_mismatch_before": 1.0,
+  "label_ctx_bytes": 961,
+  "label_lzma_bytes": 1604,
+  "label_boundary_voxels": 3572,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 26608,
+   "edits_by_level": {
+    "1": 15402,
+    "2": 9341,
+    "3": 1366,
+    "4": 499
+   },
+   "side_bytes": 35213,
+   "linf_over_bound": 0.9999800037933317
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31770,
+   "edits_by_level": {
+    "1": 7984,
+    "2": 14464,
+    "3": 6463,
+    "4": 2859
+   },
+   "side_bytes": 66882,
+   "linf_over_bound": 0.9981187101444456
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31147,
+   "edits_by_level": {
+    "1": 9807,
+    "2": 13366,
+    "3": 7017,
+    "4": 957
+   },
+   "side_bytes": 51847,
+   "linf_over_bound": 0.9996750649045444
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 17932,
+  "atom_reassigned_before": 0.00024509803921568627,
+  "volnum_mismatch_before": 0.00024509803921568627,
+  "label_ctx_bytes": 961,
+  "label_lzma_bytes": 1604,
+  "label_boundary_voxels": 3572,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 21,
+   "edits_by_level": {
+    "1": 21
+   },
+   "side_bytes": 86,
+   "linf_over_bound": 0.9999626907359938
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 384,
+   "edits_by_level": {
+    "1": 378,
+    "2": 6
+   },
+   "side_bytes": 791,
+   "linf_over_bound": 0.9999626907359938
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 342,
+   "edits_by_level": {
+    "1": 330,
+    "2": 12
+   },
+   "side_bytes": 724,
+   "linf_over_bound": 0.9999626907359938
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9956,
+  "atom_reassigned_before": 0.009497549019607842,
+  "volnum_mismatch_before": 0.009497549019607842,
+  "label_ctx_bytes": 961,
+  "label_lzma_bytes": 1604,
+  "label_boundary_voxels": 3572,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 333,
+   "edits_by_level": {
+    "1": 327,
+    "2": 6
+   },
+   "side_bytes": 712,
+   "linf_over_bound": 0.9999734797492995
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3839,
+   "edits_by_level": {
+    "1": 3634,
+    "2": 194,
+    "3": 11
+   },
+   "side_bytes": 5301,
+   "linf_over_bound": 0.9999734797492995
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3156,
+   "edits_by_level": {
+    "1": 2952,
+    "2": 197,
+    "3": 7
+   },
+   "side_bytes": 4351,
+   "linf_over_bound": 0.9999734797492995
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7720,
+  "atom_reassigned_before": 0.03357843137254902,
+  "volnum_mismatch_before": 0.6866115196078432,
+  "label_ctx_bytes": 961,
+  "label_lzma_bytes": 1604,
+  "label_boundary_voxels": 3572,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1390,
+   "edits_by_level": {
+    "1": 1282,
+    "2": 103,
+    "3": 3,
+    "4": 2
+   },
+   "side_bytes": 2356,
+   "linf_over_bound": 0.9999945893412417
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 14935,
+   "edits_by_level": {
+    "1": 12998,
+    "2": 1835,
+    "3": 97,
+    "4": 5
+   },
+   "side_bytes": 16451,
+   "linf_over_bound": 0.9999945893412417
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11088,
+   "edits_by_level": {
+    "1": 10052,
+    "2": 983,
+    "3": 50,
+    "4": 3
+   },
+   "side_bytes": 12066,
+   "linf_over_bound": 0.9999945893412417
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 14256,
+  "atom_reassigned_before": 0.03290441176470588,
+  "volnum_mismatch_before": 0.7227941176470588,
+  "label_ctx_bytes": 1030,
+  "label_lzma_bytes": 1756,
+  "label_boundary_voxels": 3663,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 2588,
+   "edits_by_level": {
+    "1": 2223,
+    "2": 294,
+    "3": 42,
+    "4": 29
+   },
+   "side_bytes": 3899,
+   "linf_over_bound": 0.9999948368361248
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 11727,
+   "edits_by_level": {
+    "1": 9323,
+    "2": 2114,
+    "3": 266,
+    "4": 24
+   },
+   "side_bytes": 13726,
+   "linf_over_bound": 0.9999948368361248
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12614,
+   "edits_by_level": {
+    "1": 9935,
+    "2": 2490,
+    "3": 177,
+    "4": 12
+   },
+   "side_bytes": 14218,
+   "linf_over_bound": 0.9999948368361248
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8212,
+  "atom_reassigned_before": 0.2832107843137255,
+  "volnum_mismatch_before": 0.9973039215686275,
+  "label_ctx_bytes": 1030,
+  "label_lzma_bytes": 1756,
+  "label_boundary_voxels": 3663,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 13813,
+   "edits_by_level": {
+    "1": 11459,
+    "2": 1673,
+    "3": 521,
+    "4": 160
+   },
+   "side_bytes": 16356,
+   "linf_over_bound": 0.9998294189474501
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 24785,
+   "edits_by_level": {
+    "1": 14001,
+    "2": 8438,
+    "3": 1925,
+    "4": 421
+   },
+   "side_bytes": 33506,
+   "linf_over_bound": 0.9998294189474501
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 23928,
+   "edits_by_level": {
+    "1": 13585,
+    "2": 8587,
+    "3": 1629,
+    "4": 127
+   },
+   "side_bytes": 30039,
+   "linf_over_bound": 0.9998294189474501
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3776,
+  "atom_reassigned_before": 0.7009803921568627,
+  "volnum_mismatch_before": 0.9998774509803922,
+  "label_ctx_bytes": 1030,
+  "label_lzma_bytes": 1756,
+  "label_boundary_voxels": 3663,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 26452,
+   "edits_by_level": {
+    "1": 14966,
+    "2": 9547,
+    "3": 1473,
+    "4": 466
+   },
+   "side_bytes": 35156,
+   "linf_over_bound": 0.9999762713135535
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31427,
+   "edits_by_level": {
+    "1": 8627,
+    "2": 13828,
+    "3": 6146,
+    "4": 2826
+   },
+   "side_bytes": 65587,
+   "linf_over_bound": 0.9987021718752881
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31236,
+   "edits_by_level": {
+    "1": 9438,
+    "2": 13437,
+    "3": 7230,
+    "4": 1131
+   },
+   "side_bytes": 53563,
+   "linf_over_bound": 0.9990758906342102
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 17992,
+  "atom_reassigned_before": 0.0005208333333333333,
+  "volnum_mismatch_before": 0.0005208333333333333,
+  "label_ctx_bytes": 1030,
+  "label_lzma_bytes": 1756,
+  "label_boundary_voxels": 3663,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 30,
+   "edits_by_level": {
+    "1": 27,
+    "2": 3
+   },
+   "side_bytes": 104,
+   "linf_over_bound": 0.9999015286761761
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 402,
+   "edits_by_level": {
+    "1": 381,
+    "2": 21
+   },
+   "side_bytes": 844,
+   "linf_over_bound": 0.9999015286761761
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 465,
+   "edits_by_level": {
+    "1": 439,
+    "2": 26
+   },
+   "side_bytes": 919,
+   "linf_over_bound": 0.9999015286761761
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9856,
+  "atom_reassigned_before": 0.006556372549019608,
+  "volnum_mismatch_before": 0.328125,
+  "label_ctx_bytes": 1030,
+  "label_lzma_bytes": 1756,
+  "label_boundary_voxels": 3663,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 399,
+   "edits_by_level": {
+    "1": 388,
+    "2": 11
+   },
+   "side_bytes": 822,
+   "linf_over_bound": 0.9999708943503813
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3980,
+   "edits_by_level": {
+    "1": 3708,
+    "2": 268,
+    "3": 4
+   },
+   "side_bytes": 5457,
+   "linf_over_bound": 0.9999708943503813
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 4320,
+   "edits_by_level": {
+    "1": 4036,
+    "2": 268,
+    "3": 16
+   },
+   "side_bytes": 5558,
+   "linf_over_bound": 0.9999708943503813
+  }
+ },
+ {
+  "lattice": "monoclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7864,
+  "atom_reassigned_before": 0.029564950980392156,
+  "volnum_mismatch_before": 0.720343137254902,
+  "label_ctx_bytes": 1030,
+  "label_lzma_bytes": 1756,
+  "label_boundary_voxels": 3663,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 1752,
+   "edits_by_level": {
+    "1": 1574,
+    "2": 165,
+    "3": 13
+   },
+   "side_bytes": 2790,
+   "linf_over_bound": 0.9999191043825567
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 15265,
+   "edits_by_level": {
+    "1": 13210,
+    "2": 1941,
+    "3": 110,
+    "4": 4
+   },
+   "side_bytes": 16827,
+   "linf_over_bound": 0.9999191043825567
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 13672,
+   "edits_by_level": {
+    "1": 12208,
+    "2": 1392,
+    "3": 69,
+    "4": 3
+   },
+   "side_bytes": 14465,
+   "linf_over_bound": 0.9997774749377724
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 14560,
+  "atom_reassigned_before": 0.015962009803921567,
+  "volnum_mismatch_before": 0.016973039215686273,
+  "label_ctx_bytes": 986,
+  "label_lzma_bytes": 1388,
+  "label_boundary_voxels": 2884,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1250,
+   "edits_by_level": {
+    "1": 1115,
+    "2": 121,
+    "3": 12,
+    "4": 2
+   },
+   "side_bytes": 2058,
+   "linf_over_bound": 0.9999884119290788
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 9998,
+   "edits_by_level": {
+    "1": 8212,
+    "2": 1649,
+    "3": 122,
+    "4": 15
+   },
+   "side_bytes": 11738,
+   "linf_over_bound": 0.9999884119290788
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 9918,
+   "edits_by_level": {
+    "1": 8426,
+    "2": 1373,
+    "3": 119
+   },
+   "side_bytes": 10988,
+   "linf_over_bound": 0.9999884119290788
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8652,
+  "atom_reassigned_before": 0.1906862745098039,
+  "volnum_mismatch_before": 0.29439338235294116,
+  "label_ctx_bytes": 986,
+  "label_lzma_bytes": 1388,
+  "label_boundary_voxels": 2884,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 11768,
+   "edits_by_level": {
+    "1": 10470,
+    "2": 1069,
+    "3": 187,
+    "4": 42
+   },
+   "side_bytes": 12761,
+   "linf_over_bound": 0.9998466900143972
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 11,
+   "edits": 24311,
+   "edits_by_level": {
+    "1": 15210,
+    "2": 7332,
+    "3": 1441,
+    "4": 328
+   },
+   "side_bytes": 31129,
+   "linf_over_bound": 0.9992495492385877
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 22327,
+   "edits_by_level": {
+    "1": 14611,
+    "2": 6759,
+    "3": 900,
+    "4": 57
+   },
+   "side_bytes": 26043,
+   "linf_over_bound": 0.9998243727353296
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 4024,
+  "atom_reassigned_before": 0.6712316176470589,
+  "volnum_mismatch_before": 0.9513480392156862,
+  "label_ctx_bytes": 986,
+  "label_lzma_bytes": 1388,
+  "label_boundary_voxels": 2884,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 9,
+   "edits": 25848,
+   "edits_by_level": {
+    "1": 17254,
+    "2": 7389,
+    "3": 949,
+    "4": 256
+   },
+   "side_bytes": 31002,
+   "linf_over_bound": 0.9997351579508112
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31419,
+   "edits_by_level": {
+    "1": 9133,
+    "2": 14727,
+    "3": 5739,
+    "4": 1820
+   },
+   "side_bytes": 57971,
+   "linf_over_bound": 0.9996751570519896
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30802,
+   "edits_by_level": {
+    "1": 10961,
+    "2": 14101,
+    "3": 5117,
+    "4": 623
+   },
+   "side_bytes": 47106,
+   "linf_over_bound": 0.9980190341851438
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19376,
+  "atom_reassigned_before": 0.000980392156862745,
+  "volnum_mismatch_before": 0.000980392156862745,
+  "label_ctx_bytes": 986,
+  "label_lzma_bytes": 1388,
+  "label_boundary_voxels": 2884,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 48,
+   "edits_by_level": {
+    "1": 45,
+    "2": 3
+   },
+   "side_bytes": 148,
+   "linf_over_bound": 0.9999920051719511
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 442,
+   "edits_by_level": {
+    "1": 428,
+    "2": 14
+   },
+   "side_bytes": 903,
+   "linf_over_bound": 0.9999920051719511
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 429,
+   "edits_by_level": {
+    "1": 395,
+    "2": 31,
+    "3": 3
+   },
+   "side_bytes": 866,
+   "linf_over_bound": 0.9999920051719511
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10832,
+  "atom_reassigned_before": 0.0059742647058823525,
+  "volnum_mismatch_before": 0.3506433823529412,
+  "label_ctx_bytes": 986,
+  "label_lzma_bytes": 1388,
+  "label_boundary_voxels": 2884,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 3,
+   "edits": 387,
+   "edits_by_level": {
+    "1": 371,
+    "2": 16
+   },
+   "side_bytes": 780,
+   "linf_over_bound": 0.9998191429098736
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 4413,
+   "edits_by_level": {
+    "1": 4110,
+    "2": 287,
+    "3": 16
+   },
+   "side_bytes": 5929,
+   "linf_over_bound": 0.9998191429098736
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3551,
+   "edits_by_level": {
+    "1": 3254,
+    "2": 279,
+    "3": 16,
+    "4": 2
+   },
+   "side_bytes": 4741,
+   "linf_over_bound": 0.9998191429098736
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8004,
+  "atom_reassigned_before": 0.021354166666666667,
+  "volnum_mismatch_before": 0.5563725490196079,
+  "label_ctx_bytes": 986,
+  "label_lzma_bytes": 1388,
+  "label_boundary_voxels": 2884,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1419,
+   "edits_by_level": {
+    "1": 1294,
+    "2": 111,
+    "3": 12,
+    "4": 2
+   },
+   "side_bytes": 2347,
+   "linf_over_bound": 0.9998684679767331
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 17082,
+   "edits_by_level": {
+    "1": 14366,
+    "2": 2537,
+    "3": 162,
+    "4": 17
+   },
+   "side_bytes": 18897,
+   "linf_over_bound": 0.9998370413783493
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 10796,
+   "edits_by_level": {
+    "1": 9490,
+    "2": 1203,
+    "3": 100,
+    "4": 3
+   },
+   "side_bytes": 11693,
+   "linf_over_bound": 0.9998370413783493
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.023529411764705882,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 12188,
+  "atom_reassigned_before": 0.14546568627450981,
+  "volnum_mismatch_before": 0.740686274509804,
+  "label_ctx_bytes": 1046,
+  "label_lzma_bytes": 1628,
+  "label_boundary_voxels": 3246,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 7557,
+   "edits_by_level": {
+    "1": 6469,
+    "2": 814,
+    "3": 209,
+    "4": 65
+   },
+   "side_bytes": 9168,
+   "linf_over_bound": 0.9999777668755501
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 16815,
+   "edits_by_level": {
+    "1": 11634,
+    "2": 4472,
+    "3": 633,
+    "4": 76
+   },
+   "side_bytes": 20313,
+   "linf_over_bound": 0.9998757067607884
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 17973,
+   "edits_by_level": {
+    "1": 11011,
+    "2": 6128,
+    "3": 784,
+    "4": 50
+   },
+   "side_bytes": 21884,
+   "linf_over_bound": 0.9999777668755501
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.023529411764705882,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 6456,
+  "atom_reassigned_before": 0.4775122549019608,
+  "volnum_mismatch_before": 0.9991115196078432,
+  "label_ctx_bytes": 1046,
+  "label_lzma_bytes": 1628,
+  "label_boundary_voxels": 3246,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 18968,
+   "edits_by_level": {
+    "1": 12665,
+    "2": 5090,
+    "3": 984,
+    "4": 229
+   },
+   "side_bytes": 23831,
+   "linf_over_bound": 0.9998362786205497
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 26887,
+   "edits_by_level": {
+    "1": 11377,
+    "2": 11012,
+    "3": 3632,
+    "4": 866
+   },
+   "side_bytes": 42265,
+   "linf_over_bound": 0.9998362786205497
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 27150,
+   "edits_by_level": {
+    "1": 11296,
+    "2": 10691,
+    "3": 4653,
+    "4": 510
+   },
+   "side_bytes": 40590,
+   "linf_over_bound": 0.9998362786205497
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.023529411764705882,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 2576,
+  "atom_reassigned_before": 0.8184436274509804,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1046,
+  "label_lzma_bytes": 1628,
+  "label_boundary_voxels": 3246,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 28208,
+   "edits_by_level": {
+    "1": 11508,
+    "2": 11262,
+    "3": 3791,
+    "4": 1647
+   },
+   "side_bytes": 49499,
+   "linf_over_bound": 0.9991055036825538
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31467,
+   "edits_by_level": {
+    "1": 5692,
+    "2": 12008,
+    "3": 8617,
+    "4": 5150
+   },
+   "side_bytes": 85284,
+   "linf_over_bound": 0.9990723441679876
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31790,
+   "edits_by_level": {
+    "1": 6257,
+    "2": 11696,
+    "3": 10035,
+    "4": 3802
+   },
+   "side_bytes": 76773,
+   "linf_over_bound": 0.9990723441679876
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.023529411764705882,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19972,
+  "atom_reassigned_before": 0.0003676470588235294,
+  "volnum_mismatch_before": 0.0003676470588235294,
+  "label_ctx_bytes": 1046,
+  "label_lzma_bytes": 1628,
+  "label_boundary_voxels": 3246,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 19,
+   "edits_by_level": {
+    "1": 16,
+    "2": 3
+   },
+   "side_bytes": 80,
+   "linf_over_bound": 0.9998542447748991
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 324,
+   "edits_by_level": {
+    "1": 318,
+    "2": 6
+   },
+   "side_bytes": 687,
+   "linf_over_bound": 0.9998542447748991
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 356,
+   "edits_by_level": {
+    "1": 348,
+    "2": 5,
+    "4": 3
+   },
+   "side_bytes": 754,
+   "linf_over_bound": 0.9998542447748991
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.023529411764705882,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10744,
+  "atom_reassigned_before": 0.004840686274509804,
+  "volnum_mismatch_before": 0.004840686274509804,
+  "label_ctx_bytes": 1046,
+  "label_lzma_bytes": 1628,
+  "label_boundary_voxels": 3246,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 4,
+   "edits": 342,
+   "edits_by_level": {
+    "1": 332,
+    "2": 10
+   },
+   "side_bytes": 703,
+   "linf_over_bound": 0.9998220863513445
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 2846,
+   "edits_by_level": {
+    "1": 2697,
+    "2": 148,
+    "3": 1
+   },
+   "side_bytes": 4103,
+   "linf_over_bound": 0.9998220863513445
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3277,
+   "edits_by_level": {
+    "1": 3064,
+    "2": 207,
+    "3": 3,
+    "4": 3
+   },
+   "side_bytes": 4402,
+   "linf_over_bound": 0.9998220863513445
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.023529411764705882,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8028,
+  "atom_reassigned_before": 0.019393382352941177,
+  "volnum_mismatch_before": 0.8120098039215686,
+  "label_ctx_bytes": 1046,
+  "label_lzma_bytes": 1628,
+  "label_boundary_voxels": 3246,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 1280,
+   "edits_by_level": {
+    "1": 1202,
+    "2": 70,
+    "3": 8
+   },
+   "side_bytes": 2102,
+   "linf_over_bound": 0.9999587305956816
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 11286,
+   "edits_by_level": {
+    "1": 9971,
+    "2": 1232,
+    "3": 83
+   },
+   "side_bytes": 12966,
+   "linf_over_bound": 0.9999587305956816
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11070,
+   "edits_by_level": {
+    "1": 9933,
+    "2": 1094,
+    "3": 40,
+    "4": 3
+   },
+   "side_bytes": 11988,
+   "linf_over_bound": 0.9999587305956816
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0007965686274509804,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13300,
+  "atom_reassigned_before": 0.055361519607843135,
+  "volnum_mismatch_before": 0.6225490196078431,
+  "label_ctx_bytes": 930,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3186,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 3809,
+   "edits_by_level": {
+    "1": 3333,
+    "2": 381,
+    "3": 74,
+    "4": 21
+   },
+   "side_bytes": 5048,
+   "linf_over_bound": 0.999965814046519
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 14714,
+   "edits_by_level": {
+    "1": 11035,
+    "2": 3181,
+    "3": 439,
+    "4": 59
+   },
+   "side_bytes": 17441,
+   "linf_over_bound": 0.9998555938434592
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 14321,
+   "edits_by_level": {
+    "1": 10989,
+    "2": 3068,
+    "3": 245,
+    "4": 19
+   },
+   "side_bytes": 16062,
+   "linf_over_bound": 0.999965814046519
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0007965686274509804,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7376,
+  "atom_reassigned_before": 0.39589460784313724,
+  "volnum_mismatch_before": 0.7591605392156863,
+  "label_ctx_bytes": 930,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3186,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 16638,
+   "edits_by_level": {
+    "1": 13838,
+    "2": 2151,
+    "3": 490,
+    "4": 159
+   },
+   "side_bytes": 18880,
+   "linf_over_bound": 0.9999937390443673
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 26701,
+   "edits_by_level": {
+    "1": 13656,
+    "2": 9651,
+    "3": 2680,
+    "4": 714
+   },
+   "side_bytes": 38887,
+   "linf_over_bound": 0.9999937390443673
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 25369,
+   "edits_by_level": {
+    "1": 13315,
+    "2": 9782,
+    "3": 2116,
+    "4": 156
+   },
+   "side_bytes": 32706,
+   "linf_over_bound": 0.9999937390443673
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0007965686274509804,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3012,
+  "atom_reassigned_before": 0.7864889705882353,
+  "volnum_mismatch_before": 0.9864889705882353,
+  "label_ctx_bytes": 930,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3186,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 27843,
+   "edits_by_level": {
+    "1": 13667,
+    "2": 11954,
+    "3": 1645,
+    "4": 577
+   },
+   "side_bytes": 38773,
+   "linf_over_bound": 0.9998580303127537
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 9,
+   "edits": 31877,
+   "edits_by_level": {
+    "1": 6648,
+    "2": 13714,
+    "3": 7980,
+    "4": 3535
+   },
+   "side_bytes": 73543,
+   "linf_over_bound": 0.9998248718246626
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31399,
+   "edits_by_level": {
+    "1": 8057,
+    "2": 13560,
+    "3": 8355,
+    "4": 1427
+   },
+   "side_bytes": 57421,
+   "linf_over_bound": 0.9998580303127537
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0007965686274509804,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 20224,
+  "atom_reassigned_before": 0.00015318627450980392,
+  "volnum_mismatch_before": 0.00015318627450980392,
+  "label_ctx_bytes": 930,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3186,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 15,
+   "edits_by_level": {
+    "1": 12,
+    "2": 3
+   },
+   "side_bytes": 67,
+   "linf_over_bound": 0.9999902845049415
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 331,
+   "edits_by_level": {
+    "1": 328,
+    "2": 3
+   },
+   "side_bytes": 695,
+   "linf_over_bound": 0.9999902845049415
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 329,
+   "edits_by_level": {
+    "1": 309,
+    "2": 20
+   },
+   "side_bytes": 715,
+   "linf_over_bound": 0.9999902845049415
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0007965686274509804,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10984,
+  "atom_reassigned_before": 0.004105392156862745,
+  "volnum_mismatch_before": 0.004105392156862745,
+  "label_ctx_bytes": 930,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3186,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 3,
+   "edits": 300,
+   "edits_by_level": {
+    "1": 274,
+    "2": 23,
+    "3": 3
+   },
+   "side_bytes": 646,
+   "linf_over_bound": 0.9999420222728921
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3415,
+   "edits_by_level": {
+    "1": 3209,
+    "2": 198,
+    "3": 8
+   },
+   "side_bytes": 4792,
+   "linf_over_bound": 0.9999420222728921
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 2738,
+   "edits_by_level": {
+    "1": 2520,
+    "2": 208,
+    "3": 10
+   },
+   "side_bytes": 3939,
+   "linf_over_bound": 0.9999420222728921
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0007965686274509804,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8140,
+  "atom_reassigned_before": 0.012714460784313725,
+  "volnum_mismatch_before": 0.919546568627451,
+  "label_ctx_bytes": 930,
+  "label_lzma_bytes": 1536,
+  "label_boundary_voxels": 3186,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 978,
+   "edits_by_level": {
+    "1": 885,
+    "2": 78,
+    "3": 15
+   },
+   "side_bytes": 1778,
+   "linf_over_bound": 0.9998796333290201
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 13205,
+   "edits_by_level": {
+    "1": 11404,
+    "2": 1700,
+    "3": 98,
+    "4": 3
+   },
+   "side_bytes": 14921,
+   "linf_over_bound": 0.9997529109676873
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 9857,
+   "edits_by_level": {
+    "1": 8908,
+    "2": 875,
+    "3": 71,
+    "4": 3
+   },
+   "side_bytes": 10918,
+   "linf_over_bound": 0.9998796333290201
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13820,
+  "atom_reassigned_before": 0.03354779411764706,
+  "volnum_mismatch_before": 0.3325061274509804,
+  "label_ctx_bytes": 1216,
+  "label_lzma_bytes": 1824,
+  "label_boundary_voxels": 2963,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 2562,
+   "edits_by_level": {
+    "1": 2239,
+    "2": 271,
+    "3": 42,
+    "4": 10
+   },
+   "side_bytes": 3651,
+   "linf_over_bound": 0.9999957631328822
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 12719,
+   "edits_by_level": {
+    "1": 9921,
+    "2": 2487,
+    "3": 281,
+    "4": 30
+   },
+   "side_bytes": 14827,
+   "linf_over_bound": 0.9999957631328822
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12757,
+   "edits_by_level": {
+    "1": 10238,
+    "2": 2371,
+    "3": 133,
+    "4": 15
+   },
+   "side_bytes": 14084,
+   "linf_over_bound": 0.9999039998142925
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8028,
+  "atom_reassigned_before": 0.3234375,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1216,
+  "label_lzma_bytes": 1824,
+  "label_boundary_voxels": 2963,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 14988,
+   "edits_by_level": {
+    "1": 13243,
+    "2": 1440,
+    "3": 254,
+    "4": 51
+   },
+   "side_bytes": 15931,
+   "linf_over_bound": 0.9999572723859254
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 25285,
+   "edits_by_level": {
+    "1": 13856,
+    "2": 9098,
+    "3": 2002,
+    "4": 329
+   },
+   "side_bytes": 33641,
+   "linf_over_bound": 0.9997251618153593
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 24023,
+   "edits_by_level": {
+    "1": 13488,
+    "2": 8904,
+    "3": 1539,
+    "4": 92
+   },
+   "side_bytes": 29853,
+   "linf_over_bound": 0.9997251618153593
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3672,
+  "atom_reassigned_before": 0.7176470588235294,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1216,
+  "label_lzma_bytes": 1824,
+  "label_boundary_voxels": 2963,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 26631,
+   "edits_by_level": {
+    "1": 14239,
+    "2": 10609,
+    "3": 1388,
+    "4": 395
+   },
+   "side_bytes": 35267,
+   "linf_over_bound": 0.9993758866962922
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 9,
+   "edits": 31463,
+   "edits_by_level": {
+    "1": 7802,
+    "2": 13707,
+    "3": 6916,
+    "4": 3038
+   },
+   "side_bytes": 68118,
+   "linf_over_bound": 0.9948203297698489
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31078,
+   "edits_by_level": {
+    "1": 9147,
+    "2": 13531,
+    "3": 7380,
+    "4": 1020
+   },
+   "side_bytes": 52835,
+   "linf_over_bound": 0.9993758866962922
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19320,
+  "atom_reassigned_before": 0.00027573529411764705,
+  "volnum_mismatch_before": 0.00027573529411764705,
+  "label_ctx_bytes": 1216,
+  "label_lzma_bytes": 1824,
+  "label_boundary_voxels": 2963,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 27,
+   "edits_by_level": {
+    "1": 27
+   },
+   "side_bytes": 96,
+   "linf_over_bound": 0.999889902836008
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 398,
+   "edits_by_level": {
+    "1": 391,
+    "2": 7
+   },
+   "side_bytes": 821,
+   "linf_over_bound": 0.999889902836008
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 346,
+   "edits_by_level": {
+    "1": 312,
+    "2": 32,
+    "3": 2
+   },
+   "side_bytes": 742,
+   "linf_over_bound": 0.999889902836008
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10540,
+  "atom_reassigned_before": 0.007935049019607843,
+  "volnum_mismatch_before": 0.11075367647058823,
+  "label_ctx_bytes": 1216,
+  "label_lzma_bytes": 1824,
+  "label_boundary_voxels": 2963,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 3,
+   "edits": 323,
+   "edits_by_level": {
+    "1": 306,
+    "2": 17
+   },
+   "side_bytes": 674,
+   "linf_over_bound": 0.9998276121506339
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3811,
+   "edits_by_level": {
+    "1": 3547,
+    "2": 249,
+    "3": 15
+   },
+   "side_bytes": 5194,
+   "linf_over_bound": 0.9997652992226477
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3417,
+   "edits_by_level": {
+    "1": 3209,
+    "2": 178,
+    "3": 29,
+    "4": 1
+   },
+   "side_bytes": 4447,
+   "linf_over_bound": 0.9998276121506339
+  }
+ },
+ {
+  "lattice": "triclinic",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 5,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7880,
+  "atom_reassigned_before": 0.03400735294117647,
+  "volnum_mismatch_before": 0.2879595588235294,
+  "label_ctx_bytes": 1216,
+  "label_lzma_bytes": 1824,
+  "label_boundary_voxels": 2963,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1355,
+   "edits_by_level": {
+    "1": 1256,
+    "2": 89,
+    "3": 10
+   },
+   "side_bytes": 2162,
+   "linf_over_bound": 0.9999648294533571
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 14715,
+   "edits_by_level": {
+    "1": 12645,
+    "2": 1929,
+    "3": 139,
+    "4": 2
+   },
+   "side_bytes": 16307,
+   "linf_over_bound": 0.9998823686549242
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12082,
+   "edits_by_level": {
+    "1": 10961,
+    "2": 1053,
+    "3": 60,
+    "4": 8
+   },
+   "side_bytes": 12683,
+   "linf_over_bound": 0.9998823686549242
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13868,
+  "atom_reassigned_before": 0.0399203431372549,
+  "volnum_mismatch_before": 0.046660539215686275,
+  "label_ctx_bytes": 805,
+  "label_lzma_bytes": 1376,
+  "label_boundary_voxels": 2782,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 2836,
+   "edits_by_level": {
+    "1": 2494,
+    "2": 283,
+    "3": 38,
+    "4": 21
+   },
+   "side_bytes": 3840,
+   "linf_over_bound": 0.9999862974823109
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 13748,
+   "edits_by_level": {
+    "1": 10962,
+    "2": 2501,
+    "3": 250,
+    "4": 35
+   },
+   "side_bytes": 15696,
+   "linf_over_bound": 0.9999507096388208
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12331,
+   "edits_by_level": {
+    "1": 10193,
+    "2": 1983,
+    "3": 155
+   },
+   "side_bytes": 13325,
+   "linf_over_bound": 0.9999507096388208
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7992,
+  "atom_reassigned_before": 0.36038602941176473,
+  "volnum_mismatch_before": 0.6901041666666666,
+  "label_ctx_bytes": 805,
+  "label_lzma_bytes": 1376,
+  "label_boundary_voxels": 2782,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 9,
+   "edits": 16160,
+   "edits_by_level": {
+    "1": 14237,
+    "2": 1624,
+    "3": 221,
+    "4": 78
+   },
+   "side_bytes": 17101,
+   "linf_over_bound": 0.9997714393840482
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 25689,
+   "edits_by_level": {
+    "1": 13895,
+    "2": 9630,
+    "3": 1867,
+    "4": 297
+   },
+   "side_bytes": 33839,
+   "linf_over_bound": 0.999745335972721
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 24377,
+   "edits_by_level": {
+    "1": 14505,
+    "2": 8611,
+    "3": 1160,
+    "4": 101
+   },
+   "side_bytes": 29548,
+   "linf_over_bound": 0.9997714393840482
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3468,
+  "atom_reassigned_before": 0.7329656862745098,
+  "volnum_mismatch_before": 0.9989583333333333,
+  "label_ctx_bytes": 805,
+  "label_lzma_bytes": 1376,
+  "label_boundary_voxels": 2782,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 26666,
+   "edits_by_level": {
+    "1": 13045,
+    "2": 11938,
+    "3": 1257,
+    "4": 426
+   },
+   "side_bytes": 36161,
+   "linf_over_bound": 0.999993234760525
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 31507,
+   "edits_by_level": {
+    "1": 7061,
+    "2": 14347,
+    "3": 7435,
+    "4": 2664
+   },
+   "side_bytes": 66349,
+   "linf_over_bound": 0.999175140310747
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30955,
+   "edits_by_level": {
+    "1": 8609,
+    "2": 14582,
+    "3": 6974,
+    "4": 790
+   },
+   "side_bytes": 51130,
+   "linf_over_bound": 0.9996617482224451
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19868,
+  "atom_reassigned_before": 0.0001838235294117647,
+  "volnum_mismatch_before": 0.0001838235294117647,
+  "label_ctx_bytes": 805,
+  "label_lzma_bytes": 1376,
+  "label_boundary_voxels": 2782,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 12,
+   "edits_by_level": {
+    "1": 9,
+    "2": 3
+   },
+   "side_bytes": 64,
+   "linf_over_bound": 0.9998423761374983
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 372,
+   "edits_by_level": {
+    "1": 363,
+    "2": 9
+   },
+   "side_bytes": 775,
+   "linf_over_bound": 0.9998423761374983
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 232,
+   "edits_by_level": {
+    "1": 207,
+    "2": 25
+   },
+   "side_bytes": 541,
+   "linf_over_bound": 0.9998423761374983
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 11144,
+  "atom_reassigned_before": 0.004810049019607843,
+  "volnum_mismatch_before": 0.004810049019607843,
+  "label_ctx_bytes": 805,
+  "label_lzma_bytes": 1376,
+  "label_boundary_voxels": 2782,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 184,
+   "edits_by_level": {
+    "1": 173,
+    "2": 11
+   },
+   "side_bytes": 432,
+   "linf_over_bound": 0.999860840582058
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3439,
+   "edits_by_level": {
+    "1": 3206,
+    "2": 232,
+    "3": 1
+   },
+   "side_bytes": 4773,
+   "linf_over_bound": 0.999860840582058
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 2462,
+   "edits_by_level": {
+    "1": 2313,
+    "2": 131,
+    "3": 18
+   },
+   "side_bytes": 3387,
+   "linf_over_bound": 0.999860840582058
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 0,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8320,
+  "atom_reassigned_before": 0.02426470588235294,
+  "volnum_mismatch_before": 0.8638174019607843,
+  "label_ctx_bytes": 805,
+  "label_lzma_bytes": 1376,
+  "label_boundary_voxels": 2782,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 991,
+   "edits_by_level": {
+    "1": 903,
+    "2": 81,
+    "3": 7
+   },
+   "side_bytes": 1699,
+   "linf_over_bound": 0.9999344972923662
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 14077,
+   "edits_by_level": {
+    "1": 12190,
+    "2": 1754,
+    "3": 130,
+    "4": 3
+   },
+   "side_bytes": 15674,
+   "linf_over_bound": 0.9998769192109501
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 9417,
+   "edits_by_level": {
+    "1": 8694,
+    "2": 668,
+    "3": 52,
+    "4": 3
+   },
+   "side_bytes": 10102,
+   "linf_over_bound": 0.9998769192109501
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 13880,
+  "atom_reassigned_before": 0.029044117647058824,
+  "volnum_mismatch_before": 0.030300245098039216,
+  "label_ctx_bytes": 672,
+  "label_lzma_bytes": 1532,
+  "label_boundary_voxels": 2748,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 2041,
+   "edits_by_level": {
+    "1": 1674,
+    "2": 276,
+    "3": 62,
+    "4": 29
+   },
+   "side_bytes": 3197,
+   "linf_over_bound": 0.9999936632631118
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 10685,
+   "edits_by_level": {
+    "1": 8718,
+    "2": 1703,
+    "3": 229,
+    "4": 35
+   },
+   "side_bytes": 12644,
+   "linf_over_bound": 0.9999936632631118
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 10958,
+   "edits_by_level": {
+    "1": 8835,
+    "2": 1948,
+    "3": 160,
+    "4": 15
+   },
+   "side_bytes": 12323,
+   "linf_over_bound": 0.9999936632631118
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 8032,
+  "atom_reassigned_before": 0.22251838235294116,
+  "volnum_mismatch_before": 0.9992953431372549,
+  "label_ctx_bytes": 672,
+  "label_lzma_bytes": 1532,
+  "label_boundary_voxels": 2748,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 12694,
+   "edits_by_level": {
+    "1": 11181,
+    "2": 1235,
+    "3": 224,
+    "4": 54
+   },
+   "side_bytes": 13803,
+   "linf_over_bound": 0.9999780913315722
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 10,
+   "edits": 24028,
+   "edits_by_level": {
+    "1": 14678,
+    "2": 7689,
+    "3": 1486,
+    "4": 175
+   },
+   "side_bytes": 30018,
+   "linf_over_bound": 0.9997234681234719
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 22939,
+   "edits_by_level": {
+    "1": 14007,
+    "2": 7484,
+    "3": 1348,
+    "4": 100
+   },
+   "side_bytes": 27914,
+   "linf_over_bound": 0.9997731800269196
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3912,
+  "atom_reassigned_before": 0.6431372549019608,
+  "volnum_mismatch_before": 0.9998468137254902,
+  "label_ctx_bytes": 672,
+  "label_lzma_bytes": 1532,
+  "label_boundary_voxels": 2748,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 8,
+   "edits": 26013,
+   "edits_by_level": {
+    "1": 16015,
+    "2": 8349,
+    "3": 1250,
+    "4": 399
+   },
+   "side_bytes": 33206,
+   "linf_over_bound": 0.9999953028713714
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 31540,
+   "edits_by_level": {
+    "1": 9442,
+    "2": 14082,
+    "3": 5818,
+    "4": 2198
+   },
+   "side_bytes": 60643,
+   "linf_over_bound": 0.9992344380143183
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30998,
+   "edits_by_level": {
+    "1": 10489,
+    "2": 13335,
+    "3": 6211,
+    "4": 963
+   },
+   "side_bytes": 50743,
+   "linf_over_bound": 0.9999277949215155
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 18396,
+  "atom_reassigned_before": 0.0007965686274509804,
+  "volnum_mismatch_before": 0.0007965686274509804,
+  "label_ctx_bytes": 672,
+  "label_lzma_bytes": 1532,
+  "label_boundary_voxels": 2748,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 56,
+   "edits_by_level": {
+    "1": 56
+   },
+   "side_bytes": 164,
+   "linf_over_bound": 0.9999263690582064
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 474,
+   "edits_by_level": {
+    "1": 460,
+    "2": 14
+   },
+   "side_bytes": 961,
+   "linf_over_bound": 0.9999263690582064
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 586,
+   "edits_by_level": {
+    "1": 548,
+    "2": 35,
+    "3": 3
+   },
+   "side_bytes": 1091,
+   "linf_over_bound": 0.9999263690582064
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9968,
+  "atom_reassigned_before": 0.008272058823529412,
+  "volnum_mismatch_before": 0.9363970588235294,
+  "label_ctx_bytes": 672,
+  "label_lzma_bytes": 1532,
+  "label_boundary_voxels": 2748,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 447,
+   "edits_by_level": {
+    "1": 429,
+    "2": 18
+   },
+   "side_bytes": 858,
+   "linf_over_bound": 0.999848596795368
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 4518,
+   "edits_by_level": {
+    "1": 4248,
+    "2": 267,
+    "3": 3
+   },
+   "side_bytes": 5999,
+   "linf_over_bound": 0.999848596795368
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 4905,
+   "edits_by_level": {
+    "1": 4510,
+    "2": 369,
+    "3": 23,
+    "4": 3
+   },
+   "side_bytes": 5957,
+   "linf_over_bound": 0.999848596795368
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 1,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7704,
+  "atom_reassigned_before": 0.030238970588235294,
+  "volnum_mismatch_before": 0.8867953431372549,
+  "label_ctx_bytes": 672,
+  "label_lzma_bytes": 1532,
+  "label_boundary_voxels": 2748,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 1829,
+   "edits_by_level": {
+    "1": 1641,
+    "2": 175,
+    "3": 13
+   },
+   "side_bytes": 2790,
+   "linf_over_bound": 0.9998907886199727
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 16854,
+   "edits_by_level": {
+    "1": 14457,
+    "2": 2259,
+    "3": 129,
+    "4": 9
+   },
+   "side_bytes": 18378,
+   "linf_over_bound": 0.9998907886199727
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 12814,
+   "edits_by_level": {
+    "1": 11070,
+    "2": 1628,
+    "3": 110,
+    "4": 6
+   },
+   "side_bytes": 13606,
+   "linf_over_bound": 0.9998907886199727
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 15260,
+  "atom_reassigned_before": 0.021721813725490195,
+  "volnum_mismatch_before": 0.1837622549019608,
+  "label_ctx_bytes": 1137,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3729,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 1617,
+   "edits_by_level": {
+    "1": 1410,
+    "2": 179,
+    "3": 22,
+    "4": 6
+   },
+   "side_bytes": 2553,
+   "linf_over_bound": 0.9998958609570445
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 8622,
+   "edits_by_level": {
+    "1": 7251,
+    "2": 1247,
+    "3": 116,
+    "4": 8
+   },
+   "side_bytes": 10156,
+   "linf_over_bound": 0.9998958609570445
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 10814,
+   "edits_by_level": {
+    "1": 9218,
+    "2": 1481,
+    "3": 100,
+    "4": 15
+   },
+   "side_bytes": 12031,
+   "linf_over_bound": 0.9998958609570445
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 9076,
+  "atom_reassigned_before": 0.2,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1137,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3729,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 10901,
+   "edits_by_level": {
+    "1": 9347,
+    "2": 1193,
+    "3": 281,
+    "4": 80
+   },
+   "side_bytes": 12551,
+   "linf_over_bound": 0.9999853723252047
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 22602,
+   "edits_by_level": {
+    "1": 14772,
+    "2": 6515,
+    "3": 1142,
+    "4": 173
+   },
+   "side_bytes": 27751,
+   "linf_over_bound": 0.999707546966942
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 22246,
+   "edits_by_level": {
+    "1": 13533,
+    "2": 7645,
+    "3": 971,
+    "4": 97
+   },
+   "side_bytes": 27026,
+   "linf_over_bound": 0.9999853723252047
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 4344,
+  "atom_reassigned_before": 0.6416666666666667,
+  "volnum_mismatch_before": 0.9999693627450981,
+  "label_ctx_bytes": 1137,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3729,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 25174,
+   "edits_by_level": {
+    "1": 16640,
+    "2": 6896,
+    "3": 1189,
+    "4": 449
+   },
+   "side_bytes": 31941,
+   "linf_over_bound": 0.9998930383135416
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 31077,
+   "edits_by_level": {
+    "1": 10219,
+    "2": 13775,
+    "3": 5446,
+    "4": 1637
+   },
+   "side_bytes": 55356,
+   "linf_over_bound": 0.997261684622143
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 30837,
+   "edits_by_level": {
+    "1": 10929,
+    "2": 13149,
+    "3": 6049,
+    "4": 710
+   },
+   "side_bytes": 48376,
+   "linf_over_bound": 0.9993296420990403
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 19024,
+  "atom_reassigned_before": 0.0003676470588235294,
+  "volnum_mismatch_before": 0.0003676470588235294,
+  "label_ctx_bytes": 1137,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3729,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 36,
+   "edits_by_level": {
+    "1": 36
+   },
+   "side_bytes": 114,
+   "linf_over_bound": 0.9999124068974844
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 385,
+   "edits_by_level": {
+    "1": 375,
+    "2": 7,
+    "3": 3
+   },
+   "side_bytes": 795,
+   "linf_over_bound": 0.9999124068974844
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 468,
+   "edits_by_level": {
+    "1": 424,
+    "2": 41,
+    "3": 3
+   },
+   "side_bytes": 941,
+   "linf_over_bound": 0.9999124068974844
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 10492,
+  "atom_reassigned_before": 0.0078125,
+  "volnum_mismatch_before": 0.0078125,
+  "label_ctx_bytes": 1137,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3729,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 2,
+   "edits": 424,
+   "edits_by_level": {
+    "1": 412,
+    "2": 12
+   },
+   "side_bytes": 846,
+   "linf_over_bound": 0.9999587305140593
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 3,
+   "edits": 3814,
+   "edits_by_level": {
+    "1": 3590,
+    "2": 219,
+    "3": 5
+   },
+   "side_bytes": 5235,
+   "linf_over_bound": 0.9999587305140593
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 4525,
+   "edits_by_level": {
+    "1": 4210,
+    "2": 292,
+    "3": 23
+   },
+   "side_bytes": 5864,
+   "linf_over_bound": 0.9999587305140593
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 2,
+  "npts": 32640,
+  "nbasins": 7,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 8004,
+  "atom_reassigned_before": 0.038327205882352944,
+  "volnum_mismatch_before": 0.9606617647058824,
+  "label_ctx_bytes": 1137,
+  "label_lzma_bytes": 1732,
+  "label_boundary_voxels": 3729,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1902,
+   "edits_by_level": {
+    "1": 1739,
+    "2": 154,
+    "3": 7,
+    "4": 2
+   },
+   "side_bytes": 2973,
+   "linf_over_bound": 0.9999915802042374
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 6,
+   "edits": 16095,
+   "edits_by_level": {
+    "1": 13917,
+    "2": 2011,
+    "3": 158,
+    "4": 9
+   },
+   "side_bytes": 17663,
+   "linf_over_bound": 0.9999915802042374
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 13361,
+   "edits_by_level": {
+    "1": 11817,
+    "2": 1428,
+    "3": 106,
+    "4": 10
+   },
+   "side_bytes": 14373,
+   "linf_over_bound": 0.9999749439838521
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.0001,
+  "base_bytes": 12652,
+  "atom_reassigned_before": 0.04803921568627451,
+  "volnum_mismatch_before": 0.5011029411764706,
+  "label_ctx_bytes": 992,
+  "label_lzma_bytes": 1328,
+  "label_boundary_voxels": 2783,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 4368,
+   "edits_by_level": {
+    "1": 3818,
+    "2": 478,
+    "3": 57,
+    "4": 15
+   },
+   "side_bytes": 5542,
+   "linf_over_bound": 0.9999632221797409
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 14794,
+   "edits_by_level": {
+    "1": 10903,
+    "2": 3436,
+    "3": 408,
+    "4": 47
+   },
+   "side_bytes": 17463,
+   "linf_over_bound": 0.9999632221797409
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 14422,
+   "edits_by_level": {
+    "1": 10555,
+    "2": 3522,
+    "3": 333,
+    "4": 12
+   },
+   "side_bytes": 16418,
+   "linf_over_bound": 0.9999632221797409
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.001,
+  "base_bytes": 7112,
+  "atom_reassigned_before": 0.37631740196078434,
+  "volnum_mismatch_before": 0.8796875,
+  "label_ctx_bytes": 992,
+  "label_lzma_bytes": 1328,
+  "label_boundary_voxels": 2783,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 7,
+   "edits": 16701,
+   "edits_by_level": {
+    "1": 13609,
+    "2": 2494,
+    "3": 478,
+    "4": 120
+   },
+   "side_bytes": 18829,
+   "linf_over_bound": 0.9998790010134607
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 26274,
+   "edits_by_level": {
+    "1": 12957,
+    "2": 9579,
+    "3": 2939,
+    "4": 799
+   },
+   "side_bytes": 39517,
+   "linf_over_bound": 0.9996245392043839
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 25236,
+   "edits_by_level": {
+    "1": 12871,
+    "2": 9664,
+    "3": 2467,
+    "4": 234
+   },
+   "side_bytes": 33545,
+   "linf_over_bound": 0.999856115660127
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "abs",
+  "bound": 0.01,
+  "base_bytes": 3084,
+  "atom_reassigned_before": 0.7642156862745098,
+  "volnum_mismatch_before": 0.9526654411764706,
+  "label_ctx_bytes": 992,
+  "label_lzma_bytes": 1328,
+  "label_boundary_voxels": 2783,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 7,
+   "edits": 27673,
+   "edits_by_level": {
+    "1": 13542,
+    "2": 11691,
+    "3": 1671,
+    "4": 769
+   },
+   "side_bytes": 39975,
+   "linf_over_bound": 0.9992264414510307
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 8,
+   "edits": 31657,
+   "edits_by_level": {
+    "1": 6919,
+    "2": 12807,
+    "3": 7713,
+    "4": 4218
+   },
+   "side_bytes": 77678,
+   "linf_over_bound": 0.9979853004667004
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 31378,
+   "edits_by_level": {
+    "1": 8071,
+    "2": 12944,
+    "3": 8533,
+    "4": 1830
+   },
+   "side_bytes": 60312,
+   "linf_over_bound": 0.9983698061657864
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.001,
+  "base_bytes": 17068,
+  "atom_reassigned_before": 0.0007965686274509804,
+  "volnum_mismatch_before": 0.06534926470588236,
+  "label_ctx_bytes": 992,
+  "label_lzma_bytes": 1328,
+  "label_boundary_voxels": 2783,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 1,
+   "edits": 50,
+   "edits_by_level": {
+    "1": 50
+   },
+   "side_bytes": 151,
+   "linf_over_bound": 0.9996640902860418
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 2,
+   "edits": 405,
+   "edits_by_level": {
+    "1": 397,
+    "2": 8
+   },
+   "side_bytes": 839,
+   "linf_over_bound": 0.9996640902860418
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 484,
+   "edits_by_level": {
+    "1": 459,
+    "2": 22,
+    "3": 3
+   },
+   "side_bytes": 952,
+   "linf_over_bound": 0.9996640902860418
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.01,
+  "base_bytes": 9596,
+  "atom_reassigned_before": 0.00857843137254902,
+  "volnum_mismatch_before": 0.07279411764705883,
+  "label_ctx_bytes": 992,
+  "label_lzma_bytes": 1328,
+  "label_boundary_voxels": 2783,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 4,
+   "edits": 379,
+   "edits_by_level": {
+    "1": 355,
+    "2": 20,
+    "3": 4
+   },
+   "side_bytes": 763,
+   "linf_over_bound": 0.9999645959581229
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 4098,
+   "edits_by_level": {
+    "1": 3822,
+    "2": 260,
+    "3": 16
+   },
+   "side_bytes": 5533,
+   "linf_over_bound": 0.9999645959581229
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": true,
+   "iterations": 0,
+   "edits": 3888,
+   "edits_by_level": {
+    "1": 3587,
+    "2": 280,
+    "3": 19,
+    "4": 2
+   },
+   "side_bytes": 4901,
+   "linf_over_bound": 0.9999645959581229
+  }
+ },
+ {
+  "lattice": "sheared",
+  "seed": 3,
+  "npts": 32640,
+  "nbasins": 4,
+  "vacuum_frac": 0.0,
+  "regular": true,
+  "mode": "rel",
+  "bound": 0.05,
+  "base_bytes": 7712,
+  "atom_reassigned_before": 0.03238357843137255,
+  "volnum_mismatch_before": 0.6310968137254902,
+  "label_ctx_bytes": 992,
+  "label_lzma_bytes": 1328,
+  "label_boundary_voxels": 2783,
+  "A2B": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 4,
+   "edits": 1449,
+   "edits_by_level": {
+    "1": 1303,
+    "2": 128,
+    "3": 17,
+    "4": 1
+   },
+   "side_bytes": 2326,
+   "linf_over_bound": 0.9999551788254338
+  },
+  "A2S": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 5,
+   "edits": 14760,
+   "edits_by_level": {
+    "1": 12786,
+    "2": 1862,
+    "3": 110,
+    "4": 2
+   },
+   "side_bytes": 16305,
+   "linf_over_bound": 0.9999551788254338
+  },
+  "A1": {
+   "zero_reassignment": true,
+   "atom_map_identical": true,
+   "literal_identical": null,
+   "iterations": 0,
+   "edits": 11723,
+   "edits_by_level": {
+    "1": 10334,
+    "2": 1281,
+    "3": 97,
+    "4": 11
+   },
+   "side_bytes": 12605,
+   "linf_over_bound": 0.9999551788254338
+  }
+ }
+]
