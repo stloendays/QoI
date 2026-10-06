@@ -112,9 +112,11 @@ def build_frames(out: Path):
     p2_ids = {t for _, t in p2}
     p1 = [(s, t) for t, s in chg.items() if MB <= s <= 80 * MB and t not in p2_ids]
     nomad = {}
-    with gzip.open(out / "nomad_frame_surface_vasp.csv.gz", "rt", newline="", encoding="utf-8") as f:
-        for r in csv.DictReader(f):
-            nomad[r["entry_id"]] = r
+    nomad_path = out / "nomad_frame_surface_vasp.csv.gz"
+    if nomad_path.exists():  # P1/P2 may run before the NOMAD frame is frozen
+        with gzip.open(nomad_path, "rt", newline="", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                nomad[r["entry_id"]] = r
     p3 = [(int(r["chgcar_bytes"]), e) for e, r in nomad.items()
           if MB <= int(r["chgcar_bytes"]) <= 80 * MB]
     counts = {

@@ -1,0 +1,14 @@
+{
+  "api": "https://nomad-lab.eu/prod/v1/api/v1",
+  "query": {
+    "results.material.structural_type": "surface",
+    "results.method.simulation.program_name": "VASP"
+  },
+  "owner": "public",
+  "listing_started_utc": "2026-10-06T14:37:34.082913+00:00",
+  "listing_finished_utc": "2026-10-06T15:06:26.973612+00:00",
+  "n_entries": 16275,
+  "n_entries_with_chgcar_in_mainfile_dir": 1014,
+  "n_rawdir_size_unavailable_dropped": 194,
+  "n_frame_rows": 820
+}

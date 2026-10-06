@@ -16,7 +16,10 @@ import json
 import re
 import sys
 import time
+import urllib.error
+import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -66,30 +69,73 @@ def reduce(f: str) -> str:
         return ""
 
 
+def get(path: str) -> dict | None:
+    """GET with unlimited backoff on 429/transient errors; None only for 404 or a repeated 500."""
+    n500 = 0
+    attempt = 0
+    while True:
+        attempt += 1
+        try:
+            with urllib.request.urlopen(API + path, timeout=300) as r:
+                return json.loads(r.read())
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return None
+            if exc.code == 500:
+                n500 += 1
+                if n500 >= 3:
+                    return None
+            err = exc
+        except Exception as exc:  # noqa: BLE001
+            err = exc
+        if attempt > 40:
+            raise RuntimeError(f"giving up on {path}: {err}")
+        print(f"retry {attempt} {path}: {err}", file=sys.stderr)
+        time.sleep(min(120, 5 * attempt))
+
+
 def main() -> int:
+    # entries/rawdir/query fails server-side for this filter (HTTP 500,
+    # "Inconsistency: both public and restricted files found"), so file names
+    # come from entries/query and sizes from per-entry GET /entries/<id>/rawdir.
     out = Path(sys.argv[1])
     started = datetime.now(timezone.utc).isoformat()
-    formulas = {}
+    n_entries = 0
+    cand = []
     for e in paginate("/entries/query", {"required": {"include": [
-            "entry_id", "results.material.chemical_formula_reduced"]}}):
-        formulas[e["entry_id"]] = (e.get("results", {}).get("material", {})
-                                   .get("chemical_formula_reduced", ""))
-    n_entries = n_chg = 0
-    rows = []
-    for e in paginate("/entries/rawdir/query", {}):
+            "entry_id", "upload_id", "mainfile", "files",
+            "results.material.chemical_formula_reduced"]}}):
         n_entries += 1
-        main_dir = e["mainfile"].rsplit("/", 1)[0] if "/" in e["mainfile"] else ""
-        cands = []
-        for f in e.get("files", []):
-            d, _, base = f["path"].rpartition("/")
+        mainfile = e.get("mainfile", "")
+        main_dir = mainfile.rsplit("/", 1)[0] if "/" in mainfile else ""
+        names = []
+        for path in e.get("files", []):
+            d, _, base = path.rpartition("/")
             if d == main_dir and CHG_RE.match(base):
-                cands.append((base, f["path"], f["size"]))
-        if not cands:
+                names.append((base, path))
+        if not names:
             continue
-        n_chg += 1
-        base, path, size = sorted(cands)[0]
-        fm = formulas.get(e["entry_id"], "")
-        rows.append([e["entry_id"], e["upload_id"], e["mainfile"], path, size, fm, reduce(fm)])
+        fm = e.get("results", {}).get("material", {}).get("chemical_formula_reduced", "")
+        base, path = sorted(names)[0]
+        cand.append([e["entry_id"], e["upload_id"], mainfile, path, fm])
+
+    def size_of(row):
+        res = get(f"/entries/{urllib.parse.quote(row[0])}/rawdir")
+        if not res:
+            return None
+        for f in res["data"]["files"]:
+            if f["path"] == row[3]:
+                return f["size"]
+        return None
+
+    with ThreadPoolExecutor(3) as ex:
+        sizes = list(ex.map(size_of, cand))
+    rows, n_nosize = [], 0
+    for row, size in zip(cand, sizes):
+        if size is None:
+            n_nosize += 1
+            continue
+        rows.append([row[0], row[1], row[2], row[3], size, row[4], reduce(row[4])])
     with gzip.open(out / "nomad_frame_surface_vasp.csv.gz", "wt", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["entry_id", "upload_id", "mainfile", "chgcar_path", "chgcar_bytes",
@@ -98,8 +144,10 @@ def main() -> int:
     log = {"api": API, "query": QUERY, "owner": "public",
            "listing_started_utc": started,
            "listing_finished_utc": datetime.now(timezone.utc).isoformat(),
-           "n_entries": n_entries, "n_entries_with_formula": len(formulas),
-           "n_entries_with_chgcar_in_mainfile_dir": n_chg}
+           "n_entries": n_entries,
+           "n_entries_with_chgcar_in_mainfile_dir": len(cand),
+           "n_rawdir_size_unavailable_dropped": n_nosize,
+           "n_frame_rows": len(rows)}
     (out / "nomad_frame_log.json").write_text(json.dumps(log, indent=2))
     print(json.dumps(log, indent=2))
     return 0
