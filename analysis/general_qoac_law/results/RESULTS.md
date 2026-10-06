@@ -58,3 +58,41 @@ A3/A5 = 2.26, A1/A6 = 9.80, A1/A2 = 1.24.
 
 60 bulk materials from one database (Materials Project). Slabs were not part of this cohort (no fresh slab pool was
 feasible under the frozen WS-0 rule).
+
+---
+
+# Amendment 1 cohort — P3b fresh NOMAD slabs (32 materials)
+
+Selection `d1c1050` (frozen rule `39ba728`); predictions committed in `c1e6564` before the compression run (CI run
+37493518929). **0 pipeline failures.** Every stream is decode-verified.
+
+## Verdict: Part B passes; Part A fails criterion A-H1
+
+| criterion | result (32 slabs, tau = 1e-6) | threshold | pass |
+|---|---|---|---|
+| A validity | A1 and A3 certified 32/32 | >= 30 | yes |
+| **A-H1 closed-form law near the optimum** | median CR_A3/CR_A1 **1.222**, CI [1.138, 1.359] | <= 1.15, CI upper <= 1.20 | **no** |
+| A-H2 operator metric essential | CR_A3/CR_A5 **3.43**, CI [2.89, 4.08], 32/32 | > 1.5, CI lower > 1.35, >= 90% | yes |
+| A-H3 law vs pointwise codecs | CR_A1/CR_A6 **18.5**, CI [15.8, 23.1], 32/32 | > 4, >= 95% | yes |
+| A-H4 law vs truncation | CR_A1/CR_A2 **1.41**, CI [1.28, 1.72], 27/32 | > 1.15, >= 75% | yes |
+| B-H1 calibration | median abs log error **0.029** over 160 pairs | <= 0.223 | yes |
+| B-H2 ranking | Spearman **0.979** | >= 0.85 | yes |
+| B-H3 ordering / B-H4 null operators / control | all hold | — | yes |
+
+Part B medians (G_pred / G_obs) at tau = 1e-6: gradient 1.012 / 1.015; Laplacian 1.031 / 1.047; Hartree field
+1.164 / 1.165; Hartree potential 3.55 / 3.14; Gaussian sigma = 0.5 A 22.0 / 15.3. At tau = 1e-4: pooled error
+0.040, Spearman 0.914.
+
+Part A across tolerances (medians): A3/A1 2.22 / 1.22 / 1.08; A3/A5 1.82 / 3.43 / 3.04; A1/A6 15.9 / 18.5 / 7.0;
+A1/A2 0.69 / 1.41 / 2.16 (tau 1e-4 / 1e-6 / 1e-8).
+
+## Combined reading of P1 (60 bulk) and P3b (32 slabs)
+
+- Gains predicted before compression for five operators match the measured gains in both cohorts (median error
+  2.4% and 2.9%; Spearman 0.978 and 0.979). **Confirmed in both.**
+- The operator metric is essential under optimal allocation (2.12x bulk, 3.43x slabs). **Confirmed in both.**
+- The closed-form allocation beats equal-search pointwise codecs (10.2x, 18.5x) and spectral truncation (1.32x,
+  1.41x) at tau = 1e-6. **Confirmed in both.**
+- Near-optimality of the closed-form power law (operational optimum / law) is **1.105 on bulk (passes) and
+  1.222 on slabs (fails A-H1)**. The finite-rate operational allocation (v0.3) is worth 22% on surfaces at
+  1e-6 and 2.2x at 1e-4. Near-optimality must therefore be stated per system class; it is not universal.
