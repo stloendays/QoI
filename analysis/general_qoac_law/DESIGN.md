@@ -65,3 +65,16 @@ Criteria at tau = 1e-6, pooled over the 60 materials x 5 non-control operators:
    Part B, and aggregate with the criteria above.
 
 No codec parameter, operator definition, policy, margin or tolerance may change after step 1.
+
+## Amendment 1 (2026-10-06, after the P1 confirmation; before any P3b candidate is downloaded)
+
+A second prospective cohort, **P3b**, consists of fresh NOMAD VASP surface slabs drawn under
+`analysis/fresh_population_20261006/P3B_SELECTION_RULE.md`: one material per distinct reduced formula, at most 6 per
+upload, and every used upload, id and formula excluded. It is analysed with this protocol unchanged:
+- the same Part A and Part B arms, tolerances and criteria;
+- predictions committed before compression;
+- validity scaled to at least n - 2 of n.
+
+The workflow is `.github/workflows/general_qoac_law_p3b.yml`, with phases select, predict and run, each controlled by
+`analysis/general_qoac_law/P3B_PHASE`. P3b tests whether the confirmed law transfers to surfaces from a second database.
+It does not alter the P1 result.
