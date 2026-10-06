@@ -260,3 +260,13 @@ Branch `research/qoac-h-strong-baselines-20261005`, commit `0c8b550`. 48 materia
 - Reading: most of the 15x gain over pointwise codecs comes from working in the Hartree eigenbasis; the
   operator-derived |G|^2 allocation adds about 1.56x over the best truncation. Manuscript integration
   requires the scope-reopening steps.
+
+### 8e. QOAC-HB joint Hartree + Bader certification (2026-10-06)
+
+Branch `research/qoac-hb-joint-20261006`. Protocol `ad9d256`; one QOAC-H / T1 / generic stream + B2 projection,
+certified jointly (Hartree < 1e-6 hist & safe; actual Henkelman Bader <= 1e-3 e, zero reassignment; exact AECCAR).
+- Engineering 12: E1 GO (J 12/12), E2 GO (9/12, median 1.600x) -> confirmatory authorized.
+- Confirmatory 38: **formal FAIL**. 38/38 certified, 30/38 wins, CI lower bound 1.131 pass; median 1.224 < 1.25 fail.
+- Before projection, the QOAC-H stream already meets Bader in 50/50 (max 5.3e-5 e). The projection's Hartree cost
+  drops J one ladder rung in 45% of confirmatory materials. Next: certify-then-project or Hartree-aware
+  projection, under a new frozen protocol.
