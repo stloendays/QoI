@@ -1,0 +1,42 @@
+{
+  "status": "COMPLETE",
+  "phase": "engineering",
+  "materials": 12,
+  "material_failures": 0,
+  "setting_failures": 0,
+  "arms": {
+    "J": {
+      "certified": 12,
+      "median_cr": 205.34223827605393
+    },
+    "T1P": {
+      "certified": 12,
+      "median_cr": 171.31555863267192
+    },
+    "GP": {
+      "certified": 12,
+      "median_cr": 15.12217755562019
+    }
+  },
+  "R_J": {
+    "n": 12,
+    "wins": 9,
+    "median": 1.5995595288225612,
+    "bootstrap_ci95": [
+      1.1486518246057833,
+      1.8180391332194272
+    ],
+    "min": 0.8670901325156061
+  },
+  "J_unprojected_bader_fail_count": 0,
+  "gate_E1_feasibility": {
+    "go": true,
+    "J_certified": 12
+  },
+  "gate_E2_utility": {
+    "go": true,
+    "wins": 9,
+    "median_R_J": 1.5995595288225612
+  },
+  "confirmatory_authorized": true
+}
