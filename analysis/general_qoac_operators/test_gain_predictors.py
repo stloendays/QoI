@@ -57,7 +57,8 @@ class LaplaceECSQTests(unittest.TestCase):
 
     def test_table_matches_exact(self):
         lr = np.log(np.logspace(-9, 5, 5001)) + 1e-4
-        H, M = gp.ecsq(lr)
+        H, logM = gp.ecsq(lr)
+        M = np.exp(logM)
         He, Me = gp.laplace_ecsq_exact(np.exp(lr))
         self.assertLess(float(np.max(np.abs(H - He))), 1e-6)
         self.assertLess(float(np.max(np.abs(M / Me - 1.0))), 1e-6)

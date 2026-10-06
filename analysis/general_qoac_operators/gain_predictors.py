@@ -74,8 +74,9 @@ class SpectrumModel:
         return float(np.sum((self.m * w * self.energy)[self.safe]))
 
 
-def _orbit_arrays(shape, lattice):
-    topo = qoac.build_topology(tuple(int(v) for v in shape), np.asarray(lattice, dtype=np.float64), shell_count=32)
+def _orbit_arrays(shape, lattice, topology=None):
+    topo = topology if topology is not None else qoac.build_topology(
+        tuple(int(v) for v in shape), np.asarray(lattice, dtype=np.float64), shell_count=32)
     nx, ny, nz = topo.shape
     yz = ny * nz
     ri = topo.rep_flat // yz
@@ -113,14 +114,14 @@ def orbit_model(shape, lattice) -> SpectrumModel:
     return model
 
 
-def spectrum_model(field: np.ndarray, lattice, bins: int = VARIANCE_BINS) -> SpectrumModel:
+def spectrum_model(field: np.ndarray, lattice, bins: int = VARIANCE_BINS, topology=None) -> SpectrumModel:
     """Orbit groups plus Laplacian component variances from the reference spectrum (predictor b).
 
     sigma^2 of a radial bin = sum_k (Re c_k^2 + Im c_k^2) / sum_k n_k over the orbits in the bin, with
     ``bins`` uniform bins in q = |G| / |G|_max. The reference spectrum is an input, not a compression outcome.
     """
     x = np.ascontiguousarray(np.asarray(field, dtype=np.float64))
-    topo, m, n, safe = _orbit_arrays(x.shape, lattice)
+    topo, m, n, safe = _orbit_arrays(x.shape, lattice, topology)
     c = np.fft.fftn(x, norm="ortho").ravel()[topo.rep_flat]
     e = c.real * c.real + np.where(topo.self_conjugate, 0.0, c.imag * c.imag)
     vbin = np.clip(np.floor(topo.q * bins).astype(np.int64), 0, bins - 1)
@@ -152,17 +153,17 @@ def blind() -> Policy:
     return lambda model: np.zeros(model.g2.shape)
 
 
-def operator_optimal(weight: Callable[[np.ndarray], np.ndarray]) -> Policy:
-    """u = w^{-1/2}: the high-rate optimum for operator weight w."""
-    def f(model: SpectrumModel) -> np.ndarray:
-        with np.errstate(divide="ignore"):
-            return -0.5 * np.log(weight(model.g2))
-    return f
-
-
-def log_weight(weight: Callable[[np.ndarray], np.ndarray], model: SpectrumModel) -> np.ndarray:
+def log_weight(weight, model: SpectrumModel) -> np.ndarray:
+    """log w per orbit group; ``weight`` is an operators.DiagonalOperator or a callable w(g2)."""
+    if hasattr(weight, "log_weight"):
+        return weight.log_weight(model.g2)
     with np.errstate(divide="ignore"):
         return np.log(weight(model.g2))
+
+
+def operator_optimal(weight) -> Policy:
+    """u = w^{-1/2}: the high-rate optimum for operator weight w (operator or callable)."""
+    return lambda model: -0.5 * log_weight(weight, model)
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -177,15 +178,20 @@ def highrate_log_distortion(model: SpectrumModel, log_w: np.ndarray, log_u: np.n
     return -2.0 * mean_lu + float(special.logsumexp(terms))
 
 
+def highrate_log_rmse_ratio(model, log_w, log_u_a, log_u_b) -> float:
+    """Natural log of the predicted matched-rate operator-RMSE ratio policy a / policy b."""
+    return 0.5 * (highrate_log_distortion(model, log_w, log_u_a) - highrate_log_distortion(model, log_w, log_u_b))
+
+
 def highrate_rmse_ratio(model, log_w, log_u_a, log_u_b) -> float:
     """Predicted matched-rate operator-RMSE ratio policy a / policy b."""
-    return math.exp(0.5 * (highrate_log_distortion(model, log_w, log_u_a) - highrate_log_distortion(model, log_w, log_u_b)))
+    return math.exp(highrate_log_rmse_ratio(model, log_w, log_u_a, log_u_b))
 
 
 def highrate_rate_saving_bits_per_point(model, log_w, log_u_a, log_u_b) -> float:
     """Rate saved by policy a over b at matched distortion, bits per real-space grid point."""
     ncomp = float(np.sum(model.count * model.n))
-    return -ncomp * math.log2(highrate_rmse_ratio(model, log_w, log_u_a, log_u_b)) / model.n_points
+    return -ncomp * highrate_log_rmse_ratio(model, log_w, log_u_a, log_u_b) / LN2 / model.n_points
 
 
 def highrate_optimal_beta(model, log_w, betas=None, bounds=(-4.0, 4.0)) -> dict:
@@ -256,23 +262,25 @@ class _ECSQTable:
         self.h_inf = math.log2(SQRT2 * math.e)    # differential entropy of unit-variance Laplace (bits)
 
     def __call__(self, log_r: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """Return H (bits) and log M."""
         lx = log_r / math.log(10.0)
         H = np.interp(lx, self.x, self.H)
-        M = np.exp(np.interp(lx, self.x, self.logM))
+        logM = np.interp(lx, self.x, self.logM)
         lo = lx < self.LO
         if np.any(lo):
             H[lo] = self.h_inf - lx[lo] * math.log2(10.0)
-            M[lo] = np.exp(2.0 * log_r[lo]) / 12.0
+            logM[lo] = 2.0 * log_r[lo] - math.log(12.0)
         hi = lx > self.HI
         H[hi] = 0.0
-        M[hi] = 1.0
-        return H, M
+        logM[hi] = 0.0
+        return H, logM
 
 
 _TABLE: _ECSQTable | None = None
 
 
 def ecsq(log_r: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Tabulated (H bits, log MSE/sigma^2) as a function of log(Delta/sigma)."""
     global _TABLE
     if _TABLE is None:
         _TABLE = _ECSQTable()
@@ -287,16 +295,18 @@ def finite_rate_point(model: SpectrumModel, log_w: np.ndarray, log_u: np.ndarray
     pos = model.sigma2 > 0.0
     log_sig = np.where(pos, 0.5 * np.log(np.where(pos, model.sigma2, 1.0)), -np.inf)
     log_r = np.where(pos, log_alpha + log_u - log_sig, np.inf)
-    H, M = ecsq(np.where(np.isfinite(log_r), log_r, 1e3))
+    H, logM = ecsq(np.where(np.isfinite(log_r), log_r, 1e3))
     cn = model.count * model.n
     rm = np.ones(model.g2.shape, bool) if rate_mask is None else rate_mask
     rate = float(np.sum((cn * H)[rm]))
     s = model.safe & pos
-    w = np.exp(log_w)
-    D = float(np.sum((cn * model.m * w * model.sigma2 * M)[s]))
+    with np.errstate(divide="ignore"):
+        terms = np.log(cn[s] * model.m[s] * model.sigma2[s]) + log_w[s] + logM[s]
+    log_D = float(special.logsumexp(terms))
+    D = math.exp(log_D) if log_D < 700.0 else float("inf")
     p0 = np.where(pos, -np.expm1(-np.exp(np.minimum(log_r, 700.0)) / SQRT2), 1.0)
     dead = float(np.sum(model.count * p0 ** model.n) / np.sum(model.count))
-    return {"rate_bits": rate, "distortion": D, "dead_zone_fraction": dead}
+    return {"rate_bits": rate, "distortion": D, "log_distortion": log_D, "dead_zone_fraction": dead}
 
 
 def _bracket(model, log_u):
@@ -309,7 +319,7 @@ def _bracket(model, log_u):
 def alpha_for_distortion(model, log_w, log_u, distortion, rate_mask=None) -> float:
     """log alpha giving the target distortion (nan if above the all-zero distortion)."""
     lo, hi = _bracket(model, log_u)
-    f = lambda la: math.log(finite_rate_point(model, log_w, log_u, la, rate_mask)["distortion"]) - math.log(distortion)
+    f = lambda la: finite_rate_point(model, log_w, log_u, la, rate_mask)["log_distortion"] - math.log(distortion)
     if f(hi) <= 0.0:
         return float("nan")
     while f(lo) > 0.0:
@@ -325,13 +335,18 @@ def alpha_for_rate(model, log_w, log_u, rate_bits, rate_mask=None) -> float:
     return float(optimize.brentq(f, lo, hi, xtol=1e-12, rtol=1e-13, maxiter=200))
 
 
+def _log_reference_energy(model, log_w) -> float:
+    s = model.safe & (model.energy > 0.0)
+    return float(special.logsumexp(np.log(model.m[s] * model.energy[s]) + log_w[s]))
+
+
 def finite_rate_gain(model, log_w, log_u_a, log_u_b, target_rel_rmse: float, rate_mask=None) -> dict:
     """Policy a vs b at a target Nyquist-safe relative operator RMSE.
 
     rate_ratio            R_a / R_b at matched distortion (the predicted compression-ratio gain is 1/rate_ratio)
     matched_rate_rmse_ratio  RMSE_a / RMSE_b with a at the rate b needs for the target
     """
-    D_t = float(target_rel_rmse) ** 2 * model.reference_energy(np.exp(log_w))
+    D_t = float(target_rel_rmse) ** 2 * math.exp(_log_reference_energy(model, log_w))
     la_a = alpha_for_distortion(model, log_w, log_u_a, D_t, rate_mask)
     la_b = alpha_for_distortion(model, log_w, log_u_b, D_t, rate_mask)
     out = {"target_rel_rmse": float(target_rel_rmse)}

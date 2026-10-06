@@ -115,6 +115,15 @@ class DiagonalOperator:
             out[~pos] = self._weight(np.zeros(int(np.count_nonzero(~pos))))
         return out
 
+    def log_weight(self, g2: np.ndarray) -> np.ndarray:
+        """log w(|G|^2) without underflow (Gaussian smoothing: -sigma^2 |G|^2 exactly)."""
+        g2 = np.asarray(g2, dtype=np.float64)
+        if self.name == "gaussian_smoothed_density":
+            s = dict(self.params)["sigma_angstrom"]
+            return -s * s * g2
+        with np.errstate(divide="ignore"):
+            return np.log(self.weight(g2))
+
     def amplitudes(self, gvec: np.ndarray, g2: np.ndarray) -> list:
         """Complex multipliers a_c(G) (physical constants included), valid where ``support`` is True."""
         return self._amplitudes(gvec, g2)
