@@ -1,0 +1,103 @@
+name: QOAC v0.3 RDO engineering
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/qoac-v03-rdo-20261006
+    paths:
+      - analysis/qoac_v03_rdo/*.py
+      - .github/workflows/qoac_v03_engineering.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qoac-v03-engineering-20261006
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: |
+          python -m pip install -q numpy==2.4.6
+          cd analysis/qoac_v03_rdo && python -m unittest -v test_codec_qoac_v03.py
+
+  shard:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        material: [mp-1188002, mp-37207, mp-1103974, mp-560341, mp-32108, mp-22490, nomad-WjYAcipcgiRI, nomad---3hBedCnC_e, nomad-8eTSyDPSGSwy, nomad-Ek0B30z0bVyP, nomad-19wSfSWChOSI, nomad-BiuRBghVF7ns]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Run material
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/v03_${{ matrix.material }}"
+          python repo/analysis/qoac_v03_rdo/run_engineering.py --repo-root repo --frozen-root frozen \
+            --cache-dir "$RUNNER_TEMP/cache" --output-dir "$out" --workers 1 --only "${{ matrix.material }}"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v03-eng-${{ matrix.material }}
+          path: ${{ runner.temp }}/v03_${{ matrix.material }}
+          if-no-files-found: error
+
+  aggregate:
+    if: always() && needs.test.result == 'success'
+    needs: [test, shard]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -q numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v03-eng-*
+          path: shards
+      - name: Aggregate and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=repo/analysis/qoac_v03_rdo/results/engineering
+          rm -rf "$out"
+          python repo/analysis/qoac_v03_rdo/aggregate_engineering.py --shards-root shards \
+            --manifest repo/analysis/operator_aware_codec_hartree/results/PILOT_MANIFEST.csv --output-dir "$out"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/qoac_v03_rdo/results
+          git commit -m 'research: complete QOAC v0.3 engineering' || exit 0
+          git pull --rebase origin research/qoac-v03-rdo-20261006
+          git push origin HEAD:research/qoac-v03-rdo-20261006
