@@ -1,0 +1,130 @@
+{
+  "pools": {
+    "P1": {
+      "n_attempts": 72,
+      "n_accepted": 72,
+      "n_engineering": 12,
+      "n_confirmatory": 60,
+      "n_strata_attempted": 72,
+      "reject_reasons": {},
+      "n_downloads_chgcar": 72,
+      "downloaded_bytes": 1425849413,
+      "accepted_source_bytes": {
+        "n": 72,
+        "min": 1314706,
+        "q1": 8577179.0,
+        "median": 14718735.5,
+        "q3": 27026855.25,
+        "max": 67745454
+      },
+      "accepted_npoints": {
+        "n": 72,
+        "min": 175616,
+        "q1": 691200.0,
+        "median": 1045248.0,
+        "q3": 2039040.0,
+        "max": 4741632
+      },
+      "accepted_natoms": {
+        "n": 72,
+        "min": 2,
+        "q1": 6.0,
+        "median": 12.0,
+        "q3": 27.0,
+        "max": 72
+      },
+      "engineering_npoints": {
+        "n": 12,
+        "min": 248832,
+        "q1": 638064.0,
+        "median": 1026560.0,
+        "q3": 2004864.0,
+        "max": 4096000
+      },
+      "confirmatory_npoints": {
+        "n": 60,
+        "min": 175616,
+        "q1": 691200.0,
+        "median": 1045248.0,
+        "q3": 2039040.0,
+        "max": 4741632
+      },
+      "max_hash_rank_used": 0,
+      "n_distinct_material_ids": 72,
+      "n_material_id_equals_task_id": 67
+    },
+    "P2": {
+      "n_attempts": 64,
+      "n_accepted": 60,
+      "n_engineering": 12,
+      "n_confirmatory": 48,
+      "n_strata_attempted": 60,
+      "reject_reasons": {
+        "npoints_out_of_range": 2,
+        "excluded_formula": 2
+      },
+      "n_downloads_chgcar": 64,
+      "downloaded_bytes": 1780051063,
+      "accepted_source_bytes": {
+        "n": 60,
+        "min": 1348930,
+        "q1": 6091038.5,
+        "median": 11101470.0,
+        "q3": 18423926.75,
+        "max": 61826867
+      },
+      "accepted_npoints": {
+        "n": 60,
+        "min": 175616,
+        "q1": 442176.0,
+        "median": 884736.0,
+        "q3": 1294704.0,
+        "max": 5832000
+      },
+      "accepted_natoms": {
+        "n": 60,
+        "min": 2,
+        "q1": 5.0,
+        "median": 7.0,
+        "q3": 12.75,
+        "max": 64
+      },
+      "engineering_npoints": {
+        "n": 12,
+        "min": 193536,
+        "q1": 406656.0,
+        "median": 826368.0,
+        "q3": 1354752.0,
+        "max": 2764800
+      },
+      "confirmatory_npoints": {
+        "n": 48,
+        "min": 175616,
+        "q1": 442176.0,
+        "median": 884736.0,
+        "q3": 1294704.0,
+        "max": 5832000
+      },
+      "max_hash_rank_used": 2,
+      "n_distinct_material_ids": 60,
+      "accepted_aeccar0_bytes": {
+        "n": 60,
+        "min": 820628,
+        "q1": 3307680.75,
+        "median": 6271566.5,
+        "q3": 9566076.5,
+        "max": 31473912
+      },
+      "accepted_aeccar2_bytes": {
+        "n": 60,
+        "min": 647192,
+        "q1": 2828533.5,
+        "median": 5380758.0,
+        "q3": 9152292.25,
+        "max": 30627491
+      },
+      "n_material_id_equals_task_id": 50
+    }
+  },
+  "total_downloaded_bytes": 3205900476
+}

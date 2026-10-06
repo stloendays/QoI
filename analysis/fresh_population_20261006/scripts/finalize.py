@@ -123,6 +123,8 @@ def main() -> int:
         "exclusion_files_sha256": {n: sha_file(out / n) for n in (
             "exclusion_ids.csv", "exclusion_ids_full.csv.gz", "exclusion_formulas.csv")},
         "frame_counts": load("frame_counts.json"),
+        "p3_feasibility": load("p3_feasibility.json"),
+        "p3_status": "not built: frozen public NOMAD frame cannot supply 72 distinct non-excluded slabs (see p3_feasibility.json)",
         "attempts_sha256": sha_file(out / "attempts.csv"),
         "manifests": manifests,
         "selection_stats": stats,

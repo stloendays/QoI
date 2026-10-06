@@ -1,0 +1,301 @@
+{
+  "population": "QOAC-FRESH-20261006",
+  "written_utc": "2026-10-06T15:07:23.820129+00:00",
+  "branch": "research/fresh-population-20261006",
+  "selection_rule_sha256": "25d6f04f4a84f5719329a2bcc45afe1b922cdf84e8aa835236b1ffa3f133778b",
+  "selection_rule_frozen_commit": "10e7863",
+  "scripts_git_commit": "1ac63fd7bd715e49f49aabb3873771ed86234065",
+  "scripts_sha256": {
+    "build_exclusion.py": "cda6a3ed6a935368e6b206cdc092909d47531bbd4e72738c0dfbd13659f42325",
+    "finalize.py": "98d5b5f8c564c69a7c3feca59bbd259b3de8b80c1027160e42eedd9062c70287",
+    "nomad_frame.py": "767adf2c50dd1648dbde0d593450c597689547591aac6499f7db9cad904dbeb9",
+    "p3_feasibility.py": "8fdb6d43829332f81c27d679f262e0caa49fdd39a2072110a7605f85874c83c0",
+    "s3_index.py": "5a730347a1c8dec67f868d5069d7b2d63d788efcfc27321faf747614728ef8de",
+    "select_population.py": "a5d93fd90285fd1cfd4665d736531471f81dc327a637a50366a9516aacf5cdf3"
+  },
+  "loader": "validation/qsq_prospective/development_compatibility_smoke.py::build_grid / decode_mp_chgcar",
+  "loader_sha256": "c0e5896331aed6e0c4f7c5227e0997648207e647e45877c31d6bf483387c99d4",
+  "s3_listing": {
+    "chgcars": {
+      "listing_started_utc": "2026-10-06T14:16:49.481188+00:00",
+      "listing_finished_utc": "2026-10-06T14:28:45.727216+00:00",
+      "n_keys": 415480,
+      "n_task_keys": 415475
+    },
+    "aeccar0s": {
+      "listing_started_utc": "2026-10-06T14:28:45.727216+00:00",
+      "listing_finished_utc": "2026-10-06T14:34:23.138924+00:00",
+      "n_keys": 138847,
+      "n_task_keys": 138845
+    },
+    "aeccar2s": {
+      "listing_started_utc": "2026-10-06T14:34:23.138924+00:00",
+      "listing_finished_utc": "2026-10-06T14:38:26.428833+00:00",
+      "n_keys": 138821,
+      "n_task_keys": 138819
+    }
+  },
+  "nomad_listing": {
+    "api": "https://nomad-lab.eu/prod/v1/api/v1",
+    "query": {
+      "results.material.structural_type": "surface",
+      "results.method.simulation.program_name": "VASP"
+    },
+    "owner": "public",
+    "listing_started_utc": "2026-10-06T14:37:34.082913+00:00",
+    "listing_finished_utc": "2026-10-06T15:06:26.973612+00:00",
+    "n_entries": 16275,
+    "n_entries_with_chgcar_in_mainfile_dir": 1014,
+    "n_rawdir_size_unavailable_dropped": 194,
+    "n_frame_rows": 820
+  },
+  "s3_index_sha256": {
+    "s3_index_aeccar0s.csv.gz": "bb8419029e9dd22385b4d217b5653a946f663ac657ab8442f9cfa3b45c628c0f",
+    "s3_index_aeccar2s.csv.gz": "c7fef29a68049dc9719a7660b14fcc46780b1509392bd68b6dfb860f2644f2fa",
+    "s3_index_chgcars.csv.gz": "20280b28052e4826166afe52ad3b1ad1018814505bb6e846a30351ac03f13508"
+  },
+  "nomad_frame_sha256": "a3e34968cf47ca2bf566d77bbd2d636d3a18abee47b24a9444a6b3e0422f74be",
+  "exclusion": {
+    "n_branches_scanned": 60,
+    "branches": [
+      "origin/analysis/chatgpt-postprocess-20260906",
+      "origin/analysis/hartree-potential-pilot-20260909",
+      "origin/analysis/matched-realized-linf-v1",
+      "origin/analysis/paper-freeze-v03-20260906",
+      "origin/analysis/perturbation-amplitude-sweep",
+      "origin/docs/drive-data-map-20260916",
+      "origin/ext/QSQ-optimization-20261001",
+      "origin/ext/WP-A-20260928",
+      "origin/ext/WP-B-20260928",
+      "origin/ext/WP-C-20260928",
+      "origin/ext/WP-D-20260928",
+      "origin/ext/WP-EFG-20260930",
+      "origin/ext/turbulence-generality-20261001",
+      "origin/ext/turbulence-n19-20261003",
+      "origin/external-e2e-validation",
+      "origin/external-final4-local-recovery-20260908",
+      "origin/feature/decision-layer-agent-20260913",
+      "origin/main",
+      "origin/manuscript-workflow-revision",
+      "origin/ops/drive-data-export-20260916",
+      "origin/paper-20260927",
+      "origin/paper/figure-port-20261003",
+      "origin/paper/fourier-mechanism-integration-20260927",
+      "origin/paper/metrology-framing-20261003",
+      "origin/paper/qoac-integration-20261005",
+      "origin/paper/qoi-generality-integration-20260930",
+      "origin/paper/qsq-measurement-contract-20261001",
+      "origin/paper/submission-storyline-20260912",
+      "origin/paper/workflow-polish-20261003",
+      "origin/privacy/public-placeholder-20260916",
+      "origin/privacy/unpublished-archive-20260916",
+      "origin/research/general-qoac-electric-field-20261005",
+      "origin/research/general-qoac-electric-field-beta-map-20261005",
+      "origin/research/general-qoac-electric-field-diagnosis-20261005",
+      "origin/research/hartree-qsq-full-20260927",
+      "origin/research/hartree-qsq-generality-20260927",
+      "origin/research/hartree-spectral-allcodecs-20260927",
+      "origin/research/hartree-spectral-common-support-20260927",
+      "origin/research/hartree-spectral-mechanism-20260927",
+      "origin/research/qoac-b-fixed-partition-20261005",
+      "origin/research/qoac-b-projection-20261005",
+      "origin/research/qoac-b2-confirmatory-20261005",
+      "origin/research/qoac-b2-projection-aware-20261005",
+      "origin/research/qoac-b3-full-50-census-20261005",
+      "origin/research/qoac-b3-partition-compiled-20261005",
+      "origin/research/qoac-electric-field-20261005",
+      "origin/research/qoac-h-strong-baselines-20261005",
+      "origin/research/qoac-h-v01-20261005",
+      "origin/research/qoac-h-v02-20261005",
+      "origin/research/qoac-h-v02-confirmatory-20261005",
+      "origin/research/qoac-h-v02-full-census-20261005",
+      "origin/research/qoac-h-v02-heldout-20261005",
+      "origin/research/qoac-h-v02-nyquist-20261005",
+      "origin/research/qoac-hb-joint-20261006",
+      "origin/research/qoac-program-base-20261006",
+      "origin/review/manuscript-audit-20260916",
+      "origin/review/private-si-assets-build-20260916",
+      "origin/review/si-sync-audit-20260916",
+      "origin/submission/jctc-v0.1",
+      "origin/submission/jctc-v0.4-20260908"
+    ],
+    "n_unique_blobs_scanned": 1688,
+    "n_unique_ids_by_kind": {
+      "mp_id": 368,
+      "mp_task_id_s3_url": 486,
+      "nomad_entry_id": 96,
+      "nomad_material_id": 70
+    },
+    "n_unique_ids_total": 833,
+    "n_formula_strings": 296,
+    "n_unique_reduced_formulas": 290,
+    "n_formula_strings_unparsed": 1,
+    "unparsed_formula_examples": [
+      "X01X11"
+    ]
+  },
+  "exclusion_files_sha256": {
+    "exclusion_ids.csv": "a39b3be6c7c85eb3be894b8ba0169b3aa46ce84df134448cb229111ee5b8ab18",
+    "exclusion_ids_full.csv.gz": "7054bed8b595d7c39c6a7f2b430b6ccbc5923f8f3ff3fb6abaf43e2d97f484b6",
+    "exclusion_formulas.csv": "becefee66b2e3a2195cbabf018ceded4fbd8b09eb6ced0b1ebd614b91bfa15ed"
+  },
+  "frame_counts": {
+    "s3_chgcar_task_ids": 415475,
+    "s3_aeccar0_task_ids": 138845,
+    "s3_aeccar2_task_ids": 138819,
+    "s3_triple_task_ids": 138804,
+    "frame_P2": 135534,
+    "frame_P1": 270278,
+    "nomad_entries_with_chgcar": 0,
+    "frame_P3": 0
+  },
+  "attempts_sha256": "015d41ed2edd8b8f37d931ba9bbda0f9a8dc9b7d4fa5b42dbf2e0fb0f4d2115c",
+  "manifests": {
+    "P1_ENGINEERING_MANIFEST.csv": {
+      "rows": 12,
+      "sha256": "480bc38667544eb4023276ad9def91eff451b4f1dbccb7cde76fb707b66fd6a9"
+    },
+    "P1_CONFIRMATORY_MANIFEST.csv": {
+      "rows": 60,
+      "sha256": "3297d6c17959c7a70bf157f7157283f45ddb046fdc460acaa8a8570ab4de7331"
+    },
+    "P2_ENGINEERING_MANIFEST.csv": {
+      "rows": 12,
+      "sha256": "95aa3ce54cf46e6e7d39108eb7205b25f1160949ad455eedc67e2f240230672c"
+    },
+    "P2_CONFIRMATORY_MANIFEST.csv": {
+      "rows": 48,
+      "sha256": "361202189512883931c90a9fe62d7cb48fd4f7294a55ae019d781c7c89aafab5"
+    }
+  },
+  "selection_stats": {
+    "pools": {
+      "P1": {
+        "n_attempts": 72,
+        "n_accepted": 72,
+        "n_engineering": 12,
+        "n_confirmatory": 60,
+        "n_strata_attempted": 72,
+        "reject_reasons": {},
+        "n_downloads_chgcar": 72,
+        "downloaded_bytes": 1425849413,
+        "accepted_source_bytes": {
+          "n": 72,
+          "min": 1314706,
+          "q1": 8577179.0,
+          "median": 14718735.5,
+          "q3": 27026855.25,
+          "max": 67745454
+        },
+        "accepted_npoints": {
+          "n": 72,
+          "min": 175616,
+          "q1": 691200.0,
+          "median": 1045248.0,
+          "q3": 2039040.0,
+          "max": 4741632
+        },
+        "accepted_natoms": {
+          "n": 72,
+          "min": 2,
+          "q1": 6.0,
+          "median": 12.0,
+          "q3": 27.0,
+          "max": 72
+        },
+        "engineering_npoints": {
+          "n": 12,
+          "min": 248832,
+          "q1": 638064.0,
+          "median": 1026560.0,
+          "q3": 2004864.0,
+          "max": 4096000
+        },
+        "confirmatory_npoints": {
+          "n": 60,
+          "min": 175616,
+          "q1": 691200.0,
+          "median": 1045248.0,
+          "q3": 2039040.0,
+          "max": 4741632
+        },
+        "max_hash_rank_used": 0,
+        "n_distinct_material_ids": 72,
+        "n_material_id_equals_task_id": 67
+      },
+      "P2": {
+        "n_attempts": 64,
+        "n_accepted": 60,
+        "n_engineering": 12,
+        "n_confirmatory": 48,
+        "n_strata_attempted": 60,
+        "reject_reasons": {
+          "npoints_out_of_range": 2,
+          "excluded_formula": 2
+        },
+        "n_downloads_chgcar": 64,
+        "downloaded_bytes": 1780051063,
+        "accepted_source_bytes": {
+          "n": 60,
+          "min": 1348930,
+          "q1": 6091038.5,
+          "median": 11101470.0,
+          "q3": 18423926.75,
+          "max": 61826867
+        },
+        "accepted_npoints": {
+          "n": 60,
+          "min": 175616,
+          "q1": 442176.0,
+          "median": 884736.0,
+          "q3": 1294704.0,
+          "max": 5832000
+        },
+        "accepted_natoms": {
+          "n": 60,
+          "min": 2,
+          "q1": 5.0,
+          "median": 7.0,
+          "q3": 12.75,
+          "max": 64
+        },
+        "engineering_npoints": {
+          "n": 12,
+          "min": 193536,
+          "q1": 406656.0,
+          "median": 826368.0,
+          "q3": 1354752.0,
+          "max": 2764800
+        },
+        "confirmatory_npoints": {
+          "n": 48,
+          "min": 175616,
+          "q1": 442176.0,
+          "median": 884736.0,
+          "q3": 1294704.0,
+          "max": 5832000
+        },
+        "max_hash_rank_used": 2,
+        "n_distinct_material_ids": 60,
+        "accepted_aeccar0_bytes": {
+          "n": 60,
+          "min": 820628,
+          "q1": 3307680.75,
+          "median": 6271566.5,
+          "q3": 9566076.5,
+          "max": 31473912
+        },
+        "accepted_aeccar2_bytes": {
+          "n": 60,
+          "min": 647192,
+          "q1": 2828533.5,
+          "median": 5380758.0,
+          "q3": 9152292.25,
+          "max": 30627491
+        },
+        "n_material_id_equals_task_id": 50
+      }
+    },
+    "total_downloaded_bytes": 3205900476
+  }
+}
