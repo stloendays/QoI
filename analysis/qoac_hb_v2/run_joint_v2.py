@@ -38,6 +38,8 @@ qoac = pv.qoac
 b1 = pv._load("run_engineering", A / "operator_aware_bader_fixed_partition" / "run_engineering.py")
 t1 = pv._load("truncation_codec", A / "qoac_h_strong_baselines" / "truncation_codec.py")
 assert t1.qoac is qoac
+v3 = pv._load("codec_qoac_v03", HERE / "codec_qoac_v03.py")
+assert v3.v02 is qoac
 
 TAU_H = 1e-6
 TAU_B = 1e-3
@@ -46,6 +48,9 @@ MAX_ATTEMPTS = 5
 ALPHA_REL = np.logspace(-7.0, 1.0, 25)
 Q_CUTS = (0.05, 0.075, 0.10, 0.15, 0.20, 0.30, 0.50, 0.75, 1.00)
 DEFAULT_MUS = (1e-6, 1e-4, 1e-2, 1.0)
+R3_TAU = 1e-6
+R3_MARGINS = tuple(0.995 * 0.995 ** k for k in range(6))   # least -> most conservative
+R3_D_FLOOR_REL = 1e-3 * 1e-12 / 32
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -62,6 +67,7 @@ class Context:
     work: Path
     core: Any
     wp_rows: list[dict]
+    cache: dict = field(default_factory=dict)   # per-material codec state (e.g. the R3 analysis)
 
 
 @dataclass
@@ -111,9 +117,38 @@ def _gp_decode(ctx, spec):
     return np.asarray(rec, dtype=np.float64), int(nb)
 
 
+def _r3_analysis(ctx):
+    """QOAC v0.3 analysis of this material, computed once and kept on the per-material context."""
+    if "R3" not in ctx.cache:
+        try:
+            rh, _ = qoac.reference_hartree_rms(ctx.chg, ctx.lattice)
+            ctx.cache["R3"] = v3.analyze(ctx.chg, ctx.lattice, operator="hartree_potential", prior="operator",
+                                         reference_historical_rms=rh, d_floor_rel=R3_D_FLOOR_REL)
+        except Exception as exc:  # stored so every R3 candidate reports it without recomputing
+            ctx.cache["R3"] = exc
+    an = ctx.cache["R3"]
+    if isinstance(an, Exception):
+        raise RuntimeError(f"R3 analysis failed: {type(an).__name__}: {an}") from an
+    return an
+
+
+def _r3_cands(ctx):
+    return [(f"tau={R3_TAU:g};k={k};margin={mg:.9g}", (k, mg)) for k, mg in enumerate(R3_MARGINS)]
+
+
+def _r3_decode(ctx, spec):
+    an = _r3_analysis(ctx)
+    key = ("R3", spec)
+    if key not in ctx.cache:
+        ctx.cache[key] = v3.select(an, R3_TAU, margin=spec[1], polish=True)
+    blob = v3.encode(an, ctx.cache[key])
+    return np.asarray(v3.decode(blob), dtype=np.float64), len(blob)
+
+
 register(BaseCodec("J", _j_cands, _j_decode))     # frozen QOAC-H v0.2 ladder
 register(BaseCodec("T1", _t1_cands, _t1_decode))  # frozen spectral-truncation ladder
 register(BaseCodec("GP", _gp_cands, _gp_decode))  # frozen WP-G ZFP/SZ3/SPERR rows
+register(BaseCodec("R3", _r3_cands, _r3_decode))  # QOAC v0.3 RDO streams, tau = 1e-6, six margins
 
 
 # ---------------------------------------------------------------------------------------------------------

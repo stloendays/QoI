@@ -18,7 +18,11 @@ carry no scientific meaning. Frozen modules are imported unchanged:
 | `DERIVATION.md` | derivation of HAP, including the explicit G = 0 elimination |
 | `test_projection_v2.py` | unit tests (stdlib `unittest`) |
 | `run_joint_v2.py` | runner: pluggable base codecs x post-processors |
+| `codec_qoac_v03.py` | QOAC v0.3 RDO codec, copied unchanged from `research/qoac-v03-rdo-20261006` at `7ca412e` (base codec `R3`) |
+| `test_codec_qoac_v03.py` | its unit tests, copied unchanged from the same commit |
+| `aggregate_joint_v2.py` | aggregates the shard outputs (descriptive; no gates) |
 | `smoke_stub_bader.py` | runner smoke test with a stub Bader solver on `mp-10761` |
+| `.github/workflows/qoac_hb_v2.yml` | CI: `workflow_dispatch` only, inputs `manifest` and `mu` |
 
 ## Hartree-aware projection (HAP)
 
@@ -62,9 +66,14 @@ python run_joint_v2.py --repo-root <repo> --frozen-root D:\Research\QoI-final4-l
     [--shard-count N --shard-index i] [--material-id mp-...] [--base J T1 GP] [--mu 1e-6 1e-4 1e-2 1]
 ```
 
-- Base codecs: `J` (QOAC-H v0.2 ladder), `T1` (truncation ladder) and `GP` (WP-G generic rows). They live in
-  the registry `REGISTRY`; a new codec is added with
+- Base codecs: `J` (QOAC-H v0.2 ladder), `T1` (truncation ladder), `GP` (WP-G generic rows) and `R3`
+  (QOAC v0.3). They live in the registry `REGISTRY`; a new codec is added with
   `register(BaseCodec(name, candidates(ctx) -> [(param, spec)], decode(ctx, spec) -> (field, payload_bytes)))`.
+  `ctx.cache` holds per-material codec state.
+- `R3`: `analyze(rho, lattice, operator="hartree_potential", prior="operator",
+  reference_historical_rms=reference_hartree_rms(rho, lattice)[0], d_floor_rel=1e-3*1e-12/32)`, computed once
+  per material. Six candidates `select(an, 1e-6, margin=0.995*0.995**k, polish=True)`, k = 0..5 (least to most
+  conservative), stored with `encode` and reconstructed with `decode`.
 - Post-processors: `none`, `uniform`, `hap:<mu>`, `ctp-uniform`, `ctp-hap:<mu>`. Every base codec gets the
   same set.
 - Bytes:
@@ -93,6 +102,28 @@ python run_joint_v2.py --repo-root <repo> --frozen-root D:\Research\QoI-final4-l
   | `selected_*.csv` | certified result per (material, base, post) |
   | `failures_*.csv` | failures |
   | `materials_*.csv` | runtime, HAP precompute time, kappa and Gram condition per mu |
+
+## Aggregation
+
+```
+python aggregate_joint_v2.py --manifest <manifest.csv> --shards-root <dir with *_shard_*.csv> --output-dir <dir>
+```
+
+| file | contents |
+|---|---|
+| `joint_v2_material.csv` | one row per (material, base, post): certified CR, Bader attempts, Bader error, reassignment, unprojected Bader control, Hartree errors before and after post-processing, closure, density errors, bytes, and `cr_ratio_vs_best_other` |
+| `SUMMARY.json` | per (base, post): `n_certified`, `median_cr`, and `n` / `n_sole_certifier` / `median` of `cr_ratio_vs_best_other` |
+| `rows.csv.gz`, `bader_attempts.csv`, `selected.csv`, `failures.csv`, `materials.csv` | concatenated shard outputs |
+
+`cr_ratio_vs_best_other` = certified CR / best certified CR among the other base codecs with the same
+post-processor. It is defined where the base certifies; a sole certifier gets +inf, which enters the median
+as 1e9 (the `aggregate_joint.py` convention). Failed and missing materials appear with `material_status`
+FAILED / MISSING and are not certified. No pass/fail gates are applied.
+
+CI: `.github/workflows/qoac_hb_v2.yml`, dispatched from this branch with `manifest` (repository-relative
+CSV) and `mu` (default `1e-4 1e-2 1`). It runs 19 hash shards (`shard_for`) with the frozen environment and
+Henkelman Bader build of `qoac_hb_joint.yml`, then commits the aggregate to
+`analysis/qoac_hb_v2/results/<manifest stem>/`.
 
 ## Test results
 
@@ -123,6 +154,10 @@ Additional tests:
 - empty regions are ignored;
 - the HAP side channel round-trips;
 - CTP decisions and byte counts are correct.
+
+`python -m unittest test_codec_qoac_v03.py` (copied location): 2 tests, both pass (about 3 s). The copied
+codec imports `codec_qoac_h_v02` from `analysis/operator_aware_codec_hartree_v02/` with its original
+`sys.path` line, and inside the runner it resolves to the same module object as `pv.qoac`.
 
 ## Smoke test (stub Bader)
 
