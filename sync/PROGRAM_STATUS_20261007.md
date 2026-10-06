@@ -17,6 +17,17 @@ Gain predictions per operator (P1 / P3b, G_pred vs G_obs): gradient 1.014/1.011 
 and 1.031/1.047; Hartree field 1.151/1.149 and 1.164/1.165; Hartree potential 2.72/2.61 and 3.55/3.14; Gaussian
 (sigma = 0.5 A) 17.6/12.1 and 22.0/15.3. The Gaussian gain is overstated by about 1.45x in both cohorts.
 
+## Joint Hartree + Bader on one stream (QOAC-HB v2, fresh P2; protocol `8a784a4`)
+
+| | engineering (12) | confirmation (48) | source |
+|---|---|---|---|
+| jointly certified at tau_B = 1e-3, 1e-4, 1e-5 e (Hartree 1e-6) | 12/12 | 48/48 | `analysis/qoac_hb_v2/results/*/RESULTS.md` (branch `research/qoac-hb-v2-20261006`) |
+| joint overhead at tau_B = 1e-4 (CR_Hartree-only / CR_joint) | 1.000 | 1.000, CI [1.000, 1.000] | same |
+| R3 vs best of v0.2, truncation and ZFP/SZ3/SPERR (joint) | 12/12, 1.355x | 48/48, 1.317x, CI [1.27, 1.36] | same |
+| projection needed (CTP) | 0 at 1e-3 / 1e-4; 12/32 at 1e-5 | 0 / 0; 31/165 at 1e-5 | same |
+
+**Confirmatory PASS.** Hartree-aware projection gave the same certified rate as uniform projection (ratio 1.00).
+
 ## Confirmatory (earlier program, frozen)
 
 - QOAC-H v0.2: 48/48, 15.0x over best certified ZFP/SZ3/SPERR (frozen ladders); 254-material census 253/253.
@@ -38,8 +49,6 @@ E-field beta=1 gates (A, B, C); beta-map M2; v0.3 G2; QOAC-HB confirmatory media
 
 ## Running / next
 
-- QOAC-HB v2 engineering on fresh P2 (CI run 37495653659). Protocol `8a784a4` covers HAP/CTP, tau_B = 1e-3/1e-4/1e-5
-  and the Hartree-only overhead. If its gates pass, the 48-material confirmation follows.
 - Story / claim–evidence drafts: `paper/program-story-draft-20261007` (two alternative drafts) still need P3b
   numbers.
 - Prior-art: `research/prior-art-program-20261006` (+ verification addendum); full-text check of UNVERIFIED citations
