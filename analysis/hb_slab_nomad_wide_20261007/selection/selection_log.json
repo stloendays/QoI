@@ -1,0 +1,63 @@
+{
+  "frame_20261006_rows": 820,
+  "relisted_resolved_rows_added": 0,
+  "frame_wide_rows": 820,
+  "header_unreadable": 264,
+  "window_rows": 303,
+  "window_below": 4,
+  "window_above": 249,
+  "after_id_exclusion": 188,
+  "after_formula_exclusion": 20,
+  "after_formula_exclusion_formulas": 10,
+  "after_formula_exclusion_uploads": 13,
+  "aeccar_both_present": 6,
+  "aeccar_present_on_grid": 6,
+  "aeccar_present_on_grid_formulas": 1,
+  "aeccar_present_on_grid_uploads": 6,
+  "meta_stage_counts": {
+    "header_unreadable": 264,
+    "above_window": 249,
+    "formula_excluded": 168,
+    "id_excluded": 115,
+    "no_aeccar": 14,
+    "aeccar_present": 6,
+    "below_window": 4
+  },
+  "window": [
+    150000,
+    3870720
+  ],
+  "salt": "QOAC-HB-SLAB-NOMAD-WIDE-20261007|",
+  "qc_evaluated": 6,
+  "qc_passed": 6,
+  "qc_passed_formulas": 1,
+  "qc_passed_uploads": 6,
+  "qc_reasons": {
+    "pass": 6
+  },
+  "draw_formulas_visited": 1,
+  "draw_rejected_upload_cap": 0,
+  "N": 1,
+  "accepted_per_upload": {
+    "yCEI3wPaQwu1U9iB8wBTqw": 1
+  },
+  "finished_utc": "2026-10-07T14:51:52+00:00",
+  "sha256": {
+    "manifest.csv": "ce34a42517ce8e7407c9830156a029406ff9b6781a26e851c5a1cbf6fdd45244",
+    "aeccar_sources.csv": "04d9d8ae054eb0a69e8253b8d9a642ae9a594450b4c77e0c29b91fbd3fefe4f1",
+    "draw.csv": "cc4dfbcbf4c8e760c6a0e7f1f682e1ebb9c94e1eafa1a5d572246b2a63facdc5",
+    "qc.csv": "fd7dec110da8b53943eea9c0f3c3fb19eec73a9078c978d8d70e3d62550ba221",
+    "candidates.csv": "655186ff0fa5cd8ecbaeccba31cbe4cec03345d1345c2243464a5c9335c59f51",
+    "select_wide.py": "2c950a073e77c7682d34d1ddcb60c73442d85cdd421c0e7d9ae2a4bb188d9538",
+    "exclusion_nomad_ids.csv": "4d6dca4b4b63c324ef6a45fa9ecff52a6f670e17e33998f4d51fb277afaa8894",
+    "exclusion_slab_formulas.csv": "6c18eb00e7d11b22957878064ce9a4fc3d7fe5dd1816ac245d94d0600fbe8b96",
+    "relisted_entries.csv": "f66a61f9d029e16043ac21fa5a44a1dc3c0f804a6ebd6bbc94f8fcc66f08764e"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "baderkit": "0.10.2",
+    "pymatgen": "2025.10.7"
+  }
+}
