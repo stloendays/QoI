@@ -96,3 +96,19 @@ acceptance criterion is changed.
      checkpoints byte-identical plus the 57 cloud checkpoints; input (b) is `results_laptop/checkpoints/`
      itself. Arial is not installed on the runner, so the figure's text is set in matplotlib's fallback
      font; no number depends on it.
+
+9. **Author decision on platform consistency (2026-10-07, after `results_cloud/CONSISTENCY.md`, before any of
+   the 57 objects runs).** The deviation-7 comparison returned DISAGREE on its literal rule: 1405 of 1409 checks
+   agree. Every decision field is identical on the two platforms: eligibility at the three τ, the evaluated
+   rung sets, every rung's status, certifiable-error flag and certified-at-τ flag, and the writer choice. The
+   compressed bytes, floors and all 25 probe responses are also identical. The four failed checks are rung Bader
+   errors that differ by 3.6e-5 to 1.8e-3 e. All four sit on the coarsest rungs (SPERR 3e-3 and 3e-2, ZFP 1e-1),
+   whose Bader errors are 0.067–0.93 e and therefore far above every τ. The author judged the platforms
+   consistent ("判定一致，补跑 57 个") and directed the completion phase to run.
+   - Consequences:
+     - the 57 FAILED objects run as deviation 7 says;
+     - the completion preflight accepts this entry in place of an agreement record in
+       `results_cloud/consistency/CONSISTENCY.json` (infrastructure only);
+     - `CONSISTENCY.md` stays as recorded.
+   - No estimator, weight, failure rule or acceptance rule changes. Reporting (a) and (b) of deviation 7 is
+     unchanged.
