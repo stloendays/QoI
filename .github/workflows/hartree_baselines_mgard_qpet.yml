@@ -1,0 +1,198 @@
+name: Hartree strongest baselines MGARD s=-2 and QPET
+
+on:
+  push:
+    branches:
+      - research/hartree-baselines-mgard-qpet-20261007
+    paths:
+      - analysis/hartree_baselines_mgard_qpet_20261007/PHASE
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hartree-baselines-mgard-qpet-20261007
+  cancel-in-progress: false
+
+env:
+  D: analysis/hartree_baselines_mgard_qpet_20261007
+  MGARD_COMMIT: ac53ff9cec8cf2dee08892f0400ae0ddb755b193
+  SYMENGINE_TAG: v0.14.0
+  QPET_SZ_COMMIT: 5d17cb1647caf001bd7355c617856c72c4b6475e
+  QPET_SPERR_COMMIT: 1874108fe7a38b5eb0c63874889af0a16a248ad4
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    outputs:
+      phase: ${{ steps.p.outputs.phase }}
+      materials: ${{ steps.p.outputs.materials }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - id: p
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.4.6 scipy==1.18.1 pandas==2.3.3
+          (cd $D && python -m unittest -q test_mq.py)
+          (cd analysis/qoac_v03_rdo && python -m unittest -q test_codec_qoac_v03.py)
+          phase=$(tr -d '[:space:]' < $D/PHASE)
+          [ "$phase" = probe ] || [ "$phase" = run ] || { echo "bad phase"; exit 1; }
+          python $D/run_mq.py --repo-root . --check-inputs
+          mats=$(python $D/run_mq.py --repo-root . --list-matrix "$phase")
+          echo "phase=$phase" >> "$GITHUB_OUTPUT"
+          echo "materials=$mats" >> "$GITHUB_OUTPUT"
+
+  toolchain:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Build MGARD, SymEngine and QPET from upstream source
+        shell: bash
+        run: |
+          set -u
+          TC=$GITHUB_WORKSPACE/tc; mkdir -p $TC probe
+          sudo apt-get update -q && sudo apt-get install -y -q cmake libzstd-dev libprotobuf-dev protobuf-compiler zlib1g-dev libopenmpi-dev openmpi-bin pkg-config libgmp-dev > /dev/null
+          git clone -q --depth 1 -b 1.4 https://github.com/mirror/tclap tclap-src && sudo cp -r tclap-src/include/tclap /usr/local/include/ && echo "tclap=$(git -C tclap-src rev-parse HEAD)" >> probe/versions.txt
+          git clone -q https://github.com/CODARcode/MGARD mgard-src && git -C mgard-src checkout -q $MGARD_COMMIT
+          echo "mgard=$(git -C mgard-src rev-parse HEAD)" >> probe/versions.txt
+          cmake -S mgard-src -B mgard-build -DCMAKE_BUILD_TYPE=Release -DMGARD_ENABLE_CLI=ON -DMGARD_ENABLE_OPENMP=ON -DCMAKE_INSTALL_PREFIX=$TC/mgard > probe/mgard_build.log 2>&1 \
+            && cmake --build mgard-build -j4 >> probe/mgard_build.log 2>&1 && cmake --install mgard-build >> probe/mgard_build.log 2>&1 \
+            && echo "mgard_build=OK" >> probe/versions.txt || echo "mgard_build=FAILED" >> probe/versions.txt
+          git clone -q --depth 1 -b $SYMENGINE_TAG https://github.com/symengine/symengine symengine-src && echo "symengine=$SYMENGINE_TAG $(git -C symengine-src rev-parse HEAD)" >> probe/versions.txt
+          cmake -S symengine-src -B symengine-build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DBUILD_BENCHMARKS=OFF -DINTEGER_CLASS=gmp -DBUILD_SHARED_LIBS=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=$TC/symengine > probe/symengine_build.log 2>&1 \
+            && cmake --build symengine-build -j4 >> probe/symengine_build.log 2>&1 && cmake --install symengine-build >> probe/symengine_build.log 2>&1 \
+            && echo "symengine_build=OK" >> probe/versions.txt || echo "symengine_build=FAILED" >> probe/versions.txt
+          git clone -q -b szfamily_qpet_revision https://github.com/JLiu-1/QPET-Artifact qpet-sz-src && git -C qpet-sz-src checkout -q $QPET_SZ_COMMIT
+          echo "qpet_szfamily=$(git -C qpet-sz-src rev-parse HEAD)" >> probe/versions.txt
+          cmake -S qpet-sz-src -B qpet-sz-build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$TC/symengine "-DCMAKE_CXX_FLAGS=-I$TC/symengine/include -include cstdint" -DCMAKE_INSTALL_PREFIX=$TC/qpet-sz > probe/qpet_sz_build.log 2>&1 \
+            && cmake --build qpet-sz-build -j4 >> probe/qpet_sz_build.log 2>&1 && cmake --install qpet-sz-build >> probe/qpet_sz_build.log 2>&1 \
+            && echo "qpet_sz_build=OK" >> probe/versions.txt || echo "qpet_sz_build=FAILED" >> probe/versions.txt
+          git clone -q -b sperr_qpet_revision https://github.com/JLiu-1/QPET-Artifact qpet-sperr-src && git -C qpet-sperr-src checkout -q $QPET_SPERR_COMMIT
+          echo "qpet_sperr=$(git -C qpet-sperr-src rev-parse HEAD)" >> probe/versions.txt
+          cmake -S qpet-sperr-src -B qpet-sperr-build -DCMAKE_BUILD_TYPE=Release -DBUILD_UNIT_TESTS=OFF -DCMAKE_PREFIX_PATH=$TC/symengine "-DCMAKE_CXX_FLAGS=-I$TC/symengine/include -include cstdint" -DCMAKE_INSTALL_PREFIX=$TC/qpet-sperr > probe/qpet_sperr_build.log 2>&1 \
+            && cmake --build qpet-sperr-build -j4 >> probe/qpet_sperr_build.log 2>&1 && cmake --install qpet-sperr-build >> probe/qpet_sperr_build.log 2>&1 \
+            && echo "qpet_sperr_build=OK" >> probe/versions.txt || echo "qpet_sperr_build=FAILED" >> probe/versions.txt
+          cat probe/versions.txt
+          for f in probe/*_build.log; do echo "== $f"; tail -25 "$f"; done
+          find $TC -maxdepth 3 | sort > probe/toolchain_tree.txt
+          tar czf toolchain.tgz -C $GITHUB_WORKSPACE tc
+      - name: Probe (tiny synthetic arrays only)
+        shell: bash
+        run: |
+          TC=$GITHUB_WORKSPACE/tc
+          export PATH=$TC/mgard/bin:$TC/qpet-sz/bin:$TC/qpet-sperr/bin:$PATH
+          export LD_LIBRARY_PATH=$TC/mgard/lib:$TC/mgard/lib64:$TC/qpet-sperr/lib:$TC/qpet-sperr/lib64:$TC/symengine/lib:${LD_LIBRARY_PATH:-}
+          export OMP_NUM_THREADS=1
+          python -m pip install -q numpy==2.4.6
+          { mgard --help 2>&1 | head -40; } > probe/mgard_help.txt || true
+          { hpez -h 2>&1 | head -80; } > probe/hpez_help.txt || true
+          { sperr3d --help 2>&1 | head -80; } > probe/sperr3d_help.txt || true
+          python repo/$D/probe_toolchain.py --output-dir probe || echo "probe script failed" >> probe/versions.txt
+          cat probe/probe_summary.txt || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hbmq-probe
+          path: probe/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: toolchain-hbmq
+          path: toolchain.tgz
+
+  shard:
+    needs: [preflight, toolchain]
+    if: needs.preflight.result == 'success' && needs.toolchain.result == 'success'
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        item: ${{ fromJSON(needs.preflight.outputs.materials) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: toolchain-hbmq
+      - name: Install toolchain runtime
+        shell: bash
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q libzstd1 libprotobuf32t64 libopenmpi3t64 libgmp10 libgomp1 > /dev/null || true
+          tar xzf toolchain.tgz -C $GITHUB_WORKSPACE
+          TC=$GITHUB_WORKSPACE/tc
+          echo "$TC/mgard/bin" >> "$GITHUB_PATH"; echo "$TC/qpet-sz/bin" >> "$GITHUB_PATH"; echo "$TC/qpet-sperr/bin" >> "$GITHUB_PATH"
+          echo "LD_LIBRARY_PATH=$TC/mgard/lib:$TC/mgard/lib64:$TC/qpet-sperr/lib:$TC/qpet-sperr/lib64:$TC/symengine/lib:${LD_LIBRARY_PATH:-}" >> "$GITHUB_ENV"
+      - name: Run material
+        shell: bash
+        env:
+          OMP_NUM_THREADS: '1'
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/hbmq_${{ matrix.item.id }}"; mkdir -p "$out"
+          which mgard hpez sperr3d || true
+          python repo/$D/run_mq.py --repo-root repo --frozen-root frozen --manifest "repo/${{ matrix.item.manifest }}" \
+            --cache-dir "$RUNNER_TEMP/cache" --output-dir "$out" --only "${{ matrix.item.id }}" --workers 4
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hbmq-shard-${{ needs.preflight.outputs.phase }}-${{ matrix.item.id }}
+          path: ${{ runner.temp }}/hbmq_${{ matrix.item.id }}
+          if-no-files-found: error
+
+  aggregate:
+    if: always() && needs.preflight.result == 'success'
+    needs: [preflight, toolchain, shard]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -q numpy==2.3.5 pandas==2.3.3 scipy==1.18.1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hbmq-*
+          path: shards
+      - name: Collect, aggregate and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          phase="${{ needs.preflight.outputs.phase }}"
+          python $D/aggregate_mq.py --repo-root . --shards-root shards --phase "$phase" --output-dir $D/results
+          git rev-parse HEAD > $D/results/$([ "$phase" = probe ] && echo probe/)research_branch_commit_before_results.txt
+          echo "${{ github.run_id }}" > $D/results/$([ "$phase" = probe ] && echo probe/)run_id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add $D/results
+          git commit -m "research: hartree baselines MGARD/QPET $phase results (run ${{ github.run_id }})" || exit 0
+          git pull --rebase origin research/hartree-baselines-mgard-qpet-20261007
+          git push origin HEAD:research/hartree-baselines-mgard-qpet-20261007
