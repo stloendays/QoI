@@ -1,0 +1,15 @@
+SYSTEM = mp-aaaabgrv Ga2Pt (110) term 0 selfslab
+PREC   = Accurate
+ENCUT  = 520
+EDIFF  = 1E-6
+ISMEAR = 0
+SIGMA  = 0.05
+ISPIN  = 1
+LASPH  = .TRUE.
+LREAL  = .FALSE.
+ALGO   = All
+NELM   = 200
+LCHARG = .TRUE.
+LAECHG = .TRUE.
+LWAVE  = .FALSE.
+NCORE  = 6   ! parallelisation only

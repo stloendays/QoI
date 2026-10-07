@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# QoI self-computed slab cohort (analysis/hb_selfslab_20261007), bundle @BUNDLE@: VASP single points of the listed
+# slabs, one after another. Based on the vanda-hpc job_template.pbs (production script of 2026-09-30): walltime 72 h,
+# watchdog at 250200 s writing LABORT = .TRUE. (single points), set -euo pipefail, input checks, OMP_NUM_THREADS=1,
+# OSZICAR_<run>/OUTCAR_<run> kept, non-zero job exit when any slab does not converge.
+# Per slab (PROTOCOL.md section 7): run INCAR_normal (ALGO = Normal); if NELM is reached, rerun once from scratch with
+# INCAR_all (ALGO = All); a second NELM is final. STATUS in each slab directory and a line in runs/STATUS.tsv.
+#PBS -N qoi_ss_@BUNDLE@
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=@NCPUS@:mpiprocs=@NCPUS@:ompthreads=1:mem=@MEM@
+#PBS -l walltime=72:00:00
+#PBS -j oe
+
+set -euo pipefail
+ROOT=/scratch/junbotong/qoi_selfslab_20261007
+MATERIALS=(@MATERIALS@)
+module purge
+module load intel/2021b
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+VASP_BIN=/nfs/home/svu/junbotong/software/vasp/NUS_HPC_VASP/vasp_632_vtst_solpp_beef_std
+test -x "$VASP_BIN" || { echo "VASP executable not found: $VASP_BIN" >&2; exit 2; }
+NP=$(wc -l < "$PBS_NODEFILE")
+echo "job_id=$PBS_JOBID host=$(hostname) ranks=$NP bundle=@BUNDLE@ start=$(date --iso-8601=seconds)"
+START=$(date +%s)
+WATCH=250200
+NFAIL=0
+RC=0
+
+run_vasp () {
+  local tag=$1
+  cp "INCAR_$tag" INCAR
+  rm -f STOPCAR WDFIRED CHGCAR CHG AECCAR0 AECCAR1 AECCAR2 WAVECAR OSZICAR OUTCAR
+  echo "  run=$tag start=$(date --iso-8601=seconds)"
+  mpirun -np "$NP" "$VASP_BIN" > "vasp_$tag.out" 2>&1 &
+  local VP=$!
+  ( while kill -0 "$VP" 2>/dev/null; do
+      if [ $(( $(date +%s) - START )) -ge $WATCH ]; then printf 'LABORT = .TRUE.\n' > STOPCAR; touch WDFIRED; echo "  watchdog_stop run=$tag"; break; fi
+      sleep 60; done ) &
+  local WD=$!
+  set +e; wait "$VP"; RC=$?; set -e
+  kill "$WD" 2>/dev/null || true; wait "$WD" 2>/dev/null || true
+  rm -f STOPCAR
+  if [ -f OSZICAR ]; then cp OSZICAR "OSZICAR_$tag"; fi
+  if [ -f OUTCAR ]; then cp OUTCAR "OUTCAR_$tag"; fi
+  echo "  run=$tag end=$(date --iso-8601=seconds) rc=$RC"
+}
+
+for M in "${MATERIALS[@]}"; do
+  D="$ROOT/runs/$M"
+  cd "$D"
+  if [ -f STATUS ] && grep -q '^converged' STATUS; then echo "material=$M skip status=$(cat STATUS)"; continue; fi
+  if [ $(( $(date +%s) - START )) -ge $WATCH ]; then
+    echo "material=$M not_started_walltime"; echo not_started_walltime > STATUS
+    printf '%s\t%s\t%s\t%s\t%s\n' "$M" not_started_walltime "" "" "$PBS_JOBID" >> "$ROOT/runs/STATUS.tsv"
+    NFAIL=$((NFAIL + 1)); continue
+  fi
+  missing=0
+  for f in INCAR_normal INCAR_all POSCAR KPOINTS POTCAR; do
+    if [ ! -s "$f" ]; then echo "material=$M missing $f"; missing=1; fi
+  done
+  if [ "$missing" -eq 1 ]; then
+    echo input_missing > STATUS
+    printf '%s\t%s\t%s\t%s\t%s\n' "$M" input_missing "" "" "$PBS_JOBID" >> "$ROOT/runs/STATUS.tsv"
+    NFAIL=$((NFAIL + 1)); continue
+  fi
+  T0=$(date +%s)
+  echo "material=$M start=$(date --iso-8601=seconds)"
+  status=""
+  for tag in normal all; do
+    run_vasp "$tag"
+    if [ -f WDFIRED ]; then status="watchdog_stop_$tag"; break; fi
+    if [ "$RC" -ne 0 ]; then status="vasp_error_$tag"; break; fi
+    if grep -q "aborting loop because EDIFF is reached" OUTCAR; then status="converged_$tag"; break; fi
+    if grep -q "EDIFF was not reached" OUTCAR; then
+      if [ "$tag" = normal ]; then echo "  nelm_reached run=normal -> fallback ALGO = All"; continue; fi
+      status=nelm_twice; break
+    fi
+    status="unknown_end_$tag"; break
+  done
+  rm -f CHG WAVECAR WDFIRED
+  T1=$(date +%s)
+  echo "$status" > STATUS
+  printf '%s\t%s\t%s\t%s\t%s\n' "$M" "$status" "$T0" "$T1" "$PBS_JOBID" >> "$ROOT/runs/STATUS.tsv"
+  echo "material=$M status=$status seconds=$((T1 - T0)) end=$(date --iso-8601=seconds)"
+  case "$status" in converged_*) ;; *) NFAIL=$((NFAIL + 1)) ;; esac
+done
+echo "end=$(date --iso-8601=seconds) nfail=$NFAIL"
+[ "$NFAIL" -eq 0 ] || exit 3
