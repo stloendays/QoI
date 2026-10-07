@@ -1,0 +1,170 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+CMake Deprecation Warning at /home/runner/work/QoI/QoI/tc/symengine/lib/cmake/symengine/SymEngineConfig.cmake:34 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  CMakeLists.txt:22 (find_package)
+
+
+-- Checking for module 'gmp'
+--   Found gmp, version 6.3.0
+GMP found.
+-- Found OpenMP_C: -fopenmp (found version "4.5")
+-- Found OpenMP_CXX: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5")
+OpenMP Found.
+-- Checking for one of the modules 'libzstd'
+Zstd found.
+-- Could NOT find GSL (missing: GSL_INCLUDE_DIR GSL_LIBRARY GSL_CBLAS_LIBRARY) (found version "")
+GSL not found.
+-- Target = hpez
+-- Target = qoi_val
+-- Configuring done (0.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/runner/work/QoI/QoI/qpet-sz-build
+[ 25%] Building CXX object test/CMakeFiles/hpez.dir/hpez.cpp.o
+[ 50%] Building CXX object test/CMakeFiles/qoi_val.dir/qoi_val.cpp.o
+[ 75%] Linking CXX executable qoi_val
+[ 75%] Built target qoi_val
+[100%] Linking CXX executable hpez
+[100%] Built target hpez
+-- Install configuration: "Release"
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/version.hpp.in
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/lossless
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/lossless/Lossless_bypass.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/lossless/Lossless.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/lossless/Lossless_zstd.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/Compressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/SZInterpolationCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/deprecated
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/deprecated/SZBlockInterpolationCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/SZQoIInterpolationCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/SZTruncateCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/compressor/SZGeneralCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/MetaDef.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/MemoryUtil.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/ska_hash
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/ska_hash/flat_hash_map.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/ska_hash/unordered_map.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/ska_hash/bytell_hash_map.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/ska_hash/LICENSE.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Timer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Iterator_old.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Sample.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Interpolators.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Metrics.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Transform.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Statistic.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/ByteUtil.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Config.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Extraction.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/QuantOptimization.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/Iterator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/FileUtil.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/inih
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/inih/INIReader.h
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/inih/LICENSE.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/utils/CoeffRegression.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/MetaRegressionPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/ComposedPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/Predictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/LorenzoPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/PolyRegressionCoeffAux.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/MetaLorenzoPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/RegressionPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/PolyRegressionPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/PolyRegressionCoeffAux.m
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/predictor/ZeroPredictor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/quantizer
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/quantizer/IntegerQuantizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/quantizer/QoIIntegerQuantizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/quantizer/Quantizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/QoIEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/HuffmanEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/BypassEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder/QoIEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder/HuffmanEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder/BypassEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder/ArithmeticEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder/Encoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/encoder/RunlengthEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/ArithmeticEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/Encoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/encoder/RunlengthEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/FX.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XPower.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/SymEngine.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/RegionalAverageOfSquare.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/RegionalFX.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XLogX.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/RegionalAverage.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XSquare.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/QoI.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XSin.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XReciprocal.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/LogX.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/QoIInfo.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/deprecated
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/deprecated/SymEngine.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/deprecated/XSin.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XCubic.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/SquaredError.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/FX_abs.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XLin.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XComposite.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XSqrt.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XExp.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/Isoline.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XAbs.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/XTanh.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/FX_P.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/FX_New.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/qoi/MultiQoIs.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/sz.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/impl
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/impl/SZDispatcher.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/impl/SZImpl.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/impl/SZLorenzoReg.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/impl/SZImplOMP.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/api/impl/SZInterp.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/def.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/frontend
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/frontend/SZGeneralFrontend.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/frontend/Frontend.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/frontend/SZFastFrontend.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/frontend/SZQoIFrontend.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/preprocessor
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/preprocessor/PreProcessor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/preprocessor/PreFilter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/preprocessor/Transpose.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/include/QoZ/version.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/lib/cmake/QoZ/QoZTargets.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/lib/cmake/QoZ/QoZConfig.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/lib/cmake/QoZ/QoZConfigVersion.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/bin/hpez
+-- Installing: /home/runner/work/QoI/QoI/tc/qpet-sz/bin/qoi_val

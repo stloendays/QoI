@@ -1,0 +1,67 @@
+Note: HPEZ command line arguments are backward compatible with SZ2/3, 
+Usage: hpez <options>
+Options:
+* general options:
+	-h: print the help information
+	-h2: print the help information for SZ2 style command line
+	-v: print the version number
+	-a : print compression results such as distortions
+* input and output:
+	-i <path> : original binary input file
+	-o <path> : compressed output file, default in binary format
+	-z <path> : compressed output (w -i) or input (w/o -i) file
+	-t : store compressed output file in text format
+* data type:
+	-f: single precision (float type)
+	-d: double precision (double type)
+	-I <width>: integer type (width = 32 or 64)
+* configuration file: 
+	-c <configuration file> : configuration file hpez.config
+* error control: (the error control parameters here will overwrite the setting in sz.config)
+	-M <error control mode> <error bound (optional)> 
+	error control mode as follows: 
+		ABS (absolute error bound)
+		REL (value range based error bound, so a.k.a., VR_REL)
+		PSNR (peak signal-to-noise ratio)
+		NORM (norm2 error : sqrt(sum(xi-xi')^2)
+		ABS_AND_REL (using min{ABS, REL})
+		ABS_OR_REL (using max{ABS, REL})
+	error bound can be set directly after the error control mode, or separately with the following options:
+		-A <absolute error bound>: specifying absolute error bound
+		-R <value_range based relative error bound>: specifying relative error bound
+		-S <PSNR>: specifying PSNR
+		-N <normErr>: specifying normErr
+    -q <level>: level for activation of qoz/hpez features.
+        Level 0: SZ3.1 (No QoZ features).
+        Level 1: QoZ1 (Anchor-point-based level-wise interpolation tuning).
+        Level 2: HPEZ l2 (level 1 plus multi-dim interp, natural cubic spline, interpolation re-ordering and dynamic dimension freezing).
+        Level 3: HPEZ l3 (level 2 plus dynamic dimension weights).
+        Level 4: HPEZ l4 (level 3 plus block-wise interpolation tuning).
+    -T <QoZ tuning target> 
+    tuning targets as follows: 
+        PSNR (peak signal-to-noise ratio)
+        CR (compression ratio)
+        SSIM (structural similarity)
+        AC (autocorrelation)
+    -C <anchor stride> : stride of anchor points.
+    -B <sampling block size> : block size of sampled data block for auto-tuning.
+    -u <quantile> : eb quantile
+* QPET-related arguments:
+    -M <QoI error control mode> <QoI error bound> 
+    error control mode as follows: 
+        ABS (absolute error bound of QoI)
+        REL (value range based error bound, so a.k.a., VR_REL)
+    error bound can be set directly after the error control mode, or separately with the following options:
+        -e <QoI error bound>: QoI error bound of the specified mode
+* dimensions: 
+	-1 <nx> : dimension for 1D data such as data[nx]
+	-2 <nx> <ny> : dimensions for 2D data such as data[ny][nx]
+	-3 <nx> <ny> <nz> : dimensions for 3D data such as data[nz][ny][nx] 
+	-4 <nx> <ny> <nz> <np>: dimensions for 4D data such as data[np][nz][ny][nx] 
+* examples: 
+	hpez -f -i test.dat    -z test.dat.qoz     -3 8 8 128 -M ABS 1e-3 -q 3
+	hpez -f -z test.dat.qoz -o test.dat.qoz.out -3 8 8 128 -M REL 1e-3 -a 
+	hpez -f -i test.dat    -o test.dat.qoz.out -3 8 8 128 -M ABS_AND_REL -A 1 -R 1e-3 -a -q 4
+	hpez -f -i test.dat    -o test.dat.qoz.out -3 8 8 128 -c hpez.config -q 2
+	hpez -f -i test.dat    -o test.dat.qoz.out -3 8 8 128 -c hpez.config -M ABS 1e-3 -a -q 1
+    hpez -f -q 3 -i test.dat    -o test.dat.qoz.out -3 8 8 128 -c qoi.config -M ABS 1e-3 -a -m ABS 1e-4 (QoI information in .config file)

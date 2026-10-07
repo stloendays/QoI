@@ -1,0 +1,49 @@
+3D SPERR compression and decompression
+
+Usage: sperr3d [OPTIONS] [filename]
+
+Positionals:
+  filename TEXT:FILE          A data volume to be compressed, or
+                              a bitstream to be decompressed.
+
+Options:
+  -h,--help                   Print this help message and exit
+
+
+Execution settings:
+  -c Excludes: -d             Perform a compression task.
+  -d Excludes: -c             Perform a decompression task.
+  --high_prec                 High precision mode.
+
+
+Input properties (for compression):
+  --ftype UINT                Specify the input float type in bits. Must be 32 or 64.
+  --dims [UINT,UINT,UINT]     Dimensions of the input volume. E.g., `--dims 128 128 128`
+                              (The fastest-varying dimension appears first.)
+
+
+Output settings:
+  --bitstream TEXT Needs: -c  Output compressed bitstream.
+  --decomp_f TEXT             Output decompressed volume in f32 precision.
+  --decomp_d TEXT             Output decompressed volume in f64 precision.
+  --decomp_lowres_f TEXT      Output lower resolutions of the decompressed volume in f32 precision.
+  --decomp_lowres_d TEXT      Output lower resolutions of the decompressed volume in f64 precision.
+  --print_stats Needs: -c     Print statistics measuring the compression quality.
+
+
+Compression settings:
+  --chunks [UINT,UINT,UINT]   Dimensions of the preferred chunk size. Default: 512 512 512
+                              (Volume dims don't need to be divisible by these chunk dims.)
+  --pwe FLOAT Excludes: --psnr --bpp
+                              Maximum point-wise error (PWE) tolerance.
+  --psnr FLOAT Excludes: --pwe --bpp
+                              Target PSNR to achieve.
+  --bpp FLOAT:FLOAT in [0 - 64] Excludes: --pwe --psnr
+                              Target bit-per-pixel (bpp) to achieve.
+  --qoi_tol FLOAT             QoI tolerance.
+  --qoi_id INT                QoI id.
+  --qoi_base FLOAT            QoI base (exp or log).
+  --qoi_analytical BOOLEAN    QoI analytical.
+  --qoi_string TEXT           QoI string.
+  --qoi_bs INT                QoI avg_block_size.
+  --qoi_k FLOAT               QoI k.

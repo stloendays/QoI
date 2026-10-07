@@ -1,0 +1,16 @@
+{
+  "phase": "probe",
+  "m2_feasible": true,
+  "m2_probe": "{\"cli\": \"/home/runner/work/QoI/QoI/tc/mgard/bin/mgard\", \"compress_rc\": 0, \"compress_stdout\": \"input size (bytes):  32768\\noutput size (bytes): 889\\ncompression ratio:   36.8594\\n\", \"compress_stderr\": \"\", \"decompress_rc\": 0, \"decompress_stderr\": \"\", \"decoded_size_ok\": true, \"finite\": true, \"Linf\": 3.0345901211370756, \"bytes\": 889, \"feasible\": true}",
+  "material_info": [
+    {
+      "material_id": "mp-3148759",
+      "source_sha256_verified": true,
+      "loader": "mp_gzip_json_monty_to_baderkit_grid",
+      "shape": "72x72x48",
+      "ptp": 922.5672578595,
+      "load_seconds": 1.0992705821990967,
+      "seconds": 70.5918242931366
+    }
+  ]
+}

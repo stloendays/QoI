@@ -1,0 +1,11 @@
+usage: mgard --version -h subcommand [<args>]
+
+arguments and options:
+  --version
+    Displays version information and exits.
+  -h,  --help
+    Displays usage information and exits.
+  subcommand <compress|decompress>
+    (required) Operation to perform.
+
+Run 'mgard <command> --help' for more information.

@@ -1,0 +1,17 @@
+MGARD s=inf: feasible=True rc=(0,0) Linf=0.00021752466692398498 stderr=''
+MGARD s=0: feasible=True rc=(0,0) Linf=0.017587335921591174 stderr=''
+MGARD s=-1: feasible=True rc=(0,0) Linf=0.32354744473502406 stderr=''
+MGARD s=-2: feasible=True rc=(0,0) Linf=3.0345901211370756 stderr=''
+MGARD smooth s=inf: {'ok': True, 'bytes': 283840, 'Linf_rel': 2.0279917767388515e-05}
+MGARD smooth s=0: {'ok': True, 'bytes': 102704, 'Linf_rel': 0.003063438963324379}
+MGARD smooth s=-1: {'ok': True, 'bytes': 8534, 'Linf_rel': 0.028398234218208886}
+MGARD smooth s=-2: {'ok': True, 'bytes': 1992, 'Linf_rel': 0.0836308095611253}
+Q_hpez_b4: {'ok': True, 'bytes': 59524, 'cr': 26.011155164303474, 'pointwise_Linf_over_t': 1.9999827953660774, 'block_avg_maxerr_over_t': 0.500015452209776, 'block_avg_within_t': True}
+Q_hpez_b8: {'ok': True, 'bytes': 48264, 'cr': 32.079562406762804, 'pointwise_Linf_over_t': 2.999949291303796, 'block_avg_maxerr_over_t': 0.22815851838477302, 'block_avg_within_t': True}
+Q_hpez_b16: {'ok': True, 'bytes': 37802, 'cr': 40.95783291889318, 'pointwise_Linf_over_t': 3.9999859496972148, 'block_avg_maxerr_over_t': 0.10768476094115331, 'block_avg_within_t': True}
+Q_sperr_b4: {'ok': True, 'bytes': 32230, 'cr': 48.038721687868446, 'pointwise_Linf_over_t': 6.155440680917699, 'block_avg_maxerr_over_t': 0.9999979948117502, 'block_avg_within_t': True}
+Q_sperr_b8: {'ok': True, 'bytes': 18204, 'cr': 85.05207646671062, 'pointwise_Linf_over_t': 17.04108871544885, 'block_avg_maxerr_over_t': 0.9999623955735906, 'block_avg_within_t': True}
+Q_sperr_b16: {'ok': True, 'bytes': 240527, 'cr': 6.437065277494835, 'pointwise_Linf_over_t': 37.26925907805606, 'block_avg_maxerr_over_t': 0.9998391651221579, 'block_avg_within_t': True}
+Q_sz3_b4: {'ok': True, 'bytes': 57328, 'cr': 27.007535584705554, 'pointwise_Linf_over_t': 1.9999980621418556, 'block_avg_maxerr_over_t': 0.5309069297628549, 'block_avg_within_t': True}
+Q_sz3_b8: {'ok': True, 'bytes': 57328, 'cr': 27.007535584705554, 'pointwise_Linf_over_t': 1.9999980621418556, 'block_avg_maxerr_over_t': 0.1462950372693562, 'block_avg_within_t': True}
+Q_sz3_b16: {'ok': True, 'bytes': 57328, 'cr': 27.007535584705554, 'pointwise_Linf_over_t': 1.9999980621418556, 'block_avg_maxerr_over_t': 0.07740690999027525, 'block_avg_within_t': True}
