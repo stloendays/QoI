@@ -51,4 +51,4 @@ The HB computation runs only on GitHub Actions.
 
 ## After the protocol freeze
 
-None so far.
+None. No infrastructure deviation after the run started; the criteria were evaluated with the committed evaluator unchanged (2026-10-07).
