@@ -81,11 +81,11 @@ CMake Warning at tests/CMakeLists.txt:1 (find_package):
 [  0%] Generating src/compress_internal_generated.cpp
 [  0%] Generating include/proto/mgard.pb.h, include/proto/mgard.pb.cc
 [  0%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compress.cpp.o
-[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compress_internal.cpp.o
 [  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compressors.cpp.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compress_internal.cpp.o
 [  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/format.cpp.o
-[  1%] Building CXX object CMakeFiles/mgard-library.dir/include/proto/mgard.pb.cc.o
 [  1%] Building CXX object CMakeFiles/mgard-library.dir/src/compress_internal_generated.cpp.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/include/proto/mgard.pb.cc.o
 [  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Config/Config.cpp.o
 [  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionHighLevel/DynamicAPI.cpp.o
 [  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/DynamicAPI.cpp.o
@@ -518,8 +518,8 @@ CMake Warning at tests/CMakeLists.txt:1 (find_package):
 [ 96%] Built target mdr-x-qoi
 [ 97%] Generating cli_internal_generated.cpp
 [ 97%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/arguments.cpp.o
-[ 97%] Linking CXX executable bin/pmdr-x-qoi
 [ 97%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/cmdline.cpp.o
+[ 97%] Linking CXX executable bin/pmdr-x-qoi
 [ 97%] Built target pmdr-x-qoi
 [ 97%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/executable.cpp.o
 [ 98%] Linking CXX executable bin/pmdr-x-qoi-io

@@ -34,7 +34,7 @@ CMake Deprecation Warning at /home/runner/work/QoI/QoI/qpet-sperr-build/_deps/cl
   to work with policies introduced by <max> or earlier.
 
 
--- Configuring done (2.4s)
+-- Configuring done (2.6s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/runner/work/QoI/QoI/qpet-sperr-build
 [  2%] Building CXX object _deps/cli11-build/src/CMakeFiles/CLI11.dir/Precompile.cpp.o
@@ -42,8 +42,8 @@ CMake Deprecation Warning at /home/runner/work/QoI/QoI/qpet-sperr-build/_deps/cl
 [  8%] Building CXX object src/CMakeFiles/SPERR.dir/sperr_helper.cpp.o
 [ 11%] Building CXX object src/CMakeFiles/SPERR.dir/Bitstream.cpp.o
 [ 14%] Linking CXX executable show_version
+[ 14%] Built target show_version
 [ 17%] Building CXX object src/CMakeFiles/SPERR.dir/Bitmask.cpp.o
-[ 17%] Built target show_version
 [ 20%] Building CXX object src/CMakeFiles/SPERR.dir/Conditioner.cpp.o
 [ 22%] Building CXX object src/CMakeFiles/SPERR.dir/CDF97.cpp.o
 /home/runner/work/QoI/QoI/qpet-sperr-src/src/sperr_helper.cpp: In function ‘sperr::vec8_type sperr::read_n_bytes(std::string, std::size_t)’:
@@ -76,8 +76,8 @@ CMake Deprecation Warning at /home/runner/work/QoI/QoI/qpet-sperr-build/_deps/cl
 [ 57%] Building CXX object src/CMakeFiles/SPERR.dir/SPECK3D_FLT.cpp.o
 [ 60%] Building CXX object src/CMakeFiles/SPERR.dir/SPECK2D_FLT.cpp.o
 [ 62%] Linking CXX static library libCLI11.a
+[ 62%] Built target CLI11
 [ 65%] Building CXX object src/CMakeFiles/SPERR.dir/SPECK1D_FLT.cpp.o
-[ 65%] Built target CLI11
 [ 68%] Building CXX object src/CMakeFiles/SPERR.dir/SPERR3D_OMP_C.cpp.o
 [ 71%] Building CXX object src/CMakeFiles/SPERR.dir/SPERR3D_OMP_D.cpp.o
 [ 74%] Building CXX object src/CMakeFiles/SPERR.dir/SPERR3D_Stream_Tools.cpp.o
@@ -85,13 +85,13 @@ CMake Deprecation Warning at /home/runner/work/QoI/QoI/qpet-sperr-build/_deps/cl
 [ 80%] Building CXX object src/CMakeFiles/SPERR.dir/SPERR_C_API.cpp.o
 [ 82%] Linking CXX shared library libSPERR.so
 [ 82%] Built target SPERR
-[ 85%] Building CXX object bin/CMakeFiles/sperr3d_trunc.dir/sperr3d_trunc.cpp.o
-[ 88%] Building CXX object bin/CMakeFiles/sperr3d.dir/sperr3d.cpp.o
+[ 85%] Building CXX object bin/CMakeFiles/sperr3d.dir/sperr3d.cpp.o
+[ 88%] Building CXX object bin/CMakeFiles/sperr3d_trunc.dir/sperr3d_trunc.cpp.o
 [ 91%] Building CXX object bin/CMakeFiles/sperr2d.dir/sperr2d.cpp.o
-[ 94%] Linking CXX executable sperr2d
-[ 94%] Built target sperr2d
-[ 97%] Linking CXX executable sperr3d_trunc
-[ 97%] Built target sperr3d_trunc
+[ 94%] Linking CXX executable sperr3d_trunc
+[ 94%] Built target sperr3d_trunc
+[ 97%] Linking CXX executable sperr2d
+[ 97%] Built target sperr2d
 [100%] Linking CXX executable sperr3d
 [100%] Built target sperr3d
 -- Install configuration: "Release"
