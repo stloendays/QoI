@@ -1,0 +1,164 @@
+{
+  "mgard_tiny": {
+    "inf": {
+      "cli": "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard",
+      "compress_rc": 0,
+      "compress_stdout": "input size (bytes):  32768\noutput size (bytes): 11401\ncompression ratio:   2.87413\n",
+      "compress_stderr": "",
+      "decompress_rc": 0,
+      "decompress_stderr": "",
+      "decoded_size_ok": true,
+      "finite": true,
+      "Linf": 0.00021752466692398498,
+      "bytes": 11401,
+      "feasible": true
+    },
+    "0": {
+      "cli": "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard",
+      "compress_rc": 0,
+      "compress_stdout": "input size (bytes):  32768\noutput size (bytes): 5103\ncompression ratio:   6.42132\n",
+      "compress_stderr": "",
+      "decompress_rc": 0,
+      "decompress_stderr": "",
+      "decoded_size_ok": true,
+      "finite": true,
+      "Linf": 0.017587335921591174,
+      "bytes": 5103,
+      "feasible": true
+    },
+    "-1": {
+      "cli": "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard",
+      "compress_rc": 0,
+      "compress_stdout": "input size (bytes):  32768\noutput size (bytes): 2814\ncompression ratio:   11.6446\n",
+      "compress_stderr": "",
+      "decompress_rc": 0,
+      "decompress_stderr": "",
+      "decoded_size_ok": true,
+      "finite": true,
+      "Linf": 0.32354744473502406,
+      "bytes": 2814,
+      "feasible": true
+    },
+    "-2": {
+      "cli": "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard",
+      "compress_rc": 0,
+      "compress_stdout": "input size (bytes):  32768\noutput size (bytes): 889\ncompression ratio:   36.8594\n",
+      "compress_stderr": "",
+      "decompress_rc": 0,
+      "decompress_stderr": "",
+      "decoded_size_ok": true,
+      "finite": true,
+      "Linf": 3.0345901211370756,
+      "bytes": 889,
+      "feasible": true
+    }
+  },
+  "mgard_smooth": {
+    "inf": {
+      "ok": true,
+      "bytes": 283840,
+      "Linf_rel": 2.0279917767388515e-05
+    },
+    "0": {
+      "ok": true,
+      "bytes": 102704,
+      "Linf_rel": 0.003063438963324379
+    },
+    "-1": {
+      "ok": true,
+      "bytes": 8534,
+      "Linf_rel": 0.028398234218208886
+    },
+    "-2": {
+      "ok": true,
+      "bytes": 1992,
+      "Linf_rel": 0.0836308095611253
+    }
+  },
+  "qpet": {
+    "Q_hpez_b4": {
+      "ok": true,
+      "bytes": 59524,
+      "cr": 26.011155164303474,
+      "pointwise_Linf_over_t": 1.9999827953660774,
+      "block_avg_maxerr_over_t": 0.500015452209776,
+      "block_avg_within_t": true
+    },
+    "Q_hpez_b8": {
+      "ok": true,
+      "bytes": 48264,
+      "cr": 32.079562406762804,
+      "pointwise_Linf_over_t": 2.999949291303796,
+      "block_avg_maxerr_over_t": 0.22815851838477302,
+      "block_avg_within_t": true
+    },
+    "Q_hpez_b16": {
+      "ok": true,
+      "bytes": 37802,
+      "cr": 40.95783291889318,
+      "pointwise_Linf_over_t": 3.9999859496972148,
+      "block_avg_maxerr_over_t": 0.10768476094115331,
+      "block_avg_within_t": true
+    },
+    "Q_sperr_b4": {
+      "ok": true,
+      "bytes": 32230,
+      "cr": 48.038721687868446,
+      "pointwise_Linf_over_t": 6.155440680917699,
+      "block_avg_maxerr_over_t": 0.9999979948117502,
+      "block_avg_within_t": true
+    },
+    "Q_sperr_b8": {
+      "ok": true,
+      "bytes": 18204,
+      "cr": 85.05207646671062,
+      "pointwise_Linf_over_t": 17.04108871544885,
+      "block_avg_maxerr_over_t": 0.9999623955735906,
+      "block_avg_within_t": true
+    },
+    "Q_sperr_b16": {
+      "ok": true,
+      "bytes": 240527,
+      "cr": 6.437065277494835,
+      "pointwise_Linf_over_t": 37.26925907805606,
+      "block_avg_maxerr_over_t": 0.9998391651221579,
+      "block_avg_within_t": true
+    },
+    "Q_sz3_b4": {
+      "ok": true,
+      "bytes": 57328,
+      "cr": 27.007535584705554,
+      "pointwise_Linf_over_t": 1.9999980621418556,
+      "block_avg_maxerr_over_t": 0.5309069297628549,
+      "block_avg_within_t": true
+    },
+    "Q_sz3_b8": {
+      "ok": true,
+      "bytes": 57328,
+      "cr": 27.007535584705554,
+      "pointwise_Linf_over_t": 1.9999980621418556,
+      "block_avg_maxerr_over_t": 0.1462950372693562,
+      "block_avg_within_t": true
+    },
+    "Q_sz3_b16": {
+      "ok": true,
+      "bytes": 57328,
+      "cr": 27.007535584705554,
+      "pointwise_Linf_over_t": 1.9999980621418556,
+      "block_avg_maxerr_over_t": 0.07740690999027525,
+      "block_avg_within_t": true
+    }
+  },
+  "m2_feasible": true,
+  "qpet_configs_feasible": [
+    "Q_hpez_b16",
+    "Q_hpez_b4",
+    "Q_hpez_b8",
+    "Q_sperr_b16",
+    "Q_sperr_b4",
+    "Q_sperr_b8",
+    "Q_sz3_b16",
+    "Q_sz3_b4",
+    "Q_sz3_b8"
+  ]
+}
