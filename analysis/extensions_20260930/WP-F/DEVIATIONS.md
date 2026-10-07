@@ -112,3 +112,7 @@ acceptance criterion is changed.
      - `CONSISTENCY.md` stays as recorded.
    - No estimator, weight, failure rule or acceptance rule changes. Reporting (a) and (b) of deviation 7 is
      unchanged.
+
+10. **Preflight for entry 9 (infrastructure, 2026-10-07, before the completion sentinel is pushed).** The
+    `completion` and `estimators` preflights of `wpf_cloud_completion.yml` now pass when `CONSISTENCY.json`
+    records agreement or `DEVIATIONS.md` contains the heading of entry 9; `CONSISTENCY.md`/`.json` are unchanged.

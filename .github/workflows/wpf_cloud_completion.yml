@@ -66,8 +66,12 @@ jobs:
               sys.exit("duplicate ids")
 
           def agreed():
+              # an agreement record, or the author's platform-consistency decision (DEVIATIONS.md 9-10)
               cj = wpf / "results_cloud" / "consistency" / "CONSISTENCY.json"
-              return cj.is_file() and json.load(open(cj, encoding="utf-8")).get("agree") is True
+              if cj.is_file() and json.load(open(cj, encoding="utf-8")).get("agree") is True:
+                  return True
+              dev = (wpf / "DEVIATIONS.md").read_text(encoding="utf-8")
+              return "\n9. **Author decision on platform consistency" in dev
 
           if phase == "consistency":
               if ids != CONS:
