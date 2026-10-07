@@ -82,8 +82,13 @@ E-field beta=1 gates (A, B, C); beta-map M2; v0.3 G2; QOAC-HB confirmatory media
   containers may have egress to publisher sites blocked, so these checks need the author's network (NUS library).
 - **Zenodo DOI** in Data availability and Code availability is a placeholder, to be minted at submission.
 - **Author list, affiliations, ORCID and funding** are absent from the manuscript.
-- **Joint Hartree + Bader certification is shown on bulk crystals only** (P2, 48/48). A slab confirmation is running on
-  branch `research/qoac-hb-slab-20261007` (not yet on `origin` at the time of this update).
+- **Joint Hartree + Bader certification is confirmed on bulk crystals only** (P2, 48/48). The slab confirmation on
+  branch `research/qoac-hb-slab-20261007` (32 fresh P3b slabs; `analysis/qoac_hb_slab_20261007/results/manifest/RESULTS.md`,
+  `f5c0ac1`) is a confirmatory FAIL: 13/32 analysable (15 entries have no AECCAR, known before the run; 4 failed at
+  AECCAR loading), against >= 31/32. The pre-registered secondary analysis on the 17 entries with an AECCAR also fails
+  (13/17 against 17/17). On all 13 analysed slabs the joint contract certifies at all three tau_B (39/39 streams), the
+  joint overhead at 1e-4 e is median 1.000 (CI [1.000, 1.011]) and R3 wins 13/13 (median 1.398x, CI [1.306, 1.517]).
+  Next: diagnose the 4 AECCAR loading failures.
 - **P3b near-optimality A-H1 FAIL**: on slabs A3/A1 = 1.222 against the pre-registered gate ≤ 1.15; the manuscript
   states near-optimality for bulk crystals only and names operational allocation as the slab encoder.
 - **B3 has no confirmatory run**: the partition transcription and storage results are the 12-material P2 engineering
