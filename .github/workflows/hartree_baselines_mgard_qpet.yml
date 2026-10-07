@@ -157,8 +157,19 @@ jobs:
           set -euo pipefail
           out="$RUNNER_TEMP/hbmq_${{ matrix.item.id }}"; mkdir -p "$out"
           which mgard hpez sperr3d || true
+          # DEVIATIONS B.1: run inside a memory-capped cgroup (13 GiB, no swap) so the kernel OOM killer stops a
+          # runaway codec process, which run_mq.py records as an execution error, instead of the hosted-runner VM.
+          cg=/sys/fs/cgroup/hbmq
+          grep -qw memory /sys/fs/cgroup/cgroup.subtree_control || echo +memory | sudo tee /sys/fs/cgroup/cgroup.subtree_control
+          sudo mkdir -p "$cg"
+          echo 13G | sudo tee "$cg/memory.max"
+          if [ -f "$cg/memory.swap.max" ]; then echo 0 | sudo tee "$cg/memory.swap.max"; fi
+          echo $$ | sudo tee "$cg/cgroup.procs"
+          echo "cgroup: $(cat /proc/self/cgroup) memory.max=$(cat "$cg/memory.max")"
+          free -m
           python repo/$D/run_mq.py --repo-root repo --frozen-root frozen --manifest "repo/${{ matrix.item.manifest }}" \
-            --cache-dir "$RUNNER_TEMP/cache" --output-dir "$out" --only "${{ matrix.item.id }}" --workers 4
+            --cache-dir "$RUNNER_TEMP/cache" --output-dir "$out" --only "${{ matrix.item.id }}" --workers 1
+          echo "cgroup memory.peak=$(cat "$cg/memory.peak" 2>/dev/null || echo n/a) $(grep oom_kill "$cg/memory.events" || true)"
           git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
       - uses: actions/upload-artifact@v4
         with:

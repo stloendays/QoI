@@ -93,3 +93,47 @@ heap-corruption message) at some tolerances:
 
 Under PROTOCOL §4 these are counted non-passing points, and the protocol is unchanged. No infrastructure change was
 made before the run phase.
+
+### B.1 Run phase rerun after runner-VM loss (recorded 2026-10-07, before the rerun)
+
+Run 37601828909 (run phase, commit `839cf5e`; aggregate committed in `3823863`) completed 60 of 92 shards:
+
+- P1: 35 of 60;
+- P3b: 25 of 32.
+
+In each of the other 32 shards (25 P1, 7 P3b), the step `Run material` ended 13–26 s after it started with
+"The runner has received a shutdown signal" and exit code 143. No Python traceback, no `HBMQ_CONFIG_DONE` line and
+no artifact were produced.
+
+The failed shards are the larger grids:
+
+| cohort | failed shards, median npoints | completed shards, median npoints |
+|---|---|---|
+| P1 | 1,492,992 | 870,912 |
+| P3b | 2,400,000 | 1,769,472 |
+
+At that point in the search, the four worker processes run the first QPET configurations (`hpez` hosts first) at the
+lower search bound. In the completed shards, the authors' `hpez` aborts at low tolerances with glibc heap corruption
+(rc −6) or a segfault (rc −11): 2,368 recorded execution errors. A shutdown signal seconds after start, with no
+error output, is the hosted runner losing the VM to memory exhaustion. Four concurrent codec processes on a
+multi-million-point grid exceed the runner's 16 GB.
+
+Infrastructure change (workflow only, `shard` job, step `Run material`):
+
+1. `run_mq.py --workers 1` (was 4). The configurations of a material now run one at a time.
+   - Each configuration's search is unchanged and deterministic. The codecs run single-threaded
+     (`OMP_NUM_THREADS=1`), so worker count changes wall time only.
+2. The step runs inside a cgroup-v2 group with `memory.max = 13G` and `memory.swap.max = 0`.
+   - A codec process that exhausts memory is then killed by the kernel OOM killer and exits with rc −9. Under
+     PROTOCOL §4 (codec exits non-zero), `run_mq.py` records this as an execution error, i.e. a non-passing point.
+   - Before this change, the whole VM and the material's results were lost.
+   - With one configuration at a time, only one codec process runs, so the OOM killer can only hit the process that
+     exhausted memory.
+   - The cgroup's `memory.peak` and `oom_kill` count are printed at the end of the step.
+
+Nothing else changes: no arm, configuration, block size, interval, certificate, τ, statistic, population or estimator.
+
+The rerun covers the full run-phase matrix (92 materials). The codecs are deterministic, so the 60 completed shards
+are re-evaluated and should reproduce. The results of run 37601828909 stay in git history at `3823863`.
+
+The rerun is started by changing the sentinel `PHASE` (trailing blank line added; the phase is still `run`).
