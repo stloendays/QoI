@@ -50,4 +50,5 @@ This is new code, but it calls only frozen functions, with the same arguments as
 
 ## After the run starts
 
-None so far.
+None. The single run (CI 37598559834, started by sentinel `0e584d3`) completed with 34/34 jobs successful and no
+infrastructure failure. Nothing was fixed or rerun.
