@@ -1,5 +1,14 @@
 # Claude handoff — QSQ / QOAC project — 2026-10-05
 
+> **Update 2026-10-07 — read this first.** The authority is now branch `paper/nc-reopen-20261007` (at `6d54d94`), the
+> frozen manuscript reopened for Nature Communications (decisions in `paper/nc_reopen/DECISIONS.md`). Start a new
+> session from that branch and read `sync/PROGRAM_STATUS_20261007.md` (current evidence and open items),
+> `paper/MANUSCRIPT.md`, `paper/SUPPLEMENTARY_INFORMATION.md` and `paper/nc_reopen/` (word count, audit record, source
+> map). The 2026-10-05 text below, including the start branch `research/general-qoac-electric-field-20261005` and the
+> "Manuscript boundary" section, is kept as history; the electric-field NO-GO it describes was followed by the general
+> law program that the NC manuscript reports. Unmerged research branches: `sync/UNMERGED_BRANCHES_20261007.md`.
+> Running compute off the laptop: see the last section.
+
 You are taking over the scientific-compression project in repository `stloendays/QoI`.
 
 ## Read first
@@ -124,3 +133,16 @@ For Bader, the next unsolved problem is compression of the partition-defining AE
 - Distinguish development-population census from external/disjoint confirmation.
 - Use reader-facing names QSQ, QOAC-H and QOAC-B2; internal version labels stay in provenance paths only.
 - GitHub branch + commit + machine-readable result file are authoritative.
+
+## Running work off the laptop (added 2026-10-07)
+
+- **Compute runs on GitHub-hosted `ubuntu-24.04` runners**, through the workflows in `.github/workflows/`. Each compute
+  workflow fires only on a push that changes its **sentinel file** (for example `analysis/qoac_hb_v2/RUN_MANIFEST` or
+  `analysis/general_qoac_law/P3B_PHASE`) on the **branch hard-coded in its `on.push.branches` trigger**.
+- **`workflow_dispatch` is unusable.** GitHub only offers manual dispatch for workflows on the default branch, and
+  `main` is a privacy placeholder (README and `.gitignore` only).
+- **A new run on a new branch needs a copied workflow** whose push trigger names the new branch and whose `paths` names
+  that run's sentinel. Commit the copy on the new branch, then push the sentinel change to start it.
+- **Cloud agent containers** have about 4 cores and may have egress to publisher sites blocked. Full-text literature
+  checks (publisher pages, NUS library) need the author's network.
+- **The laptop has about 15 GB RAM** and must not run production jobs.
