@@ -1,0 +1,105 @@
+{
+  "primary": {
+    "n_planned": 32,
+    "n_success": 13,
+    "not_analysed": {
+      "nomad-G-yDaY8qmw5_": "FAILED",
+      "nomad-vbsqs8Js2fzW": "FAILED",
+      "nomad-IZPVe_A6_quS": "FAILED",
+      "nomad-uxkQqRHBpSox": "FAILED",
+      "nomad-a3nHf0dBA8BK": "FAILED",
+      "nomad-uI3dGHZQPhUQ": "FAILED",
+      "nomad-vGEh154443lz": "FAILED",
+      "nomad-C-8aMchGaf7P": "FAILED",
+      "nomad-OLo5BGMUENyW": "FAILED",
+      "nomad-BLbUQWtMdS99": "FAILED",
+      "nomad-ViaCyatoI3FA": "FAILED",
+      "nomad-DcwYU1UzKNe8": "FAILED",
+      "nomad-Lt4FFQvyPw8a": "FAILED",
+      "nomad-hYJ7QAq46DqB": "FAILED",
+      "nomad-hk3gUBk-5QN5": "FAILED",
+      "nomad-BGv3HMr4F-YZ": "FAILED",
+      "nomad-HCM86CvqrAFu": "FAILED",
+      "nomad-bUeGvZ6vwC_l": "FAILED",
+      "nomad-g7Z9ilV401H7": "FAILED"
+    },
+    "r3_certified_by_tau": {
+      "0.001": 13,
+      "0.0001": 13,
+      "1e-05": 13
+    },
+    "criterion_1": {
+      "value": 13,
+      "n": 32,
+      "required": 31,
+      "threshold": ">= 46/48 of N",
+      "pass": false
+    },
+    "criterion_2": {
+      "n": 13,
+      "median": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0107577914886885,
+      "threshold": "median <= 1.10 and CI upper <= 1.15",
+      "pass": true
+    },
+    "criterion_3": {
+      "wins": 13,
+      "n": 32,
+      "required_wins": 24,
+      "n_ratio": 13,
+      "n_sole_certifier": 0,
+      "median": 1.3983700862895494,
+      "ci_low": 1.3057454185240218,
+      "ci_high": 1.516580764368375,
+      "min": 1.1410559330893884,
+      "threshold": ">= 36/48 of N wins, median > 1.10, CI lower > 1.00",
+      "pass": false
+    },
+    "verdict": "FAIL"
+  },
+  "secondary_aeccar_available": {
+    "n_planned": 17,
+    "n_success": 13,
+    "not_analysed": {
+      "nomad-IZPVe_A6_quS": "FAILED",
+      "nomad-ViaCyatoI3FA": "FAILED",
+      "nomad-DcwYU1UzKNe8": "FAILED",
+      "nomad-hk3gUBk-5QN5": "FAILED"
+    },
+    "r3_certified_by_tau": {
+      "0.001": 13,
+      "0.0001": 13,
+      "1e-05": 13
+    },
+    "criterion_1": {
+      "value": 13,
+      "n": 17,
+      "required": 17,
+      "threshold": ">= 46/48 of N",
+      "pass": false
+    },
+    "criterion_2": {
+      "n": 13,
+      "median": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0107577914886885,
+      "threshold": "median <= 1.10 and CI upper <= 1.15",
+      "pass": true
+    },
+    "criterion_3": {
+      "wins": 13,
+      "n": 17,
+      "required_wins": 13,
+      "n_ratio": 13,
+      "n_sole_certifier": 0,
+      "median": 1.3983700862895494,
+      "ci_low": 1.3057454185240218,
+      "ci_high": 1.516580764368375,
+      "min": 1.1410559330893884,
+      "threshold": ">= 36/48 of N wins, median > 1.10, CI lower > 1.00",
+      "pass": true
+    },
+    "verdict": "FAIL"
+  }
+}

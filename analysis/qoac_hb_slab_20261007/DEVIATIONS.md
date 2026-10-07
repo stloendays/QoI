@@ -47,4 +47,4 @@ added; it does not replace the primary analysis.
 
 ## After the run starts
 
-(none yet)
+None. The single run (CI 37579899219) completed with no infrastructure failure; nothing was fixed or rerun.
