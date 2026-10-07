@@ -213,7 +213,9 @@ def legend_table(legends: list[tuple[int, str]]):
         m = re.match(r"^\*\*Fig\.\s*(\d+)\s*\|", line.strip())
         if m:
             n = int(m.group(1))
-            figs[n] = set(re.findall(r"\*\*([a-z])\*\*", line))
+            # panel labels are bold: single (**a**), ranges (**d–f**) or lists (**a,b**)
+            figs[n] = {p for spec in re.findall(rf"\*\*([a-z](?:\s*[,{DASHES}]\s*[a-z])*)\*\*", line)
+                       for p in expand_panels(re.sub(r"\s+", "", spec))}
     return figs
 
 
