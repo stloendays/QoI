@@ -137,3 +137,42 @@ The rerun covers the full run-phase matrix (92 materials). The codecs are determ
 are re-evaluated and should reproduce. The results of run 37601828909 stay in git history at `3823863`.
 
 The rerun is started by changing the sentinel `PHASE` (trailing blank line added; the phase is still `run`).
+
+Outcome of the rerun: run 37620406802, aggregate `027e69a`.
+
+- All 95 jobs succeeded.
+- Every shard ended with cgroup `oom_kill 0`. The maximum `memory.peak` was 9.65 GiB.
+- No evaluation exited with rc −9.
+- The 2,340 searches of the 60 shards completed in run 37601828909 reproduce exactly: identical selected stream
+  sizes and identical certified flags.
+
+### B.2 Reporting code after the run phase started (recorded 2026-10-07, before RESULTS.md)
+
+No statistics or runner code changed after the run phase started at `839cf5e`, or after the freeze at `16e8890`.
+`git diff 16e8890 027e69a` is empty for all of these files:
+
+- `run_mq.py`
+- `codecs_mq.py`
+- `aggregate_mq.py`
+- `probe_toolchain.py`
+- `test_mq.py`
+- `PROTOCOL.md`
+
+The only change after `839cf5e` was the §B.1 workflow edit. Every statistic in `RESULTS.md` is the value that
+`aggregate_mq.py` wrote to `results/run_*/SUMMARY.json` in run 37620406802.
+
+`render_tables.py` was added after the run phase started. It only formats:
+
+- it copies the values from `SUMMARY.json` and rounds them to 3 significant figures;
+- it counts the rows of `results/run_*/failures.csv` by configuration and return code. The coordinator asked for this
+  per-configuration breakdown.
+
+It computes no statistic.
+
+As a check that it changes no number, the 72 reported statistics were recomputed independently, from
+`results/run_*/rows.csv` and the recorded `part_a_material.csv`. The 72 are:
+
+- 30 ratios, each checked for its median, its 95% CI (`default_rng(20261006)`, 10,000 resamples), its wins and its n;
+- 42 median certified CRs.
+
+All 72 match `SUMMARY.json`, with 0 mismatches.
