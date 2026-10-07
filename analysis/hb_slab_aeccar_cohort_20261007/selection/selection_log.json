@@ -1,0 +1,37 @@
+{
+  "rule": "PROTOCOL.md section 2",
+  "salt": "QOAC-HB-SLAB-AECCAR-20261007|",
+  "started_utc": "2026-10-07T09:18:12+00:00",
+  "finished_utc": "2026-10-07T09:22:09+00:00",
+  "frame_rows": 820,
+  "window_rows": 531,
+  "after_id_exclusion": 435,
+  "pool_rows": 119,
+  "pool_formulas": 33,
+  "pool_uploads": 5,
+  "formulas_visited": 33,
+  "attempts": 118,
+  "reject_reasons": {
+    "no_aeccar": 114
+  },
+  "N": 4,
+  "accepted_per_upload": {
+    "reTvTXQBTiSwmntKl7EmAQ": 2,
+    "qM7AMKciQ7GRVR8rCNm0mw": 2
+  },
+  "sha256": {
+    "manifest.csv": "89255ff5ce62910347ff8918e798badf678a30f53b29bf34f1f59fb5f80a8781",
+    "aeccar_sources.csv": "88624093f04424237d067cede4e7a4f86e8f448b399f189bd3641909799180f8",
+    "attempts.csv": "16dd034ed040f2264da58f36461b3259dca14c5a899d9e1df5044ad0db43059c",
+    "select_cohort.py": "847cb89cccbb8c923f28811a2127eb24a13187c53d100eb42384d69d23322321",
+    "exclusion_ids.csv": "eae9d2d9856ae40303794e88830fca07d5304636cf5e57d90c389b03dc7a1a22",
+    "exclusion_formulas.csv": "61cee7230137407e23d8bf26a63698c92d36269b7c0267ce0dd9c9f81df0f775"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "baderkit": "0.10.2",
+    "pymatgen": "2025.10.7"
+  }
+}
