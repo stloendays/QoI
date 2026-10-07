@@ -1,0 +1,35 @@
+{
+  "source": [
+    "run_P1_CONFIRMATORY/part_b_material.csv",
+    "run_P3B_CONFIRMATORY/part_b_material.csv"
+  ],
+  "excludes": "density control",
+  "tau_1e-06": {
+    "pairs": 460,
+    "materials": 92,
+    "median_abs_log_err": 0.025926536524793792,
+    "spearman_pooled": 0.9771129024403628,
+    "within_operator_spearman": {
+      "density_gradient": 0.23796680178166854,
+      "density_laplacian": 0.4424579627945686,
+      "gaussian_smoothed_density(sigma_angstrom=0.5)": 0.8949956074780758,
+      "hartree_field": 0.8444430744570998,
+      "hartree_potential": 0.7917173990105266
+    },
+    "frac_within_25pct": 0.8
+  },
+  "tau_0.0001": {
+    "pairs": 460,
+    "materials": 92,
+    "median_abs_log_err": 0.03542174879609011,
+    "spearman_pooled": 0.9350769513376104,
+    "within_operator_spearman": {
+      "density_gradient": 0.47322102862074816,
+      "density_laplacian": 0.6169566758627067,
+      "gaussian_smoothed_density(sigma_angstrom=0.5)": 0.8002250204213738,
+      "hartree_field": 0.668711372778694,
+      "hartree_potential": 0.8077616633016351
+    },
+    "frac_within_25pct": 0.8565217391304348
+  }
+}
