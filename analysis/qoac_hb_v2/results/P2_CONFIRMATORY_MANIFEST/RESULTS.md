@@ -22,3 +22,7 @@ Reading: under an exact AECCAR partition, one operator-aware stream certified fo
 satisfies Bader charges to 1e-4 e with zero basin reassignment and no additional bytes. A projection is needed only at
 1e-5 e, and then costs nothing measurable at the median. The Hartree-aware projection did not change certified rates
 relative to the uniform one.
+
+Derived count (from `joint_v2_best_post.csv` joined with `joint_v2_material.csv`; asserted in `figures/nc/fig5/make_fig5.py`):
+the certified R3 best-post streams number 144/144 (48 materials x 3 tau_B), every one with maximum atomic-charge error
+<= tau_B and reassigned-voxel fraction 0.

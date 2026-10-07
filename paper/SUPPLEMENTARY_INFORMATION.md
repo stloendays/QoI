@@ -165,7 +165,7 @@ With the AECCAR partition reference held exact, the decoded CHGCAR is corrected 
 
 On the frozen 38-material holdout ($\tau_B=10^{-3}\,e$): 38/38 analyzable with zero pipeline failures; maximum Bader error 0.0 $e$; zero basin reassignment in 38/38; 34/38 wins over the best frozen generic Bader-certified baseline; median compression-ratio ratio 1.865 (bootstrap 95% CI 1.759–1.985); P05 0.999, minimum 0.997; maximum side-channel fraction 0.999%; median $L_\infty$ ratio 3.09.
 
-### 3.2 Transcription of the Henkelman partition (B3 Gate 0; 12 fresh P2 engineering materials)
+### 3.2 Transcription of the Henkelman partition (12 fresh P2 engineering materials)
 
 Henkelman Bader 1.05 (`-b ongrid -vac 0.001`), exact CHGCAR, reference AECCAR0 + AECCAR2. The partition (volnum) was identical voxel for voxel in 11/11 materials with Gate 0 output (0 mismatching voxels); maxima 3,339/3,339 matched; every reference field was regular (0 violations of R1 and R2); the atom map was identical in 9/11 (minimum voxel agreement 97.9%); the literal transcription (run for at most 400,000 points) was identical in 3/3. For one material (mp-2302539) the comparison code exceeded memory (a 74 GiB pairwise maxima array); its arms ran normally.
 
@@ -206,7 +206,7 @@ Protocol and criteria were frozen before any run (commit `8a784a4`); confirmatio
 
 Median R3 joint compression ratio in the confirmatory cohort is 298 at every $\tau_B$. At $10^{-5}\,e$, Hartree-aware and uniform projection gave the same certified ratio (median ratio 1.00; $n=35$ confirmatory materials where both certify). Confirmatory criteria: 48/48 jointly certified (threshold 46/48); overhead median 1.000, CI [1.000, 1.000] (thresholds 1.10, 1.15); utility 48/48 wins, median 1.317, CI [1.269, 1.360], minimum 1.096 (thresholds 36/48, 1.10, CI lower bound 1.00). Bootstrap seed 20261007, 10,000 resamples.
 
-The Hartree-aware projection minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the basin-sum constraints, with $s_H=\lVert H\rho_{\text{ref}}\rVert^2$ and $s_\rho=\lVert\rho_{\text{ref}}\rVert^2$; it reduces to the uniform shift as $\mu\to\infty$. The constant mode is fixed by the constraints and the zero-mean part is solved from a regularized, Jacobi-scaled Cholesky system; the derivation and unit tests are in `analysis/qoac_hb_v2/DERIVATION.md`.
+The Hartree-aware projection minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the basin-sum constraints, with $s_H=\lVert H\rho_{\text{ref}}\rVert^2$ and $s_\rho=\lVert\rho_{\text{ref}}\rVert^2$; it reduces to the uniform shift as $\mu\to\infty$. The constant mode is fixed by the constraints and the zero-mean part is solved from a regularized, Jacobi-scaled Cholesky system; the derivation and unit tests are in the repository (joint-contract code, DERIVATION.md).
 
 
 ## Supplementary Note 5 — Law protocol tables per tolerance and per operator
@@ -325,27 +325,4 @@ Every manifest records material id, task or entry id, source URL, byte count and
 
 ## Supplementary Note 8 — Source files
 
-Every number in the main text and this SI comes from the files below (commit that last changed each file). Protocols, manifests, per-material tables and the register of every protocol with its outcome are in the same repository.
-
-| content | file | commit |
-|---|---|---|
-| QSQ fresh-perturbation test | `analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv` | `912ad5e` |
-| QSQ equal-search control | `analysis/research_upgrade/p1_common_tight_summary.csv` | `912ad5e` |
-| QSQ validations (Supplementary Note 1) | frozen manuscript and SI, `paper/MANUSCRIPT.md` and `paper/SUPPLEMENTARY_INFORMATION.md` | `efd1e2c` |
-| Hartree spectral audit | `analysis/hartree_spectral_mechanism/results/REPORT.md` | `dc2b167` |
-| QOAC-H mechanism ablation | `analysis/operator_aware_codec_hartree/results/SUMMARY.json` | `a1351d1` |
-| QOAC-H disjoint confirmation | `analysis/operator_aware_codec_hartree_v02_confirmatory/results/RESULTS.md` | `31def38` |
-| QOAC-H census | `analysis/operator_aware_codec_hartree_v02_census/results/RESULTS.md` | `cc5d7a1` |
-| strongest baselines | `analysis/qoac_h_strong_baselines/results/RESULTS.md` | `0c8b550` |
-| basin projection holdout | `analysis/operator_aware_bader_projection_confirmatory/results/SUMMARY.json` | `8e4b5e8` |
-| basin projection engineering | `analysis/operator_aware_bader_projection/results/RESULTS.md` | `892bedb` |
-| partition transcription and storage | `analysis/qoac_b3_design/results/real_engineering/RESULTS.md` | `01a3d54` |
-| law protocol, P1 | `analysis/general_qoac_law/results/run_P1_CONFIRMATORY/SUMMARY.json` | `4164519` |
-| law protocol, P3b | `analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/SUMMARY.json` | `eaa3267` |
-| law protocol, summary | `analysis/general_qoac_law/results/RESULTS.md` | `b9fd735` |
-| pooled prediction statistics | `analysis/general_qoac_law/results/POOLED_P1_P3B.json` | `062d782` |
-| predictor calibration | `analysis/general_qoac_operators/results/RESULTS.md` | `f4baa7a` |
-| joint contract, engineering | `analysis/qoac_hb_v2/results/P2_ENGINEERING_MANIFEST/RESULTS.md` | `e095a0c` |
-| joint contract, confirmation | `analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST/RESULTS.md` | `e4d9d0b` |
-| fresh populations | `analysis/fresh_population_20261006/REPORT.md` | `708dd37` |
-| P3b rule | `analysis/fresh_population_20261006/P3B_SELECTION_RULE.md` | `39ba728` |
+Every number in the main text and this SI is taken from a committed file of the public repository (see Data availability). The file-by-file table, with the commit that last changed each file, is `paper/nc_reopen/SOURCE_FILES.md` in that repository; protocols, manifests, per-material tables and the register of every protocol with its outcome are in the same repository.
