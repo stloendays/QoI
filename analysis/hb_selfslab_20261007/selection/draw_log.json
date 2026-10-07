@@ -1,0 +1,30 @@
+{
+  "phase": "draw",
+  "utc": "2026-10-07T16:25:47+00:00",
+  "n_visited": 62,
+  "n_accepted": 40,
+  "decisions": {
+    "accepted": 40,
+    "no_acceptable_slab": 19,
+    "error:ValueError:Symmetry detection failed for structure with formula Li2 Ag2 O4. Try setting symprec=0.1 to a different value.": 1,
+    "error:ValueError:Symmetry detection failed for structure with formula V3 S4. Try setting symprec=0.1 to a different value.": 1,
+    "error:ValueError:Symmetry detection failed for structure with formula Zr2 Se6. Try setting symprec=0.1 to a different value.": 1
+  },
+  "last_rank_visited": 62,
+  "outputs_sha256": {
+    "draw_slabs.csv": "2db1049f6c72c35037eb6e7fe493e44ec3a99c863cdac6787333dbbc8a2f08e8",
+    "draw_materials.csv": "b312cfd4429522914be49150b22d312101350ac45645bfff91ef8bf2a74b7736",
+    "drawn.csv": "ef6c407793ed8fda1336013154a4f6ec0806b5e52349758f57d84f9ffbb84d74"
+  },
+  "script_sha256": "224c2663f8aaf3b9ffdd3df9e2411b6ff740617b2518ec8ceb7e7305224d3f5f",
+  "grid_estimate_sha256": "35d8c47565b49c46388f8b8787a9b46e20f14c0c4c65d2e1f72d3bf30c0f22b2",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pymatgen": "2025.10.7",
+    "pyarrow": "25.0.1",
+    "numpy": "2.3.5",
+    "spglib": "2.7.0",
+    "pandas": "2.3.3"
+  }
+}

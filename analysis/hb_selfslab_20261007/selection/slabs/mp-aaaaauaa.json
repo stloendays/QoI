@@ -1,0 +1,871 @@
+{
+ "@module": "pymatgen.core.surface",
+ "@class": "Slab",
+ "charge": 0.0,
+ "lattice": {
+  "matrix": [
+   [
+    5.43273685,
+    0.0,
+    3.326591896981187e-16
+   ],
+   [
+    9.424054045321153e-16,
+    5.860283136498421,
+    3.588388492605002e-16
+   ],
+   [
+    0.0,
+    0.0,
+    28.648750768114798
+   ]
+  ],
+  "pbc": [
+   true,
+   true,
+   true
+  ],
+  "a": 5.43273685,
+  "b": 5.860283136498421,
+  "c": 28.648750768114798,
+  "alpha": 90.0,
+  "beta": 90.0,
+  "gamma": 90.0,
+  "volume": 912.101054348663
+ },
+ "properties": {},
+ "sites": [
+  {
+   "species": [
+    {
+     "element": "Ge",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.7500000000000002,
+    0.15748656619530133,
+    0.5461204580000001
+   ],
+   "properties": {
+    "bulk_wyckoff": "c",
+    "bulk_equivalent": 12
+   },
+   "label": "Ge",
+   "xyz": [
+    4.074552637500002,
+    0.9229158680993667,
+    15.645668890610708
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Ge",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.2500000000000002,
+    0.5831962657859929,
+    0.6538795419999999
+   ],
+   "properties": {
+    "bulk_wyckoff": "c",
+    "bulk_equivalent": 12
+   },
+   "label": "Ge",
+   "xyz": [
+    1.3581842125000017,
+    3.4176952416545054,
+    18.73283203112705
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Ge",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.75,
+    0.36737276086508514,
+    0.34612045799999985
+   ],
+   "properties": {
+    "bulk_wyckoff": "c",
+    "bulk_equivalent": 12
+   },
+   "label": "Ge",
+   "xyz": [
+    4.0745526375,
+    2.152908395306526,
+    9.915918736987742
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Ge",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.2500000000000002,
+    0.7930824604557768,
+    0.45387954199999986
+   ],
+   "properties": {
+    "bulk_wyckoff": "c",
+    "bulk_equivalent": 12
+   },
+   "label": "Ge",
+   "xyz": [
+    1.3581842125000019,
+    4.6476877688616645,
+    13.003081877504089
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.7500000000000002,
+    0.6512133601576293,
+    0.5064486119999998
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    4.074552637500003,
+    3.816294672794228,
+    14.509120062045668
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.2500000000000003,
+    0.08946947182366471,
+    0.6935513879999999
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    1.3581842125000017,
+    0.524316436959643,
+    19.869380859692082
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.2500000000000003,
+    0.8764437703870008,
+    0.5634607559999999
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    1.3581842125000025,
+    5.1362086476880355,
+    16.142446766257542
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.7500000000000002,
+    0.864239061594293,
+    0.636539244
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    4.074552637500003,
+    5.064685598564256,
+    18.23605415548021
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.7500000000000001,
+    0.8610995548274138,
+    0.30644861199999995
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    4.074552637500002,
+    5.046287200001391,
+    8.779369908422712
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.2500000000000003,
+    0.29935566649344886,
+    0.49355138799999987
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    1.3581842125000019,
+    1.754308964166804,
+    14.139630706069122
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.2500000000000001,
+    0.08632996505678543,
+    0.363460756
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    1.3581842125000008,
+    0.5059180383967776,
+    10.412696612634585
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Na",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.7500000000000001,
+    0.07412525626407776,
+    0.43653924399999994
+   ],
+   "properties": {
+    "bulk_wyckoff": "g",
+    "bulk_equivalent": 0
+   },
+   "label": "Na",
+   "xyz": [
+    4.074552637500001,
+    0.43439498927299885,
+    12.506304001857252
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Zn",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    1.9887457036308135e-16,
+    0.37034141599064696,
+    0.5999999999999999
+   ],
+   "properties": {
+    "bulk_wyckoff": "b",
+    "bulk_equivalent": 8
+   },
+   "label": "Zn",
+   "xyz": [
+    1.429444958891092e-15,
+    2.170305554876935,
+    17.189250460868877
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Zn",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.5000000000000002,
+    0.37034141599064696,
+    0.5999999999999999
+   ],
+   "properties": {
+    "bulk_wyckoff": "b",
+    "bulk_equivalent": 8
+   },
+   "label": "Zn",
+   "xyz": [
+    2.716368425000002,
+    2.170305554876935,
+    17.189250460868877
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Zn",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    1.325830469087209e-16,
+    0.580227610660431,
+    0.39999999999999986
+   ],
+   "properties": {
+    "bulk_wyckoff": "b",
+    "bulk_equivalent": 8
+   },
+   "label": "Zn",
+   "xyz": [
+    1.267098440771433e-15,
+    3.400298082084096,
+    11.459500307245916
+   ]
+  },
+  {
+   "species": [
+    {
+     "element": "Zn",
+     "occu": 1.0
+    }
+   ],
+   "abc": [
+    0.5000000000000001,
+    0.580227610660431,
+    0.39999999999999986
+   ],
+   "properties": {
+    "bulk_wyckoff": "b",
+    "bulk_equivalent": 8
+   },
+   "label": "Zn",
+   "xyz": [
+    2.716368425000001,
+    3.400298082084096,
+    11.459500307245916
+   ]
+  }
+ ],
+ "oriented_unit_cell": {
+  "@module": "pymatgen.core.structure",
+  "@class": "Structure",
+  "charge": 0.0,
+  "lattice": {
+   "matrix": [
+    [
+     0.0,
+     0.0,
+     -5.43273685
+    ],
+    [
+     7.366792242858021,
+     -9.116032350221118,
+     -1.071100649211194e-16
+    ],
+    [
+     -7.366792242858023,
+     0.0,
+     -4.510859270099814e-16
+    ]
+   ],
+   "pbc": [
+    true,
+    true,
+    true
+   ],
+   "a": 5.43273685,
+   "b": 11.720566272996843,
+   "c": 7.366792242858023,
+   "alpha": 128.94215847634163,
+   "beta": 90.0,
+   "gamma": 90.0,
+   "volume": 364.84042173946517
+  },
+  "properties": {},
+  "sites": [
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.25,
+     0.32522658000000004,
+     0.9677569400000001
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     -4.733387671848774,
+     -2.964776024431777,
+     -1.3581842125000005
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.75,
+     0.67477342,
+     0.03224305999999966
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     4.7333876718487735,
+     -6.151256325789341,
+     -4.0745526375
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.75,
+     0.32522658000000004,
+     0.68269622
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     -2.63340457100925,
+     -2.964776024431777,
+     -4.0745526375
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.25,
+     0.67477342,
+     0.3173037799999999
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     2.6334045710092484,
+     -6.151256325789341,
+     -1.3581842125000003
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.25,
+     0.82522658,
+     0.9677569400000001
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     -1.0499915504197634,
+     -7.522792199542336,
+     -1.3581842125000005
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.75,
+     0.17477341999999996,
+     0.03224305999999988
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     1.0499915504197617,
+     -1.5932401506787823,
+     -4.0745526375
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.75,
+     0.82522658,
+     0.68269622
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     1.0499915504197606,
+     -7.522792199542336,
+     -4.0745526375
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Na",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.25,
+     0.17477341999999996,
+     0.3173037799999998
+    ],
+    "properties": {
+     "bulk_wyckoff": "g",
+     "bulk_equivalent": 0
+    },
+    "label": "Na",
+    "xyz": [
+     -1.0499915504197606,
+     -1.5932401506787823,
+     -1.3581842125000003
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Zn",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     7.518265475673686e-33,
+     0.0,
+     0.5
+    ],
+    "properties": {
+     "bulk_wyckoff": "b",
+     "bulk_equivalent": 8
+    },
+    "label": "Zn",
+    "xyz": [
+     -3.6833961214290114,
+     0.0,
+     -2.2554296350499077e-16
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Zn",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.5,
+     0.0,
+     0.5
+    ],
+    "properties": {
+     "bulk_wyckoff": "b",
+     "bulk_equivalent": 8
+    },
+    "label": "Zn",
+    "xyz": [
+     -3.6833961214290114,
+     0.0,
+     -2.7163684250000006
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Zn",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.0,
+     0.5,
+     0.5
+    ],
+    "properties": {
+     "bulk_wyckoff": "b",
+     "bulk_equivalent": 8
+    },
+    "label": "Zn",
+    "xyz": [
+     -8.881784197001252e-16,
+     -4.558016175110559,
+     -2.790979959655504e-16
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Zn",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "properties": {
+     "bulk_wyckoff": "b",
+     "bulk_equivalent": 8
+    },
+    "label": "Zn",
+    "xyz": [
+     -8.881784197001252e-16,
+     -4.558016175110559,
+     -2.7163684250000006
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Ge",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.2500000000000001,
+     0.0,
+     0.7693977099999999
+    ],
+    "properties": {
+     "bulk_wyckoff": "c",
+     "bulk_equivalent": 12
+    },
+    "label": "Ge",
+    "xyz": [
+     -5.667993081700726,
+     0.0,
+     -1.3581842125000012
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Ge",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.75,
+     0.0,
+     0.23060228999999988
+    ],
+    "properties": {
+     "bulk_wyckoff": "c",
+     "bulk_equivalent": 12
+    },
+    "label": "Ge",
+    "xyz": [
+     -1.6987991611572952,
+     0.0,
+     -4.0745526375
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Ge",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.25,
+     0.5,
+     0.7693977099999998
+    ],
+    "properties": {
+     "bulk_wyckoff": "c",
+     "bulk_equivalent": 12
+    },
+    "label": "Ge",
+    "xyz": [
+     -1.9845969602717146,
+     -4.558016175110559,
+     -1.3581842125000005
+    ]
+   },
+   {
+    "species": [
+     {
+      "element": "Ge",
+      "oxidation_state": 0,
+      "spin": null,
+      "occu": 1.0
+     }
+    ],
+    "abc": [
+     0.75,
+     0.5,
+     0.23060229
+    ],
+    "properties": {
+     "bulk_wyckoff": "c",
+     "bulk_equivalent": 12
+    },
+    "label": "Ge",
+    "xyz": [
+     1.9845969602717144,
+     -4.558016175110559,
+     -4.0745526375
+    ]
+   }
+  ]
+ },
+ "miller_index": [
+  1,
+  1,
+  0
+ ],
+ "shift": 0.0,
+ "scale_factor": [
+  [
+   0,
+   0,
+   -1
+  ],
+  [
+   1,
+   -1,
+   0
+  ],
+  [
+   -1,
+   0,
+   0
+  ]
+ ],
+ "reconstruction": null,
+ "energy": 0.0
+}

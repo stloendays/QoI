@@ -1,0 +1,48 @@
+{
+  "phase": "funnel",
+  "utc": "2026-10-07T16:24:36+00:00",
+  "parquet": {
+    "name": "part-00000-2cc5f2cc-2a79-4051-b013-2f9dec6a302e-c000.zstd.parquet",
+    "bytes": 414503512,
+    "sha256": "669e5a3bdf1644633f8c771a98b434bf449451a9aa6ce2556d0901ba1dff235b"
+  },
+  "magnetism_field": "is_magnetic == False",
+  "is_magnetic_x_ordering_after_step_1": {
+    "is_magnetic=False|ordering=NM": 94053,
+    "is_magnetic=False|ordering=Unknown": 16079,
+    "is_magnetic=True|ordering=AFM": 611,
+    "is_magnetic=True|ordering=FM": 24042,
+    "is_magnetic=True|ordering=FiM": 6343
+  },
+  "counts": {
+    "0_summary_rows": 280159,
+    "1_energy_above_hull_eq_0": 141128,
+    "2_is_magnetic_false": 110132,
+    "3_nelements_1_to_3": 39550,
+    "4_primitive_nsites_le_8": 12353,
+    "5_no_f_block_no_noble_gas": 5657,
+    "6_mprelaxset_potcar_for_every_element": 5657,
+    "7_not_excluded_id": 5657,
+    "8_not_excluded_formula": 5534,
+    "9_one_per_reduced_formula": 5524
+  },
+  "n_formula_pretty_differs_from_structure_formula": 0,
+  "exclusion_inputs_sha256": {
+    "exclusion_ids_union.csv": "705709da726edb02e6efea282fafe782e9c90d34bb12afd843918ffe70ca950b",
+    "exclusion_formulas_union.csv": "e31cf2355241283b69a3ed7094f021873f079ddad405c8e167c94ce6b070cfc5"
+  },
+  "outputs_sha256": {
+    "ranked.csv.gz": "ae72181e5459d58c401f92df1af8afa9cbae54f92ad45b407190af9e2b151758",
+    "structures_ranked.json.gz": "7a3789dad7ab864f6968250c19a5d78be69a739bee6bdd03a8bbbadad708f35c"
+  },
+  "script_sha256": "224c2663f8aaf3b9ffdd3df9e2411b6ff740617b2518ec8ceb7e7305224d3f5f",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pymatgen": "2025.10.7",
+    "pyarrow": "25.0.1",
+    "numpy": "2.3.5",
+    "spglib": "2.7.0",
+    "pandas": "2.3.3"
+  }
+}

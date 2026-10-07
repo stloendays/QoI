@@ -1,0 +1,63 @@
+rank,material_id,reduced_formula,decision,reason,draw_rank,miller,termination,natoms,ngf,npoints_est,kpoints,potcar_symbols,conv_nsites,oxidation_guess,seconds
+1,mp-aaaabicq,ZrIN,accepted,,1,001,0,12,56x64x588,2107392,7x7x1,Zr_sv I N,6,"{""I-"": -1.0, ""N3-"": -3.0, ""Zr4+"": 4.0}",0.8
+2,mp-aaaabjil,Ca(HO)2,accepted,,2,001,2,15,56x56x500,1568000,8x8x1,Ca_sv H O,5,"{""Ca2+"": 2.0, ""H+"": 1.0, ""O2-"": -2.0}",0.9
+3,mp-aaahhjhs,Ca2Cu3Rh,rejected,no_acceptable_slab,,,,,,,,,18,"{""Ca0+"": 0, ""Cu0+"": 0, ""Rh0+"": 0}",5.6
+4,mp-aaahhksb,CaAlCu4,rejected,no_acceptable_slab,,,,,,,,,12,"{""Al0+"": 0, ""Ca0+"": 0, ""Cu0+"": 0}",2.1
+5,mp-aaacdmxv,RbBr3,rejected,no_acceptable_slab,,,,,,,,,8,"{""Br0+"": 0, ""Rb0+"": 0}",1.2
+6,mp-aaahhtds,TcRh5W2,rejected,no_acceptable_slab,,,,,,,,,16,"{""Rh0+"": 0, ""Tc0+"": 0, ""W0+"": 0}",2.3
+7,mp-aaadjsyf,CsTeAu,rejected,no_acceptable_slab,,,,,,,,,6,"{""Au0+"": 0, ""Cs0+"": 0, ""Te0+"": 0}",0.7
+8,mp-aaacesus,,rejected,error:ValueError:Symmetry detection failed for structure with formula Li2 Ag2 O4. Try setting symprec=0.1 to a different value.,,,,,,,,,,{},
+9,mp-aaabxapz,Ti2CoIr,accepted,,3,110,0,24,64x96x480,2949120,6x5x1,Ti_pv Co Ir,16,"{""Co0+"": 0, ""Ir0+"": 0, ""Ti0+"": 0}",0.9
+10,mp-aaahhkfw,Mg2ZnPt2,accepted,,4,001,1,20,60x84x448,2257920,7x5x1,Mg_pv Zn Pt,10,"{""Mg0+"": 0, ""Pt0+"": 0, ""Zn0+"": 0}",0.5
+11,mp-aaaabhch,PdPbO2,rejected,no_acceptable_slab,,,,,,,,,16,"{""O2-"": -2.0, ""Pb2+"": 2.0, ""Pd2+"": 2.0}",3.4
+12,mp-aaaabwmu,AuCl,rejected,no_acceptable_slab,,,,,,,,,16,"{""Au0+"": 0, ""Cl0+"": 0}",4.3
+13,mp-aaaabsyn,Li2GaAu,accepted,,5,110,0,24,64x96x480,2949120,6x5x1,Li_sv Ga_d Au,16,"{""Au0+"": 0, ""Ga0+"": 0, ""Li0+"": 0}",1.3
+14,mp-aaacjkvs,Ti3Sn,accepted,,6,001,0,24,96x96x500,4608000,5x5x1,Ti_pv Sn_d,16,"{""Sn0+"": 0, ""Ti0+"": 0}",0.8
+15,mp-aaahhths,InPRu2,accepted,,7,001,0,16,48x96x512,2359296,8x5x1,In_d P Ru_pv,8,"{""In0+"": 0, ""P0+"": 0, ""Ru0+"": 0}",0.8
+16,mp-aaaaabpp,,rejected,error:ValueError:Symmetry detection failed for structure with formula V3 S4. Try setting symprec=0.1 to a different value.,,,,,,,,,,{},
+17,mp-aaahhjye,Si(HgTe2)2,rejected,no_acceptable_slab,,,,,,,,,14,"{""Hg2+"": 2.0, ""Si4+"": 4.0, ""Te2-"": -2.0}",3.1
+18,mp-aaaaagqm,Ba(PRu)2,accepted,,8,100,0,30,60x192x420,4838400,7x3x1,Ba_sv P Ru_pv,10,"{""Ba2+"": 2.0, ""P3-"": -3.0, ""Ru2+"": 2.0}",2.5
+19,mp-aaacezrr,LiZrSe2,accepted,,9,110,0,24,100x96x420,4032000,4x4x1,Li_sv Zr_sv Se,4,"{""Li+"": 1.0, ""Se2-"": -2.0, ""Zr3+"": 3.0}",0.8
+20,mp-aaacrfiw,VCrP2,accepted,,10,001,0,16,48x80x480,1843200,9x5x1,V_pv Cr_pv P,8,"{""Cr2.50+"": 2.5, ""P3-"": -3.0, ""V3.50+"": 3.5}",0.5
+21,mp-aaacqqai,HfMnF6,accepted,,11,001,1,32,96x96x500,4608000,5x5x1,Hf_pv Mn_pv F,32,"{""F-"": -1.0, ""Hf4+"": 4.0, ""Mn2+"": 2.0}",1.1
+22,mp-aaabxhim,Li2PdAu,accepted,,12,110,0,24,64x96x448,2752512,6x5x1,Li_sv Pd Au,16,"{""Au0+"": 0, ""Li0+"": 0, ""Pd0+"": 0}",1.0
+23,mp-aaahaebj,Hf4GaP,accepted,,13,100,1,24,96x80x500,3840000,4x5x1,Hf_pv Ga_d P,12,"{""Ga0+"": 0, ""Hf0+"": 0, ""P0+"": 0}",2.0
+24,mp-aaacpiil,Ba2MgTl,rejected,no_acceptable_slab,,,,,,,,,16,"{""Ba0+"": 0, ""Mg0+"": 0, ""Tl0+"": 0}",1.5
+25,mp-aaaaabgb,CaPd2,rejected,no_acceptable_slab,,,,,,,,,24,"{""Ca0+"": 0, ""Pd0+"": 0}",3.3
+26,mp-aaacqpak,BaAgBi,accepted,,14,100,1,18,80x140x480,5376000,6x3x1,Ba_sv Ag Bi,6,"{""Ag0+"": 0, ""Ba0+"": 0, ""Bi0+"": 0}",1.4
+27,mp-aaacpfaw,IBr,accepted,,15,110,0,12,72x128x448,4128768,6x3x1,I Br,8,"{""Br0+"": 0, ""I0+"": 0}",0.8
+28,mp-aaadbngd,MgSnF6,accepted,,16,110,2,32,84x112x384,3612672,5x4x1,Mg_pv Sn_d F,24,"{""F-"": -1.0, ""Mg2+"": 2.0, ""Sn4+"": 4.0}",2.4
+29,mp-aaacjlqn,ZrGa3,rejected,no_acceptable_slab,,,,,,,,,16,"{""Ga0+"": 0, ""Zr0+"": 0}",3.0
+30,mp-aaacdpvq,Ta2VRu,accepted,,17,110,0,24,72x96x480,3317760,6x4x1,Ta_pv V_pv Ru_pv,16,"{""Ru0+"": 0, ""Ta0+"": 0, ""V0+"": 0}",1.4
+31,mp-aaabxbrv,Sc2PdPt,accepted,,18,110,0,24,72x100x500,3600000,6x4x1,Sc_sv Pd Pt,16,"{""Pd0+"": 0, ""Pt0+"": 0, ""Sc0+"": 0}",0.9
+32,mp-aaaaaaiv,ZrRh3,accepted,,19,111,0,20,84x84x420,2963520,5x5x1,Zr_sv Rh_pv,4,"{""Rh0+"": 0, ""Zr0+"": 0}",0.4
+33,mp-aaaabhvf,HgI,accepted,,20,001,0,8,80x80x540,3456000,5x5x1,Hg I,8,"{""Hg+"": 1.0, ""I-"": -1.0}",0.3
+34,mp-aaabxbqt,LiAsRh2,accepted,,21,110,0,24,64x96x448,2752512,7x5x1,Li_sv As Rh_pv,16,"{""As0+"": 0, ""Li0+"": 0, ""Rh0+"": 0}",1.0
+35,mp-aaahhsax,NbInPd6,rejected,no_acceptable_slab,,,,,,,,,8,"{""In0+"": 0, ""Nb0+"": 0, ""Pd0+"": 0}",0.8
+36,mp-aaahagdz,Zn3SbRh4,accepted,,22,110,0,40,112x112x384,4816896,4x4x1,Zn Sb Rh_pv,24,"{""Rh0+"": 0, ""Sb0+"": 0, ""Zn0+"": 0}",4.0
+37,mp-aaahhiac,AlNi3H,rejected,no_acceptable_slab,,,,,,,,,5,"{""Al0+"": 0, ""H0+"": 0, ""Ni0+"": 0}",1.2
+38,mp-aaaaacmt,,rejected,error:ValueError:Symmetry detection failed for structure with formula Zr2 Se6. Try setting symprec=0.1 to a different value.,,,,,,,,,,{},
+39,mp-aaacpkjv,HfZrOs2,accepted,,23,110,0,24,72x96x480,3317760,6x4x1,Hf_pv Zr_sv Os_pv,16,"{""Hf0+"": 0, ""Os0+"": 0, ""Zr0+"": 0}",1.4
+40,mp-aaaaacvc,CaAs3,accepted,,24,001,0,16,96x96x420,3870720,5x5x1,Ca_sv As,8,"{""As0.67-"": -0.6666666666666666, ""Ca2+"": 2.0}",1.2
+41,mp-aaahhscb,Sb4RuRh3,rejected,no_acceptable_slab,,,,,,,,,8,"{""Rh3+"": 3.0, ""Ru3+"": 3.0, ""Sb3-"": -3.0}",2.9
+42,mp-aaahhsfe,MgPd6Pt,rejected,no_acceptable_slab,,,,,,,,,32,"{""Mg0+"": 0, ""Pd0+"": 0, ""Pt0+"": 0}",3.1
+43,mp-aaahhibq,Zr4GaAs,accepted,,25,100,1,24,100x80x500,4000000,4x5x1,Zr_sv Ga_d As,12,"{""As0+"": 0, ""Ga0+"": 0, ""Zr0+"": 0}",2.9
+44,mp-aaahafln,Ca(Tc2Ge)2,accepted,,26,110,3,21,64x112x420,3010560,7x4x1,Ca_sv Tc_pv Ge_d,14,"{""Ca0+"": 0, ""Ge0+"": 0, ""Tc0+"": 0}",1.3
+45,mp-aaahafij,ZrZn4Ru,rejected,no_acceptable_slab,,,,,,,,,24,"{""Ru0+"": 0, ""Zn0+"": 0, ""Zr0+"": 0}",3.3
+46,mp-aaahhsdc,Nb2Ni5Ru,rejected,no_acceptable_slab,,,,,,,,,16,"{""Nb0+"": 0, ""Ni0+"": 0, ""Ru0+"": 0}",1.8
+47,mp-aaaaakxt,Ba3(AlSn)2,accepted,,27,001,3,14,72x80x640,3686400,6x5x1,Ba_sv Al Sn_d,14,"{""Al0+"": 0, ""Ba0+"": 0, ""Sn0+"": 0}",0.9
+48,mp-aaaaauaa,Na2ZnGe,accepted,,28,110,0,16,80x96x432,3317760,5x5x1,Na_pv Zn Ge_d,16,"{""Ge0+"": 0, ""Na0+"": 0, ""Zn0+"": 0}",1.1
+49,mp-aaabxgjl,YCdHg2,accepted,,29,110,0,16,80x108x384,3317760,5x4x1,Y_sv Cd Hg,16,"{""Cd0+"": 0, ""Hg0+"": 0, ""Y0+"": 0}",1.4
+50,mp-aaahhkwj,Y3CdC,rejected,no_acceptable_slab,,,,,,,,,5,"{""C0+"": 0, ""Cd0+"": 0, ""Y0+"": 0}",0.9
+51,mp-aaadjydh,Mn3Co,accepted,,30,001,0,24,80x80x448,2867200,5x5x1,Mn_pv Co,16,"{""Co0+"": 0, ""Mn0+"": 0}",0.9
+52,mp-aaaabjqf,ScHCl,accepted,,31,001,2,18,56x56x840,2634240,8x8x1,Sc_sv H Cl,18,"{""Cl-"": -1.0, ""H-"": -1.0, ""Sc2+"": 2.0}",3.9
+53,mp-aaabxiuv,SrInHg2,accepted,,32,110,0,16,80x112x400,3584000,5x4x1,Sr_sv In_d Hg,16,"{""Hg0+"": 0, ""In0+"": 0, ""Sr0+"": 0}",1.8
+54,mp-aaahbvvb,Nb2(NiPt)3,rejected,no_acceptable_slab,,,,,,,,,8,"{""Nb0+"": 0, ""Ni0+"": 0, ""Pt0+"": 0}",2.6
+55,mp-aaadjzbl,ICl3,accepted,,33,001,0,16,84x96x480,3870720,5x5x1,I Cl,8,"{""Cl0+"": 0, ""I0+"": 0}",0.5
+56,mp-aaaabgrv,Ga2Pt,accepted,,34,110,0,18,64x96x448,2752512,6x5x1,Ga_d Pt,12,"{""Ga0+"": 0, ""Pt0+"": 0}",0.8
+57,mp-aaacqqea,YSi2Ni,accepted,,35,001,0,24,60x128x420,3225600,7x3x1,Y_sv Si Ni_pv,16,"{""Ni+"": 1.0, ""Si2-"": -2.0, ""Y3+"": 3.0}",0.3
+58,mp-aaaaadxv,Al2Au,accepted,,36,110,0,18,64x96x448,2752512,6x5x1,Al Au,12,"{""Al0+"": 0, ""Au0+"": 0}",0.8
+59,mp-aaaaabxl,PtO2,accepted,,37,001,1,18,48x72x480,1658880,8x6x1,Pt O,6,"{""O2-"": -2.0, ""Pt4+"": 4.0}",0.3
+60,mp-aaaabuem,K2MgF4,accepted,,38,001,1,14,60x60x588,2116800,7x7x1,K_sv Mg_pv F,14,"{""F-"": -1.0, ""K+"": 1.0, ""Mg2+"": 2.0}",0.3
+61,mp-aaaabiaz,Ca2BrN,accepted,,39,110,0,24,96x108x420,4354560,4x4x1,Ca_sv Br N,12,"{""Br-"": -1.0, ""Ca2+"": 2.0, ""N3-"": -3.0}",1.6
+62,mp-aaacpnwy,Sc3Sn,accepted,,40,001,0,16,96x96x392,3612672,4x4x1,Sc_sv Sn_d,8,"{""Sc0+"": 0, ""Sn0+"": 0}",0.7
