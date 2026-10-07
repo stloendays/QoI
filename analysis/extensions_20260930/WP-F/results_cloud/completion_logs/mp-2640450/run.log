@@ -1,0 +1,5 @@
+group large: 1 tasks, 1 to do, workers 1
+/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/pymatgen/core/composition.py:1373: FutureWarning: gcd is deprecated, and will be removed on 2028-01-01
+Use math.gcd instead.
+  factor = abs(gcd(*(int(i) for i in sym_amt.values())))
+14:04:28 mp-2640450 SUCCESS 237s floor=1.9680199999427828e-05 solves=30
