@@ -1,0 +1,18 @@
+{
+ "task_id": "mp-1937234",
+ "stratum": "D09",
+ "key": "chgcars/mp-1937234.json.gz",
+ "frame_bytes": 41263980,
+ "group": "small",
+ "status": "FAILED",
+ "rows": [],
+ "failures": [
+  {
+   "task_id": "mp-1937234",
+   "stratum": "D09",
+   "stage": "worker",
+   "error": "BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending."
+  }
+ ],
+ "retried": true
+}

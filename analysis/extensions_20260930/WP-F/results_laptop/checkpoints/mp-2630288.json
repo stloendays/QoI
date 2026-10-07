@@ -1,0 +1,64 @@
+{
+ "task_id": "mp-2630288",
+ "stratum": "D01",
+ "key": "chgcars/mp-2630288.json.gz",
+ "frame_bytes": 2205518,
+ "group": "small",
+ "status": "SUCCESS",
+ "rows": [],
+ "failures": [],
+ "json_bytes": 2205518,
+ "sha256": "5fc48be09cf8675d45117fc3588af6f9da480a36c5aa508d197c9ff351694ac3",
+ "size_matches_frame": true,
+ "shape": "56x56x72",
+ "npoints": 225792,
+ "natoms": 3,
+ "spin_channels": 2,
+ "formula": "UB2",
+ "value_ptp": 88.5199161178,
+ "value_min": 4.8090375382,
+ "value_max": 93.328953656,
+ "crystal_system": "hexagonal",
+ "spacegroup": 191,
+ "raw64_bytes": 1806336,
+ "lossless_bytes": 993289,
+ "epsilon": 3.811226562788761e-06,
+ "natoms_bader": 3,
+ "probes": [
+  {
+   "seed": 20260905,
+   "response_e": 0.0628469488000003,
+   "n_reassigned": 2359
+  },
+  {
+   "seed": 1,
+   "response_e": 0.008636066300000245,
+   "n_reassigned": 1414
+  },
+  {
+   "seed": 2,
+   "response_e": 0.040860295000000324,
+   "n_reassigned": 1365
+  },
+  {
+   "seed": 3,
+   "response_e": 0.05832242490000006,
+   "n_reassigned": 1517
+  },
+  {
+   "seed": 4,
+   "response_e": 0.03305320880000018,
+   "n_reassigned": 2004
+  }
+ ],
+ "floor_e": 0.0628469488000003,
+ "eligible": {
+  "0.0001": false,
+  "0.001": false,
+  "0.01": false
+ },
+ "writer_choice": {},
+ "bader_solves": 6,
+ "wall_seconds": 7.055078983306885,
+ "retried": false
+}

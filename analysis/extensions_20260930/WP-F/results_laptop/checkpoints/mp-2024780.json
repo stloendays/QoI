@@ -1,0 +1,18 @@
+{
+ "task_id": "mp-2024780",
+ "stratum": "D10c",
+ "key": "chgcars/mp-2024780.json.gz",
+ "frame_bytes": 231973856,
+ "group": "large",
+ "status": "FAILED",
+ "rows": [],
+ "failures": [
+  {
+   "task_id": "mp-2024780",
+   "stratum": "D10c",
+   "stage": "worker",
+   "error": "BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending."
+  }
+ ],
+ "retried": true
+}

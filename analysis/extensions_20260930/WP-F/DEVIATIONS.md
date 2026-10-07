@@ -31,3 +31,34 @@ acceptance criterion is changed.
    object, is never certified, and the object's other rungs and its storage outcome are unaffected
    (a 1e-1 ZFP rung is far above any certifiable tolerance in these data). Object-level failures remain
    governed by the storage rule.
+
+6. **Laptop run as recorded (stopped 2026-10-04 17:00 +08:00).** The checkpoints of the laptop run are
+   committed unchanged in `results_laptop/checkpoints/` (300 files, SHA-256 in
+   `results_laptop/CHECKPOINTS.sha256`): 243 SUCCESS, 57 FAILED. Every SUCCESS object is in the small
+   group (D01–D09). Every FAILED object ended with `BrokenProcessPool` after its deviation-4 retry
+   (`retried: true`): the worker process was killed, with about 5 GB of free RAM. Failed by stratum:
+   D09 27/30, D10a 15/15, D10b 10/10, D10c 5/5. No WP-F estimator has been run on these checkpoints.
+
+7. **Execution platform change for the 57 FAILED objects (author decision, 2026-10-07, recorded before
+   any object runs on the new platform).** The author directed completion of the sample in the cloud
+   ("WP-F：……在 DEVIATIONS 记下平台变更，云端重跑 5 个已完成对象核对一致后，再补完剩下的").
+   - Platform: GitHub-hosted `ubuntu-24.04` runners (about 16 GB RAM), one object per job, one worker,
+     with the frozen stack of deviation 1: `validation/` of commit `893f931` and its
+     `requirements-external-e2e.txt`, Python 3.12, as the repository's other CI workflows install it.
+     Paths that `run_wpf.py` hard-codes for the laptop (`FROZEN_VALIDATION`, `CACHE`, `CKPT`) become
+     overridable by environment variables; nothing else in the runner changes.
+   - Consistency check first. The five SUCCESS objects that are eligible at 1e-2 e and have the smallest
+     SHA-256 of the UTF-8 task id are rerun on the new platform: `mp-2488566` (D03), `mp-2285510` (D06),
+     `mp-2050393` (D03), `mp-2367698` (D07), `mp-2682232` (D05). The platforms agree if, for each of
+     them, eligibility at all three τ, the certified flag of every evaluated rung and the writer choice
+     (codec and rung) at each τ are identical; compressed bytes of every rung agree within 0.1%; and the
+     floor, every probe response and every rung's Bader error agree within 1e-6 e. The comparison is
+     committed as `results_cloud/CONSISTENCY.md`. If the platforms do not agree, the 57 objects are not
+     run and the disagreement is reported.
+   - Completion. If they agree, the 57 FAILED objects run once each on the new platform under the
+     protocol's per-object procedure and storage rule. An object that fails there (including memory) is
+     final and counted under the storage rule. The 243 laptop SUCCESS checkpoints are used as recorded.
+   - Reporting. The estimators of the protocol, unchanged, are reported on (a) the completed sample (243
+     laptop + 57 cloud outcomes), the endpoint the author asked for, and (b) the laptop run as frozen,
+     with the 57 objects counted as failed under the storage rule, so that the effect of this change is
+     visible.
