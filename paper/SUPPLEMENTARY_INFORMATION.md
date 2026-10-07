@@ -1,411 +1,351 @@
 # Supplementary Information
 
-## Numerical stability qualification and operator-aware compression of electronic densities
+## The downstream operator qualifies, predicts and shapes the certified compression of electronic densities
 
-This Supplementary Information (SI) is organized to support the main-text benchmark-validity claim without duplicating the primary narrative. The main manuscript establishes the three-state certification logic and its headline consequence. The SI documents denominator conventions, qualification provenance, sensitivity analyses, extended operator controls, mechanistic robustness, matching diagnostics, rate–fidelity tables, external confirmation, and failure semantics.
+This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 8 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
 
-The SI uses versioned data assets from the repository. Supplementary results are generated from machine-readable sources rather than transcribed manually.
+Contents:
 
-
-## Supplementary Note 1 — Cohorts, denominators and data provenance
-
-The development benchmark contains **254 electronic-density fields**, comprising **186 bulk** and **68 slab** systems. Across ZFP, SZ3 and SPERR and the fixed base/tight tolerance ladders, the development benchmark contains **6,343 retained reconstruction rows**.
-
-The numerical-stability qualification has a broader fixed universe of **319 systems**. This total is composed of 186 development bulk systems, 68 development slabs, 37 external bulk systems and 28 external vacuum-containing 2D systems (QSQ eligibility summary; repository reader-facing provenance index). The external stability set therefore contains **65 records** and is distinct from the **63-system primary external rate–fidelity confirmatory cohort**. The latter was pre-specified separately for confirmatory scoring and contains 1,689 retained scientific rows. A 65-system external descriptive aggregate also contains 1,755 rows.
-
-This distinction is important because different questions use different denominators:
-
-- **254 development systems**: primary codec benchmark, binary-to-three-state reclassification, electron-count control, Hartree control, realized-distortion matching.
-- **319 stability-tested systems**: QSQ stability-floor and eligibility summaries.
-- **65 external descriptive systems**: descriptive external stability/robustness universe.
-- **63 external confirmatory systems**: pre-specified primary external rate–fidelity confirmation.
-
-These denominator labels are reported explicitly so that the 254-, 319-, 65- and 63-system populations remain distinguishable throughout the manuscript and SI.
-
-Exact cohort manifests and machine-readable benchmark assets are mapped in the repository reader-facing provenance index.
+- Supplementary Note 1. QSQ validations
+- Supplementary Note 2. Hartree mechanism, frozen-ladder QOAC-H confirmation, census and strongest baselines
+- Supplementary Note 3. Bader contracts under an exact partition: basin projection, partition transcription and storage
+- Supplementary Note 4. Joint certification: engineering cohort and per-tolerance description
+- Supplementary Note 5. Law protocol tables per tolerance and per operator
+- Supplementary Note 6. Gain-predictor calibration
+- Supplementary Note 7. Population construction
+- Supplementary Note 8. Source files
+- Supplementary Fig. 1. Bader storage contracts on real materials
 
 
-## Supplementary Note 2 — QoI Stability Qualification and order-preserving control
+## Supplementary Note 1 — QSQ validations
 
-An order-preserving round-trip control uses a deterministic float64 → float32 → float64 conversion at the same material-specific amplitude scale. This control is unusually benign for an on-grid watershed partition because it preserves much of the local value ordering.
+### 1.1 Cohorts and denominators
 
-QoI Stability Qualification (QSQ) is a perturbation-based numerical identifiability test defined on a complete measurement contract. The contract specifies the QoI, downstream numerical algorithm, scientific tolerance and the role of each input as exact or approximate. Exact inputs remain fixed; only approximate inputs are perturbed.
+The development benchmark contains 254 electronic-density fields (186 Materials Project bulk crystals and 68 NOMAD slabs) and 6,343 retained ZFP, SZ3 and SPERR reconstruction rows. The QSQ stability universe has 319 systems: the 254 development systems, 37 external AFLOW bulk systems and 28 external NOMAD vacuum-containing 2D systems. The external stability set (65 records) is distinct from the 63-system external confirmatory cohort (1,689 retained rows; 0 material-level pipeline failures; 0 codec-bound violations; 3 recorded row-level Bader-solver failures affecting two materials).
 
-For the primary self-partitioned Bader contract, the density is the sole approximate input and serves both as the integrated charge field and the partition-defining field. Let
+### 1.2 Definition and probe design
+
+For the self-partitioned Bader contract the density is the sole approximate input. With $\epsilon_m=\lVert\mathrm{float32}(\rho_m)-\rho_m\rVert_\infty$, five uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ with seeds $\{20260905,1,2,3,4\}$ are applied, basins are re-derived, and
 
 $$
-\epsilon_m = \|\text{float32}(\rho_m)-\rho_m\|_\infty.
+f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|,\qquad \text{eligible}\iff f_m<\tau .
 $$
 
-Five pre-specified uniform perturbations $U(-\epsilon_m,+\epsilon_m)$ are applied with seeds $\{20260905,1,2,3,4\}$. Bader basins are re-derived after each perturbation. The QSQ stability floor for this contract is
+For a fixed $\tau$, probing may stop at the earliest response $\ge\tau$; this exact sequential rule reproduced 254/254 development classifications at $10^{-3}\,e$ while reducing the mean number of probe solves from 5.000 to 3.335.
 
-$$
-f_m=\max_s\max_a |Q_a(\rho_m+\delta_{m,s})-Q_a(\rho_m)|.
-$$
+The probe must excite the downstream failure mode. In an 18-material calibration panel, an order-preserving float32 round trip produced a median of 82 exact neighbouring ties and reassigned zero voxels in 9/18 systems; the non-order-preserving QSQ probe produced no exact ties and reassigned zero voxels in 2/18. Across five seeds the per-material floor span had a median of 0.47 decades (maximum 2.4); a single-seed verdict changed across seeds in 3/18, 2/18 and 1/18 materials at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$. Over a ×0.1 to ×10 amplitude sweep the floor changed by a median of 0.76 decades (P10 0.00, P90 2.02). Across the 254 development materials the five-seed floor is a median of about $1.6\times10^{4}$ times the round-trip response, and the five-seed maximum changes eligibility relative to a single seed for 35, 17 and 2 of 319 systems at the three thresholds. Across the 319-system universe the screen rejects 79.9%, 41.4% and 9.7% at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$ (development only: 81.9%, 43.7%, 9.8%). One extreme response (`aflow-Al8Cu4U1_ICSD_601801`) is a permutation of symmetry-equivalent Al basins and is recorded as basin relabelling.
 
-A Bader tolerance $\tau$ is eligible only when $f_m<\tau$. If $f_m\ge\tau$, the material–contract pair is non-evaluable under that QSQ test and is neither a codec pass nor a codec failure. For fixed-threshold binary qualification, evaluation may stop after the first probe with response $\ge\tau$ because the full five-seed maximum must then fail the same contract; the complete panel is retained whenever the numerical value of $f_m$ is required.
+### 1.3 Prospective test
 
-The 18-material calibration panel shows why perturbation structure matters (probe calibration panel and QSQ method record; repository reader-facing provenance index):
+The five-seed gate, thresholds and amplitudes were fixed before 59 fresh perturbations per material (labels 10000–10058) were run; all 14,986 trials produced valid outcomes.
 
-- the order-preserving round-trip control produced a median of **82 exact neighbouring ties** and reassigned zero voxels in **9/18** calibration systems;
-- the non-order-preserving QSQ perturbation probe produced no exact ties and reassigned zero voxels in only **2/18** systems;
-- across five seeds, the per-material log10 floor span had a median of **0.47 decades** and reached **2.4 decades**;
-- a single-seed eligibility verdict changed across seeds in 3/18 materials at $10^{-4}\,e$, 2/18 at $10^{-3}\,e$, and 1/18 at $10^{-2}\,e$;
-- over a two-decade amplitude sweep (×0.1 to ×10), the floor changed by a median of **0.76 decades** (P10 0.00; P90 2.02), demonstrating that the reported floor is qualification-defined rather than an amplitude-free material constant.
+| $\tau_B$ ($e$) | admitted | qualified: exceedances / trials (risk; cluster 95% CI) | rejected: exceedances / trials (risk; cluster 95% CI) | materials with any exceedance (qualified / rejected) | risk ratio |
+|---:|---:|---|---|---|---:|
+| $10^{-4}$ | 46/254 | 109/2,714 (4.016%; 1.548–7.406%) | 10,669/12,272 (86.938%; 83.475–90.165%) | 15/46 / 208/208 | 21.65 |
+| $10^{-3}$ | 143/254 | 135/8,437 (1.600%; 0.782–2.596%) | 5,326/6,549 (81.325%; 75.981–86.257%) | 20/143 / 110/111 | 50.83 |
+| $10^{-2}$ | 229/254 | 20/13,511 (0.148%; 0.000–0.377%) | 1,174/1,475 (79.593%; 66.983–90.712%) | 2/229 / 24/25 | 537.69 |
 
-Across the complete 319-system stability corpus, the QSQ non-evaluable fractions are **79.9%** at $10^{-4}\,e$, **41.4%** at $10^{-3}\,e$, and **9.7%** at $10^{-2}\,e$ (QSQ eligibility summary; repository reader-facing provenance index).
+The same 59 response vectors serve all three thresholds. A material with zero exceedances in 59 valid draws has a one-sided 95% exact per-cell upper bound of about 4.95%.
 
-One extreme QSQ response, `aflow-Al8Cu4U1_ICSD_601801`, corresponds to a permutation of symmetry-equivalent Al basins rather than a literal multi-electron chemical transfer. It is recorded as a symmetry-equivalent basin relabelling case and remains non-evaluable for a position-indexed atomic-charge QoI.
+### 1.4 Equal-search control and three-state reclassification
 
-Exact implementation filenames and method-control records are mapped in the repository reader-facing provenance index and are not used as scientific method names here.
+Completing the same four tight settings for every material added 1,332/1,332 successful reconstructions. The fraction of material–codec pairs with no passing reconstruction was 10.9% (qualified) versus 79.3% (rejected) at $10^{-4}\,e$, 3.3% versus 66.4% (20.34-fold) at $10^{-3}\,e$, and 0.0% versus 68.0% at $10^{-2}\,e$. On the record as built (762 material–codec decisions per threshold), 518/533 (97.2%), 296/310 (95.5%) and 61/108 (56.5%) naive failures fall on non-evaluable pairs at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$; at $10^{-4}\,e$, 106/229 (46.3%) naive passes also fall on non-evaluable pairs.
 
+### 1.5 Finite-panel admission bound and exchangeability
 
-## Supplementary Note 3 — Sensitivity analyses for eligibility and certification
+If the $n$ qualification responses and a later response are exchangeable, the probability that a contract is admitted and the later probe exceeds $\tau$ is $\mathbb{E}[p(1-p)^n]\le n^n/(n+1)^{n+1}$:
 
-The principal benchmark uses the pre-specified QSQ eligibility rule. Four sensitivity analyses test how the reported conclusions depend on alternative reporting choices.
-
-### S1 — No-exclusion diagnostic
-
-The no-exclusion diagnostic applies the Bader threshold directly without stability qualification. It quantifies how conventional binary reporting changes when non-evaluable material–threshold pairs are allowed to masquerade as pass/fail outcomes.
-
-### S2 — Error relative to the independent stability floor
-
-For certified reconstructions, the floor-relative analysis reports $\Delta Q_\text{Bader}/f_m$. At $10^{-4}\,e$, median ratios are **1.23** for SPERR, **1.33** for SZ3 and **1.09** for ZFP, with P90 values **3.20**, **2.86** and **3.25**, respectively. The strictest certified regime is therefore floor-scale. At $10^{-3}\,e$, median ratios broaden to 2.78–3.55, and at $10^{-2}\,e$ to 10.7–14.6. These data support an emerging analysis-limited regime at the strictest contract but do **not** establish a universal material-level identity between a tight-ladder plateau and the QSQ floor.
-
-### S3 — Inflated-threshold stress test
-
-The inflated-threshold stress test evaluates alternative thresholds multiplied by $k=2,5,10$. This analysis tests whether qualitative codec conclusions arise only from a particular hard cutoff. It is a robustness analysis and does not replace the pre-specified chemical contracts.
-
-### S4 — Probe-amplitude sensitivity
-
-The 18-material amplitude sweep reports floors at ×0.1, ×1 and ×10 of the QSQ perturbation amplitude. The heterogeneity across materials is part of the result: some systems are plateau-like while others scale substantially. The purpose is to demonstrate qualification-procedure dependence transparently, not to tune the amplitude post hoc.
-
-
-## Supplementary Note 4 — Extended operator controls
-
-### Electron-count negative control
-
-All **6,343** development reconstruction rows were examined for total-electron-count fidelity. Among **3,205** rows with $|\Delta N_e|<10^{-4}\,e$ and a finite re-derived Bader result, **1,383 (43.15%)** still have Bader error $\ge10^{-3}\,e$. Global electron-number conservation is therefore not a sufficient certificate of atom-resolved chemical fidelity.
-
-### Hartree-potential control
-
-The full Hartree expansion targets the same 6,343 reconstruction rows. A pre-specified reproduction gate retains **6,270** rows for formal statistics. The pooled relation between Hartree error and realized $L_\infty$ has a log–log slope of **1.02**. Across 678 material–codec pairs with at least five gate-passing points, median material-level Hartree $R^2$ is approximately **0.994–0.997** by codec, whereas Bader response is much less regular. Hartree is strictly monotone in 88.6% of such pairs versus 32.4% for Bader.
-
-The 73 Hartree reproduction-gate failures are all SZ3 rows with reconstruction distortion reproduced to within approximately $2\times10^{-5}$ relative, but compressed byte counts differing across platforms. They are classified as infrastructure reproduction mismatches and excluded from formal Hartree statistics; they are not codec or numerical failures.
-
-At matched Hartree error, Bader response remains dispersed: **55.4%** of gate-passing rows lie in 0.5-decade Hartree-error bins where the Bader P90/P10 ratio is at least 10. This supports the use of structurally distinct downstream operators in the main manuscript without claiming that Hartree is universally “better” than Bader.
-
-### Fourier-spectrum mechanism audit
-
-The full-population mechanism audit uses the **exact 457 ZFP/SZ3 within-material realized-$L_\infty$ matched pairs across 214 materials** from the Hartree analysis. The corresponding **914 reconstructions** were regenerated from the versioned codec rows. A reconstruction entered the spectral audit only after both its realized $L_\infty$ and its reference-implementation Hartree relative RMSE reproduced the stored matched-pair target.
-
-The reference-implementation matched-pair Hartree center is **0.0776220566**, and the regenerated calculation reproduces it at **0.0776220566**. To test whether this large codec effect could arise from a discrete-FFT implementation artifact, the audit also defines a Nyquist-safe Hermitian Poisson operator. For even grids in non-orthogonal cells, Nyquist-plane modes are alias-equivalent under sign reversal while the continuum $|G|^2$ expression contains cross terms. The mechanism operator therefore sets $G=0$ and all even-grid Nyquist-plane modes to zero and applies $4\pi/|G|^2$ to all remaining modes. This gives a Hartree ratio of **0.0776219202**, essentially unchanged from the reference-implementation result.
-
-Let $\mathcal{G}_s$ denote the non-zero reciprocal-space modes that do not lie on an excluded even-grid Nyquist plane. For the Nyquist-safe operator,
-
-$$
-\text{RMS}(\Delta V_H)^2=
-\frac{(4\pi)^2}{N^2}
-\sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
-$$
-
-and the maximum relative discrepancy between the direct real-space Hartree RMS and the Fourier-space expression is **$1.30\times10^{-15}$** across all selected reconstructions. The corresponding direct Hartree ratio and square root of the Hartree-weighted spectral ratio agree to numerical precision.
-
-Define
-
-$$
-E=\sum_{G\in\mathcal{G}_s}|\Delta\rho(G)|^2,
-\qquad
-W_H=\sum_{G\in\mathcal{G}_s}\frac{|\Delta\rho(G)|^2}{|G|^4},
-\qquad
-S_H=\frac{W_H}{E}.
-$$
-
-For every matched pair,
-
-$$
-R_H=
-\sqrt{\frac{E_{\text{ZFP}}}{E_{\text{SZ3}}}}
-\sqrt{\frac{S_{H,\text{ZFP}}}{S_{H,\text{SZ3}}}}.
-$$
-
-The separately aggregated material-level centers are **0.376** for the total spectral-energy factor and **0.203** for the spectral Hartree-susceptibility factor. These separately aggregated centers are descriptive and are not expected to multiply exactly; the multiplicative identity is checked and satisfied pairwise. The material-median absolute-log contribution from spectral susceptibility is **62.0%**, showing that frequency allocation is the dominant component of the matched-distortion Hartree codec effect.
-
-The directional diagnostics are highly consistent across materials: **99.5%** have lower ZFP spectral Hartree susceptibility, **98.1%** have a higher ZFP spectral centroid, and **99.1%** have a lower ZFP low-$G$ error-energy fraction. The material-level center of the ZFP/SZ3 low-$G$ fraction ratio is **0.416**. Here $q=|G|/G_{\max}$ over non-zero Nyquist-safe modes, with low $G$ defined as $q\le0.25$ and high $G$ as $q\ge0.75$.
-
-The mechanism conclusion is intentionally operator specific. The Hartree result demonstrates that matched pointwise distortion does not imply matched downstream error when codecs distribute reconstruction error differently over frequencies that the downstream operator weights unequally. It does **not** establish that the nonlinear, topology-sensitive Bader residual is controlled by the same single Fourier descriptor.
-
-The matched-pair mechanism table, reconstruction-level spectral metrics, radial spectra and mechanism summaries are mapped in the repository reader-facing provenance index.
-
-
-## Supplementary Note 5 — Binary-to-three-state reclassification
-
-The binary-to-three-state audit uses one material–codec decision per Bader threshold on the full benchmark record, giving **254 materials × 3 codecs = 762 decisions per threshold** (Supplementary Fig. S7 and Supplementary Table S4). Versioned pooled and codec-resolved summaries support the reported counts.
-
-At $10^{-4}\,e$, a naive binary benchmark reports 533 failures, of which **518 (97.2%)** occur on non-evaluable material–threshold pairs; only 15 remain genuine eligible failures. At $10^{-3}\,e$, **296/310 (95.5%)** naive failures are non-evaluable, leaving 14 genuine failures. At $10^{-2}\,e$, **61/108 (56.5%)** are non-evaluable, leaving 47 genuine failures. These fractions describe the full record as it was built, in which the extra tight ladder was run only for the materials eligible at $10^{-3}\,e$, so screen-rejected materials had fewer settings at which to pass. With the same tight settings completed for every material, the no-pass risk at $10^{-3}\,e$ is 3.3% for eligible versus 66.4% for screen-rejected material–codec pairs, a 20.34-fold ratio (main-text Fig. 3c); this equal-search ratio is the measure reported in the main text.
-
-The qualification is not a permissive rescue rule: at $10^{-4}\,e$, **106/229 (46.3%)** naive passes also occur on non-evaluable pairs. Supplementary Table S4 reports the codec-by-codec decomposition.
-
-
-## Supplementary Note 6 — Extended Bader mechanism and cross-implementation robustness
-
-The scientific Bader metric re-derives atom-centred basins after every reconstruction. Fixed-basin scoring is retained only as a diagnostic because it suppresses the domain-migration component.
-
-The mechanism tables evaluate representative systems across three codecs and three chemical tolerances, separating the charge change into an integrand contribution on the reference domain and a residual domain-migration contribution. Supplementary Table S10 and Supplementary Fig. S5 report the full representative-case matrix beyond the selected main-text examples.
-
-A separate independent-Bader study provides an implementation-robustness check. It contains **1,560/1,560 expected outcome rows** across a stratified panel and three solver modes. Henkelman on-grid reproduces BaderKit on-grid codec response with a median ratio of **1.00** (IQR approximately 0.92–1.005), aside from systems whose unperturbed basin sets differ. Codec ordering at relative tolerance $10^{-4}$ is preserved across BaderKit on-grid, Henkelman on-grid and Henkelman near-grid. These results remain supplementary because they validate robustness rather than define the central benchmark claim.
-
-
-## Supplementary Note 7 — Realized-distortion matching diagnostics
-
-Equal nominal codec tolerance is not a common realized-distortion scale. At equal nominal settings, median realized-$L_\infty$ ratios are approximately **0.170** for ZFP/SZ3, **0.170** for ZFP/SPERR and **1.00** for SZ3/SPERR.
-
-The primary within-material match uses a **0.10-dex** caliper in $\log_{10}(L_\infty)$, without replacement, and bootstraps materials rather than rows. At this caliper, the matched datasets contain 457 ZFP–SZ3 pairs from 214 materials, 465 ZFP–SPERR pairs from 206 materials, and 1,848 SZ3–SPERR pairs from 254 materials. Median larger/smaller realized-$L_\infty$ is approximately 1.14 for the ZFP comparisons and 1.00 for SZ3/SPERR.
-
-After matching, re-derived Bader-error ratios are **0.557** for ZFP/SZ3 (95% material-bootstrap CI 0.525–0.598), **0.601** for ZFP/SPERR (0.534–0.662), and **1.033** for SZ3/SPERR (0.976–1.072). Supplementary Figure S6 shows sensitivity across 0.05, 0.10, 0.20 and 0.30 dex together with common-support counts; the main text reports the primary 0.10-dex result and notes that the direction is robust across the pre-specified calipers.
-
-
-## Supplementary Note 8 — Stability-qualified rate–fidelity tables
-
-For each eligible material–threshold pair, the benchmark selects the highest compression ratio on the fixed codec ladder that satisfies the re-derived Bader contract. The QSQ-certified benchmark summary, pairwise codec summary and best certified operating-point table are mapped through the repository reader-facing provenance index.
-
-Supplementary Table S13 reports, for each $\tau$, stratum and codec, the admitted denominator, non-evaluable denominator, certified count/fraction, median best-certified compression ratio, bootstrap confidence interval and distributional quantiles. Pairwise win fractions are reported separately rather than folded into a single ranking label.
-
-Supplementary Table S13 is generated directly from the current machine-readable development and external rate–fidelity summaries.
-
-
-## Supplementary Note 9 — External confirmation
-
-The primary external confirmatory cohort contains **63/63 completed systems**, **1,689 retained scientific rows**, **0 material-level pipeline failures**, **0 codec-bound violations** and **3 preserved row-level Bader solver failures** affecting two materials. The 65-system descriptive aggregate contains **65/65 systems** and **1,755 rows**, also with zero material-level failures and zero bound violations.
-
-For the primary 63-system confirmatory cohort, QSQ eligibility counts are **16**, **42** and **57** systems at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$, respectively. The three pre-specified rate–fidelity directions reproduce: ZFP > SZ3 > SPERR at $10^{-4}\,e$, ZFP ≈ SZ3 > SPERR at $10^{-3}\,e$, and SZ3 > ZFP > SPERR at $10^{-2}\,e$. The ZFP–SZ3 separation at the strictest threshold is narrower than in development and is treated as a modest external difference.
-
-Row-level solver failures and recovery provenance are retained in the repository audit. The SI separately reports the 65-system descriptive aggregate and distinguishes vacuum-containing 2D systems from development adsorbate slabs.
-
-
-## Supplementary Note 10 — Failure taxonomy and negative results
-
-The failure registry records explicit row-level analysis failures and exclusions. Scientific non-evaluability, Bader-solver failure, reproduction mismatch and symmetry-equivalent basin relabelling are treated as distinct categories. These categories are not converted into missing data or codec failure.
-
-Negative algorithmic results are valuable supplementary evidence because they delimit the paper's contribution. The claim–evidence matrix records that boundary-aware allocation did not improve compression, the promolecule prior was detrimental, and symmetry folding did not yield a robust advantage. These results are summarized compactly in Supplementary Table S14 rather than developed into a competing algorithm narrative. The paper's contribution is the measurement/certification framework, not a new codec.
-
-
-
-## Supplementary Note 11 — Outcome-blind chemical-decision boundary case study
-
-An outcome-blind chemistry and geometry audit of the 68 NOMAD development slabs selected five paired states before QSQ, codec or Bader outcomes were inspected for inclusion. All five passed the pre-specified two-implementation source-reference rule. Across ZFP, SZ3 and SPERR on the four common tight settings, all 60 direct qualitative target-atom charge-transfer directions were preserved after compression. QSQ at $10^{-3}\,e$ retained 36/60 trials from three pairs, while the unqualified baseline retained all 60; both had zero observed sign errors. This deliberately negative result shows that the strict numerical Bader contract and a coarse sign-level chemical interpretation are different fidelity targets. Full pair-level reference values and policy accounting are provided in Supplementary Tables S15-S16.
-
-The resolved compressed analysis contains 216/216 successful solver cells. No new electronic-structure calculation was used; the source reference is a BaderKit/Henkelman on-grid consensus under the declared density representation.
-
-
-
-
-## Supplementary Note 12 — Continuous QSQ risk calibration
-
-The measured stability floor contains graded risk information beyond the binary eligibility flag. Models based on $x_m(\tau)=\log_{10}(f_m/\tau)$ were evaluated by 10-fold cross-validation over materials against the frozen 59-trial prospective outcomes.
-
-Across 44,958 trial-threshold outcomes, all calibrated models reduced held-out Brier score relative to the binary gate. The best logistic model reached 0.0412 versus 0.0651 for the gate, while isotonic regression reached 0.0464. The pre-declared replacement criterion also required greater coverage under a 2% risk contract at $10^{-3}\,e$. This was not met: cross-validated isotonic admission was 115/254 materials (45.3%) versus 143/254 (56.3%) for the binary gate. The admitted isotonic subset showed 16/6,785 fresh exceedances (0.236%).
-
-The continuous statistic is therefore a sharper prospective risk predictor, but these data do not justify replacing the simpler binary QSQ eligibility contract. The reason is structural rather than paradoxical: prospective risk increases steeply as the measured floor approaches the requested tolerance, so imposing a stringent probability threshold shifts the operational cutoff inside the simple condition $f_m<\tau$ and sacrifices coverage. The analysis therefore explains why a transparent binary qualification boundary remains preferable for the primary benchmark even though the underlying floor carries graded information.
-
-## Supplementary Note 13 — Qualification of grid-local density extrema
-
-A second topology-sensitive QoI was defined directly on the sampled density grid. A voxel is a strict local maximum when its value exceeds all 26 neighbours and a strict local minimum when it is smaller than all 26 neighbours under periodic indexing. No smoothing, interpolation, or continuous critical-point search is applied; the reader-facing term is therefore **grid-local density extrema**.
-
-All 254 development materials were evaluated. The full reconstruction analysis regenerated 6,343 benchmark rows; 6,293 were scored and 50 had recorded non-gate reconstruction failures. All 16,256 perturbation evaluations completed: five qualification perturbations and 59 fresh perturbations per material.
-
-At the strict endpoint, qualification requires the maximum-voxel set to remain identical under all five QSQ perturbations. This admits 118/254 materials. The count-only five-seed criterion admits 141/254 and is retained as a secondary diagnostic.
-
-Prospectively, 0/6,962 fresh trials on qualified materials change the number of maxima, compared with 6,444/8,024 (80.31%) on screen-rejected materials. For maximum-set identity, the corresponding rates are 3/6,962 (0.04%) and 7,509/8,024 (93.58%).
-
-Cross-QoI transfer is weak. Comparing strict extrema eligibility with Bader eligibility at $10^{-3}\,e$ gives 75 both eligible, 68 Bader-only, 43 extrema-only, and 68 neither; raw agreement is 56.3% and Cohen's $\kappa$ is 0.1337 (95% bootstrap interval 0.0164–0.2542). Spearman correlation between the Bader and extrema stability floors is 0.1389 (0.0280–0.2554).
-
-The observables are also non-redundant on reconstructed fields. Among 6,293 scored reconstructions, 908 (14.43%) preserve the maximum count while having Bader error at least $10^{-3}\,e$, whereas 655 (10.41%) change the maximum count while keeping Bader error below $10^{-3}\,e$.
-
-These results support a general qualification principle while showing that the evaluability boundary depends on the downstream QoI.
-
-## Supplementary Note 14 — Codec-shaped perturbation robustness
-
-Codec-shaped probes were constructed from residual fields at the common base relative tolerance of $10^{-5}$, periodically shifted to remove original alignment, and rescaled to the same material-specific QSQ amplitude. All 4,572 planned Bader re-solves completed.
-
-The material-median $\log_{10}(f_m^{c}/f_m)$ is −0.196 for ZFP (95% CI −0.255 to −0.134), −0.000 for SZ3 (−0.010 to +0.008), and −0.027 for SPERR (−0.042 to −0.010). Under the pre-declared rule, the iid family is conservative on aggregate for ZFP and SPERR and statistically indistinguishable from the codec-shaped family for SZ3.
-
-At $10^{-3}\,e$, iid-versus-codec-shaped eligibility agreement is 0.902 for ZFP and 0.937 for SZ3 and SPERR. Among the 143 iid-qualified materials, codec-shaped floors do not improve prediction of the frozen 59-trial prospective risk. For ZFP, the Spearman correlation falls from 0.549 for the iid floor to 0.420 for the codec-shaped floor, a difference of −0.128 (95% CI −0.218 to −0.050); differences for SZ3 and SPERR are unresolved.
-
-Correlation between low-$G$ residual-energy fraction and the codec-shaped/iid floor ratio is near zero for ZFP, weakly negative for SZ3, and unresolved for SPERR. The Fourier mechanism that explains Hartree error therefore does not provide a common scalar explanation for Bader stability.
-
-## Supplementary Note 15 — Reference-density predictors do not replace direct QSQ measurement
-
-Complete reference-density descriptors were obtained for 318/319 systems; one external AFLOW density remained unavailable and is preserved as a recorded failure.
-
-The strongest univariate association with $\log_{10} f_m$ is the fraction of basin-boundary neighbour gaps below the QSQ perturbation scale, with Spearman $\rho=0.554$ (95% CI 0.463–0.639). Other boundary-gap and near-tie descriptors also correlate with the floor, supporting a link between numerical fragility and local ordering margins near basin boundaries.
-
-Nested 10-fold cross-validation of the pre-declared ridge model gives $R^2=0.238$ and RMSE 0.932 decades over the 318 descriptor-complete systems. Fitting on the 254 development systems and evaluating on the 64 descriptor-complete external systems gives held-out $R^2=0.134$ (95% CI −0.410 to 0.385) and RMSE 1.208 decades. The pre-declared external $R^2\ge 0.5$ replacement criterion is not met.
-
-These descriptors are scientifically informative but are not sufficient to replace direct QSQ measurement. Their partial success is mechanistically plausible because small ordering gaps near basin boundaries identify locally fragile regions. Their limited external transfer is also plausible because the final Bader response is a collective, nonlinear consequence of ascent-path changes, basin topology, grid semantics, chemistry and system class rather than a single local descriptor. In the present benchmark, stability therefore remains an empirically measured property of a specified density, QoI and downstream algorithm.
-
-## Supplementary Note 16 — All-electron-reference Bader measurement contracts
-
-Bader analysis can use separate fields for the quantity being integrated and for the topology that defines the atomic basins. To quantify the effect of these input roles, 53 development materials with published CHGCAR, AECCAR0 and AECCAR2 data were evaluated using Henkelman Bader 1.05 in on-grid mode with vacuum threshold 0.001. Three materials had entirely non-finite published AECCAR0 inputs and were retained as input failures, leaving 50 analyzable materials.
-
-The exact baseline integrates CHGCAR over basins defined by the exact all-electron reference $\rho_{\mathrm{AE}}=\mathrm{AECCAR0}+\mathrm{AECCAR2}$. Three QSQ contracts were evaluated with the same five seed labels and material-specific float32 $L_\infty$ amplitudes:
-
-1. **Charge-field perturbation:** CHGCAR approximate; all-electron reference exact.
-2. **Joint perturbation:** CHGCAR approximate; all-electron reference approximate.
-3. **Partition-field perturbation:** CHGCAR exact; all-electron reference approximate.
-
-At $10^{-3}\,e$, the charge-field contract is eligible for **50/50** analyzable materials, whereas the joint and partition-field contracts are each eligible for only **3/50**. At $10^{-4}\,e$, the corresponding counts are 50/50, 0/50 and 0/50; at $10^{-2}\,e$, they are 50/50, 17/50 and 17/50 (main-text Fig. 5f).
-
-The partition-field perturbation reproduces the joint-perturbation response essentially exactly at the population level. The material-median ratio of the partition-field stability floor to the joint floor is **1.000** (bootstrap 95% interval numerically indistinguishable from 1.000 at the reported precision). The fraction of analyzable materials satisfying $f_{\mathrm{partition}}\ge0.5f_{\mathrm{joint}}$ is 1.000, and the fraction satisfying $f_{\mathrm{partition}}\ge0.9f_{\mathrm{joint}}$ is also 1.000. Median basin-reassignment fractions are **0.0196262** for both the joint and partition-field contracts, giving a median reassignment ratio of **1.000**.
-
-These results show that, under the tested all-electron-reference Bader contract and perturbation scales, numerical instability is dominated by the field that defines the partition topology. They do not imply that CHGCAR error is universally irrelevant to Bader charge; rather, they show that the exact-versus-approximate role of each input is part of the scientific measurement contract that QSQ must qualify.
-
-## Supplementary Note 17 — Certifying writer
-
-The certifying writer turns qualification and certification into one per-field procedure: run QSQ, leave a non-evaluable field uncompressed, search the codec ladders of an eligible field, and return the selected reconstruction with its certificate. It was evaluated on the 6,343 frozen development rows of 254 materials without new computation (Supplementary Fig. S10). QSQ costs one reference and five probe Bader solves; each queried rung costs one solve.
-
-**Policies.** EXHAUSTIVE evaluates every rung of every codec (the oracle). SCAN evaluates each codec from its loosest rung downwards and stops at the first certified rung. BISECT bisects each codec's ladder over rung index, moving looser after a certified rung and tighter otherwise. Each multi-codec policy returns the certified row with the largest compression ratio among the rows it evaluated across ZFP, SZ3 and SPERR; single-codec SCAN and BISECT variants were evaluated for comparison. The adoption rule was fixed before any policy outcome was computed: the fewest mean solves among multi-codec policies whose archive compression at $10^{-3}\,e$ is at least 0.98 times the oracle and whose miss rate is at most 2%. BISECT met the rule.
-
-**Metrics.** Archive compression at $\tau$ is $\sum$ raw bytes $/\sum$ stored bytes over eligible materials, where a material for which the policy returns nothing is stored at raw size. A miss is an eligible material with at least one certifiable row for which the policy returns none.
-
-| $\tau$ ($e$) | Eligible | Policy | Archive CR | Oracle CR | Fraction of oracle [95% CI] | Misses | Solves per eligible material |
-|---:|---:|---|---:|---:|---|---:|---:|
-| $10^{-4}$ | 46 | EXHAUSTIVE | 8.47 | 8.47 | 1.0000 | 0/46 | 38.5 |
-| $10^{-4}$ | 46 | SCAN | 8.47 | 8.47 | 1.0000 | 0/46 | 34.3 |
-| $10^{-4}$ | 46 | BISECT | 8.45 | 8.47 | 0.9976 [0.9918, 1.0000] | 0/46 | 16.7 |
-| $10^{-3}$ | 143 | EXHAUSTIVE | 15.13 | 15.13 | 1.0000 | 0/143 | 37.0 |
-| $10^{-3}$ | 143 | SCAN | 15.13 | 15.13 | 1.0000 | 0/143 | 26.8 |
-| $10^{-3}$ | 143 | BISECT | 14.90 | 15.13 | 0.9848 [0.9695, 0.9959] | 0/143 | 16.7 |
-| $10^{-2}$ | 229 | EXHAUSTIVE | 24.79 | 24.79 | 1.0000 | 0/227 | 32.2 |
-| $10^{-2}$ | 229 | SCAN | 24.79 | 24.79 | 1.0000 | 0/227 | 17.3 |
-| $10^{-2}$ | 229 | BISECT | 24.55 | 24.79 | 0.9901 [0.9698, 0.9982] | 0/227 | 15.9 |
-
-At $10^{-2}\,e$, two of the 229 eligible materials have no certifiable row on the frozen ladder, so the miss denominator is 227.
-
-**Codec search versus ladder search.** Single-codec writers retain much less of the oracle archive compression. At $10^{-3}\,e$, BISECT restricted to ZFP, SZ3 or SPERR retains 0.836, 0.351 and 0.271 of the oracle, with 1, 7 and 6 misses respectively; the best single-codec variant (SCAN-ZFP) retains 0.840. Searching across codecs therefore contributes more than exhaustive search along any single ladder.
-
-**Non-monotone ladders.** BISECT assumes that certification is monotone along a ladder. Re-derived Bader error is not monotone in tolerance (main text), so bisection can stop at a tighter certified rung than the oracle; this is the source of the 1.5% shortfall at $10^{-3}\,e$. Every returned row was evaluated by the policy, and certificate validity was re-checked mechanically.
-
-**Sequential qualification.** Replacing the fixed six-solve QSQ cost by exact sequential early rejection changes no returned row, stored size, certificate or miss. Mean end-to-end cost over all 254 materials falls from 7.93 to 4.84 solves at $10^{-4}\,e$ (−39.0%), from 12.00 to 10.34 at $10^{-3}\,e$ (−13.9%) and from 14.91 to 14.54 at $10^{-2}\,e$ (−2.5%).
-
-**Certificate.** For every material and $\tau$ the writer records the outcome, the returned codec and setting, the compression ratio and the number of Bader solves; the certified Bader error and the QSQ floor are those of the evaluated frozen row. A deployed certificate carries the contract (QoI, algorithm, tolerance, roles and hashes of the inputs), the perturbation scale and seed panel, the number of probes evaluated, the outcome code (`QOI_CERTIFIED`, `QOI_NOT_CERTIFIED` or `REFERENCE_NOT_RESOLVED`), the selected codec and operating point, the verified downstream error, the compressed size and the provenance commit, so that what was qualified can be reconstructed and not only which codec was used.
-
-## Supplementary Note 18 — Finite-panel admission bound and probe exchangeability
-
-**Bound.** QSQ admits a contract when the maximum of $n$ qualification responses is below $\tau$. Let $p$ be the probability that one probe from the declared perturbation family gives a response of at least $\tau$. If the $n$ qualification probes and a later probe are exchangeable, the probability that the contract is admitted and the later probe still exceeds $\tau$ is $\mathbb{E}[p(1-p)^{n}]$, whatever the response distribution. Since $p(1-p)^{n}$ is maximized at $p=1/(n+1)$, this joint probability is at most $n^{n}/(n+1)^{n+1}$:
-
-| Panel size $n$ | 5 | 10 | 19 | 37 |
+| panel size $n$ | 5 | 10 | 19 | 37 |
 |---:|---:|---:|---:|---:|
-| Bound on joint admission and exceedance | 6.70% | 3.50% | 1.89% | 0.98% |
+| bound | 6.70% | 3.50% | 1.89% | 0.98% |
 
-Exchangeability also implies that a later response exceeds the maximum of the panel with probability $1/(n+1)$ for continuous responses (one-sided tolerance limits; Wilks, main-text ref. 28). The bound is a property of the finite-panel rule over the draw of the probes; it is not a conditional risk among admitted contracts and not a worst-case statement.
-
-**Shared seeds in the frozen design.** The five frozen QSQ seeds are used directly as PCG64 seeds, so every material receives the same five random streams, whereas the 59 prospective streams are material-specific. The pooled fraction of fresh responses above the frozen five-probe floor is 19.08% (2,859/14,986; material-cluster 95% CI 17.16–21.01%) against the exchangeable value 1/6. With shared streams the 254 materials do not average over independent panels, so the pooled fraction is one realization rather than an estimate of 1/6.
-
-**Local recomputation.** A package declared before any probe was evaluated (repository `analysis/extensions_20261003/QSQ-exchangeability/`) re-solved, for all 254 development materials, the reference and the five frozen probes in the frozen pipeline, and added a second five-probe panel whose streams are drawn independently for each material (SHA-256 of material identity and label). All 2,794 Bader solves succeeded.
-
-- The recomputed frozen floor matches the published floor exactly ($|\Delta|\le10^{-9}\,e$) in 252/254 materials; the two exceptions (`mp-1296`, 0.181 versus 2.632 $e$; `nomad-3ermMygSkKxT`, 2.058 versus 2.028 $\times10^{-4}\,e$) do not change eligibility. Eligibility agrees in 254/254 materials at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$.
-- With material-independent streams, 16.52% of fresh responses exceed the five-probe maximum (2,475/14,986; 95% CI 14.74–18.39%). The interval contains 1/6, meeting the pre-declared exchangeability criterion.
-- Eligibility under the independent panel agrees with the frozen panel in 237/254, 242/254 and 253/254 materials ($\kappa$ = 0.776, 0.904 and 0.977 at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$).
-
-**Observed joint admission and exceedance** (all 14,986 fresh trials; bound 6.70% for $n=5$):
-
-| $\tau$ ($e$) | Frozen panel: joint rate | Conditional risk among admitted | Coverage | Independent panel: joint rate | Conditional risk among admitted | Coverage |
+| $\tau_B$ ($e$) | frozen panel: joint rate (events) | conditional risk among admitted | coverage | independent panel: joint rate (events) | conditional risk | coverage |
 |---:|---:|---:|---:|---:|---:|---:|
 | $10^{-4}$ | 0.727% (109) | 4.016% | 46/254 | 0.928% (139) | 5.013% | 47/254 |
 | $10^{-3}$ | 0.901% (135) | 1.600% | 143/254 | 0.721% (108) | 1.317% | 139/254 |
 | $10^{-2}$ | 0.133% (20) | 0.148% | 229/254 | 0.207% (31) | 0.228% | 230/254 |
 
-The Bader contract operates far below the ceiling because its responses are well separated across materials: most materials respond either far below or far above $\tau$. The ceiling is approached only when many contracts have an exceedance probability near $1/(n+1)$, which is the regime in which a larger panel is needed; the table above gives the panel size for a target joint rate.
+The frozen seeds are shared by all materials, so the pooled fraction of fresh responses above the frozen floor (19.08%; 2,859/14,986; cluster CI 17.16–21.01%) is one realization. A recomputation declared before any probe was evaluated (2,794 Bader solves, all successful) reproduced the frozen floor in 252/254 materials with unchanged eligibility in 254/254; with streams drawn independently per material, 16.52% of fresh responses (2,475/14,986; 95% CI 14.74–18.39%) exceeded the five-probe maximum, consistent with the exchangeable value 1/6. Eligibility under the independent panel agreed with the frozen panel in 237/254, 242/254 and 253/254 materials ($\kappa$ = 0.776, 0.904, 0.977).
+
+### 1.6 Evaluability belongs to the contract (all-electron reference)
+
+Of 53 development materials with published CHGCAR, AECCAR0 and AECCAR2, 50 were analyzable (three had non-finite AECCAR0). With Henkelman Bader 1.05 (on-grid, vacuum threshold 0.001) and basins of $\rho_{\mathrm{AE}}=\mathrm{AECCAR0}+\mathrm{AECCAR2}$:
+
+| contract | $10^{-4}\,e$ | $10^{-3}\,e$ | $10^{-2}\,e$ |
+|---|---:|---:|---:|
+| charge field approximate, partition reference exact | 50/50 | 50/50 | 50/50 |
+| both approximate | 0/50 | 3/50 | 17/50 |
+| partition reference approximate, charge field exact | 0/50 | 3/50 | 17/50 |
+
+The material-median ratio of the partition-only floor to the joint floor was 1.000; every material had a partition-only floor at least 90% of the joint floor; median basin-reassignment fractions were 0.0196262 for both contracts.
+
+### 1.7 Implementation transfer
+
+On a deterministic 24-system panel (bulk and slab; four floor bands), independent Henkelman on-grid analysis reproduced QSQ eligibility in 24/24 systems at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$ ($\kappa=1.000$ at each) with floor Spearman $\rho=0.995$; the near-grid variant agreed in 82.6%, 83.3% and 95.8% ($\rho=0.754$). A separate study (1,560/1,560 rows) gave a median Henkelman/BaderKit on-grid response ratio of 1.00 (IQR about 0.92–1.005).
+
+### 1.8 A second topology-sensitive QoI: grid-local density extrema
+
+A voxel is a strict local maximum (minimum) when it exceeds (is below) all 26 periodic neighbours. All 16,256 perturbation evaluations completed. Requiring an identical maximum set across the five probes admits 118/254 materials. Prospectively, 0/6,962 fresh trials on qualified materials changed the number of maxima versus 6,444/8,024 (80.31%; 73.91–86.52%) on rejected materials; maximum-set changes were 3/6,962 versus 7,509/8,024 (93.58%). Eligibility agreement with Bader at $10^{-3}\,e$ was 56.3% (75 both, 68 Bader only, 43 extrema only, 68 neither; $\kappa=0.1337$, 0.0164–0.2542); floor Spearman 0.1389 (0.0280–0.2554). On 6,293 scored reconstructions, 908 (14.43%) preserved the maximum count while failing the Bader $10^{-3}\,e$ contract and 655 (10.41%) changed it while passing.
+
+### 1.9 External cohort
+
+The frozen rules applied without retuning to 63 external systems admitted 16, 42 and 57 at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$. Median best-certified compression ratios were about 13.0× (ZFP), 12.1× (SZ3) and 5.2× (SPERR) at $10^{-4}\,e$; 18.8× (ZFP and SZ3) and 6.4× (SPERR) at $10^{-3}\,e$; and 65.9× (SZ3), 40.6× (ZFP) and 10.8× (SPERR) at $10^{-2}\,e$. In development, SZ3 led at $10^{-2}\,e$ (bulk 51.8× [47.7, 60.3]; slab 67.8× [59.6, 70.6]) ahead of ZFP (30.0×; 40.5×) and SPERR (11.5×; 8.1×).
+
+### 1.10 Certifying writer
+
+The writer runs QSQ, leaves non-evaluable fields uncompressed, bisects each codec's ladder for eligible fields and returns the best certified reconstruction it evaluated, with its certificate. The adoption rule (fewest solves among multi-codec policies with at least 0.98 of oracle archive compression and at most 2% misses at $10^{-3}\,e$) was fixed before any outcome.
+
+| $\tau_B$ ($e$) | eligible | policy | archive CR | oracle CR | fraction of oracle [95% CI] | misses | solves per eligible material |
+|---:|---:|---|---:|---:|---|---:|---:|
+| $10^{-4}$ | 46 | BISECT | 8.45 | 8.47 | 0.9976 [0.9918, 1.0000] | 0/46 | 16.7 |
+| $10^{-3}$ | 143 | BISECT | 14.90 | 15.13 | 0.9848 [0.9695, 0.9959] | 0/143 | 16.7 |
+| $10^{-2}$ | 229 | BISECT | 24.55 | 24.79 | 0.9901 [0.9698, 0.9982] | 0/227 | 15.9 |
+
+The exhaustive oracle costs 38.5, 37.0 and 32.2 solves per eligible material. The best single-codec writer retained at most 0.840 of the oracle at $10^{-3}\,e$. Exact sequential QSQ lowers mean end-to-end cost over all 254 materials from 7.93 to 4.84, 12.00 to 10.34 and 14.91 to 14.54 solves at the three thresholds, with unchanged outputs.
+
+### 1.11 Further QSQ analyses
+
+- **Floor-scale regime.** At $10^{-4}\,e$ the median certified Bader error is 1.09 (ZFP), 1.33 (SZ3) and 1.23 (SPERR) times the QSQ floor (P90 3.25, 2.86, 3.20); at $10^{-3}\,e$, 2.78–3.55; at $10^{-2}\,e$, 10.7–14.6.
+- **Chemical direction.** Five outcome-blind GaN and RuO₂ slab pairs passed a two-implementation source-reference gate; all 60 compressed sign decisions preserved the reference sign, with QSQ at $10^{-3}\,e$ retaining 36/60 (216/216 solver cells).
+- **Codec-shaped probes.** Material-median $\log_{10}(f^c_m/f_m)$ was −0.196 (ZFP), −0.000 (SZ3) and −0.027 (SPERR); iid–codec-shaped eligibility agreement at $10^{-3}\,e$ was 0.902, 0.937 and 0.937, and codec-shaped floors did not improve prediction of fresh risk (ZFP Spearman 0.549 iid versus 0.420).
+- **Continuous risk.** Models of $\log_{10}(f_m/\tau)$ reduced held-out Brier score (best logistic 0.0412, isotonic 0.0464, binary gate 0.0651; 44,958 trial–threshold outcomes); under a 2% risk contract at $10^{-3}\,e$ isotonic admission was 115/254 materials against 143/254 for the binary gate, so the binary rule is retained for coverage.
+- **Reference-density descriptors.** The fraction of basin-boundary neighbour gaps below the probe scale correlates with $\log_{10} f_m$ (Spearman 0.554, 0.463–0.639); a ridge model reached held-out external $R^2=0.134$, so the floor is measured directly.
+- **Operator controls.** Among 3,205 reconstructions with $|\Delta N_e|<10^{-4}\,e$, 1,383 (43.15%) had Bader error $\ge10^{-3}\,e$. Hartree error scales with realized $L_\infty$ with pooled log–log slope 1.02 (6,270 gate-passing rows; median material $R^2$ 0.994–0.997); only 32.4% of Bader ladders are strictly monotone.
 
 
-## Supplementary Note 19 — QOAC-H operator-derived compression
+## Supplementary Note 2 — Hartree mechanism, frozen-ladder QOAC-H confirmation, census and strongest baselines
 
-### Diagnosis-to-design derivation
+### 2.1 Matched-distortion comparison
 
-For a periodic density error $\delta\rho(\mathbf r)$, the reciprocal-space Hartree response is
+At equal nominal tolerance, ZFP's median realized $L_\infty$ is 0.170 times that of SZ3 and of SPERR; SZ3 and SPERR are about matched (1.00). Within-material matching on $\log_{10}L_\infty$ (0.10-dex caliper, without replacement) gives 457 ZFP–SZ3 pairs (214 materials), 465 ZFP–SPERR pairs (206) and 1,848 SZ3–SPERR pairs (254). Matched re-derived Bader-error ratios are 0.557 (ZFP/SZ3; 0.525–0.598), 0.601 (ZFP/SPERR; 0.534–0.662) and 1.033 (SZ3/SPERR; 0.976–1.072), with the direction preserved across calipers of 0.05–0.30 dex.
 
-$$
-\delta V_H(\mathbf G)=\frac{4\pi\,\delta\rho(\mathbf G)}{|\mathbf G|^2},
-\qquad \mathbf G\ne0.
-$$
+### 2.2 Spectral audit of the Hartree effect
 
-With an orthonormal Fourier convention, the squared real-space Hartree RMS numerator is therefore proportional to
+The 914 reconstructions of the 457 ZFP–SZ3 pairs were regenerated and each reproduced its stored $L_\infty$ and Hartree error. The reference matched-pair Hartree centre is 0.0776220566, reproduced at 0.0776220566; under the Nyquist-safe operator (even-grid Nyquist planes and $G=0$ removed) it is 0.0776219202. The largest relative discrepancy between real-space and Fourier-space Hartree RMS is $1.296\times10^{-15}$. With $E=\sum_{\mathcal G_s}|\Delta\rho(G)|^2$, $W_H=\sum_{\mathcal G_s}|\Delta\rho(G)|^2/|G|^4$ and $S_H=W_H/E$, each pair's ratio factors exactly into $\sqrt{E_{\text{ZFP}}/E_{\text{SZ3}}}\sqrt{S_{H,\text{ZFP}}/S_{H,\text{SZ3}}}$; the separately aggregated centres are 0.375963 and 0.202683, and susceptibility carries a material-median 62.0% of the absolute log effect. In 99.5% of materials ZFP has the lower spectral Hartree susceptibility, in 98.1% the higher spectral centroid and in 99.1% the lower low-$G$ error fraction ($q=|G|/G_{\max}\le0.25$); the material-level low-$G$ fraction ratio is 0.416.
 
-$$
-\sum_{\mathbf G\ne0}\frac{|\delta\rho(\mathbf G)|^2}{|\mathbf G|^4}.
-$$
+### 2.3 Frozen-ladder QOAC-H
 
-Under the high-rate scalar-quantization approximation, the expected coefficient-error variance is proportional to $\Delta_G^2$. Combining this weighted quadratic distortion with the standard logarithmic high-rate coefficient-rate model gives the first-order allocation $\Delta_G\propto|G|^2$. This derivation determines the **relative precision across reciprocal modes**; the global multiplier $\alpha$ controls the rate–distortion operating point. The exponent 2 was frozen before QOAC-H outcomes were evaluated.
+QOAC-H implements $\Delta_G=\alpha(|G|_{\text{safe}}/G_{\max,\text{safe}})^2$ on the Hermitian-orbit representation (main-text Methods) with a frozen 25-point ladder $\alpha/\mathrm{ptp}(\rho)\in[10^{-7},10^{1}]$; it is arm A0 of the law protocol and base J of the joint contract. Maximum imaginary leakage in the engineering audit was $2.47\times10^{-12}$ and maximum mean-density deviation $3.98\times10^{-13}$.
 
-This algebra is not presented as a new transform-coding theorem. Weighted transform-domain bit allocation is established (main-text ref. 26), and prior scientific-compression methods preserve or bound QoIs through operator norms, derived error controls or pointwise bound tuning (refs. 9–13,25). The role of the present derivation is to translate the **experimentally resolved Hartree mechanism** into the distortion geometry of a scientific codec.
+**Mechanism ablation (12 engineering materials).** At matched serialized storage, exponent 2 gave lower Hartree error than exponent 0 in 12/12 materials; median error ratio 0.0767117.
 
-### Hermitian representation and conservative Nyquist handling
+**Disjoint confirmation (48 materials, 24 bulk and 24 slab; ladder search for every arm).** Selected by size stratification and a fixed SHA-256 rule after excluding the engineering materials; 1,200 settings with zero failures. QOAC-H beat each material's best certified ZFP, SZ3 or SPERR result in 48/48 materials (Wilson 95% interval 0.926–1.000), median compression-ratio ratio 15.016 (bootstrap 95% CI 11.204–21.461); bulk 11.203, slab 25.699. Every selected row also passed the Nyquist-safe guardrail.
 
-The final codec uses a full orthonormal FFT. Reciprocal indices are partitioned into Hermitian orbits under $\mathbf k\mapsto-\mathbf k\pmod{\mathbf N}$; one canonical coefficient is stored for each orbit and its partner is reconstructed by conjugation. Self-conjugate nonzero modes are real by construction. $G=0$ is the **only** reciprocal coefficient stored exactly.
+**Census (254 development materials; 6,350/6,350 settings, zero failures; ladder search).**
 
-Even-grid Nyquist coordinates require special care in non-orthogonal cells. A coordinate at $N/2$ is alias-equivalent to both $+N/2$ and $-N/2$, and reciprocal-metric cross terms can make the continuum $|G|^2$ depend on that sign choice. For every mode containing one or more Nyquist coordinates, QOAC-H enumerates the alias-equivalent sign choices and defines
-
-$$
-|G|_{\text{safe}}^2
-=
-\min_{\text{alias choices}} |G|^2.
-$$
-
-The frozen quantizer is then
-
-$$
-\Delta_G
-=
-\alpha
-\left(
-\frac{|G|_{\text{safe}}}
-{G_{\max,\text{safe}}}
-\right)^2.
-$$
-
-Using the minimum reciprocal norm is conservative because it cannot loosen a quantization step merely because of an arbitrary FFT Nyquist sign convention. The decoded spectrum is Hermitian by construction and the inverse transform is checked for imaginary leakage. Across the engineering audit, maximum imaginary leakage was $2.47\times10^{-12}$ and maximum mean-density deviation was $3.98\times10^{-13}$.
-
-Quantized canonical real and imaginary components are rounded to nearest integers, grouped into 32 radial storage shells, encoded using the smallest signed integer type sufficient for each shell and compressed with zlib level 6. Compression ratio uses the complete serialized stream, including shape, lattice, $\alpha$, shell metadata, exact $G=0$ value, integer payload and zlib framing. No entropy-only estimate is used as the primary rate.
-
-### Frozen mechanism ablation
-
-The engineering mechanism experiment used 12 development materials selected by a metadata-only deterministic size-stratified rule before QOAC-H outcomes were available. Both the operator-derived exponent $\beta=2$ and operator-blind $\beta=0$ were evaluated over the same 25-point $\alpha/\operatorname{ptp}(\rho)$ ladder from $10^{-7}$ to $10^{1}$. Within each material the two methods were matched on serialized compression ratio.
-
-All **12/12** evaluable materials have lower Hartree error with $\beta=2$. The material-median matched-storage ratio is
-
-$$
-\operatorname{median}
-\frac{D_H(\beta=2)}{D_H(\beta=0)}
-=
-0.0767117.
-$$
-
-Thus the operator-derived allocation uses the same storage to produce a median Hartree error only 7.7% of the operator-blind spectral quantizer.
-
-### Disjoint confirmatory cohort
-
-After the Hermitian representation passed its implementation audit, a new confirmatory cohort was frozen without inspecting QOAC-H outcomes for those materials. The 12 engineering materials were excluded first. The remaining development population was sorted by grid size separately for bulk and slab systems, divided into 24 contiguous size strata per system type and one material per stratum was selected by the minimum SHA-256 of a fixed string plus material identity. The resulting cohort contains **24 bulk and 24 slab materials**.
-
-The codec, exponent, 32-shell representation, zlib level, 25-point $\alpha$ ladder and primary $10^{-6}$ Hartree contract were unchanged. All 1,200 settings completed with zero failures. QOAC-H beat the best certified frozen ZFP/SZ3/SPERR baseline for **48/48 materials**. The median ratio of certified compression ratios was **15.016** (bootstrap 95% CI **11.204–21.461**), with bulk median **11.203** and slab median **25.699**. The Wilson 95% interval for the 48/48 win fraction is 0.926–1.000. Every selected QOAC-H row also satisfied the Nyquist-safe Hartree threshold.
-
-### Full development-population census
-
-The final census applied the identical frozen codec and 25-point ladder to every development material: **186 bulk + 68 slab = 254 total**. All **6,350/6,350** settings completed with zero failures. QSQ eligibility was evaluated first at every requested Hartree tolerance, after which the highest-compression QOAC-H row satisfying the historical Hartree threshold was selected and required to satisfy the Nyquist-safe threshold. The frozen ZFP/SZ3/SPERR tables supplied the best certified baseline.
-
-| Hartree relative-RMSE tolerance | QSQ eligible | Comparable | QOAC-H wins | Median CR ratio | P05 | Minimum | Bulk median | Slab median |
+| $\tau$ | QSQ eligible | comparable | wins | median ratio | P05 | minimum | bulk median | slab median |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| $10^{-8}$ | 193 | 107 | 107/107 | 4.324× | 1.507× | 1.222× | 2.799× | 6.400× |
-| $10^{-7}$ | 254 | 204 | 204/204 | 6.911× | 2.239× | 1.461× | 5.139× | 16.263× |
-| $10^{-6}$ | 254 | 253 | 253/253 | 12.463× | 4.459× | 2.444× | 10.960× | 27.733× |
-| $10^{-5}$ | 254 | 254 | 254/254 | 14.749× | 5.575× | 3.068× | 12.908× | 30.879× |
-| $10^{-4}$ | 254 | 254 | 254/254 | 14.017× | 4.348× | 1.707× | 11.467× | 21.384× |
-| $10^{-3}$ | 254 | 254 | 254/254 | 7.593× | 1.953× | 1.032× | 7.335× | 7.686× |
+| $10^{-8}$ | 193 | 107 | 107/107 | 4.324 | 1.507 | 1.222 | 2.799 | 6.400 |
+| $10^{-7}$ | 254 | 204 | 204/204 | 6.911 | 2.239 | 1.461 | 5.139 | 16.263 |
+| $10^{-6}$ | 254 | 253 | 253/253 | 12.463 | 4.459 | 2.444 | 10.960 | 27.733 |
+| $10^{-5}$ | 254 | 254 | 254/254 | 14.749 | 5.575 | 3.068 | 12.908 | 30.879 |
+| $10^{-4}$ | 254 | 254 | 254/254 | 14.017 | 4.348 | 1.707 | 11.467 | 21.384 |
+| $10^{-3}$ | 254 | 254 | 254/254 | 7.593 | 1.953 | 1.032 | 7.335 | 7.686 |
 
-At the strictest $10^{-8}$ tolerance, QSQ admits 193/254 materials but only 107 have a comparable certified generic-codec baseline. The 107/107 win count therefore does not use the non-evaluable or baseline-unavailable systems as implicit failures or successes. At $10^{-6}$, QOAC-H is comparable on 253/254 systems and wins all 253; the single non-comparable system lacks a qualifying frozen generic-codec operating point rather than a QOAC-H certificate.
+### 2.4 Strongest baselines (48 confirmatory materials; protocol frozen before the run)
 
-### Scope boundary
+Certificate as in the confirmation (historical and Nyquist-safe Hartree relative error below $10^{-6}$); zero failures in every arm (T1 21,600 rows, MGARD 3,600, stored $V_H$ 7,200). Search rule: QOAC-H frozen 25-point ladder; T1 ladder per cutoff; MGARD best of $s=\infty,0,-1$; stored $V_H$ by ZFP, SZ3 and SPERR on the potential, which changes the contract.
 
-QOAC-H is an operator-specific demonstration. A density reconstruction can have comparatively large raw-space $L_\infty$ or RMSE while satisfying the Hartree contract because long- and short-wavelength errors have very different downstream costs. This is not permission to reuse the same reconstruction for another QoI without qualification and certification. In particular, the $\Delta_G\propto|G|^2$ law is **not** proposed for Bader charge, whose nonlinear basin reassignment is not diagonalized by the Hartree Fourier descriptor.
+| arm | median certified CR | QOAC-H / arm: wins, median (95% CI) |
+|---|---:|---|
+| QOAC-H (frozen ladder) | 383 | — |
+| T1 spectral truncation | 233 | 45/48, 1.564 (1.376–1.622); minimum 0.843 |
+| ZFP/SZ3/SPERR (frozen ladders) | 22.1 | 48/48, 15.0 |
+| MGARD ($s=-1$ selected in 36/48) | 16.0 | 48/48, 19.4 (16.4–24.0) |
+| stored $V_H$ | — | 48/48, 19.4 (16.5–21.2) |
 
-Machine-readable evidence is available through the semantic reader-facing mappings in `paper/READER_FACING_PROVENANCE_INDEX.md`: **QOAC-H mechanism ablation**, **QOAC-H implementation audit**, **QOAC-H disjoint confirmation**, and **QOAC-H full-population census**. Internal repository development identifiers are retained only in that provenance mapping.
+T1 was the best new baseline in 48/48 materials (selected cutoffs $q_c$ = 0.30 in 18, 0.15 in 17, 0.20 in 9, 0.50 in 4); uniform Fourier quantization ($q_c=1$) reached median CR 87.8. Median density $L_\infty$ and RMSE of the certified streams were 1.89 and 0.096 for QOAC-H and 2.82 and 0.148 for T1. These ladder-searched ratios and the equal-search ratios of the main text (A1/A6, A1/A2) answer different questions and are reported separately.
+
+
+## Supplementary Note 3 — Bader contracts under an exact partition
+
+### 3.1 Basin-sum projection after generic compression (38-material holdout)
+
+With the AECCAR partition reference held exact, the decoded CHGCAR is corrected by the uniform per-basin shift that restores each stored basin sum, the minimum-$L_2$ and minimum-$L_\infty$ correction for disjoint basins, following constraint-satisfaction post-processing (main-text ref. 12). An auxiliary density budget, $L_\infty(P)\le\kappa\,\epsilon^{G1}_m$, where $\epsilon^{G1}_m$ is the realized $L_\infty$ of the best frozen generic Bader-certified row, prevents arbitrary compression followed by projection; $\kappa=4$ was fixed on 12 engineering materials (11/12 wins, median 1.782; maximum side channel 0.7117%).
+
+On the frozen 38-material holdout ($\tau_B=10^{-3}\,e$): 38/38 analyzable with zero pipeline failures; maximum Bader error 0.0 $e$; zero basin reassignment in 38/38; 34/38 wins over the best frozen generic Bader-certified baseline; median compression-ratio ratio 1.865 (bootstrap 95% CI 1.759–1.985); P05 0.999, minimum 0.997; maximum side-channel fraction 0.999%; median $L_\infty$ ratio 3.09.
+
+### 3.2 Transcription of the Henkelman partition (B3 Gate 0; 12 fresh P2 engineering materials)
+
+Henkelman Bader 1.05 (`-b ongrid -vac 0.001`), exact CHGCAR, reference AECCAR0 + AECCAR2. The partition (volnum) was identical voxel for voxel in 11/11 materials with Gate 0 output (0 mismatching voxels); maxima 3,339/3,339 matched; every reference field was regular (0 violations of R1 and R2); the atom map was identical in 9/11 (minimum voxel agreement 97.9%); the literal transcription (run for at most 400,000 points) was identical in 3/3. For one material (mp-2302539) the comparison code exceeded memory (a 74 GiB pairwise maxima array); its arms ran normally.
+
+### 3.3 Storing the partition (Supplementary Fig. 1)
+
+Two self-contained contracts carry the partition. A partition-faithful AECCAR is compressed with a correction that guarantees an identical Henkelman partition; a lossless label map stores the basin labels directly.
+
+| arm | zero reassignment | max Bader error ($e$) | median side / base | median total / label map |
+|---|---:|---:|---:|---:|
+| A2, relative bound $10^{-3}$ | 12/12 | 0 | 0.057 | 17.3 |
+| A2, $10^{-2}$ | 12/12 | 0 | 0.33 | 16.3 |
+| A2, $5\times10^{-2}$ | 12/12 | 0 | 1.63 | 27.1 |
+| A1, $10^{-3}$ | 12/12 | 0 | 0.28 | 21.1 |
+| A1, $10^{-2}$ | 12/12 | 0 | 1.35 | 29.5 |
+| A1, $5\times10^{-2}$ | 12/12 | 0 | 5.20 | 56.9 |
+
+Before correction the base quantizer alone reassigns a median 45–91% of voxels; after correction no voxel is reassigned. The label map round-trips exactly in 12/12 materials, charges recomputed from it match the binary in 12/12 (maximum difference $5.0\times10^{-7}\,e$), and its median size is 12.9 kB (atom map) and 21.8 kB (volnum map). When only Bader charges are needed, the self-contained contract is therefore a Hartree-certified CHGCAR stream plus a lossless label map (about 17-fold smaller than a partition-faithful AECCAR), with basin projection added when the stream's basin sums miss $\tau_B$; a partition-faithful AECCAR serves users who need the partition field itself.
+
+**Supplementary Fig. 1 | Bader storage contracts on real materials.** Total stored bytes of the partition-faithful AECCAR arms (A1, A2 at relative bounds $10^{-3}$, $10^{-2}$ and $5\times10^{-2}$) divided by the bytes of a lossless label map, per material (12 fresh P2 engineering materials; medians 16.3–56.9); every arm gives zero basin reassignment and zero Bader error. Inset: label-map size, atom map (median 12.9 kB) and volnum map (21.8 kB). Source: `analysis/qoac_b3_design/results/real_engineering/rows.csv` (columns `arm, delta, total_bytes, label_ctx_bytes_atom, label_ctx_bytes_volnum, reassigned_volnum_frac`).
+
+
+## Supplementary Note 4 — Joint certification: engineering cohort and per-tolerance description
+
+Protocol and criteria were frozen before any run (commit `8a784a4`); confirmation was authorized only if engineering gates E1, E2 and E4 passed.
+
+**Engineering cohort (12 fresh P2 materials; 0 setting failures).** E1: R3 at its best joint post-processor certified at all three $\tau_B$ in 12/12. E2: joint overhead at $10^{-4}\,e$, median 1.000 (1.000 in all 12). E4: R3 over the best of J, T1 and GF at $10^{-4}\,e$, 12/12 wins, median 1.355 (minimum 1.167). Median joint compression ratios at $10^{-4}\,e$: R3 297 (Hartree-only 297), J 224, T1 191, GF 17.1.
+
+**Per-tolerance description.**
+
+| quantity | cohort | $\tau_B=10^{-3}\,e$ | $10^{-4}\,e$ | $10^{-5}\,e$ |
+|---|---|---|---|---|
+| R3 best post-processor | confirmatory (48) | none 48/48 | none 48/48 | none 33/48; Hartree-aware ($\mu=10^{-4}$) 15/48 |
+| | engineering (12) | none 12/12 | none 12/12 | none 5/12; Hartree-aware ($\mu=10^{-4}$) 7/12 |
+| certify-then-project: projected decisions | confirmatory | 0/192 | 0/192 | 31/165 |
+| | engineering | 0/48 | 0/48 | 12/32 |
+| median joint overhead (R3) | confirmatory | 1.000 | 1.000 [1.000, 1.000] | 1.000 |
+| | engineering | — | 1.000 | 1.0032 |
+
+Median R3 joint compression ratio in the confirmatory cohort is 298 at every $\tau_B$. At $10^{-5}\,e$, Hartree-aware and uniform projection gave the same certified ratio (median ratio 1.00; $n=35$ confirmatory materials where both certify). Confirmatory criteria: 48/48 jointly certified (threshold 46/48); overhead median 1.000, CI [1.000, 1.000] (thresholds 1.10, 1.15); utility 48/48 wins, median 1.317, CI [1.269, 1.360], minimum 1.096 (thresholds 36/48, 1.10, CI lower bound 1.00). Bootstrap seed 20261007, 10,000 resamples.
+
+The Hartree-aware projection minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the basin-sum constraints, with $s_H=\lVert H\rho_{\text{ref}}\rVert^2$ and $s_\rho=\lVert\rho_{\text{ref}}\rVert^2$; it reduces to the uniform shift as $\mu\to\infty$. The constant mode is fixed by the constraints and the zero-mean part is solved from a regularized, Jacobi-scaled Cholesky system; the derivation and unit tests are in `analysis/qoac_hb_v2/DERIVATION.md`.
+
+
+## Supplementary Note 5 — Law protocol tables per tolerance and per operator
+
+Values are rounded from the committed `SUMMARY.json` of each run; bootstrap seed 20261006, 10,000 resamples of the median. Both cohorts ran with zero pipeline failures, and A1 and A3 were certified for every material at every tolerance.
+
+
+**Part A, P1, 60 Materials Project bulk crystals** (median certified compression-ratio ratio, bootstrap 95% CI, wins/n)
+
+| ratio | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
+|---|---|---|---|
+| A3/A1 (optimum / law) | 1.582 [1.490, 1.698], 60/60 | 1.105 [1.090, 1.146], 60/60 | 1.033 [1.028, 1.039], 60/60 |
+| A3/A5 (operator / blind metric) | 1.327 [1.262, 1.449], 60/60 | 2.122 [1.919, 2.460], 60/60 | 1.604 [1.495, 1.717], 60/60 |
+| A1/A6 (law / pointwise codecs) | 9.097 [7.445, 11.656], 59/60 | 10.235 [9.129, 12.089], 60/60 | 3.304 [2.878, 3.674], 60/60 |
+| A1/A2 (law / truncation) | 0.793 [0.729, 0.932], 20/60 | 1.319 [1.273, 1.351], 52/60 | 1.593 [1.569, 1.620], 60/60 |
+| A3/A0 (optimum / frozen ladder) | 1.705 [1.621, 1.828], 60/60 | 1.330 [1.272, 1.374], 60/60 | 1.158 [1.126, 1.190], 60/60 |
+| A1/A0 (continuous / frozen ladder) | 1.057 [1.043, 1.077], 58/60 | 1.133 [1.098, 1.176], 60/60 | 1.116 [1.091, 1.145], 60/60 |
+
+**Part B, P1, 60 Materials Project bulk crystals** (medians over materials; predicted / measured gain, median absolute log error, fraction of materials with measured gain in [0.90, 1.11])
+
+| operator | $\tau=10^{-6}$: $G_\text{pred}$ / $G_\text{obs}$ | abs log error | in band | $\tau=10^{-4}$: $G_\text{pred}$ / $G_\text{obs}$ | abs log error | in band |
+|---|---|---|---|---|---|---|
+| density (control) | 1.000 / 1.000 | 0.000 | 100.0% | 1.000 / 1.000 | 0.000 | 100.0% |
+| gradient | 1.014 / 1.011 | 0.006 | 100.0% | 1.030 / 1.032 | 0.009 | 100.0% |
+| Laplacian | 1.039 / 1.042 | 0.012 | 98.3% | 1.075 / 1.066 | 0.025 | 78.3% |
+| Hartree field | 1.151 / 1.149 | 0.014 | 25.0% | 1.124 / 1.103 | 0.017 | 60.0% |
+| Hartree potential | 2.723 / 2.615 | 0.078 | 0.0% | 1.556 / 1.442 | 0.079 | 6.7% |
+| Gaussian, $\sigma=0.5$ Å | 17.607 / 12.104 | 0.431 | 0.0% | 2.679 / 2.018 | 0.230 | 0.0% |
+
+Pooled at $\tau=10^{-6}$: 300 pairs, median absolute log error 0.024, Spearman 0.978.
+
+Pooled at $\tau=10^{-4}$: 300 pairs, median absolute log error 0.034, Spearman 0.944.
+
+**Part A, P3b, 32 NOMAD surface slabs** (median certified compression-ratio ratio, bootstrap 95% CI, wins/n)
+
+| ratio | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
+|---|---|---|---|
+| A3/A1 (optimum / law) | 2.220 [1.837, 2.490], 32/32 | 1.222 [1.138, 1.359], 32/32 | 1.082 [1.055, 1.104], 32/32 |
+| A3/A5 (operator / blind metric) | 1.815 [1.623, 2.362], 32/32 | 3.432 [2.888, 4.076], 32/32 | 3.039 [2.433, 3.358], 32/32 |
+| A1/A6 (law / pointwise codecs) | 15.914 [13.013, 17.594], 32/32 | 18.530 [15.815, 23.071], 32/32 | 6.999 [4.691, 9.615], 32/32 |
+| A1/A2 (law / truncation) | 0.691 [0.525, 0.887], 8/32 | 1.413 [1.284, 1.721], 27/32 | 2.155 [1.859, 2.333], 32/32 |
+| A3/A0 (optimum / frozen ladder) | 2.305 [2.037, 2.561], 32/32 | 1.386 [1.331, 1.530], 32/32 | 1.292 [1.221, 1.356], 32/32 |
+| A1/A0 (continuous / frozen ladder) | 1.054 [1.026, 1.068], 32/32 | 1.077 [1.054, 1.102], 32/32 | 1.201 [1.160, 1.256], 32/32 |
+
+**Part B, P3b, 32 NOMAD surface slabs** (medians over materials; predicted / measured gain, median absolute log error, fraction of materials with measured gain in [0.90, 1.11])
+
+| operator | $\tau=10^{-6}$: $G_\text{pred}$ / $G_\text{obs}$ | abs log error | in band | $\tau=10^{-4}$: $G_\text{pred}$ / $G_\text{obs}$ | abs log error | in band |
+|---|---|---|---|---|---|---|
+| density (control) | 1.000 / 1.000 | 0.000 | 100.0% | 1.000 / 1.000 | 0.000 | 100.0% |
+| gradient | 1.012 / 1.015 | 0.007 | 100.0% | 1.027 / 1.047 | 0.022 | 100.0% |
+| Laplacian | 1.031 / 1.047 | 0.023 | 96.9% | 1.062 / 1.068 | 0.023 | 84.4% |
+| Hartree field | 1.164 / 1.165 | 0.015 | 6.2% | 1.120 / 1.098 | 0.018 | 65.6% |
+| Hartree potential | 3.553 / 3.142 | 0.171 | 0.0% | 2.125 / 1.568 | 0.209 | 0.0% |
+| Gaussian, $\sigma=0.5$ Å | 22.011 / 15.256 | 0.497 | 0.0% | 4.071 / 2.546 | 0.308 | 0.0% |
+
+Pooled at $\tau=10^{-6}$: 160 pairs, median absolute log error 0.029, Spearman 0.979.
+
+Pooled at $\tau=10^{-4}$: 160 pairs, median absolute log error 0.040, Spearman 0.914.
+
+**Pooled over both cohorts** (92 materials, 460 operator–material pairs, density control excluded; `POOLED_P1_P3B.json`):
+
+| statistic | $\tau=10^{-6}$ | $\tau=10^{-4}$ |
+|---|---:|---:|
+| median absolute log error | 0.026 | 0.035 |
+| Spearman, all pairs | 0.977 | 0.935 |
+| fraction of pairs within 25% | 0.800 | 0.857 |
+| within-operator Spearman: gradient | 0.238 | 0.473 |
+| within-operator Spearman: Laplacian | 0.442 | 0.617 |
+| within-operator Spearman: Hartree field | 0.844 | 0.669 |
+| within-operator Spearman: Hartree potential | 0.792 | 0.808 |
+| within-operator Spearman: Gaussian, $\sigma=0.5$ Å | 0.895 | 0.800 |
+
+Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohorts and tolerances), so their within-operator rank correlations measure ordering inside a narrow range; their gains fall inside the null band [0.90, 1.11] as predicted (tables above).
+
+**P1 shakedown cohort** (12 materials run through the identical pipeline; not part of any criterion): A3/A1 1.156, A3/A5 2.26, A1/A6 9.80, A1/A2 1.24 at $\tau=10^{-6}$; Part B median absolute log error 0.024, Spearman 0.979.
+
+
+## Supplementary Note 6 — Gain-predictor calibration
+
+The predictor form was fixed by a retrospective calibration on the 12 QOAC-H engineering materials (commit `f4baa7a`), before the law protocol was frozen (`fe2e08a`); the calibration observations were known when the predictors were written, and the predictor was then tested only on the unused P1 and P3b cohorts. Predictor (a) is the high-rate orbit-only expression, in which every component has error $\Delta^2/12$ and rate $h-\log_2\Delta$; predictor (b) is the finite-rate Laplacian model of the main-text Methods, evaluated on the frozen ladder.
+
+| quantity | observed median | predictor | predicted median | median abs log error | Spearman $\rho$ | direction correct |
+|---|---:|---|---:|---:|---:|---:|
+| Hartree, exponent 2 / exponent 0 error ratio | 0.0767 | (a) high-rate | 0.0496 | 0.362 | 0.94 | 12/12 |
+| | | (b) finite-rate | 0.0832 | 0.148 | 0.96 | 12/12 |
+| electric (Hartree) field, exponent 1 / exponent 0 | 0.806 | (a) high-rate | 0.783 | 0.037 | 0.71 | 12/12 |
+| | | (b) finite-rate | 0.790 | 0.021 | 0.58 | 12/12 |
+| electric (Hartree) field, exponent 1 / exponent 2 | 0.928 | (a) high-rate | 0.913 | 0.021 | −0.49 | 10/12 |
+| | | (b) finite-rate | 0.922 | 0.018 | 0.52 | 12/12 |
+
+The high-rate expression overstates the Hartree gain about 1.4-fold in every material; the dead zone of the finite-rate model removes most of that bias. Absolute model compression ratios deviate from observation by a median of 0.068 dex, and these errors partly cancel in ratios between policies, which are the quantities predicted.
+
+
+## Supplementary Note 7 — Population construction
+
+**Development and external sets.** 254 development densities (186 Materials Project bulk, 68 NOMAD slabs from five uploads); 65 external stability records (37 AFLOW bulk, 28 NOMAD vacuum-containing 2D); 63 external confirmatory systems. These sets supplied every QSQ result and the frozen-ladder QOAC-H evidence.
+
+**Fresh populations (rule `10e7863`, frozen before any candidate download; SHA-256 of the rule `25d6f04f…3f133778b`).** The exclusion set scanned 60 repository branches (1,688 unique text blobs) and contains 833 identifiers (368 `mp-*` ids, 486 Materials Project S3 task ids, 96 NOMAD entry ids, 70 `nomad-*` material ids) and 291 distinct reduced formulas. Only metadata (listing entry, size, SHA-256, grid shape, atom count, reduced formula, lattice, finiteness and positivity of the density) was read; no QoI or compression outcome was computed on any candidate.
+
+| | P1 | P2 |
+|---|---|---|
+| source | Materials Project bulk, CHGCAR | Materials Project bulk, CHGCAR + AECCAR0 + AECCAR2 |
+| frame after pre-filter | 270,278 task ids | 135,534 task ids |
+| strata (keys per stratum) | 72 (3,753–3,754) | 60 (2,258–2,259) |
+| engineering + confirmatory | 12 + 60 | 12 + 48 |
+| candidates downloaded / rejected | 72 / 0 | 64 / 4 (2 grid size, 2 excluded formula) |
+| npoints, min / median / max | 175,616 / 1,045,248 / 4,741,632 | 175,616 / 884,736 / 5,832,000 |
+| atoms, min / median / max | 2 / 12 / 72 | 2 / 7 / 64 |
+
+The S3 listing (bucket `materialsproject-parsed`, 2026-10-06 14:16–14:38 UTC) contained 415,475 task ids with a CHGCAR and 138,804 with CHGCAR, AECCAR0 and AECCAR2. All 132 accepted materials have distinct task ids and reduced formulas, none is in the exclusion set, and P1 and P2 are disjoint. For 117/132 materials the Materials Project material id is not recorded in the file and the task id is used as identifier; formula exclusion also excludes other tasks of a used material.
+
+**P3b (rule `39ba728`; cohort drawn in `d1c1050`).** Frame: the frozen public NOMAD listing (`results.material.structural_type = surface`, `program_name = VASP`; 16,275 entries, 820 with a retrievable CHGCAR size). Rows between 1 and 80 MB were kept; uploads containing an already-used NOMAD entry, used ids and used reduced formulas (including every P1 and P2 formula) were dropped. Formulas were visited in SHA-256 order of a fixed salt plus formula, and within a formula entries in SHA-256 order; the earliest entry that parses, has a finite density with positive sum, has $1.5\times10^5\le$ npoints $\le6.0\times10^6$ and comes from an upload with fewer than six accepted materials was accepted, one per formula. Because a size-stratified slab draw under the general rule could supply at most 23 materials, slabs were drawn one per reduced formula; 32 slabs entered the cohort, with no engineering split.
+
+Every manifest records material id, task or entry id, source URL, byte count and SHA-256; `PROVENANCE.json` records listing timestamps and the hashes of every index, frame, exclusion file, script and manifest.
+
+
+## Supplementary Note 8 — Source files
+
+Every number in the main text and this SI comes from the files below (commit that last changed each file). Protocols, manifests, per-material tables and the register of every protocol with its outcome are in the same repository.
+
+| content | file | commit |
+|---|---|---|
+| QSQ fresh-perturbation test | `analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv` | `912ad5e` |
+| QSQ equal-search control | `analysis/research_upgrade/p1_common_tight_summary.csv` | `912ad5e` |
+| QSQ validations (Supplementary Note 1) | frozen manuscript and SI, `paper/MANUSCRIPT.md` and `paper/SUPPLEMENTARY_INFORMATION.md` | `efd1e2c` |
+| Hartree spectral audit | `analysis/hartree_spectral_mechanism/results/REPORT.md` | `dc2b167` |
+| QOAC-H mechanism ablation | `analysis/operator_aware_codec_hartree/results/SUMMARY.json` | `a1351d1` |
+| QOAC-H disjoint confirmation | `analysis/operator_aware_codec_hartree_v02_confirmatory/results/RESULTS.md` | `31def38` |
+| QOAC-H census | `analysis/operator_aware_codec_hartree_v02_census/results/RESULTS.md` | `cc5d7a1` |
+| strongest baselines | `analysis/qoac_h_strong_baselines/results/RESULTS.md` | `0c8b550` |
+| basin projection holdout | `analysis/operator_aware_bader_projection_confirmatory/results/SUMMARY.json` | `8e4b5e8` |
+| basin projection engineering | `analysis/operator_aware_bader_projection/results/RESULTS.md` | `892bedb` |
+| partition transcription and storage | `analysis/qoac_b3_design/results/real_engineering/RESULTS.md` | `01a3d54` |
+| law protocol, P1 | `analysis/general_qoac_law/results/run_P1_CONFIRMATORY/SUMMARY.json` | `4164519` |
+| law protocol, P3b | `analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/SUMMARY.json` | `eaa3267` |
+| law protocol, summary | `analysis/general_qoac_law/results/RESULTS.md` | `b9fd735` |
+| pooled prediction statistics | `analysis/general_qoac_law/results/POOLED_P1_P3B.json` | `062d782` |
+| predictor calibration | `analysis/general_qoac_operators/results/RESULTS.md` | `f4baa7a` |
+| joint contract, engineering | `analysis/qoac_hb_v2/results/P2_ENGINEERING_MANIFEST/RESULTS.md` | `e095a0c` |
+| joint contract, confirmation | `analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST/RESULTS.md` | `e4d9d0b` |
+| fresh populations | `analysis/fresh_population_20261006/REPORT.md` | `708dd37` |
+| P3b rule | `analysis/fresh_population_20261006/P3B_SELECTION_RULE.md` | `39ba728` |
