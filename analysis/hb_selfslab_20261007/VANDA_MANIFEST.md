@@ -20,3 +20,4 @@ Staged size before any run: 30 MB, 244 files.
 
 | bundle | job id | slabs (draw rank) | submitted | state |
 |---|---|---|---|---|
+| pilot | 1439802.stdct-mgmt-02 | 1 | 2026-10-08 00:28 SGT | finished 00:29, Exit 0, converged_normal (`runs/PILOT.md`) |
