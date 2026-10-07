@@ -1,0 +1,21 @@
+material_id,entry_id,role,file,loader,status,shape,n_nonfinite,min_finite,max_finite,warnings,error,matches_strict_scan,max_abs_diff_vs_strict
+nomad-IZPVe_A6_quS,IZPVe_A6_quStfuserAGgimQ2c0K,failed,AECCAR0,baderkit Grid.from_dynamic,returned,60x84x480,2419200,nan,nan,,,1,nan
+nomad-IZPVe_A6_quS,IZPVe_A6_quStfuserAGgimQ2c0K,failed,AECCAR0,pymatgen Chgcar.from_file,returned,60x84x480,2419200,nan,nan,,,1,nan
+nomad-IZPVe_A6_quS,IZPVe_A6_quStfuserAGgimQ2c0K,failed,AECCAR2,baderkit Grid.from_dynamic,returned,60x84x480,0,-5307.8528737,120001.71721,,,1,0.0
+nomad-IZPVe_A6_quS,IZPVe_A6_quStfuserAGgimQ2c0K,failed,AECCAR2,pymatgen Chgcar.from_file,returned,60x84x480,0,-5307.8528737,120001.71721,,,1,0.0
+nomad-ViaCyatoI3FA,ViaCyatoI3FA6DXSI94n9SRDzdCi,failed,AECCAR0,baderkit Grid.from_dynamic,returned,56x140x252,1975680,nan,nan,,,1,nan
+nomad-ViaCyatoI3FA,ViaCyatoI3FA6DXSI94n9SRDzdCi,failed,AECCAR0,pymatgen Chgcar.from_file,returned,56x140x252,1975680,nan,nan,,,1,nan
+nomad-ViaCyatoI3FA,ViaCyatoI3FA6DXSI94n9SRDzdCi,failed,AECCAR2,baderkit Grid.from_dynamic,returned,56x140x252,0,-360.51365132,32808.866054,,,1,0.0
+nomad-ViaCyatoI3FA,ViaCyatoI3FA6DXSI94n9SRDzdCi,failed,AECCAR2,pymatgen Chgcar.from_file,returned,56x140x252,0,-360.51365132,32808.866054,,,1,0.0
+nomad-DcwYU1UzKNe8,DcwYU1UzKNe8U2KmsnBaea6HcEIN,failed,AECCAR0,baderkit Grid.from_dynamic,returned,96x80x216,1658880,nan,nan,,,1,nan
+nomad-DcwYU1UzKNe8,DcwYU1UzKNe8U2KmsnBaea6HcEIN,failed,AECCAR0,pymatgen Chgcar.from_file,returned,96x80x216,1658880,nan,nan,,,1,nan
+nomad-DcwYU1UzKNe8,DcwYU1UzKNe8U2KmsnBaea6HcEIN,failed,AECCAR2,baderkit Grid.from_dynamic,returned,96x80x216,0,-127.52319648,23524.523813,,,1,0.0
+nomad-DcwYU1UzKNe8,DcwYU1UzKNe8U2KmsnBaea6HcEIN,failed,AECCAR2,pymatgen Chgcar.from_file,returned,96x80x216,0,-127.52319648,23524.523813,,,1,0.0
+nomad-hk3gUBk-5QN5,hk3gUBk-5QN5DgoiFUWeMkmDpI9m,failed,AECCAR0,baderkit Grid.from_dynamic,raised,,,,,,ValueError: string or file could not be read to its end due to unmatched data,,
+nomad-hk3gUBk-5QN5,hk3gUBk-5QN5DgoiFUWeMkmDpI9m,failed,AECCAR0,pymatgen Chgcar.from_file,raised,,,,,,ValueError: could not convert string to float: '0.65466110724+193',,
+nomad-hk3gUBk-5QN5,hk3gUBk-5QN5DgoiFUWeMkmDpI9m,failed,AECCAR2,baderkit Grid.from_dynamic,returned,112x112x224,0,-488.19467652,18199.681266,,,1,0.0
+nomad-hk3gUBk-5QN5,hk3gUBk-5QN5DgoiFUWeMkmDpI9m,failed,AECCAR2,pymatgen Chgcar.from_file,returned,112x112x224,0,-488.19467652,18199.681266,,,1,0.0
+nomad-gPlluuEHW2ND,gPlluuEHW2NDKnVMBb-68W6rK_Wn,control,AECCAR0,baderkit Grid.from_dynamic,returned,64x64x180,0,-4.352558436e-05,48043888.875,,,1,0.0
+nomad-gPlluuEHW2ND,gPlluuEHW2NDKnVMBb-68W6rK_Wn,control,AECCAR0,pymatgen Chgcar.from_file,returned,64x64x180,0,-4.352558436e-05,48043888.875,,,1,0.0
+nomad-gPlluuEHW2ND,gPlluuEHW2NDKnVMBb-68W6rK_Wn,control,AECCAR2,baderkit Grid.from_dynamic,returned,64x64x180,0,-0.44223970382,66474.990652,,,1,0.0
+nomad-gPlluuEHW2ND,gPlluuEHW2NDKnVMBb-68W6rK_Wn,control,AECCAR2,pymatgen Chgcar.from_file,returned,64x64x180,0,-0.44223970382,66474.990652,,,1,0.0

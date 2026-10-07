@@ -1,0 +1,238 @@
+name: QOAC-HB slab AECCAR cohort
+
+# Copy of qoac_hb_slab.yml (f5c0ac1), itself a copy of qoac_hb_v2.yml (77caf5d). Changed: trigger branch and sentinel,
+# output directory, concurrency group, names; the shard step calls the unchanged slab adapter
+# analysis/qoac_hb_slab_20261007/run_joint_slab.py with --aeccar-sources pointing to this cohort's frozen table;
+# preflight also runs this cohort's tests. See analysis/hb_slab_aeccar_cohort_20261007/PROTOCOL.md and DEVIATIONS.md.
+# Started by a push to research/hb-slab-aeccar-cohort-20261007 that changes the sentinel
+# analysis/hb_slab_aeccar_cohort_20261007/RUN_MANIFEST, whose content is the repository-relative manifest path to run.
+# A push run uses the default mu and tau_bader.
+on:
+  push:
+    branches: [research/hb-slab-aeccar-cohort-20261007]
+    paths: [analysis/hb_slab_aeccar_cohort_20261007/RUN_MANIFEST]
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: 'Manifest CSV, path relative to the repository root'
+        required: true
+        type: string
+      mu:
+        description: 'HAP weights mu, space-separated'
+        required: false
+        default: '1e-4 1e-2 1'
+        type: string
+      tau_bader:
+        description: 'Bader tolerances tau_B (e), space-separated'
+        required: false
+        default: '1e-3 1e-4 1e-5'
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hb-slab-aeccar-cohort-20261007-${{ inputs.manifest || 'run-manifest-sentinel' }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      manifest: ${{ steps.check.outputs.manifest }}
+      stem: ${{ steps.check.outputs.stem }}
+      mu: ${{ steps.check.outputs.mu }}
+      tau_bader: ${{ steps.check.outputs.tau_bader }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - id: check
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          MANIFEST_INPUT: ${{ inputs.manifest }}
+          MU: ${{ inputs.mu || '1e-4 1e-2 1' }}
+          TAU_BADER: ${{ inputs.tau_bader || '1e-3 1e-4 1e-5' }}
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_REF" != refs/heads/research/hb-slab-aeccar-cohort-20261007 ]; then
+            echo "dispatch this workflow from research/hb-slab-aeccar-cohort-20261007 (got $GITHUB_REF)"; exit 1
+          fi
+          if [ "$EVENT" = push ]; then
+            sentinel=repo/analysis/hb_slab_aeccar_cohort_20261007/RUN_MANIFEST
+            test -f "$sentinel" || { echo "sentinel $sentinel is missing"; exit 1; }
+            MANIFEST="$(grep -v '^[[:space:]]*\(#\|$\)' "$sentinel" | head -n 1 | tr -d '[:space:]' || true)"
+          else
+            MANIFEST="$MANIFEST_INPUT"
+          fi
+          export MANIFEST
+          python -m pip install -q numpy==2.4.6 pandas==2.3.3
+          python -m py_compile repo/analysis/qoac_hb_v2/*.py repo/analysis/qoac_hb_slab_20261007/*.py repo/analysis/hb_slab_aeccar_cohort_20261007/*.py
+          (cd repo/analysis/qoac_hb_v2 && python -m unittest -q test_projection_v2.py test_codec_qoac_v03.py test_runner_v2.py)
+          (cd repo/analysis/qoac_h_strong_baselines && python -m unittest -q test_truncation_codec.py)
+          (cd repo/analysis/qoac_hb_slab_20261007 && python -m unittest -q test_run_joint_slab.py test_evaluate_criteria.py)
+          (cd repo/analysis/hb_slab_aeccar_cohort_20261007 && python -m unittest -q test_cohort_tables.py test_evaluate_criteria.py)
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import csv, math, os, re, sys
+          from collections import Counter
+          from pathlib import Path
+          sys.path.insert(0, "repo/analysis/qoac_hb_v2")
+          import run_joint_v2 as rj
+          m = os.environ["MANIFEST"].strip()
+          p = Path(m)
+          if not re.fullmatch(r"[A-Za-z0-9._/-]+", m) or p.is_absolute() or ".." in p.parts or p.suffix != ".csv":
+              sys.exit(f"bad manifest path {m!r}")
+          f = Path("repo") / p
+          if not f.is_file():
+              sys.exit(f"manifest not found: {m}")
+          with f.open(encoding="utf-8") as fh:
+              rows = list(csv.DictReader(fh))
+          need = {"material_id", "task_id", "system_type", "source", "url", "sha256"}
+          if not rows or not need <= set(rows[0]):
+              sys.exit(f"manifest is empty or lacks columns {sorted(need - set(rows[0] if rows else {}))}")
+          ids = [r["material_id"] for r in rows]
+          if len(ids) != len(set(ids)):
+              sys.exit("duplicate material_id in manifest")
+          tok = os.environ["MU"].split()
+          try:
+              mus = [float(t) for t in tok]
+          except ValueError:
+              sys.exit(f"bad mu {os.environ['MU']!r}")
+          if not mus or not all(math.isfinite(x) and x >= 0 for x in mus) or len({f"{x:g}" for x in mus}) != len(mus):
+              sys.exit(f"bad mu {os.environ['MU']!r}")
+          ttok = os.environ["TAU_BADER"].split()
+          try:
+              taus = [float(t) for t in ttok]
+          except ValueError:
+              sys.exit(f"bad tau_bader {os.environ['TAU_BADER']!r}")
+          if not taus or not all(math.isfinite(x) and x > 0 for x in taus) or len({f"{x:g}" for x in taus}) != len(taus):
+              sys.exit(f"bad tau_bader {os.environ['TAU_BADER']!r}")
+          load = Counter(rj.shard_for(i, 19) for i in ids)
+          print(f"{len(ids)} materials; shard loads: {dict(sorted(load.items()))}", file=sys.stderr)
+          print(f"manifest={m}")
+          print(f"stem={p.stem}")
+          print(f"mu={' '.join(tok)}")
+          print(f"tau_bader={' '.join(ttok)}")
+          PY
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install scientific stack and Fortran compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gfortran
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Build Henkelman Bader
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r repo/mechanism/independent_bader_20260908/reference_source "$RUNNER_TEMP/bader_source"
+          cd "$RUNNER_TEMP/bader_source"
+          sed -i 's/^LINK = -static/LINK =/' makefile.osx_gfortran
+          make -f makefile.osx_gfortran
+          test -x bader
+      - name: Run shard
+        shell: bash
+        env:
+          MANIFEST: ${{ needs.preflight.outputs.manifest }}
+          MU: ${{ needs.preflight.outputs.mu }}
+          TAU_BADER: ${{ needs.preflight.outputs.tau_bader }}
+        run: |
+          set -euo pipefail
+          read -r -a MUS <<< "$MU"
+          read -r -a TAUS <<< "$TAU_BADER"
+          out="$RUNNER_TEMP/qoac_hb_v2_${{ matrix.shard }}"
+          python repo/analysis/qoac_hb_slab_20261007/run_joint_slab.py \
+            --aeccar-sources repo/analysis/hb_slab_aeccar_cohort_20261007/aeccar_sources.csv \
+            --repo-root repo --frozen-root frozen \
+            --manifest "repo/$MANIFEST" \
+            --shard-count 19 --shard-index ${{ matrix.shard }} \
+            --bader "$RUNNER_TEMP/bader_source/bader" --output-dir "$out" \
+            --mu "${MUS[@]}" --tau-bader "${TAUS[@]}"
+          git -C repo rev-parse HEAD > "$out/research_branch_commit.txt"
+          python -m pip freeze > "$out/pip_freeze.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qoac-hb-v2-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/qoac_hb_v2_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always() && needs.preflight.result == 'success'
+    needs: [preflight, shard]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qoac-hb-v2-shard-*
+          path: shards
+      - name: Aggregate
+        shell: bash
+        env:
+          MANIFEST: ${{ needs.preflight.outputs.manifest }}
+          STEM: ${{ needs.preflight.outputs.stem }}
+        run: |
+          set -euo pipefail
+          cd repo
+          out="analysis/hb_slab_aeccar_cohort_20261007/results/$STEM"
+          rm -rf "$out"
+          python analysis/qoac_hb_v2/aggregate_joint_v2.py \
+            --manifest "$MANIFEST" --shards-root ../shards --output-dir "$out"
+          python -c "import glob,sys,pandas as pd; fs=sorted(glob.glob('../shards/**/aeccar_downloads_shard_*.csv',recursive=True)); d=pd.concat([pd.read_csv(f,dtype=str) for f in fs]) if fs else pd.DataFrame(); d=d[d['entry_id'].notna()] if 'entry_id' in d else d; d.to_csv(sys.argv[1],index=False)" "$out/aeccar_downloads.csv"
+          git rev-parse HEAD > "$out/research_branch_commit_before_results.txt"
+          echo 893f931b3045b0b628329db81999c2f439d4e830 > "$out/frozen_scientific_commit.txt"
+      - name: Commit results
+        shell: bash
+        env:
+          STEM: ${{ needs.preflight.outputs.stem }}
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "analysis/hb_slab_aeccar_cohort_20261007/results/$STEM"
+          if git diff --cached --quiet; then echo 'No result changes.'; else
+            git commit -m "research: HB slab AECCAR cohort results for $STEM"
+            git pull --rebase origin research/hb-slab-aeccar-cohort-20261007
+            git push origin HEAD:research/hb-slab-aeccar-cohort-20261007
+          fi
