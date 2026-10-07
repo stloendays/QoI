@@ -1,0 +1,56 @@
+{
+ "tau": 1e-06,
+ "cr": {
+  "law": 133.26121301379033,
+  "uniform": 60.69178905555846,
+  "trunc": 115.44050104384134,
+  "zfp": 15.654874892148404,
+  "sz3": 13.452585849029282,
+  "sperr": 6.568644938671997
+ },
+ "bytes": {
+  "law": 52283,
+  "uniform": 114798,
+  "trunc": 60354,
+  "zfp": 445056,
+  "sz3": 517915,
+  "sperr": 1060690
+ },
+ "law_over_uniform": 2.1957041485760187,
+ "trunc_q_cut": 0.25,
+ "q_rms_amplitude_below_law_step": 0.26041666666666663,
+ "hartree_error_per_mode_relative_to_mean": {
+  "law": {
+   "lowest_bin": 13.619553651993938,
+   "max_over_populated_q<=0.25": 13.619553651993938,
+   "min_over_populated_q<=0.25": 10.446878858927793
+  },
+  "uniform": {
+   "lowest_bin": 19828.826837115826,
+   "max_over_populated_q<=0.25": 19828.826837115826,
+   "min_over_populated_q<=0.25": 0.23796461000744995
+  },
+  "trunc": {
+   "lowest_bin": 8874.144177310789,
+   "max_over_populated_q<=0.25": 8874.144177310789,
+   "min_over_populated_q<=0.25": 0.09496725153648922
+  },
+  "zfp": {
+   "lowest_bin": 26712.813184626924,
+   "max_over_populated_q<=0.25": 26712.813184626924,
+   "min_over_populated_q<=0.25": 0.19691010324705285
+  },
+  "sz3": {
+   "lowest_bin": 22292.174795681323,
+   "max_over_populated_q<=0.25": 22292.174795681323,
+   "min_over_populated_q<=0.25": 0.04178900348496933
+  },
+  "sperr": {
+   "lowest_bin": 20292.031097669125,
+   "max_over_populated_q<=0.25": 20292.031097669125,
+   "min_over_populated_q<=0.25": 0.2845433504866369
+  }
+ },
+ "law_bytes_fraction_q<=0.3125": 0.9752904035293641,
+ "law_bytes_percent_q<=0.3125": 97.53
+}

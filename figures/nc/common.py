@@ -49,3 +49,11 @@ def check_median(df, num, den, coh, tau, summ, key):
     want = summ[coh]["part_A"][TAU_KEY[tau]][key]["median"]
     assert abs(got - want) < 1e-9 * max(1.0, want), (coh, tau, key, got, want)
     return r, summ[coh]["part_A"][TAU_KEY[tau]][key]
+
+
+# One colour per allocation family across Figs. 4-7: green = operator-aware (law light, operational optimum dark),
+# blue = operator-blind transform coding, navy = spectral truncation, grey = pointwise codecs. Cohort is the marker:
+# filled circle = bulk crystal, open triangle = surface slab.
+ARM = {"A1": "#89AA7B", "A3": "#5E7A52", "A5": "#7789B7", "A2": "#5A6480", "A6": "#9AA0A8"}
+ARM_NAME = {"A6": "pointwise\ncodecs", "A5": "blind\noptimum", "A1": "closed-form\nlaw", "A3": "operational\noptimum",
+            "A2": "spectral\ntruncation"}
