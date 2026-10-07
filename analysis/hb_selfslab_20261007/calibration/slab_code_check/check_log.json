@@ -1,0 +1,27 @@
+{
+  "phase": "check",
+  "utc": "2026-10-07T16:22:35+00:00",
+  "n_visited": 12,
+  "n_accepted": 11,
+  "decisions": {
+    "accepted": 11,
+    "potcar_symbol_absent_on_vanda:W_pv": 1
+  },
+  "last_rank_visited": 12,
+  "outputs_sha256": {
+    "draw_slabs.csv": "e9643e55cb7dcd9e93bf24ace96ad37a70ed3ffbe4ea1ae469e6d94c7f94695a",
+    "draw_materials.csv": "9c447da6b2f72a5dd7e153bec5ca157d9c9113f8bd46c89895beff090a82094c",
+    "drawn.csv": "ebc074107c9b68b74f1813a3bbbce174d094fa6e22cf6798b09ff64b811d4ef4"
+  },
+  "script_sha256": "224c2663f8aaf3b9ffdd3df9e2411b6ff740617b2518ec8ceb7e7305224d3f5f",
+  "grid_estimate_sha256": "35d8c47565b49c46388f8b8787a9b46e20f14c0c4c65d2e1f72d3bf30c0f22b2",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pymatgen": "2025.10.7",
+    "pyarrow": "25.0.1",
+    "numpy": "2.3.5",
+    "spglib": "2.7.0",
+    "pandas": "2.3.3"
+  }
+}

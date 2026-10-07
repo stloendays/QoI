@@ -1,0 +1,13 @@
+rank,material_id,reduced_formula,decision,reason,draw_rank,miller,termination,natoms,ngf,npoints_est,kpoints,potcar_symbols,conv_nsites,oxidation_guess,seconds
+1,mp-aaaaaabe,Cu,accepted,,1,001,0,6,40x40x432,691200,10x10x1,Cu_pv,4,"{""Cu0+"": 0.0}",0.2
+2,mp-aaaaaaew,Pt,accepted,,2,001,0,6,48x48x420,967680,10x10x1,Pt,4,"{""Pt0+"": 0.0}",0.2
+3,mp-aaaaaaft,Si,accepted,,3,001,0,8,60x60x420,1512000,7x7x1,Si,8,"{""Si0+"": 0.0}",0.3
+4,mp-aaaaaaiq,WS2,rejected,potcar_symbol_absent_on_vanda:W_pv,,001,0,6,48x48x588,1354752,8x8x1,W_pv S,6,"{""S2-"": -2.0, ""W4+"": 4.0}",1.1
+5,mp-aaaaaapa,TiO2,accepted,,4,001,1,24,56x56x576,1806336,7x7x1,Ti_pv O,12,"{""O2-"": -2.0, ""Ti4+"": 4.0}",1.9
+6,mp-aaaaabap,SnSe,accepted,,5,001,0,8,64x72x540,2488320,7x6x1,Sn_d Se,8,"{""Se2-"": -2.0, ""Sn2+"": 2.0}",0.7
+7,mp-aaaaabrz,Al2O3,accepted,,6,001,0,30,72x72x588,3048192,6x6x1,Al O,30,"{""Al3+"": 3.0, ""O2-"": -2.0}",3.8
+8,mp-aaaaabwr,MgO,accepted,,7,001,0,12,48x48x448,1032192,9x9x1,Mg_pv O,8,"{""Mg2+"": 2.0, ""O2-"": -2.0}",0.8
+9,mp-aaaaadtm,GaAs,accepted,,8,110,0,12,60x96x432,2488320,7x5x1,Ga_d As,8,"{""As3-"": -3.0, ""Ga3+"": 3.0}",1.0
+10,mp-aaaaagwx,SrTiO3,accepted,,9,100,1,40,84x120x420,4233600,5x4x1,Sr_sv Ti_pv O,20,"{""O2-"": -2.0, ""Sr2+"": 2.0, ""Ti4+"": 4.0}",3.7
+11,mp-aaaaatzb,ZrPd,accepted,,10,001,0,12,56x84x480,2257920,8x5x1,Zr_sv Pd,8,"{""Pd0+"": 0, ""Zr0+"": 0}",0.2
+12,mp-aaaabhvi,NaCl,accepted,,11,001,0,8,60x60x420,1512000,7x7x1,Na_pv Cl,8,"{""Cl-"": -1.0, ""Na+"": 1.0}",0.2
