@@ -62,3 +62,37 @@ acceptance criterion is changed.
      laptop + 57 cloud outcomes), the endpoint the author asked for, and (b) the laptop run as frozen,
      with the 57 objects counted as failed under the storage rule, so that the effect of this change is
      visible.
+
+8. **Cloud execution infrastructure (2026-10-07, recorded before any object runs in the cloud).** How
+   deviation 7 is executed; no estimator, weight, failure rule or acceptance rule changes.
+   - Workflow `.github/workflows/wpf_cloud_completion.yml`. It fires only on a push to
+     `research/wpf-cloud-completion-20261007` that changes the sentinel `results_cloud/RUN_REQUEST`, whose
+     first line names the phase (`consistency`, `completion`, `estimators`) and whose further lines name
+     the task ids. The preflight refuses any id set other than the five consistency objects of deviation 7
+     or exactly the 57 FAILED laptop objects, refuses `completion` unless `results_cloud/consistency/
+     CONSISTENCY.json` records agreement, and verifies `results_laptop/CHECKPOINTS.sha256` before every
+     phase.
+   - Path overrides. `run_wpf.py` reads `WPF_FROZEN_VALIDATION`, `WPF_CACHE`, `WPF_CKPT`;
+     `analyze_wpf.py` reads `WPF_CKPT` (checkpoint directory read) and `WPF_OUT` (directory its outputs are
+     written to). Unset, both scripts behave exactly as on the laptop.
+   - Per object. One GitHub-hosted `ubuntu-24.04` job per object, fresh runner, no carried-over cache:
+     `run_wpf.py --group <group of its stratum> --workers 1 --only <task_id>`, i.e. D01–D09 objects with the
+     full union ladder and D10a–D10c objects with the adopted WP-E policy, as on the laptop. The thread
+     settings are the runner's own defaults (unchanged).
+   - Job time limit. GitHub-hosted jobs stop at 6 h. The runner is given 340 min; an object still running
+     then is stopped and recorded as FAILED with stage `worker` (the record the runner itself writes when its
+     worker process dies) and an error naming the time limit. An object whose job ends without returning a
+     checkpoint (e.g. the runner host lost to memory exhaustion) is recorded the same way by the collecting
+     job. Both are final and counted under the storage rule, as deviation 7 says for any cloud failure.
+   - Certified flag (deviation 7 rule). Compared for every evaluated rung as the rung's
+     `certifiable_error` flag and as "certified at τ" (status OK, bound respected, Bader error < τ — the
+     rule of the runner and of the estimator) at each of the three τ; the evaluated rung sets must also be
+     identical. The comparison is `compare_consistency.py`; the five cloud reruns are committed under
+     `results_cloud/consistency/checkpoints/` and are used by no estimator (the laptop checkpoints of these
+     objects are used as recorded).
+   - Estimators. `analyze_wpf.py` runs on GitHub-hosted `ubuntu-24.04` with Python 3.12.14, numpy 2.4.6
+     and pandas 2.3.3 (the frozen stack's versions) and matplotlib 3.11.1 and tabulate 0.10.0 (the versions
+     of the laptop's frozen environment). Input (a) is a directory holding the 243 laptop SUCCESS
+     checkpoints byte-identical plus the 57 cloud checkpoints; input (b) is `results_laptop/checkpoints/`
+     itself. Arial is not installed on the runner, so the figure's text is set in matplotlib's fallback
+     font; no number depends on it.

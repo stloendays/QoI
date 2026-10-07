@@ -12,6 +12,7 @@ import argparse
 import glob
 import hashlib
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -23,7 +24,10 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-CKPT = Path(r"D:\Research\QoI-ext-cache\WP-F\checkpoints")
+# laptop default; overridable: WPF_CKPT = checkpoint directory read, WPF_OUT = directory the outputs are written to
+# (default: this directory). DEVIATIONS.md 7-8.
+CKPT = Path(os.environ.get("WPF_CKPT", r"D:\Research\QoI-ext-cache\WP-F\checkpoints"))
+OUT = Path(os.environ.get("WPF_OUT", str(HERE)))
 TAUS = (1e-4, 1e-3, 1e-2)
 FRAME_TB = 8.4976                         # frame total without the frozen study (frame_provenance / strata.csv)
 SEED, NBOOT = 20260930, 2000
@@ -97,9 +101,9 @@ def main():
     a = ap.parse_args()
     t0 = time.time()
     sample, strata, O, R, F, missing = load(a.allow_partial)
-    O.to_csv(HERE / "objects.csv", index=False)
-    R.to_csv(HERE / "rungs.csv", index=False)
-    (F if len(F) else pd.DataFrame(columns=["task_id", "stratum", "stage", "error"])).to_csv(HERE / "failures.csv", index=False)
+    O.to_csv(OUT / "objects.csv", index=False)
+    R.to_csv(OUT / "rungs.csv", index=False)
+    (F if len(F) else pd.DataFrame(columns=["task_id", "stratum", "stage", "error"])).to_csv(OUT / "failures.csv", index=False)
     rng = np.random.default_rng(SEED)
     okO = O[O.status == "SUCCESS"]
     N = strata.N_frame.sum()
@@ -132,7 +136,7 @@ def main():
         est.append(dict(tau_e=np.nan, quantity="format_gain_json_over_%s_success_only" % base.split("_")[0],
                         estimate=expand(s_, strata, "json_bytes") / expand(s_, strata, base), ci_low=np.nan, ci_high=np.nan))
     E = pd.DataFrame(est)
-    E.to_csv(HERE / "estimates.csv", index=False)
+    E.to_csv(OUT / "estimates.csv", index=False)
 
     sr = []
     for h, d in O.groupby("stratum"):
@@ -143,7 +147,7 @@ def main():
             row["R_vs_json_%g" % t] = float(d.json_bytes.sum() / d["stored_%g" % t].sum())
         sr.append(row)
     S = pd.DataFrame(sr)
-    S.to_csv(HERE / "strata_results.csv", index=False)
+    S.to_csv(OUT / "strata_results.csv", index=False)
 
     # prospective writer check on the full ladders (D01-D09)
     wp = []
@@ -175,7 +179,7 @@ def main():
         wp.append(dict(tau_e=t, n_eligible_with_certifiable_row=n, misses=miss, miss_rate=miss / n if n else np.nan,
                        archive_fraction_of_oracle=(sub.raw64_bytes.sum() / writer_bytes) / (sub.raw64_bytes.sum() / oracle_bytes) if len(sub) else np.nan))
     W = pd.DataFrame(wp)
-    W.to_csv(HERE / "writer_prospective.csv", index=False)
+    W.to_csv(OUT / "writer_prospective.csv", index=False)
 
     figure(E, O, strata)
     results(E, S, W, O, F, missing)
@@ -186,7 +190,7 @@ def main():
                 checkpoints=len(ck), checkpoint_sha256={k: hashlib.sha256(json.dumps(v, sort_keys=True).encode()).hexdigest() for k, v in sorted(ck.items())},
                 wall_seconds_analysis=time.time() - t0,
                 runner_wall_hours=float(O.wall_seconds.fillna(0).sum() / 3600))
-    json.dump(prov, open(HERE / "provenance.json", "w"), indent=1)
+    json.dump(prov, open(OUT / "provenance.json", "w"), indent=1)
 
 
 def figure(E, O, strata):
@@ -226,7 +230,7 @@ def figure(E, O, strata):
     open_frame(ax2); grid(ax2, "y")
     layout.legend(ax2, loc="upper left")
     layout.audit(pg.fig)
-    pg.save(str(HERE), "fig_archive")
+    pg.save(str(OUT), "fig_archive")
 
 
 def results(E, S, W, O, F, missing):
@@ -265,7 +269,7 @@ def results(E, S, W, O, F, missing):
           "Files: `objects.csv`, `rungs.csv`, `estimates.csv`, `strata_results.csv`, `writer_prospective.csv`, `failures.csv`,"
           " `fig_archive.{png,svg,pdf}`, `provenance.json`, `DEVIATIONS.md`."]
     # a partial analysis must never look like the final one to the monitor (RESULTS.md = done)
-    (HERE / ("RESULTS_PARTIAL.md" if missing else "RESULTS.md")).write_text("\n".join(L) + "\n", encoding="utf-8")
+    (OUT / ("RESULTS_PARTIAL.md" if missing else "RESULTS.md")).write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L[:12]))
 
 
