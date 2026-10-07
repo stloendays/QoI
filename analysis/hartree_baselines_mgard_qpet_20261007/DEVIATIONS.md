@@ -83,3 +83,13 @@ listed below.
 ## B. Infrastructure deviations after the protocol freeze
 
 None so far. Each one is recorded here before any rerun.
+
+The probe phase was run 37598888695, at commit `a5e6835`; its results were committed in `1544e0d`. Every build
+succeeded and every probe was feasible. In the shakedown material, the authors' `hpez` CLI aborted (rc −6, glibc
+heap-corruption message) at some tolerances:
+
+- SZ3 host (`-q 0`): 19 evaluations per block size.
+- HPEZ host (`-q 3`): 1, 12 and 18 evaluations for b = 4, 8 and 16.
+
+Under PROTOCOL §4 these are counted non-passing points, and the protocol is unchanged. No infrastructure change was
+made before the run phase.
