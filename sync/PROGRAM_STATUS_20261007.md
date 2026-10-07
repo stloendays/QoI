@@ -7,9 +7,9 @@ entry below. Status updated 2026-10-07 after the Nature Communications reopening
 
 ## Manuscript authority
 
-- Branch `paper/nc-reopen-20261007` at `6d54d94` (2026-10-07 08:26 +08:00) is the authority for the Nature
-  Communications submission.
-- Source: `paper/MANUSCRIPT.md` (main text, Methods, 7 figure legends, Table 1, 40 references) and
+- Branch `paper/nc-reopen-20261007` at `87b3a65` (2026-10-07 14:03 +08:00; revision 2, eight main figures) is the
+  authority for the Nature Communications submission.
+- Source: `paper/MANUSCRIPT.md` (main text, Methods, 8 figure legends, Table 1, 40 references) and
   `paper/SUPPLEMENTARY_INFORMATION.md` (Supplementary Notes 1–8, Supplementary Fig. 1); number-to-file map
   `paper/nc_reopen/SOURCE_FILES.md`.
 - Proof build: `figures/nc/release/NC_manuscript_20261007.pdf` and `figures/nc/release/NC_manuscript_20261007.docx`
@@ -76,8 +76,9 @@ E-field beta=1 gates (A, B, C); beta-map M2; v0.3 G2; QOAC-HB confirmatory media
 ## Open items
 
 - **Full-text checks of UNVERIFIED citations** (carried over from the prior-art verification, see
-  `paper/nc_reopen/PRIOR_ART_ADDENDUM.md`): the norm of Lee et al.'s constraint step (ref. 12, cited for the
-  minimum-norm basin correction); the full texts of Compression Safeguards (ref. 15) and BlockMGARD (not cited). Cloud
+  `paper/nc_reopen/PRIOR_ART_ADDENDUM.md`): the full texts of Compression Safeguards (ref. 15) and BlockMGARD (not
+  cited). The norm of Lee et al.'s constraint step was resolved in revision 2 (full text read 2026-10-07; see
+  `paper/nc_reopen/DECISIONS.md` and the Lee et al. row of `PRIOR_ART_ADDENDUM.md`). Cloud
   containers may have egress to publisher sites blocked, so these checks need the author's network (NUS library).
 - **Zenodo DOI** in Data availability and Code availability is a placeholder, to be minted at submission.
 - **Author list, affiliations, ORCID and funding** are absent from the manuscript.

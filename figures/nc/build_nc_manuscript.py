@@ -1,7 +1,7 @@
-"""Nature Communications manuscript as PDF + DOCX with the seven main figures embedded.
+"""Nature Communications manuscript as PDF + DOCX with the eight main figures embedded.
 
 Reuses figures/composite/build_manuscript.py (parser, HTML/PDF and DOCX writers) and changes only:
-  - the figure mapping (7 main figures: frozen Figs. 1, 3, 7 and the new figures/nc/fig3-6), and
+  - the figure mapping (8 main figures: frozen Figs. 3 and 7 and the new figures/nc/fig1, fig4-fig8), and
   - the caption source (the '## Figure legends' section of paper/MANUSCRIPT.md, which is removed from the body because
     each figure is inserted with its legend after the paragraph that first cites it).
 
@@ -23,13 +23,14 @@ B.OUT = os.path.join(HERE, "release")
 B.EMBED = os.path.join(B.OUT, "_embed")
 
 FIG = {
-    "1": os.path.join(COMP, "fig1", "Fig1.png"),
+    "1": os.path.join(HERE, "fig1", "Fig1.png"),
     "2": os.path.join(COMP, "fig3", "Fig3.png"),
     "3": os.path.join(COMP, "fig7", "Fig7.png"),
-    "4": os.path.join(HERE, "fig3", "Fig3.png"),
-    "5": os.path.join(HERE, "fig4", "Fig4.png"),
-    "6": os.path.join(HERE, "fig5", "Fig5.png"),
-    "7": os.path.join(HERE, "fig6", "Fig6.png"),
+    "4": os.path.join(HERE, "fig4", "Fig4.png"),
+    "5": os.path.join(HERE, "fig5", "Fig5.png"),
+    "6": os.path.join(HERE, "fig6", "Fig6.png"),
+    "7": os.path.join(HERE, "fig7", "Fig7.png"),
+    "8": os.path.join(HERE, "fig8", "Fig8.png"),
 }
 
 

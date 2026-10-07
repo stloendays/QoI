@@ -1,6 +1,6 @@
 # Claude handoff — QSQ / QOAC project — 2026-10-05
 
-> **Update 2026-10-07 — read this first.** The authority is now branch `paper/nc-reopen-20261007` (at `6d54d94`), the
+> **Update 2026-10-07 — read this first.** The authority is now branch `paper/nc-reopen-20261007` (at `87b3a65`, revision 2), the
 > frozen manuscript reopened for Nature Communications (decisions in `paper/nc_reopen/DECISIONS.md`). Start a new
 > session from that branch and read `sync/PROGRAM_STATUS_20261007.md` (current evidence and open items),
 > `paper/MANUSCRIPT.md`, `paper/SUPPLEMENTARY_INFORMATION.md` and `paper/nc_reopen/` (word count, audit record, source

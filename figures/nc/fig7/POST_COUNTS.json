@@ -1,0 +1,62 @@
+{
+ "source": "analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST/joint_v2_best_post.csv",
+ "materials": 48,
+ "best_joint_post_counts": {
+  "R3": {
+   "0.001": {
+    "none": 48
+   },
+   "0.0001": {
+    "none": 48
+   },
+   "1e-05": {
+    "none": 33,
+    "hap": 15
+   }
+  },
+  "J": {
+   "0.001": {
+    "none": 48
+   },
+   "0.0001": {
+    "none": 48
+   },
+   "1e-05": {
+    "none": 34,
+    "hap": 10,
+    "uniform": 4
+   }
+  },
+  "T1": {
+   "0.001": {
+    "none": 43,
+    "uniform": 4,
+    "hap": 1
+   },
+   "0.0001": {
+    "none": 43,
+    "uniform": 4,
+    "hap": 1
+   },
+   "1e-05": {
+    "none": 32,
+    "hap": 10,
+    "uniform": 6
+   }
+  },
+  "GF": {
+   "0.001": {
+    "none": 29,
+    "uniform": 19
+   },
+   "0.0001": {
+    "none": 29,
+    "uniform": 19
+   },
+   "1e-05": {
+    "none": 27,
+    "uniform": 21
+   }
+  }
+ }
+}

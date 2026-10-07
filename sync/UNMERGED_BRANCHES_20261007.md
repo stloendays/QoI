@@ -1,7 +1,7 @@
 # Unmerged research branches — decision list for the author (2026-10-07)
 
 Three branches on `origin` hold completed or prepared work that is neither merged into the Nature Communications
-authority `paper/nc-reopen-20261007` (`6d54d94`) nor cited by its manuscript. Nothing has been merged and the branches
+authority `paper/nc-reopen-20261007` (`87b3a65`, revision 2) nor cited by its manuscript. Nothing has been merged and the branches
 are untouched. Numbers are copied from the result files on each branch (paths below are on that branch).
 
 | branch (tip) | content | headline | superseded by NC? | suggested default |

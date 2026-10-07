@@ -24,3 +24,17 @@ Reopening procedure (each step leaves a committed record):
 3. figure architecture and figures;
 4. manuscript story review;
 5. submission QA (`audit_manuscript.py --final`, rendered PDF check).
+
+## Revision 2 (2026-10-07)
+
+Author reply to the five defaults: "可以改，figure可以再多一点点（不一定非要4x4，你想办法让layout比肩nature" — the
+defaults may change; more figure content, Nature-level layouts, no fixed grid. Applied:
+- 8 main figures + Table 1 (9 of 10 display items): new mechanism figure (Fig. 4, KCN), Figs. 5–8 re-laid out with
+  added panels (certified CR vs tau; gain ladder; R3 vs best other and best post-processor; within-operator ranking),
+  Fig. 1b extended with an "Allocation and prediction" band, one colour code across the data figures
+  (`FIGURE_PLAN.md`).
+- Lee et al. 2022 read in full (mdpi.com/2076-3417/12/13/6718, Sect. 3.2.1): the constraint step minimizes the Bregman
+  divergence of x log x under linear moment constraints (multiplicative correction). The manuscript now calls the
+  uniform basin projection its Euclidean counterpart (minimum L2 and L-inf additive correction).
+- Supplementary Fig. 1 built (`figures/nc/si/figS1`).
+Other defaults (title, encoder per system class, register in the repository, Bader storage in the SI) unchanged.

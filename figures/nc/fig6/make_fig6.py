@@ -1,14 +1,12 @@
-"""NC Figure 6 -- the gain of operator-aware allocation is predicted before compression.
+"""NC Figure 6 -- the gain ladder: what the representation, the operator metric and the optimizer each contribute.
 
-183 x 72 mm, three panels:
-  a  tau = 1e-6: predicted gain G_pred against measured gain G_obs for five operators on 60 fresh bulk crystals (P1)
-     and 32 fresh surface slabs (P3b); identity line with a +/-25 % band. Predictions were committed before any
-     compression run (P1 d5fc30b, P3b c1e6564).
-  b  the same at tau = 1e-4.
-  c  per-operator medians at tau = 1e-6, ordered by predicted gain; predicted (open) and measured (filled), bulk and
-     slab; the shaded band is the pre-registered null-gain window [0.90, 1.11]. The density control sits at 1.
-Statistics are read from committed files and asserted before drawing:
-  run_P1_CONFIRMATORY/SUMMARY.json, run_P3B_CONFIRMATORY/SUMMARY.json, POOLED_P1_P3B.json.
+183 x 86 mm; fresh cohorts P1 (60 bulk crystals) and P3b (32 surface slabs); every stream decode-verified.
+  a  per material (thin lines) and median (bold) certified CR at Hartree tolerance 1e-6 along the arm ladder
+     A6 (best of ZFP/SZ3/SPERR) -> A5 (operational optimum, blind L2 metric) -> A1 (closed-form law) -> A3 (operational
+     optimum, operator metric); the factor between rungs is the median per-material ratio (LADDER_STATS.json).
+  b  A3/A5 (operator metric at equal optimization) per material at tau = 1e-4, 1e-6, 1e-8; median and bootstrap 95% CI.
+  c  A3/A1 (the optimizer's share over the closed-form law); dashed line, pre-registered threshold 1.15.
+Medians and CIs are asserted against SUMMARY.json (b, c) or computed by ladder_stats.py with the aggregator bootstrap.
 
     D:/Tools/pur_bridge_env/Scripts/python.exe make_fig6.py   -> Fig6.{svg,pdf,png}
 """
@@ -16,121 +14,121 @@ import json
 import os
 import sys
 
+import matplotlib.ticker
 import numpy as np
-import pandas as pd
 from matplotlib.lines import Line2D
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
-sys.path.insert(0, os.path.join(ROOT, "figures", "composite"))
+sys.path.insert(0, os.path.dirname(HERE))
+import common as C  # noqa: E402
 import layout  # noqa: E402
-from style import (BLUE, DARK_B, DARK_G, GREEN, INK, MID, OTHER, PALE, PAPER, Page, grid, log_ticks,  # noqa: E402
-                   note)
+from style import INK, MID, Page, grid, log_ticks  # noqa: E402
 
-R = os.path.join(ROOT, "analysis", "general_qoac_law", "results")
-P1 = pd.read_csv(os.path.join(R, "run_P1_CONFIRMATORY", "part_b_material.csv")).assign(cohort="bulk")
-P3 = pd.read_csv(os.path.join(R, "run_P3B_CONFIRMATORY", "part_b_material.csv")).assign(cohort="slab")
-S1 = json.load(open(os.path.join(R, "run_P1_CONFIRMATORY", "SUMMARY.json")))
-S3 = json.load(open(os.path.join(R, "run_P3B_CONFIRMATORY", "SUMMARY.json")))
-SP = json.load(open(os.path.join(R, "POOLED_P1_P3B.json")))
-assert P1.material_id.nunique() == 60 and P3.material_id.nunique() == 32
-assert abs(S1["part_B"]["tau_1e-06"]["spearman"] - 0.9776) < 1e-3
-assert abs(S3["part_B"]["tau_1e-06"]["spearman"] - 0.9789) < 1e-3
-assert SP["tau_1e-06"]["pairs"] == 460 and SP["tau_1e-06"]["materials"] == 92
+D = C.part_a()
+S = C.summaries()
+L = json.load(open(os.path.join(HERE, "LADDER_STATS.json")))
+RUNGS = ("A6", "A5", "A1", "A3")
+TICK = {"A6": "pointwise\ncodecs", "A5": "blind\noptimum", "A1": "closed-\nform law", "A3": "operational\noptimum"}
+STEP = ("transform\ncoding", "operator\nweight", "optimizer")
+LINE_C = "#CDD0D5"
+pg = Page(183.0, 86.0)
+rng = np.random.default_rng(7)
 
-GAUSS = "gaussian_smoothed_density(sigma_angstrom=0.5)"
-OPS = [  # key, label, colour   (ordered by predicted gain, low to high)
-    ("density_gradient", "Density gradient", PALE),
-    ("density_laplacian", "Density Laplacian", BLUE),
-    ("hartree_field", "Hartree field", DARK_G),
-    ("hartree_potential", "Hartree potential", GREEN),
-    (GAUSS, "Gaussian-smoothed density (σ = 0.5 Å)", DARK_B),
-]
-SHORT = {"density": "Density (control)", "density_gradient": "Gradient", "density_laplacian": "Laplacian",
-         "hartree_field": "Hartree field", "hartree_potential": "Hartree potential", GAUSS: "Gaussian, σ 0.5 Å"}
-COL = {k: c for k, _, c in OPS}
-LAB = {k: lab for k, lab, _ in OPS}
-MARK = {"bulk": "o", "slab": "^"}
-D = pd.concat([P1, P3])
-D = D[D.operator != "density"]
-
-pg = Page(183.0, 72.0)
-LIM = (0.85, 50.0)
-
-
-def scatter(ax, tau, show_y):
-    t = D[np.isclose(D.tau, tau)]
-    xs = np.geomspace(*LIM, 50)
-    ax.fill_between(xs, xs / 1.25, xs * 1.25, color=PAPER, lw=0, zorder=0)
-    ax.plot(LIM, LIM, color=INK, lw=0.6, zorder=1)
-    for key, _, c in OPS:
-        for coh in ("bulk", "slab"):
-            s = t[(t.operator == key) & (t.cohort == coh)]
-            if coh == "bulk":
-                ax.scatter(s.G_pred, s.G_obs, s=7, marker="o", color=c, edgecolor="white", lw=0.25, zorder=3)
-            else:
-                ax.scatter(s.G_pred, s.G_obs, s=8, marker="^", facecolor="none", edgecolor=c, lw=0.55, zorder=3)
-    ax.set_xscale("log")
+# ---- a: the ladder ------------------------------------------------------------------------------------------------
+pg.letter("a", 2.0, 85.0)
+for j, (coh, title, x0) in enumerate((("bulk", "bulk crystals (60)", 14.0), ("slab", "surface slabs (32)", 61.0))):
+    ax = pg.ax(x0, 15.0, 42.0, 60.0)
+    t = D[(D.cohort == coh) & np.isclose(D.tau, 1e-6)]
+    xs = np.arange(4)
+    for _, r in t.iterrows():
+        ax.plot(xs, [r[a] for a in RUNGS], color=LINE_C, lw=0.3, zorder=1)
+    for i, a in enumerate(RUNGS):
+        jit = rng.uniform(-0.06, 0.06, len(t))
+        if coh == "bulk":
+            ax.scatter(i + jit, t[a], s=3.5, color=C.ARM[a], edgecolor="white", lw=0.15, zorder=2)
+        else:
+            ax.scatter(i + jit, t[a], s=4.5, marker="^", facecolor="none", edgecolor=C.ARM[a], lw=0.4, zorder=2)
+    med = [L[coh]["tau_1e-06"]["median_cr"][a] for a in RUNGS]
+    for i, a in enumerate(RUNGS):
+        assert abs(med[i] - float(np.median(t[a]))) < 1e-9 * med[i]
+    ax.plot(xs, med, color=INK, lw=1.0, zorder=4)
+    ax.scatter(xs, med, s=16, color=[C.ARM[a] for a in RUNGS], edgecolor=INK, lw=0.6, zorder=5,
+               marker="o" if coh == "bulk" else "^")
+    for i, (num, den) in enumerate((("A5", "A6"), ("A1", "A5"), ("A3", "A1"))):
+        f = L[coh]["tau_1e-06"]["%s_over_%s" % (num, den)]["median"]
+        ax.text(i + 0.5, 4300, "×%.*f" % (3 if f < 1.5 else 2 if f < 5 else 1, f), fontsize=5.8, fontweight="bold",
+                ha="center", va="center", color=INK, zorder=6)  # factor row above all data (max CR < 2,500)
+        ax.text(i + 0.5, 2.9, STEP[i], fontsize=4.8, ha="center", va="bottom", color=MID, style="italic")
     ax.set_yscale("log")
-    ax.set_xlim(*LIM)
-    ax.set_ylim(*LIM)
-    ax.set_aspect("equal")
-    log_ticks(ax)
-    grid(ax)
-    ax.set_xlabel("Predicted gain, $G_\\mathrm{pred}$")
-    if show_y:
-        ax.set_ylabel("Measured gain, $G_\\mathrm{obs}$")
-    key = "tau_1e-06" if tau == 1e-6 else "tau_0.0001"
-    b1, b3, pp = S1["part_B"][key], S3["part_B"][key], SP[key]
-    txt = ("$\\tau$ = %s\nbulk (60): |ln err| %.3f, ρ %.3f\nslab (32): |ln err| %.3f, ρ %.3f\nall (92): |ln err| %.3f, ρ %.3f"
-           % ("10$^{-6}$" if tau == 1e-6 else "10$^{-4}$", b1["median_abs_log_err"], b1["spearman"],
-              b3["median_abs_log_err"], b3["spearman"], pp["median_abs_log_err"], pp["spearman_pooled"]))
-    note(ax, 0.04, 0.96, txt, size=5.3, box=True)
+    ax.set_ylim(2.5, 7000)
+    ax.set_xlim(-0.35, 3.35)
+    ax.set_xticks(xs)
+    ax.set_xticklabels([TICK[a] for a in RUNGS], fontsize=5.0)
+    ax.tick_params(axis="x", length=0, pad=2.5)
+    log_ticks(ax, axis="y")
+    grid(ax, axis="y")
+    ax.set_title(title, fontsize=6.3, pad=3)
+    if j == 0:
+        ax.set_ylabel("Certified compression ratio ($\\tau$ = 10$^{-6}$)")
+    else:
+        ax.set_yticklabels([])
 
 
-pg.letter("a", 2.0, 71.0)
-axa = pg.ax(12.0, 17.0, 50.0, 50.0)
-scatter(axa, 1e-6, True)
-pg.letter("b", 65.0, 71.0)
-axb = pg.ax(70.0, 17.0, 50.0, 50.0)
-scatter(axb, 1e-4, False)
+def strips(ax, num, den, key, ylim, col):
+    for i, tau in enumerate(C.TAUS):
+        for coh, dx in (("bulk", -0.18), ("slab", 0.18)):
+            r, v = C.check_median(D, num, den, coh, tau, S, key)
+            x = i + dx + rng.uniform(-0.07, 0.07, r.size)
+            if coh == "bulk":
+                ax.scatter(x, r, s=3.5, color=col, edgecolor="white", lw=0.15, alpha=0.9, zorder=2)
+            else:
+                ax.scatter(x, r, s=4.5, marker="^", facecolor="none", edgecolor=col, lw=0.4, zorder=2)
+            ax.plot([i + dx - 0.12, i + dx + 0.12], [v["median"]] * 2, color=INK, lw=1.0, zorder=4)
+            ax.plot([i + dx] * 2, v["ci95"], color=INK, lw=0.6, zorder=4)
+    ax.set_yscale("log")
+    ax.set_ylim(*ylim)
+    ax.set_xlim(-0.5, 2.5)
+    ax.set_xticks([0, 1, 2])
+    ax.set_xticklabels([C.TAU_LAB[t] for t in C.TAUS])
+    ax.axhline(1.0, color=INK, lw=0.5, zorder=1)
+    grid(ax, axis="y")
+    ax.yaxis.set_minor_locator(matplotlib.ticker.NullLocator())
 
-# legend under a/b
-hand = [Line2D([], [], ls="", marker="s", ms=3.6, color=c, label=lab) for _, lab, c in OPS]
-hand += [Line2D([], [], ls="", marker="o", ms=3.2, color=MID, label="bulk crystals (P1)"),
-         Line2D([], [], ls="", marker="^", ms=3.4, mfc="none", mec=MID, mew=0.6, label="surface slabs (P3b)")]
-leg_ax = pg.ax(10.0, 0.5, 112.0, 6.0)
-leg_ax.axis("off")
-leg_ax.legend(handles=hand, loc="center", ncol=4, fontsize=5.3, handletextpad=0.3, columnspacing=0.9,
-              frameon=False)
 
-# ---- c: per-operator medians ----------------------------------------------------------------------
-pg.letter("c", 123.0, 71.0)
-axc = pg.ax(148.0, 17.0, 32.0, 50.0)
-t6 = pd.concat([P1, P3])
-t6 = t6[np.isclose(t6.tau, 1e-6)]
-order = [("density", "Density (control)", OTHER)] + OPS
-axc.axvspan(0.90, 1.11, color=PAPER, lw=0, zorder=0)
-for i, (key, lab, c) in enumerate(order):
-    y = len(order) - 1 - i
-    for coh, dy in (("bulk", 0.17), ("slab", -0.17)):
-        s = t6[(t6.operator == key) & (t6.cohort == coh)]
-        gp, go = s.G_pred.median(), s.G_obs.median()
-        axc.plot([gp, go], [y + dy, y + dy], color=c, lw=0.6, zorder=2)
-        axc.scatter([gp], [y + dy], s=11, marker=MARK[coh], facecolor="white", edgecolor=c, lw=0.6, zorder=3)
-        axc.scatter([go], [y + dy], s=11, marker=MARK[coh], color=c, edgecolor=c, lw=0.6, zorder=4)
-axc.set_xscale("log")
-axc.set_xlim(0.8, 40)
-axc.set_ylim(-0.6, len(order) - 0.4)
-axc.set_yticks(range(len(order)))
-axc.set_yticklabels([SHORT[k] for k, _, _ in order][::-1], fontsize=5.3)
-axc.tick_params(axis="y", length=0, pad=1.5)
-log_ticks(axc, axis="x")
-grid(axc, axis="x")
-axc.set_xlabel("Median gain ($\\tau$ = 10$^{-6}$)")
-hand_c = [Line2D([], [], ls="", marker="o", ms=3.2, mfc="white", mec=MID, mew=0.6, label="predicted"),
-          Line2D([], [], ls="", marker="o", ms=3.2, color=MID, label="measured")]
-axc.legend(handles=hand_c, loc="upper right", fontsize=5.3, handletextpad=0.2, frameon=False)  # top rows sit at G ~ 1
+# ---- b: operator metric at equal optimization ---------------------------------------------------------------------
+pg.letter("b", 108.0, 85.0)
+axb = pg.ax(124.0, 52.0, 56.0, 27.0)
+strips(axb, "A3", "A5", "A3_over_A5", (0.8, 12), C.ARM["A3"])
+axb.set_yticks([1, 2, 5, 10])
+axb.set_yticklabels(["1", "2", "5", "10"])
+axb.set_ylabel("Operator / blind\nmetric (A3/A5)")
+axb.set_xticklabels([])
+for i, tau in enumerate(C.TAUS):
+    for coh, dx in (("bulk", -0.18), ("slab", 0.18)):
+        m = S[coh]["part_A"][C.TAU_KEY[tau]]["A3_over_A5"]["median"]
+        axb.text(i + dx, 9.6, "%.2f" % m, fontsize=5.0, ha="center", va="center", color=INK)
+
+# ---- c: optimizer share -------------------------------------------------------------------------------------------
+pg.letter("c", 108.0, 46.0)
+axc = pg.ax(124.0, 15.0, 56.0, 27.0)
+strips(axc, "A3", "A1", "A3_over_A1", (0.9, 4.6), C.ARM["A1"])
+axc.axhline(1.15, color=MID, lw=0.6, ls=(0, (3, 2)), zorder=1)
+axc.text(2.47, 1.17, "1.15", fontsize=5.0, color=MID, ha="right", va="bottom")
+axc.set_yticks([1, 1.5, 2, 3, 4])
+axc.set_yticklabels(["1", "1.5", "2", "3", "4"])
+axc.set_ylabel("Optimizer share\n(A3/A1)")
+axc.set_xlabel("Hartree tolerance $\\tau$")
+for i, tau in enumerate(C.TAUS):
+    for coh, dx in (("bulk", -0.18), ("slab", 0.18)):
+        m = S[coh]["part_A"][C.TAU_KEY[tau]]["A3_over_A1"]["median"]
+        axc.text(i + dx, 3.85, "%.3f" % m, fontsize=5.0, ha="center", va="center", color=INK)
+
+hand = [Line2D([], [], ls="", marker="o", ms=3.0, color=MID, label="bulk crystal (P1)"),
+        Line2D([], [], ls="", marker="^", ms=3.2, mfc="none", mec=MID, mew=0.6, label="surface slab (P3b)"),
+        Line2D([], [], color=INK, lw=1.0, label="median (b, c: with 95% CI)")]
+leg = pg.ax(14.0, 0.3, 166.0, 4.5)
+leg.axis("off")
+leg.legend(handles=hand, loc="center", ncol=3, fontsize=5.3, frameon=False, columnspacing=1.4)
 
 layout.audit(pg.fig)
 pg.save(HERE, "Fig6")
