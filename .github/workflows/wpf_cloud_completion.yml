@@ -320,6 +320,9 @@ jobs:
           python -m pip install numpy==2.4.6 pandas==2.3.3 matplotlib==3.11.1 tabulate==0.10.0
       - name: Run analyze_wpf.py on (a) the completed sample and (b) the laptop run as frozen
         shell: bash
+        env:
+          # figures/composite/__pycache__/*.pyc are tracked; importing the style module must not rewrite them (DEVIATIONS.md 11)
+          PYTHONDONTWRITEBYTECODE: '1'
         run: |
           set -euo pipefail
           A="$RUNNER_TEMP/ck_completed"; mkdir -p "$A"

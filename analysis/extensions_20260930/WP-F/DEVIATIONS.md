@@ -116,3 +116,9 @@ acceptance criterion is changed.
 10. **Preflight for entry 9 (infrastructure, 2026-10-07, before the completion sentinel is pushed).** The
     `completion` and `estimators` preflights of `wpf_cloud_completion.yml` now pass when `CONSISTENCY.json`
     records agreement or `DEVIATIONS.md` contains the heading of entry 9; `CONSISTENCY.md`/`.json` are unchanged.
+
+11. **Estimators rerun (infrastructure, 2026-10-08, before the rerun).** The first estimators run (37714409792)
+    computed both output sets but could not commit them: importing `figures/composite/style.py` rewrote the
+    tracked `figures/composite/__pycache__/*.pyc`. The estimator step now runs with `PYTHONDONTWRITEBYTECODE=1`
+    and the phase is rerun unchanged otherwise; `COMPLETION_FAILURES.md` records the cause of each of the 12
+    completion failures from GitHub's job records (no artifact, hence no memory log, exists for them).
