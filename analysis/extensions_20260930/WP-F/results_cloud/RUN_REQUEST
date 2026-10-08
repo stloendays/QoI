@@ -1,4 +1,10 @@
-# WP-F cloud run request (DEVIATIONS.md 7-11); a push that changes this file starts .github/workflows/wpf_cloud_completion.yml
-# first line: phase; further lines: task ids (none for estimators)
-# estimators rerun after DEVIATIONS.md 11 (first run 37714409792 could not commit its outputs)
-estimators
+# WP-F cloud run request (DEVIATIONS.md 7-13); a push that changes this file starts .github/workflows/wpf_cloud_completion.yml
+# first line: phase; further lines: task ids
+# DEVIATIONS.md 12: the six never-started completion objects, once each
+completion
+mp-1826245
+mp-2046569
+mp-2234070
+mp-3092553
+mp-1543577
+mp-2355832
