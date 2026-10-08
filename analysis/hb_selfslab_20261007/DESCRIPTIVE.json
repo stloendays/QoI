@@ -1,0 +1,116 @@
+{
+ "by_tau": {
+  "0.001": {
+   "r3_best_post_certified": 29,
+   "r3_best_post_counts": {
+    "none": 29
+   },
+   "max_bader_error_over_tau": 0.9099999999993,
+   "max_reassigned_frac": 0.0,
+   "median_joint_overhead": 1.0,
+   "n_joint_overhead": 29,
+   "median_r3_joint_cr": 1392.0030343258106,
+   "ctp_projected": 0,
+   "ctp_evaluated": 116,
+   "median_joint_cr_by_base": {
+    "R3": 1392.0030343258106,
+    "J": 982.1608366640456,
+    "T1": 767.2756282813434,
+    "GF": 45.20029992358363,
+    "GP": NaN
+   },
+   "n_certified_by_base": {
+    "R3": 29,
+    "J": 32,
+    "T1": 32,
+    "GF": 32,
+    "GP": 0
+   }
+  },
+  "0.0001": {
+   "r3_best_post_certified": 26,
+   "r3_best_post_counts": {
+    "hap:0.0001": 25,
+    "none": 1
+   },
+   "max_bader_error_over_tau": 0.8600000000136276,
+   "max_reassigned_frac": 0.0,
+   "median_joint_overhead": 1.0109471766367768,
+   "n_joint_overhead": 26,
+   "median_r3_joint_cr": 1479.5971921340754,
+   "ctp_projected": 10,
+   "ctp_evaluated": 20,
+   "median_joint_cr_by_base": {
+    "R3": 1479.5971921340754,
+    "J": 975.2861267498124,
+    "T1": 764.5161795058625,
+    "GF": 45.20029992358363,
+    "GP": NaN
+   },
+   "n_certified_by_base": {
+    "R3": 26,
+    "J": 32,
+    "T1": 32,
+    "GF": 32,
+    "GP": 0
+   }
+  },
+  "1e-05": {
+   "r3_best_post_certified": 26,
+   "r3_best_post_counts": {
+    "hap:0.0001": 26
+   },
+   "max_bader_error_over_tau": 0.0,
+   "max_reassigned_frac": 0.0,
+   "median_joint_overhead": 1.0109471766367768,
+   "n_joint_overhead": 26,
+   "median_r3_joint_cr": 1479.5971921340754,
+   "ctp_projected": 11,
+   "ctp_evaluated": 11,
+   "median_joint_cr_by_base": {
+    "R3": 1479.5971921340754,
+    "J": 975.2861267498124,
+    "T1": 764.5161795058625,
+    "GF": 45.19385129250115,
+    "GP": NaN
+   },
+   "n_certified_by_base": {
+    "R3": 26,
+    "J": 32,
+    "T1": 32,
+    "GF": 32,
+    "GP": 0
+   }
+  }
+ },
+ "uncertified_streams": {
+  "n": 1547,
+  "of": 4320,
+  "by_base_tau": {
+   "R3|0.001": 110,
+   "R3|0.0001": 232,
+   "R3|1e-05": 244,
+   "J|0.001": 0,
+   "J|0.0001": 2,
+   "J|1e-05": 28,
+   "T1|0.001": 4,
+   "T1|0.0001": 23,
+   "T1|1e-05": 39,
+   "GF|0.001": 0,
+   "GF|0.0001": 0,
+   "GF|1e-05": 1,
+   "GP|0.001": 288,
+   "GP|0.0001": 288,
+   "GP|1e-05": 288
+  },
+  "r3_at_best_post": 0
+ },
+ "materials": {
+  "success": 32,
+  "failed": [],
+  "seconds_min": 370.2729241847992,
+  "seconds_median": 1293.181902050972,
+  "seconds_max": 2476.9636540412903,
+  "seconds_sum": 40759.746541023254
+ }
+}

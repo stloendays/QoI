@@ -1,0 +1,41 @@
+{
+  "primary": {
+    "n_planned": 32,
+    "n_success": 32,
+    "not_analysed": {},
+    "r3_certified_by_tau": {
+      "0.001": 29,
+      "0.0001": 26,
+      "1e-05": 26
+    },
+    "criterion_1": {
+      "value": 26,
+      "n": 32,
+      "required": 31,
+      "threshold": ">= 46/48 of N",
+      "pass": false
+    },
+    "criterion_2": {
+      "n": 26,
+      "median": 1.0109471766367768,
+      "ci_low": 1.007075218810101,
+      "ci_high": 1.014050256687382,
+      "threshold": "median <= 1.10 and CI upper <= 1.15",
+      "pass": true
+    },
+    "criterion_3": {
+      "wins": 26,
+      "n": 32,
+      "required_wins": 24,
+      "n_ratio": 26,
+      "n_sole_certifier": 0,
+      "median": 1.4533258765368453,
+      "ci_low": 1.3525462910328052,
+      "ci_high": 1.5318737465571273,
+      "min": 1.2293770007387341,
+      "threshold": ">= 36/48 of N wins, median > 1.10, CI lower > 1.00",
+      "pass": true
+    },
+    "verdict": "FAIL"
+  }
+}

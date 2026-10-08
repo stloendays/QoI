@@ -67,6 +67,11 @@ in the slab cohorts' schema: `corpus = fresh_hb_selfslab`, `system_type = slab`,
 SHA-256 and byte count (the bytes HB v2 downloads and checks), `ngrid`, `npoints` and `natoms` from the input QC,
 `selection_stratum = formula:<reduced formula>`, `selection_hash = h(material_id)` of PROTOCOL.md section 4.
 
-D5. **Evaluator.** The criteria are evaluated with `analysis/hb_slab_aeccar_cohort_20261007/evaluate_criteria.py` in
+D5. **Evaluator (recorded before the run).** The criteria are evaluated with `analysis/hb_slab_aeccar_cohort_20261007/evaluate_criteria.py` in
 place and unchanged (SHA-256 `0729424b48056faadea6bb90d91b27ca871e974c0eb337684de94139d85eefdf`), primary population
 only, with this cohort's `manifest.csv` and `results/manifest/`.
+
+## After the HB run
+
+None. CI run 37723028989 (head `4f22046`) completed with 21/21 jobs successful and was not rerun; no infrastructure fix
+was needed. The criteria were evaluated with the committed evaluator unchanged (2026-10-08).
