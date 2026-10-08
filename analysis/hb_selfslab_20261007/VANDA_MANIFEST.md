@@ -14,7 +14,9 @@ Staging root: `/scratch/junbotong/qoi_selfslab_20261007/` (scratch, not home). N
 | `make_potcar.sh`, `job_bundle.pbs.template` | 2026-10-08 00:26 | copies of `vanda/` |
 | `jobs/<bundle>.pbs` | 2026-10-08 onward | job scripts (copies of `vanda/jobs/`), PBS logs `qoi_ss_<bundle>.o<id>` written next to them |
 
-Staged size before any run: 30 MB, 244 files.
+Staged size before any run: 30 MB, 244 files. After all 40 runs (2026-10-08): 5.3 GB, 1,015 files, all still on the
+server. Local copies: `D:\Research\QoI-ext-cache\selfslab\runs\<material_id>\` (2.1 GB gzipped; 199 files, each
+SHA-256-equal to `sha256sum` on the server, `runs/fetch.csv`). Deletion waits for the author's confirmation.
 
 ## Jobs
 
