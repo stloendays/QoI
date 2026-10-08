@@ -1,7 +1,33 @@
 # QSQ / General-QOAC program status — 2026-10-07
 
 Every number is copied from a committed results file. The frozen manuscript `paper/qoac-integration-20261005`
-(QSQ + QOAC-H) is unchanged. Supabase table `qoi_qoac_experiments` indexes every entry below.
+(QSQ + QOAC-H) is unchanged and kept as the historical record. Supabase table `qoi_qoac_experiments` indexes every
+entry below. Status updated 2026-10-07 after the Nature Communications reopening (branch
+`paper/nc-housekeeping-20261007`).
+
+## Manuscript authority
+
+- Branch `paper/nc-reopen-20261007` at `87b3a65` (2026-10-07 14:03 +08:00; revision 2, eight main figures) is the
+  authority for the Nature Communications submission.
+- Source: `paper/MANUSCRIPT.md` (main text, Methods, 8 figure legends, Table 1, 40 references) and
+  `paper/SUPPLEMENTARY_INFORMATION.md` (Supplementary Notes 1–8, Supplementary Fig. 1); number-to-file map
+  `paper/nc_reopen/SOURCE_FILES.md`.
+- Proof build: `figures/nc/release/NC_manuscript_20261007.pdf` and `figures/nc/release/NC_manuscript_20261007.docx`
+  (SHA-256 in `figures/nc/release/MANIFEST_20261007.txt`; builder `figures/nc/build_nc_manuscript.py`).
+- Word count, display items and audit record: `paper/nc_reopen/WORD_COUNT.md`, `paper/nc_reopen/AUDIT_20261007.md`.
+
+## Author decisions — resolved
+
+Resolved in `paper/nc_reopen/DECISIONS.md` (user, 2026-10-07):
+
+1. The frozen manuscript is **reopened** (not a second paper); the reopened text lives on `paper/nc-reopen-20261007`.
+2. Venue: **Nature Communications** (Article).
+3. Main-figure parameters: figure-studio defaults (183 mm, QoI house style).
+
+Defaults adopted by the assistant and flagged for author review in the same file: title; encoder per system class
+(closed-form law for bulk crystals, operational allocation R3 for surfaces and for the joint contract), under which the
+manuscript claims near-optimality for bulk crystals only (the earlier open question); pre-registration register in the
+repository; Bader storage comparison in the SI.
 
 ## Prospectively confirmed (protocol and predictions committed before execution; never-used materials)
 
@@ -47,11 +73,24 @@ and 1.031/1.047; Hartree field 1.151/1.149 and 1.164/1.165; Hartree potential 2.
 
 E-field beta=1 gates (A, B, C); beta-map M2; v0.3 G2; QOAC-HB confirmatory median; B1 residual transform; P3b A-H1.
 
-## Running / next
+## Open items
 
-- Story / claim–evidence drafts: `paper/program-story-draft-20261007` (two alternative drafts) still need P3b
-  numbers.
-- Prior-art: `research/prior-art-program-20261006` (+ verification addendum); full-text check of UNVERIFIED citations
-  pending.
-- Author decisions pending: reopen the frozen manuscript or write a second paper; venue; whether near-optimality is
-  claimed for bulk only.
+- **Full-text checks of UNVERIFIED citations** (carried over from the prior-art verification, see
+  `paper/nc_reopen/PRIOR_ART_ADDENDUM.md`): the full texts of Compression Safeguards (ref. 15) and BlockMGARD (not
+  cited). The norm of Lee et al.'s constraint step was resolved in revision 2 (full text read 2026-10-07; see
+  `paper/nc_reopen/DECISIONS.md` and the Lee et al. row of `PRIOR_ART_ADDENDUM.md`). Cloud
+  containers may have egress to publisher sites blocked, so these checks need the author's network (NUS library).
+- **Zenodo DOI** in Data availability and Code availability is a placeholder, to be minted at submission.
+- **Author list, affiliations, ORCID and funding** are absent from the manuscript.
+- **Joint Hartree + Bader certification is confirmed on bulk crystals only** (P2, 48/48). The slab confirmation on
+  branch `research/qoac-hb-slab-20261007` (32 fresh P3b slabs; `analysis/qoac_hb_slab_20261007/results/manifest/RESULTS.md`,
+  `f5c0ac1`) is a confirmatory FAIL: 13/32 analysable (15 entries have no AECCAR, known before the run; 4 failed at
+  AECCAR loading), against >= 31/32. The pre-registered secondary analysis on the 17 entries with an AECCAR also fails
+  (13/17 against 17/17). On all 13 analysed slabs the joint contract certifies at all three tau_B (39/39 streams), the
+  joint overhead at 1e-4 e is median 1.000 (CI [1.000, 1.011]) and R3 wins 13/13 (median 1.398x, CI [1.306, 1.517]).
+  Next: diagnose the 4 AECCAR loading failures.
+- **P3b near-optimality A-H1 FAIL**: on slabs A3/A1 = 1.222 against the pre-registered gate ≤ 1.15; the manuscript
+  states near-optimality for bulk crystals only and names operational allocation as the slab encoder.
+- **B3 has no confirmatory run**: the partition transcription and storage results are the 12-material P2 engineering
+  cohort only (Supplementary Note 3).
+- Unmerged research branches awaiting an author decision: `sync/UNMERGED_BRANCHES_20261007.md`.
