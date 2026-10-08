@@ -1,0 +1,64 @@
+{
+ "task_id": "mp-1833977",
+ "stratum": "D03",
+ "key": "chgcars/mp-1833977.json.gz",
+ "frame_bytes": 7715288,
+ "group": "small",
+ "status": "SUCCESS",
+ "rows": [],
+ "failures": [],
+ "json_bytes": 7715288,
+ "sha256": "4afd9a7ae7244d2d5c79f6d70a3f0c85fe342cb8f7813e3dcf9b6a20fdc5dee5",
+ "size_matches_frame": true,
+ "shape": "80x80x120",
+ "npoints": 768000,
+ "natoms": 12,
+ "spin_channels": 2,
+ "formula": "ZrMnNi",
+ "value_ptp": 5268.194061517,
+ "value_min": 27.592954783,
+ "value_max": 5295.7870163,
+ "crystal_system": "orthorhombic",
+ "spacegroup": 38,
+ "raw64_bytes": 6144000,
+ "lossless_bytes": 3643034,
+ "epsilon": 0.00024366875004488975,
+ "natoms_bader": 12,
+ "probes": [
+  {
+   "seed": 20260905,
+   "response_e": 0.006716635800000148,
+   "n_reassigned": 1315
+  },
+  {
+   "seed": 1,
+   "response_e": 0.005849365999999634,
+   "n_reassigned": 1373
+  },
+  {
+   "seed": 2,
+   "response_e": 0.007316985999999304,
+   "n_reassigned": 1189
+  },
+  {
+   "seed": 3,
+   "response_e": 0.012440462200000724,
+   "n_reassigned": 1352
+  },
+  {
+   "seed": 4,
+   "response_e": 0.007198572500000111,
+   "n_reassigned": 1257
+  }
+ ],
+ "floor_e": 0.012440462200000724,
+ "eligible": {
+  "0.0001": false,
+  "0.001": false,
+  "0.01": false
+ },
+ "writer_choice": {},
+ "bader_solves": 6,
+ "wall_seconds": 12.299245595932007,
+ "retried": false
+}

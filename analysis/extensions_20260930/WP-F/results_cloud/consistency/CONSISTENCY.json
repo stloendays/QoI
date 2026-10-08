@@ -1,0 +1,122 @@
+{
+ "agree": false,
+ "rule": "DEVIATIONS.md 7",
+ "ids": [
+  "mp-2488566",
+  "mp-2285510",
+  "mp-2050393",
+  "mp-2367698",
+  "mp-2682232"
+ ],
+ "objects": [
+  {
+   "task_id": "mp-2488566",
+   "compared": true,
+   "stratum": "D03",
+   "laptop_status": "SUCCESS",
+   "cloud_status": "SUCCESS",
+   "n_checks": 281,
+   "n_failed": 2,
+   "laptop_wall_min": 10.944057071208954,
+   "cloud_wall_min": 22.46684950987498,
+   "max_abs_floor_e": 0.0,
+   "max_abs_probe_e": 0.0,
+   "max_abs_rung_bader_e": 0.0002998648,
+   "max_rel_rung_bytes": 0.0
+  },
+  {
+   "task_id": "mp-2285510",
+   "compared": true,
+   "stratum": "D06",
+   "laptop_status": "SUCCESS",
+   "cloud_status": "SUCCESS",
+   "n_checks": 281,
+   "n_failed": 0,
+   "laptop_wall_min": 44.84248861471812,
+   "cloud_wall_min": 22.008378140131633,
+   "max_abs_floor_e": 0.0,
+   "max_abs_probe_e": 0.0,
+   "max_abs_rung_bader_e": 0.0,
+   "max_rel_rung_bytes": 0.0
+  },
+  {
+   "task_id": "mp-2050393",
+   "compared": true,
+   "stratum": "D03",
+   "laptop_status": "SUCCESS",
+   "cloud_status": "SUCCESS",
+   "n_checks": 282,
+   "n_failed": 1,
+   "laptop_wall_min": 3.0479162017504375,
+   "cloud_wall_min": 3.3884511232376098,
+   "max_abs_floor_e": 0.0,
+   "max_abs_probe_e": 0.0,
+   "max_abs_rung_bader_e": 0.0017768586,
+   "max_rel_rung_bytes": 0.0
+  },
+  {
+   "task_id": "mp-2367698",
+   "compared": true,
+   "stratum": "D07",
+   "laptop_status": "SUCCESS",
+   "cloud_status": "SUCCESS",
+   "n_checks": 282,
+   "n_failed": 0,
+   "laptop_wall_min": 58.55097239812215,
+   "cloud_wall_min": 92.69395978450775,
+   "max_abs_floor_e": 0.0,
+   "max_abs_probe_e": 0.0,
+   "max_abs_rung_bader_e": 0.0,
+   "max_rel_rung_bytes": 0.0
+  },
+  {
+   "task_id": "mp-2682232",
+   "compared": true,
+   "stratum": "D05",
+   "laptop_status": "SUCCESS",
+   "cloud_status": "SUCCESS",
+   "n_checks": 283,
+   "n_failed": 1,
+   "laptop_wall_min": 41.832774662971495,
+   "cloud_wall_min": 39.69623479048411,
+   "max_abs_floor_e": 0.0,
+   "max_abs_probe_e": 0.0,
+   "max_abs_rung_bader_e": 3.61689e-05,
+   "max_rel_rung_bytes": 0.0
+  }
+ ],
+ "failed_checks": [
+  {
+   "task_id": "mp-2488566",
+   "field": "rung[SPERR 0.003] bader_error_e",
+   "laptop": "0.0669752537",
+   "cloud": "0.0666753889",
+   "diff": "0.0002998648",
+   "criterion": "<= 1e-6 e"
+  },
+  {
+   "task_id": "mp-2488566",
+   "field": "rung[SPERR 0.03] bader_error_e",
+   "laptop": "0.9304831415",
+   "cloud": "0.9305542936",
+   "diff": "7.11521e-05",
+   "criterion": "<= 1e-6 e"
+  },
+  {
+   "task_id": "mp-2050393",
+   "field": "rung[SPERR 0.03] bader_error_e",
+   "laptop": "0.4231005524",
+   "cloud": "0.4213236938",
+   "diff": "0.0017768586",
+   "criterion": "<= 1e-6 e"
+  },
+  {
+   "task_id": "mp-2682232",
+   "field": "rung[ZFP 0.1] bader_error_e",
+   "laptop": "0.7973621145",
+   "cloud": "0.7973982834",
+   "diff": "3.61689e-05",
+   "criterion": "<= 1e-6 e"
+  }
+ ]
+}

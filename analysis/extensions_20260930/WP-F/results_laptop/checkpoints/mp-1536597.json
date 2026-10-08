@@ -1,0 +1,64 @@
+{
+ "task_id": "mp-1536597",
+ "stratum": "D04",
+ "key": "chgcars/mp-1536597.json.gz",
+ "frame_bytes": 9297216,
+ "group": "small",
+ "status": "SUCCESS",
+ "rows": [],
+ "failures": [],
+ "json_bytes": 9297216,
+ "sha256": "40566b38c7789321b8f0213ebf015dba3ad371981e940f32c165030f3df6ce73",
+ "size_matches_frame": true,
+ "shape": "96x96x96",
+ "npoints": 884736,
+ "natoms": 8,
+ "spin_channels": 2,
+ "formula": "Ti3Hg",
+ "value_ptp": 1175.721333076,
+ "value_min": 18.168049524,
+ "value_max": 1193.8893826,
+ "crystal_system": "cubic",
+ "spacegroup": 223,
+ "raw64_bytes": 7077888,
+ "lossless_bytes": 3145130,
+ "epsilon": 5.987500003357127e-05,
+ "natoms_bader": 8,
+ "probes": [
+  {
+   "seed": 20260905,
+   "response_e": 0.010505072199999077,
+   "n_reassigned": 5705
+  },
+  {
+   "seed": 1,
+   "response_e": 0.021450196800000043,
+   "n_reassigned": 6439
+  },
+  {
+   "seed": 2,
+   "response_e": 0.021432686699998982,
+   "n_reassigned": 4804
+  },
+  {
+   "seed": 3,
+   "response_e": 0.03328519240000105,
+   "n_reassigned": 6583
+  },
+  {
+   "seed": 4,
+   "response_e": 0.014550846499998826,
+   "n_reassigned": 5325
+  }
+ ],
+ "floor_e": 0.03328519240000105,
+ "eligible": {
+  "0.0001": false,
+  "0.001": false,
+  "0.01": false
+ },
+ "writer_choice": {},
+ "bader_solves": 6,
+ "wall_seconds": 13.636576652526855,
+ "retried": false
+}

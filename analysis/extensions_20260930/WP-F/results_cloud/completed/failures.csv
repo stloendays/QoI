@@ -1,0 +1,98 @@
+task_id,stratum,stage,error
+mp-1795466,D01,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2416040,D01,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1929637,D02,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1877599,D02,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2503661,D02,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2488566,D03,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2488566,D03,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2466745,D03,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2217778,D03,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1782292,D03,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2028004,D03,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2418765,D04,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-2289989,D04,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-1938849,D04,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2041856,D04,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2041856,D04,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2619700,D04,rung ZFP 0.1,IndexError: index -4 is out of bounds for axis 0 with size 3
+mp-2351450,D05,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-2228775,D05,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1789940,D05,rung ZFP 0.1,IndexError: index -4 is out of bounds for axis 0 with size 3
+mp-1802363,D05,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2396485,D05,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-1976476,D05,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-1827277,D05,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2240417,D05,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2023908,D05,rung ZFP 0.01,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2023908,D05,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-2226901,D05,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2285510,D06,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2661383,D06,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2666834,D06,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2303395,D06,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2656777,D06,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2656777,D06,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2030612,D06,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2359779,D06,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2628609,D07,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2628609,D07,rung ZFP 0.1,IndexError: index -4 is out of bounds for axis 0 with size 3
+mp-2230874,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2050862,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2389982,D07,rung ZFP 0.01,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2389982,D07,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2389982,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2367698,D07,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2367698,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2411500,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2346511,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2236487,D07,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2236487,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2356583,D07,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2679637,D07,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1927439,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2400150,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2488597,D08,rung ZFP 0.01,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2488597,D08,rung ZFP 0.03,MemoryError: Allocation failed (probably too large).
+mp-2488597,D08,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-2287719,D08,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2287719,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2702245,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2220798,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2525121,D08,rung ZFP 0.01,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-2525121,D08,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2525121,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2520681,D08,rung ZFP 0.1,MemoryError: Allocation failed (probably too large).
+mp-2030885,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-1808212,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-1815227,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1835750,D08,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-1835750,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-2013328,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2394362,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-1899839,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-1807131,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-1816512,D08,rung ZFP 0.01,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1816512,D08,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1816512,D08,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 1 with size 3
+mp-1826245,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-1825100,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-2019659,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-2234070,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-1818959,D09,rung ZFP 0.03,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-1887546,D09,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2424720,D09,rung ZFP 0.1,IndexError: index -4 is out of bounds for axis 0 with size 3
+mp-2045979,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-2696461,D09,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2046569,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-2966645,D09,rung ZFP 0.1,IndexError: index -4 is out of bounds for axis 0 with size 3
+mp-2676589,D09,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-3092553,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-1866779,D09,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 2 with size 3
+mp-2490962,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-2221085,D09,rung ZFP 0.1,IndexError: index 4 is out of bounds for axis 1 with size 3
+mp-1937234,D09,rung ZFP 0.1,IndexError: index 3 is out of bounds for axis 0 with size 3
+mp-3150861,D09,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-1543577,D10a,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-1920806,D10a,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
+mp-2355832,D10b,worker,NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)
