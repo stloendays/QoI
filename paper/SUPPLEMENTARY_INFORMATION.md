@@ -113,6 +113,43 @@ The exhaustive oracle costs 38.5, 37.0 and 32.2 solves per eligible material. Th
 - **Operator controls.** Among 3,205 reconstructions with $|\Delta N_e|<10^{-4}\,e$, 1,383 (43.15%) had Bader error $\ge10^{-3}\,e$. Hartree error scales with realized $L_\infty$ with pooled log–log slope 1.02 (6,270 gate-passing rows; median material $R^2$ 0.994–0.997); only 32.4% of Bader ladders are strictly monotone.
 
 
+### 1.12 Archive estimate (Materials Project charge-density archive)
+
+**Frame and sample.**
+- **Protocol.** Frozen at `cb6438c` (2026-09-30) before any sampled density was read.
+- **Frame.** 415,289 objects, 8.4976 TB as gzipped JSON.
+- **Sample.** Stratified, 300 objects: 30 per stored-size decile D01–D09, with the top decile split 15/10/5 at 80 and 150 MB.
+
+**Storage rule at τ.**
+- Certified reconstruction (certifying writer over the ZFP, SZ3 and SPERR ladders) when the contract is eligible and a rung is certified.
+- Lossless float64 + zlib otherwise.
+- The current gzipped size if the object failed.
+
+**Estimators.** Stratified expansion, with stratified bootstrap intervals (2,000 resamples, seed 20260930).
+
+**Execution.**
+- A laptop completed 243 objects.
+- The other 57 exceeded its memory and ran on GitHub-hosted runners. Before that, five laptop objects were rerun on the cloud runners to check consistency between the two platforms: every eligibility, certification decision, writer choice, compressed size, floor and probe matched; the only differences were four Bader errors at never-certifiable coarse rungs (0.067–0.93 e).
+- 293 of 300 objects completed. The 7 failures (6 lost runners, 1 time limit) keep their stored size.
+- Platform, consistency decision and reruns are recorded in the repository (WP-F `DEVIATIONS.md` 6–13).
+
+| $\tau$ ($e$) | $R$ vs gzipped JSON [95% CI] | saving (TB) | $R$ vs float64 | $R$ vs lossless float64 [95% CI] | non-evaluable, objects [95% CI] | non-evaluable, bytes |
+|---|---|---|---|---|---|---|
+| $10^{-4}$ | 2.36 [2.19, 2.58] | 4.90 | 1.45 | 1.27 [1.19, 1.38] | 74.0% [69.0, 78.7] | 72.2% |
+| $10^{-3}$ | 4.37 [3.64, 5.46] | 6.55 | 3.04 | 2.66 [2.21, 3.27] | 35.9% [30.4, 41.6] | 32.8% |
+| $10^{-2}$ | 8.99 [6.45, 13.42] | 7.55 | 8.97 | 7.87 [5.61, 12.10] | 11.7% [8.2, 15.5] | 11.0% |
+
+**Format gain.** Moving from gzipped JSON to lossless float64 + zlib alone gives 2.00×; the "vs lossless" column is what certified compression adds on top.
+
+**Prospective check of the certifying writer** (D01–D09 full ladders; 0 misses at every τ):
+
+| $\tau$ ($e$) | eligible objects with a certifiable rung | fraction of oracle archive compression |
+|---|---|---|
+| $10^{-4}$ | 64 | 0.982 |
+| $10^{-3}$ | 166 | 0.953 |
+| $10^{-2}$ | 232 | 0.931 |
+
+
 ## Supplementary Note 2 — Hartree mechanism, frozen-ladder QOAC-H confirmation, census and strongest baselines
 
 ### 2.1 Matched-distortion comparison
