@@ -154,7 +154,7 @@ Avoid:
 ## Quantitative evidence available for the claim
 
 Mechanism test:
-- 12/12 engineering materials: operator-derived (eta=2) allocation beats operator-blind (eta=0) at matched storage;
+- 12/12 engineering materials: operator-derived (β=2) allocation beats operator-blind (β=0) at matched storage;
 - median Hartree-error ratio = 0.0767117.
 
 Disjoint confirmation:
@@ -167,7 +167,7 @@ Disjoint confirmation:
 
 Full development-population census:
 - 254 materials, 6,350 settings, 0 failures;
-- at (	au_H=10^{-6}), 253/253 comparable materials favor QOAC-H;
+- at (\tau_H=10^{-6}), 253/253 comparable materials favor QOAC-H;
 - median CR ratio = 12.463;
 - 5th percentile = 4.459;
 - minimum = 2.444;

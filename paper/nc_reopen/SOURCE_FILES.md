@@ -4,8 +4,8 @@ Every number in the main text and this SI comes from the files below (commit tha
 
 | content | file | commit |
 |---|---|---|
-| QSQ fresh-perturbation test | `analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv` | `912ad5e` |
-| QSQ equal-search control | `analysis/research_upgrade/p1_common_tight_summary.csv` | `912ad5e` |
+| QSQ fresh-perturbation test | `analysis/research_upgrade/p2_fresh_probe_cohort_summary.csv` | `b75a493` |
+| QSQ equal-search control | `analysis/research_upgrade/p1_common_tight_summary.csv` | `f3a10ab` |
 | QSQ validations (Supplementary Note 1) | frozen manuscript and SI, `paper/MANUSCRIPT.md` and `paper/SUPPLEMENTARY_INFORMATION.md` | `efd1e2c` |
 | Hartree spectral audit | `analysis/hartree_spectral_mechanism/results/REPORT.md` | `dc2b167` |
 | QOAC-H mechanism ablation | `analysis/operator_aware_codec_hartree/results/SUMMARY.json` | `a1351d1` |
@@ -21,6 +21,6 @@ Every number in the main text and this SI comes from the files below (commit tha
 | pooled prediction statistics | `analysis/general_qoac_law/results/POOLED_P1_P3B.json` | `062d782` |
 | predictor calibration | `analysis/general_qoac_operators/results/RESULTS.md` | `f4baa7a` |
 | joint contract, engineering | `analysis/qoac_hb_v2/results/P2_ENGINEERING_MANIFEST/RESULTS.md` | `e095a0c` |
-| joint contract, confirmation | `analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST/RESULTS.md` | `e4d9d0b` |
+| joint contract, confirmation | `analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST/RESULTS.md` | `56add26` |
 | fresh populations | `analysis/fresh_population_20261006/REPORT.md` | `708dd37` |
 | P3b rule | `analysis/fresh_population_20261006/P3B_SELECTION_RULE.md` | `39ba728` |
