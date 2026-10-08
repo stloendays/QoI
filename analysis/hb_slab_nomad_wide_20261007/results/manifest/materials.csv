@@ -1,0 +1,2 @@
+material_id,system_type,npoints,raw_bytes,side_channel_bytes,natoms,n_regions,hap_precompute_seconds,kappa[0.0001],kappa[0.01],kappa[1],gram_cond[0.0001],gram_cond[0.01],gram_cond[1],projection_seconds_total,projections_applied,bader_solves,decodes_for_bader,tau_bader,status,seconds
+nomad-eKxYecHu4VTk,slab,279936,2239488,48,2,3,0.0425467491149902,0.0238047072780431,2.380470727804319,238.04707278043188,2.132914117870002,2.1019903595204728,2.135245459279863,9.502598762512209,1324,26,10,0.001 0.0001 1e-05,SUCCESS,77.33240675926208
