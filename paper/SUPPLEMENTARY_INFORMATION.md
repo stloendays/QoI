@@ -283,6 +283,59 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 
 **P1 shakedown cohort** (12 materials run through the identical pipeline; not part of any criterion): A3/A1 1.156, A3/A5 2.26, A1/A6 9.80, A1/A2 1.24 at $\tau=10^{-6}$; Part B median absolute log error 0.024, Spearman 0.979.
 
+### 5.1 QoI-preserving baselines (P1 and P3b; protocol `16e8890`, run 37620406802)
+
+- **Arms.**
+  - M2: MGARD, commit `ac53ff9`, smoothness $s=-2$.
+  - M-best: MGARD, best of $s\in\{\infty,0,-1,-2\}$.
+  - Q: QPET, block average over $b^3$ blocks with $b=4,8,16$, on SZ3, HPEZ and SPERR hosts; best of nine configurations.
+- **Search and certificate.** Each arm used the search and certificate of A1/A6. The A arms are the recorded values of the law run.
+- **Coverage.** 92 of 92 materials and 3,588 searches; every search certified a point.
+- **Codec crashes.** The authors' HPEZ command-line program crashed in 3,450 evaluations on P1 and 443 on P3b (heap-corruption aborts and segmentation faults). These count as non-passing points.
+- **Statistics.** Bootstrap seed 20261006, 10,000 resamples of the median. Every ratio below is a win in every material.
+
+**Median certified compression ratio**
+
+| cohort | $\tau$ | A1 | A2 | A3 | A6 | M2 | M-best | Q |
+|---|---|---|---|---|---|---|---|---|
+| P1 (60) | $10^{-4}$ | 818 | 969 | 1,303 | 79.2 | 59.2 | 73.4 | 158 |
+| P1 (60) | $10^{-6}$ | 195 | 152 | 224 | 16.0 | 10.2 | 10.9 | 29.4 |
+| P1 (60) | $10^{-8}$ | 24.6 | 14.9 | 25.0 | 7.12 | 5.06 | 5.28 | 9.99 |
+| P3b (32) | $10^{-4}$ | 1,771 | 2,309 | 3,552 | 108 | 196 | 244 | 257 |
+| P3b (32) | $10^{-6}$ | 504 | 353 | 647 | 23.3 | 21.0 | 23.1 | 46.0 |
+| P3b (32) | $10^{-8}$ | 64.9 | 27.2 | 70.3 | 10.0 | 8.65 | 8.89 | 18.2 |
+
+**Median per-material ratio [95% CI]**
+
+| cohort | $\tau$ | A1/M2 | A1/M-best | A1/Q | A3/M2 | A3/Q |
+|---|---|---|---|---|---|---|
+| P1 | $10^{-4}$ | 12.5 [11.4, 15.4] | 9.75 [9.00, 13.1] | 5.22 [4.60, 5.93] | 20.5 [17.2, 23.4] | 7.97 [6.84, 9.33] |
+| P1 | $10^{-6}$ | 18.2 [15.3, 21.7] | 16.6 [14.3, 19.5] | 6.31 [5.53, 6.95] | 20.3 [17.5, 25.0] | 6.91 [5.92, 8.15] |
+| P1 | $10^{-8}$ | 4.69 [4.27, 5.77] | 4.55 [4.11, 5.67] | 2.33 [2.00, 2.85] | 4.79 [4.32, 6.09] | 2.36 [2.05, 2.97] |
+| P3b | $10^{-4}$ | 7.97 [5.32, 11.1] | 6.63 [4.17, 9.04] | 7.56 [5.07, 9.13] | 15.0 [9.31, 20.2] | 15.6 [9.67, 21.5] |
+| P3b | $10^{-6}$ | 21.0 [17.5, 27.9] | 19.6 [15.7, 24.9] | 9.47 [8.14, 12.8] | 27.3 [20.1, 35.6] | 11.3 [9.62, 16.5] |
+| P3b | $10^{-8}$ | 7.99 [5.20, 11.8] | 7.42 [4.91, 10.8] | 3.84 [2.70, 4.83] | 8.43 [5.42, 13.3] | 4.09 [2.88, 5.28] |
+
+### 5.2 Work-function error on slabs (P3b; protocol `47b110a`, run 37598559834)
+
+- **Coverage.** 27 of 32 slabs have at least 3 Å of vacuum. The other five, Lu$_2$Br$_2$O, Ti(PO$_4$)$_2$, Ga$_2$Te$_3$, Nb$_2$Se$_3$ and EuS, have no qualifying vacuum run.
+- **Streams.** All 480 certified streams were regenerated and reproduced their recorded bytes and Hartree errors exactly:
+  - A3 and A5 from their recorded parameters;
+  - A1, A2 and A6 by rerunning the unchanged deterministic search where the recorded nine-digit parameter did not reproduce the stream.
+- **Absolute scale.** The reference Hartree-potential RMS is 63.6–3,273 eV (median 528 eV). The absolute RMS bound $\tau V_\text{ref}$ is therefore a median 64.1 meV at $10^{-4}$, 0.641 meV at $10^{-6}$ and 0.0064 meV at $10^{-8}$.
+
+**$|\Delta\Phi|$ (meV) over 27 slabs: median / P95 / maximum; slabs below 1 meV and below 10 meV**
+
+| arm | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
+|---|---|---|---|
+| A1 law | 1.09 / 5.34 / 6.06; 12, 27 | 0.0040 / 0.021 / 0.045; 27, 27 | 1.0e-5 / 3.9e-5 / 8.1e-5; 27, 27 |
+| A2 truncation | 41.0 / 197 / 385; 0, 2 | 0.55 / 1.86 / 2.97; 19, 27 | 0.0039 / 0.012 / 0.017; 27, 27 |
+| A3 operational optimum | 1.72 / 6.72 / 8.26; 9, 27 | 0.0040 / 0.014 / 0.034; 27, 27 | 1.5e-5 / 1.6e-4 / 2.0e-4; 27, 27 |
+| A5 blind RD optimum | 21.2 / 265 / 347; 1, 10 | 0.28 / 1.58 / 2.50; 23, 27 | 0.0027 / 0.019 / 0.024; 27, 27 |
+| A6 best pointwise codec | 35.5 / 158 / 238; 0, 2 | 0.34 / 1.85 / 2.16; 19, 27 | 0.0042 / 0.014 / 0.043; 27, 27 |
+
+Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This ratio is computed from `results/per_slab_dphi.csv`; it was not a pre-declared statistic.
+
 
 ## Supplementary Note 6 — Gain-predictor calibration
 

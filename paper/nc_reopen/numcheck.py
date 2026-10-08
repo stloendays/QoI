@@ -14,7 +14,7 @@ for pat in ["analysis/general_qoac_law/results/**/*.md", "analysis/general_qoac_
             "analysis/qoac_hb_v2/results/**/*.md", "analysis/qoac_hb_v2/results/**/*.json",
             "analysis/qoac_b3_design/results/**/*.md", "analysis/fresh_population_20261006/*.md",
             "analysis/general_qoac_operators/results/*.md", "analysis/qoac_v03_rdo/results/*.md",
-            "analysis/qoac_h_strong_baselines/results/*.md", "sync/PROGRAM_STATUS_20261007.md",
+            "analysis/qoac_h_strong_baselines/results/*.md", "analysis/hartree_baselines_mgard_qpet_20261007/RESULTS.md", "analysis/p3b_vacuum_level_20261007/RESULTS.md", "analysis/p3b_vacuum_level_20261007/results/summary.csv", "analysis/p3b_vacuum_level_20261007/PROTOCOL.md", "analysis/hartree_baselines_mgard_qpet_20261007/PROTOCOL.md", "sync/PROGRAM_STATUS_20261007.md",
             "paper/program_draft/v2/*.md", "paper/FIGURE_CAPTIONS.md", "analysis/general_qoac_law/DESIGN.md",
             "analysis/qoac_v03_rdo/DESIGN.md", "analysis/qoac_hb_v2/DESIGN.md",
             "analysis/fresh_population_20261006/P3B_SELECTION_RULE.md", "figures/nc/fig4/KCN_STATS.json",
