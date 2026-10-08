@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Compressed scientific fields are judged by quantities computed from them, yet the reference analysis may not resolve the tolerance. QoI Stability Qualification (QSQ) qualifies the measurement contract before any codec is scored: across 254 electronic densities, a five-probe screen separated fresh Bader threshold-exceedance risks of 1.600% (135/8,437) in qualified and 81.325% (5,326/6,549) in rejected materials. For linear operators, the operator symbol fixes where compression error belongs and what that gains. In pre-registered tests on 60 unused bulk crystals and 32 unused slabs, gains predicted before compression for five operators matched measurement (Spearman 0.978, 0.979). For the Hartree potential, the closed-form law certified 6.3-fold (60/60) and 9.5-fold (32/32) more than an equal-search QoI-preserving compressor, kept slab work-function errors below 0.05 meV and came within 10.5% of the operational optimum on bulk crystals. On 48 further unused crystals, one stream certified Hartree potential and Bader charges together (48/48) at median overhead 1.000.
+Compressed fields are judged by quantities computed from them, yet the reference analysis may not resolve the tolerance. QoI Stability Qualification (QSQ) qualifies the measurement contract before codecs are scored: across 254 electronic densities, five probes separated fresh Bader threshold-exceedance risks of 1.600% (135/8,437) in qualified and 81.325% (5,326/6,549) in rejected materials, and qualified, certified storage would shrink the 8.50 TB Materials Project archive 4.4-fold at $10^{-3}\,e$. For linear operators, the operator symbol fixes where error belongs and what that gains. In pre-registered tests on 60 unused bulk crystals and 32 slabs, gains predicted before compression for five operators matched measurement (Spearman 0.978, 0.979). For the Hartree potential, the closed-form law certified 6.3-fold (60/60) and 9.5-fold (32/32) more than an equal-search QoI-preserving compressor and kept slab work-function errors below 0.05 meV. On 48 further crystals, one stream certified Hartree potential and Bader charges together (48/48) at median overhead 1.000.
 
 ## Introduction
 
@@ -27,6 +27,8 @@ We froze the five-probe screen and challenged it with 59 fresh perturbations for
 Qualification also governs codec comparisons. When the same tight settings were completed for every material (1,332/1,332 added reconstructions), the fraction of material–codec pairs with no passing reconstruction at $10^{-3}\,e$ was 3.3% for qualified and 66.4% for rejected pairs, a 20.34-fold ratio (Fig. 2c). A finite panel carries a distribution-free guarantee: for exchangeable probes, the joint probability of admission and a later exceedance is at most $n^n/(n+1)^{n+1}$, 6.70% for $n=5$; the observed joint rate was 0.901% (Fig. 2b).
 
 Evaluability belongs to the contract, not to the material. With Henkelman Bader 1.05 and an all-electron partition reference (AECCAR0 + AECCAR2), perturbing only the integrated charge field left 50/50 analyzable materials eligible at $10^{-3}\,e$, whereas perturbing the partition reference left 3/50. Holding the partition reference exact is therefore a contract choice that makes Bader charges scorable; it defines the Bader contract used for joint certification below. Implementation transfer, a second topology-sensitive QoI and an external cohort are reported in Supplementary Note 1.
+
+Qualification also sets what an archive can gain. We applied QSQ, a certifying writer that searches the ZFP, SZ3 and SPERR ladders for a certified reconstruction (Supplementary Note 1) and the Bader certificate to a stratified sample of 300 objects of the public Materials Project charge-density archive (415,289 densities, 8.50 TB as gzipped JSON), under a protocol frozen before any sampled density was read (Methods). Each object is stored as a certified reconstruction when its contract is eligible and one is certified, losslessly otherwise, and at its current size if the pipeline failed (7/300). At $10^{-3}\,e$ the archive shrinks 4.37-fold (95% CI 3.64–5.46), an estimated saving of 6.55 TB; replacing gzipped text with lossless binary storage accounts for 2.00-fold of this, and certified compression adds 2.66-fold (2.21–3.27) on top. The 35.9% of objects that are non-evaluable at this tolerance are kept lossless. At $10^{-4}$ and $10^{-2}\,e$ the archive shrinks 2.36- and 8.99-fold.
 
 ### The operator symbol explains the codec effect and fixes a closed-form allocation law
 
@@ -124,17 +126,11 @@ Arms follow the frozen protocol. A0: closed-form law, frozen 25-point ladder $\a
 
 ### QoI-preserving baselines and work-function error
 
-Both analyses follow protocols frozen before execution (Table 1) and use the A1/A6 search and the decoded Hartree certificate on P1 and P3b; the A arms are the recorded values of the law run.
-- **MGARD**<sup>8</sup> was built from upstream source (commit `ac53ff9`) and run with smoothness $s=-2$. The best of $s\in\{\infty,0,-1,-2\}$ is reported in Supplementary Note 5.
-- **QPET**<sup>10</sup> (authors' artifact, `szfamily_qpet_revision` `5d17cb1`, `sperr_qpet_revision` `1874108`) bounded the block average of the density over $b^3$ blocks ($b=4,8,16$) on SZ3, HPEZ and SPERR hosts. Its absolute QoI bound was the searched parameter, and its pointwise bound was set to the value range so that it never binds. The best of the nine configurations is reported.
-- **Execution.** Evaluations that crashed inside a codec count as non-passing points; every search certified a point.
-- **Work-function error.** For each slab, the surface normal and the vacuum window come from the reference density alone:
-  - planes whose planar-average density is below $10^{-3}$ of its maximum are vacuum;
-  - the normal is the axis with the thickest contiguous vacuum run;
-  - slabs with at least 3 Å of vacuum qualify (27 of 32);
-  - the window is the central half of the run.
+Both analyses follow protocols frozen before execution (Table 1) and use the A1/A6 search and the decoded Hartree certificate on P1 and P3b; the A arms are the recorded values of the law run. MGARD<sup>8</sup> was built from upstream source (commit `ac53ff9`) and run with smoothness $s=-2$; the best of $s\in\{\infty,0,-1,-2\}$ is reported in Supplementary Note 5. QPET<sup>10</sup> (authors' artifact, `szfamily_qpet_revision` `5d17cb1` and `sperr_qpet_revision` `1874108`) bounded the block average of the density over $b^3$ blocks ($b=4,8,16$) on SZ3, HPEZ and SPERR hosts, with its absolute QoI bound as the searched parameter and its pointwise bound set to the value range so that it never binds; the best of the nine configurations is reported. Evaluations that crashed inside a codec count as non-passing points, and every search certified a point. For each slab, the surface normal and the vacuum window come from the reference density alone: planes whose planar-average density is below $10^{-3}$ of its maximum are vacuum, the normal is the axis with the thickest contiguous vacuum run, slabs with at least 3 Å of vacuum qualify (27 of 32), and the window is the central half of the run. $\Delta\Phi$ is the window mean of the planar-averaged error of $V_H(G)=4\pi k_e\,\rho(G)/|G|^2$, with $k_e=14.399645$ eV Å. Every certified stream was regenerated and reproduced its recorded bytes and Hartree errors exactly before use.
 
-  $\Delta\Phi$ is the window mean of the planar-averaged error of $V_H(G)=4\pi k_e\,\rho(G)/|G|^2$, with $k_e=14.399645$ eV Å. Every certified stream was regenerated and reproduced its recorded bytes and Hartree errors exactly before use.
+### Archive estimate
+
+The frame is every `chgcars/mp-<n>.json.gz` object of the open Materials Project bucket listed on 2026-09-30, minus the development set (415,289 objects, 8.4976 TB). Stored-size deciles D01–D09 contribute 30 objects each and the top decile, split at 80 and 150 MB, 15, 10 and 5; within a stratum the objects with the smallest SHA-256 of a fixed salt and identifier were drawn. Per object, QSQ ran with the five frozen probes, the certifying writer searched the ZFP, SZ3 and SPERR ladders, and stored bytes followed the frozen storage rule. Stratified expansion estimators give the archive reduction factor $R(\tau)$, with stratified bootstrap intervals (2,000 resamples, seed 20260930). The sample ran on a laptop (243 objects) and, for the 57 objects that exceeded its memory, on GitHub-hosted runners after a five-object platform check; objects that failed keep their stored size.
 
 ### Single-density diagnostics
 
@@ -158,6 +154,7 @@ Populations were drawn under rules frozen before any candidate was downloaded an
 
 | step | commit | time (UTC) |
 |---|---|---|
+| Archive-estimate protocol and sample frozen | `cb6438c` | 2026-09-30 11:02 |
 | Population selection rule and exclusion set frozen | `10e7863` | 2026-10-06 14:27 |
 | P1 and P2 manifests drawn | `708dd37` | 2026-10-06 15:09 |
 | Law protocol (Parts A and B, criteria) frozen | `fe2e08a` | 2026-10-06 15:26 |
