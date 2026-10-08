@@ -1,8 +1,9 @@
 # Claude handoff — QSQ / QOAC project — 2026-10-05
 
-> **Update 2026-10-07 — read this first.** The authority is now branch `paper/nc-reopen-20261007` (at `87b3a65`, revision 2), the
-> frozen manuscript reopened for Nature Communications (decisions in `paper/nc_reopen/DECISIONS.md`). Start a new
-> session from that branch and read `sync/PROGRAM_STATUS_20261007.md` (current evidence and open items),
+> **Update 2026-10-08 — read this first.** The authority is now branch `paper/nc-revision3-20261008` (at `91d53ee`, revision 3),
+> replacing `paper/nc-reopen-20261007` at `87b3a65` (revision 2) as the Nature Communications authority. Start a new
+> session from that branch and read `sync/PROGRAM_STATUS_20261007.md` (updated 2026-10-08; current evidence, resolved decisions
+> and open items), `sync/UNMERGED_BRANCHES_20261007.md` (decision list for the author, updated 2026-10-08),
 > `paper/MANUSCRIPT.md`, `paper/SUPPLEMENTARY_INFORMATION.md` and `paper/nc_reopen/` (word count, audit record, source
 > map). The 2026-10-05 text below, including the start branch `research/general-qoac-electric-field-20261005` and the
 > "Manuscript boundary" section, is kept as history; the electric-field NO-GO it describes was followed by the general
