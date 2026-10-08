@@ -18,9 +18,9 @@ Every number in the main text and this SI comes from the files below (commit tha
 | law protocol, P1 | `analysis/general_qoac_law/results/run_P1_CONFIRMATORY/SUMMARY.json` | `4164519` |
 | law protocol, P3b | `analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/SUMMARY.json` | `eaa3267` |
 | law protocol, summary | `analysis/general_qoac_law/results/RESULTS.md` | `b9fd735` |
-| QoI-preserving baselines (MGARD s = −2, QPET), P1 and P3b | `analysis/hartree_baselines_mgard_qpet_20261007/RESULTS.md`; per material `results/run_P1_CONFIRMATORY/material.csv`, `results/run_P3B_CONFIRMATORY/material.csv` | `a86be8b` |
-| Materials Project archive estimate | `analysis/extensions_20260930/WP-F/results_cloud/completed_v2/RESULTS.md`; estimates `completed_v2/estimates.csv`; protocol `analysis/extensions_20260930/PROTOCOL.md` (WP-F) | `805747f` |
-| work-function error on P3b slabs | `analysis/p3b_vacuum_level_20261007/RESULTS.md`; per stream `results/per_slab_dphi.csv`, summary `results/summary.csv` | `6f03249` |
+| QoI-preserving baselines (MGARD s = −2, QPET), P1 and P3b | `analysis/hartree_baselines_mgard_qpet_20261007/RESULTS.md`; per material `analysis/hartree_baselines_mgard_qpet_20261007/results/run_P1_CONFIRMATORY/material.csv`, `analysis/hartree_baselines_mgard_qpet_20261007/results/run_P3B_CONFIRMATORY/material.csv` | `a86be8b` |
+| Materials Project archive estimate | `analysis/extensions_20260930/WP-F/results_cloud/completed_v2/RESULTS.md`; estimates `analysis/extensions_20260930/WP-F/results_cloud/completed_v2/estimates.csv`; protocol `analysis/extensions_20260930/PROTOCOL.md` (WP-F) | `805747f` |
+| work-function error on P3b slabs | `analysis/p3b_vacuum_level_20261007/RESULTS.md`; per stream `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`, summary `analysis/p3b_vacuum_level_20261007/results/summary.csv` | `6f03249` |
 | pooled prediction statistics | `analysis/general_qoac_law/results/POOLED_P1_P3B.json` | `062d782` |
 | predictor calibration | `analysis/general_qoac_operators/results/RESULTS.md` | `f4baa7a` |
 | joint contract, engineering | `analysis/qoac_hb_v2/results/P2_ENGINEERING_MANIFEST/RESULTS.md` | `e095a0c` |

@@ -323,7 +323,7 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 ### 5.1 QoI-preserving baselines (P1 and P3b; protocol `16e8890`, run 37620406802)
 
 - **Arms.**
-  - M2: MGARD, commit `ac53ff9`, smoothness $s=-2$.
+  - M2: MGARD (CODARcode/MGARD commit ac53ff9), smoothness $s=-2$.
   - M-best: MGARD, best of $s\in\{\infty,0,-1,-2\}$.
   - Q: QPET, block average over $b^3$ blocks with $b=4,8,16$, on SZ3, HPEZ and SPERR hosts; best of nine configurations.
 - **Search and certificate.** Each arm used the search and certificate of A1/A6. The A arms are the recorded values of the law run.
@@ -371,7 +371,7 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 | A5 blind RD optimum | 21.2 / 265 / 347; 1, 10 | 0.28 / 1.58 / 2.50; 23, 27 | 0.0027 / 0.019 / 0.024; 27, 27 |
 | A6 best pointwise codec | 35.5 / 158 / 238; 0, 2 | 0.34 / 1.85 / 2.16; 19, 27 | 0.0042 / 0.014 / 0.043; 27, 27 |
 
-Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This ratio is computed from `results/per_slab_dphi.csv`; it was not a pre-declared statistic.
+Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This ratio is computed from `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`; it was not a pre-declared statistic.
 
 
 ## Supplementary Note 6 — Gain-predictor calibration
