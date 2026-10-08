@@ -1,0 +1,2265 @@
+task_id,field,laptop,cloud,diff,diff_kind,criterion,passes
+mp-2488566,status,SUCCESS,SUCCESS,,equal,identical,True
+mp-2488566,sha256,3713eadca76a8ef6ed2194a6ab5dd08f20adb95416c048dc49b12c34df3ac79b,3713eadca76a8ef6ed2194a6ab5dd08f20adb95416c048dc49b12c34df3ac79b,,equal,informational,True
+mp-2488566,json_bytes,8367212,8367212,,equal,informational,True
+mp-2488566,shape,72x72x112,72x72x112,,equal,informational,True
+mp-2488566,npoints,580608,580608,,equal,informational,True
+mp-2488566,natoms,4,4,,equal,informational,True
+mp-2488566,natoms_bader,4,4,,equal,informational,True
+mp-2488566,spin_channels,2,2,,equal,informational,True
+mp-2488566,formula,GaP,GaP,,equal,informational,True
+mp-2488566,crystal_system,hexagonal,hexagonal,,equal,informational,True
+mp-2488566,spacegroup,186,186,,equal,informational,True
+mp-2488566,epsilon,6.091406249e-05,6.091406249e-05,0,abs,informational,True
+mp-2488566,value_ptp,1412.15202,1412.15202,0,abs,informational,True
+mp-2488566,value_min,-33.66014249,-33.66014249,0,abs,informational,True
+mp-2488566,value_max,1378.491877,1378.491877,0,abs,informational,True
+mp-2488566,raw64_bytes,4644864,4644864,0,rel,informational,True
+mp-2488566,lossless_bytes,4358080,4358080,0,rel,informational,True
+mp-2488566,bader_solves,42,42,,equal,informational,True
+mp-2488566,eligible@0.0001,False,False,,equal,identical,True
+mp-2488566,eligible@0.001,True,True,,equal,identical,True
+mp-2488566,eligible@0.01,True,True,,equal,identical,True
+mp-2488566,floor_e,0.0004710537,0.0004710537,0,abs,<= 1e-6 e,True
+mp-2488566,probe_seeds,"[1, 2, 3, 4, 20260905]","[1, 2, 3, 4, 20260905]",,equal,identical,True
+mp-2488566,probe_response_e[seed=1],0.0004647752,0.0004647752,0,abs,<= 1e-6 e,True
+mp-2488566,probe_n_reassigned[seed=1],228,228,0,abs,informational,True
+mp-2488566,probe_response_e[seed=2],0.0004454771,0.0004454771,0,abs,<= 1e-6 e,True
+mp-2488566,probe_n_reassigned[seed=2],218,218,0,abs,informational,True
+mp-2488566,probe_response_e[seed=3],0.0004516513,0.0004516513,0,abs,<= 1e-6 e,True
+mp-2488566,probe_n_reassigned[seed=3],233,233,0,abs,informational,True
+mp-2488566,probe_response_e[seed=4],0.0004471778,0.0004471778,0,abs,<= 1e-6 e,True
+mp-2488566,probe_n_reassigned[seed=4],229,229,0,abs,informational,True
+mp-2488566,probe_response_e[seed=20260905],0.0004710537,0.0004710537,0,abs,<= 1e-6 e,True
+mp-2488566,probe_n_reassigned[seed=20260905],222,222,0,abs,informational,True
+mp-2488566,evaluated_rungs,38,38,,equal,identical set,True
+mp-2488566,rung[SPERR 1e-07] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-07] bader_error_e,0.0004712806,0.0004712806,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 1e-07] compressed_bytes,1196660,1196660,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 1e-07] realized_Linf,0.0001412120645,0.0001412120645,0,abs,informational,True
+mp-2488566,rung[SPERR 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 1e-07] n_reassigned,230,230,0,abs,informational,True
+mp-2488566,rung[SPERR 1e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 3e-07] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-07] bader_error_e,0.0005242087,0.0005242087,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 3e-07] compressed_bytes,1080507,1080507,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 3e-07] realized_Linf,0.0004236413942,0.0004236413942,0,abs,informational,True
+mp-2488566,rung[SPERR 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 3e-07] n_reassigned,292,292,0,abs,informational,True
+mp-2488566,rung[SPERR 3e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 1e-06] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-06] bader_error_e,0.0007223289,0.0007223289,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 1e-06] compressed_bytes,954121,954121,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 1e-06] realized_Linf,0.001412132739,0.001412132739,0,abs,informational,True
+mp-2488566,rung[SPERR 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 1e-06] n_reassigned,671,671,0,abs,informational,True
+mp-2488566,rung[SPERR 1e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 3e-06] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-06] bader_error_e,0.0008041267,0.0008041267,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 3e-06] compressed_bytes,838876,838876,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 3e-06] realized_Linf,0.004236431139,0.004236431139,0,abs,informational,True
+mp-2488566,rung[SPERR 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 3e-06] n_reassigned,1026,1026,0,abs,informational,True
+mp-2488566,rung[SPERR 3e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 1e-05] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 1e-05] bader_error_e,0.001763408,0.001763408,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 1e-05] compressed_bytes,712277,712277,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 1e-05] realized_Linf,0.0141208799,0.0141208799,0,abs,informational,True
+mp-2488566,rung[SPERR 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 1e-05] n_reassigned,2771,2771,0,abs,informational,True
+mp-2488566,rung[SPERR 1e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 3e-05] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 3e-05] bader_error_e,0.0047250079,0.0047250079,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 3e-05] compressed_bytes,598262,598262,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 3e-05] realized_Linf,0.04236419469,0.04236419469,0,abs,informational,True
+mp-2488566,rung[SPERR 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 3e-05] n_reassigned,6410,6410,0,abs,informational,True
+mp-2488566,rung[SPERR 3e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.0001] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.0001] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.0001] bader_error_e,0.0135044699,0.0135044699,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 0.0001] compressed_bytes,474508,474508,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.0001] realized_Linf,0.1412134675,0.1412134675,0,abs,informational,True
+mp-2488566,rung[SPERR 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.0001] n_reassigned,15802,15802,0,abs,informational,True
+mp-2488566,rung[SPERR 0.0001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.0003] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.0003] bader_error_e,0.037287468,0.037287468,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 0.0003] compressed_bytes,371105,371105,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.0003] realized_Linf,0.4236321086,0.4236321086,0,abs,informational,True
+mp-2488566,rung[SPERR 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.0003] n_reassigned,28322,28322,0,abs,informational,True
+mp-2488566,rung[SPERR 0.0003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.001] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.001] bader_error_e,0.0373566873,0.0373566873,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 0.001] compressed_bytes,280931,280931,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.001] realized_Linf,1.412085264,1.412085264,0,abs,informational,True
+mp-2488566,rung[SPERR 0.001] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.001] n_reassigned,45857,45857,0,abs,informational,True
+mp-2488566,rung[SPERR 0.001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.003] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.003] bader_error_e,0.0669752537,0.0666753889,0.0002998648,abs,<= 1e-6 e,False
+mp-2488566,rung[SPERR 0.003] compressed_bytes,210179,210179,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.003] realized_Linf,4.236021845,4.236021845,0,abs,informational,True
+mp-2488566,rung[SPERR 0.003] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.003] n_reassigned,72073,72095,22,abs,informational,True
+mp-2488566,rung[SPERR 0.003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.01] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.01] bader_error_e,0.3761582606,0.3761582606,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 0.01] compressed_bytes,141756,141756,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.01] realized_Linf,14.11838707,14.11838707,0,abs,informational,True
+mp-2488566,rung[SPERR 0.01] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.01] n_reassigned,116334,116334,0,abs,informational,True
+mp-2488566,rung[SPERR 0.01] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.03] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.03] bader_error_e,0.9304831415,0.9305542936,7.11521e-05,abs,<= 1e-6 e,False
+mp-2488566,rung[SPERR 0.03] compressed_bytes,86485,86485,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.03] realized_Linf,42.35911633,42.35911633,0,abs,informational,True
+mp-2488566,rung[SPERR 0.03] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.03] n_reassigned,161916,161964,48,abs,informational,True
+mp-2488566,rung[SPERR 0.03] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SPERR 0.1] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SPERR 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SPERR 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SPERR 0.1] bader_error_e,1.514808401,1.514808401,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SPERR 0.1] compressed_bytes,39667,39667,0,rel,<= 0.1 %,True
+mp-2488566,rung[SPERR 0.1] realized_Linf,141.1484144,141.1484144,0,abs,informational,True
+mp-2488566,rung[SPERR 0.1] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SPERR 0.1] n_reassigned,199172,199172,0,abs,informational,True
+mp-2488566,rung[SPERR 0.1] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2488566,rung[SZ3 1e-07] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-07] bader_error_e,0.0005133302,0.0005133302,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 1e-07] compressed_bytes,568024,568024,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 1e-07] realized_Linf,0.0001412146138,0.0001412146138,0,abs,informational,True
+mp-2488566,rung[SZ3 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 1e-07] n_reassigned,249,249,0,abs,informational,True
+mp-2488566,rung[SZ3 1e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 3e-07] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-07] bader_error_e,0.0004849768,0.0004849768,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 3e-07] compressed_bytes,435076,435076,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 3e-07] realized_Linf,0.0004236455262,0.0004236455262,0,abs,informational,True
+mp-2488566,rung[SZ3 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 3e-07] n_reassigned,310,310,0,abs,informational,True
+mp-2488566,rung[SZ3 3e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 1e-06] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-06] bader_error_e,0.0005496797,0.0005496797,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 1e-06] compressed_bytes,297149,297149,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 1e-06] realized_Linf,0.001412148062,0.001412148062,0,abs,informational,True
+mp-2488566,rung[SZ3 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 1e-06] n_reassigned,562,562,0,abs,informational,True
+mp-2488566,rung[SZ3 1e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 3e-06] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-06] bader_error_e,0.0004847901,0.0004847901,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 3e-06] compressed_bytes,206911,206911,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 3e-06] realized_Linf,0.004236455872,0.004236455872,0,abs,informational,True
+mp-2488566,rung[SZ3 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 3e-06] n_reassigned,921,921,0,abs,informational,True
+mp-2488566,rung[SZ3 3e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 1e-05] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 1e-05] bader_error_e,0.0020692054,0.0020692054,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 1e-05] compressed_bytes,136941,136941,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 1e-05] realized_Linf,0.01412149468,0.01412149468,0,abs,informational,True
+mp-2488566,rung[SZ3 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 1e-05] n_reassigned,2094,2094,0,abs,informational,True
+mp-2488566,rung[SZ3 1e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 3e-05] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 3e-05] bader_error_e,0.0039727008,0.0039727008,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 3e-05] compressed_bytes,88485,88485,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 3e-05] realized_Linf,0.04236442903,0.04236442903,0,abs,informational,True
+mp-2488566,rung[SZ3 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 3e-05] n_reassigned,3970,3970,0,abs,informational,True
+mp-2488566,rung[SZ3 3e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 0.0001] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.0001] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.0001] bader_error_e,0.0210661255,0.0210661255,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 0.0001] compressed_bytes,51692,51692,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 0.0001] realized_Linf,0.1412140264,0.1412140264,0,abs,informational,True
+mp-2488566,rung[SZ3 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 0.0001] n_reassigned,10549,10549,0,abs,informational,True
+mp-2488566,rung[SZ3 0.0001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 0.0003] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.0003] bader_error_e,0.0390465689,0.0390465689,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 0.0003] compressed_bytes,30640,30640,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 0.0003] realized_Linf,0.4236329202,0.4236329202,0,abs,informational,True
+mp-2488566,rung[SZ3 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 0.0003] n_reassigned,21436,21436,0,abs,informational,True
+mp-2488566,rung[SZ3 0.0003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 0.001] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.001] bader_error_e,0.0781239455,0.0781239455,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 0.001] compressed_bytes,15500,15500,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 0.001] realized_Linf,1.412149042,1.412149042,0,abs,informational,True
+mp-2488566,rung[SZ3 0.001] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 0.001] n_reassigned,37820,37820,0,abs,informational,True
+mp-2488566,rung[SZ3 0.001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 0.003] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.003] bader_error_e,0.0902358279,0.0902358279,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 0.003] compressed_bytes,6587,6587,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 0.003] realized_Linf,4.235957999,4.235957999,0,abs,informational,True
+mp-2488566,rung[SZ3 0.003] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 0.003] n_reassigned,53542,53542,0,abs,informational,True
+mp-2488566,rung[SZ3 0.003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 0.01] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.01] bader_error_e,0.632391022,0.632391022,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 0.01] compressed_bytes,5387,5387,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 0.01] realized_Linf,14.12128802,14.12128802,0,abs,informational,True
+mp-2488566,rung[SZ3 0.01] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 0.01] n_reassigned,139686,139686,0,abs,informational,True
+mp-2488566,rung[SZ3 0.01] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[SZ3 0.03] status,OK,OK,,equal,identical,True
+mp-2488566,rung[SZ3 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[SZ3 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[SZ3 0.03] bader_error_e,1.938521083,1.938521083,0,abs,<= 1e-6 e,True
+mp-2488566,rung[SZ3 0.03] compressed_bytes,1945,1945,0,rel,<= 0.1 %,True
+mp-2488566,rung[SZ3 0.03] realized_Linf,42.35816117,42.35816117,0,abs,informational,True
+mp-2488566,rung[SZ3 0.03] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[SZ3 0.03] n_reassigned,163774,163774,0,abs,informational,True
+mp-2488566,rung[SZ3 0.03] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2488566,rung[ZFP 1e-07] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-07] bader_error_e,0.0004073465,0.0004073465,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 1e-07] compressed_bytes,721944,721944,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 1e-07] realized_Linf,3.387804967e-05,3.387804967e-05,0,abs,informational,True
+mp-2488566,rung[ZFP 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 1e-07] n_reassigned,175,175,0,abs,informational,True
+mp-2488566,rung[ZFP 1e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 3e-07] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-07] bader_error_e,0.0004227197,0.0004227197,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 3e-07] compressed_bytes,658488,658488,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 3e-07] realized_Linf,5.867276514e-05,5.867276514e-05,0,abs,informational,True
+mp-2488566,rung[ZFP 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 3e-07] n_reassigned,195,195,0,abs,informational,True
+mp-2488566,rung[ZFP 3e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 1e-06] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-06] bader_error_e,0.0004595434,0.0004595434,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 1e-06] compressed_bytes,538528,538528,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 1e-06] realized_Linf,0.0002485156918,0.0002485156918,0,abs,informational,True
+mp-2488566,rung[ZFP 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 1e-06] n_reassigned,219,219,0,abs,informational,True
+mp-2488566,rung[ZFP 1e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 3e-06] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-06] bader_error_e,0.0004838801,0.0004838801,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 3e-06] compressed_bytes,430024,430024,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 3e-06] realized_Linf,0.0009521374521,0.0009521374521,0,abs,informational,True
+mp-2488566,rung[ZFP 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 3e-06] n_reassigned,258,258,0,abs,informational,True
+mp-2488566,rung[ZFP 3e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 1e-05] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 1e-05] bader_error_e,0.00049846,0.00049846,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 1e-05] compressed_bytes,380344,380344,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 1e-05] realized_Linf,0.001823925248,0.001823925248,0,abs,informational,True
+mp-2488566,rung[ZFP 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 1e-05] n_reassigned,340,340,0,abs,informational,True
+mp-2488566,rung[ZFP 1e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 3e-05] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 3e-05] bader_error_e,0.0005793565,0.0005793565,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 3e-05] compressed_bytes,290648,290648,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 3e-05] realized_Linf,0.007430023281,0.007430023281,0,abs,informational,True
+mp-2488566,rung[ZFP 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 3e-05] n_reassigned,723,723,0,abs,informational,True
+mp-2488566,rung[ZFP 3e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 0.0001] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.0001] bader_error_e,0.0021949569,0.0021949569,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.0001] compressed_bytes,214928,214928,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 0.0001] realized_Linf,0.02468926434,0.02468926434,0,abs,informational,True
+mp-2488566,rung[ZFP 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 0.0001] n_reassigned,1412,1412,0,abs,informational,True
+mp-2488566,rung[ZFP 0.0001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 0.0003] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.0003] bader_error_e,0.0020183269,0.0020183269,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.0003] compressed_bytes,182848,182848,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 0.0003] realized_Linf,0.05200756716,0.05200756716,0,abs,informational,True
+mp-2488566,rung[ZFP 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 0.0003] n_reassigned,2265,2265,0,abs,informational,True
+mp-2488566,rung[ZFP 0.0003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 0.001] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.001] certified@0.01,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.001] bader_error_e,0.0061527237,0.0061527237,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.001] compressed_bytes,129360,129360,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 0.001] realized_Linf,0.1866479705,0.1866479705,0,abs,informational,True
+mp-2488566,rung[ZFP 0.001] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 0.001] n_reassigned,6208,6208,0,abs,informational,True
+mp-2488566,rung[ZFP 0.001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 0.003] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.003] bader_error_e,0.0297416241,0.0297416241,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.003] compressed_bytes,89336,89336,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 0.003] realized_Linf,0.621459241,0.621459241,0,abs,informational,True
+mp-2488566,rung[ZFP 0.003] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 0.003] n_reassigned,16758,16758,0,abs,informational,True
+mp-2488566,rung[ZFP 0.003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 0.01] status,OK,OK,,equal,identical,True
+mp-2488566,rung[ZFP 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2488566,rung[ZFP 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.01] bader_error_e,0.0236352905,0.0236352905,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.01] compressed_bytes,73136,73136,0,rel,<= 0.1 %,True
+mp-2488566,rung[ZFP 0.01] realized_Linf,1.11047187,1.11047187,0,abs,informational,True
+mp-2488566,rung[ZFP 0.01] bound_respected,True,True,,equal,informational,True
+mp-2488566,rung[ZFP 0.01] n_reassigned,20204,20204,0,abs,informational,True
+mp-2488566,rung[ZFP 0.01] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2488566,rung[ZFP 0.03] status,FAILED,FAILED,,equal,identical,True
+mp-2488566,rung[ZFP 0.03] certifiable_error,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.03] bader_error_e,inf,inf,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.03] error,IndexError: index 3 is out of bounds for axis 0 with size 3,IndexError: index 3 is out of bounds for axis 0 with size 3,,equal,informational,True
+mp-2488566,rung[ZFP 0.1] status,FAILED,FAILED,,equal,identical,True
+mp-2488566,rung[ZFP 0.1] certifiable_error,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2488566,rung[ZFP 0.1] bader_error_e,inf,inf,0,abs,<= 1e-6 e,True
+mp-2488566,rung[ZFP 0.1] error,IndexError: index 3 is out of bounds for axis 1 with size 3,IndexError: index 3 is out of bounds for axis 1 with size 3,,equal,informational,True
+mp-2488566,writer_choice@0.0001,none,none,,equal,identical (codec and rung),True
+mp-2488566,writer_choice@0.001,SZ3 3e-06,SZ3 3e-06,,equal,identical (codec and rung),True
+mp-2488566,writer_choice@0.001 compressed_bytes,206911,206911,0,rel,<= 0.1 %,True
+mp-2488566,writer_choice@0.01,SZ3 3e-05,SZ3 3e-05,,equal,identical (codec and rung),True
+mp-2488566,writer_choice@0.01 compressed_bytes,88485,88485,0,rel,<= 0.1 %,True
+mp-2285510,status,SUCCESS,SUCCESS,,equal,identical,True
+mp-2285510,sha256,1b45babc939dda724fd894a031e2844a50fbf75c52b4478a4d4cbcc0f3248a57,1b45babc939dda724fd894a031e2844a50fbf75c52b4478a4d4cbcc0f3248a57,,equal,informational,True
+mp-2285510,json_bytes,13556957,13556957,,equal,informational,True
+mp-2285510,shape,96x96x100,96x96x100,,equal,informational,True
+mp-2285510,npoints,921600,921600,,equal,informational,True
+mp-2285510,natoms,8,8,,equal,informational,True
+mp-2285510,natoms_bader,8,8,,equal,informational,True
+mp-2285510,spin_channels,2,2,,equal,informational,True
+mp-2285510,formula,CrCl3,CrCl3,,equal,informational,True
+mp-2285510,crystal_system,monoclinic,monoclinic,,equal,informational,True
+mp-2285510,spacegroup,12,12,,equal,informational,True
+mp-2285510,epsilon,0.0001216812502,0.0001216812502,0,abs,informational,True
+mp-2285510,value_ptp,2491.003726,2491.003726,0,abs,informational,True
+mp-2285510,value_min,0.6039693108,0.6039693108,0,abs,informational,True
+mp-2285510,value_max,2491.607695,2491.607695,0,abs,informational,True
+mp-2285510,raw64_bytes,7372800,7372800,0,rel,informational,True
+mp-2285510,lossless_bytes,6948049,6948049,0,rel,informational,True
+mp-2285510,bader_solves,43,43,,equal,informational,True
+mp-2285510,eligible@0.0001,False,False,,equal,identical,True
+mp-2285510,eligible@0.001,False,False,,equal,identical,True
+mp-2285510,eligible@0.01,True,True,,equal,identical,True
+mp-2285510,floor_e,0.0019665343,0.0019665343,0,abs,<= 1e-6 e,True
+mp-2285510,probe_seeds,"[1, 2, 3, 4, 20260905]","[1, 2, 3, 4, 20260905]",,equal,identical,True
+mp-2285510,probe_response_e[seed=1],0.0018943575,0.0018943575,0,abs,<= 1e-6 e,True
+mp-2285510,probe_n_reassigned[seed=1],1045,1045,0,abs,informational,True
+mp-2285510,probe_response_e[seed=2],0.001858756,0.001858756,0,abs,<= 1e-6 e,True
+mp-2285510,probe_n_reassigned[seed=2],1141,1141,0,abs,informational,True
+mp-2285510,probe_response_e[seed=3],0.001908556,0.001908556,0,abs,<= 1e-6 e,True
+mp-2285510,probe_n_reassigned[seed=3],1147,1147,0,abs,informational,True
+mp-2285510,probe_response_e[seed=4],0.0019665343,0.0019665343,0,abs,<= 1e-6 e,True
+mp-2285510,probe_n_reassigned[seed=4],1134,1134,0,abs,informational,True
+mp-2285510,probe_response_e[seed=20260905],0.0018714177,0.0018714177,0,abs,<= 1e-6 e,True
+mp-2285510,probe_n_reassigned[seed=20260905],1095,1095,0,abs,informational,True
+mp-2285510,evaluated_rungs,38,38,,equal,identical set,True
+mp-2285510,rung[SPERR 1e-07] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 1e-07] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 1e-07] bader_error_e,0.0017594386,0.0017594386,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 1e-07] compressed_bytes,1731512,1731512,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 1e-07] realized_Linf,0.0002490935531,0.0002490935531,0,abs,informational,True
+mp-2285510,rung[SPERR 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 1e-07] n_reassigned,1000,1000,0,abs,informational,True
+mp-2285510,rung[SPERR 1e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 3e-07] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 3e-07] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 3e-07] bader_error_e,0.0015019191,0.0015019191,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 3e-07] compressed_bytes,1547222,1547222,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 3e-07] realized_Linf,0.0007472916897,0.0007472916897,0,abs,informational,True
+mp-2285510,rung[SPERR 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 3e-07] n_reassigned,1053,1053,0,abs,informational,True
+mp-2285510,rung[SPERR 3e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 1e-06] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 1e-06] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 1e-06] bader_error_e,0.0021899364,0.0021899364,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 1e-06] compressed_bytes,1346327,1346327,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 1e-06] realized_Linf,0.002490991044,0.002490991044,0,abs,informational,True
+mp-2285510,rung[SPERR 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 1e-06] n_reassigned,1671,1671,0,abs,informational,True
+mp-2285510,rung[SPERR 1e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 3e-06] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 3e-06] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 3e-06] bader_error_e,0.0020354225,0.0020354225,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 3e-06] compressed_bytes,1162238,1162238,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 3e-06] realized_Linf,0.007472905641,0.007472905641,0,abs,informational,True
+mp-2285510,rung[SPERR 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 3e-06] n_reassigned,2220,2220,0,abs,informational,True
+mp-2285510,rung[SPERR 3e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 1e-05] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 1e-05] bader_error_e,0.0027236548,0.0027236548,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 1e-05] compressed_bytes,958108,958108,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 1e-05] realized_Linf,0.02490996433,0.02490996433,0,abs,informational,True
+mp-2285510,rung[SPERR 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 1e-05] n_reassigned,4692,4692,0,abs,informational,True
+mp-2285510,rung[SPERR 1e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 3e-05] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 3e-05] bader_error_e,0.0043914976,0.0043914976,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 3e-05] compressed_bytes,775807,775807,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 3e-05] realized_Linf,0.07472941519,0.07472941519,0,abs,informational,True
+mp-2285510,rung[SPERR 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 3e-05] n_reassigned,8504,8504,0,abs,informational,True
+mp-2285510,rung[SPERR 3e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.0001] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.0001] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.0001] bader_error_e,0.0128336918,0.0128336918,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.0001] compressed_bytes,588471,588471,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.0001] realized_Linf,0.2490966942,0.2490966942,0,abs,informational,True
+mp-2285510,rung[SPERR 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.0001] n_reassigned,16527,16527,0,abs,informational,True
+mp-2285510,rung[SPERR 0.0001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.0003] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.0003] bader_error_e,0.0229917766,0.0229917766,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.0003] compressed_bytes,438486,438486,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.0003] realized_Linf,0.7472949974,0.7472949974,0,abs,informational,True
+mp-2285510,rung[SPERR 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.0003] n_reassigned,28831,28831,0,abs,informational,True
+mp-2285510,rung[SPERR 0.0003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.001] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.001] bader_error_e,0.0185929164,0.0185929164,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.001] compressed_bytes,303575,303575,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.001] realized_Linf,2.49097198,2.49097198,0,abs,informational,True
+mp-2285510,rung[SPERR 0.001] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.001] n_reassigned,45918,45918,0,abs,informational,True
+mp-2285510,rung[SPERR 0.001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.003] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.003] bader_error_e,0.0190784437,0.0190784437,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.003] compressed_bytes,201685,201685,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.003] realized_Linf,7.47296729,7.47296729,0,abs,informational,True
+mp-2285510,rung[SPERR 0.003] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.003] n_reassigned,81228,81228,0,abs,informational,True
+mp-2285510,rung[SPERR 0.003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.01] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.01] bader_error_e,0.0924665194,0.0924665194,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.01] compressed_bytes,113824,113824,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.01] realized_Linf,24.90756642,24.90756642,0,abs,informational,True
+mp-2285510,rung[SPERR 0.01] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.01] n_reassigned,145799,145799,0,abs,informational,True
+mp-2285510,rung[SPERR 0.01] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.03] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.03] bader_error_e,0.3091343742,0.3091343742,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.03] compressed_bytes,59307,59307,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.03] realized_Linf,74.71982706,74.71982706,0,abs,informational,True
+mp-2285510,rung[SPERR 0.03] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.03] n_reassigned,215074,215074,0,abs,informational,True
+mp-2285510,rung[SPERR 0.03] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SPERR 0.1] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SPERR 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SPERR 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SPERR 0.1] bader_error_e,0.7589951831,0.7589951831,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SPERR 0.1] compressed_bytes,23137,23137,0,rel,<= 0.1 %,True
+mp-2285510,rung[SPERR 0.1] realized_Linf,248.760098,248.760098,0,abs,informational,True
+mp-2285510,rung[SPERR 0.1] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SPERR 0.1] n_reassigned,273000,273000,0,abs,informational,True
+mp-2285510,rung[SPERR 0.1] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2285510,rung[SZ3 1e-07] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 1e-07] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 1e-07] bader_error_e,0.0015698557,0.0015698557,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 1e-07] compressed_bytes,1024579,1024579,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 1e-07] realized_Linf,0.0002491003504,0.0002491003504,0,abs,informational,True
+mp-2285510,rung[SZ3 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 1e-07] n_reassigned,967,967,0,abs,informational,True
+mp-2285510,rung[SZ3 1e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 3e-07] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 3e-07] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 3e-07] bader_error_e,0.0014803322,0.0014803322,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 3e-07] compressed_bytes,806741,806741,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 3e-07] realized_Linf,0.0007473006407,0.0007473006407,0,abs,informational,True
+mp-2285510,rung[SZ3 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 3e-07] n_reassigned,946,946,0,abs,informational,True
+mp-2285510,rung[SZ3 3e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 1e-06] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 1e-06] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 1e-06] bader_error_e,0.0016720222,0.0016720222,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 1e-06] compressed_bytes,587017,587017,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 1e-06] realized_Linf,0.002491001037,0.002491001037,0,abs,informational,True
+mp-2285510,rung[SZ3 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 1e-06] n_reassigned,1353,1353,0,abs,informational,True
+mp-2285510,rung[SZ3 1e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 3e-06] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 3e-06] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 3e-06] bader_error_e,0.0012321201,0.0012321201,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 3e-06] compressed_bytes,425036,425036,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 3e-06] realized_Linf,0.007473010447,0.007473010447,0,abs,informational,True
+mp-2285510,rung[SZ3 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 3e-06] n_reassigned,1806,1806,0,abs,informational,True
+mp-2285510,rung[SZ3 3e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 1e-05] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 1e-05] bader_error_e,0.0021947918,0.0021947918,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 1e-05] compressed_bytes,267083,267083,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 1e-05] realized_Linf,0.02490997143,0.02490997143,0,abs,informational,True
+mp-2285510,rung[SZ3 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 1e-05] n_reassigned,3642,3642,0,abs,informational,True
+mp-2285510,rung[SZ3 1e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 3e-05] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 3e-05] bader_error_e,0.0031283322,0.0031283322,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 3e-05] compressed_bytes,164963,164963,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 3e-05] realized_Linf,0.07473005603,0.07473005603,0,abs,informational,True
+mp-2285510,rung[SZ3 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 3e-05] n_reassigned,6933,6933,0,abs,informational,True
+mp-2285510,rung[SZ3 3e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 0.0001] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.0001] bader_error_e,0.0077123027,0.0077123027,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 0.0001] compressed_bytes,96136,96136,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 0.0001] realized_Linf,0.2491000788,0.2491000788,0,abs,informational,True
+mp-2285510,rung[SZ3 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 0.0001] n_reassigned,14711,14711,0,abs,informational,True
+mp-2285510,rung[SZ3 0.0001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 0.0003] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.0003] bader_error_e,0.0104037042,0.0104037042,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 0.0003] compressed_bytes,53272,53272,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 0.0003] realized_Linf,0.7473000214,0.7473000214,0,abs,informational,True
+mp-2285510,rung[SZ3 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 0.0003] n_reassigned,19796,19796,0,abs,informational,True
+mp-2285510,rung[SZ3 0.0003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 0.001] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.001] bader_error_e,0.0136064318,0.0136064318,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 0.001] compressed_bytes,25698,25698,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 0.001] realized_Linf,2.490984098,2.490984098,0,abs,informational,True
+mp-2285510,rung[SZ3 0.001] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 0.001] n_reassigned,39505,39505,0,abs,informational,True
+mp-2285510,rung[SZ3 0.001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 0.003] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.003] bader_error_e,0.0881132161,0.0881132161,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 0.003] compressed_bytes,15961,15961,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 0.003] realized_Linf,7.472863837,7.472863837,0,abs,informational,True
+mp-2285510,rung[SZ3 0.003] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 0.003] n_reassigned,115460,115460,0,abs,informational,True
+mp-2285510,rung[SZ3 0.003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 0.01] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.01] bader_error_e,0.1305808602,0.1305808602,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 0.01] compressed_bytes,6479,6479,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 0.01] realized_Linf,24.90881898,24.90881898,0,abs,informational,True
+mp-2285510,rung[SZ3 0.01] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 0.01] n_reassigned,170411,170411,0,abs,informational,True
+mp-2285510,rung[SZ3 0.01] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[SZ3 0.03] status,OK,OK,,equal,identical,True
+mp-2285510,rung[SZ3 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[SZ3 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[SZ3 0.03] bader_error_e,1.787944854,1.787944854,0,abs,<= 1e-6 e,True
+mp-2285510,rung[SZ3 0.03] compressed_bytes,3847,3847,0,rel,<= 0.1 %,True
+mp-2285510,rung[SZ3 0.03] realized_Linf,74.72718509,74.72718509,0,abs,informational,True
+mp-2285510,rung[SZ3 0.03] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[SZ3 0.03] n_reassigned,301897,301897,0,abs,informational,True
+mp-2285510,rung[SZ3 0.03] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2285510,rung[ZFP 1e-07] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-07] bader_error_e,7.34104e-05,7.34104e-05,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 1e-07] compressed_bytes,1264624,1264624,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 1e-07] realized_Linf,6.242644226e-05,6.242644226e-05,0,abs,informational,True
+mp-2285510,rung[ZFP 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 1e-07] n_reassigned,40,40,0,abs,informational,True
+mp-2285510,rung[ZFP 1e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 3e-07] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-07] bader_error_e,6.41563e-05,6.41563e-05,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 3e-07] compressed_bytes,1159136,1159136,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 3e-07] realized_Linf,0.0001256449467,0.0001256449467,0,abs,informational,True
+mp-2285510,rung[ZFP 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 3e-07] n_reassigned,92,92,0,abs,informational,True
+mp-2285510,rung[ZFP 3e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 1e-06] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-06] certified@0.0001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-06] bader_error_e,8.47554e-05,8.47554e-05,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 1e-06] compressed_bytes,957096,957096,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 1e-06] realized_Linf,0.0005694346094,0.0005694346094,0,abs,informational,True
+mp-2285510,rung[ZFP 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 1e-06] n_reassigned,78,78,0,abs,informational,True
+mp-2285510,rung[ZFP 1e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 3e-06] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-06] certified@0.0001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-06] bader_error_e,9.95237e-05,9.95237e-05,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 3e-06] compressed_bytes,861352,861352,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 3e-06] realized_Linf,0.0009289131582,0.0009289131582,0,abs,informational,True
+mp-2285510,rung[ZFP 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 3e-06] n_reassigned,88,88,0,abs,informational,True
+mp-2285510,rung[ZFP 3e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 1e-05] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 1e-05] bader_error_e,0.0001005871,0.0001005871,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 1e-05] compressed_bytes,683480,683480,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 1e-05] realized_Linf,0.004027924697,0.004027924697,0,abs,informational,True
+mp-2285510,rung[ZFP 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 1e-05] n_reassigned,184,184,0,abs,informational,True
+mp-2285510,rung[ZFP 1e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 3e-05] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 3e-05] bader_error_e,0.000240457,0.000240457,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 3e-05] compressed_bytes,524184,524184,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 3e-05] realized_Linf,0.01541485247,0.01541485247,0,abs,informational,True
+mp-2285510,rung[ZFP 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 3e-05] n_reassigned,634,634,0,abs,informational,True
+mp-2285510,rung[ZFP 3e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 0.0001] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.0001] certified@0.001,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.0001] bader_error_e,0.0002546707,0.0002546707,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.0001] compressed_bytes,453304,453304,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 0.0001] realized_Linf,0.02797246406,0.02797246406,0,abs,informational,True
+mp-2285510,rung[ZFP 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 0.0001] n_reassigned,1147,1147,0,abs,informational,True
+mp-2285510,rung[ZFP 0.0001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 0.0003] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.0003] bader_error_e,0.0015898938,0.0015898938,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.0003] compressed_bytes,328688,328688,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 0.0003] realized_Linf,0.1028771494,0.1028771494,0,abs,informational,True
+mp-2285510,rung[ZFP 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 0.0003] n_reassigned,3715,3715,0,abs,informational,True
+mp-2285510,rung[ZFP 0.0003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 0.001] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.001] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.001] bader_error_e,0.005207995,0.005207995,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.001] compressed_bytes,229184,229184,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 0.001] realized_Linf,0.433454498,0.433454498,0,abs,informational,True
+mp-2285510,rung[ZFP 0.001] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 0.001] n_reassigned,8941,8941,0,abs,informational,True
+mp-2285510,rung[ZFP 0.001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 0.003] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.003] certified@0.01,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.003] bader_error_e,0.0091086141,0.0091086141,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.003] compressed_bytes,189016,189016,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 0.003] realized_Linf,0.7305047,0.7305047,0,abs,informational,True
+mp-2285510,rung[ZFP 0.003] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 0.003] n_reassigned,13753,13753,0,abs,informational,True
+mp-2285510,rung[ZFP 0.003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 0.01] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.01] bader_error_e,0.0167260051,0.0167260051,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.01] compressed_bytes,125832,125832,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 0.01] realized_Linf,2.8877688,2.8877688,0,abs,informational,True
+mp-2285510,rung[ZFP 0.01] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 0.01] n_reassigned,36847,36847,0,abs,informational,True
+mp-2285510,rung[ZFP 0.01] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,rung[ZFP 0.03] status,FAILED,FAILED,,equal,identical,True
+mp-2285510,rung[ZFP 0.03] certifiable_error,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.03] bader_error_e,inf,inf,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.03] error,IndexError: index 3 is out of bounds for axis 1 with size 3,IndexError: index 3 is out of bounds for axis 1 with size 3,,equal,informational,True
+mp-2285510,rung[ZFP 0.1] status,OK,OK,,equal,identical,True
+mp-2285510,rung[ZFP 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2285510,rung[ZFP 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2285510,rung[ZFP 0.1] bader_error_e,0.7880694593,0.7880694593,0,abs,<= 1e-6 e,True
+mp-2285510,rung[ZFP 0.1] compressed_bytes,67088,67088,0,rel,<= 0.1 %,True
+mp-2285510,rung[ZFP 0.1] realized_Linf,16.30579386,16.30579386,0,abs,informational,True
+mp-2285510,rung[ZFP 0.1] bound_respected,True,True,,equal,informational,True
+mp-2285510,rung[ZFP 0.1] n_reassigned,238881,238881,0,abs,informational,True
+mp-2285510,rung[ZFP 0.1] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2285510,writer_choice@0.0001,none,none,,equal,identical (codec and rung),True
+mp-2285510,writer_choice@0.001,none,none,,equal,identical (codec and rung),True
+mp-2285510,writer_choice@0.01,SZ3 0.0001,SZ3 0.0001,,equal,identical (codec and rung),True
+mp-2285510,writer_choice@0.01 compressed_bytes,96136,96136,0,rel,<= 0.1 %,True
+mp-2050393,status,SUCCESS,SUCCESS,,equal,identical,True
+mp-2050393,sha256,38a31fb85b2c8d9f75df9bfbe2b9bc7e252e92013ad601b65a6beb27f0ed1ebc,38a31fb85b2c8d9f75df9bfbe2b9bc7e252e92013ad601b65a6beb27f0ed1ebc,,equal,informational,True
+mp-2050393,json_bytes,7673452,7673452,,equal,informational,True
+mp-2050393,shape,56x96x100,56x96x100,,equal,informational,True
+mp-2050393,npoints,537600,537600,,equal,informational,True
+mp-2050393,natoms,6,6,,equal,informational,True
+mp-2050393,natoms_bader,6,6,,equal,informational,True
+mp-2050393,spin_channels,2,2,,equal,informational,True
+mp-2050393,formula,P2Os,P2Os,,equal,informational,True
+mp-2050393,crystal_system,orthorhombic,orthorhombic,,equal,informational,True
+mp-2050393,spacegroup,58,58,,equal,informational,True
+mp-2050393,epsilon,3.034906251e-05,3.034906251e-05,0,abs,informational,True
+mp-2050393,value_ptp,768.9848178,768.9848178,0,abs,informational,True
+mp-2050393,value_min,-32.69187672,-32.69187672,0,abs,informational,True
+mp-2050393,value_max,736.2929411,736.2929411,0,abs,informational,True
+mp-2050393,raw64_bytes,4300800,4300800,0,rel,informational,True
+mp-2050393,lossless_bytes,3399844,3399844,0,rel,informational,True
+mp-2050393,bader_solves,44,44,,equal,informational,True
+mp-2050393,eligible@0.0001,False,False,,equal,identical,True
+mp-2050393,eligible@0.001,False,False,,equal,identical,True
+mp-2050393,eligible@0.01,True,True,,equal,identical,True
+mp-2050393,floor_e,0.0035114392,0.0035114392,0,abs,<= 1e-6 e,True
+mp-2050393,probe_seeds,"[1, 2, 3, 4, 20260905]","[1, 2, 3, 4, 20260905]",,equal,identical,True
+mp-2050393,probe_response_e[seed=1],0.0001738361,0.0001738361,0,abs,<= 1e-6 e,True
+mp-2050393,probe_n_reassigned[seed=1],8,8,0,abs,informational,True
+mp-2050393,probe_response_e[seed=2],0.0033959328,0.0033959328,0,abs,<= 1e-6 e,True
+mp-2050393,probe_n_reassigned[seed=2],59,59,0,abs,informational,True
+mp-2050393,probe_response_e[seed=3],0.0035114392,0.0035114392,0,abs,<= 1e-6 e,True
+mp-2050393,probe_n_reassigned[seed=3],63,63,0,abs,informational,True
+mp-2050393,probe_response_e[seed=4],0.0001899577,0.0001899577,0,abs,<= 1e-6 e,True
+mp-2050393,probe_n_reassigned[seed=4],8,8,0,abs,informational,True
+mp-2050393,probe_response_e[seed=20260905],0.0034377588,0.0034377588,0,abs,<= 1e-6 e,True
+mp-2050393,probe_n_reassigned[seed=20260905],58,58,0,abs,informational,True
+mp-2050393,evaluated_rungs,38,38,,equal,identical set,True
+mp-2050393,rung[SPERR 1e-07] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 1e-07] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 1e-07] bader_error_e,0.0034535137,0.0034535137,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 1e-07] compressed_bytes,1151140,1151140,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 1e-07] realized_Linf,7.689632199e-05,7.689632199e-05,0,abs,informational,True
+mp-2050393,rung[SPERR 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 1e-07] n_reassigned,59,59,0,abs,informational,True
+mp-2050393,rung[SPERR 1e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 3e-07] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 3e-07] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 3e-07] bader_error_e,0.0033685622,0.0033685622,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 3e-07] compressed_bytes,1044627,1044627,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 3e-07] realized_Linf,0.0002306923213,0.0002306923213,0,abs,informational,True
+mp-2050393,rung[SPERR 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 3e-07] n_reassigned,69,69,0,abs,informational,True
+mp-2050393,rung[SPERR 3e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 1e-06] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 1e-06] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 1e-06] bader_error_e,0.0036193388,0.0036193388,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 1e-06] compressed_bytes,928015,928015,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 1e-06] realized_Linf,0.0007689715583,0.0007689715583,0,abs,informational,True
+mp-2050393,rung[SPERR 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 1e-06] n_reassigned,90,90,0,abs,informational,True
+mp-2050393,rung[SPERR 1e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 3e-06] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 3e-06] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 3e-06] bader_error_e,0.0040754402,0.0040754402,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 3e-06] compressed_bytes,821380,821380,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 3e-06] realized_Linf,0.002306941276,0.002306941276,0,abs,informational,True
+mp-2050393,rung[SPERR 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 3e-06] n_reassigned,190,190,0,abs,informational,True
+mp-2050393,rung[SPERR 3e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 1e-05] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 1e-05] bader_error_e,0.0039820325,0.0039820325,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 1e-05] compressed_bytes,704589,704589,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 1e-05] realized_Linf,0.007689732189,0.007689732189,0,abs,informational,True
+mp-2050393,rung[SPERR 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 1e-05] n_reassigned,1140,1140,0,abs,informational,True
+mp-2050393,rung[SPERR 1e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 3e-05] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 3e-05] bader_error_e,0.0086404128,0.0086404128,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 3e-05] compressed_bytes,597363,597363,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 3e-05] realized_Linf,0.02306923872,0.02306923872,0,abs,informational,True
+mp-2050393,rung[SPERR 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 3e-05] n_reassigned,2703,2703,0,abs,informational,True
+mp-2050393,rung[SPERR 3e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.0001] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.0001] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.0001] bader_error_e,0.0256607692,0.0256607692,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 0.0001] compressed_bytes,476857,476857,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.0001] realized_Linf,0.07689708039,0.07689708039,0,abs,informational,True
+mp-2050393,rung[SPERR 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.0001] n_reassigned,6270,6270,0,abs,informational,True
+mp-2050393,rung[SPERR 0.0001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.0003] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.0003] bader_error_e,0.074295245,0.074295245,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 0.0003] compressed_bytes,371766,371766,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.0003] realized_Linf,0.2306860856,0.2306860856,0,abs,informational,True
+mp-2050393,rung[SPERR 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.0003] n_reassigned,13087,13087,0,abs,informational,True
+mp-2050393,rung[SPERR 0.0003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.001] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.001] bader_error_e,0.1204882404,0.1204882404,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 0.001] compressed_bytes,274802,274802,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.001] realized_Linf,0.7689757883,0.7689757883,0,abs,informational,True
+mp-2050393,rung[SPERR 0.001] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.001] n_reassigned,22432,22432,0,abs,informational,True
+mp-2050393,rung[SPERR 0.001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.003] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.003] bader_error_e,0.1220253317,0.1220253317,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 0.003] compressed_bytes,199498,199498,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.003] realized_Linf,2.30678176,2.30678176,0,abs,informational,True
+mp-2050393,rung[SPERR 0.003] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.003] n_reassigned,33939,33939,0,abs,informational,True
+mp-2050393,rung[SPERR 0.003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.01] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.01] bader_error_e,0.3448613827,0.3448613827,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 0.01] compressed_bytes,134099,134099,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.01] realized_Linf,7.689582736,7.689582736,0,abs,informational,True
+mp-2050393,rung[SPERR 0.01] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.01] n_reassigned,52128,52128,0,abs,informational,True
+mp-2050393,rung[SPERR 0.01] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.03] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.03] bader_error_e,0.4231005524,0.4213236938,0.0017768586,abs,<= 1e-6 e,False
+mp-2050393,rung[SPERR 0.03] compressed_bytes,87910,87910,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.03] realized_Linf,23.06766582,23.06766582,0,abs,informational,True
+mp-2050393,rung[SPERR 0.03] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.03] n_reassigned,66574,66557,17,abs,informational,True
+mp-2050393,rung[SPERR 0.03] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SPERR 0.1] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SPERR 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SPERR 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SPERR 0.1] bader_error_e,0.9123664293,0.9123664293,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SPERR 0.1] compressed_bytes,44213,44213,0,rel,<= 0.1 %,True
+mp-2050393,rung[SPERR 0.1] realized_Linf,76.89814675,76.89814675,0,abs,informational,True
+mp-2050393,rung[SPERR 0.1] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SPERR 0.1] n_reassigned,109280,109270,10,abs,informational,True
+mp-2050393,rung[SPERR 0.1] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2050393,rung[SZ3 1e-07] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-07] bader_error_e,0.0002317885,0.0002317885,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 1e-07] compressed_bytes,681527,681527,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 1e-07] realized_Linf,7.689836496e-05,7.689836496e-05,0,abs,informational,True
+mp-2050393,rung[SZ3 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 1e-07] n_reassigned,10,10,0,abs,informational,True
+mp-2050393,rung[SZ3 1e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 3e-07] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-07] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 3e-07] bader_error_e,0.0035240607,0.0035240607,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 3e-07] compressed_bytes,546472,546472,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 3e-07] realized_Linf,0.0002306953239,0.0002306953239,0,abs,informational,True
+mp-2050393,rung[SZ3 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 3e-07] n_reassigned,132,132,0,abs,informational,True
+mp-2050393,rung[SZ3 3e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 1e-06] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 1e-06] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-06] bader_error_e,0.0036791089,0.0036791089,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 1e-06] compressed_bytes,410797,410797,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 1e-06] realized_Linf,0.0007689818736,0.0007689818736,0,abs,informational,True
+mp-2050393,rung[SZ3 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 1e-06] n_reassigned,114,114,0,abs,informational,True
+mp-2050393,rung[SZ3 1e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 3e-06] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-06] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 3e-06] bader_error_e,0.0039560702,0.0039560702,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 3e-06] compressed_bytes,288619,288619,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 3e-06] realized_Linf,0.002306948128,0.002306948128,0,abs,informational,True
+mp-2050393,rung[SZ3 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 3e-06] n_reassigned,232,232,0,abs,informational,True
+mp-2050393,rung[SZ3 3e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 1e-05] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 1e-05] bader_error_e,0.0055263728,0.0055263728,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 1e-05] compressed_bytes,179857,179857,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 1e-05] realized_Linf,0.007689826654,0.007689826654,0,abs,informational,True
+mp-2050393,rung[SZ3 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 1e-05] n_reassigned,665,665,0,abs,informational,True
+mp-2050393,rung[SZ3 1e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 3e-05] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-05] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 3e-05] bader_error_e,0.0114588978,0.0114588978,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 3e-05] compressed_bytes,111888,111888,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 3e-05] realized_Linf,0.0230695421,0.0230695421,0,abs,informational,True
+mp-2050393,rung[SZ3 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 3e-05] n_reassigned,1478,1478,0,abs,informational,True
+mp-2050393,rung[SZ3 3e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 0.0001] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.0001] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.0001] bader_error_e,0.0134363831,0.0134363831,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 0.0001] compressed_bytes,64059,64059,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 0.0001] realized_Linf,0.07689834284,0.07689834284,0,abs,informational,True
+mp-2050393,rung[SZ3 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 0.0001] n_reassigned,4117,4117,0,abs,informational,True
+mp-2050393,rung[SZ3 0.0001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 0.0003] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.0003] bader_error_e,0.0327366861,0.0327366861,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 0.0003] compressed_bytes,32044,32044,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 0.0003] realized_Linf,0.2306947141,0.2306947141,0,abs,informational,True
+mp-2050393,rung[SZ3 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 0.0003] n_reassigned,6049,6049,0,abs,informational,True
+mp-2050393,rung[SZ3 0.0003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 0.001] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.001] bader_error_e,0.0590467437,0.0590467437,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 0.001] compressed_bytes,19011,19011,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 0.001] realized_Linf,0.7689785188,0.7689785188,0,abs,informational,True
+mp-2050393,rung[SZ3 0.001] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 0.001] n_reassigned,15412,15412,0,abs,informational,True
+mp-2050393,rung[SZ3 0.001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 0.003] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.003] bader_error_e,0.0520264347,0.0520264347,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 0.003] compressed_bytes,8705,8705,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 0.003] realized_Linf,2.306910791,2.306910791,0,abs,informational,True
+mp-2050393,rung[SZ3 0.003] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 0.003] n_reassigned,23510,23510,0,abs,informational,True
+mp-2050393,rung[SZ3 0.003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 0.01] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.01] bader_error_e,0.3064377911,0.3064377911,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 0.01] compressed_bytes,6411,6411,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 0.01] realized_Linf,7.689790132,7.689790132,0,abs,informational,True
+mp-2050393,rung[SZ3 0.01] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 0.01] n_reassigned,50769,50769,0,abs,informational,True
+mp-2050393,rung[SZ3 0.01] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[SZ3 0.03] status,OK,OK,,equal,identical,True
+mp-2050393,rung[SZ3 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[SZ3 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[SZ3 0.03] bader_error_e,2.501579515,2.501579515,0,abs,<= 1e-6 e,True
+mp-2050393,rung[SZ3 0.03] compressed_bytes,2489,2489,0,rel,<= 0.1 %,True
+mp-2050393,rung[SZ3 0.03] realized_Linf,23.06675607,23.06675607,0,abs,informational,True
+mp-2050393,rung[SZ3 0.03] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[SZ3 0.03] n_reassigned,102957,102957,0,abs,informational,True
+mp-2050393,rung[SZ3 0.03] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2050393,rung[ZFP 1e-07] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-07] bader_error_e,1.57301e-05,1.57301e-05,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 1e-07] compressed_bytes,798088,798088,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 1e-07] realized_Linf,1.634564705e-05,1.634564705e-05,0,abs,informational,True
+mp-2050393,rung[ZFP 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 1e-07] n_reassigned,2,2,0,abs,informational,True
+mp-2050393,rung[ZFP 1e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 3e-07] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 3e-07] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-07] bader_error_e,0.0034957264,0.0034957264,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 3e-07] compressed_bytes,734832,734832,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 3e-07] realized_Linf,3.090659143e-05,3.090659143e-05,0,abs,informational,True
+mp-2050393,rung[ZFP 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 3e-07] n_reassigned,114,114,0,abs,informational,True
+mp-2050393,rung[ZFP 3e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 1e-06] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 1e-06] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-06] bader_error_e,0.0034957464,0.0034957464,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 1e-06] compressed_bytes,612928,612928,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 1e-06] realized_Linf,0.0001182719352,0.0001182719352,0,abs,informational,True
+mp-2050393,rung[ZFP 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 1e-06] n_reassigned,113,113,0,abs,informational,True
+mp-2050393,rung[ZFP 1e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 3e-06] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 3e-06] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-06] bader_error_e,0.0033679023,0.0033679023,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 3e-06] compressed_bytes,498712,498712,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 3e-06] realized_Linf,0.0004795633977,0.0004795633977,0,abs,informational,True
+mp-2050393,rung[ZFP 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 3e-06] n_reassigned,65,65,0,abs,informational,True
+mp-2050393,rung[ZFP 3e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 1e-05] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 1e-05] bader_error_e,0.0036819291,0.0036819291,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 1e-05] compressed_bytes,444856,444856,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 1e-05] realized_Linf,0.000948256999,0.000948256999,0,abs,informational,True
+mp-2050393,rung[ZFP 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 1e-05] n_reassigned,77,77,0,abs,informational,True
+mp-2050393,rung[ZFP 1e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 3e-05] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 3e-05] bader_error_e,0.0007124442,0.0007124442,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 3e-05] compressed_bytes,346320,346320,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 3e-05] realized_Linf,0.003934439727,0.003934439727,0,abs,informational,True
+mp-2050393,rung[ZFP 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 3e-05] n_reassigned,63,63,0,abs,informational,True
+mp-2050393,rung[ZFP 3e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.0001] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.0001] bader_error_e,0.0078080707,0.0078080707,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.0001] compressed_bytes,260480,260480,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.0001] realized_Linf,0.0142360968,0.0142360968,0,abs,informational,True
+mp-2050393,rung[ZFP 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.0001] n_reassigned,516,516,0,abs,informational,True
+mp-2050393,rung[ZFP 0.0001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.0003] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.0003] bader_error_e,0.0145304088,0.0145304088,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.0003] compressed_bytes,222616,222616,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.0003] realized_Linf,0.02710594566,0.02710594566,0,abs,informational,True
+mp-2050393,rung[ZFP 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.0003] n_reassigned,1168,1168,0,abs,informational,True
+mp-2050393,rung[ZFP 0.0003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.001] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.001] bader_error_e,0.0104368196,0.0104368196,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.001] compressed_bytes,160232,160232,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.001] realized_Linf,0.086260049,0.086260049,0,abs,informational,True
+mp-2050393,rung[ZFP 0.001] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.001] n_reassigned,1965,1965,0,abs,informational,True
+mp-2050393,rung[ZFP 0.001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.003] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.003] bader_error_e,0.0287378832,0.0287378832,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.003] compressed_bytes,111584,111584,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.003] realized_Linf,0.302569549,0.302569549,0,abs,informational,True
+mp-2050393,rung[ZFP 0.003] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.003] n_reassigned,5683,5683,0,abs,informational,True
+mp-2050393,rung[ZFP 0.003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.01] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.01] bader_error_e,0.0448374694,0.0448374694,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.01] compressed_bytes,93008,93008,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.01] realized_Linf,0.640033816,0.640033816,0,abs,informational,True
+mp-2050393,rung[ZFP 0.01] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.01] n_reassigned,9447,9447,0,abs,informational,True
+mp-2050393,rung[ZFP 0.01] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.03] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.03] bader_error_e,0.1214534914,0.1214534914,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.03] compressed_bytes,62992,62992,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.03] realized_Linf,2.15326973,2.15326973,0,abs,informational,True
+mp-2050393,rung[ZFP 0.03] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.03] n_reassigned,19957,19957,0,abs,informational,True
+mp-2050393,rung[ZFP 0.03] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,rung[ZFP 0.1] status,OK,OK,,equal,identical,True
+mp-2050393,rung[ZFP 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2050393,rung[ZFP 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2050393,rung[ZFP 0.1] bader_error_e,0.1175273614,0.1175273614,0,abs,<= 1e-6 e,True
+mp-2050393,rung[ZFP 0.1] compressed_bytes,42160,42160,0,rel,<= 0.1 %,True
+mp-2050393,rung[ZFP 0.1] realized_Linf,7.187930129,7.187930129,0,abs,informational,True
+mp-2050393,rung[ZFP 0.1] bound_respected,True,True,,equal,informational,True
+mp-2050393,rung[ZFP 0.1] n_reassigned,39363,39363,0,abs,informational,True
+mp-2050393,rung[ZFP 0.1] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2050393,writer_choice@0.0001,none,none,,equal,identical (codec and rung),True
+mp-2050393,writer_choice@0.001,none,none,,equal,identical (codec and rung),True
+mp-2050393,writer_choice@0.01,SZ3 1e-05,SZ3 1e-05,,equal,identical (codec and rung),True
+mp-2050393,writer_choice@0.01 compressed_bytes,179857,179857,0,rel,<= 0.1 %,True
+mp-2367698,status,SUCCESS,SUCCESS,,equal,identical,True
+mp-2367698,sha256,74434d7d4047f3ab9f39edd73ca7057c391faafd884313a3a8eb646ec1a53fb4,74434d7d4047f3ab9f39edd73ca7057c391faafd884313a3a8eb646ec1a53fb4,,equal,informational,True
+mp-2367698,json_bytes,19649046,19649046,,equal,informational,True
+mp-2367698,shape,144x96x96,144x96x96,,equal,informational,True
+mp-2367698,npoints,1327104,1327104,,equal,informational,True
+mp-2367698,natoms,12,12,,equal,informational,True
+mp-2367698,natoms_bader,12,12,,equal,informational,True
+mp-2367698,spin_channels,2,2,,equal,informational,True
+mp-2367698,formula,SiO2,SiO2,,equal,informational,True
+mp-2367698,crystal_system,monoclinic,monoclinic,,equal,informational,True
+mp-2367698,spacegroup,4,4,,equal,informational,True
+mp-2367698,epsilon,6.103437499e-05,6.103437499e-05,0,abs,informational,True
+mp-2367698,value_ptp,1568.830014,1568.830014,0,abs,informational,True
+mp-2367698,value_min,-30.95339713,-30.95339713,0,abs,informational,True
+mp-2367698,value_max,1537.876617,1537.876617,0,abs,informational,True
+mp-2367698,raw64_bytes,10616832,10616832,0,rel,informational,True
+mp-2367698,lossless_bytes,10093713,10093713,0,rel,informational,True
+mp-2367698,bader_solves,42,42,,equal,informational,True
+mp-2367698,eligible@0.0001,True,True,,equal,identical,True
+mp-2367698,eligible@0.001,True,True,,equal,identical,True
+mp-2367698,eligible@0.01,True,True,,equal,identical,True
+mp-2367698,floor_e,4.44642e-05,4.44642e-05,0,abs,<= 1e-6 e,True
+mp-2367698,probe_seeds,"[1, 2, 3, 4, 20260905]","[1, 2, 3, 4, 20260905]",,equal,identical,True
+mp-2367698,probe_response_e[seed=1],4.44642e-05,4.44642e-05,0,abs,<= 1e-6 e,True
+mp-2367698,probe_n_reassigned[seed=1],102,102,0,abs,informational,True
+mp-2367698,probe_response_e[seed=2],1.48975e-05,1.48975e-05,0,abs,<= 1e-6 e,True
+mp-2367698,probe_n_reassigned[seed=2],92,92,0,abs,informational,True
+mp-2367698,probe_response_e[seed=3],3.64245e-05,3.64245e-05,0,abs,<= 1e-6 e,True
+mp-2367698,probe_n_reassigned[seed=3],112,112,0,abs,informational,True
+mp-2367698,probe_response_e[seed=4],4.16954e-05,4.16954e-05,0,abs,<= 1e-6 e,True
+mp-2367698,probe_n_reassigned[seed=4],88,88,0,abs,informational,True
+mp-2367698,probe_response_e[seed=20260905],9.1424e-06,9.1424e-06,0,abs,<= 1e-6 e,True
+mp-2367698,probe_n_reassigned[seed=20260905],82,82,0,abs,informational,True
+mp-2367698,evaluated_rungs,38,38,,equal,identical set,True
+mp-2367698,rung[SPERR 1e-07] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-07] bader_error_e,1.97226e-05,1.97226e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 1e-07] compressed_bytes,2395141,2395141,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 1e-07] realized_Linf,0.0001568821569,0.0001568821569,0,abs,informational,True
+mp-2367698,rung[SPERR 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 1e-07] n_reassigned,175,175,0,abs,informational,True
+mp-2367698,rung[SPERR 1e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 3e-07] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-07] bader_error_e,0.000103656,0.000103656,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 3e-07] compressed_bytes,2133112,2133112,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 3e-07] realized_Linf,0.0004706435224,0.0004706435224,0,abs,informational,True
+mp-2367698,rung[SPERR 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 3e-07] n_reassigned,468,468,0,abs,informational,True
+mp-2367698,rung[SPERR 3e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 1e-06] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-06] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-06] bader_error_e,8.2691e-05,8.2691e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 1e-06] compressed_bytes,1844526,1844526,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 1e-06] realized_Linf,0.001568819904,0.001568819904,0,abs,informational,True
+mp-2367698,rung[SPERR 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 1e-06] n_reassigned,1558,1558,0,abs,informational,True
+mp-2367698,rung[SPERR 1e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 3e-06] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-06] bader_error_e,0.0001421242,0.0001421242,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 3e-06] compressed_bytes,1581347,1581347,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 3e-06] realized_Linf,0.004706459304,0.004706459304,0,abs,informational,True
+mp-2367698,rung[SPERR 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 3e-06] n_reassigned,4248,4248,0,abs,informational,True
+mp-2367698,rung[SPERR 3e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 1e-05] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 1e-05] bader_error_e,0.0002577155,0.0002577155,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 1e-05] compressed_bytes,1302106,1302106,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 1e-05] realized_Linf,0.01568819648,0.01568819648,0,abs,informational,True
+mp-2367698,rung[SPERR 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 1e-05] n_reassigned,10026,10026,0,abs,informational,True
+mp-2367698,rung[SPERR 1e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 3e-05] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 3e-05] bader_error_e,0.0005988857,0.0005988857,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 3e-05] compressed_bytes,1067946,1067946,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 3e-05] realized_Linf,0.04706444228,0.04706444228,0,abs,informational,True
+mp-2367698,rung[SPERR 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 3e-05] n_reassigned,19043,19043,0,abs,informational,True
+mp-2367698,rung[SPERR 3e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.0001] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.0001] bader_error_e,0.0024516705,0.0024516705,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.0001] compressed_bytes,845816,845816,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.0001] realized_Linf,0.1568822391,0.1568822391,0,abs,informational,True
+mp-2367698,rung[SPERR 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.0001] n_reassigned,36292,36292,0,abs,informational,True
+mp-2367698,rung[SPERR 0.0001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.0003] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.0003] bader_error_e,0.0080017293,0.0080017293,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.0003] compressed_bytes,672582,672582,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.0003] realized_Linf,0.4706126859,0.4706126859,0,abs,informational,True
+mp-2367698,rung[SPERR 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.0003] n_reassigned,59996,59996,0,abs,informational,True
+mp-2367698,rung[SPERR 0.0003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.001] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.001] bader_error_e,0.0241303939,0.0241303939,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.001] compressed_bytes,506454,506454,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.001] realized_Linf,1.568825552,1.568825552,0,abs,informational,True
+mp-2367698,rung[SPERR 0.001] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.001] n_reassigned,98883,98883,0,abs,informational,True
+mp-2367698,rung[SPERR 0.001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.003] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.003] bader_error_e,0.035426493,0.035426493,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.003] compressed_bytes,380158,380158,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.003] realized_Linf,4.706005979,4.706005979,0,abs,informational,True
+mp-2367698,rung[SPERR 0.003] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.003] n_reassigned,161443,161443,0,abs,informational,True
+mp-2367698,rung[SPERR 0.003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.01] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.01] bader_error_e,0.0521372584,0.0521372584,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.01] compressed_bytes,253982,253982,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.01] realized_Linf,15.68770916,15.68770916,0,abs,informational,True
+mp-2367698,rung[SPERR 0.01] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.01] n_reassigned,269826,269826,0,abs,informational,True
+mp-2367698,rung[SPERR 0.01] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.03] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.03] bader_error_e,0.4134135072,0.4134135072,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.03] compressed_bytes,148803,148803,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.03] realized_Linf,47.05976507,47.05976507,0,abs,informational,True
+mp-2367698,rung[SPERR 0.03] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.03] n_reassigned,368201,368201,0,abs,informational,True
+mp-2367698,rung[SPERR 0.03] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SPERR 0.1] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SPERR 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SPERR 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SPERR 0.1] bader_error_e,1.255081007,1.255081007,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SPERR 0.1] compressed_bytes,61754,61754,0,rel,<= 0.1 %,True
+mp-2367698,rung[SPERR 0.1] realized_Linf,156.8770849,156.8770849,0,abs,informational,True
+mp-2367698,rung[SPERR 0.1] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SPERR 0.1] n_reassigned,382551,382551,0,abs,informational,True
+mp-2367698,rung[SPERR 0.1] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2367698,rung[SZ3 1e-07] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-07] bader_error_e,4.0895e-05,4.0895e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 1e-07] compressed_bytes,1479499,1479499,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 1e-07] realized_Linf,0.0001568828872,0.0001568828872,0,abs,informational,True
+mp-2367698,rung[SZ3 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 1e-07] n_reassigned,169,169,0,abs,informational,True
+mp-2367698,rung[SZ3 1e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 3e-07] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-07] bader_error_e,9.41447e-05,9.41447e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 3e-07] compressed_bytes,1154815,1154815,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 3e-07] realized_Linf,0.0004706482329,0.0004706482329,0,abs,informational,True
+mp-2367698,rung[SZ3 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 3e-07] n_reassigned,440,440,0,abs,informational,True
+mp-2367698,rung[SZ3 3e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 1e-06] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-06] bader_error_e,0.0001074413,0.0001074413,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 1e-06] compressed_bytes,843643,843643,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 1e-06] realized_Linf,0.001568828649,0.001568828649,0,abs,informational,True
+mp-2367698,rung[SZ3 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 1e-06] n_reassigned,1259,1259,0,abs,informational,True
+mp-2367698,rung[SZ3 1e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 3e-06] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-06] bader_error_e,0.0001421588,0.0001421588,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 3e-06] compressed_bytes,597415,597415,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 3e-06] realized_Linf,0.004706488589,0.004706488589,0,abs,informational,True
+mp-2367698,rung[SZ3 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 3e-06] n_reassigned,3065,3065,0,abs,informational,True
+mp-2367698,rung[SZ3 3e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 1e-05] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 1e-05] bader_error_e,0.0004824565,0.0004824565,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 1e-05] compressed_bytes,378002,378002,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 1e-05] realized_Linf,0.01568828718,0.01568828718,0,abs,informational,True
+mp-2367698,rung[SZ3 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 1e-05] n_reassigned,7467,7467,0,abs,informational,True
+mp-2367698,rung[SZ3 1e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 3e-05] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 3e-05] bader_error_e,0.0006358482,0.0006358482,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 3e-05] compressed_bytes,240834,240834,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 3e-05] realized_Linf,0.04706483555,0.04706483555,0,abs,informational,True
+mp-2367698,rung[SZ3 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 3e-05] n_reassigned,15018,15018,0,abs,informational,True
+mp-2367698,rung[SZ3 3e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 0.0001] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.0001] bader_error_e,0.0015170699,0.0015170699,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 0.0001] compressed_bytes,132491,132491,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 0.0001] realized_Linf,0.1568812786,0.1568812786,0,abs,informational,True
+mp-2367698,rung[SZ3 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 0.0001] n_reassigned,24541,24541,0,abs,informational,True
+mp-2367698,rung[SZ3 0.0001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 0.0003] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.0003] bader_error_e,0.005712905,0.005712905,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 0.0003] compressed_bytes,78390,78390,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 0.0003] realized_Linf,0.4706484455,0.4706484455,0,abs,informational,True
+mp-2367698,rung[SZ3 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 0.0003] n_reassigned,63506,63506,0,abs,informational,True
+mp-2367698,rung[SZ3 0.0003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 0.001] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.001] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.001] bader_error_e,0.0079227666,0.0079227666,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 0.001] compressed_bytes,36539,36539,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 0.001] realized_Linf,1.568823087,1.568823087,0,abs,informational,True
+mp-2367698,rung[SZ3 0.001] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 0.001] n_reassigned,88787,88787,0,abs,informational,True
+mp-2367698,rung[SZ3 0.001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 0.003] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.003] bader_error_e,0.0563587774,0.0563587774,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 0.003] compressed_bytes,23273,23273,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 0.003] realized_Linf,4.706455975,4.706455975,0,abs,informational,True
+mp-2367698,rung[SZ3 0.003] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 0.003] n_reassigned,217283,217283,0,abs,informational,True
+mp-2367698,rung[SZ3 0.003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 0.01] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.01] bader_error_e,0.2666599694,0.2666599694,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 0.01] compressed_bytes,14288,14288,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 0.01] realized_Linf,15.68828588,15.68828588,0,abs,informational,True
+mp-2367698,rung[SZ3 0.01] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 0.01] n_reassigned,332396,332396,0,abs,informational,True
+mp-2367698,rung[SZ3 0.01] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[SZ3 0.03] status,OK,OK,,equal,identical,True
+mp-2367698,rung[SZ3 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[SZ3 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[SZ3 0.03] bader_error_e,0.8846156231,0.8846156231,0,abs,<= 1e-6 e,True
+mp-2367698,rung[SZ3 0.03] compressed_bytes,9151,9151,0,rel,<= 0.1 %,True
+mp-2367698,rung[SZ3 0.03] realized_Linf,47.06475918,47.06475918,0,abs,informational,True
+mp-2367698,rung[SZ3 0.03] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[SZ3 0.03] n_reassigned,449621,449621,0,abs,informational,True
+mp-2367698,rung[SZ3 0.03] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2367698,rung[ZFP 1e-07] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-07] bader_error_e,5.6207e-06,5.6207e-06,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 1e-07] compressed_bytes,1823208,1823208,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 1e-07] realized_Linf,3.131143464e-05,3.131143464e-05,0,abs,informational,True
+mp-2367698,rung[ZFP 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 1e-07] n_reassigned,7,7,0,abs,informational,True
+mp-2367698,rung[ZFP 1e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 3e-07] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-07] bader_error_e,3.2828e-05,3.2828e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 3e-07] compressed_bytes,1669768,1669768,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 3e-07] realized_Linf,6.392652665e-05,6.392652665e-05,0,abs,informational,True
+mp-2367698,rung[ZFP 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 3e-07] n_reassigned,35,35,0,abs,informational,True
+mp-2367698,rung[ZFP 3e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 1e-06] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-06] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-06] bader_error_e,4.6425e-05,4.6425e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 1e-06] compressed_bytes,1377656,1377656,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 1e-06] realized_Linf,0.0002355202503,0.0002355202503,0,abs,informational,True
+mp-2367698,rung[ZFP 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 1e-06] n_reassigned,95,95,0,abs,informational,True
+mp-2367698,rung[ZFP 1e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 3e-06] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-06] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-06] bader_error_e,7.14665e-05,7.14665e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 3e-06] compressed_bytes,1109144,1109144,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 3e-06] realized_Linf,0.001017427339,0.001017427339,0,abs,informational,True
+mp-2367698,rung[ZFP 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 3e-06] n_reassigned,256,256,0,abs,informational,True
+mp-2367698,rung[ZFP 3e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 1e-05] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-05] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 1e-05] bader_error_e,7.37605e-05,7.37605e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 1e-05] compressed_bytes,870912,870912,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 1e-05] realized_Linf,0.003840742373,0.003840742373,0,abs,informational,True
+mp-2367698,rung[ZFP 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 1e-05] n_reassigned,879,879,0,abs,informational,True
+mp-2367698,rung[ZFP 1e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 3e-05] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-05] certified@0.0001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 3e-05] bader_error_e,6.06809e-05,6.06809e-05,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 3e-05] compressed_bytes,761816,761816,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 3e-05] realized_Linf,0.007662557539,0.007662557539,0,abs,informational,True
+mp-2367698,rung[ZFP 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 3e-05] n_reassigned,1555,1555,0,abs,informational,True
+mp-2367698,rung[ZFP 3e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 0.0001] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.0001] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.0001] bader_error_e,0.0002297294,0.0002297294,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.0001] compressed_bytes,570808,570808,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 0.0001] realized_Linf,0.03026545281,0.03026545281,0,abs,informational,True
+mp-2367698,rung[ZFP 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 0.0001] n_reassigned,4808,4808,0,abs,informational,True
+mp-2367698,rung[ZFP 0.0001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 0.0003] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.0003] certified@0.001,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.0003] bader_error_e,0.000467099,0.000467099,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.0003] compressed_bytes,487680,487680,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 0.0003] realized_Linf,0.05921733906,0.05921733906,0,abs,informational,True
+mp-2367698,rung[ZFP 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 0.0003] n_reassigned,7667,7667,0,abs,informational,True
+mp-2367698,rung[ZFP 0.0003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 0.001] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.001] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.001] bader_error_e,0.0010491651,0.0010491651,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.001] compressed_bytes,346456,346456,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 0.001] realized_Linf,0.2472025169,0.2472025169,0,abs,informational,True
+mp-2367698,rung[ZFP 0.001] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 0.001] n_reassigned,19314,19314,0,abs,informational,True
+mp-2367698,rung[ZFP 0.001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 0.003] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.003] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.003] bader_error_e,0.0047083605,0.0047083605,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.003] compressed_bytes,238888,238888,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 0.003] realized_Linf,0.66907365,0.66907365,0,abs,informational,True
+mp-2367698,rung[ZFP 0.003] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 0.003] n_reassigned,45367,45367,0,abs,informational,True
+mp-2367698,rung[ZFP 0.003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 0.01] status,OK,OK,,equal,identical,True
+mp-2367698,rung[ZFP 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.01] certified@0.01,True,True,,equal,identical,True
+mp-2367698,rung[ZFP 0.01] bader_error_e,0.0077480973,0.0077480973,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.01] compressed_bytes,196528,196528,0,rel,<= 0.1 %,True
+mp-2367698,rung[ZFP 0.01] realized_Linf,1.308325974,1.308325974,0,abs,informational,True
+mp-2367698,rung[ZFP 0.01] bound_respected,True,True,,equal,informational,True
+mp-2367698,rung[ZFP 0.01] n_reassigned,72155,72155,0,abs,informational,True
+mp-2367698,rung[ZFP 0.01] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2367698,rung[ZFP 0.03] status,FAILED,FAILED,,equal,identical,True
+mp-2367698,rung[ZFP 0.03] certifiable_error,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.03] bader_error_e,inf,inf,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.03] error,IndexError: index 3 is out of bounds for axis 1 with size 3,IndexError: index 3 is out of bounds for axis 1 with size 3,,equal,informational,True
+mp-2367698,rung[ZFP 0.1] status,FAILED,FAILED,,equal,identical,True
+mp-2367698,rung[ZFP 0.1] certifiable_error,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2367698,rung[ZFP 0.1] bader_error_e,inf,inf,0,abs,<= 1e-6 e,True
+mp-2367698,rung[ZFP 0.1] error,IndexError: index 3 is out of bounds for axis 2 with size 3,IndexError: index 3 is out of bounds for axis 2 with size 3,,equal,informational,True
+mp-2367698,writer_choice@0.0001,ZFP 3e-05,ZFP 3e-05,,equal,identical (codec and rung),True
+mp-2367698,writer_choice@0.0001 compressed_bytes,761816,761816,0,rel,<= 0.1 %,True
+mp-2367698,writer_choice@0.001,SZ3 3e-05,SZ3 3e-05,,equal,identical (codec and rung),True
+mp-2367698,writer_choice@0.001 compressed_bytes,240834,240834,0,rel,<= 0.1 %,True
+mp-2367698,writer_choice@0.01,SZ3 0.001,SZ3 0.001,,equal,identical (codec and rung),True
+mp-2367698,writer_choice@0.01 compressed_bytes,36539,36539,0,rel,<= 0.1 %,True
+mp-2682232,status,SUCCESS,SUCCESS,,equal,identical,True
+mp-2682232,sha256,fc4894734edf2ab2e7b4d8c371805782c402315a5ed60b170ee8928da2399452,fc4894734edf2ab2e7b4d8c371805782c402315a5ed60b170ee8928da2399452,,equal,informational,True
+mp-2682232,json_bytes,13047238,13047238,,equal,informational,True
+mp-2682232,shape,96x96x96,96x96x96,,equal,informational,True
+mp-2682232,npoints,884736,884736,,equal,informational,True
+mp-2682232,natoms,10,10,,equal,informational,True
+mp-2682232,natoms_bader,10,10,,equal,informational,True
+mp-2682232,spin_channels,2,2,,equal,informational,True
+mp-2682232,formula,VCuO3,VCuO3,,equal,informational,True
+mp-2682232,crystal_system,trigonal,trigonal,,equal,informational,True
+mp-2682232,spacegroup,148,148,,equal,informational,True
+mp-2682232,epsilon,0.000192775,0.000192775,0,abs,informational,True
+mp-2682232,value_ptp,4125.881471,4125.881471,0,abs,informational,True
+mp-2682232,value_min,2.192631198,2.192631198,0,abs,informational,True
+mp-2682232,value_max,4128.074102,4128.074102,0,abs,informational,True
+mp-2682232,raw64_bytes,7077888,7077888,0,rel,informational,True
+mp-2682232,lossless_bytes,6656160,6656160,0,rel,informational,True
+mp-2682232,bader_solves,44,44,,equal,informational,True
+mp-2682232,eligible@0.0001,False,False,,equal,identical,True
+mp-2682232,eligible@0.001,True,True,,equal,identical,True
+mp-2682232,eligible@0.01,True,True,,equal,identical,True
+mp-2682232,floor_e,0.0001582491,0.0001582491,0,abs,<= 1e-6 e,True
+mp-2682232,probe_seeds,"[1, 2, 3, 4, 20260905]","[1, 2, 3, 4, 20260905]",,equal,identical,True
+mp-2682232,probe_response_e[seed=1],7.5225e-05,7.5225e-05,0,abs,<= 1e-6 e,True
+mp-2682232,probe_n_reassigned[seed=1],38,38,0,abs,informational,True
+mp-2682232,probe_response_e[seed=2],6.95161e-05,6.95161e-05,0,abs,<= 1e-6 e,True
+mp-2682232,probe_n_reassigned[seed=2],49,49,0,abs,informational,True
+mp-2682232,probe_response_e[seed=3],0.0001285233,0.0001285233,0,abs,<= 1e-6 e,True
+mp-2682232,probe_n_reassigned[seed=3],42,42,0,abs,informational,True
+mp-2682232,probe_response_e[seed=4],9.22625e-05,9.22625e-05,0,abs,<= 1e-6 e,True
+mp-2682232,probe_n_reassigned[seed=4],44,44,0,abs,informational,True
+mp-2682232,probe_response_e[seed=20260905],0.0001582491,0.0001582491,0,abs,<= 1e-6 e,True
+mp-2682232,probe_n_reassigned[seed=20260905],47,47,0,abs,informational,True
+mp-2682232,evaluated_rungs,38,38,,equal,identical set,True
+mp-2682232,rung[SPERR 1e-07] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-07] bader_error_e,0.0001632922,0.0001632922,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 1e-07] compressed_bytes,698404,698404,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 1e-07] realized_Linf,0.0004125868046,0.0004125868046,0,abs,informational,True
+mp-2682232,rung[SPERR 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 1e-07] n_reassigned,55,55,0,abs,informational,True
+mp-2682232,rung[SPERR 1e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 3e-07] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-07] bader_error_e,0.0001402059,0.0001402059,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 3e-07] compressed_bytes,563239,563239,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 3e-07] realized_Linf,0.00123772591,0.00123772591,0,abs,informational,True
+mp-2682232,rung[SPERR 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 3e-07] n_reassigned,102,102,0,abs,informational,True
+mp-2682232,rung[SPERR 3e-07] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 1e-06] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-06] bader_error_e,0.0003036503,0.0003036503,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 1e-06] compressed_bytes,425866,425866,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 1e-06] realized_Linf,0.004125748204,0.004125748204,0,abs,informational,True
+mp-2682232,rung[SPERR 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 1e-06] n_reassigned,446,446,0,abs,informational,True
+mp-2682232,rung[SPERR 1e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 3e-06] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-06] bader_error_e,0.0005761345,0.0005761345,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 3e-06] compressed_bytes,313670,313670,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 3e-06] realized_Linf,0.01237726592,0.01237726592,0,abs,informational,True
+mp-2682232,rung[SPERR 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 3e-06] n_reassigned,822,822,0,abs,informational,True
+mp-2682232,rung[SPERR 3e-06] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 1e-05] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 1e-05] bader_error_e,0.0006399849,0.0006399849,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 1e-05] compressed_bytes,212841,212841,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 1e-05] realized_Linf,0.04125404534,0.04125404534,0,abs,informational,True
+mp-2682232,rung[SPERR 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 1e-05] n_reassigned,1804,1804,0,abs,informational,True
+mp-2682232,rung[SPERR 1e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 3e-05] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 3e-05] bader_error_e,0.0022638348,0.0022638348,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 3e-05] compressed_bytes,144271,144271,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 3e-05] realized_Linf,0.123771671,0.123771671,0,abs,informational,True
+mp-2682232,rung[SPERR 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 3e-05] n_reassigned,3524,3524,0,abs,informational,True
+mp-2682232,rung[SPERR 3e-05] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.0001] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.0001] bader_error_e,0.0020907979,0.0020907979,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.0001] compressed_bytes,89495,89495,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.0001] realized_Linf,0.4125493197,0.4125493197,0,abs,informational,True
+mp-2682232,rung[SPERR 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.0001] n_reassigned,7834,7834,0,abs,informational,True
+mp-2682232,rung[SPERR 0.0001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.0003] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.0003] bader_error_e,0.0035446039,0.0035446039,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.0003] compressed_bytes,53345,53345,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.0003] realized_Linf,1.237488513,1.237488513,0,abs,informational,True
+mp-2682232,rung[SPERR 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.0003] n_reassigned,15596,15596,0,abs,informational,True
+mp-2682232,rung[SPERR 0.0003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.001] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.001] bader_error_e,0.0211537602,0.0211537602,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.001] compressed_bytes,29096,29096,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.001] realized_Linf,4.121770199,4.121770199,0,abs,informational,True
+mp-2682232,rung[SPERR 0.001] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.001] n_reassigned,28610,28610,0,abs,informational,True
+mp-2682232,rung[SPERR 0.001] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.003] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.003] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.003] bader_error_e,0.0084534926,0.0084534926,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.003] compressed_bytes,16169,16169,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.003] realized_Linf,12.34099542,12.34099542,0,abs,informational,True
+mp-2682232,rung[SPERR 0.003] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.003] n_reassigned,44248,44248,0,abs,informational,True
+mp-2682232,rung[SPERR 0.003] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.01] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.01] bader_error_e,0.0406343608,0.0406343608,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.01] compressed_bytes,8248,8248,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.01] realized_Linf,40.14506251,40.14506251,0,abs,informational,True
+mp-2682232,rung[SPERR 0.01] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.01] n_reassigned,69907,69907,0,abs,informational,True
+mp-2682232,rung[SPERR 0.01] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.03] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.03] bader_error_e,0.0675263116,0.0675263116,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.03] compressed_bytes,4089,4089,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.03] realized_Linf,114.5304439,114.5304439,0,abs,informational,True
+mp-2682232,rung[SPERR 0.03] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.03] n_reassigned,102616,102616,0,abs,informational,True
+mp-2682232,rung[SPERR 0.03] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SPERR 0.1] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SPERR 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SPERR 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SPERR 0.1] bader_error_e,0.237471848,0.237471848,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SPERR 0.1] compressed_bytes,1902,1902,0,rel,<= 0.1 %,True
+mp-2682232,rung[SPERR 0.1] realized_Linf,276.1114924,276.1114924,0,abs,informational,True
+mp-2682232,rung[SPERR 0.1] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SPERR 0.1] n_reassigned,179587,179587,0,abs,informational,True
+mp-2682232,rung[SPERR 0.1] codec_config,absolute; single chunk,absolute; single chunk,,equal,informational,True
+mp-2682232,rung[SZ3 1e-07] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-07] bader_error_e,0.0001014259,0.0001014259,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 1e-07] compressed_bytes,1153755,1153755,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 1e-07] realized_Linf,0.0004125873154,0.0004125873154,0,abs,informational,True
+mp-2682232,rung[SZ3 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 1e-07] n_reassigned,103,103,0,abs,informational,True
+mp-2682232,rung[SZ3 1e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 3e-07] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-07] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-07] bader_error_e,0.0001588711,0.0001588711,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 3e-07] compressed_bytes,910593,910593,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 3e-07] realized_Linf,0.001237763392,0.001237763392,0,abs,informational,True
+mp-2682232,rung[SZ3 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 3e-07] n_reassigned,228,228,0,abs,informational,True
+mp-2682232,rung[SZ3 3e-07] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 1e-06] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-06] bader_error_e,0.0007852315,0.0007852315,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 1e-06] compressed_bytes,658405,658405,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 1e-06] realized_Linf,0.004125880671,0.004125880671,0,abs,informational,True
+mp-2682232,rung[SZ3 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 1e-06] n_reassigned,777,777,0,abs,informational,True
+mp-2682232,rung[SZ3 1e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 3e-06] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-06] bader_error_e,0.000459352,0.000459352,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 3e-06] compressed_bytes,485057,485057,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 3e-06] realized_Linf,0.01237764311,0.01237764311,0,abs,informational,True
+mp-2682232,rung[SZ3 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 3e-06] n_reassigned,1429,1429,0,abs,informational,True
+mp-2682232,rung[SZ3 3e-06] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 1e-05] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 1e-05] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 1e-05] bader_error_e,0.001640198,0.001640198,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 1e-05] compressed_bytes,313611,313611,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 1e-05] realized_Linf,0.04125879356,0.04125879356,0,abs,informational,True
+mp-2682232,rung[SZ3 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 1e-05] n_reassigned,4215,4215,0,abs,informational,True
+mp-2682232,rung[SZ3 1e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 3e-05] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 3e-05] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 3e-05] bader_error_e,0.0049693402,0.0049693402,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 3e-05] compressed_bytes,199820,199820,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 3e-05] realized_Linf,0.1237762716,0.1237762716,0,abs,informational,True
+mp-2682232,rung[SZ3 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 3e-05] n_reassigned,8791,8791,0,abs,informational,True
+mp-2682232,rung[SZ3 3e-05] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 0.0001] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.0001] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.0001] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.0001] bader_error_e,0.0117221419,0.0117221419,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 0.0001] compressed_bytes,107435,107435,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 0.0001] realized_Linf,0.412587941,0.412587941,0,abs,informational,True
+mp-2682232,rung[SZ3 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 0.0001] n_reassigned,19464,19464,0,abs,informational,True
+mp-2682232,rung[SZ3 0.0001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 0.0003] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.0003] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.0003] bader_error_e,0.0160429343,0.0160429343,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 0.0003] compressed_bytes,61879,61879,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 0.0003] realized_Linf,1.237763016,1.237763016,0,abs,informational,True
+mp-2682232,rung[SZ3 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 0.0003] n_reassigned,38868,38868,0,abs,informational,True
+mp-2682232,rung[SZ3 0.0003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 0.001] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.001] bader_error_e,0.0394891044,0.0394891044,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 0.001] compressed_bytes,31634,31634,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 0.001] realized_Linf,4.125866415,4.125866415,0,abs,informational,True
+mp-2682232,rung[SZ3 0.001] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 0.001] n_reassigned,68925,68925,0,abs,informational,True
+mp-2682232,rung[SZ3 0.001] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 0.003] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.003] bader_error_e,0.1296479795,0.1296479795,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 0.003] compressed_bytes,17504,17504,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 0.003] realized_Linf,12.37764172,12.37764172,0,abs,informational,True
+mp-2682232,rung[SZ3 0.003] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 0.003] n_reassigned,127647,127647,0,abs,informational,True
+mp-2682232,rung[SZ3 0.003] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 0.01] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.01] bader_error_e,0.1804503487,0.1804503487,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 0.01] compressed_bytes,6290,6290,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 0.01] realized_Linf,41.24783251,41.24783251,0,abs,informational,True
+mp-2682232,rung[SZ3 0.01] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 0.01] n_reassigned,176218,176218,0,abs,informational,True
+mp-2682232,rung[SZ3 0.01] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[SZ3 0.03] status,OK,OK,,equal,identical,True
+mp-2682232,rung[SZ3 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[SZ3 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[SZ3 0.03] bader_error_e,1.403162654,1.403162654,0,abs,<= 1e-6 e,True
+mp-2682232,rung[SZ3 0.03] compressed_bytes,6237,6237,0,rel,<= 0.1 %,True
+mp-2682232,rung[SZ3 0.03] realized_Linf,123.7753758,123.7753758,0,abs,informational,True
+mp-2682232,rung[SZ3 0.03] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[SZ3 0.03] n_reassigned,338298,338298,0,abs,informational,True
+mp-2682232,rung[SZ3 0.03] codec_config,ABS; default INTERP_LORENZO,ABS; default INTERP_LORENZO,,equal,informational,True
+mp-2682232,rung[ZFP 1e-07] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 1e-07] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-07] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-07] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-07] bader_error_e,4.02259e-05,4.02259e-05,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 1e-07] compressed_bytes,1400976,1400976,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 1e-07] realized_Linf,6.609221009e-05,6.609221009e-05,0,abs,informational,True
+mp-2682232,rung[ZFP 1e-07] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 1e-07] n_reassigned,9,9,0,abs,informational,True
+mp-2682232,rung[ZFP 1e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 3e-07] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 3e-07] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-07] certified@0.0001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-07] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-07] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-07] bader_error_e,6.31656e-05,6.31656e-05,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 3e-07] compressed_bytes,1184848,1184848,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 3e-07] realized_Linf,0.0002608397539,0.0002608397539,0,abs,informational,True
+mp-2682232,rung[ZFP 3e-07] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 3e-07] n_reassigned,26,26,0,abs,informational,True
+mp-2682232,rung[ZFP 3e-07] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 1e-06] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 1e-06] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-06] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 1e-06] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-06] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-06] bader_error_e,0.0001296335,0.0001296335,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 1e-06] compressed_bytes,977144,977144,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 1e-06] realized_Linf,0.001081824973,0.001081824973,0,abs,informational,True
+mp-2682232,rung[ZFP 1e-06] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 1e-06] n_reassigned,44,44,0,abs,informational,True
+mp-2682232,rung[ZFP 1e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 3e-06] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 3e-06] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-06] certified@0.0001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-06] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-06] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-06] bader_error_e,9.36606e-05,9.36606e-05,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 3e-06] compressed_bytes,878288,878288,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 3e-06] realized_Linf,0.001972492507,0.001972492507,0,abs,informational,True
+mp-2682232,rung[ZFP 3e-06] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 3e-06] n_reassigned,105,105,0,abs,informational,True
+mp-2682232,rung[ZFP 3e-06] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 1e-05] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 1e-05] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 1e-05] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-05] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 1e-05] bader_error_e,0.0002049708,0.0002049708,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 1e-05] compressed_bytes,692912,692912,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 1e-05] realized_Linf,0.00826202293,0.00826202293,0,abs,informational,True
+mp-2682232,rung[ZFP 1e-05] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 1e-05] n_reassigned,329,329,0,abs,informational,True
+mp-2682232,rung[ZFP 1e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 3e-05] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 3e-05] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-05] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 3e-05] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-05] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 3e-05] bader_error_e,0.0004404727,0.0004404727,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 3e-05] compressed_bytes,607432,607432,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 3e-05] realized_Linf,0.01589025191,0.01589025191,0,abs,informational,True
+mp-2682232,rung[ZFP 3e-05] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 3e-05] n_reassigned,619,619,0,abs,informational,True
+mp-2682232,rung[ZFP 3e-05] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.0001] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.0001] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.0001] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.0001] certified@0.001,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.0001] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.0001] bader_error_e,0.0009331144,0.0009331144,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 0.0001] compressed_bytes,452704,452704,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.0001] realized_Linf,0.06425370322,0.06425370322,0,abs,informational,True
+mp-2682232,rung[ZFP 0.0001] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.0001] n_reassigned,1963,1963,0,abs,informational,True
+mp-2682232,rung[ZFP 0.0001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.0003] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.0003] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.0003] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.0003] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.0003] certified@0.01,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.0003] bader_error_e,0.0021452606,0.0021452606,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 0.0003] compressed_bytes,323096,323096,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.0003] realized_Linf,0.2645326284,0.2645326284,0,abs,informational,True
+mp-2682232,rung[ZFP 0.0003] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.0003] n_reassigned,5789,5789,0,abs,informational,True
+mp-2682232,rung[ZFP 0.0003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.001] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.001] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.001] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.001] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.001] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.001] bader_error_e,0.0102395018,0.0102395018,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 0.001] compressed_bytes,221600,221600,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.001] realized_Linf,0.91325432,0.91325432,0,abs,informational,True
+mp-2682232,rung[ZFP 0.001] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.001] n_reassigned,15290,15290,0,abs,informational,True
+mp-2682232,rung[ZFP 0.001] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.003] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.003] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.003] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.003] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.003] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.003] bader_error_e,0.0154996043,0.0154996043,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 0.003] compressed_bytes,180936,180936,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.003] realized_Linf,1.738731446,1.738731446,0,abs,informational,True
+mp-2682232,rung[ZFP 0.003] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.003] n_reassigned,23749,23749,0,abs,informational,True
+mp-2682232,rung[ZFP 0.003] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.01] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.01] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.01] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.01] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.01] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.01] bader_error_e,0.0282625147,0.0282625147,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 0.01] compressed_bytes,117032,117032,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.01] realized_Linf,5.289514192,5.289514192,0,abs,informational,True
+mp-2682232,rung[ZFP 0.01] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.01] n_reassigned,45518,45518,0,abs,informational,True
+mp-2682232,rung[ZFP 0.01] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.03] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.03] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.03] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.03] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.03] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.03] bader_error_e,0.0507241849,0.0507241849,0,abs,<= 1e-6 e,True
+mp-2682232,rung[ZFP 0.03] compressed_bytes,93880,93880,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.03] realized_Linf,9.97549865,9.97549865,0,abs,informational,True
+mp-2682232,rung[ZFP 0.03] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.03] n_reassigned,72542,72542,0,abs,informational,True
+mp-2682232,rung[ZFP 0.03] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,rung[ZFP 0.1] status,OK,OK,,equal,identical,True
+mp-2682232,rung[ZFP 0.1] certifiable_error,True,True,,equal,identical,True
+mp-2682232,rung[ZFP 0.1] certified@0.0001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.1] certified@0.001,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.1] certified@0.01,False,False,,equal,identical,True
+mp-2682232,rung[ZFP 0.1] bader_error_e,0.7973621145,0.7973982834,3.61689e-05,abs,<= 1e-6 e,False
+mp-2682232,rung[ZFP 0.1] compressed_bytes,61168,61168,0,rel,<= 0.1 %,True
+mp-2682232,rung[ZFP 0.1] realized_Linf,39.59673114,39.59673114,0,abs,informational,True
+mp-2682232,rung[ZFP 0.1] bound_respected,True,True,,equal,informational,True
+mp-2682232,rung[ZFP 0.1] n_reassigned,234654,234656,2,abs,informational,True
+mp-2682232,rung[ZFP 0.1] codec_config,fixed-accuracy,fixed-accuracy,,equal,informational,True
+mp-2682232,writer_choice@0.0001,none,none,,equal,identical (codec and rung),True
+mp-2682232,writer_choice@0.001,SPERR 1e-05,SPERR 1e-05,,equal,identical (codec and rung),True
+mp-2682232,writer_choice@0.001 compressed_bytes,212841,212841,0,rel,<= 0.1 %,True
+mp-2682232,writer_choice@0.01,SPERR 0.003,SPERR 0.003,,equal,identical (codec and rung),True
+mp-2682232,writer_choice@0.01 compressed_bytes,16169,16169,0,rel,<= 0.1 %,True

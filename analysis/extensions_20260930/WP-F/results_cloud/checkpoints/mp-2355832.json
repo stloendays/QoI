@@ -1,0 +1,19 @@
+{
+ "task_id": "mp-2355832",
+ "stratum": "D10b",
+ "key": "chgcars/mp-2355832.json.gz",
+ "frame_bytes": 86571019,
+ "group": "large",
+ "status": "FAILED",
+ "rows": [],
+ "failures": [
+  {
+   "task_id": "mp-2355832",
+   "stratum": "D10b",
+   "stage": "worker",
+   "error": "NoArtifact: the object's job ended without returning a checkpoint (object jobs: failure)"
+  }
+ ],
+ "retried": false,
+ "recorded_by": "workflow collect job: no checkpoint returned (DEVIATIONS.md 8)"
+}

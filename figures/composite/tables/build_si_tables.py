@@ -43,6 +43,13 @@ GREEK = {r"\tau": "\u03c4", r"\epsilon": "\u03b5", r"\rho": "\u03c1", r"\Delta":
          r"\|": "\u2016", r"\equiv": "\u2261", r"\land": "\u2227", r"\max": "max", r"\min": "min",
          r"\mathbf": "", r"\mathcal": "", r"\tilde": "", r"\cdot": "\u00b7", r"\approx": "\u2248", r"\ne": "\u2260",
          r"\log": "log", r"\pi": "\u03c0"}
+# the full Greek alphabet: an unmapped command loses its backslash and prints as a word (|\Delta\Phi| -> "\u0394Phi")
+GREEK.update({"\\" + name: chr(code) for name, code in (
+    ("alpha", 0x3b1), ("beta", 0x3b2), ("gamma", 0x3b3), ("zeta", 0x3b6), ("eta", 0x3b7), ("theta", 0x3b8),
+    ("iota", 0x3b9), ("lambda", 0x3bb), ("mu", 0x3bc), ("nu", 0x3bd), ("xi", 0x3be), ("sigma", 0x3c3),
+    ("upsilon", 0x3c5), ("phi", 0x3c6), ("chi", 0x3c7), ("psi", 0x3c8), ("omega", 0x3c9), ("varepsilon", 0x3b5),
+    ("varphi", 0x3c6), ("vartheta", 0x3d1), ("Gamma", 0x393), ("Theta", 0x398), ("Lambda", 0x39b), ("Xi", 0x39e),
+    ("Pi", 0x3a0), ("Sigma", 0x3a3), ("Upsilon", 0x3a5), ("Phi", 0x3a6), ("Psi", 0x3a8))})
 
 
 BLACKBOARD = {"E": "\U0001d53c", "P": "\u2119", "R": "\u211d", "N": "\u2115", "Z": "\u2124"}

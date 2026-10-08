@@ -1,0 +1,64 @@
+{
+ "task_id": "mp-1873759",
+ "stratum": "D09",
+ "key": "chgcars/mp-1873759.json.gz",
+ "frame_bytes": 41278425,
+ "group": "small",
+ "status": "SUCCESS",
+ "rows": [],
+ "failures": [],
+ "json_bytes": 41278425,
+ "sha256": "6b1247bb409f035512e98e84b20c5526e1925a7d32c5cdea84190fe56bed1e69",
+ "size_matches_frame": true,
+ "shape": "140x140x144",
+ "npoints": 2822400,
+ "natoms": 28,
+ "spin_channels": 2,
+ "formula": "CaTlCl5O7",
+ "value_ptp": 6110.941260398,
+ "value_min": 1.031176502,
+ "value_max": 6111.9724369,
+ "crystal_system": "monoclinic",
+ "spacegroup": 12,
+ "raw64_bytes": 22579200,
+ "lossless_bytes": 21286410,
+ "epsilon": 0.00024396874960075365,
+ "natoms_bader": 28,
+ "probes": [
+  {
+   "seed": 20260905,
+   "response_e": 0.033927652900000105,
+   "n_reassigned": 1453
+  },
+  {
+   "seed": 1,
+   "response_e": 0.03693881860000037,
+   "n_reassigned": 1484
+  },
+  {
+   "seed": 2,
+   "response_e": 0.038875360899999656,
+   "n_reassigned": 1468
+  },
+  {
+   "seed": 3,
+   "response_e": 0.03910031920000012,
+   "n_reassigned": 1397
+  },
+  {
+   "seed": 4,
+   "response_e": 0.04495128190000042,
+   "n_reassigned": 1610
+  }
+ ],
+ "floor_e": 0.04495128190000042,
+ "eligible": {
+  "0.0001": false,
+  "0.001": false,
+  "0.01": false
+ },
+ "writer_choice": {},
+ "bader_solves": 6,
+ "wall_seconds": 94.7072925567627,
+ "retried": false
+}

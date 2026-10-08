@@ -1,0 +1,118 @@
+name: P3b vacuum-level (work-function) error
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/p3b-vacuum-level-20261007
+    paths:
+      - analysis/p3b_vacuum_level_20261007/RUN_SENTINEL
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p3b-vacuum-level-20261007
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    outputs:
+      materials: ${{ steps.p.outputs.materials }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - id: p
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.4.6 scipy==1.18.1 pandas==2.3.3
+          (cd analysis/general_qoac_law && python -m unittest -q test_policy_codec.py)
+          (cd analysis/qoac_v03_rdo && python -m unittest -q test_codec_qoac_v03.py)
+          (cd analysis/general_qoac_operators && python -m unittest -q test_operators.py test_gain_predictors.py)
+          (cd analysis/p3b_vacuum_level_20261007 && python -m unittest -q test_vacuum_level.py)
+          F=analysis/fresh_population_20261006/P3B_CONFIRMATORY_MANIFEST.csv
+          A=analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/part_a_rows.csv
+          echo "e7c447d5f8dc3b263c7b5b4b9d1f8344ad9c8ed41e5b72fa333c37ad14b70f97  $F" | sha256sum -c -
+          echo "45553d6d973fad3b87ee0fb41549c2a838472fba439b8c65f072ae4fed74575a  $A" | sha256sum -c -
+          mats=$(python -c "import pandas as pd,json;print(json.dumps([{'manifest':'$F','id':m} for m in pd.read_csv('$F').material_id]))")
+          echo "materials=$mats" >> "$GITHUB_OUTPUT"
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        item: ${{ fromJSON(needs.preflight.outputs.materials) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Run material
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/vac_${{ matrix.item.id }}"; mkdir -p "$out"
+          python -m pip freeze > "$out/pip_freeze.txt"
+          python repo/analysis/p3b_vacuum_level_20261007/run_vacuum_level.py --repo-root repo --frozen-root frozen \
+            --manifest "repo/${{ matrix.item.manifest }}" \
+            --rows repo/analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/part_a_rows.csv \
+            --cache-dir "$RUNNER_TEMP/cache" --output-dir "$out" --only "${{ matrix.item.id }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p3bvac-${{ matrix.item.id }}
+          path: ${{ runner.temp }}/vac_${{ matrix.item.id }}
+          if-no-files-found: error
+
+  aggregate:
+    if: always() && needs.preflight.result == 'success'
+    needs: [preflight, shard]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -q numpy==2.3.5 pandas==2.3.3 scipy==1.18.1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p3bvac-*
+          path: shards
+      - name: Collect, aggregate and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          R=analysis/p3b_vacuum_level_20261007/results; F=analysis/fresh_population_20261006
+          python analysis/p3b_vacuum_level_20261007/aggregate_vacuum_level.py --manifest $F/P3B_CONFIRMATORY_MANIFEST.csv \
+            --shards-root shards --output-dir $R
+          f=$(find shards -name pip_freeze.txt | sort | head -1); [ -n "$f" ] && cp "$f" $R/pip_freeze_shard.txt || true
+          echo "${{ github.run_id }}" > $R/RUN_ID
+          git add $R
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "research: P3b vacuum-level error run (per-slab Delta Phi, CI ${{ github.run_id }})" \
+            -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" || exit 0
+          git pull --rebase origin research/p3b-vacuum-level-20261007
+          git push origin HEAD:research/p3b-vacuum-level-20261007

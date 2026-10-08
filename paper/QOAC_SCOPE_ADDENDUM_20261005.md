@@ -29,8 +29,8 @@ Do not expose internal development labels such as v0.1 or v0.2 in the manuscript
 ## Evidence hierarchy
 
 1. **Mechanism** — existing 457-pair Fourier audit over 214 materials: Hartree sensitivity follows the operator's reciprocal-space weighting and codec error allocation explains much of the matched-distortion effect.
-2. **Design law** — high-rate weighted-transform model applied to the Hartree error metric yields (Delta_Gpropto |G|^2); (eta=2) was frozen before QOAC-H results and compared with operator-blind (eta=0).
-3. **Mechanism experiment** — 12/12 materials favor (eta=2); median Hartree error ratio 0.0767 at matched storage.
+2. **Design law** — high-rate weighted-transform model applied to the Hartree error metric yields (Delta_Gpropto |G|^2); (β=2) was frozen before QOAC-H results and compared with operator-blind (β=0).
+3. **Mechanism experiment** — 12/12 materials favor (β=2); median Hartree error ratio 0.0767 at matched storage.
 4. **Disjoint confirmation** — 48 unseen materials; 48/48 wins; median CR ratio 15.016; bootstrap 95% CI [11.204, 21.461]; all safe guardrails pass.
 5. **Population census** — 254 development materials, 6,350 settings, 0 failures. At (10^{-6}), 253/253 comparable materials favor QOAC-H; median 12.463x, fifth percentile 4.459x, minimum 2.444x.
 
@@ -65,7 +65,7 @@ Preferred:
 - Fig. 7 remains mechanism and gains a final design-law schematic/panel only if legible.
 - New **Fig. 8**: QOAC-H design and rate-fidelity evidence.
   - a: operator weight (1/|G|^4) -> quantization step (Delta_Gpropto |G|^2);
-  - b: (eta=2) vs (eta=0) matched-storage Hartree error;
+  - b: (β=2) vs (β=0) matched-storage Hartree error;
   - c: 48-material disjoint confirmatory QOAC-H/best-baseline CR ratio;
   - d: full-population ratio across the six Hartree tolerances.
 - Existing external-cohort figure becomes Fig. 9.

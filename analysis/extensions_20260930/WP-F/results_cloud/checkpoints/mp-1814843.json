@@ -1,0 +1,323 @@
+{
+ "task_id": "mp-1814843",
+ "stratum": "D10c",
+ "key": "chgcars/mp-1814843.json.gz",
+ "frame_bytes": 317271048,
+ "group": "large",
+ "status": "SUCCESS",
+ "rows": [
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 0.0001,
+   "nominal_tolerance_absolute": 0.30887702457,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 11520056,
+   "realized_Linf": 0.07364501406249246,
+   "bound_respected": true,
+   "bader_error_e": 0.006307242000000102,
+   "n_reassigned": 43969,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 1e-06,
+   "nominal_tolerance_absolute": 0.0030887702457,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 27084544,
+   "realized_Linf": 0.000558300048851379,
+   "bound_respected": true,
+   "bader_error_e": 9.79816999997496e-05,
+   "n_reassigned": 920,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 1e-05,
+   "nominal_tolerance_absolute": 0.030887702457000003,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 19717312,
+   "realized_Linf": 0.00449158653711379,
+   "bound_respected": true,
+   "bader_error_e": 0.0003971528999997531,
+   "n_reassigned": 3831,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 3e-05,
+   "nominal_tolerance_absolute": 0.092663107371,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 15369920,
+   "realized_Linf": 0.017213836523438886,
+   "bound_respected": true,
+   "bader_error_e": 0.00044681029999971145,
+   "n_reassigned": 13424,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SPERR",
+   "nominal_tolerance_relative": 0.0001,
+   "nominal_tolerance_absolute": 0.30887702457,
+   "codec_config": "absolute; single chunk",
+   "compressed_bytes": 1826889,
+   "realized_Linf": 0.3088699627617757,
+   "bound_respected": true,
+   "bader_error_e": 0.009899474199999148,
+   "n_reassigned": 124546,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SPERR",
+   "nominal_tolerance_relative": 1e-06,
+   "nominal_tolerance_absolute": 0.0030887702457,
+   "codec_config": "absolute; single chunk",
+   "compressed_bytes": 10040152,
+   "realized_Linf": 0.003088750271729168,
+   "bound_respected": true,
+   "bader_error_e": 0.00035675749999963813,
+   "n_reassigned": 9808,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SPERR",
+   "nominal_tolerance_relative": 1e-05,
+   "nominal_tolerance_absolute": 0.030887702457000003,
+   "codec_config": "absolute; single chunk",
+   "compressed_bytes": 4809966,
+   "realized_Linf": 0.03088749690050463,
+   "bound_respected": true,
+   "bader_error_e": 0.002619865799999843,
+   "n_reassigned": 29593,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SPERR",
+   "nominal_tolerance_relative": 3e-06,
+   "nominal_tolerance_absolute": 0.0092663107371,
+   "codec_config": "absolute; single chunk",
+   "compressed_bytes": 7297763,
+   "realized_Linf": 0.009266229776212498,
+   "bound_respected": true,
+   "bader_error_e": 0.0006196605999999605,
+   "n_reassigned": 17934,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SZ3",
+   "nominal_tolerance_relative": 3e-05,
+   "nominal_tolerance_absolute": 0.092663107371,
+   "codec_config": "ABS; default INTERP_LORENZO",
+   "compressed_bytes": 4608908,
+   "realized_Linf": 0.0926631062591241,
+   "bound_respected": true,
+   "bader_error_e": 0.009330198400000711,
+   "n_reassigned": 155443,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SZ3",
+   "nominal_tolerance_relative": 1e-06,
+   "nominal_tolerance_absolute": 0.0030887702457,
+   "codec_config": "ABS; default INTERP_LORENZO",
+   "compressed_bytes": 15635151,
+   "realized_Linf": 0.003088770083749637,
+   "bound_respected": true,
+   "bader_error_e": 0.0004965179000002706,
+   "n_reassigned": 14923,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SZ3",
+   "nominal_tolerance_relative": 3e-06,
+   "nominal_tolerance_absolute": 0.0092663107371,
+   "codec_config": "ABS; default INTERP_LORENZO",
+   "compressed_bytes": 11504263,
+   "realized_Linf": 0.009266310655398513,
+   "bound_respected": true,
+   "bader_error_e": 0.0006451434999998895,
+   "n_reassigned": 27785,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SZ3",
+   "nominal_tolerance_relative": 1e-05,
+   "nominal_tolerance_absolute": 0.030887702457000003,
+   "codec_config": "ABS; default INTERP_LORENZO",
+   "compressed_bytes": 7330725,
+   "realized_Linf": 0.030887700160576514,
+   "bound_respected": true,
+   "bader_error_e": 0.006019420099999451,
+   "n_reassigned": 59424,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 0.003,
+   "nominal_tolerance_absolute": 9.2663107371,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 4693592,
+   "realized_Linf": 1.659170795999998,
+   "bound_respected": true,
+   "bader_error_e": 0.043052319399999206,
+   "n_reassigned": 620711,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 0.0003,
+   "nominal_tolerance_absolute": 0.92663107371,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 9833056,
+   "realized_Linf": 0.15599701437497515,
+   "bound_respected": true,
+   "bader_error_e": 0.006811862799999346,
+   "n_reassigned": 71900,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "ZFP",
+   "nominal_tolerance_relative": 0.001,
+   "nominal_tolerance_absolute": 3.0887702457,
+   "codec_config": "fixed-accuracy",
+   "compressed_bytes": 6929504,
+   "realized_Linf": 0.5543736550000062,
+   "bound_respected": true,
+   "bader_error_e": 0.00926146689999996,
+   "n_reassigned": 207095,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SPERR",
+   "nominal_tolerance_relative": 0.003,
+   "nominal_tolerance_absolute": 9.2663107371,
+   "codec_config": "absolute; single chunk",
+   "compressed_bytes": 314775,
+   "realized_Linf": 9.26266402753319,
+   "bound_respected": true,
+   "bader_error_e": 0.10948606929999904,
+   "n_reassigned": 944800,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SPERR",
+   "nominal_tolerance_relative": 0.0003,
+   "nominal_tolerance_absolute": 0.92663107371,
+   "codec_config": "absolute; single chunk",
+   "compressed_bytes": 1097622,
+   "realized_Linf": 0.9265897595984711,
+   "bound_respected": true,
+   "bader_error_e": 0.02877392689999958,
+   "n_reassigned": 258284,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SZ3",
+   "nominal_tolerance_relative": 0.001,
+   "nominal_tolerance_absolute": 3.0887702457,
+   "codec_config": "ABS; default INTERP_LORENZO",
+   "compressed_bytes": 536706,
+   "realized_Linf": 3.088764621306723,
+   "bound_respected": true,
+   "bader_error_e": 0.11666886659999953,
+   "n_reassigned": 1179813,
+   "certifiable_error": true,
+   "status": "OK"
+  },
+  {
+   "codec": "SZ3",
+   "nominal_tolerance_relative": 0.0001,
+   "nominal_tolerance_absolute": 0.30887702457,
+   "codec_config": "ABS; default INTERP_LORENZO",
+   "compressed_bytes": 2472911,
+   "realized_Linf": 0.3088770202798514,
+   "bound_respected": true,
+   "bader_error_e": 0.021637415899999013,
+   "n_reassigned": 375802,
+   "certifiable_error": true,
+   "status": "OK"
+  }
+ ],
+ "failures": [],
+ "json_bytes": 317271048,
+ "sha256": "0e48a31857efe33a21b7ab3c15c32586fad486482488513cb05d730c05dca1e4",
+ "size_matches_frame": true,
+ "shape": "280x280x280",
+ "npoints": 21952000,
+ "natoms": 17,
+ "spin_channels": 2,
+ "formula": "Ba4Zr3S10",
+ "value_ptp": 3088.7702457,
+ "value_min": -138.0038106,
+ "value_max": 2950.7664351,
+ "crystal_system": "tetragonal",
+ "spacegroup": 139,
+ "raw64_bytes": 175616000,
+ "lossless_bytes": 164963139,
+ "epsilon": 0.00012206249994051177,
+ "natoms_bader": 17,
+ "probes": [
+  {
+   "seed": 20260905,
+   "response_e": 8.531699999991815e-05,
+   "n_reassigned": 4876
+  },
+  {
+   "seed": 1,
+   "response_e": 9.413130000002212e-05,
+   "n_reassigned": 5023
+  },
+  {
+   "seed": 2,
+   "response_e": 0.00015812849999985445,
+   "n_reassigned": 5200
+  },
+  {
+   "seed": 3,
+   "response_e": 0.00015089109999966155,
+   "n_reassigned": 5062
+  },
+  {
+   "seed": 4,
+   "response_e": 0.00010906320000003689,
+   "n_reassigned": 5043
+  }
+ ],
+ "floor_e": 0.00015812849999985445,
+ "eligible": {
+  "0.0001": false,
+  "0.001": true,
+  "0.01": true
+ },
+ "writer_choice": {
+  "0.001": {
+   "codec": "SPERR",
+   "rel": 3e-06,
+   "compressed_bytes": 7297763
+  },
+  "0.01": {
+   "codec": "SPERR",
+   "rel": 0.0001,
+   "compressed_bytes": 1826889
+  }
+ },
+ "bader_solves": 25,
+ "wall_seconds": 601.1273021697998,
+ "retried": false
+}

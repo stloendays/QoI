@@ -38,3 +38,23 @@ defaults may change; more figure content, Nature-level layouts, no fixed grid. A
   uniform basin projection its Euclidean counterpart (minimum L2 and L-inf additive correction).
 - Supplementary Fig. 1 built (`figures/nc/si/figS1`).
 Other defaults (title, encoder per system class, register in the repository, Bader storage in the SI) unchanged.
+
+## Revision 3 (2026-10-07 to 2026-10-08)
+
+Author decisions, in order:
+1. **Four cloud work items** ("好滴，你继续做吧", then the work-item list):
+   - MGARD s = −2 and QPET as QoI-preserving baselines on P1 and P3b;
+   - the P3b vacuum-level (work-function) error;
+   - the four AECCAR loading failures diagnosed, plus a slab cohort selected on AECCAR availability;
+   - WP-F completed in the cloud.
+   Each item ran on its own branch, with its protocol frozen before execution.
+2. **WP-F platform consistency.** 1405 of 1409 checks agreed; the four differing Bader errors sit on never-certifiable rungs. The author ruled the platforms consistent ("判定一致，补跑 57 个"; WP-F `DEVIATIONS.md` 9). The six objects that never started were then rerun ("重跑这 6 个"; `DEVIATIONS.md` 12).
+3. **Slab joint certification.**
+   - The NOMAD search was widened (N = 1 qualified).
+   - 32 slabs were then self-computed on Vanda. Their density files are published as release `data-hb-selfslab-20261008` ("发成 QoI 仓库的 GitHub Release").
+   - After the self-computed cohort failed criterion 1 (26/32): "稿子只写 bulk，slab 到此为止". The manuscript states joint certification for bulk crystals only (48/48). The four slab cohorts stay in the repository.
+4. **Fig. 5 panels.** Panels e (QoI-preserving baselines) and f (slab work-function error) approved ("可以的").
+
+Defaults adopted by the assistant, flagged for author review:
+- The abstract now leads the Hartree result with the QoI-preserving compressor (QPET; 6.3- and 9.5-fold).
+- The abstract adds the archive-scale result (4.4-fold at 1e-3 e). To stay at 150 words, its near-optimality clause (A3/A1 = 1.105 on bulk crystals) moved to Results only.

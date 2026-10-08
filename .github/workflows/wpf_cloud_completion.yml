@@ -1,0 +1,516 @@
+name: WP-F cloud completion
+
+# analysis/extensions_20260930/WP-F, DEVIATIONS.md 7-8. Fires only on a push to
+# research/wpf-cloud-completion-20261007 that changes the sentinel
+# analysis/extensions_20260930/WP-F/results_cloud/RUN_REQUEST (workflow_dispatch is unusable: main is a placeholder).
+# Sentinel: the first non-comment line is the phase (consistency | completion | estimators); for the two object
+# phases the further non-comment lines are task ids, which must be exactly the set DEVIATIONS.md 7 names.
+# Object phases: one object per job, one worker, the frozen stack of commit 893f931 on Python 3.12.14.
+on:
+  push:
+    branches: [research/wpf-cloud-completion-20261007]
+    paths: [analysis/extensions_20260930/WP-F/results_cloud/RUN_REQUEST]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wpf-cloud-completion-20261007
+  cancel-in-progress: false
+
+env:
+  WPF: analysis/extensions_20260930/WP-F
+  BRANCH: research/wpf-cloud-completion-20261007
+  FROZEN_COMMIT: 893f931b3045b0b628329db81999c2f439d4e830
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      phase: ${{ steps.check.outputs.phase }}
+      dest: ${{ steps.check.outputs.dest }}
+      matrix: ${{ steps.check.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/$BRANCH" || { echo "wrong ref $GITHUB_REF"; exit 1; }
+          (cd "repo/$WPF/results_laptop/checkpoints" && sha256sum -c --quiet ../CHECKPOINTS.sha256)
+          python -m py_compile "repo/$WPF/run_wpf.py" "repo/$WPF/analyze_wpf.py" "repo/$WPF/compare_consistency.py"
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import csv, json, os, sys
+          from pathlib import Path
+          wpf = Path("repo") / os.environ["WPF"]
+          lines = [l.strip() for l in (wpf / "results_cloud" / "RUN_REQUEST").read_text(encoding="utf-8").splitlines()]
+          lines = [l for l in lines if l and not l.startswith("#")]
+          if not lines:
+              sys.exit("empty RUN_REQUEST")
+          phase, ids = lines[0], lines[1:]
+          sample = {r["task_id"]: r for r in csv.DictReader(open(wpf / "sample.csv", encoding="utf-8"))}
+          lap = {p.stem: json.load(open(p, encoding="utf-8")) for p in (wpf / "results_laptop" / "checkpoints").glob("*.json")}
+          if len(lap) != 300 or set(lap) != set(sample):
+              sys.exit("laptop checkpoints do not cover the sample")
+          failed = sorted(k for k, d in lap.items() if d["status"] != "SUCCESS")
+          if len(failed) != 57:
+              sys.exit("expected 57 FAILED laptop checkpoints, found %d" % len(failed))
+          CONS = ["mp-2488566", "mp-2285510", "mp-2050393", "mp-2367698", "mp-2682232"]   # DEVIATIONS.md 7
+          RERUN12 = ["mp-1826245", "mp-2046569", "mp-2234070", "mp-3092553", "mp-1543577", "mp-2355832"]  # DEVIATIONS.md 12
+          dest = ""
+          if len(ids) != len(set(ids)):
+              sys.exit("duplicate ids")
+
+          def agreed():
+              # an agreement record, or the author's platform-consistency decision (DEVIATIONS.md 9-10)
+              cj = wpf / "results_cloud" / "consistency" / "CONSISTENCY.json"
+              if cj.is_file() and json.load(open(cj, encoding="utf-8")).get("agree") is True:
+                  return True
+              dev = (wpf / "DEVIATIONS.md").read_text(encoding="utf-8")
+              return "\n9. **Author decision on platform consistency" in dev
+
+          if phase == "consistency":
+              if ids != CONS:
+                  sys.exit("consistency ids must be exactly %s" % CONS)
+          elif phase == "completion" and sorted(ids) == sorted(RERUN12):
+              # DEVIATIONS.md 12-13: the six never-started objects, once each, collected into results_cloud/rerun_dev12
+              dev = (wpf / "DEVIATIONS.md").read_text(encoding="utf-8")
+              if "\n12. **Author decision: rerun the six never-started objects" not in dev:
+                  sys.exit("rerunning these six needs DEVIATIONS.md 12")
+              for t in ids:
+                  d = json.load(open(wpf / "results_cloud" / "checkpoints" / (t + ".json"), encoding="utf-8"))
+                  if d["status"] != "FAILED" or not all(f["error"].startswith("NoArtifact") for f in d["failures"]):
+                      sys.exit("%s is not a never-started record" % t)
+              if list((wpf / "results_cloud" / "rerun_dev12" / "checkpoints").glob("*.json")):
+                  sys.exit("the six have already been rerun once (DEVIATIONS.md 12)")
+              dest = "rerun_dev12"
+          elif phase == "completion":
+              if sorted(ids) != failed:
+                  sys.exit("completion ids must be exactly the 57 FAILED laptop objects, or the six of DEVIATIONS.md 12")
+              if not agreed():
+                  sys.exit("the consistency check has not recorded agreement; the 57 objects are not run")
+          elif phase == "estimators_v2":
+              # DEVIATIONS.md 12-13: estimate (a) recomputed with the six reruns, into results_cloud/completed_v2
+              if ids:
+                  sys.exit("the estimators_v2 phase takes no ids")
+              got = sorted(p.stem for p in (wpf / "results_cloud" / "rerun_dev12" / "checkpoints").glob("*.json"))
+              if got != sorted(RERUN12):
+                  sys.exit("results_cloud/rerun_dev12/checkpoints must hold exactly the six reruns (found %d)" % len(got))
+              if not agreed():
+                  sys.exit("the consistency check has not recorded agreement")
+          elif phase == "estimators":
+              if ids:
+                  sys.exit("the estimators phase takes no ids")
+              got = sorted(p.stem for p in (wpf / "results_cloud" / "checkpoints").glob("*.json"))
+              if got != failed:
+                  sys.exit("results_cloud/checkpoints must hold exactly the 57 cloud outcomes (found %d)" % len(got))
+              if not agreed():
+                  sys.exit("the consistency check has not recorded agreement")
+          else:
+              sys.exit("unknown phase %r" % phase)
+          group = {"D%02d" % d: "small" for d in range(1, 10)}
+          group.update({"D10a": "large", "D10b": "large", "D10c": "large"})
+          if phase == "completion":     # largest first, so the longest jobs start first
+              ids = sorted(ids, key=lambda t: -int(sample[t]["bytes"]))
+          inc = [dict(task=t, stratum=sample[t]["stratum"], group=group[sample[t]["stratum"]]) for t in ids]
+          if not inc:
+              inc = [dict(task="none", stratum="", group="")]
+          print("phase=%s" % phase)
+          print("dest=%s" % dest)
+          print("matrix=%s" % json.dumps({"include": inc}, separators=(",", ":")))
+          print("%s: %d objects" % (phase, len(ids)), file=sys.stderr)
+          PY
+          cat "$GITHUB_OUTPUT"
+
+  object:
+    needs: preflight
+    if: needs.preflight.outputs.phase == 'consistency' || needs.preflight.outputs.phase == 'completion'
+    name: ${{ matrix.task }} (${{ matrix.stratum }})
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.preflight.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: 893f931b3045b0b628329db81999c2f439d4e830
+          path: frozen
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: frozen/validation/requirements-external-e2e.txt
+      - name: Install the frozen scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r frozen/validation/requirements-external-e2e.txt
+      - name: Run one object (run_wpf.py, one worker)
+        shell: bash
+        env:
+          TASK: ${{ matrix.task }}
+          STRATUM: ${{ matrix.stratum }}
+          GROUP: ${{ matrix.group }}
+        run: |
+          set -uo pipefail
+          OUT="$RUNNER_TEMP/wpf_out"; export OUT
+          mkdir -p "$OUT/checkpoints"
+          export WPF_FROZEN_VALIDATION="$GITHUB_WORKSPACE/frozen/validation"
+          export WPF_CACHE="$RUNNER_TEMP/wpf_cache"
+          export WPF_CKPT="$OUT/checkpoints"
+          {
+            echo "task=$TASK stratum=$STRATUM group=$GROUP"
+            echo "research_commit=$(git -C repo rev-parse HEAD)"
+            echo "frozen_commit=$(git -C frozen rev-parse HEAD)"
+            echo "python=$(python -c 'import sys; print(sys.version.split()[0])')"
+            uname -srm; echo "nproc=$(nproc)"; free -m; df -h / "$RUNNER_TEMP"
+          } > "$OUT/env.txt" 2>&1
+          python -m pip freeze > "$OUT/pip_freeze.txt"
+          ( while true; do
+              echo "$(date -u +%FT%TZ) $(free -m | awk '/^Mem:/{printf "mem_used_MB=%s mem_avail_MB=%s ", $3, $7} /^Swap:/{printf "swap_used_MB=%s", $3}')"
+              sleep 60
+            done ) > "$OUT/memory.log" 2>&1 &
+          MON=$!
+          start=$(date +%s)
+          RC=0
+          timeout --kill-after=120 340m python "repo/$WPF/run_wpf.py" --group "$GROUP" --workers 1 --only "$TASK" > "$OUT/run.log" 2>&1 || RC=$?
+          kill "$MON" 2>/dev/null || true
+          export RC
+          echo "exit_code=$RC wall_s=$(( $(date +%s) - start ))" >> "$OUT/env.txt"
+          sudo dmesg 2>/dev/null | grep -iE 'out of memory|oom-kill|killed process' > "$OUT/oom.txt" || true
+          tail -n 40 "$OUT/run.log"
+          if [ ! -f "$OUT/checkpoints/$TASK.json" ]; then
+            python - <<'PY'
+          import csv, json, os
+          from pathlib import Path
+          t, rc = os.environ["TASK"], int(os.environ["RC"])
+          s = {r["task_id"]: r for r in csv.DictReader(open(Path("repo") / os.environ["WPF"] / "sample.csv", encoding="utf-8"))}[t]
+          if rc in (124, 137):
+              err = "TimeLimit: run stopped at the 340-min limit of the cloud job (exit %d)" % rc
+          else:
+              err = "NoCheckpoint: run_wpf.py exited with code %d without writing a checkpoint" % rc
+          d = dict(task_id=t, stratum=s["stratum"], key=s["key"], frame_bytes=int(s["bytes"]), group=os.environ["GROUP"],
+                   status="FAILED", rows=[], failures=[dict(task_id=t, stratum=s["stratum"], stage="worker", error=err)],
+                   retried=False, recorded_by="workflow: no checkpoint from run_wpf.py (DEVIATIONS.md 8)")
+          json.dump(d, open(Path(os.environ["OUT"]) / "checkpoints" / (t + ".json"), "w", encoding="utf-8"), indent=1)
+          print("recorded fallback FAILED checkpoint:", err)
+          PY
+          fi
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          d = json.load(open(Path(os.environ["OUT"]) / "checkpoints" / (os.environ["TASK"] + ".json"), encoding="utf-8"))
+          print({k: d.get(k) for k in ("task_id", "stratum", "status", "floor_e", "eligible", "writer_choice", "bader_solves", "wall_seconds")})
+          print([f.get("stage") + ": " + f.get("error", "")[:160] for f in d.get("failures", [])])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wpf-${{ needs.preflight.outputs.phase }}-${{ matrix.task }}
+          path: ${{ runner.temp }}/wpf_out
+          if-no-files-found: warn
+          retention-days: 90
+
+  collect:
+    needs: [preflight, object]
+    if: always() && needs.preflight.result == 'success' && (needs.preflight.outputs.phase == 'consistency' || needs.preflight.outputs.phase == 'completion')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: wpf-${{ needs.preflight.outputs.phase }}-*
+          path: arts
+      - name: Collect checkpoints (missing job outcome -> FAILED, DEVIATIONS.md 8)
+        shell: bash
+        env:
+          PHASE: ${{ needs.preflight.outputs.phase }}
+          DEST: ${{ needs.preflight.outputs.dest }}
+          MATRIX: ${{ needs.preflight.outputs.matrix }}
+          OBJECT_RESULT: ${{ needs.object.result }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, hashlib, json, os, shutil
+          from pathlib import Path
+          wpf = Path("repo") / os.environ["WPF"]
+          phase = os.environ["PHASE"]
+          inc = json.loads(os.environ["MATRIX"])["include"]
+          dest = os.environ.get("DEST", "")
+          if dest:     # DEVIATIONS.md 13: reruns are collected beside, not over, the first records
+              base, logs = wpf / "results_cloud" / dest, wpf / "results_cloud" / dest / "logs"
+          else:
+              base = wpf / "results_cloud" / ("consistency" if phase == "consistency" else "")
+              logs = base / ("logs" if phase == "consistency" else "completion_logs")
+          ck = base / "checkpoints"
+          ck.mkdir(parents=True, exist_ok=True)
+          sample = {r["task_id"]: r for r in csv.DictReader(open(wpf / "sample.csv", encoding="utf-8"))}
+          for o in inc:
+              t = o["task"]
+              art = Path("arts") / ("wpf-%s-%s" % (phase, t))
+              src = art / "checkpoints" / (t + ".json")
+              if src.is_file():
+                  shutil.copyfile(src, ck / (t + ".json"))
+              else:
+                  s = sample[t]
+                  err = "NoArtifact: the object's job ended without returning a checkpoint (object jobs: %s)" % os.environ["OBJECT_RESULT"]
+                  d = dict(task_id=t, stratum=s["stratum"], key=s["key"], frame_bytes=int(s["bytes"]), group=o["group"],
+                           status="FAILED", rows=[], failures=[dict(task_id=t, stratum=s["stratum"], stage="worker", error=err)],
+                           retried=False, recorded_by="workflow collect job: no checkpoint returned (DEVIATIONS.md 8)")
+                  json.dump(d, open(ck / (t + ".json"), "w", encoding="utf-8"), indent=1)
+                  print("fallback FAILED:", t, err)
+              if art.is_dir():
+                  (logs / t).mkdir(parents=True, exist_ok=True)
+                  for f in ("env.txt", "run.log", "memory.log", "oom.txt", "pip_freeze.txt"):
+                      if (art / f).is_file():
+                          shutil.copyfile(art / f, logs / t / f)
+          names = sorted(p.name for p in ck.glob("*.json"))
+          with open(base / "CHECKPOINTS.sha256", "w", encoding="utf-8", newline="\n") as fh:
+              for n in names:
+                  fh.write("%s *%s\n" % (hashlib.sha256((ck / n).read_bytes()).hexdigest(), n))
+          st = {}
+          for n in names:
+              d = json.load(open(ck / n, encoding="utf-8"))
+              st.setdefault(d["stratum"], {}).setdefault(d["status"], 0)
+              st[d["stratum"]][d["status"]] += 1
+          print(json.dumps(st, indent=1, sort_keys=True))
+          PY
+          if [ "$PHASE" = consistency ]; then
+            python "repo/$WPF/compare_consistency.py" \
+              --laptop "repo/$WPF/results_laptop/checkpoints" \
+              --cloud "repo/$WPF/results_cloud/consistency/checkpoints" \
+              --out-dir "repo/$WPF/results_cloud"
+          fi
+      - name: Commit results
+        shell: bash
+        env:
+          PHASE: ${{ needs.preflight.outputs.phase }}
+          DEST: ${{ needs.preflight.outputs.dest }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$WPF/results_cloud"
+          if git diff --cached --quiet; then echo 'No result changes.'; exit 0; fi
+          if [ "$PHASE" = consistency ]; then
+            subject="WP-F cloud: consistency reruns of the five deviation-7 objects and CONSISTENCY.md"
+          elif [ -n "$DEST" ]; then
+            subject="WP-F cloud: outcomes of the six never-started objects, rerun once each (DEVIATIONS 12)"
+          else
+            subject="WP-F cloud: outcomes of the 57 laptop-FAILED objects (one run each)"
+          fi
+          git commit -q -F - <<EOF
+          $subject
+
+          Workflow run: $RUN_URL
+
+          Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+          EOF
+          git pull --rebase origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"
+
+  estimators:
+    needs: preflight
+    if: needs.preflight.outputs.phase == 'estimators'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.4.6 pandas==2.3.3 matplotlib==3.11.1 tabulate==0.10.0
+      - name: Run analyze_wpf.py on (a) the completed sample and (b) the laptop run as frozen
+        shell: bash
+        env:
+          # figures/composite/__pycache__/*.pyc are tracked; importing the style module must not rewrite them (DEVIATIONS.md 11)
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          A="$RUNNER_TEMP/ck_completed"; mkdir -p "$A"
+          export A
+          python - <<'PY'
+          import csv, hashlib, json, os, shutil
+          from pathlib import Path
+          wpf = Path("repo") / os.environ["WPF"]
+          a = Path(os.environ["A"])
+          sample = [r["task_id"] for r in csv.DictReader(open(wpf / "sample.csv", encoding="utf-8"))]
+          lapdir, clouddir = wpf / "results_laptop" / "checkpoints", wpf / "results_cloud" / "checkpoints"
+          rows = []
+          for t in sample:
+              lp = lapdir / (t + ".json")
+              if json.load(open(lp, encoding="utf-8"))["status"] == "SUCCESS":
+                  src, origin = lp, "laptop"
+              else:
+                  src, origin = clouddir / (t + ".json"), "cloud"
+              shutil.copyfile(src, a / (t + ".json"))
+              rows.append(dict(task_id=t, source=origin, sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
+                               status=json.load(open(src, encoding="utf-8"))["status"]))
+          assert len(rows) == 300 == len(set(r["task_id"] for r in rows))
+          assert sum(r["source"] == "laptop" for r in rows) == 243 and sum(r["source"] == "cloud" for r in rows) == 57
+          out = wpf / "results_cloud" / "completed"
+          out.mkdir(parents=True, exist_ok=True)
+          with open(out / "CHECKPOINT_SOURCES.csv", "w", newline="", encoding="utf-8") as fh:
+              w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+              w.writeheader()
+              w.writerows(rows)
+          print("assembled", len(rows), "checkpoints")
+          PY
+          mkdir -p "repo/$WPF/results_cloud/laptop_as_frozen"
+          echo "== (a) completed sample"
+          WPF_CKPT="$A" WPF_OUT="repo/$WPF/results_cloud/completed" python "repo/$WPF/analyze_wpf.py"
+          echo "== (b) laptop run as frozen"
+          WPF_CKPT="repo/$WPF/results_laptop/checkpoints" WPF_OUT="repo/$WPF/results_cloud/laptop_as_frozen" python "repo/$WPF/analyze_wpf.py"
+          python -m pip freeze > "repo/$WPF/results_cloud/estimators_pip_freeze.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wpf-estimators
+          path: |
+            repo/analysis/extensions_20260930/WP-F/results_cloud/completed
+            repo/analysis/extensions_20260930/WP-F/results_cloud/laptop_as_frozen
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Commit results
+        shell: bash
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$WPF/results_cloud"
+          if git diff --cached --quiet; then echo 'No result changes.'; exit 0; fi
+          git commit -q -F - <<EOF
+          WP-F cloud: protocol estimators on (a) the completed sample and (b) the laptop run as frozen
+
+          Workflow run: $RUN_URL
+
+          Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+          EOF
+          git pull --rebase origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"
+
+  # DEVIATIONS.md 12-13: estimate (a) recomputed with the six reruns; (b) and results_cloud/completed stay as recorded
+  estimators_v2:
+    needs: preflight
+    if: needs.preflight.outputs.phase == 'estimators_v2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.4.6 pandas==2.3.3 matplotlib==3.11.1 tabulate==0.10.0
+      - name: Run analyze_wpf.py on (a) the completed sample with the six reruns
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          A="$RUNNER_TEMP/ck_completed_v2"; mkdir -p "$A"
+          export A
+          python - <<'PY'
+          import csv, hashlib, json, os, shutil
+          from pathlib import Path
+          wpf = Path("repo") / os.environ["WPF"]
+          a = Path(os.environ["A"])
+          RERUN12 = {"mp-1826245", "mp-2046569", "mp-2234070", "mp-3092553", "mp-1543577", "mp-2355832"}
+          sample = [r["task_id"] for r in csv.DictReader(open(wpf / "sample.csv", encoding="utf-8"))]
+          lapdir, clouddir = wpf / "results_laptop" / "checkpoints", wpf / "results_cloud" / "checkpoints"
+          rerundir = wpf / "results_cloud" / "rerun_dev12" / "checkpoints"
+          rows = []
+          for t in sample:
+              lp = lapdir / (t + ".json")
+              if json.load(open(lp, encoding="utf-8"))["status"] == "SUCCESS":
+                  src, origin = lp, "laptop"
+              elif t in RERUN12:
+                  src, origin = rerundir / (t + ".json"), "cloud_rerun_dev12"
+              else:
+                  src, origin = clouddir / (t + ".json"), "cloud"
+              shutil.copyfile(src, a / (t + ".json"))
+              rows.append(dict(task_id=t, source=origin, sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
+                               status=json.load(open(src, encoding="utf-8"))["status"]))
+          n = {s: sum(r["source"] == s for r in rows) for s in ("laptop", "cloud", "cloud_rerun_dev12")}
+          assert len(rows) == 300 == len(set(r["task_id"] for r in rows)), len(rows)
+          assert n == {"laptop": 243, "cloud": 51, "cloud_rerun_dev12": 6}, n
+          out = wpf / "results_cloud" / "completed_v2"
+          out.mkdir(parents=True, exist_ok=True)
+          with open(out / "CHECKPOINT_SOURCES.csv", "w", newline="", encoding="utf-8") as fh:
+              w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+              w.writeheader()
+              w.writerows(rows)
+          print("assembled", n)
+          PY
+          echo "== (a) v2 completed sample"
+          WPF_CKPT="$A" WPF_OUT="repo/$WPF/results_cloud/completed_v2" python "repo/$WPF/analyze_wpf.py"
+          python -m pip freeze > "repo/$WPF/results_cloud/completed_v2/estimators_pip_freeze.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wpf-estimators-v2
+          path: repo/analysis/extensions_20260930/WP-F/results_cloud/completed_v2
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Commit results
+        shell: bash
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          cd repo
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git status --porcelain
+          git add "$WPF/results_cloud/completed_v2"
+          if git diff --cached --quiet; then echo 'No result changes.'; exit 0; fi
+          git commit -q -F - <<EOF
+          WP-F cloud: estimate (a) recomputed with the six reruns of DEVIATIONS 12 (completed_v2)
+
+          Workflow run: $RUN_URL
+
+          Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+          EOF
+          git pull --rebase origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"

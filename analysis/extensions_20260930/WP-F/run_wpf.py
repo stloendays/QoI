@@ -33,9 +33,10 @@ import numpy as np  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-FROZEN_VALIDATION = Path(r"D:\Research\QoI-final4-local\frozen_repo\validation")
-CACHE = Path(r"D:\Research\QoI-ext-cache\WP-F\densities")
-CKPT = Path(r"D:\Research\QoI-ext-cache\WP-F\checkpoints")
+# laptop defaults, overridable by environment variables for another execution platform (DEVIATIONS.md 7)
+FROZEN_VALIDATION = Path(os.environ.get("WPF_FROZEN_VALIDATION", r"D:\Research\QoI-final4-local\frozen_repo\validation"))
+CACHE = Path(os.environ.get("WPF_CACHE", r"D:\Research\QoI-ext-cache\WP-F\densities"))
+CKPT = Path(os.environ.get("WPF_CKPT", r"D:\Research\QoI-ext-cache\WP-F\checkpoints"))
 SEEDS = (20260905, 1, 2, 3, 4)
 TAUS = (1e-4, 1e-3, 1e-2)
 LADDER = {

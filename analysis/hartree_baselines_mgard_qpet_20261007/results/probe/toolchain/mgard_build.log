@@ -1,0 +1,1037 @@
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenMP_CXX: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5")
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Checking for one of the modules 'libzstd'
+-- Found ZSTD: /usr/lib/x86_64-linux-gnu/libzstd.so
+-- Found MPI_CXX: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so (found version "3.1")
+-- Found MPI: TRUE (found version "3.1")
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.3")
+-- Checking for one of the modules 'protobuf>=3.0.0'
+-- Found protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+-- Found OpenMP_CXX: -fopenmp (found version "4.5")
+CMake Warning at tests/CMakeLists.txt:1 (find_package):
+  By not providing "FindCatch2.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Catch2", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Catch2" (requested
+  version 3.0.0) with any of the following names:
+
+    Catch2Config.cmake
+    catch2-config.cmake
+
+  Add the installation prefix of "Catch2" to CMAKE_PREFIX_PATH or set
+  "Catch2_DIR" to a directory containing one of the above files.  If "Catch2"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Will not build mgard tests (Catch2 not found).
+-- Will not build mgard-x tests (Catch2 not found).
+-- Checking for one of the modules 'tclap>=1.4'
+-- TCLAP found, but version number not checked (version 1.4 requested).
+-- 
+-- Configuration summary:
+--   Installation directories:
+--     prefix:  /home/runner/work/QoI/QoI/tc/mgard
+--     bin:     /home/runner/work/QoI/QoI/tc/mgard/bin
+--     lib:     /home/runner/work/QoI/QoI/tc/mgard/lib
+--     include: /home/runner/work/QoI/QoI/tc/mgard/include
+--     cmake:   /home/runner/work/QoI/QoI/tc/mgard/lib/cmake/mgard
+--   
+--   Options:
+--     build type:    Release
+--     shared libs:   ON
+--     portable backends:
+--       SERIAL:      ON
+--       OPENMP:      ON
+--       CUDA:        OFF
+--       HIP:         OFF
+--       SYCL:        OFF
+--     auto tuning:   OFF
+--     MDR:           ON
+--     timing:        OFF
+--     ASan:          OFF
+--     UBSan:         OFF
+--     tests:         ON
+--     benchmarks:    OFF
+--     documentation: OFF
+--     CLI:           ON
+--     unstructured:  OFF
+--   
+--   Libraries:
+--     ZSTD:      1
+--     protobuf:  1
+--     OpenMP:    TRUE
+--     Catch2:    0
+--     TCLAP:     TRUE
+--   
+--   Programs:
+--     python3: /opt/hostedtoolcache/Python/3.12.14/x64/bin/python3
+--     protoc:  /usr/bin/protoc
+-- Configuring done (3.9s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/runner/work/QoI/QoI/mgard-build
+[  0%] Generating src/compress_internal_generated.cpp
+[  0%] Generating include/proto/mgard.pb.h, include/proto/mgard.pb.cc
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compress.cpp.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compress_internal.cpp.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/format.cpp.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard/compressors.cpp.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/include/proto/mgard.pb.cc.o
+[  1%] Building CXX object CMakeFiles/mgard-library.dir/src/compress_internal_generated.cpp.o
+[  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Config/Config.cpp.o
+[  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionHighLevel/DynamicAPI.cpp.o
+[  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/DynamicAPI.cpp.o
+[  2%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Metadata/Metadata.cpp.o
+[  3%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/RuntimeX/AutoTuners/AutoTunerSerial.cpp.o
+[  3%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/RuntimeX/AutoTuners/AutoTunerOpenmp.cpp.o
+[  3%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/RuntimeX/Utilities/Log.cpp.o
+[  3%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_1D_double_SERIAL.cpp.o
+[  3%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_2D_double_SERIAL.cpp.o
+[  4%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_3D_double_SERIAL.cpp.o
+[  4%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_4D_double_SERIAL.cpp.o
+[  4%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_5D_double_SERIAL.cpp.o
+[  4%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_1D_float_SERIAL.cpp.o
+[  5%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_2D_float_SERIAL.cpp.o
+[  5%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_3D_float_SERIAL.cpp.o
+[  5%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_4D_float_SERIAL.cpp.o
+[  5%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_5D_float_SERIAL.cpp.o
+[  6%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_1D_double_SERIAL.cpp.o
+[  6%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_2D_double_SERIAL.cpp.o
+[  6%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_3D_double_SERIAL.cpp.o
+[  6%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_1D_float_SERIAL.cpp.o
+[  6%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_2D_float_SERIAL.cpp.o
+[  7%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_3D_float_SERIAL.cpp.o
+[  7%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_1D_double_SERIAL.cpp.o
+[  7%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_2D_double_SERIAL.cpp.o
+[  7%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_3D_double_SERIAL.cpp.o
+[  8%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_1D_float_SERIAL.cpp.o
+[  8%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_2D_float_SERIAL.cpp.o
+[  8%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_3D_float_SERIAL.cpp.o
+[  8%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_4D_double_SERIAL.cpp.o
+[  8%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_5D_double_SERIAL.cpp.o
+[  9%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_4D_float_SERIAL.cpp.o
+[  9%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_5D_float_SERIAL.cpp.o
+[  9%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_4D_double_SERIAL.cpp.o
+[  9%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_5D_double_SERIAL.cpp.o
+[ 10%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_4D_float_SERIAL.cpp.o
+[ 10%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_5D_float_SERIAL.cpp.o
+[ 10%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_1D_double_SERIAL.cpp.o
+[ 10%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_2D_double_SERIAL.cpp.o
+[ 10%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_3D_double_SERIAL.cpp.o
+[ 11%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_1D_float_SERIAL.cpp.o
+[ 11%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_2D_float_SERIAL.cpp.o
+[ 11%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_3D_float_SERIAL.cpp.o
+[ 11%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_4D_double_SERIAL.cpp.o
+[ 12%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_5D_double_SERIAL.cpp.o
+[ 12%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_4D_float_SERIAL.cpp.o
+[ 12%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_5D_float_SERIAL.cpp.o
+[ 12%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_1D_double_SERIAL.cpp.o
+[ 12%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_2D_double_SERIAL.cpp.o
+[ 13%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_3D_double_SERIAL.cpp.o
+[ 13%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_4D_double_SERIAL.cpp.o
+[ 13%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_5D_double_SERIAL.cpp.o
+[ 13%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_1D_float_SERIAL.cpp.o
+[ 14%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_2D_float_SERIAL.cpp.o
+[ 14%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_3D_float_SERIAL.cpp.o
+[ 14%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_4D_float_SERIAL.cpp.o
+[ 14%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_5D_float_SERIAL.cpp.o
+[ 15%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_1D_double_SERIAL.cpp.o
+[ 15%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_2D_double_SERIAL.cpp.o
+[ 15%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_3D_double_SERIAL.cpp.o
+[ 15%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_4D_double_SERIAL.cpp.o
+[ 15%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_5D_double_SERIAL.cpp.o
+[ 16%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_1D_float_SERIAL.cpp.o
+[ 16%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_2D_float_SERIAL.cpp.o
+[ 16%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_3D_float_SERIAL.cpp.o
+[ 16%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_4D_float_SERIAL.cpp.o
+[ 17%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_5D_float_SERIAL.cpp.o
+[ 17%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_1D_double_SERIAL.cpp.o
+[ 17%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_2D_double_SERIAL.cpp.o
+[ 17%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_3D_double_SERIAL.cpp.o
+[ 17%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_4D_double_SERIAL.cpp.o
+[ 18%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_5D_double_SERIAL.cpp.o
+[ 18%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_1D_float_SERIAL.cpp.o
+[ 18%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_2D_float_SERIAL.cpp.o
+[ 18%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_3D_float_SERIAL.cpp.o
+[ 19%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_4D_float_SERIAL.cpp.o
+[ 19%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_5D_float_SERIAL.cpp.o
+[ 19%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_1D_double_SERIAL.cpp.o
+[ 19%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_2D_double_SERIAL.cpp.o
+[ 19%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_3D_double_SERIAL.cpp.o
+[ 20%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_4D_double_SERIAL.cpp.o
+[ 20%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_5D_double_SERIAL.cpp.o
+[ 20%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_1D_float_SERIAL.cpp.o
+[ 20%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_2D_float_SERIAL.cpp.o
+[ 21%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_3D_float_SERIAL.cpp.o
+[ 21%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_4D_float_SERIAL.cpp.o
+[ 21%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_5D_float_SERIAL.cpp.o
+[ 21%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_1D_double_SERIAL.cpp.o
+[ 22%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_2D_double_SERIAL.cpp.o
+[ 22%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_3D_double_SERIAL.cpp.o
+[ 22%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_4D_double_SERIAL.cpp.o
+[ 22%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_5D_double_SERIAL.cpp.o
+[ 22%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_1D_float_SERIAL.cpp.o
+[ 23%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_2D_float_SERIAL.cpp.o
+[ 23%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_3D_float_SERIAL.cpp.o
+[ 23%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_4D_float_SERIAL.cpp.o
+[ 23%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_5D_float_SERIAL.cpp.o
+[ 24%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_1D_double_SERIAL.cpp.o
+[ 24%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_2D_double_SERIAL.cpp.o
+[ 24%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_3D_double_SERIAL.cpp.o
+[ 24%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_4D_double_SERIAL.cpp.o
+[ 24%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_5D_double_SERIAL.cpp.o
+[ 25%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_1D_float_SERIAL.cpp.o
+[ 25%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_2D_float_SERIAL.cpp.o
+[ 25%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_3D_float_SERIAL.cpp.o
+[ 25%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_4D_float_SERIAL.cpp.o
+[ 26%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_5D_float_SERIAL.cpp.o
+[ 26%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_1D_double_SERIAL.cpp.o
+[ 26%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_2D_double_SERIAL.cpp.o
+[ 26%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_3D_double_SERIAL.cpp.o
+[ 26%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_4D_double_SERIAL.cpp.o
+[ 27%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_5D_double_SERIAL.cpp.o
+[ 27%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_1D_float_SERIAL.cpp.o
+[ 27%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_2D_float_SERIAL.cpp.o
+[ 27%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_3D_float_SERIAL.cpp.o
+[ 28%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_4D_float_SERIAL.cpp.o
+[ 28%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_5D_float_SERIAL.cpp.o
+[ 28%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_1D_double_SERIAL.cpp.o
+[ 28%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_2D_double_SERIAL.cpp.o
+[ 28%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_3D_double_SERIAL.cpp.o
+[ 29%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_4D_double_SERIAL.cpp.o
+[ 29%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_5D_double_SERIAL.cpp.o
+[ 29%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_1D_float_SERIAL.cpp.o
+[ 29%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_2D_float_SERIAL.cpp.o
+[ 30%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_3D_float_SERIAL.cpp.o
+[ 30%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_4D_float_SERIAL.cpp.o
+[ 30%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_5D_float_SERIAL.cpp.o
+[ 30%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_1D_double_SERIAL.cpp.o
+[ 31%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_2D_double_SERIAL.cpp.o
+[ 31%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_3D_double_SERIAL.cpp.o
+[ 31%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_4D_double_SERIAL.cpp.o
+[ 31%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_5D_double_SERIAL.cpp.o
+[ 31%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_1D_float_SERIAL.cpp.o
+[ 32%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_2D_float_SERIAL.cpp.o
+[ 32%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_3D_float_SERIAL.cpp.o
+[ 32%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_4D_float_SERIAL.cpp.o
+[ 32%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_5D_float_SERIAL.cpp.o
+[ 33%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_1D_double_SERIAL.cpp.o
+[ 33%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_2D_double_SERIAL.cpp.o
+[ 33%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_3D_double_SERIAL.cpp.o
+[ 33%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_4D_double_SERIAL.cpp.o
+[ 33%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_5D_double_SERIAL.cpp.o
+[ 34%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_1D_float_SERIAL.cpp.o
+[ 34%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_2D_float_SERIAL.cpp.o
+[ 34%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_3D_float_SERIAL.cpp.o
+[ 34%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_4D_float_SERIAL.cpp.o
+[ 35%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_5D_float_SERIAL.cpp.o
+[ 35%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_1D_double_SERIAL.cpp.o
+[ 35%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_2D_double_SERIAL.cpp.o
+[ 35%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_3D_double_SERIAL.cpp.o
+[ 35%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_4D_double_SERIAL.cpp.o
+[ 36%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_5D_double_SERIAL.cpp.o
+[ 36%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_1D_float_SERIAL.cpp.o
+[ 36%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_2D_float_SERIAL.cpp.o
+[ 36%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_3D_float_SERIAL.cpp.o
+[ 37%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_4D_float_SERIAL.cpp.o
+[ 37%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_5D_float_SERIAL.cpp.o
+[ 37%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_1D_double_SERIAL.cpp.o
+[ 37%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_2D_double_SERIAL.cpp.o
+[ 37%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_3D_double_SERIAL.cpp.o
+[ 38%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_4D_double_SERIAL.cpp.o
+[ 38%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_5D_double_SERIAL.cpp.o
+[ 38%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_1D_float_SERIAL.cpp.o
+[ 38%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_2D_float_SERIAL.cpp.o
+[ 39%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_3D_float_SERIAL.cpp.o
+[ 39%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_4D_float_SERIAL.cpp.o
+[ 39%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_5D_float_SERIAL.cpp.o
+[ 39%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_1D_double_SERIAL.cpp.o
+[ 40%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_2D_double_SERIAL.cpp.o
+[ 40%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_3D_double_SERIAL.cpp.o
+[ 40%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_4D_double_SERIAL.cpp.o
+[ 40%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_5D_double_SERIAL.cpp.o
+[ 40%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_1D_float_SERIAL.cpp.o
+[ 41%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_2D_float_SERIAL.cpp.o
+[ 41%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_3D_float_SERIAL.cpp.o
+[ 41%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_4D_float_SERIAL.cpp.o
+[ 41%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_5D_float_SERIAL.cpp.o
+[ 42%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_1D_double_SERIAL.cpp.o
+[ 42%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_2D_double_SERIAL.cpp.o
+[ 42%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_3D_double_SERIAL.cpp.o
+[ 42%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_4D_double_SERIAL.cpp.o
+[ 42%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_5D_double_SERIAL.cpp.o
+[ 43%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_1D_float_SERIAL.cpp.o
+[ 43%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_2D_float_SERIAL.cpp.o
+[ 43%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_3D_float_SERIAL.cpp.o
+[ 43%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_4D_float_SERIAL.cpp.o
+[ 44%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_5D_float_SERIAL.cpp.o
+[ 44%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_1D_double_SERIAL.cpp.o
+[ 44%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_2D_double_SERIAL.cpp.o
+[ 44%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_3D_double_SERIAL.cpp.o
+[ 44%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_4D_double_SERIAL.cpp.o
+[ 45%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_5D_double_SERIAL.cpp.o
+[ 45%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_1D_float_SERIAL.cpp.o
+[ 45%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_2D_float_SERIAL.cpp.o
+[ 45%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_3D_float_SERIAL.cpp.o
+[ 46%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_4D_float_SERIAL.cpp.o
+[ 46%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_5D_float_SERIAL.cpp.o
+[ 46%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionHighLevel/Compress_SERIAL.cpp.o
+[ 46%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionHighLevel/Decompress_SERIAL.cpp.o
+[ 47%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_1D_double_SERIAL.cpp.o
+[ 47%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_2D_double_SERIAL.cpp.o
+[ 47%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_3D_double_SERIAL.cpp.o
+[ 47%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_4D_double_SERIAL.cpp.o
+[ 47%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_5D_double_SERIAL.cpp.o
+[ 48%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_1D_float_SERIAL.cpp.o
+[ 48%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_2D_float_SERIAL.cpp.o
+[ 48%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_3D_float_SERIAL.cpp.o
+[ 48%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_4D_float_SERIAL.cpp.o
+[ 49%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_5D_float_SERIAL.cpp.o
+[ 49%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterSerial.cpp.o
+[ 49%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_1D_double_OPENMP.cpp.o
+[ 49%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_2D_double_OPENMP.cpp.o
+[ 49%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_3D_double_OPENMP.cpp.o
+[ 50%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_4D_double_OPENMP.cpp.o
+[ 50%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_5D_double_OPENMP.cpp.o
+[ 50%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_1D_float_OPENMP.cpp.o
+[ 50%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_2D_float_OPENMP.cpp.o
+[ 51%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_3D_float_OPENMP.cpp.o
+[ 51%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_4D_float_OPENMP.cpp.o
+[ 51%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/Hierarchy/Hierarchy_5D_float_OPENMP.cpp.o
+[ 51%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_1D_double_OPENMP.cpp.o
+[ 51%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_2D_double_OPENMP.cpp.o
+[ 52%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_3D_double_OPENMP.cpp.o
+[ 52%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_1D_float_OPENMP.cpp.o
+[ 52%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_2D_float_OPENMP.cpp.o
+[ 52%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D_3D_float_OPENMP.cpp.o
+[ 53%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_1D_double_OPENMP.cpp.o
+[ 53%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_2D_double_OPENMP.cpp.o
+[ 53%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_3D_double_OPENMP.cpp.o
+[ 53%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_1D_float_OPENMP.cpp.o
+[ 53%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_2D_float_OPENMP.cpp.o
+[ 54%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D_3D_float_OPENMP.cpp.o
+[ 54%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_4D_double_OPENMP.cpp.o
+[ 54%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_5D_double_OPENMP.cpp.o
+[ 54%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_4D_float_OPENMP.cpp.o
+[ 55%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND_5D_float_OPENMP.cpp.o
+[ 55%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_4D_double_OPENMP.cpp.o
+[ 55%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_5D_double_OPENMP.cpp.o
+[ 55%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_4D_float_OPENMP.cpp.o
+[ 56%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND_5D_float_OPENMP.cpp.o
+[ 56%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_1D_double_OPENMP.cpp.o
+[ 56%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_2D_double_OPENMP.cpp.o
+[ 56%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_3D_double_OPENMP.cpp.o
+[ 56%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_1D_float_OPENMP.cpp.o
+[ 57%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_2D_float_OPENMP.cpp.o
+[ 57%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D_3D_float_OPENMP.cpp.o
+[ 57%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_4D_double_OPENMP.cpp.o
+[ 57%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_5D_double_OPENMP.cpp.o
+[ 58%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_4D_float_OPENMP.cpp.o
+[ 58%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND_5D_float_OPENMP.cpp.o
+[ 58%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_1D_double_OPENMP.cpp.o
+[ 58%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_2D_double_OPENMP.cpp.o
+[ 58%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_3D_double_OPENMP.cpp.o
+[ 59%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_4D_double_OPENMP.cpp.o
+[ 59%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_5D_double_OPENMP.cpp.o
+[ 59%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_1D_float_OPENMP.cpp.o
+[ 59%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_2D_float_OPENMP.cpp.o
+[ 60%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_3D_float_OPENMP.cpp.o
+[ 60%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_4D_float_OPENMP.cpp.o
+[ 60%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND_5D_float_OPENMP.cpp.o
+[ 60%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_1D_double_OPENMP.cpp.o
+[ 60%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_2D_double_OPENMP.cpp.o
+[ 61%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_3D_double_OPENMP.cpp.o
+[ 61%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_4D_double_OPENMP.cpp.o
+[ 61%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_5D_double_OPENMP.cpp.o
+[ 61%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_1D_float_OPENMP.cpp.o
+[ 62%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_2D_float_OPENMP.cpp.o
+[ 62%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_3D_float_OPENMP.cpp.o
+[ 62%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_4D_float_OPENMP.cpp.o
+[ 62%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D_5D_float_OPENMP.cpp.o
+[ 62%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_1D_double_OPENMP.cpp.o
+[ 63%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_2D_double_OPENMP.cpp.o
+[ 63%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_3D_double_OPENMP.cpp.o
+[ 63%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_4D_double_OPENMP.cpp.o
+[ 63%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_5D_double_OPENMP.cpp.o
+[ 64%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_1D_float_OPENMP.cpp.o
+[ 64%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_2D_float_OPENMP.cpp.o
+[ 64%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_3D_float_OPENMP.cpp.o
+[ 64%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_4D_float_OPENMP.cpp.o
+[ 65%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND_5D_float_OPENMP.cpp.o
+[ 65%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_1D_double_OPENMP.cpp.o
+[ 65%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_2D_double_OPENMP.cpp.o
+[ 65%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_3D_double_OPENMP.cpp.o
+[ 65%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_4D_double_OPENMP.cpp.o
+[ 66%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_5D_double_OPENMP.cpp.o
+[ 66%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_1D_float_OPENMP.cpp.o
+[ 66%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_2D_float_OPENMP.cpp.o
+[ 66%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_3D_float_OPENMP.cpp.o
+[ 67%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_4D_float_OPENMP.cpp.o
+[ 67%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND_5D_float_OPENMP.cpp.o
+[ 67%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_1D_double_OPENMP.cpp.o
+[ 67%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_2D_double_OPENMP.cpp.o
+[ 67%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_3D_double_OPENMP.cpp.o
+[ 68%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_4D_double_OPENMP.cpp.o
+[ 68%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_5D_double_OPENMP.cpp.o
+[ 68%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_1D_float_OPENMP.cpp.o
+[ 68%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_2D_float_OPENMP.cpp.o
+[ 69%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_3D_float_OPENMP.cpp.o
+[ 69%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_4D_float_OPENMP.cpp.o
+[ 69%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Decompose_5D_float_OPENMP.cpp.o
+[ 69%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_1D_double_OPENMP.cpp.o
+[ 69%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_2D_double_OPENMP.cpp.o
+[ 70%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_3D_double_OPENMP.cpp.o
+[ 70%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_4D_double_OPENMP.cpp.o
+[ 70%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_5D_double_OPENMP.cpp.o
+[ 70%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_1D_float_OPENMP.cpp.o
+[ 71%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_2D_float_OPENMP.cpp.o
+[ 71%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_3D_float_OPENMP.cpp.o
+[ 71%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_4D_float_OPENMP.cpp.o
+[ 71%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/MultiDimension/Recompose_5D_float_OPENMP.cpp.o
+[ 72%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_1D_double_OPENMP.cpp.o
+[ 72%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_2D_double_OPENMP.cpp.o
+[ 72%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_3D_double_OPENMP.cpp.o
+[ 72%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_4D_double_OPENMP.cpp.o
+[ 72%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_5D_double_OPENMP.cpp.o
+[ 73%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_1D_float_OPENMP.cpp.o
+[ 73%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_2D_float_OPENMP.cpp.o
+[ 73%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_3D_float_OPENMP.cpp.o
+[ 73%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_4D_float_OPENMP.cpp.o
+[ 74%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients_5D_float_OPENMP.cpp.o
+[ 74%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_1D_double_OPENMP.cpp.o
+[ 74%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_2D_double_OPENMP.cpp.o
+[ 74%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_3D_double_OPENMP.cpp.o
+[ 74%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_4D_double_OPENMP.cpp.o
+[ 75%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_5D_double_OPENMP.cpp.o
+[ 75%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_1D_float_OPENMP.cpp.o
+[ 75%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_2D_float_OPENMP.cpp.o
+[ 75%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_3D_float_OPENMP.cpp.o
+[ 76%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_4D_float_OPENMP.cpp.o
+[ 76%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore_5D_float_OPENMP.cpp.o
+[ 76%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_1D_double_OPENMP.cpp.o
+[ 76%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_2D_double_OPENMP.cpp.o
+[ 76%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_3D_double_OPENMP.cpp.o
+[ 77%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_4D_double_OPENMP.cpp.o
+[ 77%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_5D_double_OPENMP.cpp.o
+[ 77%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_1D_float_OPENMP.cpp.o
+[ 77%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_2D_float_OPENMP.cpp.o
+[ 78%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_3D_float_OPENMP.cpp.o
+[ 78%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_4D_float_OPENMP.cpp.o
+[ 78%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection_5D_float_OPENMP.cpp.o
+[ 78%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_1D_double_OPENMP.cpp.o
+[ 78%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_2D_double_OPENMP.cpp.o
+[ 79%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_3D_double_OPENMP.cpp.o
+[ 79%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_4D_double_OPENMP.cpp.o
+[ 79%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_5D_double_OPENMP.cpp.o
+[ 79%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_1D_float_OPENMP.cpp.o
+[ 80%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_2D_float_OPENMP.cpp.o
+[ 80%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_3D_float_OPENMP.cpp.o
+[ 80%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_4D_float_OPENMP.cpp.o
+[ 80%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Decompose_5D_float_OPENMP.cpp.o
+[ 81%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_1D_double_OPENMP.cpp.o
+[ 81%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_2D_double_OPENMP.cpp.o
+[ 81%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_3D_double_OPENMP.cpp.o
+[ 81%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_4D_double_OPENMP.cpp.o
+[ 81%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_5D_double_OPENMP.cpp.o
+[ 82%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_1D_float_OPENMP.cpp.o
+[ 82%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_2D_float_OPENMP.cpp.o
+[ 82%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_3D_float_OPENMP.cpp.o
+[ 82%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_4D_float_OPENMP.cpp.o
+[ 83%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/SingleDimension/Recompose_5D_float_OPENMP.cpp.o
+[ 83%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_1D_double_OPENMP.cpp.o
+[ 83%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_2D_double_OPENMP.cpp.o
+[ 83%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_3D_double_OPENMP.cpp.o
+[ 83%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_4D_double_OPENMP.cpp.o
+[ 84%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_5D_double_OPENMP.cpp.o
+[ 84%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_1D_float_OPENMP.cpp.o
+[ 84%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_2D_float_OPENMP.cpp.o
+[ 84%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_3D_float_OPENMP.cpp.o
+[ 85%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_4D_float_OPENMP.cpp.o
+[ 85%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Decompose_5D_float_OPENMP.cpp.o
+[ 85%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_1D_double_OPENMP.cpp.o
+[ 85%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_2D_double_OPENMP.cpp.o
+[ 85%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_3D_double_OPENMP.cpp.o
+[ 86%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_4D_double_OPENMP.cpp.o
+[ 86%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_5D_double_OPENMP.cpp.o
+[ 86%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_1D_float_OPENMP.cpp.o
+[ 86%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_2D_float_OPENMP.cpp.o
+[ 87%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_3D_float_OPENMP.cpp.o
+[ 87%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_4D_float_OPENMP.cpp.o
+[ 87%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/DataRefactoring/InCacheBlock/Recompose_5D_float_OPENMP.cpp.o
+[ 87%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_1D_double_OPENMP.cpp.o
+[ 87%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_2D_double_OPENMP.cpp.o
+[ 88%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_3D_double_OPENMP.cpp.o
+[ 88%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_4D_double_OPENMP.cpp.o
+[ 88%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_5D_double_OPENMP.cpp.o
+[ 88%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_1D_float_OPENMP.cpp.o
+[ 89%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_2D_float_OPENMP.cpp.o
+[ 89%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_3D_float_OPENMP.cpp.o
+[ 89%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_4D_float_OPENMP.cpp.o
+[ 89%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/Compressor_5D_float_OPENMP.cpp.o
+[ 90%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_1D_double_OPENMP.cpp.o
+[ 90%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_2D_double_OPENMP.cpp.o
+[ 90%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_3D_double_OPENMP.cpp.o
+[ 90%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_4D_double_OPENMP.cpp.o
+[ 90%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_5D_double_OPENMP.cpp.o
+[ 91%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_1D_float_OPENMP.cpp.o
+[ 91%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_2D_float_OPENMP.cpp.o
+[ 91%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_3D_float_OPENMP.cpp.o
+[ 91%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_4D_float_OPENMP.cpp.o
+[ 92%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionLowLevel/HybridHierarchyCompressor_5D_float_OPENMP.cpp.o
+[ 92%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionHighLevel/Compress_OPENMP.cpp.o
+[ 92%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/CompressionHighLevel/Decompress_OPENMP.cpp.o
+[ 92%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_1D_double_OPENMP.cpp.o
+[ 92%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_2D_double_OPENMP.cpp.o
+[ 93%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_3D_double_OPENMP.cpp.o
+[ 93%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_4D_double_OPENMP.cpp.o
+[ 93%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_5D_double_OPENMP.cpp.o
+[ 93%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_1D_float_OPENMP.cpp.o
+[ 94%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_2D_float_OPENMP.cpp.o
+[ 94%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_3D_float_OPENMP.cpp.o
+[ 94%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_4D_float_OPENMP.cpp.o
+[ 94%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/MDRHighLevel/MDRHighLevel_5D_float_OPENMP.cpp.o
+[ 94%] Building CXX object CMakeFiles/mgard-library.dir/src/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterOpenmp.cpp.o
+[ 95%] Linking CXX shared library lib/libmgard.so
+[ 95%] Built target mgard-library
+[ 95%] Building CXX object CMakeFiles/mgard-x.dir/src/mgard-x/Executables/mgard-x.cpp.o
+[ 95%] Building CXX object CMakeFiles/mgard-x-autotuner.dir/src/mgard-x/Executables/mgard-x-autotuner.cpp.o
+[ 95%] Building CXX object CMakeFiles/mdr-x.dir/src/mgard-x/Executables/mdr-x.cpp.o
+[ 95%] Building CXX object CMakeFiles/mgard-cpu.dir/src/mgard-x/Executables/MgardSerialExec.cpp.o
+[ 96%] Linking CXX executable bin/mgard-x-autotuner
+[ 96%] Built target mgard-x-autotuner
+[ 96%] Building CXX object CMakeFiles/mdr-x-qoi.dir/src/mgard-x/Executables/mdr-x-qoi.cpp.o
+[ 96%] Linking CXX executable bin/mgard-x
+[ 96%] Built target mgard-x
+[ 96%] Building CXX object CMakeFiles/pmdr-x-qoi.dir/src/mgard-x/Executables/pmdr-x-qoi.cpp.o
+[ 96%] Linking CXX executable bin/mdr-x
+[ 96%] Built target mdr-x
+[ 96%] Building CXX object CMakeFiles/pmdr-x-qoi-io.dir/src/mgard-x/Executables/pmdr-x-qoi-io.cpp.o
+[ 96%] Linking CXX executable bin/mdr-x-qoi
+[ 96%] Built target mdr-x-qoi
+[ 97%] Generating cli_internal_generated.cpp
+[ 97%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/arguments.cpp.o
+[ 97%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/cmdline.cpp.o
+[ 97%] Linking CXX executable bin/pmdr-x-qoi
+[ 97%] Built target pmdr-x-qoi
+[ 97%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/executable.cpp.o
+[ 98%] Linking CXX executable bin/pmdr-x-qoi-io
+[ 98%] Built target pmdr-x-qoi-io
+[ 99%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/output.cpp.o
+[ 99%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/cli_internal.cpp.o
+[ 99%] Building CXX object src/mgard/cli/CMakeFiles/mgard-cli.dir/cli_internal_generated.cpp.o
+[100%] Linking CXX executable bin/mgard-cpu
+[100%] Built target mgard-cpu
+[100%] Linking CXX executable ../../../bin/mgard
+[100%] Built target mgard-cli
+-- Install configuration: "Release"
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/mgard-x
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard-x" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/mgard-x-autotuner
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard-x-autotuner" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/mgard-cpu
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard-cpu" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/mdr-x
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/mdr-x" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/mdr-x-qoi
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/mdr-x-qoi" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/pmdr-x-qoi
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/pmdr-x-qoi" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/pmdr-x-qoi-io
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/pmdr-x-qoi-io" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/libmgard.so.1.7.0
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/libmgard.so.1
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/libmgard.so
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/MGARDConfig.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/MGARDXConfig.h
+-- Up-to-date: /home/runner/work/QoI/QoI/tc/mgard/include/mgard
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/compress_x_lowlevel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/compress.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mdr_x_lowlevel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mdr.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mdr_x.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/compress_x.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/MGARDConfig.hpp.in
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/compress.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/MGARDXConfig.h.in
+-- Up-to-date: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DomainDecomposer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DomainDecomposer/DomainDecomposer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DomainDecomposer/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/Compressor.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/Compressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/CompressorCache.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/NormCalculator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/LossyCompressorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/HybridHierarchyCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionLowLevel/HybridHierarchyCompressor.h
+-- Up-to-date: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTunerOpenmp.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTunerKokkos.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTunerSerial.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTunerSycl.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTunerHip.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTunerCuda.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/AutoTuners/AutoTuner.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Kernel
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Kernel/Kernel.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Kernel/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Tasks
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Tasks/Task.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Tasks/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/RuntimeXPublic.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/RuntimeX.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Functors
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Functors/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Functors/Functor.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/Serializer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/Timer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/SubArrayPrinter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/OffsetCalculators.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/Exceptions.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/Log.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/Utilities/CheckShape.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterSerial.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterKokkos.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterCuda.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterHip.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterOpenmp.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapter.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DeviceAdapters/DeviceAdapterSycl.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataTypes.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/MDRData.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/Array.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/MDRMetadata.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/Array.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/SubArray.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/RuntimeX/DataStructures/SubArrayCopy.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Quantization
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Quantization/LinearQuantization.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Quantization/LocalQuantization.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Quantization/QuantizationInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Quantization/HybridHierarchyLinearQuantization.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Quantization/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/ErrorToleranceCalculator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/ShapeAdjustment.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/CompressionHighLevel.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/GPUPipelines.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/CompressionHighLevel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CompressionHighLevel/CPUPipelines.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/MDRHighLevel.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/MaxAbsIndexKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/QoIKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/MDRDataHighLevel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/ReconstructPipelineQoI.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/MDRHighLevel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/RefactorPipeline.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/ReconstructPipeline.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDRHighLevel/GenerateRequest.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Metadata
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Metadata/Metadata.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Metadata/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/DataRefactoring.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrectionND.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/IterativeProcessingKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/LPKFunctor.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/IterativeProcessingKernel3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/IPKFunctor.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/LinearProcessingKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/CalcCorrection3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Correction/LinearProcessingKernel3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficients3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestoreND.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/GridProcessingKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsND.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/CoefficientsRestore3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/CalcCoefficientsPointers.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/GridProcessingKernel3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/Coefficient/GPKFunctor.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/DataRefactoring.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CopyND
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CopyND/SubtractND.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CopyND/Copy3D.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CopyND/AddND.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CopyND/LevelwiseProcessingKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/MultiDimension/CopyND/CopyND.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/HybridHierarchyDataRefactorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/DataRefactoring.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Correction
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Correction/CalcCorrection.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Correction/MassTransKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Correction/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Coefficient
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Coefficient/CalcCoefficients.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientsRestore.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Coefficient/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/Coefficient/CoefficientKernel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/DataRefactoring.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/SingleDimension/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/DataRefactorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/BlockLocalHierarchyDataRefactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/HybridHierarchyDataRefactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/BlockLocalHierarchyDataRefactorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Decompose8x8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/IndexTable3x3x3.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/DataRefactoring.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/IndexTableLowDim.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/IndexTable5x5x5.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Recompose8x8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Decompose8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Recompose8x8x8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Autocorrelation8x8x8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/DataRefactoring.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Recompose8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/Decompose8x8x8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/InCacheBlock/IndexTable8x8x8.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/DataRefactoring/DataRefactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Config
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Config/Config.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Config/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/SymbolRans
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/SymbolRans/SymbolRans.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/rANS
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/rANS/RansDecode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/rANS/RansEncode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/rANS/RansCommon.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/rANS/RansInterleaved.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/rANS/Rans.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/LosslessCompressorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/BlockDelta
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/BlockDelta/BlockDeltaFused.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/BlockDelta/BlockDeltaKernels.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/BlockDelta/BlockDelta.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/Lossless.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/CPU.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/ZeroRunLengthEncoding.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/ZeroDecode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/Decode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/Encode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/ZeroEncode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/Convert.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/StartPositions.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/ZeroStartMarks.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/ZeroStartPositions.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/RunLengthEncoding.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelRLE/StartMarks.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/LZ4
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/LZ4/LZ4Fused.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/LZ4/LZ4Kernels.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/LZ4/LZ4.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/Decode.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/HuffmanWorkspace.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/Condense.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/ParallelDeflate.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/GenerateCW.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/GetFirstNonzeroIndex.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/OutlierSeparator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/GenerateCL.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/Huffman.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/FillArraySequence.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/EncodeFixedLen.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/Deflate.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/GetCodebook.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/Histogram.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/EntropyCalculator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/ReverseArray.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/DictionaryShift.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/ParallelHuffman/ReorderByIndex.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Lossless/Zstd.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Hierarchy
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Hierarchy/Hierarchy.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Hierarchy/Hierarchy.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Hierarchy/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Utilities
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Utilities/Types.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Utilities/ProjectionMode.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Utilities/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/Utilities/ErrorCalculator.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/decode3.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/Compressor.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/constants.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/decode.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/Compressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/encode1.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/encode2.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/type_info.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/encode3.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/shared.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/decode2.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/ZFP.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/encode.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/ExternalCompressionLowLevel/ZFP/decode1.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer/utils.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer/DecomposerInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer/recompose.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer/decompose.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer/MGARD.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Decomposer/Decomposer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reorganizer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reorganizer/BasicReorganizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reorganizer/ReorganizerInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reorganizer/Reorganizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/LevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/LosslessCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/LevelCompressorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/DefaultLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/ZSTD.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/NullLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/LosslessCompressor/AdaptiveLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/RefactorUtils.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/BitplaneEncoder
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/BitplaneEncoder/BitplaneEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/BitplaneEncoder/BitplaneEncoderInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/BitplaneEncoder/PerBitBPEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/BitplaneEncoder/NegaBinaryBPEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/BitplaneEncoder/GroupedBPEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reconstructor
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reconstructor/Reconstructor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reconstructor/ComposedReconstructor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Reconstructor/ReconstructorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/SizeInterpreter
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/SizeInterpreter/SizeInterpreterInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/SizeInterpreter/BasicSizeInterpreter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/SizeInterpreter/GreedyBasedSizeInterpreter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/SizeInterpreter/SizeInterpreter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorCollector
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorCollector/ErrorCollector.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorCollector/MaxErrorCollector.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorCollector/ErrorCollectorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorCollector/SquaredErrorCollector.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Interleaver
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Interleaver/Interleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Interleaver/BlockedInterleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Interleaver/DirectInterleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Interleaver/SFCInterleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Interleaver/InterleaverInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Writer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Writer/WriterInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Writer/FileWriter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Writer/HPSSFileWriter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Writer/Writer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorEstimator
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorEstimator/ErrorEstimator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorEstimator/SquaredErrorEstimator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorEstimator/ErrorEstimatorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/ErrorEstimator/MaxErrorEstimator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Refactor
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Refactor/ComposedRefactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Refactor/Refactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Refactor/RefactorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Retriever
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Retriever/RetrieverInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Retriever/FileRetriever.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Retriever/HPSSFileRetriever.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR/Retriever/Retriever.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer/utils.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer/DecomposerInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer/recompose.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer/decompose.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer/MGARD.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Decomposer/Decomposer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reorganizer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reorganizer/BasicReorganizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reorganizer/ReorganizerInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reorganizer/Reorganizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/HybridLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/LevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/LosslessCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/LevelCompressorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/DefaultLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/ZSTD.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/NullLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/LosslessCompressor/AdaptiveLevelCompressor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/RefactorUtils.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/BPEncoderLocalityBlock.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/BitplaneEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/BitplaneEncoderInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/BPEncoderRegisterBlock.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/BPEncoderBaseline.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV1a.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderRegisterShift.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/PerBitBPEncoderGPU.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV1.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderRegisterMatchAny.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/PerBitBPEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV1b2.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV3.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderRegisterBallot.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV2.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV2a.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderOptV1b.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/BPEncoderRegisterReduceAll.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/NegaBinaryBPEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/GroupedWarpBPEncoderGPU.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/BitplaneEncoder/old/GroupedBPEncoder.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reconstructor
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reconstructor/ReconstructorCache.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reconstructor/Reconstructor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reconstructor/ComposedReconstructor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Reconstructor/ReconstructorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/SizeInterpreter
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/SizeInterpreter/SizeInterpreterInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/SizeInterpreter/BasicSizeInterpreter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/SizeInterpreter/GreedyBasedSizeInterpreter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/SizeInterpreter/SizeInterpreter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorCollector
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorCollector/ErrorCollector.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorCollector/MaxErrorCollector.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorCollector/ErrorCollectorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorCollector/SquaredErrorCollector.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver/Interleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver/BlockedInterleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver/DirectInterleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver/SFCInterleaver.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver/InterleaverInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Interleaver/LevelLinearizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/CMakeLists.txt
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Writer
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Writer/WriterInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Writer/FileWriter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Writer/HPSSFileWriter.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Writer/Writer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorEstimator
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorEstimator/ErrorEstimator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorEstimator/SquaredErrorEstimator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorEstimator/ErrorEstimatorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/ErrorEstimator/MaxErrorEstimator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Refactor
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Refactor/ComposedRefactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Refactor/RefactorCache.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Refactor/Refactor.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Refactor/RefactorInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Retriever
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Retriever/RetrieverInterface.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Retriever/FileRetriever.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Retriever/HPSSFileRetriever.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard-x/MDR-X/Retriever/Retriever.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/LinearQuantizer.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorQuantityOfInterest.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/format.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/EnumeratedMeshRange.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/pcg.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/SituatedCoefficientRange.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/data.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/MassMatrix.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/UniformRestriction.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/data.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/MultilevelCoefficientQuantizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/measure.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/indicators.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/UniformMeshHierarchy.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/MultilevelCoefficientQuantizer.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/MeshRefiner.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/IndicatorInput.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/UniformMeshRefiner.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/MeshLevel.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/norms.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/SituatedCoefficientRange.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/estimators.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/LinearOperator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/UniformEdgeFamilies.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/MeshHierarchy.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/unstructured/UniformEdgeFamilies.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/CompressedDataset.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorRestriction.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/blas.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/adaptive_roi.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMeshHierarchy.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMassMatrix.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/format.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/utilities.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/compress_internal.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/CompressedDataset.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorNorms.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMeshHierarchyIteration.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/utilities.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/decompose.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorProlongation.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMultilevelCoefficientQuantizer.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorNorms.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMultilevelCoefficientQuantizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/decompose.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/shuffle.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorQuantityOfInterest.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMassMatrix.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/compress_internal.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMeshHierarchy.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/blas.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli/arguments.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli/arguments.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli/cli_internal.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli/output.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli/cli_internal.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/cli/cmdline.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/compressors.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorMeshHierarchyIteration.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorLinearOperator.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorProlongation.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/LinearQuantizer.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/quantize.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/adaptive_roi.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/shuffle.hpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorRestriction.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/quantize.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/mgard/TensorLinearOperator.tpp
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/include/mgard/proto/mgard.pb.h
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/cmake/mgard/mgard-config.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/cmake/mgard/mgard-config-version.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/cmake/mgard/mgard-targets.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/lib/cmake/mgard/mgard-targets-release.cmake
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/bin/mgard
+-- Set non-toolchain portion of runtime path of "/home/runner/work/QoI/QoI/tc/mgard/bin/mgard" to ""
+-- Installing: /home/runner/work/QoI/QoI/tc/mgard/share/man/man1/mgard.1
