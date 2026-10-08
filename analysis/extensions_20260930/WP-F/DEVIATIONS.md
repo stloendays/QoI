@@ -134,3 +134,10 @@ acceptance criterion is changed.
    - Once the six have run, estimate (a), the completed sample, is recomputed with their outcomes. Any failure
      of the rerun is final and is counted under the storage rule.
    - The first estimate (a) (`17c5b6d`) is kept in the record.
+
+13. **Infrastructure for entry 12 (2026-10-08, before the six run).** The preflight accepts a `completion` request
+    for exactly the six objects of entry 12 (once, only while entry 12 is present and their records are the
+    never-started `NoArtifact` ones). Their outcomes are collected into `results_cloud/rerun_dev12/`, beside the
+    first records in `results_cloud/checkpoints/`, which stay as recorded. A new phase `estimators_v2` runs
+    `analyze_wpf.py` on 243 laptop + 51 first-run cloud + the 6 rerun checkpoints into
+    `results_cloud/completed_v2/`. Everything else is as in entries 8 and 11.
