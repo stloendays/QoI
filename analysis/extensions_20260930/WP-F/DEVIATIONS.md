@@ -122,3 +122,15 @@ acceptance criterion is changed.
     tracked `figures/composite/__pycache__/*.pyc`. The estimator step now runs with `PYTHONDONTWRITEBYTECODE=1`
     and the phase is rerun unchanged otherwise; `COMPLETION_FAILURES.md` records the cause of each of the 12
     completion failures from GitHub's job records (no artifact, hence no memory log, exists for them).
+
+12. **Author decision: rerun the six never-started objects (2026-10-08, before they run).** Six of the 12
+    completion failures never ran: their jobs acquired no runner after five attempts, so `run_wpf.py` never
+    started (`COMPLETION_FAILURES.md`). These are mp-1826245, mp-2046569, mp-2234070 and mp-3092553 (D09),
+    mp-1543577 (D10a) and mp-2355832 (D10b). The author directed that these six run once each ("重跑这 6 个").
+   - Unchanged:
+     - every other rule of deviations 7–8;
+     - the six objects whose runner was lost after 114–349 min of `run_wpf.py`, which remain final failures;
+     - estimate (b), the laptop run as frozen.
+   - Once the six have run, estimate (a), the completed sample, is recomputed with their outcomes. Any failure
+     of the rerun is final and is counted under the storage rule.
+   - The first estimate (a) (`17c5b6d`) is kept in the record.
