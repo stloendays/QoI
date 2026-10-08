@@ -247,7 +247,7 @@ layout.legend(
 F_COLOR = {"A1": C.ARM["A1"], "A3": DARK_G, "A5": BLUE, "A2": C.ARM["A2"], "A6": C.ARM["A6"]}
 F_LABEL = {"A1": "law", "A3": "oper.", "A5": "blind", "A2": "trunc.", "A6": "ptwise"}
 pg.letter("f", 91.0, 49.0)
-axf = pg.ax(96.0, 14.0, 78.0, 30.0)
+axf = pg.ax(102.0, 14.0, 70.0, 30.0)
 group_shift = {1e-4: 0.0, 1e-6: 6.0}
 positions = []
 labels = []
@@ -267,9 +267,7 @@ axf.set_ylim(1e-5, 1e3)
 axf.set_xlim(-0.8, 10.8)
 axf.set_xticks(positions)
 axf.set_xticklabels(labels, fontsize=4.8)
-for tick, arm in zip(axf.get_xticklabels(), F_ARMS * 2):
-    tick.set_color(F_COLOR[arm])
-axf.tick_params(axis="x", length=0, pad=1)
+axf.tick_params(axis="x", length=0, pad=1, labelcolor=INK)  # arm colour is carried by the points; grey text is unreadable
 axf.set_ylabel("$|\\Delta \\Phi|$ (meV)")
 log_ticks(axf, axis="y")
 grid(axf, axis="y")
