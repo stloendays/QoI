@@ -54,4 +54,7 @@ computation runs only on GitHub Actions.
 
 ## After the protocol freeze
 
-None so far.
+D9. **Push timing (infrastructure).** The protocol freeze `2ad4c68` was committed on 2026-10-07 before step 6 (input
+checks) ran; the draw `8ca884b` was committed after it. GitHub refused pushes from the account at that time (HTTP 403,
+unverified email), so both commits stayed local and were pushed on 2026-10-08, in order (`2ad4c68`, then `8ca884b`),
+before the sentinel. No file of either commit was changed between commit and push.
