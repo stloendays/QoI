@@ -17,6 +17,25 @@ TAU_LAB = {1e-4: "10$^{-4}$", 1e-6: "10$^{-6}$", 1e-8: "10$^{-8}$"}
 
 FRESH = os.path.join(ROOT, "analysis", "fresh_population_20261006")
 
+BASELINE_RESULTS = os.path.join(ROOT, "analysis", "hartree_baselines_mgard_qpet_20261007", "results")
+VACUUM_RESULTS = os.path.join(ROOT, "analysis", "p3b_vacuum_level_20261007", "results")
+
+
+def baseline_materials():
+    """Per-material Hartree baselines for the confirmatory bulk and slab cohorts."""
+    frames = []
+    for cohort, run in (("bulk", "run_P1_CONFIRMATORY"), ("slab", "run_P3B_CONFIRMATORY")):
+        path = os.path.join(BASELINE_RESULTS, run, "material.csv")
+        frames.append(pd.read_csv(path).assign(cohort=cohort))
+    out = pd.concat(frames, ignore_index=True)
+    assert out.groupby("cohort").material_id.nunique().to_dict() == {"bulk": 60, "slab": 32}
+    return out
+
+
+def slab_dphi():
+    """Per-slab vacuum-level work-function errors, including only the raw stream records."""
+    return pd.read_csv(os.path.join(VACUUM_RESULTS, "per_slab_dphi.csv"))
+
 
 def part_a():
     """Per-material Part A table restricted to the confirmatory manifests.
