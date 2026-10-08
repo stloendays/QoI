@@ -1,0 +1,19 @@
+{
+ "task_id": "mp-2046569",
+ "stratum": "D09",
+ "key": "chgcars/mp-2046569.json.gz",
+ "frame_bytes": 39966657,
+ "group": "small",
+ "status": "FAILED",
+ "rows": [],
+ "failures": [
+  {
+   "task_id": "mp-2046569",
+   "stratum": "D09",
+   "stage": "worker",
+   "error": "TimeLimit: run stopped at the 340-min limit of the cloud job (exit 124)"
+  }
+ ],
+ "retried": false,
+ "recorded_by": "workflow: no checkpoint from run_wpf.py (DEVIATIONS.md 8)"
+}
