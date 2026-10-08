@@ -14,7 +14,7 @@ entry below.
 
 ## Manuscript authority
 
-- Branch `paper/nc-revision3-20261008` at `91d53ee` (2026-10-08; revision 3, eight main figures) is proposed as the
+- Branch `paper/nc-revision3-20261008` (manuscript text `91d53ee`, proof build `33c9b22`; 2026-10-08; revision 3, eight main figures) is proposed as the
   authority for the Nature Communications submission, replacing `paper/nc-reopen-20261007` at `87b3a65`.
 - Source: `paper/MANUSCRIPT.md` (main text, Methods, 8 figure legends, Table 1, 40 references) and
   `paper/SUPPLEMENTARY_INFORMATION.md` (Supplementary Notes 1–8, Supplementary Fig. 1); number-to-file map
