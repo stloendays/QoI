@@ -11,7 +11,7 @@ Counted on `paper/MANUSCRIPT.md` using the repository's `paper/nc_reopen/word_co
 | Results — The operator symbol explains the codec effect and fixes a closed-form allocation law | 386 |
 | Results — Under equal search, the law certifies more than pointwise and QoI-preserving codecs on bulk crystals and surface slabs | 485 |
 | Results — The operator metric carries the gain, and the system class sets the optimizer's share | 261 |
-| Results — One stream certifies the Hartree potential and Bader charges together | 400 |
+| Results — One stream certifies the Hartree potential and Bader charges together | 403 |
 | Results — The gain is predicted before compression from the operator symbol and the reference spectrum | 353 |
 | Discussion | 466 |
 | Methods — Measurement contract and QSQ | 202 |
@@ -21,12 +21,12 @@ Counted on `paper/MANUSCRIPT.md` using the repository's `paper/nc_reopen/word_co
 | Methods — Archive estimate | 133 |
 | Methods — Single-density diagnostics | 105 |
 | Methods — Gain predictor | 160 |
-| Methods — Populations and pre-registration chronology | 124 |
+| Methods — Populations and pre-registration chronology | 139 |
 | Methods — Joint contract and certify-then-project | 188 |
 | Methods — Statistics | 140 |
-| **Introduction + Results + Discussion** | **3,186** |
-| **Methods (total)** | **1,675** |
-| **Main text + Methods** | **4,861** |
+| **Introduction + Results + Discussion** | **3,189** |
+| **Methods (total)** | **1,690** |
+| **Main text + Methods** | **4,879** |
 
 ## Outside the 5,000-word budget
 
