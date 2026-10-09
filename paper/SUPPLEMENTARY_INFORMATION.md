@@ -53,11 +53,24 @@ Completing the same four tight settings for every material added 1,332/1,332 suc
 
 ### 1.5 Finite-panel admission bound and exchangeability
 
-If the $n$ qualification responses and a later response are exchangeable, the probability that a contract is admitted and the later probe exceeds $\tau$ is $\mathbb{E}[p(1-p)^n]\le n^n/(n+1)^{n+1}$:
+Let $X_k=\mathbf{1}[r_k\ge\tau]$. Admission means $X_1=\cdots=X_n=0$; the event of interest is admission followed by $X_{n+1}=1$. Under independent, identically distributed draws *conditional on each material–contract pair* with exceedance probability $p$, its probability is $p(1-p)^n$. Maximizing over $p\in[0,1]$ yields
+
+$$
+\Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)\le\max_{0\le p\le 1}p(1-p)^n=\frac{n^n}{(n+1)^{n+1}},
+$$
+
+with the maximum at $p=1/(n+1)$. The same inequality holds after averaging over materials with heterogeneous $p$, **provided conditional independence holds within each pair**. It does not follow from exchangeability alone. For any finite exchangeable panel, symmetry instead gives
+
+$$
+\Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)=\frac{\Pr(\sum_{k=1}^{n+1}X_k=1)}{n+1}\le\frac1{n+1}.
+$$
+
+This weaker bound is sharp: exactly one exceedance uniformly positioned among $n+1$ draws is exchangeable and attains $1/(n+1)$. Neither inequality bounds $\Pr(X_{n+1}=1\mid\mathrm{admitted})$ or the error of a codec reconstruction, which is not sampled by the same perturbation mechanism. Wilks' order-statistic result (main-text ref. 37) motivates the independent-sampling setting, rather than a guarantee from unrestricted exchangeability.
 
 | panel size $n$ | 5 | 10 | 19 | 37 |
 |---:|---:|---:|---:|---:|
-| bound | 6.70% | 3.50% | 1.89% | 0.98% |
+| conditional-i.i.d. upper bound | 6.70% | 3.50% | 1.89% | 0.98% |
+| finite-exchangeability upper bound | 16.67% | 9.09% | 5.00% | 2.63% |
 
 | $\tau_B$ ($e$) | frozen panel: joint rate (events) | conditional risk among admitted | coverage | independent panel: joint rate (events) | conditional risk | coverage |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -139,7 +152,7 @@ The exhaustive oracle costs 38.5, 37.0 and 32.2 solves per eligible material. Th
 | $10^{-3}$ | 4.37 [3.64, 5.46] | 6.55 | 3.04 | 2.66 [2.21, 3.27] | 35.9% [30.4, 41.6] | 32.8% |
 | $10^{-2}$ | 8.99 [6.45, 13.42] | 7.55 | 8.97 | 7.87 [5.61, 12.10] | 11.7% [8.2, 15.5] | 11.0% |
 
-**Format gain.** Moving from gzipped JSON to lossless float64 + zlib alone gives 2.00×; the "vs lossless" column is what certified compression adds on top.
+**Attribution of archive gain.** Changing gzipped JSON to lossless float64 + zlib alone gives a 2.00× archive-level gain; the separate "vs lossless" column reports the benefit of QSQ-gated, Bader-certified ZFP/SZ3/SPERR compression. No operator-aware Fourier codec was run in this archive sampling test. The two factors are estimated against explicit format comparators and should not be read as measurements of the Fourier law's archive-scale performance.
 
 **Prospective check of the certifying writer** (D01–D09 full ladders; 0 misses at every τ):
 
@@ -194,7 +207,7 @@ Certificate as in the confirmation (historical and Nyquist-safe Hartree relative
 T1 was the best new baseline in 48/48 materials (selected cutoffs $q_c$ = 0.30 in 18, 0.15 in 17, 0.20 in 9, 0.50 in 4); uniform Fourier quantization ($q_c=1$) reached median CR 87.8. Median density $L_\infty$ and RMSE of the certified streams were 1.89 and 0.096 for QOAC-H and 2.82 and 0.148 for T1. These ladder-searched ratios and the equal-search ratios of the main text (A1/A6, A1/A2) answer different questions and are reported separately.
 
 
-## Supplementary Note 3 — Bader contracts under an exact partition
+## Supplementary Note 3 — Bader contracts under an exact partition: basin projection, partition transcription and storage
 
 ### 3.1 Basin-sum projection after generic compression (38-material holdout)
 
@@ -208,7 +221,7 @@ Henkelman Bader 1.05 (`-b ongrid -vac 0.001`), exact CHGCAR, reference AECCAR0 +
 
 ### 3.3 Storing the partition (Supplementary Fig. 1)
 
-Two self-contained contracts carry the partition. A partition-faithful AECCAR is compressed with a correction that guarantees an identical Henkelman partition; a lossless label map stores the basin labels directly.
+The main-text 48-material joint test assumes the exact all-electron partition is already available, so its compression ratios and unity *incremental* overhead exclude the reference partition's storage. When the partition must travel with the reconstructed density, a self-contained contract can instead store a lossless basin-label map, or compress AECCAR with a correction that recovers the identical Henkelman partition. The following 12-material engineering test quantifies these *partition representations*, not end-to-end total byte savings for all 48 confirmed crystals.
 
 | arm | zero reassignment | max Bader error ($e$) | median side / base | median total / label map |
 |---|---:|---:|---:|---:|
@@ -219,7 +232,7 @@ Two self-contained contracts carry the partition. A partition-faithful AECCAR is
 | A1, $10^{-2}$ | 12/12 | 0 | 1.35 | 29.5 |
 | A1, $5\times10^{-2}$ | 12/12 | 0 | 5.20 | 56.9 |
 
-Before correction the base quantizer alone reassigns a median 45–91% of voxels; after correction no voxel is reassigned. The label map round-trips exactly in 12/12 materials, charges recomputed from it match the binary in 12/12 (maximum difference $5.0\times10^{-7}\,e$), and its median size is 12.9 kB (atom map) and 21.8 kB (volnum map). When only Bader charges are needed, the self-contained contract is therefore a Hartree-certified CHGCAR stream plus a lossless label map (about 17-fold smaller than a partition-faithful AECCAR), with basin projection added when the stream's basin sums miss $\tau_B$; a partition-faithful AECCAR serves users who need the partition field itself.
+Before correction the base quantizer alone reassigns a median 45–91% of voxels; after correction no voxel is reassigned. The label map round-trips exactly in 12/12 materials, charges recomputed from it match the binary in 12/12 (maximum difference $5.0\times10^{-7}\,e$), and its median size is 12.9 kB (atom map) and 21.8 kB (volnum map). For analyses requiring only charges in the fixed basins, the natural self-contained representation is a compressed CHGCAR stream plus a lossless basin-label map (the tested partition-faithful AECCAR representations require at least about 16-fold the label-map bytes in this engineering cohort). A projection can be added when the decoded basin sums miss $\tau_B$; the partition-faithful AECCAR representation serves users who need a partition-defining density field. The 48-material test did not measure these combined self-contained bytes, and a basin-label map alone does not establish robustness to recomputing the basin topology from a perturbed partition-defining density.
 
 **Supplementary Fig. 1 | Bader storage contracts on real materials.** **a**, Total stored bytes of the partition-faithful AECCAR arms (A1, A2 at relative bounds $10^{-3}$, $10^{-2}$ and $5\times10^{-2}$) divided by the bytes of the lossless atom label map, per material (12 fresh P2 engineering materials; bar, median; medians 16.3–56.9); every arm gives zero basin reassignment and zero Bader error. **b**, Lossless label-map size per material: atom map (median 12.9 kB) and volnum map (21.8 kB); lines join the two maps of one material. Source: `analysis/qoac_b3_design/results/real_engineering/rows.csv` (columns `arm, delta, total_bytes, label_ctx_bytes_atom, label_ctx_bytes_volnum, reassigned_volnum_frac`).
 
@@ -241,7 +254,7 @@ Protocol and criteria were frozen before any run (commit `8a784a4`); confirmatio
 | median joint overhead (R3) | confirmatory | 1.000 | 1.000 [1.000, 1.000] | 1.000 |
 | | engineering | — | 1.000 | 1.0032 |
 
-Median R3 joint compression ratio in the confirmatory cohort is 298 at every $\tau_B$. At $10^{-5}\,e$, Hartree-aware and uniform projection gave the same certified ratio (median ratio 1.00; $n=35$ confirmatory materials where both certify). Confirmatory criteria: 48/48 jointly certified (threshold 46/48); overhead median 1.000, CI [1.000, 1.000] (thresholds 1.10, 1.15); utility 48/48 wins, median 1.317, CI [1.269, 1.360], minimum 1.096 (thresholds 36/48, 1.10, CI lower bound 1.00). Bootstrap seed 20261007, 10,000 resamples.
+The exact AECCAR partition is reused for reference and decoded Bader solves; hence the reported zero voxel reassignment tests consistency with that fixed partition and should not be read as a test of topology under a lossy partition reference. Median R3 joint compression ratio for the compressed charge stream in the confirmatory cohort is 298 at every $\tau_B$. At $10^{-5}\,e$, Hartree-aware and uniform projection gave the same certified ratio (median ratio 1.00; $n=35$ confirmatory materials where both certify). Confirmatory criteria: 48/48 jointly certified (threshold 46/48); overhead median 1.000, CI [1.000, 1.000] (thresholds 1.10, 1.15); utility 48/48 wins, median 1.317, CI [1.269, 1.360], minimum 1.096 (thresholds 36/48, 1.10, CI lower bound 1.00). Bootstrap seed 20261007, 10,000 resamples.
 
 The Hartree-aware projection minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the basin-sum constraints, with $s_H=\lVert H\rho_{\text{ref}}\rVert^2$ and $s_\rho=\lVert\rho_{\text{ref}}\rVert^2$; it reduces to the uniform shift as $\mu\to\infty$. The constant mode is fixed by the constraints and the zero-mean part is solved from a regularized, Jacobi-scaled Cholesky system; the derivation and unit tests are in the repository (joint-contract code, DERIVATION.md).
 
@@ -320,15 +333,16 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 
 **P1 shakedown cohort** (12 materials run through the identical pipeline; not part of any criterion): A3/A1 1.156, A3/A5 2.26, A1/A6 9.80, A1/A2 1.24 at $\tau=10^{-6}$; Part B median absolute log error 0.024, Spearman 0.979.
 
-### 5.1 QoI-preserving baselines (P1 and P3b; protocol `16e8890`, run 37620406802)
+### 5.1 QoI-oriented comparator configurations (P1 and P3b; protocol `16e8890`, run 37620406802)
 
 - **Arms.**
   - M2: MGARD (CODARcode/MGARD commit ac53ff9), smoothness $s=-2$.
   - M-best: MGARD, best of $s\in\{\infty,0,-1,-2\}$.
   - Q: QPET, block average over $b^3$ blocks with $b=4,8,16$, on SZ3, HPEZ and SPERR hosts; best of nine configurations.
-- **Search and certificate.** Each arm used the search and certificate of A1/A6. The A arms are the recorded values of the law run.
+- **Scope of QPET.** Its source implements local and regional QoIs (here block-average density over $4^3$, $8^3$, $16^3$ voxels), not the nonlocal Hartree/Poisson QoI. The Hartree certificate is imposed after decoding on every arm, so these gains quantify a particular implementable QPET configuration rather than superiority to all possible Hartree-aware compressors.
+- **Search and certificate.** Each configuration used the same certificate and bisection policy as A1/A6. A1/A6 are previously recorded values, not rerun in this baseline experiment. The HPEZ-backed QPET configurations required float32 input whereas A1 read the original float64 density; the SPERR-backed QPET host accepted float64. The QPET and MGARD figures therefore are end-to-end configurations under the common Hartree acceptance metric, not a strict equal-input-precision ablation.
 - **Coverage.** 92 of 92 materials and 3,588 searches; every search certified a point.
-- **Codec crashes.** The authors' HPEZ command-line program crashed in 3,450 evaluations on P1 and 443 on P3b (heap-corruption aborts and segmentation faults). These count as non-passing points.
+- **Codec crashes.** The tested upstream HPEZ executable aborted or segfaulted in 3,450 of 52,839 evaluated QPET configurations on P1 and 443 of 29,468 on P3b (within the QPET runs), while SPERR-QPET had no execution errors. These count as non-passing points. Every search ultimately found a certified point. The crash burden and floating-point input asymmetry prevent interpreting the reported ratios as a head-to-head optimal QPET implementation.
 - **Statistics.** Bootstrap seed 20261006, 10,000 resamples of the median. Every ratio below is a win in every material.
 
 **Median certified compression ratio**
@@ -353,15 +367,16 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 | P3b | $10^{-6}$ | 21.0 [17.5, 27.9] | 19.6 [15.7, 24.9] | 9.47 [8.14, 12.8] | 27.3 [20.1, 35.6] | 11.3 [9.62, 16.5] |
 | P3b | $10^{-8}$ | 7.99 [5.20, 11.8] | 7.42 [4.91, 10.8] | 3.84 [2.70, 4.83] | 8.43 [5.42, 13.3] | 4.09 [2.88, 5.28] |
 
-### 5.2 Work-function error on slabs (P3b; protocol `47b110a`, run 37598559834)
+### 5.2 Fixed-reference vacuum Hartree shifts on slabs (P3b; protocol `47b110a`, run 37598559834)
 
-- **Coverage.** 27 of 32 slabs have at least 3 Å of vacuum. The other five, Lu$_2$Br$_2$O, Ti(PO$_4$)$_2$, Ga$_2$Te$_3$, Nb$_2$Se$_3$ and EuS, have no qualifying vacuum run.
+- **Definition and limitation.** The reported $\Delta\Phi$ is the mean planar-averaged **Hartree error** in the central half of a vacuum window identified from the reference density. Fermi energy, ionic and exchange-correlation terms are fixed. This is a compression-induced electrostatic vacuum-level proxy, **not** the change in a fully self-consistently recomputed DFT work function. The vacuum screen uses a density threshold, not a direct flat-potential-plateau criterion or a dipole-correction convergence test.
+- **Coverage.** 27 of 32 slabs have at least 3 Å of threshold-defined vacuum. The qualifying runs range from 3.03 to 27.08 Å (median 6.71 Å), with averaging windows of 1.55 to 13.64 Å. Five slabs, Lu$_2$Br$_2$O, Ti(PO$_4$)$_2$, Ga$_2$Te$_3$, Nb$_2$Se$_3$ and EuS, have no qualifying vacuum run.
 - **Streams.** All 480 certified streams were regenerated and reproduced their recorded bytes and Hartree errors exactly:
   - A3 and A5 from their recorded parameters;
   - A1, A2 and A6 by rerunning the unchanged deterministic search where the recorded nine-digit parameter did not reproduce the stream.
 - **Absolute scale.** The reference Hartree-potential RMS is 63.6–3,273 eV (median 528 eV). The absolute RMS bound $\tau V_\text{ref}$ is therefore a median 64.1 meV at $10^{-4}$, 0.641 meV at $10^{-6}$ and 0.0064 meV at $10^{-8}$.
 
-**$|\Delta\Phi|$ (meV) over 27 slabs: median / P95 / maximum; slabs below 1 meV and below 10 meV**
+**Fixed-reference vacuum Hartree shift $|\Delta\Phi|$ (meV) over 27 slabs: median / P95 / maximum; counts below 1 and 10 meV**
 
 | arm | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
 |---|---|---|---|
@@ -371,7 +386,7 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 | A5 blind RD optimum | 21.2 / 265 / 347; 1, 10 | 0.28 / 1.58 / 2.50; 23, 27 | 0.0027 / 0.019 / 0.024; 27, 27 |
 | A6 best pointwise codec | 35.5 / 158 / 238; 0, 2 | 0.34 / 1.85 / 2.16; 19, 27 | 0.0042 / 0.014 / 0.043; 27, 27 |
 
-Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This ratio is computed from `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`; it was not a pre-declared statistic.
+Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This descriptive ratio comes from `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`; it was not a pre-declared statistic. A larger-vacuum/dipole-sensitive test would be needed to interpret the proxy as a converged work-function error.
 
 
 ## Supplementary Note 6 — Gain-predictor calibration

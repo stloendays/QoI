@@ -1,0 +1,40 @@
+name: Audit NC scientific claim boundaries
+
+on:
+  push:
+    branches:
+      - paper/nc-scientific-audit-20261009
+    paths:
+      - 'paper/MANUSCRIPT.md'
+      - 'paper/SUPPLEMENTARY_INFORMATION.md'
+      - 'paper/nc_reopen/**'
+      - '.github/workflows/audit_nc_scientific_claims.yml'
+  pull_request:
+    branches:
+      - paper/nc-revision3-20261008
+    paths:
+      - 'paper/MANUSCRIPT.md'
+      - 'paper/SUPPLEMENTARY_INFORMATION.md'
+      - 'paper/nc_reopen/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-claims:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probability and evidence-boundary tests
+        run: python paper/nc_reopen/test_scientific_claims.py
+      - name: Deterministic manuscript audit
+        run: python paper/nc_reopen/audit_manuscript.py --out /tmp/nc_scientific_audit.md
+      - name: Word budget
+        run: python paper/nc_reopen/word_count.py
