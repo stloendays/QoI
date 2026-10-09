@@ -9,7 +9,7 @@ pointwise codecs and beats spectral truncation, on fresh bulk crystals and fresh
   d  certified CR against Hartree tolerance for the three equal-search arms: median (line) and interquartile range
      (band) over materials, bulk and slab.
   e  A1 vs QoI-preserving baselines QPET (Q) and MGARD s = -2 (M2), at tau = 1e-6.
-  f  absolute slab work-function error for the five certified arms at tau = 1e-4 and 1e-6.
+  f  absolute fixed-reference vacuum Hartree shift (not self-consistent work-function error) for the five certified arms at tau = 1e-4 and 1e-6.
 All medians are asserted against run_P1_CONFIRMATORY/SUMMARY.json and run_P3B_CONFIRMATORY/SUMMARY.json.
 
     D:/Tools/pur_bridge_env/Scripts/python.exe make_fig5.py   -> Fig5.{svg,pdf,png}
@@ -243,7 +243,7 @@ layout.legend(
     loc="lower right", bbox_to_anchor=(0.97, 0.04), fontsize=4.35,
     handletextpad=0.35, labelspacing=0.25, title="$\\tau$ = 10$^{-6}$")
 
-# ---- f: vacuum-level work-function error for certified slab streams ---------------------------------------------
+# ---- f: fixed-reference vacuum Hartree shift for certified slab streams -------------------------------------------
 F_COLOR = {"A1": C.ARM["A1"], "A3": DARK_G, "A5": BLUE, "A2": C.ARM["A2"], "A6": C.ARM["A6"]}
 F_LABEL = {"A1": "law", "A3": "oper.", "A5": "blind", "A2": "trunc.", "A6": "ptwise"}
 pg.letter("f", 91.0, 49.0)
