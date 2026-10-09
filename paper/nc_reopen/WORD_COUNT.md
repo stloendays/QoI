@@ -6,7 +6,6 @@ Counted on `paper/MANUSCRIPT.md` using the repository's `paper/nc_reopen/word_co
 
 | Section | Words |
 |---|---:|
-| The downstream operator qualifies, predicts and shapes the certified compression of electronic densities | 0 |
 | Introduction | 355 |
 | Results — A tolerance is scored only after the measurement contract resolves it | 480 |
 | Results — The operator symbol explains the codec effect and fixes a closed-form allocation law | 386 |
