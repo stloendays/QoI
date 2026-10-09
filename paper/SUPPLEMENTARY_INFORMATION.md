@@ -55,15 +55,15 @@ Completing the same four tight settings for every material added 1,332/1,332 suc
 
 Let $X_k=\mathbf{1}[r_k\ge\tau]$. Admission means $X_1=\cdots=X_n=0$; the event of interest is admission followed by $X_{n+1}=1$. Under independent, identically distributed draws *conditional on each material–contract pair* with exceedance probability $p$, its probability is $p(1-p)^n$. Maximizing over $p\in[0,1]$ yields
 
-$
+$$
 \Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)\le\max_{0\le p\le 1}p(1-p)^n=\frac{n^n}{(n+1)^{n+1}},
-$
+$$
 
 with the maximum at $p=1/(n+1)$. The same inequality holds after averaging over materials with heterogeneous $p$, **provided conditional independence holds within each pair**. It does not follow from exchangeability alone. For any finite exchangeable panel, symmetry instead gives
 
-$
+$$
 \Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)=\frac{\Pr(\sum_{k=1}^{n+1}X_k=1)}{n+1}\le\frac1{n+1}.
-$
+$$
 
 This weaker bound is sharp: exactly one exceedance uniformly positioned among $n+1$ draws is exchangeable and attains $1/(n+1)$. Neither inequality bounds $\Pr(X_{n+1}=1\mid\mathrm{admitted})$ or the error of a codec reconstruction, which is not sampled by the same perturbation mechanism. Wilks' order-statistic result (main-text ref. 37) motivates the independent-sampling setting, rather than a guarantee from unrestricted exchangeability.
 
@@ -207,7 +207,7 @@ Certificate as in the confirmation (historical and Nyquist-safe Hartree relative
 T1 was the best new baseline in 48/48 materials (selected cutoffs $q_c$ = 0.30 in 18, 0.15 in 17, 0.20 in 9, 0.50 in 4); uniform Fourier quantization ($q_c=1$) reached median CR 87.8. Median density $L_\infty$ and RMSE of the certified streams were 1.89 and 0.096 for QOAC-H and 2.82 and 0.148 for T1. These ladder-searched ratios and the equal-search ratios of the main text (A1/A6, A1/A2) answer different questions and are reported separately.
 
 
-## Supplementary Note 3 — Bader contracts under an exact partition
+## Supplementary Note 3 — Bader contracts under an exact partition: basin projection, partition transcription and storage
 
 ### 3.1 Basin-sum projection after generic compression (38-material holdout)
 
