@@ -99,8 +99,8 @@ class ScientificClaimTests(unittest.TestCase):
             [sys.executable, str(ROOT / "paper/nc_reopen/word_count.py")],
             text=True, cwd=ROOT,
         )
-        abstract = re.search(r"(?m)^Abstract\\s+(\\d+)\\s*$", out)
-        total = re.search(r"\\| total\\s+(\\d+)", out)
+        abstract = re.search(r"(?m)^Abstract\s+(\d+)\s*$", out)
+        total = re.search(r"\| total\s+(\d+)", out)
         self.assertIsNotNone(abstract, out)
         self.assertIsNotNone(total, out)
         self.assertLessEqual(int(abstract.group(1)), 150)
