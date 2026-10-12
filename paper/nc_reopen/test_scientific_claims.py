@@ -60,7 +60,7 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertIn("independent draws from one perturbation law", MAIN)
         self.assertIn("independent draws of the same uniform perturbation", MAIN)
         self.assertIn("6.70%", MAIN)
-        self.assertIn("<sup>37</sup>", MAIN)
+        self.assertIn("<sup>38</sup>", MAIN)  # Wilks
         self.assertNotIn("A finite panel carries a distribution-free guarantee: for exchangeable", MAIN)
         self.assertNotIn("If the $n$ qualification responses and a later response are exchangeable", MAIN)
 

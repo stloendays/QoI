@@ -185,3 +185,10 @@ slabs (the joint population is bulk only).
 
 Open full-text checks carried over from PAV: the norm of Lee et al.'s constraint step; the full texts of Compression
 Safeguards and BlockMGARD (BlockMGARD is not cited in the manuscript).
+
+## Full-text checks closed (2026-10-12)
+
+`PRIOR_ART_FULLTEXT_20261012.md` holds the record; all three full texts were obtained open access.
+- **Compression Safeguards (ref. 15).** Authors and year match. The paper corrects decoded data to declared pointwise and stencil-QoI bounds and composes safeguards (`any`, `all`, `select`). It has no Poisson or Hartree QoI and no reciprocal-space weighting; it names a spectral-error safeguard as future work. It has no QSQ-like capability test. Our wording stands.
+- **Lee et al. (ref. 12).** The constraint step minimizes the Bregman divergence of f log f under XGC velocity-moment constraints. "Entropy-divergence constraint satisfaction applied to velocity moments of fusion data" stands.
+- **BlockMGARD.** Li et al., arXiv:2609.00205, an SC26 manuscript. It does GPU MGARD with region-of-interest tolerance maps and has no downstream-operator or QoI allocation. It is now cited as ref. 24, next to the step-size-map sentence of the Introduction ("as have region-of-interest tolerance maps in scientific compression"); refs. 24–40 became 25–41.
