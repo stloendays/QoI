@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - paper/nc-scientific-audit-20261009
+      - paper/nc-rev4-20261012
     paths:
       - 'paper/MANUSCRIPT.md'
       - 'paper/SUPPLEMENTARY_INFORMATION.md'

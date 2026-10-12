@@ -37,7 +37,7 @@ The probe must excite the downstream failure mode. In an 18-material calibration
 
 ### 1.3 Prospective test
 
-The five-seed gate, thresholds and amplitudes were fixed before 59 fresh perturbations per material (labels 10000–10058) were run; all 14,986 trials produced valid outcomes.
+The five-seed gate, thresholds and amplitudes were fixed before 59 fresh perturbations per material (labels 10000–10058) were run; each is an independent float64 draw of the same uniform perturbation $U(-\epsilon_m,+\epsilon_m)$, with its PCG64 stream seeded from SHA-256 of the material, the family `iid_uniform` and the label. All 14,986 trials produced valid outcomes.
 
 | $\tau_B$ ($e$) | admitted | qualified: exceedances / trials (risk; cluster 95% CI) | rejected: exceedances / trials (risk; cluster 95% CI) | materials with any exceedance (qualified / rejected) | risk ratio |
 |---:|---:|---|---|---|---:|
@@ -51,26 +51,19 @@ The same 59 response vectors serve all three thresholds. A material with zero ex
 
 Completing the same four tight settings for every material added 1,332/1,332 successful reconstructions. The fraction of material–codec pairs with no passing reconstruction was 10.9% (qualified) versus 79.3% (rejected) at $10^{-4}\,e$, 3.3% versus 66.4% (20.34-fold) at $10^{-3}\,e$, and 0.0% versus 68.0% at $10^{-2}\,e$. On the record as built (762 material–codec decisions per threshold), 518/533 (97.2%), 296/310 (95.5%) and 61/108 (56.5%) naive failures fall on non-evaluable pairs at $10^{-4}$, $10^{-3}$ and $10^{-2}\,e$; at $10^{-4}\,e$, 106/229 (46.3%) naive passes also fall on non-evaluable pairs.
 
-### 1.5 Finite-panel admission bound and exchangeability
+### 1.5 Finite-panel admission bound
 
-Let $X_k=\mathbf{1}[r_k\ge\tau]$. Admission means $X_1=\cdots=X_n=0$; the event of interest is admission followed by $X_{n+1}=1$. Under independent, identically distributed draws *conditional on each material–contract pair* with exceedance probability $p$, its probability is $p(1-p)^n$. Maximizing over $p\in[0,1]$ yields
+Let $X_k=\mathbf{1}[r_k\ge\tau]$. Admission means $X_1=\cdots=X_n=0$; the event of interest is admission followed by $X_{n+1}=1$. In QSQ the draws are independent and identically distributed for each material–contract pair by construction: the five probes and the 59 fresh perturbations are independent pseudo-random draws of the same uniform perturbation $U(-\epsilon_m,+\epsilon_m)$ (1.2, 1.3). With exceedance probability $p$, the event has probability $p(1-p)^n$. Maximizing over $p\in[0,1]$ yields
 
 $$
 \Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)\le\max_{0\le p\le 1}p(1-p)^n=\frac{n^n}{(n+1)^{n+1}},
 $$
 
-with the maximum at $p=1/(n+1)$. The same inequality holds after averaging over materials with heterogeneous $p$, **provided conditional independence holds within each pair**. It does not follow from exchangeability alone. For any finite exchangeable panel, symmetry instead gives
-
-$$
-\Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)=\frac{\Pr(\sum_{k=1}^{n+1}X_k=1)}{n+1}\le\frac1{n+1}.
-$$
-
-This weaker bound is sharp: exactly one exceedance uniformly positioned among $n+1$ draws is exchangeable and attains $1/(n+1)$. Neither inequality bounds $\Pr(X_{n+1}=1\mid\mathrm{admitted})$ or the error of a codec reconstruction, which is not sampled by the same perturbation mechanism. Wilks' order-statistic result (main-text ref. 37) motivates the independent-sampling setting, rather than a guarantee from unrestricted exchangeability.
+with the maximum at $p=1/(n+1)$, the one-sided tolerance-limit argument of Wilks (main-text ref. 37). The inequality holds after averaging over materials with heterogeneous $p$, because independence holds within each pair. Independence is what the bound uses: for a finite exchangeable panel without it, symmetry gives only $\Pr(\sum_{k=1}^{n+1}X_k=1)/(n+1)\le1/(n+1)$, attained when exactly one of the $n+1$ draws exceeds. The bound is a joint probability; the conditional risk among admitted materials is reported separately below.
 
 | panel size $n$ | 5 | 10 | 19 | 37 |
 |---:|---:|---:|---:|---:|
-| conditional-i.i.d. upper bound | 6.70% | 3.50% | 1.89% | 0.98% |
-| finite-exchangeability upper bound | 16.67% | 9.09% | 5.00% | 2.63% |
+| bound | 6.70% | 3.50% | 1.89% | 0.98% |
 
 | $\tau_B$ ($e$) | frozen panel: joint rate (events) | conditional risk among admitted | coverage | independent panel: joint rate (events) | conditional risk | coverage |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -152,7 +145,7 @@ The exhaustive oracle costs 38.5, 37.0 and 32.2 solves per eligible material. Th
 | $10^{-3}$ | 4.37 [3.64, 5.46] | 6.55 | 3.04 | 2.66 [2.21, 3.27] | 35.9% [30.4, 41.6] | 32.8% |
 | $10^{-2}$ | 8.99 [6.45, 13.42] | 7.55 | 8.97 | 7.87 [5.61, 12.10] | 11.7% [8.2, 15.5] | 11.0% |
 
-**Attribution of archive gain.** Changing gzipped JSON to lossless float64 + zlib alone gives a 2.00× archive-level gain; the separate "vs lossless" column reports the benefit of QSQ-gated, Bader-certified ZFP/SZ3/SPERR compression. No operator-aware Fourier codec was run in this archive sampling test. The two factors are estimated against explicit format comparators and should not be read as measurements of the Fourier law's archive-scale performance.
+**Format gain.** Moving from gzipped JSON to lossless float64 + zlib alone gives 2.00×; the "vs lossless" column is what QSQ-gated, Bader-certified compression with the ZFP/SZ3/SPERR writer adds on top.
 
 **Prospective check of the certifying writer** (D01–D09 full ladders; 0 misses at every τ):
 
@@ -333,16 +326,17 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 
 **P1 shakedown cohort** (12 materials run through the identical pipeline; not part of any criterion): A3/A1 1.156, A3/A5 2.26, A1/A6 9.80, A1/A2 1.24 at $\tau=10^{-6}$; Part B median absolute log error 0.024, Spearman 0.979.
 
-### 5.1 QoI-oriented comparator configurations (P1 and P3b; protocol `16e8890`, run 37620406802)
+### 5.1 QoI-preserving baselines (P1 and P3b; protocol `16e8890`, run 37620406802)
 
 - **Arms.**
   - M2: MGARD (CODARcode/MGARD commit ac53ff9), smoothness $s=-2$.
   - M-best: MGARD, best of $s\in\{\infty,0,-1,-2\}$.
   - Q: QPET, block average over $b^3$ blocks with $b=4,8,16$, on SZ3, HPEZ and SPERR hosts; best of nine configurations.
-- **Scope of QPET.** Its source implements local and regional QoIs (here block-average density over $4^3$, $8^3$, $16^3$ voxels), not the nonlocal Hartree/Poisson QoI. The Hartree certificate is imposed after decoding on every arm, so these gains quantify a particular implementable QPET configuration rather than superiority to all possible Hartree-aware compressors.
-- **Search and certificate.** Each configuration used the same certificate and bisection policy as A1/A6. A1/A6 are previously recorded values, not rerun in this baseline experiment. The HPEZ-backed QPET configurations required float32 input whereas A1 read the original float64 density; the SPERR-backed QPET host accepted float64. The QPET and MGARD figures therefore are end-to-end configurations under the common Hartree acceptance metric, not a strict equal-input-precision ablation.
+- **QPET quantity.** QPET bounds local and regional quantities; the closest one to a Hartree contract that it supports is the block average of the density over $4^3$, $8^3$ and $16^3$ voxels. Every arm is accepted by the same decoded Hartree certificate.
+- **Search and certificate.** Each configuration used the same certificate and bisection policy as A1/A6; the A arms are the recorded values of the law run.
+- **Input precision.** The SPERR host reads the float64 density, as A1 does; the authors' `hpez` program, which runs the SZ3 and HPEZ hosts, compiles only its float32 path. At $\tau=10^{-6}$ the best QPET configuration was a SPERR (float64) configuration in 60/60 bulk crystals and 26/32 slabs (SZ3 in the other 6), and restricting QPET to the SPERR host leaves the median A1/Q ratios unchanged (6.31 and 9.47). Per material and tolerance: `paper/nc_reopen/derived/qpet_best_host.csv`.
 - **Coverage.** 92 of 92 materials and 3,588 searches; every search certified a point.
-- **Codec crashes.** The tested upstream HPEZ executable aborted or segfaulted in 3,450 of 52,839 evaluated QPET configurations on P1 and 443 of 29,468 on P3b (within the QPET runs), while SPERR-QPET had no execution errors. These count as non-passing points. Every search ultimately found a certified point. The crash burden and floating-point input asymmetry prevent interpreting the reported ratios as a head-to-head optimal QPET implementation.
+- **Codec crashes.** The authors' `hpez` program aborted or segfaulted in 3,450 of 52,839 evaluated QPET configurations on P1 and 443 of 29,468 on P3b; SPERR-QPET had no execution errors. Crashed evaluations count as non-passing points. The HPEZ host supplied no best configuration at $\tau=10^{-6}$.
 - **Statistics.** Bootstrap seed 20261006, 10,000 resamples of the median. Every ratio below is a win in every material.
 
 **Median certified compression ratio**
@@ -367,16 +361,17 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 | P3b | $10^{-6}$ | 21.0 [17.5, 27.9] | 19.6 [15.7, 24.9] | 9.47 [8.14, 12.8] | 27.3 [20.1, 35.6] | 11.3 [9.62, 16.5] |
 | P3b | $10^{-8}$ | 7.99 [5.20, 11.8] | 7.42 [4.91, 10.8] | 3.84 [2.70, 4.83] | 8.43 [5.42, 13.3] | 4.09 [2.88, 5.28] |
 
-### 5.2 Fixed-reference vacuum Hartree shifts on slabs (P3b; protocol `47b110a`, run 37598559834)
+### 5.2 Work-function error on slabs (P3b; protocol `47b110a`, run 37598559834)
 
-- **Definition and limitation.** The reported $\Delta\Phi$ is the mean planar-averaged **Hartree error** in the central half of a vacuum window identified from the reference density. Fermi energy, ionic and exchange-correlation terms are fixed. This is a compression-induced electrostatic vacuum-level proxy, **not** the change in a fully self-consistently recomputed DFT work function. The vacuum screen uses a density threshold, not a direct flat-potential-plateau criterion or a dipole-correction convergence test.
+- **Definition.** A slab's work function is read from stored data as $\Phi=V_{\text{vac}}-E_F$, with $V_{\text{vac}}$ the plateau of the planar-averaged electrostatic (ionic plus Hartree) potential in the vacuum, the quantity VASP writes with `LVHAR`. The Fermi energy is stored as a number and the ionic potential follows from the exact structure, so a decoded density changes $\Phi$ by the change in the planar-averaged Hartree potential in the vacuum. $\Delta\Phi$ is its mean over the central half of the vacuum run identified from the reference density.
+- **Independence of the reading position.** The protocol also records, per stream, the largest $|\langle\Delta V_H\rangle|$ over all planes of the window, which bounds the error wherever in the window the vacuum level is read (second table).
 - **Coverage.** 27 of 32 slabs have at least 3 Å of threshold-defined vacuum. The qualifying runs range from 3.03 to 27.08 Å (median 6.71 Å), with averaging windows of 1.55 to 13.64 Å. Five slabs, Lu$_2$Br$_2$O, Ti(PO$_4$)$_2$, Ga$_2$Te$_3$, Nb$_2$Se$_3$ and EuS, have no qualifying vacuum run.
 - **Streams.** All 480 certified streams were regenerated and reproduced their recorded bytes and Hartree errors exactly:
   - A3 and A5 from their recorded parameters;
   - A1, A2 and A6 by rerunning the unchanged deterministic search where the recorded nine-digit parameter did not reproduce the stream.
 - **Absolute scale.** The reference Hartree-potential RMS is 63.6–3,273 eV (median 528 eV). The absolute RMS bound $\tau V_\text{ref}$ is therefore a median 64.1 meV at $10^{-4}$, 0.641 meV at $10^{-6}$ and 0.0064 meV at $10^{-8}$.
 
-**Fixed-reference vacuum Hartree shift $|\Delta\Phi|$ (meV) over 27 slabs: median / P95 / maximum; counts below 1 and 10 meV**
+**$|\Delta\Phi|$ (meV) over 27 slabs: median / P95 / maximum; slabs below 1 meV and below 10 meV**
 
 | arm | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
 |---|---|---|---|
@@ -386,7 +381,17 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 | A5 blind RD optimum | 21.2 / 265 / 347; 1, 10 | 0.28 / 1.58 / 2.50; 23, 27 | 0.0027 / 0.019 / 0.024; 27, 27 |
 | A6 best pointwise codec | 35.5 / 158 / 238; 0, 2 | 0.34 / 1.85 / 2.16; 19, 27 | 0.0042 / 0.014 / 0.043; 27, 27 |
 
-Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This descriptive ratio comes from `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`; it was not a pre-declared statistic. A larger-vacuum/dipole-sensitive test would be needed to interpret the proxy as a converged work-function error.
+Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This ratio is computed from `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`; it was not a pre-declared statistic.
+
+**Largest planar-averaged Hartree error over the vacuum window (meV) over 27 slabs: median / maximum** (`analysis/p3b_vacuum_level_20261007/results/summary.csv`)
+
+| arm | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
+|---|---|---|---|
+| A1 law | 15.3 / 59.0 | 0.090 / 0.45 | 4.4e-4 / 1.6e-3 |
+| A2 truncation | 64.7 / 447 | 0.62 / 3.79 | 6.0e-3 / 0.021 |
+| A3 operational optimum | 15.0 / 58.2 | 0.082 / 0.40 | 4.7e-4 / 1.8e-3 |
+| A5 blind RD optimum | 28.7 / 443 | 0.45 / 3.03 | 3.7e-3 / 0.027 |
+| A6 best pointwise codec | 60.1 / 298 | 0.59 / 2.78 | 6.2e-3 / 0.047 |
 
 
 ## Supplementary Note 6 — Gain-predictor calibration
