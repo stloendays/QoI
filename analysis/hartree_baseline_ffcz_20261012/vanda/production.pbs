@@ -11,6 +11,9 @@ STAGING_ROOT="/scratch/junbotong/qoi-ffcz-20261012"
 CODE_DIR="${STAGING_ROOT}/analysis/hartree_baseline_ffcz_20261012"
 PYTHON="${STAGING_ROOT}/venv/bin/python"
 
+set +eu
+source /etc/profile >/dev/null 2>&1
+set -eu
 module load Python/3.12.3-GCCcore-13.3.0
 module load FFTW/3.3.10-GCC-13.3.0
 module load zstd/1.5.6-GCCcore-13.3.0
