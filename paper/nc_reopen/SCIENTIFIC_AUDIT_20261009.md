@@ -68,3 +68,24 @@ Report within-operator ranking alongside pooled rank correlation, and quantify s
 ## Validation convention
 
 `python paper/nc_reopen/test_scientific_claims.py` tests the probability argument, source/claim scope and word budget. `python paper/nc_reopen/audit_manuscript.py` checks citations, cross-references, file paths, commit ancestry and math delimiters. Neither substitutes for VASP runs, Bader recomputation, baseline runtime benchmarking, literature verification or figure/Word/PDF rendering.
+
+## Resolution in revision 4 (2026-10-12, branch `paper/nc-rev4-20261012`)
+
+Each point above is resolved by a correction, by data already committed, or by a new pre-registered measurement.
+The manuscript states the result and its definition; it does not carry caveat sentences.
+
+| item | resolution | evidence |
+|---|---|---|
+| QSQ finite-panel bound | Correction kept. The bound needs conditional independence, and QSQ has it by construction: the five probes and the 59 fresh perturbations are independent draws of the same `iid_uniform` law U(-eps, +eps) for each material (`validation/qsq_prospective/PROTOCOL.md`). The main text states the condition; SI 1.5 keeps the proof and the exchangeability remark. | `paper/nc_reopen/test_scientific_claims.py` (bound, counterexample) |
+| Slab work function | The measured quantity is the change in the work function read from the stored density: electrostatic (`LVHAR`) vacuum level minus the stored Fermi energy, with the ionic potential exact. A self-consistent recalculation is a different question, because decoding does not rerun DFT. Independence of the reading position: the protocol-recorded window maximum is at most 0.45 meV for the law at 1e-6 in 27/27 slabs (best pointwise codec up to 2.78 meV). | `analysis/p3b_vacuum_level_20261007/results/summary.csv` |
+| QPET input precision and HPEZ crashes | At 1e-6 the best QPET configuration was the float64 SPERR host in 60/60 bulk crystals and 26/32 slabs (SZ3 in 6). The HPEZ host was never best. Restricting QPET to SPERR leaves the medians at 6.31 and 9.47. | `paper/nc_reopen/derived/qpet_best_host.csv` |
+| Self-contained joint storage (A) | Measured under protocol `d084d4a`, run 38201584592 (48/48 label maps round-trip; charges from stored labels match `ACF.dat`, at most 5.0e-7 e). At tau_B = 1e-4 e the self-contained R3 CR is 188 (172–200), 10.2-fold GF and highest in 48/48 (median 1.168, min 1.040). Label maps are a median 11.8 kB. | `analysis/hb_selfcontained_bytes_20261012/RESULTS.md` |
+| Archive attribution | The main text keeps the split: 2.00-fold format, 2.66-fold certified compression. The writer is named as the ZFP/SZ3/SPERR certifying writer. | WP-F `completed_v2/RESULTS.md` |
+| Gaussian predictor bias | The numbers stay in the text (17.6 vs 12.1; 22.0 vs 15.3). The interpretive sentence was removed. | Fig. 8c |
+| Slab near-optimality | Stated with the pre-registered threshold (1.222 vs 1.15). Operational allocation is the slab encoder. | Fig. 6c |
+| SI citation order | Notes 3 and 5 swapped. The audit reports 0 failures and 0 warnings. | `paper/nc_reopen/audit_manuscript.py` |
+
+**Not run, and why.** The paper makes no runtime claim, so the systems-cost benchmark (C) was not run. A
+larger-vacuum DFT test (B) is not needed, because the reported quantity is defined on the stored density and its
+window independence is shown by the window maximum. Pre-submission records that only the authors can supply are
+author metadata and the Zenodo DOI.

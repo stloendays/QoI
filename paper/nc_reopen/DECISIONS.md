@@ -58,3 +58,23 @@ Author decisions, in order:
 Defaults adopted by the assistant, flagged for author review:
 - The abstract now leads the Hartree result with the QoI-preserving compressor (QPET; 6.3- and 9.5-fold).
 - The abstract adds the archive-scale result (4.4-fold at 1e-3 e). To stay at 150 words, its near-optimality clause (A3/A1 = 1.105 on bulk crystals) moved to Results only.
+
+## Revision 4 (2026-10-12)
+
+Request: "你来看看云端最近完成任务的情况，并完善一下本地的任务". A cloud agent's scientific audit (PR #15,
+`paper/nc-scientific-audit-20261009`) was reviewed and built on in `paper/nc-rev4-20261012`.
+- **Kept from the audit:**
+  - the corrected QSQ probability statement;
+  - the reworded Introduction;
+  - the MGARD best-smoothness comparison;
+  - the slab near-optimality threshold.
+- **Replaced by definitions or data,** under the standing manuscript rule ("fix it, do not confess it"):
+  - the work-function, QPET, archive-writer and partition-storage caveats;
+  - the Gaussian-bias sentence.
+
+  `SCIENTIFIC_AUDIT_20261009.md` has the resolution table.
+- **New pre-registered measurement:** self-contained joint storage on the 48 P2 confirmatory crystals.
+  - Protocol `d084d4a`, run 38201584592, branch `research/hb-selfcontained-bytes-20261012`.
+  - Implementation by Codex, reviewed and recomputed in the main session.
+- **Abstract:** now ends with the self-contained result ("carrying its own partition, stayed 10.2-fold smaller than
+  pointwise codecs"). 148 words; main text plus Methods 4,994.

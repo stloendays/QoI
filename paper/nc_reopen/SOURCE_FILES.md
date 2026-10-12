@@ -18,9 +18,11 @@ Every number in the main text and this SI comes from the files below (commit tha
 | law protocol, P1 | `analysis/general_qoac_law/results/run_P1_CONFIRMATORY/SUMMARY.json` | `4164519` |
 | law protocol, P3b | `analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/SUMMARY.json` | `eaa3267` |
 | law protocol, summary | `analysis/general_qoac_law/results/RESULTS.md` | `b9fd735` |
-| configured QPET block-average and MGARD (s = −2 and best-tested s) baseline study, P1 and P3b | `analysis/hartree_baselines_mgard_qpet_20261007/RESULTS.md`; per material `analysis/hartree_baselines_mgard_qpet_20261007/results/run_P1_CONFIRMATORY/material.csv`, `analysis/hartree_baselines_mgard_qpet_20261007/results/run_P3B_CONFIRMATORY/material.csv` | `a86be8b` |
+| QoI-preserving baselines QPET and MGARD, P1 and P3b | `analysis/hartree_baselines_mgard_qpet_20261007/RESULTS.md`; per material `analysis/hartree_baselines_mgard_qpet_20261007/results/run_P1_CONFIRMATORY/material.csv`, `analysis/hartree_baselines_mgard_qpet_20261007/results/run_P3B_CONFIRMATORY/material.csv` | `a86be8b` |
 | Materials Project archive estimate | `analysis/extensions_20260930/WP-F/results_cloud/completed_v2/RESULTS.md`; estimates `analysis/extensions_20260930/WP-F/results_cloud/completed_v2/estimates.csv`; protocol `analysis/extensions_20260930/PROTOCOL.md` (WP-F) | `805747f` |
-| fixed-reference vacuum Hartree shift on P3b slabs | `analysis/p3b_vacuum_level_20261007/RESULTS.md`; per stream `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`, summary `analysis/p3b_vacuum_level_20261007/results/summary.csv` | `6f03249` |
+| work-function error on P3b slabs | `analysis/p3b_vacuum_level_20261007/RESULTS.md`; per stream `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`, summary `analysis/p3b_vacuum_level_20261007/results/summary.csv` | `6f03249` |
+| best QPET host and input precision | `paper/nc_reopen/derived/qpet_best_host.csv` (from `paper/nc_reopen/derive_qpet_best_host.py`) | `9557d1f` |
+| self-contained joint storage, confirmation | `analysis/hb_selfcontained_bytes_20261012/RESULTS.md`; per material `analysis/hb_selfcontained_bytes_20261012/results/materials.csv` | `904fdc9` |
 | pooled prediction statistics | `analysis/general_qoac_law/results/POOLED_P1_P3B.json` | `062d782` |
 | predictor calibration | `analysis/general_qoac_operators/results/RESULTS.md` | `f4baa7a` |
 | joint contract, engineering | `analysis/qoac_hb_v2/results/P2_ENGINEERING_MANIFEST/RESULTS.md` | `e095a0c` |

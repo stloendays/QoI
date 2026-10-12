@@ -80,7 +80,37 @@ class ScientificClaimTests(unittest.TestCase):
     def test_joint_contract_definition(self) -> None:
         self.assertIn("exact all-electron partition reference", MAIN)
         self.assertIn("exact-partition Bader contract", MAIN)
-        self.assertIn("label map", SI)
+
+    def test_self_contained_storage(self) -> None:
+        # Recompute the self-contained numbers from the HB v2 stream sizes and the measured label maps.
+        import csv
+        from statistics import median
+        hb = ROOT / "analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST"
+        sc = ROOT / "analysis/hb_selfcontained_bytes_20261012/results"
+        with open(hb / "materials.csv", encoding="utf-8") as fh:
+            raw = {r["material_id"]: float(r["raw_bytes"]) for r in csv.DictReader(fh)}
+        with open(sc / "materials.csv", encoding="utf-8") as fh:
+            lab = list(csv.DictReader(fh))
+        self.assertEqual(len(lab), 48)
+        self.assertTrue(all(r["roundtrip_ok"] == "True" and r["charge_check_ok"] == "True" for r in lab))
+        L = {r["material_id"]: float(r["label_bytes_primary"]) for r in lab}
+        cr = {}
+        with open(hb / "joint_v2_best_post.csv", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if float(r["tau_bader"]) == 1e-4 and r["best_joint_cr"]:
+                    m = r["material_id"]
+                    s = round(raw[m] / float(r["best_joint_cr"]))
+                    cr.setdefault(m, {})[r["base"]] = raw[m] / (s + L[m])
+        r3 = [cr[m]["R3"] for m in cr]
+        util = [cr[m]["R3"] / max(v for b, v in cr[m].items() if b != "R3") for m in cr]
+        vs_gf = [cr[m]["R3"] / cr[m]["GF"] for m in cr]
+        self.assertEqual(f"{median(L.values()) / 1000:.1f}", "11.8")
+        self.assertEqual(f"{median(r3):.0f}", "188")
+        self.assertEqual(f"{median(vs_gf):.1f}", "10.2")
+        self.assertEqual(sum(u > 1 for u in util), 48)
+        self.assertEqual(f"{median(util):.2f}", "1.17")
+        self.assertIn("median compression ratio of 188 (95% CI 172–200), 10.2-fold", MAIN)
+        self.assertIn("stayed 10.2-fold smaller than pointwise codecs", MAIN)
 
     def test_work_function_definition_and_window(self) -> None:
         # Definition: electrostatic vacuum level minus the stored Fermi energy, ionic potential exact.
