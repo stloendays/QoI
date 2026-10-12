@@ -6,10 +6,10 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 
 | Section | Words |
 |---|---:|
-| Introduction | 355 |
+| Introduction | 363 |
 | Results — A tolerance is scored only after the measurement contract resolves it | 503 |
 | Results — The operator symbol explains the codec effect and fixes a closed-form allocation law | 386 |
-| Results — Under equal search, the law certifies more than pointwise and QoI-preserving codecs on bulk crystals and surface slabs | 569 |
+| Results — Under equal search, the law certifies more than pointwise and QoI-preserving codecs on bulk crystals and surface slabs | 562 |
 | Results — The operator metric carries the gain, and the system class sets the optimizer's share | 270 |
 | Results — One stream certifies the Hartree potential and Bader charges together | 399 |
 | Results — The gain is predicted before compression from the operator symbol and the reference spectrum | 340 |
@@ -24,9 +24,9 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 | Methods — Populations and pre-registration chronology | 139 |
 | Methods — Joint contract and certify-then-project | 189 |
 | Methods — Statistics | 140 |
-| **Introduction + Results + Discussion** | **3,293** |
+| **Introduction + Results + Discussion** | **3,294** |
 | **Methods (total)** | **1,701** |
-| **Main text + Methods** | **4,994** |
+| **Main text + Methods** | **4,995** |
 
 ## Outside the 5,000-word budget
 

@@ -59,7 +59,7 @@ $$
 \Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)\le\max_{0\le p\le 1}p(1-p)^n=\frac{n^n}{(n+1)^{n+1}},
 $$
 
-with the maximum at $p=1/(n+1)$, the one-sided tolerance-limit argument of Wilks (main-text ref. 37). The inequality holds after averaging over materials with heterogeneous $p$, because independence holds within each pair. Independence is what the bound uses: for a finite exchangeable panel without it, symmetry gives only $\Pr(\sum_{k=1}^{n+1}X_k=1)/(n+1)\le1/(n+1)$, attained when exactly one of the $n+1$ draws exceeds. The bound is a joint probability; the conditional risk among admitted materials is reported separately below.
+with the maximum at $p=1/(n+1)$, the one-sided tolerance-limit argument of Wilks (main-text ref. 38). The inequality holds after averaging over materials with heterogeneous $p$, because independence holds within each pair. Independence is what the bound uses: for a finite exchangeable panel without it, symmetry gives only $\Pr(\sum_{k=1}^{n+1}X_k=1)/(n+1)\le1/(n+1)$, attained when exactly one of the $n+1$ draws exceeds. The bound is a joint probability; the conditional risk among admitted materials is reported separately below.
 
 | panel size $n$ | 5 | 10 | 19 | 37 |
 |---:|---:|---:|---:|---:|
