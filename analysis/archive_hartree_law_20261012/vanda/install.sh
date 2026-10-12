@@ -2,9 +2,9 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
-set +e
+set +eu
 source /etc/profile >/dev/null 2>&1
-set -e
+set -eu
 module load Python/3.12.3-GCCcore-13.3.0
 mkdir -p logs inputs checkpoints
 if [ ! -x venv/bin/python ]; then
