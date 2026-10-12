@@ -147,6 +147,103 @@ if _nb is not None:
                 half[pi[t], pj[t], pk[t]] = complex(cr[t], -ci[t])
 
 
+    @_nb.njit(cache=True)
+    def _g2_at(i, j, k, nx, ny, nz, m, ax, ay, az, nqx, nqy, nqz):
+        """Conservative |G|^2 of one mode, with the arithmetic of _orbit_kernel (and of the reference)."""
+        m00, m11, m22 = m[0, 0], m[1, 1], m[2, 2]
+        c01, c02, c12 = 2.0 * m[0, 1], 2.0 * m[0, 2], 2.0 * m[1, 2]
+        best = np.inf
+        for u in range(2 if i == nqx else 1):
+            a = (-(nx / 2.0) if u == 0 else nx / 2.0) if i == nqx else ax[i]
+            for v in range(2 if j == nqy else 1):
+                b = (-(ny / 2.0) if v == 0 else ny / 2.0) if j == nqy else ay[j]
+                for w in range(2 if k == nqz else 1):
+                    c = (-(nz / 2.0) if w == 0 else nz / 2.0) if k == nqz else az[k]
+                    cur = (m00 * a * a + m11 * b * b + m22 * c * c
+                           + c01 * a * b + c02 * a * c + c12 * b * c)
+                    if cur < best:
+                        best = cur
+        if abs(best) < 1e-24:
+            best = 0.0
+        return best
+
+    @_nb.njit(cache=True)
+    def _stream_layout(nx, ny, nz, m, ax, ay, az, nqx, nqy, nqz, nshell):
+        """Passes A and B of the streaming decoder over the canonical orbits (reference order): |G|^2 of each, its
+        maximum, and the shell of each. The conservative |G|^2 is exactly inversion-symmetric (negated integer
+        frequencies, symmetric Nyquist alias set), so its maximum over the canonical orbits is its grid maximum."""
+        n = nx * ny * nz
+        g2c = np.empty(n // 2 + 8, np.float64)
+        cnt = 0
+        gmax = -1.0
+        for i in range(nx):
+            pi = (nx - i) % nx
+            for j in range(ny):
+                pj = (ny - j) % ny
+                for k in range(nz):
+                    pk = (nz - k) % nz
+                    if i < pi or (i == pi and (j < pj or (j == pj and k <= pk))):
+                        g = _g2_at(i, j, k, nx, ny, nz, m, ax, ay, az, nqx, nqy, nqz)
+                        g2c[cnt] = g
+                        cnt += 1
+                        if g > gmax:
+                            gmax = g
+        g2c = g2c[:cnt]
+        shell = np.full(cnt, -1, np.int8)
+        counts = np.zeros(nshell, np.int64)
+        for t in range(cnt):
+            if g2c[t] > 0.0:
+                s = min(max(int(np.floor(np.sqrt(g2c[t] / gmax) * nshell)), 0), nshell - 1)
+                shell[t] = s
+                counts[s] += 1
+        return g2c, shell, gmax, counts
+
+    @_nb.njit(cache=True)
+    def _stream_fill(half, nx, ny, nz, g2c, shell, gmax, starts, stored, vr, vi, kind, alpha, beta, mult_s, prior):
+        """Pass C: visit the canonical orbits in the reference order, take each one's integers from its shell's
+        block, and write the coefficient and its Hermitian partner into the half spectrum.
+        kind 0: law steps alpha * q**beta; kind 1: v0.3 steps mult[shell] * u(prior)."""
+        h = half.shape[2]
+        cursor = starts.copy()
+        c = 0
+        for i in range(nx):
+            pi = (nx - i) % nx
+            for j in range(ny):
+                pj = (ny - j) % ny
+                for k in range(nz):
+                    pk = (nz - k) % nz
+                    if not (i < pi or (i == pi and (j < pj or (j == pj and k <= pk)))):
+                        continue
+                    s = shell[c]
+                    g = g2c[c]
+                    c += 1
+                    if s < 0:
+                        continue
+                    t = cursor[s]
+                    cursor[s] += 1
+                    if not stored[s]:
+                        continue
+                    if kind == 0:
+                        q = np.sqrt(g / gmax)
+                        st = alpha if beta == 0.0 else alpha * q ** beta
+                    else:
+                        gn = g / gmax
+                        if prior == 1:
+                            u = (gn ** -2.0) ** -0.5
+                        elif prior == 2:
+                            u = (gn ** -1.0) ** -0.5
+                        else:
+                            u = 1.0
+                        st = mult_s[s] * u
+                    cr = vr[t] * st
+                    selfc = i == pi and j == pj and k == pk
+                    ci = 0.0 if selfc else vi[t] * st
+                    if k < h:
+                        half[i, j, k] = complex(cr, ci)
+                    if not selfc and pk < h:
+                        half[pi, pj, pk] = complex(cr, -ci)
+
+
 class Orbits:
     """The Hermitian-orbit table of codec_qoac_h_v02.build_topology, ordered by shell (stable).
 
@@ -239,11 +336,44 @@ def _shell_values(blob, p, recs, orb: Orbits, use):
     return qr, qi, stored
 
 
+def _stream_decode(h, blob, dc, p, kind, use, alpha=0.0, beta=0.0, mult_s=None, prior=0):
+    """Streaming decoder (numba): no orbit table is materialized; working memory is the half spectrum, the
+    stored integers and the output field."""
+    shape = tuple(int(v) for v in h["shape"])
+    nx, ny, nz = shape
+    lat = np.asarray(h["lattice"], dtype=np.float64)
+    ax, ay, az = (v02._freq_axis(n).astype(np.float64) for n in shape)
+    nq = [n // 2 if n % 2 == 0 else -1 for n in shape]
+    m = v02.reciprocal_metric(lat)
+    g2c, shell, gmax, counts = _stream_layout(nx, ny, nz, m, ax, ay, az, *nq, 32)
+    starts = np.concatenate(([0], np.cumsum(counts)))
+    vr = np.zeros(int(starts[-1])); vi = np.zeros(int(starts[-1])); stored = np.zeros(32, dtype=np.bool_)
+    for rec in h["shells"]:
+        if not use(rec):
+            continue
+        s = int(rec["shell"]); a, b = starts[s], starts[s + 1]
+        raw = zlib.decompress(blob[p:p + rec["compressed_bytes"]]); p += rec["compressed_bytes"]
+        v = np.frombuffer(raw, dtype=np.dtype(rec["dtype"]))
+        if v.size != 2 * (b - a):
+            raise ValueError("shell value-count mismatch")
+        vr[a:b] = v[0::2]; vi[a:b] = v[1::2]; stored[s] = True
+    if p != len(blob):
+        raise ValueError("unexpected trailing bytes")
+    half = np.zeros((nx, ny, nz // 2 + 1), dtype=np.complex128)
+    _stream_fill(half, nx, ny, nz, g2c, shell, gmax, starts, stored, vr, vi, kind, float(alpha), float(beta),
+                 np.zeros(32) if mult_s is None else mult_s, int(prior))
+    del vr, vi, g2c, shell
+    half[0, 0, 0] = dc
+    return np.fft.irfftn(half, s=shape, axes=(0, 1, 2), norm="ortho")
+
+
 def decode_law(blob: bytes) -> np.ndarray:
     """QOAC-H v0.2 stream (the law, A1)."""
-    h, dc, p = _parse(blob, v02.MAGIC[:0] + b"QOACH02\n")
-    orb = Orbits(h["shape"], np.asarray(h["lattice"], dtype=np.float64), int(h["shell_count"]))
+    h, dc, p = _parse(blob, v02.MAGIC)
     a, b = float(h["alpha"]), float(h["beta"])
+    if _nb is not None and int(h["shell_count"]) == 32:
+        return _stream_decode(h, blob, dc, p, 0, lambda r: int(r["count"]) > 0, alpha=a, beta=b)
+    orb = Orbits(h["shape"], np.asarray(h["lattice"], dtype=np.float64), int(h["shell_count"]))
     steps = np.full(orb.q.shape, a) if b == 0.0 else a * np.power(orb.q, b)
     qr, qi, _ = _shell_values(blob, p, h["shells"], orb, lambda r: int(r["count"]) > 0)
     coeff = qr * steps + 1j * qi * steps
@@ -254,6 +384,13 @@ def decode_law(blob: bytes) -> np.ndarray:
 def decode_operational(blob: bytes) -> np.ndarray:
     """QOAC v0.3 stream (the operational optimum, A3)."""
     h, dc, p = _parse(blob, v3.MAGIC)
+    step, lo, hi = h["ladder"]
+    mult = h["ptp"] * step ** np.arange(lo, hi + 1, dtype=np.float64)
+    j_of = {int(r["shell"]): int(r["j"]) for r in h["shells"]}
+    if _nb is not None:
+        mult_s = np.array([mult[j_of[s]] if j_of.get(s, -1) >= 0 else 0.0 for s in range(32)])
+        prior = 0 if h["prior"] == "flat" else {"hartree_potential": 1, "hartree_field": 2}.get(h["operator"], 3)
+        return _stream_decode(h, blob, dc, p, 1, lambda r: int(r["j"]) >= 0, mult_s=mult_s, prior=prior)
     orb = Orbits(h["shape"], np.asarray(h["lattice"], dtype=np.float64), 32)
     g2 = orb.g2_rep / orb.g2_max
     if h["prior"] == "flat":
@@ -261,9 +398,6 @@ def decode_operational(blob: bytes) -> np.ndarray:
     else:
         u = (g2 ** -2.0 if h["operator"] == "hartree_potential" else g2 ** -1.0 if h["operator"] == "hartree_field"
              else np.ones_like(g2)) ** -0.5
-    step, lo, hi = h["ladder"]
-    mult = h["ptp"] * step ** np.arange(lo, hi + 1, dtype=np.float64)
-    j_of = {int(r["shell"]): int(r["j"]) for r in h["shells"]}
     st = np.zeros(orb.q.shape)
     for s, j in j_of.items():
         if j >= 0:

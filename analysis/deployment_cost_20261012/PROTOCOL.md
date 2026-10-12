@@ -22,12 +22,15 @@ on the same materials, at the same certified operating points, under one harness
 
 ## Implementations
 
-- A1 and A3 are timed with the production implementation `fast_codec.py`, which writes and reads the unchanged
-  stream formats: the Hermitian-orbit table is built in one compiled pass (numba 0.65.1, on-disk JIT cache; the
-  warm-up call absorbs loading), sorted by shell with a counting sort, and the decoder inverts the half spectrum
-  with `irfftn`. The orbit table is bit-identical to the reference, A1 streams are byte-identical, and decoded
-  fields agree with the reference decoder to rounding (`test_fast_codec.py`, numba and numpy paths). The reference
-  implementation of the committed runs is timed alongside as `A1ref` and `A3ref`.
+- A1 and A3 are timed with the production implementation `fast_codec.py`, which reads and writes the unchanged
+  stream formats. The decoder is a streaming decoder compiled with numba 0.65.1 (on-disk JIT cache): it visits the
+  canonical Hermitian orbits in the reference order, computes each orbit's conservative |G|² and shell with the
+  reference arithmetic, writes each coefficient and its partner into the half spectrum, and inverts with `irfftn`;
+  no orbit table is materialized. The encoder builds the reference orbit table bit-identically in one compiled pass,
+  so A1 streams are byte-identical to the reference encoder. `test_fast_codec.py` checks the orbit table, shell
+  layout and maximum |G|² bit for bit, stream bytes for equality, and decoded fields against the reference decoder
+  (numba and numpy paths). The reference implementation of the committed runs is timed alongside as `A1ref` and
+  `A3ref`.
 - ZFP (zfpy 1.0.1), SZ3 (pysz 1.0.3) and SPERR (hdf5plugin 7.0.0, HDF5 file, single chunk) use the calls of the
   frozen benchmark.
 - MGARD (commit ac53ff9) and QPET (authors' artifact, commits 5d17cb1 and 1874108) are the command-line programs of
@@ -42,11 +45,11 @@ MGARD's OpenMP build also runs single-threaded). One material is measured end to
 paired ratio compares arms on the same machine.
 
 1. **Encode**: from the float64 field in memory to the stream at the recorded parameter. One warm-up, then five
-   timed repetitions; the median is reported.
+   timed repetitions; the median is reported. The warm-up absorbs imports and loading the JIT cache.
 2. **Decode**: from the stream to the float64 field. Same repetitions. Every decoded field is re-certified with the
    decoded Hartree certificate; the certificate is not part of the timing.
 3. **Certified search** (τ = 1e-6): the arm's complete certified compression from the raw field, as in the committed
-   runs: A1, law-step bisection with exact spectral distortion, one encode, decoded certificate; A3, shell
+   runs (after a 16³ warm-up that loads the JIT cache): A1, law-step bisection with exact spectral distortion, one encode, decoded certificate; A3, shell
    rate–distortion analysis, Lagrangian selection, encode, decoded certificate; A6, tolerance bisection with a
    decoded certificate at every point for each of ZFP, SZ3 and SPERR (the arm's cost is the sum over the three);
    M2, the same bisection for MGARD s = −2; Q, the same bisection for each of the nine QPET configurations (the
@@ -90,10 +93,15 @@ GitHub Actions, `ubuntu-24.04` hosted runners, one material per job (`.github/wo
 Raw outputs: `results/shards/`; aggregation: `aggregate_cost.py` → `results/per_operation.csv`,
 `results/SUMMARY.json`, `results/RESULTS.md`.
 
-## Changes after the probe run (two materials), before any cohort run
+## Changes after the probe run (two materials) and the cancelled first cohort run
 
 - The cohort label is taken from the manifest file name (the P3b probe material failed on an unmapped corpus
   label).
 - Peak memory: the process high-water mark is reset before each operation, and the codec programs' fixed footprint
   is subtracted, as stated in item 4. The probe's whole-process high-water marks were dominated by library imports
   for small fields.
+- First cohort run (38210335341) cancelled after one completed P1 shard (mp-1791699) was inspected: its
+  memory figures for A1 and A3 included the JIT warm-up and the law decoder materialized the full orbit table. The
+  decoder was replaced by the streaming decoder described above, and the memory baseline is now taken after the
+  warm-up. Timing, search and reproduction outputs of that shard were not used to choose these changes; the cohort
+  is rerun in full.

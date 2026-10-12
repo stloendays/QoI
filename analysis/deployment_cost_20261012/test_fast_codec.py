@@ -37,6 +37,18 @@ class T(unittest.TestCase):
                 np.testing.assert_array_equal(getattr(got, name), getattr(ref, name), err_msg=f"{shape} {name}")
             self.assertEqual(got.g2_safe_max, ref.g2_safe_max)
 
+    def test_streaming_layout(self):
+        if F._nb is None:
+            self.skipTest("numba path only")
+        for n, shape in enumerate(SHAPES):
+            lat = lattice(n); ref = v02.build_topology(shape, lat, 32)
+            ax, ay, az = (v02._freq_axis(k).astype(np.float64) for k in shape)
+            nq = [k // 2 if k % 2 == 0 else -1 for k in shape]
+            g2c, shell, gmax, counts = F._stream_layout(*shape, v02.reciprocal_metric(lat), ax, ay, az, *nq, 32)
+            self.assertEqual(gmax, ref.g2_safe_max)
+            np.testing.assert_array_equal(shell[shell >= 0], ref.shell_ids)
+            np.testing.assert_array_equal(counts, np.bincount(ref.shell_ids, minlength=32))
+
     def test_law_stream_and_decode(self):
         for n, shape in enumerate(SHAPES[:5]):
             lat, x = lattice(n), field(shape, n)

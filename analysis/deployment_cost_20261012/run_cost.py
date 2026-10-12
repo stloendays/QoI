@@ -189,8 +189,10 @@ def certify(rec, x, lat, rh, rs):
     return v02.hartree_error_metrics(rec - x, lat, rh, rs)
 
 
-def timed(fn, reps=REPS):
-    fn()                                                    # warm-up (imports, caches, page faults)
+def timed(fn, reps=REPS, after_warmup=None):
+    fn()                                                    # warm-up (imports, JIT cache load, page faults)
+    if after_warmup is not None:
+        after_warmup()                                      # the memory baseline is taken after the warm-up
     ts = []
     for _ in range(reps):
         t0 = time.perf_counter(); out = fn(); ts.append(time.perf_counter() - t0)
@@ -215,7 +217,9 @@ def child(job: dict) -> dict:
     cli_peak = cli_base = None
     if arm in ("M2", "Q") and op in ("encode", "decode") and hasattr(os, "wait4"):
         cli_base = cli_baseline(arm, p, op)
-    rss0 = reset_peak_rss()
+    base = {"rss0": reset_peak_rss()}
+    def mark():
+        base["rss0"] = reset_peak_rss()
 
     if op == "encode":
         if arm == "A1":                                     # production implementation (byte-identical stream)
@@ -247,7 +251,7 @@ def child(job: dict) -> dict:
                 return stream_path
         else:
             raise ValueError(arm)
-        out, ts = timed(f)
+        out, ts = timed(f, after_warmup=mark)
         rss_op = current_peak_rss()
         if arm == "A6" and p["codec"] == "sperr":
             shutil.copyfile(out, stream_path); nbytes = pointwise_bytes("sperr", out)
@@ -288,7 +292,7 @@ def child(job: dict) -> dict:
                 def f(): return np.frombuffer(zstandard.ZstdDecompressor().decompress(blob), dtype=np.float64).reshape(x.shape)
             else:
                 raise ValueError(arm)
-        rec, ts = timed(f)
+        rec, ts = timed(f, after_warmup=mark)
         rss_op = current_peak_rss()                         # before the certificate, which is not part of decoding
         if arm in ("M2", "Q"):
             res["cli_seconds"] = statistics.median(w[0] for w in walls[1:])
@@ -299,6 +303,12 @@ def child(job: dict) -> dict:
                 "max_abs_dev": float(np.max(np.abs(rec - x)))}
 
     elif op == "search":
+        if arm in ("A1", "A3"):                             # load the JIT cache first, as an import (16^3 field)
+            xt = 1.0 + 0.01 * np.random.default_rng(0).random((16, 16, 16))
+            F.decode_law(F.encode_law(xt, lat, 1e-3))
+            an_t = v3.analyze(xt, lat, prior="operator")
+            F.decode_operational(v3.encode(an_t, v3.select(an_t, 1e-2)))
+        base["rss0"] = reset_peak_rss()
         t0 = time.perf_counter()
         res |= search(arm, tau, x, lat, rh, rs, ptp, work)
         ts = [time.perf_counter() - t0]
@@ -306,6 +316,7 @@ def child(job: dict) -> dict:
         raise ValueError(op)
 
     rss1 = rss_op if op in ("encode", "decode") else current_peak_rss()
+    rss0 = base["rss0"]
     res |= {"seconds_median": statistics.median(ts), "seconds_min": min(ts), "seconds_all": ts,
             "peak_rss_bytes": rss1, "baseline_rss_bytes": rss0, "peak_rss_above_input_bytes": max(0, rss1 - rss0),
             "cli_peak_rss_bytes": cli_peak, "cli_baseline_rss_bytes": cli_base,
