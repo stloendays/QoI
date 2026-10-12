@@ -23,6 +23,8 @@ Every number in the main text and this SI comes from the files below (commit tha
 | work-function error on P3b slabs | `analysis/p3b_vacuum_level_20261007/RESULTS.md`; per stream `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`, summary `analysis/p3b_vacuum_level_20261007/results/summary.csv` | `6f03249` |
 | best QPET host and input precision | `paper/nc_reopen/derived/qpet_best_host.csv` (from `paper/nc_reopen/derive_qpet_best_host.py`) | `9557d1f` |
 | self-contained joint storage, confirmation | `analysis/hb_selfcontained_bytes_20261012/RESULTS.md`; per material `analysis/hb_selfcontained_bytes_20261012/results/materials.csv` | `904fdc9` |
+| deployment cost, run (Table 2, Supplementary Note 3.3) | `analysis/deployment_cost_20261012/results/RESULTS.md`, `analysis/deployment_cost_20261012/results/SUMMARY.json`; per material `analysis/deployment_cost_20261012/results/per_material.csv`; protocol `analysis/deployment_cost_20261012/PROTOCOL.md` | `2ee1dab` |
+| deployment cost, Table 2 and Supplementary Note 3.3 tables | `paper/nc_reopen/derived/deployment_cost_table.csv`, `paper/nc_reopen/derived/deployment_cost_si.md` (from `paper/nc_reopen/derive_deployment_table.py`, `paper/nc_reopen/derive_deployment_si.py`) | `0c1e339` |
 | pooled prediction statistics | `analysis/general_qoac_law/results/POOLED_P1_P3B.json` | `062d782` |
 | predictor calibration | `analysis/general_qoac_operators/results/RESULTS.md` | `f4baa7a` |
 | joint contract, engineering | `analysis/qoac_hb_v2/results/P2_ENGINEERING_MANIFEST/RESULTS.md` | `e095a0c` |

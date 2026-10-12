@@ -8,7 +8,7 @@ Contents:
 
 - Supplementary Note 1. QSQ validations
 - Supplementary Note 2. Hartree mechanism, frozen-ladder QOAC-H confirmation, census and strongest baselines
-- Supplementary Note 3. Law protocol tables per tolerance and per operator
+- Supplementary Note 3. Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error and deployment cost
 - Supplementary Note 4. Joint certification: engineering cohort and per-tolerance description
 - Supplementary Note 5. Bader contracts under an exact partition: basin projection, partition transcription and storage
 - Supplementary Note 6. Gain-predictor calibration
@@ -200,7 +200,7 @@ Certificate as in the confirmation (historical and Nyquist-safe Hartree relative
 T1 was the best new baseline in 48/48 materials (selected cutoffs $q_c$ = 0.30 in 18, 0.15 in 17, 0.20 in 9, 0.50 in 4); uniform Fourier quantization ($q_c=1$) reached median CR 87.8. Median density $L_\infty$ and RMSE of the certified streams were 1.89 and 0.096 for QOAC-H and 2.82 and 0.148 for T1. These ladder-searched ratios and the equal-search ratios of the main text (A1/A6, A1/A2) answer different questions and are reported separately.
 
 
-## Supplementary Note 3 — Law protocol tables per tolerance and per operator
+## Supplementary Note 3 — Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error and deployment cost
 
 Values are rounded from the committed `SUMMARY.json` of each run; bootstrap seed 20261006, 10,000 resamples of the median. Both cohorts ran with zero pipeline failures, and A1 and A3 were certified for every material at every tolerance.
 
@@ -341,6 +341,86 @@ Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 
 | A5 blind RD optimum | 28.7 / 443 | 0.45 / 3.03 | 3.7e-3 / 0.027 |
 | A6 best pointwise codec | 60.1 / 298 | 0.59 / 2.78 | 6.2e-3 / 0.047 |
 
+
+### 3.3 Deployment cost (P1 and P3b; protocol `ef45ab2`, run 38212826078)
+
+- **Design.** Every certified point of A1, A3, A6, MGARD ($s=-2$) and the best QPET configuration at $\tau\in\{10^{-4},10^{-6},10^{-8}\}$ was regenerated from its recorded parameter on the 92 cohort materials, decoded and recertified. Each material was measured end to end on one GitHub-hosted runner (`ubuntu-24.04`), so every paired ratio compares arms on one machine. Every operation ran single-threaded in a fresh process. Encode and decode times are medians of five repetitions after a warm-up.
+- **Certified search** (at $10^{-6}$, once, from the raw field). A1: law-step bisection with exact spectral distortion, one encode and a decoded certificate. A3: shell rate–distortion analysis, Lagrangian selection, encode and decoded certificate. A6: tolerance bisection with a decoded certificate at every point, for each of ZFP, SZ3 and SPERR; the arm's cost is the sum over the three. MGARD: the same bisection. QPET: the same bisection for each of its nine configurations, summed. A1 and A3 first load the JIT cache on a $16^3$ field, as an import.
+- **Memory.** Peak resident set of the operation's process above its resident set just before the timed repetitions; on Linux the high-water mark is reset there through the kernel's clear_refs interface. For MGARD and QPET the peak is that of the codec program minus its peak on a $16^3$ field. When encoding, the programs' start-up footprint exceeds their working set, so encode memory cannot be separated for them (n.s.).
+- **Retrieval.** Time to field $T(B)=8\,\text{bytes}/B+\text{decode time}$. For the archived file, decode time is the project loader from the served bytes to a float64 array: Materials Project gzipped JSON through pymatgen; NOMAD CHGCAR as served (12 of 32 gzipped).
+- **Streaming decoder.** For A1 and A3 the stream formats are unchanged. The decoder visits the canonical Hermitian orbits in the reference order, computes each orbit's conservative $|G|^2$ and shell with the reference arithmetic, writes each coefficient and its partner into the half spectrum and inverts it with a real-to-complex FFT; no orbit table is built. The orbit order, shell layout and maximum $|G|^2$ match the reference implementation bit for bit, and A1 streams from the production encoder are byte-identical to those of the reference encoder (276/276; `analysis/deployment_cost_20261012/test_fast_codec.py`). The reference decoders are timed alongside.
+- **Reproduction.** All 1,104 A1 and A3 streams (both decoders) were certified. Every certified search at $10^{-6}$ (460) returned the recorded stream size. Regeneration from parameters recorded to nine significant digits left 29 baseline streams just outside their certificate (A6 1/276, MGARD 10/276, QPET 18/271); five QPET regenerations at $10^{-4}$ ended in heap corruption inside `hpez`. Medians are over all regenerated streams; over certified streams only, the decode ratios to A1 at $10^{-6}$ are unchanged (QPET 1.44 and 1.17, MGARD 4.94 and 4.54).
+
+**Medians at $\tau=10^{-4}$, bulk / slabs**
+
+| arm | certified | CR | stream (kB) | encode (s) | decode (ms) | decode MB/s | encode memory (× field) | decode memory (× field) | time to field 0.1 / 1 / 10 Gbit/s (ms) |
+|---|---|---|---|---|---|---|---|---|---|
+| A1 law | 60/60; 32/32 | 818 / 1,771 | 9.68 / 7.84 | 0.0804 / 0.121 | 38.9 / 66.6 | 188 / 189 | 3.9 / 3.9 | 5 / 5 | 39.6 / 39 / 38.9; 67.4 / 66.7 / 66.6 |
+| A1 law, reference decoder | 60/60; 32/32 | 818 / 1,771 | 9.68 / 7.84 | 0.0862 / 0.156 | 104 / 170 | 75.9 / 81.1 | 6.9 / 8.5 | 11 / 12 | 105 / 105 / 104; 171 / 171 / 170 |
+| A3 operational optimum | 60/60; 32/32 | 1,303 / 3,552 | 6.08 / 3.48 | 3.47 / 2.85 | 24.3 / 40.3 | 310 / 315 | 4.2 / 4.3 | 3.4 / 3.3 | 24.7 / 24.4 / 24.3; 40.8 / 40.3 / 40.3 |
+| A3, reference decoder | 60/60; 32/32 | 1,303 / 3,552 | 6.08 / 3.48 | 3.49 / 2.83 | 82.2 / 145 | 88.5 / 91.4 | 4.5 / 4.5 | 12 / 12 | 82.5 / 82.2 / 82.2; 145 / 145 / 145 |
+| A6 best of ZFP/SZ3/SPERR | 60/60; 31/32 | 79.2 / 108 | 116 / 122 | 0.0274 / 0.0174 | 11.3 / 7.64 | 901 / 1,913 | 2.8 / 0.18 | 3.5 / 2 | 19.7 / 12.2 / 11.4; 19.1 / 9 / 7.74 |
+| QPET, best of nine | 59/59; 27/28 | 155 / 258 | 51.5 / 61.4 | 0.1 / 0.175 | 37.4 / 59.6 | 231 / 247 | n.s. / n.s. | 3 / 3 | 40.3 / 37.9 / 37.5; 67.5 / 60.5 / 59.7 |
+| MGARD $s=-2$ | 58/60; 32/32 | 59.2 / 196 | 136 / 66.6 | 0.18 / 0.296 | 169 / 282 | 44.1 / 46.4 | n.s. / n.s. | 3 / 3 | 180 / 170 / 169; 294 / 283 / 282 |
+| float64 + zstd-3 | –; – | 1.26 / 1.05 | 6,664 / 11,931 | 0.015 / 0.0161 | 7.12 / 8.04 | 1,331 / 1,404 | 3 / 3.1 | 2 / 2 | 539 / 58.9 / 12.4; 965 / 104 / 17.1 |
+| float64 + zlib-6 | –; – | 1.09 / 1.05 | 7,654 / 12,004 | 0.228 / 0.32 | 30.1 / 43.5 | 281 / 295 | 3.8 / 3.9 | 3.1 / 3 | 643 / 88.7 / 35.3; 999 / 139 / 51.8 |
+| archived file | –; – | 0.555 / 0.439 | 14,719 / 32,292 | – / – | 609 / 295 | 13.6 / 39.9 | – / – | – / – | 1,806 / 745 / 623; 2,810 / 543 / 325 |
+| raw float64 | –; – | 1 / 1 | 8,362 / 14,156 | – / – | 0 / 0 | – / – | – / – | – / – | 669 / 66.9 / 6.69; 1,132 / 113 / 11.3 |
+
+**Medians at $\tau=10^{-6}$, bulk / slabs**
+
+| arm | certified | CR | stream (kB) | encode (s) | decode (ms) | decode MB/s | encode memory (× field) | decode memory (× field) | time to field 0.1 / 1 / 10 Gbit/s (ms) |
+|---|---|---|---|---|---|---|---|---|---|
+| A1 law | 60/60; 32/32 | 195 / 504 | 43.2 / 23 | 0.0698 / 0.113 | 40.1 / 65.2 | 189 / 191 | 6.1 / 6.6 | 5 / 5 | 42.8 / 40.4 / 40.1; 69.1 / 65.6 / 65.2 |
+| A1 law, reference decoder | 60/60; 32/32 | 195 / 504 | 43.2 / 23 | 0.0942 / 0.153 | 106 / 175 | 75.5 / 80.6 | 6.9 / 6.6 | 11 / 11 | 109 / 106 / 106; 177 / 175 / 175 |
+| A3 operational optimum | 60/60; 32/32 | 224 / 647 | 39.2 / 19.2 | 3.47 / 2.84 | 26.4 / 43.9 | 283 / 302 | 4.3 / 4.5 | 4 / 3.6 | 30 / 26.5 / 26.4; 46.2 / 44.1 / 43.9 |
+| A3, reference decoder | 60/60; 32/32 | 224 / 647 | 39.2 / 19.2 | 3.48 / 2.9 | 87.5 / 147 | 87 / 88.5 | 4.4 / 4.5 | 11 / 12 | 90.1 / 87.8 / 87.5; 150 / 147 / 147 |
+| A6 best of ZFP/SZ3/SPERR | 60/60; 32/32 | 16 / 23.3 | 489 / 571 | 0.0331 / 0.019 | 18.8 / 10.8 | 633 / 1,229 | 0.48 / 0.12 | 2 / 2 | 59.6 / 24.1 / 19.4; 56.7 / 16.2 / 11.3 |
+| QPET, best of nine | 59/60; 32/32 | 29.4 / 46 | 283 / 327 | 0.132 / 0.195 | 57.4 / 77.7 | 138 / 189 | n.s. / n.s. | 3 / 3 | 80.4 / 59.9 / 57.6; 93 / 79.7 / 78.1 |
+| MGARD $s=-2$ | 56/60; 32/32 | 10.2 / 21 | 783 / 656 | 0.188 / 0.317 | 189 / 309 | 38.7 / 43.8 | n.s. / n.s. | 3 / 3 | 243 / 194 / 190; 362 / 315 / 310 |
+| float64 + zstd-3 | –; – | 1.26 / 1.05 | 6,664 / 11,931 | 0.015 / 0.0161 | 7.12 / 8.04 | 1,331 / 1,404 | 3 / 3.1 | 2 / 2 | 539 / 58.9 / 12.4; 965 / 104 / 17.1 |
+| float64 + zlib-6 | –; – | 1.09 / 1.05 | 7,654 / 12,004 | 0.228 / 0.32 | 30.1 / 43.5 | 281 / 295 | 3.8 / 3.9 | 3.1 / 3 | 643 / 88.7 / 35.3; 999 / 139 / 51.8 |
+| archived file | –; – | 0.555 / 0.439 | 14,719 / 32,292 | – / – | 609 / 295 | 13.6 / 39.9 | – / – | – / – | 1,806 / 745 / 623; 2,810 / 543 / 325 |
+| raw float64 | –; – | 1 / 1 | 8,362 / 14,156 | – / – | 0 / 0 | – / – | – / – | – / – | 669 / 66.9 / 6.69; 1,132 / 113 / 11.3 |
+
+**Medians at $\tau=10^{-8}$, bulk / slabs**
+
+| arm | certified | CR | stream (kB) | encode (s) | decode (ms) | decode MB/s | encode memory (× field) | decode memory (× field) | time to field 0.1 / 1 / 10 Gbit/s (ms) |
+|---|---|---|---|---|---|---|---|---|---|
+| A1 law | 60/60; 32/32 | 24.6 / 64.9 | 359 / 186 | 0.117 / 0.142 | 41.3 / 66.6 | 183 / 191 | 5 / 6.4 | 5 / 5 | 66.6 / 42.5 / 41.5; 83.5 / 70.1 / 67 |
+| A1 law, reference decoder | 60/60; 32/32 | 24.6 / 64.9 | 359 / 186 | 0.141 / 0.174 | 104 / 175 | 74.1 / 77.9 | 7 / 6.5 | 12 / 11 | 130 / 107 / 104; 187 / 177 / 175 |
+| A3 operational optimum | 60/60; 32/32 | 25 / 70.3 | 348 / 175 | 3.53 / 2.89 | 41.2 / 58 | 181 / 221 | 4.5 / 4.9 | 5 / 5 | 67.2 / 43.7 / 41.5; 72.9 / 60.1 / 58.2 |
+| A3, reference decoder | 60/60; 32/32 | 25 / 70.3 | 348 / 175 | 3.54 / 2.88 | 96.6 / 156 | 75.8 / 83.9 | 4.5 / 4.5 | 11 / 11 | 123 / 98.6 / 96.8; 173 / 158 / 156 |
+| A6 best of ZFP/SZ3/SPERR | 60/60; 32/32 | 7.12 / 10 | 1,174 / 1,332 | 0.0458 / 0.0346 | 29.7 / 20.2 | 482 / 677 | 0.8 / 0.41 | 2 / 2 | 128 / 41 / 31.4; 128 / 32.8 / 21.5 |
+| QPET, best of nine | 47/60; 29/32 | 9.97 / 18.2 | 837 / 730 | 0.185 / 0.248 | 98.2 / 115 | 80 / 110 | n.s. / n.s. | 3 / 3 | 163 / 105 / 99; 186 / 123 / 116 |
+| MGARD $s=-2$ | 57/60; 31/32 | 5.05 / 8.61 | 1,616 / 1,649 | 0.2 / 0.324 | 251 / 365 | 29.9 / 37.4 | n.s. / n.s. | 3 / 3 | 370 / 262 / 252; 484 / 377 / 366 |
+| float64 + zstd-3 | –; – | 1.26 / 1.05 | 6,664 / 11,931 | 0.015 / 0.0161 | 7.12 / 8.04 | 1,331 / 1,404 | 3 / 3.1 | 2 / 2 | 539 / 58.9 / 12.4; 965 / 104 / 17.1 |
+| float64 + zlib-6 | –; – | 1.09 / 1.05 | 7,654 / 12,004 | 0.228 / 0.32 | 30.1 / 43.5 | 281 / 295 | 3.8 / 3.9 | 3.1 / 3 | 643 / 88.7 / 35.3; 999 / 139 / 51.8 |
+| archived file | –; – | 0.555 / 0.439 | 14,719 / 32,292 | – / – | 609 / 295 | 13.6 / 39.9 | – / – | – / – | 1,806 / 745 / 623; 2,810 / 543 / 325 |
+| raw float64 | –; – | 1 / 1 | 8,362 / 14,156 | – / – | 0 / 0 | – / – | – / – | – / – | 669 / 66.9 / 6.69; 1,132 / 113 / 11.3 |
+
+**Paired ratios arm / A1 at $\tau=10^{-6}$: median [95% CI]; materials in which A1 is lower**
+
+| arm | cohort | certified search | encode | decode | time to field 0.1 Gbit/s | 1 Gbit/s | 10 Gbit/s |
+|---|---|---|---|---|---|---|---|
+| A3 operational optimum | bulk | 9.27 [8.23, 10.5]; 60/60 | 50.9 [45.3, 55.7]; 60/60 | 0.693 [0.682, 0.705]; 0/60 | 0.711 [0.697, 0.731]; 0/60 | 0.694 [0.683, 0.708]; 0/60 | 0.694 [0.682, 0.705]; 0/60 |
+| A3 operational optimum | slabs | 4.81 [3.31, 5.89]; 32/32 | 28.3 [20.2, 31.2]; 32/32 | 0.653 [0.636, 0.661]; 0/32 | 0.657 [0.639, 0.673]; 0/32 | 0.653 [0.636, 0.663]; 0/32 | 0.653 [0.636, 0.662]; 0/32 |
+| A6 best of ZFP/SZ3/SPERR | bulk | 46.9 [43.1, 53.2]; 60/60 | 0.283 [0.246, 0.426]; 2/60 | 0.354 [0.266, 0.445]; 11/60 | 1.32 [1.23, 1.43]; 55/60 | 0.467 [0.395, 0.579]; 12/60 | 0.362 [0.279, 0.456]; 11/60 |
+| A6 best of ZFP/SZ3/SPERR | slabs | 51.6 [45, 56.5]; 32/32 | 0.179 [0.161, 0.198]; 2/32 | 0.186 [0.165, 0.194]; 3/32 | 0.915 [0.733, 1.01]; 11/32 | 0.26 [0.224, 0.283]; 3/32 | 0.192 [0.172, 0.202]; 3/32 |
+| QPET, best of nine | bulk | 228 [213, 257]; 60/60 | 1.8 [1.69, 1.96]; 59/60 | 1.44 [1.37, 1.54]; 60/60 | 1.85 [1.74, 2]; 60/60 | 1.49 [1.4, 1.59]; 60/60 | 1.45 [1.37, 1.55]; 60/60 |
+| QPET, best of nine | slabs | 196 [181, 207]; 32/32 | 1.8 [1.56, 2.01]; 25/32 | 1.17 [1.02, 1.28]; 23/32 | 1.43 [1.21, 1.57]; 26/32 | 1.19 [1.03, 1.31]; 24/32 | 1.17 [1.02, 1.28]; 23/32 |
+| MGARD $s=-2$ | bulk | 48.5 [45.3, 50.1]; 60/60 | 2.58 [2.36, 2.76]; 60/60 | 4.92 [4.83, 5.14]; 60/60 | 5.88 [5.75, 6.14]; 60/60 | 5.06 [4.93, 5.19]; 60/60 | 4.94 [4.84, 5.15]; 60/60 |
+| MGARD $s=-2$ | slabs | 44.2 [39.3, 46.4]; 32/32 | 2.51 [2.3, 2.81]; 32/32 | 4.54 [4.42, 4.6]; 32/32 | 5.16 [4.93, 5.28]; 32/32 | 4.6 [4.47, 4.66]; 32/32 | 4.54 [4.43, 4.61]; 32/32 |
+| float64 + zstd-3 | bulk | – | 0.185 [0.154, 0.204]; 0/60 | 0.159 [0.153, 0.171]; 0/60 | 11.4 [9.94, 12.1]; 60/60 | 1.38 [1.21, 1.5]; 44/60 | 0.282 [0.264, 0.306]; 0/60 |
+| float64 + zstd-3 | slabs | – | 0.155 [0.14, 0.162]; 0/32 | 0.174 [0.158, 0.178]; 0/32 | 13.9 [12.5, 14.6]; 32/32 | 1.6 [1.43, 1.67]; 23/32 | 0.321 [0.285, 0.333]; 0/32 |
+| archived file | bulk | – | – | 13.9 [13.7, 14.2]; 60/60 | 37.8 [36.9, 39.3]; 60/60 | 16.5 [16, 17]; 60/60 | 14.2 [14, 14.5]; 60/60 |
+| archived file | slabs | – | – | 5.54 [3.88, 6.77]; 32/32 | 37.4 [35.5, 41.6]; 32/32 | 8.21 [7.6, 9.98]; 32/32 | 5.66 [4.32, 7]; 32/32 |
+| A1 law, reference decoder | bulk | – | 1.3 [1.26, 1.34]; 59/60 | 2.63 [2.54, 2.74]; 60/60 | 2.51 [2.39, 2.56]; 60/60 | 2.62 [2.53, 2.72]; 60/60 | 2.63 [2.54, 2.74]; 60/60 |
+| A1 law, reference decoder | slabs | – | 1.32 [1.3, 1.36]; 32/32 | 2.63 [2.52, 2.79]; 32/32 | 2.55 [2.49, 2.72]; 32/32 | 2.62 [2.52, 2.78]; 32/32 | 2.63 [2.52, 2.79]; 32/32 |
+
+**Break-even bandwidth at $\tau=10^{-6}$** (median over materials; below it A1 delivers the field first): bulk: A6 0.171, float64 + zstd-3 1.46, raw float64 1.5 Gbit/s; A1 is both smaller and faster to decode than QPET in 60/60, MGARD in 60/60 and the archived file in 60/60; slabs: A6 0.0892, float64 + zstd-3 1.73, raw float64 1.53 Gbit/s; A1 is both smaller and faster to decode than QPET in 23/32, MGARD in 32/32 and the archived file in 32/32.
+
+**Runners.** AMD EPYC 7763 64-Core Processor (44); AMD EPYC 9V45 96-Core Processor (20); AMD EPYC 9V74 80-Core Processor (17); INTEL(R) XEON(R) PLATINUM 8573C (6); Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz (4); Intel(R) Xeon(R) 6973P-C (1).
 
 ## Supplementary Note 4 — Joint certification: engineering cohort and per-tolerance description
 

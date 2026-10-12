@@ -1,5 +1,14 @@
 # QSQ / General-QOAC program status — 2026-10-12
 
+> **Updated 2026-10-12 (revision 5, deployment cost)** on `paper/nc-rev5-deployment-cost-20261012` (base revision 4).
+> Adds Table 2 and a Results subsection on deployment cost, from protocol `ef45ab2` and run 38212826078
+> (`analysis/deployment_cost_20261012/results/RESULTS.md`): at tau = 1e-6 the law's certified search takes a median
+> 0.38 s (bulk) / 0.68 s (slabs), 47/52-fold less than ZFP/SZ3/SPERR, 49/44-fold less than MGARD and 228/196-fold
+> less than QPET (cheapest arm in 92/92); law streams decode at 190 MB/s with 5.0x field working memory (streaming
+> decoder, 2.6-fold faster than the reference decoder), 1.4/1.2-fold faster than QPET and 4.9/4.5-fold faster than
+> MGARD; at 1 Gbit/s they reach a usable field 16.5/8.2-fold sooner than the archived files. Main text + Methods
+> 4,999 words; 10 display items. Proof `figures/nc/release/NC_manuscript_20261012_rev5.{pdf,docx}`; audit 0 failures.
+
 > **Updated 2026-10-12** for manuscript revision 4 (`paper/nc-rev4-20261012`, PR #16, base revision 3). It
 > supersedes the cloud scientific audit (PR #15). It adds the self-contained joint-storage measurement:
 > - protocol `d084d4a`, results `analysis/hb_selfcontained_bytes_20261012/RESULTS.md`;
