@@ -51,9 +51,11 @@ paired ratio compares arms on the same machine.
    decoded certificate at every point for each of ZFP, SZ3 and SPERR (the arm's cost is the sum over the three);
    M2, the same bisection for MGARD s = −2; Q, the same bisection for each of the nine QPET configurations (the
    arm's cost is the sum over the nine). The search must return the recorded parameter; any difference is reported.
-4. **Peak memory**: the high-water resident set of the operation's process above its resident set after the input
-   is loaded and the codec libraries are imported, reported as a multiple of the raw field size (8N bytes). For the
-   command-line codecs, the peak resident set of the codec process itself.
+4. **Peak memory**: the operation's working memory, i.e. the high-water resident set of its process during the
+   operation above the resident set just before it, with the input loaded and the codec libraries imported. On
+   Linux the high-water mark is reset immediately before the operation (`/proc/self/clear_refs`). For MGARD and
+   QPET, the peak resident set of the codec program itself minus that of the same program on a 16³ field (its fixed
+   footprint). Reported as a multiple of the raw field size (8N bytes).
 5. **Retrieval cost**: time to a usable float64 field from storage at link bandwidth B,
    T(B) = 8·bytes / B + decode time, for B = 0.1, 1 and 10 Gbit/s. For the source file, the decode time is the
    measured time of the project loader from the source bytes to the float64 array. Bytes moved per material and per
@@ -87,3 +89,11 @@ deviation is listed in `results/RESULTS.md`.
 GitHub Actions, `ubuntu-24.04` hosted runners, one material per job (`.github/workflows/deployment_cost.yml`).
 Raw outputs: `results/shards/`; aggregation: `aggregate_cost.py` → `results/per_operation.csv`,
 `results/SUMMARY.json`, `results/RESULTS.md`.
+
+## Changes after the probe run (two materials), before any cohort run
+
+- The cohort label is taken from the manifest file name (the P3b probe material failed on an unmapped corpus
+  label).
+- Peak memory: the process high-water mark is reset before each operation, and the codec programs' fixed footprint
+  is subtracted, as stated in item 4. The probe's whole-process high-water marks were dominated by library imports
+  for small fields.

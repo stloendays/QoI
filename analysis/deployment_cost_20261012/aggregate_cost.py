@@ -60,7 +60,7 @@ def table(df: pd.DataFrame, infos: list) -> pd.DataFrame:
              "encode_mem_x": e.peak_rss_above_input_bytes.iloc[0] / raw if len(e) else np.nan,
              "decode_mem_x": d.peak_rss_above_input_bytes.iloc[0] / raw if len(d) else np.nan}
         for side, sub in (("encode", e), ("decode", d)):
-            cp = sub.cli_peak_rss_bytes.iloc[0] if len(sub) and "cli_peak_rss_bytes" in sub else None
+            cp = sub.cli_peak_above_baseline_bytes.iloc[0] if len(sub) and "cli_peak_above_baseline_bytes" in sub else None
             r[f"{side}_cli_mem_x"] = cp / raw if cp is not None and np.isfinite(cp) else np.nan
             r[f"{side}_cli_s"] = sub.cli_seconds.iloc[0] if len(sub) and "cli_seconds" in sub else np.nan
         r["cr"] = raw / r["bytes"] if r["bytes"] == r["bytes"] else np.nan

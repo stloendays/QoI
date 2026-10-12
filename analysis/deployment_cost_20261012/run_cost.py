@@ -69,6 +69,30 @@ def peak_rss_bytes() -> int:
     return int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss) * 1024
 
 
+def reset_peak_rss() -> int:
+    """Reset this process's resident-set high-water mark where the kernel allows it (Linux clear_refs = 5) and
+    return the current resident set; elsewhere return the current high-water mark (no reset)."""
+    status = Path("/proc/self/status")
+    if status.exists():
+        try:
+            Path("/proc/self/clear_refs").write_text("5")
+            for line in status.read_text().splitlines():
+                if line.startswith("VmRSS:"):
+                    return int(line.split()[1]) * 1024
+        except OSError:
+            pass
+    return peak_rss_bytes()
+
+
+def current_peak_rss() -> int:
+    status = Path("/proc/self/status")
+    if status.exists():
+        for line in status.read_text().splitlines():
+            if line.startswith("VmHWM:"):
+                return int(line.split()[1]) * 1024
+    return peak_rss_bytes()
+
+
 def run_cli(cmd: list[str]) -> tuple[float, int | None]:
     """Run a codec CLI; return (wall seconds, peak RSS bytes of that process or None if not measurable)."""
     with tempfile.TemporaryFile() as errf:          # a file, not a pipe: wait4 must not block on a full pipe
@@ -188,8 +212,10 @@ def child(job: dict) -> dict:
             __import__(mod)
         except ImportError:
             pass
-    rss0 = peak_rss_bytes()
-    cli_peak = None
+    cli_peak = cli_base = None
+    if arm in ("M2", "Q") and op in ("encode", "decode") and hasattr(os, "wait4"):
+        cli_base = cli_baseline(arm, p, op)
+    rss0 = reset_peak_rss()
 
     if op == "encode":
         if arm == "A1":                                     # production implementation (byte-identical stream)
@@ -222,7 +248,7 @@ def child(job: dict) -> dict:
         else:
             raise ValueError(arm)
         out, ts = timed(f)
-        rss_op = peak_rss_bytes()
+        rss_op = current_peak_rss()
         if arm == "A6" and p["codec"] == "sperr":
             shutil.copyfile(out, stream_path); nbytes = pointwise_bytes("sperr", out)
         elif arm in ("M2", "Q"):
@@ -263,7 +289,7 @@ def child(job: dict) -> dict:
             else:
                 raise ValueError(arm)
         rec, ts = timed(f)
-        rss_op = peak_rss_bytes()                           # before the certificate, which is not part of decoding
+        rss_op = current_peak_rss()                         # before the certificate, which is not part of decoding
         if arm in ("M2", "Q"):
             res["cli_seconds"] = statistics.median(w[0] for w in walls[1:])
             res["output_read_seconds"] = statistics.median(w[1] for w in walls[1:])
@@ -279,11 +305,28 @@ def child(job: dict) -> dict:
     else:
         raise ValueError(op)
 
-    rss1 = rss_op if op == "decode" else peak_rss_bytes()
+    rss1 = rss_op if op in ("encode", "decode") else current_peak_rss()
     res |= {"seconds_median": statistics.median(ts), "seconds_min": min(ts), "seconds_all": ts,
             "peak_rss_bytes": rss1, "baseline_rss_bytes": rss0, "peak_rss_above_input_bytes": max(0, rss1 - rss0),
-            "cli_peak_rss_bytes": cli_peak, "raw_bytes": int(x.nbytes)}
+            "cli_peak_rss_bytes": cli_peak, "cli_baseline_rss_bytes": cli_base,
+            "cli_peak_above_baseline_bytes": (max(0, cli_peak - cli_base) if cli_peak and cli_base else None),
+            "raw_bytes": int(x.nbytes)}
     return res
+
+
+def cli_baseline(arm, p, op) -> int | None:
+    """Peak resident set of the same codec program on a 16^3 field: its fixed footprint, subtracted from its peak."""
+    rng = np.random.default_rng(0)
+    xt = 1.0 + 0.01 * rng.random((16, 16, 16))
+    with tempfile.TemporaryDirectory(prefix="clibase_") as td:
+        td = Path(td); sp = td / "s.bin"
+        comp, src = cli_commands(arm, p, xt, float(np.ptp(xt)), td, sp)
+        write_input(arm, p, xt, src)
+        _, pe = run_cli(comp)
+        if op == "encode":
+            return pe
+        deco, _, _ = cli_decode_commands(arm, p, xt, td, sp)
+        return run_cli(deco)[1]
 
 
 # MGARD / QPET command lines are those of the committed baseline run (codecs_mq.py, run_baselines.mgard_roundtrip).
@@ -471,7 +514,7 @@ def material(meta: dict, a) -> tuple[list, list, dict]:
     sys.path.insert(0, str(a.frozen_root.resolve() / "validation"))
     sys.path.insert(0, str(a.repo_root.resolve() / "validation" / "qsq_prospective"))
     import development_compatibility_smoke as dev
-    mid = meta["material_id"]; cohort = COHORT_OF[meta["corpus"]]
+    mid = meta["material_id"]; cohort = "P3B_CONFIRMATORY" if "P3B" in a.manifest.name else "P1_CONFIRMATORY"
     rows, fails = [], []
     info = {"material_id": mid, "cohort": cohort, "system_type": meta["system_type"],
             "source_bytes": int(meta["source_bytes"]), "calibration": calibration()}
