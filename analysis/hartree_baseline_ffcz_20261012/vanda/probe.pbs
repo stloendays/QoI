@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#PBS -N qoi_ffcz_probe
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=8:mem=250GB
+#PBS -l walltime=02:00:00
+#PBS -j oe
+set -euo pipefail
+
+STAGING_ROOT="/scratch/junbotong/qoi-ffcz-20261012"
+CODE_DIR="${STAGING_ROOT}/analysis/hartree_baseline_ffcz_20261012"
+PYTHON="${STAGING_ROOT}/venv/bin/python"
+
+module load Python/3.12.3-GCCcore-13.3.0
+module load FFTW/3.3.10-GCC-13.3.0
+module load zstd/1.5.6-GCCcore-13.3.0
+export OMP_NUM_THREADS=1
+"${PYTHON}" "${CODE_DIR}/probe_ffcz.py" \
+  --repo-root "${STAGING_ROOT}" \
+  --inputs "${STAGING_ROOT}/inputs" \
+  --output-dir "${STAGING_ROOT}/probe" \
+  --ffcz-exe "${STAGING_ROOT}/bin/ffcz_cpu" \
+  --build-log "${STAGING_ROOT}/build.log" \
+  --usage-file "${STAGING_ROOT}/ffcz_cpu.usage.txt" \
+  --binary-sha256 "${STAGING_ROOT}/ffcz_cpu.sha256"
