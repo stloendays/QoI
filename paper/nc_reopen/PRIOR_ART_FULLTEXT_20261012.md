@@ -2,7 +2,7 @@
 
 # Full-text prior-art check for the QoI manuscript
 
-Checked 2026-10-12. The manuscript was read read-only at `D:\Research\QoI-nc-rev4-20261012\paper\MANUSCRIPT.md`, including the Introduction and Discussion sentences citing references 8-19 and the reference entries themselves. Page numbers below are the printed page numbers, which match the PDF page indices for all three PDFs.
+Checked 2026-10-12. The manuscript was read read-only at `paper/MANUSCRIPT.md`, including the Introduction and Discussion sentences citing references 8-19 and the reference entries themselves. Page numbers below are the printed page numbers, which match the PDF page indices for all three PDFs.
 
 ## 1. Papers obtained and validated (numbers first)
 
@@ -178,4 +178,4 @@ The first page identifies the SC26 conference manuscript and gives the conferenc
 - Ref. 12's entropy-divergence wording is supportable; the exact objective is an f log f-generated Bregman/generalized-KL divergence, and the exact XGC constraints are velocity-histogram moments rather than an electronic-structure operator.
 - BlockMGARD should be added as adjacent GPU/ROI/MGARD prior art in the Introduction. It does not require weakening the manuscript's specific Hartree-symbol, frequency-allocation or QSQ claims.
 
-No file under `D:\Research\QoI-nc-rev4-20261012` or any other repository was edited. The only intended outputs in this working folder are this report and the three PDFs under `pdf\`.
+No file under `this repository` or any other repository was edited. The only intended outputs in this working folder are this report and the three PDFs under `pdf\`.
