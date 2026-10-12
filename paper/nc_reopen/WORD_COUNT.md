@@ -13,7 +13,7 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 | Results — The operator metric carries the gain, and the system class sets the optimizer's share | 270 |
 | Results — One stream certifies the Hartree potential and Bader charges together | 399 |
 | Results — The gain is predicted before compression from the operator symbol and the reference spectrum | 340 |
-| Discussion | 471 |
+| Discussion | 474 |
 | Methods — Measurement contract and QSQ | 185 |
 | Methods — Hermitian-orbit representation and certificate | 238 |
 | Methods — Arms and the operational optimum | 140 |
@@ -24,9 +24,9 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 | Methods — Populations and pre-registration chronology | 139 |
 | Methods — Joint contract and certify-then-project | 189 |
 | Methods — Statistics | 140 |
-| **Introduction + Results + Discussion** | **3,294** |
+| **Introduction + Results + Discussion** | **3,297** |
 | **Methods (total)** | **1,701** |
-| **Main text + Methods** | **4,995** |
+| **Main text + Methods** | **4,998** |
 
 ## Outside the 5,000-word budget
 

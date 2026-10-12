@@ -78,3 +78,6 @@ Request: "你来看看云端最近完成任务的情况，并完善一下本地�
   - Implementation by Codex, reviewed and recomputed in the main session.
 - **Abstract:** now ends with the self-contained result ("carrying its own partition, stayed 10.2-fold smaller than
   pointwise codecs"). 148 words; main text plus Methods 4,994.
+- **Joint-contract wording (2026-10-12, author: "开始吧").** The Discussion's "two contracts differ in kind" became
+  "one stream meets two linear constraints at opposite scales". Under the exact partition, the Bader charges are sums
+  over fixed basins, which is also a linear constraint. No number changed.
