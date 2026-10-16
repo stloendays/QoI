@@ -1,0 +1,30 @@
+{
+  "material_id": "nomad-hk3gUBk-5QN5",
+  "cohort": "P3B_CONFIRMATORY",
+  "system_type": "slab",
+  "source_bytes": 36004941,
+  "calibration": {
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "nproc": 4,
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "fft96_s": 0.021455729999999562,
+    "zlib16MB_s": 0.44903347899999346,
+    "copy400MB_s": 0.08869058800000573
+  },
+  "source_download_seconds": 5.621778849000009,
+  "loader": "nomad_exact_bytes_decompress_to_baderkit_grid",
+  "shape": [
+    112,
+    112,
+    224
+  ],
+  "npoints": 2809856,
+  "raw_bytes": 22478848,
+  "source_parse_seconds_median": 0.9946623250000073,
+  "source_parse_seconds_all": [
+    1.2008504350000067,
+    0.9946623250000073,
+    0.9282122580000021
+  ]
+}

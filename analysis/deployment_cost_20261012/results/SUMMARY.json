@@ -1,0 +1,6538 @@
+{
+ "n_materials": 92,
+ "failures": [
+  {
+   "material_id": "mp-2508193",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "encode",
+   "error": "\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='free(): invalid pointer\\n'\n"
+  },
+  {
+   "material_id": "mp-2508193",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "decode",
+   "error": "\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='free(): invalid pointer\\n'\n"
+  },
+  {
+   "material_id": "nomad-vbsqs8Js2fzW",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "encode",
+   "error": "\"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (out)\\n'\n"
+  },
+  {
+   "material_id": "nomad-vbsqs8Js2fzW",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "decode",
+   "error": "\"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (out)\\n'\n"
+  },
+  {
+   "material_id": "nomad-deLeLsqokf9I",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "encode",
+   "error": "ome/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='free(): invalid next size (normal)\\n'\n"
+  },
+  {
+   "material_id": "nomad-deLeLsqokf9I",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "decode",
+   "error": "ome/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='free(): invalid next size (normal)\\n'\n"
+  },
+  {
+   "material_id": "nomad-O_yuQGDsVTCx",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "encode",
+   "error": "\"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (out)\\n'\n"
+  },
+  {
+   "material_id": "nomad-O_yuQGDsVTCx",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "decode",
+   "error": "\"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (out)\\n'\n"
+  },
+  {
+   "material_id": "nomad--QPBOSBRk9z4",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "encode",
+   "error": "home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (!prev)\\n'\n"
+  },
+  {
+   "material_id": "nomad--QPBOSBRk9z4",
+   "arm": "Q",
+   "tau": 0.0001,
+   "op": "decode",
+   "error": "home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (!prev)\\n'\n"
+  }
+ ],
+ "runners": [
+  "AMD EPYC 7763 64-Core Processor",
+  "AMD EPYC 9V45 96-Core Processor",
+  "AMD EPYC 9V74 80-Core Processor",
+  "INTEL(R) XEON(R) PLATINUM 8573C",
+  "Intel(R) Xeon(R) 6973P-C",
+  "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+ ],
+ "cohorts": {
+  "P1_CONFIRMATORY": {
+   "0.0001": {
+    "medians": {
+     "A1": {
+      "cr": [
+       817.937028729179,
+       679.484948831488,
+       933.4591275368512
+      ],
+      "encode_s": [
+       0.08041400500000151,
+       0.057391979000001925,
+       0.10262329399999714
+      ],
+      "decode_s": [
+       0.03893167500000061,
+       0.03167942300001414,
+       0.052034860000020444
+      ],
+      "decode_MBps": [
+       188.3614379040011,
+       185.47710803358575,
+       202.40505186217564
+      ],
+      "encode_mem_x": [
+       3.8785753935860057,
+       3.8512039736529533,
+       3.9164285714285714
+      ],
+      "decode_mem_x": [
+       5.031986111111111,
+       5.026063100137174,
+       5.037918871252205
+      ],
+      "ttf_0.1Gbps": [
+       0.03959871500000061,
+       0.03265686300001414,
+       0.053875180000020444
+      ],
+      "ttf_1Gbps": [
+       0.03899837900000061,
+       0.031777167000014137,
+       0.052218892000020445
+      ],
+      "ttf_10Gbps": [
+       0.038938345400000615,
+       0.03168919740001414,
+       0.05205326320002045
+      ],
+      "n": 60,
+      "total_bytes": 828249.0,
+      "certified": 60
+     },
+     "A1ref": {
+      "cr": [
+       817.937028729179,
+       679.484948831488,
+       933.4591275368512
+      ],
+      "encode_s": [
+       0.086203526999995,
+       0.06388477800000203,
+       0.11941572599999972
+      ],
+      "decode_s": [
+       0.10446478899999789,
+       0.0757133040000042,
+       0.13377444299999297
+      ],
+      "decode_MBps": [
+       75.8530378594698,
+       72.44317797998877,
+       78.51967434394047
+      ],
+      "encode_mem_x": [
+       6.948660199882422,
+       6.6212944606413995,
+       6.98320987654321
+      ],
+      "decode_mem_x": [
+       11.49047619047619,
+       10.659143518518519,
+       11.638
+      ],
+      "ttf_0.1Gbps": [
+       0.10511262899999789,
+       0.0763481840000042,
+       0.13547044299999297
+      ],
+      "ttf_1Gbps": [
+       0.10452957299999789,
+       0.0757767920000042,
+       0.13394404299999296
+      ],
+      "ttf_10Gbps": [
+       0.10447126739999789,
+       0.0757196528000042,
+       0.13379140299999298
+      ],
+      "n": 60,
+      "total_bytes": 828249.0,
+      "certified": 60
+     },
+     "A3": {
+      "cr": [
+       1303.4927278070566,
+       1091.8520757132546,
+       1482.4466159971046
+      ],
+      "encode_s": [
+       3.471413309000013,
+       2.765012415000001,
+       5.101044133000002
+      ],
+      "decode_s": [
+       0.024328455500011614,
+       0.01850017000003845,
+       0.0321439570000166
+      ],
+      "decode_MBps": [
+       309.5158244886404,
+       301.4215110440209,
+       317.84037516117917
+      ],
+      "encode_mem_x": [
+       4.161283068783069,
+       3.962962962962963,
+       4.458775510204082
+      ],
+      "decode_mem_x": [
+       3.4257909513011553,
+       3.369984,
+       3.4845446889318143
+      ],
+      "ttf_0.1Gbps": [
+       0.024691495500011616,
+       0.01903881000003845,
+       0.03326731648751656
+      ],
+      "ttf_1Gbps": [
+       0.024364759500011615,
+       0.018554034000038452,
+       0.0322979410000166
+      ],
+      "ttf_10Gbps": [
+       0.024332085900011614,
+       0.018505556400038453,
+       0.0321593554000166
+      ],
+      "n": 60,
+      "total_bytes": 592372.0,
+      "certified": 60
+     },
+     "A3ref": {
+      "cr": [
+       1303.4927278070566,
+       1091.8520757132546,
+       1482.4466159971046
+      ],
+      "encode_s": [
+       3.4855439045000054,
+       2.7382382500000233,
+       5.101629242000001
+      ],
+      "decode_s": [
+       0.08221837199999982,
+       0.06292929571251274,
+       0.10994632399999205
+      ],
+      "decode_MBps": [
+       88.45202216836996,
+       85.6478108283902,
+       93.13730840452914
+      ],
+      "encode_mem_x": [
+       4.462940917107584,
+       4.265889212827989,
+       4.478692129629629
+      ],
+      "decode_mem_x": [
+       11.515383597883599,
+       11.478737997256516,
+       11.534
+      ],
+      "ttf_0.1Gbps": [
+       0.08251861199999982,
+       0.06327788871251272,
+       0.11056824399999204
+      ],
+      "ttf_1Gbps": [
+       0.08224839599999982,
+       0.06296415501251275,
+       0.11000851599999205
+      ],
+      "ttf_10Gbps": [
+       0.08222137439999982,
+       0.06293278164251273,
+       0.10995254319999205
+      ],
+      "n": 60,
+      "total_bytes": 592372.0,
+      "certified": 60
+     },
+     "A6": {
+      "cr": [
+       79.16478543579845,
+       67.31419372149182,
+       125.52933065056553
+      ],
+      "encode_s": [
+       0.027388320499994734,
+       0.02105318499999953,
+       0.0385723290000044
+      ],
+      "decode_s": [
+       0.011273195500010047,
+       0.008157676999985597,
+       0.015267220999987785
+      ],
+      "decode_MBps": [
+       900.5636822371996,
+       744.9030457480285,
+       1020.3006543487569
+      ],
+      "encode_mem_x": [
+       2.83531206133247,
+       2.2160423280423283,
+       3.6432215743440235
+      ],
+      "decode_mem_x": [
+       3.4891998704243603,
+       3.172497570456754,
+       3.6118574128063923
+      ],
+      "ttf_0.1Gbps": [
+       0.019676145499987117,
+       0.0153927650000108,
+       0.02377010799999608
+      ],
+      "ttf_1Gbps": [
+       0.012172079500010046,
+       0.008611233000001856,
+       0.017279196999987784
+      ],
+      "ttf_10Gbps": [
+       0.011363083900010047,
+       0.008229529800022664,
+       0.015468418599987785
+      ],
+      "n": 60,
+      "total_bytes": 8365363.0,
+      "certified": 60
+     },
+     "L_zlib": {
+      "cr": [
+       1.0879576977738399,
+       1.0682655964868175,
+       1.1585115293076442
+      ],
+      "encode_s": [
+       0.22800321299999382,
+       0.18375311099998726,
+       0.3207327620000342
+      ],
+      "decode_s": [
+       0.03006485149998639,
+       0.0234290725499946,
+       0.039664381000022786
+      ],
+      "decode_MBps": [
+       280.65705892467884,
+       252.48384298499352,
+       329.5295940985212
+      ],
+      "encode_mem_x": [
+       3.7742716049382716,
+       3.622789535567313,
+       3.8135616296296293
+      ],
+      "decode_mem_x": [
+       3.0500476190476187,
+       3.023401596749811,
+       3.082962962962963
+      ],
+      "ttf_0.1Gbps": [
+       0.6434318165000128,
+       0.49778094799996025,
+       0.8375643730000247
+      ],
+      "ttf_1Gbps": [
+       0.0887301975000222,
+       0.07335793999996024,
+       0.12203550499997312
+      ],
+      "ttf_10Gbps": [
+       0.0353142525999932,
+       0.02823424833498091,
+       0.04729592219999444
+      ],
+      "n": 60,
+      "total_bytes": 594197251.0
+     },
+     "L_zstd": {
+      "cr": [
+       1.2606532665943735,
+       1.1857621148371764,
+       1.4479571466901489
+      ],
+      "encode_s": [
+       0.014977415999936738,
+       0.012647327000024688,
+       0.02290422499993383
+      ],
+      "decode_s": [
+       0.007115400999992971,
+       0.004487507999954232,
+       0.009329904999958671
+      ],
+      "decode_MBps": [
+       1330.8909192100841,
+       1155.6714236499774,
+       1588.4255438104947
+      ],
+      "encode_mem_x": [
+       2.9603762492651384,
+       2.908,
+       3.025875
+      ],
+      "decode_mem_x": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "ttf_0.1Gbps": [
+       0.5386563870000128,
+       0.4393586469999831,
+       0.7586598264999838
+      ],
+      "ttf_1Gbps": [
+       0.05887164300001285,
+       0.04899178299998311,
+       0.08462853200004362
+      ],
+      "ttf_10Gbps": [
+       0.012447334000007308,
+       0.00914477839999698,
+       0.016984086100014166
+      ],
+      "n": 60,
+      "total_bytes": 530823256.0
+     },
+     "M2": {
+      "cr": [
+       59.247956717437084,
+       52.69990242574145,
+       68.35687914662888
+      ],
+      "encode_s": [
+       0.17950626750000254,
+       0.14438427999999703,
+       0.2641943030000107
+      ],
+      "decode_s": [
+       0.1685621365000003,
+       0.13222529099999747,
+       0.24593038300000103
+      ],
+      "decode_MBps": [
+       44.134776622249305,
+       42.684671031010815,
+       46.764349513982
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.999217372134039,
+       2.9989997724867727,
+       2.9994557823129253
+      ],
+      "encode_cli_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_cli_mem_x": [
+       2.997567082388511,
+       2.9943703703703703,
+       2.9994121105232217
+      ],
+      "ttf_0.1Gbps": [
+       0.1796608200000091,
+       0.1395619974999987,
+       0.2545768620000038
+      ],
+      "ttf_1Gbps": [
+       0.16974908450000029,
+       0.13292175499999748,
+       0.24629010300000104
+      ],
+      "ttf_10Gbps": [
+       0.16868083130000028,
+       0.13229493739999748,
+       0.24596635500000102
+      ],
+      "n": 60,
+      "total_bytes": 12875462.0,
+      "certified": 58
+     },
+     "Q": {
+      "cr": [
+       155.30968480183085,
+       136.16115949737383,
+       175.26031942552927
+      ],
+      "encode_s": [
+       0.10045212599999331,
+       0.08169444399999293,
+       0.12927819300000465
+      ],
+      "decode_s": [
+       0.03744906800000081,
+       0.03000612400001046,
+       0.04565836800000511
+      ],
+      "decode_MBps": [
+       231.2470869854529,
+       219.00779536885645,
+       246.16350720198193
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.9991181657848323,
+       2.9988888888888887,
+       2.999375
+      ],
+      "encode_cli_mem_x": [
+       0.005079365079365079,
+       0.0,
+       0.007901234567901235
+      ],
+      "decode_cli_mem_x": [
+       2.9965277777777777,
+       2.9948979591836733,
+       2.998666666666667
+      ],
+      "ttf_0.1Gbps": [
+       0.04034778000000175,
+       0.03367489500000711,
+       0.05263890100001844
+      ],
+      "ttf_1Gbps": [
+       0.037933860000000805,
+       0.030628134999997857,
+       0.04634725300001844
+      ],
+      "ttf_10Gbps": [
+       0.03749754720000081,
+       0.03003912000001046,
+       0.045718088200018436
+      ],
+      "n": 59,
+      "total_bytes": 4469810.0,
+      "certified": 59
+     },
+     "RAW": {
+      "cr": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "decode_s": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_MBps": [
+       NaN,
+       NaN,
+       NaN
+      ],
+      "ttf_0.1Gbps": [
+       0.66895872,
+       0.56623104,
+       0.89915392
+      ],
+      "ttf_1Gbps": [
+       0.066895872,
+       0.056623104,
+       0.089915392
+      ],
+      "ttf_10Gbps": [
+       0.0066895871999999995,
+       0.0056623104,
+       0.0089915392
+      ],
+      "n": 60,
+      "total_bytes": 686169088.0
+     },
+     "SRC": {
+      "cr": [
+       0.5547283998707082,
+       0.5490155779723583,
+       0.5632893626954085
+      ],
+      "decode_s": [
+       0.6094992590000032,
+       0.5278447740000018,
+       0.7848996680000084
+      ],
+      "decode_MBps": [
+       13.596377258442896,
+       13.477265619192355,
+       13.792131521622792
+      ],
+      "ttf_0.1Gbps": [
+       1.806335419499996,
+       1.4704762159999976,
+       2.353551568000017
+      ],
+      "ttf_1Gbps": [
+       0.7446841710000032,
+       0.6214939414999933,
+       0.9391243120000172
+      ],
+      "ttf_10Gbps": [
+       0.6230177502000033,
+       0.5377911188000019,
+       0.7995380256000084
+      ],
+      "n": 60,
+      "total_bytes": 1196133342.0
+     }
+    },
+    "breakeven": {
+     "A3": {
+      "median_breakeven_Gbps": 0.0,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "A6": {
+      "median_breakeven_Gbps": 0.025527643877270523,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "L_zlib": {
+      "median_breakeven_Gbps": 5.115138777056163,
+      "n": 60,
+      "A1_dominates": 2
+     },
+     "L_zstd": {
+      "median_breakeven_Gbps": 1.4754814885107017,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "M2": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     },
+     "Q": {
+      "median_breakeven_Gbps": 0.08025063057462892,
+      "n": 59,
+      "A1_dominates": 16
+     },
+     "RAW": {
+      "median_breakeven_Gbps": 1.5054720126776795,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "SRC": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     }
+    },
+    "paired_decode": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.6053659790449,
+       2.5072471041116,
+       2.73432369127436
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6149685166766093,
+       0.6064158486697331,
+       0.6256451735404794
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.1038584080874947,
+       2.0419088088248043,
+       2.204421745037791
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.22293130742241818,
+       0.19280693043122363,
+       0.2572638120646892
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.7333030382951613,
+       0.7164161294946807,
+       0.7451397060616616
+      ],
+      "ref_better": 2
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.1606570351074621,
+       0.1527331518802779,
+       0.17250091969409953
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       4.328149020173049,
+       4.168732248231868,
+       4.4809261709525705
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 59,
+      "median_ratio_vs_A1": [
+       0.9063291015831879,
+       0.8503013096179363,
+       0.9426199967817034
+      ],
+      "ref_better": 16
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       13.795194758576134,
+       13.658373133592155,
+       14.210249069633456
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_encode": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.1271417937196277,
+       1.0990975824694447,
+       1.2295236874413
+      ],
+      "ref_better": 57
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       49.135336648401626,
+       44.43650898517318,
+       55.4387163921927
+      ],
+      "ref_better": 60
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       48.991569946499155,
+       44.5243632842647,
+       55.227194723001745
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.29741879702023843,
+       0.26374107816671083,
+       0.35722360939984704
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.956289114914156,
+       2.7442231835947952,
+       3.115378418252763
+      ],
+      "ref_better": 59
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.1554574195294442,
+       0.14481461984927776,
+       0.19499565109167058
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.3609971127949896,
+       2.298161556787328,
+       2.503356424620081
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 59,
+      "median_ratio_vs_A1": [
+       1.2529985565438302,
+       1.222895423165742,
+       1.3659558597059898
+      ],
+      "ref_better": 53
+     }
+    },
+    "paired_search": {},
+    "paired_ttf_0.1Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.546795152347488,
+       2.4647072024363403,
+       2.6860963719079436
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6166368291693556,
+       0.6093055101963135,
+       0.6254511326470811
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.0763748842296605,
+       2.0007409534402725,
+       2.169876244059725
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.4767170630552411,
+       0.44578200805387364,
+       0.5320878484919869
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       14.066655752699113,
+       13.637073200642567,
+       14.484270023882932
+      ],
+      "ref_better": 60
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       12.13817091294551,
+       11.28502793524873,
+       13.378333922553933
+      ],
+      "ref_better": 60
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       4.51499682000642,
+       4.3532009948948724,
+       4.6721547476766405
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 59,
+      "median_ratio_vs_A1": [
+       0.983565598447,
+       0.9220935914704826,
+       1.0264527484197088
+      ],
+      "ref_better": 25
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       14.805564028898925,
+       14.618656007286322,
+       15.73136439346824
+      ],
+      "ref_better": 60
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       40.136383984263006,
+       39.16639823579846,
+       41.37548812614263
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_1Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.600030987491329,
+       2.5027599691252864,
+       2.7293352393389787
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6151797900288576,
+       0.6064933225497289,
+       0.6257074920589443
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.101114210521494,
+       2.0376614463586384,
+       2.2012782546243126
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.2560069693591494,
+       0.2213592959109423,
+       0.2908293026102944
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.0795590349787485,
+       2.0258005597227124,
+       2.1290943126286193
+      ],
+      "ref_better": 58
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.3913754467124333,
+       1.2925176867565913,
+       1.518027080730084
+      ],
+      "ref_better": 43
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       4.346968982882925,
+       4.195817728487438,
+       4.4850584886097025
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 59,
+      "median_ratio_vs_A1": [
+       0.9138554548874537,
+       0.858314770227515,
+       0.9511365398495772
+      ],
+      "ref_better": 17
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.5047587810557217,
+       1.4809011105732295,
+       1.6177445223850002
+      ],
+      "ref_better": 60
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       16.558997403853255,
+       16.16468816345474,
+       16.85594346487495
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_10Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.604830373537338,
+       2.506797185128823,
+       2.733827765497126
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6149896992506266,
+       0.6064236132366259,
+       0.625676883969313
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.1035834898426478,
+       2.0414827211056665,
+       2.2041067403097383
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.225276036422236,
+       0.19629717331217864,
+       0.2606283997484331
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.8725141882921499,
+       0.851000155436064,
+       0.8842901442664405
+      ],
+      "ref_better": 12
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.28653053604110745,
+       0.2623559926165958,
+       0.3097533141564629
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       4.3298791836377655,
+       4.169503789744345,
+       4.481340381924156
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 59,
+      "median_ratio_vs_A1": [
+       0.9070835436265078,
+       0.851103484666667,
+       0.9434730071086165
+      ],
+      "ref_better": 16
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.15066779070932218,
+       0.14835202075755943,
+       0.16190907011679956
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       14.03945108333906,
+       13.882606714873095,
+       14.477902141758047
+      ],
+      "ref_better": 60
+     }
+    },
+    "ttf_fastest": {
+     "0.1Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "A6": 52,
+       "A3": 8
+      }
+     },
+     "1Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "A6": 57,
+       "L_zstd": 3
+      }
+     },
+     "10Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "RAW": 42,
+       "A6": 11,
+       "L_zstd": 7
+      }
+     }
+    }
+   },
+   "1e-06": {
+    "medians": {
+     "A1": {
+      "cr": [
+       195.45385307331583,
+       160.6475065381926,
+       231.14818516216909
+      ],
+      "encode_s": [
+       0.06976789899999858,
+       0.05938041600001043,
+       0.10204336549999482
+      ],
+      "decode_s": [
+       0.040123051000009013,
+       0.031346173000002864,
+       0.053045720000000074
+      ],
+      "search_s": [
+       0.38237372350000953,
+       0.27873326838748486,
+       0.510360884000022
+      ],
+      "decode_MBps": [
+       188.96825727113463,
+       185.5418444782796,
+       201.10093451413996
+      ],
+      "encode_mem_x": [
+       6.117379692617788,
+       6.100408163265306,
+       6.164351851851852
+      ],
+      "decode_mem_x": [
+       5.036433862433862,
+       5.032539682539682,
+       5.042524005486968
+      ],
+      "ttf_0.1Gbps": [
+       0.04276805100000901,
+       0.03525486000000712,
+       0.06039065749999947
+      ],
+      "ttf_1Gbps": [
+       0.040387551000009014,
+       0.031554973000002866,
+       0.05424825600000007
+      ],
+      "ttf_10Gbps": [
+       0.04014950100000901,
+       0.031367053000002865,
+       0.053165973600000076
+      ],
+      "n": 60,
+      "total_bytes": 4524696.0,
+      "certified": 60
+     },
+     "A1ref": {
+      "cr": [
+       195.45385307331583,
+       160.6475065381926,
+       231.14818516216909
+      ],
+      "encode_s": [
+       0.09420526350000102,
+       0.0686982080000007,
+       0.1306216270000391
+      ],
+      "decode_s": [
+       0.10607282450000355,
+       0.0770359120000137,
+       0.13532015299995237
+      ],
+      "decode_MBps": [
+       75.51851006889203,
+       71.93793883221063,
+       78.74603293950413
+      ],
+      "encode_mem_x": [
+       6.92400548696845,
+       6.598518518518518,
+       8.44620811287478
+      ],
+      "decode_mem_x": [
+       11.49039780521262,
+       10.465749559082893,
+       11.617216931216927
+      ],
+      "ttf_0.1Gbps": [
+       0.10875286450000354,
+       0.08045929800001715,
+       0.14765023299995236
+      ],
+      "ttf_1Gbps": [
+       0.10634082850000354,
+       0.0771413360000137,
+       0.13655316099995238
+      ],
+      "ttf_10Gbps": [
+       0.10609962490000355,
+       0.07704645440001369,
+       0.13544345379995237
+      ],
+      "n": 60,
+      "total_bytes": 4524696.0,
+      "certified": 60
+     },
+     "A3": {
+      "cr": [
+       223.90796785774646,
+       178.91777850414525,
+       284.54202401372214
+      ],
+      "encode_s": [
+       3.4735132214999993,
+       2.818415762000029,
+       5.133629479999996
+      ],
+      "decode_s": [
+       0.02637142249997737,
+       0.02141667200001507,
+       0.036852012499991815
+      ],
+      "search_s": [
+       3.62534935650001,
+       2.912851924999984,
+       5.260129497999998
+      ],
+      "decode_MBps": [
+       283.40263708001214,
+       273.1578649725494,
+       294.22828552043114
+      ],
+      "encode_mem_x": [
+       4.314128943758574,
+       3.9796875,
+       4.478425655976676
+      ],
+      "decode_mem_x": [
+       4.038996668626298,
+       3.94238683127572,
+       4.184251428571429
+      ],
+      "ttf_0.1Gbps": [
+       0.029990924000015046,
+       0.025471864999998126,
+       0.038732471999990414
+      ],
+      "ttf_1Gbps": [
+       0.02654024249997737,
+       0.02241712000001507,
+       0.037629236499991815
+      ],
+      "ttf_10Gbps": [
+       0.02638830449997737,
+       0.02151671680001507,
+       0.03692973489999181
+      ],
+      "n": 60,
+      "total_bytes": 4177025.0,
+      "certified": 60
+     },
+     "A3ref": {
+      "cr": [
+       223.90796785774646,
+       178.91777850414525,
+       284.54202401372214
+      ],
+      "encode_s": [
+       3.475856265499985,
+       2.790662402999999,
+       5.113910398000002
+      ],
+      "decode_s": [
+       0.08748752900000056,
+       0.06494152499999473,
+       0.10729193100002021
+      ],
+      "decode_MBps": [
+       87.03818731642782,
+       82.83469961385401,
+       95.36505340766949
+      ],
+      "encode_mem_x": [
+       4.440973936899863,
+       4.180758017492711,
+       4.480970017636684
+      ],
+      "decode_mem_x": [
+       11.49519890260631,
+       11.126249265138153,
+       11.530864197530864
+      ],
+      "ttf_0.1Gbps": [
+       0.09013712900000057,
+       0.07011960999999206,
+       0.11588195000001038
+      ],
+      "ttf_1Gbps": [
+       0.08775248900000057,
+       0.06501987699999473,
+       0.10768711700001168
+      ],
+      "ttf_10Gbps": [
+       0.08751402500000055,
+       0.06494936019999473,
+       0.10733066540002022
+      ],
+      "n": 60,
+      "total_bytes": 4177025.0,
+      "certified": 60
+     },
+     "A6": {
+      "cr": [
+       16.026761906444307,
+       14.848094273614436,
+       20.174954685160376
+      ],
+      "encode_s": [
+       0.0331495679999847,
+       0.02436392300000989,
+       0.03964438700000983
+      ],
+      "decode_s": [
+       0.018761110499980305,
+       0.013888284000017848,
+       0.023509182000026385
+      ],
+      "search_s": [
+       18.059633595999983,
+       15.283246797000004,
+       24.77861764299999
+      ],
+      "decode_MBps": [
+       633.0546834593417,
+       440.52878078238246,
+       746.498722304198
+      ],
+      "encode_mem_x": [
+       0.4825396825396825,
+       0.3112744137435496,
+       4.1258975812547245
+      ],
+      "decode_mem_x": [
+       1.9997504409171074,
+       1.9995061728395063,
+       3.859572400388727
+      ],
+      "ttf_0.1Gbps": [
+       0.05955179249998905,
+       0.04730606399999955,
+       0.074086399000006
+      ],
+      "ttf_1Gbps": [
+       0.02410521599997548,
+       0.01807060799999955,
+       0.030877562000020363
+      ],
+      "ttf_10Gbps": [
+       0.019363398499980304,
+       0.014596476000017847,
+       0.024009889200000547
+      ],
+      "n": 60,
+      "total_bytes": 38935100.0,
+      "certified": 60
+     },
+     "L_zlib": {
+      "cr": [
+       1.0879576977738399,
+       1.0682655964868175,
+       1.1585115293076442
+      ],
+      "encode_s": [
+       0.22800321299999382,
+       0.18375311099998726,
+       0.3207327620000342
+      ],
+      "decode_s": [
+       0.03006485149998639,
+       0.0234290725499946,
+       0.039664381000022786
+      ],
+      "decode_MBps": [
+       280.65705892467884,
+       252.48384298499352,
+       329.5295940985212
+      ],
+      "encode_mem_x": [
+       3.7742716049382716,
+       3.622789535567313,
+       3.8135616296296293
+      ],
+      "decode_mem_x": [
+       3.0500476190476187,
+       3.023401596749811,
+       3.082962962962963
+      ],
+      "ttf_0.1Gbps": [
+       0.6434318165000128,
+       0.49778094799996025,
+       0.8375643730000247
+      ],
+      "ttf_1Gbps": [
+       0.0887301975000222,
+       0.07335793999996024,
+       0.12203550499997312
+      ],
+      "ttf_10Gbps": [
+       0.0353142525999932,
+       0.02823424833498091,
+       0.04729592219999444
+      ],
+      "n": 60,
+      "total_bytes": 594197251.0
+     },
+     "L_zstd": {
+      "cr": [
+       1.2606532665943735,
+       1.1857621148371764,
+       1.4479571466901489
+      ],
+      "encode_s": [
+       0.014977415999936738,
+       0.012647327000024688,
+       0.02290422499993383
+      ],
+      "decode_s": [
+       0.007115400999992971,
+       0.004487507999954232,
+       0.009329904999958671
+      ],
+      "decode_MBps": [
+       1330.8909192100841,
+       1155.6714236499774,
+       1588.4255438104947
+      ],
+      "encode_mem_x": [
+       2.9603762492651384,
+       2.908,
+       3.025875
+      ],
+      "decode_mem_x": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "ttf_0.1Gbps": [
+       0.5386563870000128,
+       0.4393586469999831,
+       0.7586598264999838
+      ],
+      "ttf_1Gbps": [
+       0.05887164300001285,
+       0.04899178299998311,
+       0.08462853200004362
+      ],
+      "ttf_10Gbps": [
+       0.012447334000007308,
+       0.00914477839999698,
+       0.016984086100014166
+      ],
+      "n": 60,
+      "total_bytes": 530823256.0
+     },
+     "M2": {
+      "cr": [
+       10.218897671128737,
+       9.658530600213158,
+       10.566444430431268
+      ],
+      "encode_s": [
+       0.1881730144999949,
+       0.14472299700003077,
+       0.27037147799998706
+      ],
+      "decode_s": [
+       0.1894048340000154,
+       0.15443027499999573,
+       0.2730164460000424
+      ],
+      "search_s": [
+       17.927546541499993,
+       14.609131750000017,
+       26.299589691000023
+      ],
+      "decode_MBps": [
+       38.68637179771537,
+       37.55485117355527,
+       42.36104477986694
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.9991622574955907,
+       2.9988888888888887,
+       2.9994074074074075
+      ],
+      "encode_cli_mem_x": [
+       0.010769175395025735,
+       0.006643401707145723,
+       0.015774538386783284
+      ],
+      "decode_cli_mem_x": [
+       2.998029730410683,
+       2.9952968841857732,
+       2.999578769691298
+      ],
+      "ttf_0.1Gbps": [
+       0.24268665849999801,
+       0.21399952500000907,
+       0.36528356333751283
+      ],
+      "ttf_1Gbps": [
+       0.19433082700000798,
+       0.15950982899998484,
+       0.28530199800004236
+      ],
+      "ttf_10Gbps": [
+       0.1899247768000154,
+       0.15493795099999574,
+       0.27424500120004236
+      ],
+      "n": 60,
+      "total_bytes": 67062360.0,
+      "certified": 56
+     },
+     "Q": {
+      "cr": [
+       29.352336265550566,
+       25.002712967986977,
+       31.11030469768639
+      ],
+      "encode_s": [
+       0.1324649084999976,
+       0.10778896799999416,
+       0.16612359599997717
+      ],
+      "decode_s": [
+       0.05736931199999162,
+       0.04742172499999242,
+       0.06603443500000594
+      ],
+      "search_s": [
+       91.24002044299999,
+       74.26993470099998,
+       131.73386136599999
+      ],
+      "decode_MBps": [
+       138.45108066254073,
+       129.70056860500506,
+       149.25412350565338
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.9990202641903325,
+       2.9988425925925926,
+       2.999375
+      ],
+      "encode_cli_mem_x": [
+       0.008615340316020587,
+       0.005079365079365079,
+       0.013812763200518302
+      ],
+      "decode_cli_mem_x": [
+       2.9974426807760137,
+       2.9941315157750346,
+       2.9986891289437585
+      ],
+      "ttf_0.1Gbps": [
+       0.08037861499998356,
+       0.0665943460000065,
+       0.0979293899999735
+      ],
+      "ttf_1Gbps": [
+       0.05993052799999163,
+       0.04938545799998437,
+       0.06811446700000594
+      ],
+      "ttf_10Gbps": [
+       0.05762543359999162,
+       0.04764592739999242,
+       0.06624243820000594
+      ],
+      "n": 60,
+      "total_bytes": 24071294.0,
+      "certified": 59
+     },
+     "RAW": {
+      "cr": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "decode_s": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_MBps": [
+       NaN,
+       NaN,
+       NaN
+      ],
+      "ttf_0.1Gbps": [
+       0.66895872,
+       0.56623104,
+       0.89915392
+      ],
+      "ttf_1Gbps": [
+       0.066895872,
+       0.056623104,
+       0.089915392
+      ],
+      "ttf_10Gbps": [
+       0.0066895871999999995,
+       0.0056623104,
+       0.0089915392
+      ],
+      "n": 60,
+      "total_bytes": 686169088.0
+     },
+     "SRC": {
+      "cr": [
+       0.5547283998707082,
+       0.5490155779723583,
+       0.5632893626954085
+      ],
+      "decode_s": [
+       0.6094992590000032,
+       0.5278447740000018,
+       0.7848996680000084
+      ],
+      "decode_MBps": [
+       13.596377258442896,
+       13.477265619192355,
+       13.792131521622792
+      ],
+      "ttf_0.1Gbps": [
+       1.806335419499996,
+       1.4704762159999976,
+       2.353551568000017
+      ],
+      "ttf_1Gbps": [
+       0.7446841710000032,
+       0.6214939414999933,
+       0.9391243120000172
+      ],
+      "ttf_10Gbps": [
+       0.6230177502000033,
+       0.5377911188000019,
+       0.7995380256000084
+      ],
+      "n": 60,
+      "total_bytes": 1196133342.0
+     }
+    },
+    "breakeven": {
+     "A3": {
+      "median_breakeven_Gbps": 0.0,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "A6": {
+      "median_breakeven_Gbps": 0.17093048464148458,
+      "n": 60,
+      "A1_dominates": 11
+     },
+     "L_zlib": {
+      "median_breakeven_Gbps": 4.840706011326989,
+      "n": 60,
+      "A1_dominates": 3
+     },
+     "L_zstd": {
+      "median_breakeven_Gbps": 1.4569269401953675,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "M2": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     },
+     "Q": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     },
+     "RAW": {
+      "median_breakeven_Gbps": 1.4986636812520042,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "SRC": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     }
+    },
+    "paired_decode": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.634466391611176,
+       2.540080713669778,
+       2.7432786473441726
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6932472441163858,
+       0.6817231680646124,
+       0.7049471218565073
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.1896044430309933,
+       2.114487533705265,
+       2.3015743191855336
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.35351114625797064,
+       0.2655627482693017,
+       0.44492426004908625
+      ],
+      "ref_better": 11
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.7281831194448658,
+       0.7016428184997076,
+       0.7455031688182624
+      ],
+      "ref_better": 3
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.15913401146316752,
+       0.15262719352716522,
+       0.17084122850881073
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       4.924742758891844,
+       4.825785071758527,
+       5.13827462621137
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.4445621400971596,
+       1.365505631160597,
+       1.5429024723071154
+      ],
+      "ref_better": 60
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       13.938500027599945,
+       13.705845435241173,
+       14.236200697970544
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_encode": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.2964092748902503,
+       1.2634711360542068,
+       1.3391698600848563
+      ],
+      "ref_better": 59
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       50.88813557159142,
+       45.256444804601905,
+       55.731436157556075
+      ],
+      "ref_better": 60
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       51.16112297552304,
+       45.48174906290064,
+       56.097024303541644
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.28342568609318997,
+       0.2461117622921228,
+       0.4260801069513507
+      ],
+      "ref_better": 2
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       3.014400276790925,
+       2.7378351795285685,
+       3.1890601733414687
+      ],
+      "ref_better": 59
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.1849700784329139,
+       0.153790039726615,
+       0.20426579667050407
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.581804027236907,
+       2.3552068473384313,
+       2.7568429914397035
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.8016250081074885,
+       1.6944134392694474,
+       1.9610814423922147
+      ],
+      "ref_better": 59
+     }
+    },
+    "paired_search": {
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       9.27450236095753,
+       8.227794669020934,
+       10.467771952352837
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       46.94148230679413,
+       43.123745436471424,
+       53.227529107564635
+      ],
+      "ref_better": 60
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       48.51223716545779,
+       45.312505686374394,
+       50.096524565362344
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       227.7152504615634,
+       213.16530842622376,
+       256.95926576878776
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_0.1Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.5066806259246497,
+       2.3879685219511004,
+       2.5626642453009425
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.7113409663181347,
+       0.6972099628927291,
+       0.731278759917115
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.0798099304502298,
+       2.0187568995927943,
+       2.1457606158078617
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.3169538539436338,
+       1.2304841167945118,
+       1.4331615119812182
+      ],
+      "ref_better": 55
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       13.174769436862299,
+       12.407066410537976,
+       13.548431539412288
+      ],
+      "ref_better": 60
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       11.414950772124289,
+       9.936738144514141,
+       12.088804960360253
+      ],
+      "ref_better": 60
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       5.88192135576106,
+       5.747665731105059,
+       6.136392844978593
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.8508868045332767,
+       1.741774441245731,
+       2.0046492545376933
+      ],
+      "ref_better": 60
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       14.06746433468734,
+       13.687819277063099,
+       14.953560074671863
+      ],
+      "ref_better": 60
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       37.80053229640481,
+       36.85867661208819,
+       39.34161982235699
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_1Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.622389550445612,
+       2.5268732232684226,
+       2.7240513631313155
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6942931837546331,
+       0.6828931288129787,
+       0.7078607293696253
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.1766325346305564,
+       2.10861487105612,
+       2.2640762627457867
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.4666149893987135,
+       0.3951444117616969,
+       0.5790209591136276
+      ],
+      "ref_better": 12
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.061194638268062,
+       1.9844870167597362,
+       2.127867891587414
+      ],
+      "ref_better": 58
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.3790516188357094,
+       1.2135982740405642,
+       1.4953375264331568
+      ],
+      "ref_better": 44
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       5.06084304726347,
+       4.930383513707961,
+       5.190834000204738
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.489733131866935,
+       1.40436892298042,
+       1.5947043496191178
+      ],
+      "ref_better": 60
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.494836048956188,
+       1.4681018176678151,
+       1.59673955116444
+      ],
+      "ref_better": 60
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       16.48277258812334,
+       16.027107505325272,
+       16.970566703761815
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_10Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.633248723797868,
+       2.5398788744306184,
+       2.742285465236049
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6935088481898847,
+       0.6818262942926121,
+       0.705300489029574
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.1876876481029495,
+       2.1138978234569086,
+       2.2975500158796214
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.3619474625896697,
+       0.2794492273201189,
+       0.4557846506553233
+      ],
+      "ref_better": 11
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.860850004636508,
+       0.8329230521231753,
+       0.8856679636539492
+      ],
+      "ref_better": 12
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.2818834326049047,
+       0.26363075043828393,
+       0.30641796385776765
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       4.935265632462613,
+       4.835804584028301,
+       5.148237261745205
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.4491205889847518,
+       1.3694101671308636,
+       1.5477046051103913
+      ],
+      "ref_better": 60
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.1509755192526881,
+       0.14834054683023057,
+       0.1603925015079776
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       14.196250449165692,
+       13.961615919723766,
+       14.545268678347497
+      ],
+      "ref_better": 60
+     }
+    },
+    "ttf_fastest": {
+     "0.1Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "A3": 59,
+       "A6": 1
+      }
+     },
+     "1Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "A6": 36,
+       "A3": 19,
+       "L_zstd": 5
+      }
+     },
+     "10Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "RAW": 52,
+       "L_zstd": 8
+      }
+     }
+    }
+   },
+   "1e-08": {
+    "medians": {
+     "A1": {
+      "cr": [
+       24.603870881490643,
+       20.93430346051464,
+       29.29520857527568
+      ],
+      "encode_s": [
+       0.1168613270000094,
+       0.09669208848748312,
+       0.16756197500001235
+      ],
+      "decode_s": [
+       0.0412710819999802,
+       0.03432029200001807,
+       0.05610371799997438
+      ],
+      "decode_MBps": [
+       182.77478195570552,
+       180.12520460754715,
+       193.74568126348606
+      ],
+      "encode_mem_x": [
+       4.972509718172983,
+       4.798239087301587,
+       6.669198412698413
+      ],
+      "decode_mem_x": [
+       5.036095238095238,
+       5.030699735449735,
+       5.0432800925925925
+      ],
+      "ttf_0.1Gbps": [
+       0.06655613800001572,
+       0.05588347500000633,
+       0.08685349750000812
+      ],
+      "ttf_1Gbps": [
+       0.042516145000016894,
+       0.036070132000018074,
+       0.06212202300001693
+      ],
+      "ttf_10Gbps": [
+       0.0414534311999802,
+       0.034469691400000384,
+       0.05673479840001344
+      ],
+      "n": 60,
+      "total_bytes": 35705028.0,
+      "certified": 60
+     },
+     "A1ref": {
+      "cr": [
+       24.603870881490643,
+       20.93430346051464,
+       29.29520857527568
+      ],
+      "encode_s": [
+       0.14142998250000005,
+       0.11381921099996362,
+       0.1953127334999749
+      ],
+      "decode_s": [
+       0.10385769050003546,
+       0.08012053400000241,
+       0.14225016199998208
+      ],
+      "decode_MBps": [
+       74.11941887993699,
+       71.32349669504119,
+       77.28189836137999
+      ],
+      "encode_mem_x": [
+       6.97050048590865,
+       6.857142857142857,
+       6.989583333333333
+      ],
+      "decode_mem_x": [
+       11.574318108195659,
+       11.221340388007055,
+       11.642857142857142
+      ],
+      "ttf_0.1Gbps": [
+       0.12977702149997974,
+       0.10895830199995943,
+       0.19007058199998497
+      ],
+      "ttf_1Gbps": [
+       0.10688896000000145,
+       0.08117089100002628,
+       0.1511671059999821
+      ],
+      "ttf_10Gbps": [
+       0.10413382850003547,
+       0.08018534440000241,
+       0.1431418563999821
+      ],
+      "n": 60,
+      "total_bytes": 35705028.0,
+      "certified": 60
+     },
+     "A3": {
+      "cr": [
+       25.044456598964324,
+       21.316949320997136,
+       30.591410519855515
+      ],
+      "encode_s": [
+       3.5310194405000175,
+       2.7685681880000175,
+       5.191258521000009
+      ],
+      "decode_s": [
+       0.041201615999995056,
+       0.0360816360000058,
+       0.05484641000001034
+      ],
+      "decode_MBps": [
+       180.94271753342073,
+       160.57727482337597,
+       189.19416050707994
+      ],
+      "encode_mem_x": [
+       4.47095825984715,
+       4.089199980403684,
+       4.853644314868804
+      ],
+      "decode_mem_x": [
+       5.011532627865961,
+       5.001111111111111,
+       5.018518518518518
+      ],
+      "ttf_0.1Gbps": [
+       0.06715251100000258,
+       0.05821803400004229,
+       0.0903055329999808
+      ],
+      "ttf_1Gbps": [
+       0.043744766499999616,
+       0.039006183000044464,
+       0.05703825900002335
+      ],
+      "ttf_10Gbps": [
+       0.04153968039999506,
+       0.0367502728000058,
+       0.05508051699998906
+      ],
+      "n": 60,
+      "total_bytes": 34643915.0,
+      "certified": 60
+     },
+     "A3ref": {
+      "cr": [
+       25.044456598964324,
+       21.316949320997136,
+       30.591410519855515
+      ],
+      "encode_s": [
+       3.542065089500028,
+       2.7689230940000016,
+       5.193695503000015
+      ],
+      "decode_s": [
+       0.09659805250001341,
+       0.07720455800000536,
+       0.1282994669999198
+      ],
+      "decode_MBps": [
+       75.81811240588652,
+       72.40659854031824,
+       80.97509017283832
+      ],
+      "encode_mem_x": [
+       4.475374149659864,
+       4.457142857142857,
+       4.483333333333333
+      ],
+      "decode_mem_x": [
+       11.486539780521262,
+       11.24146485260771,
+       11.528333333333334
+      ],
+      "ttf_0.1Gbps": [
+       0.12262018149997503,
+       0.10153712000000564,
+       0.15401656800002061
+      ],
+      "ttf_1Gbps": [
+       0.09862104949999795,
+       0.08069962200000537,
+       0.1345022569999989
+      ],
+      "ttf_10Gbps": [
+       0.0967742277000134,
+       0.07755406440000537,
+       0.12908383979991978
+      ],
+      "n": 60,
+      "total_bytes": 34643915.0,
+      "certified": 60
+     },
+     "A6": {
+      "cr": [
+       7.119255515806538,
+       6.615987047878011,
+       7.979220779220779
+      ],
+      "encode_s": [
+       0.045787696499985486,
+       0.030510790999983328,
+       0.05856761699999424
+      ],
+      "decode_s": [
+       0.029710252499995704,
+       0.020283870999946885,
+       0.036243821000027765
+      ],
+      "decode_MBps": [
+       482.3237219707556,
+       342.96329497328185,
+       504.635417735241
+      ],
+      "encode_mem_x": [
+       0.8037272192827749,
+       0.6141885325558795,
+       4.469106940395194
+      ],
+      "decode_mem_x": [
+       1.9996999064175935,
+       1.9995427526291725,
+       4.160499314128944
+      ],
+      "ttf_0.1Gbps": [
+       0.12827386600003332,
+       0.10354089799997807,
+       0.16396067099994688
+      ],
+      "ttf_1Gbps": [
+       0.04101792400001952,
+       0.029044356999988703,
+       0.054635991999968464
+      ],
+      "ttf_10Gbps": [
+       0.0314173956999957,
+       0.020712290200025886,
+       0.03717962540004313
+      ],
+      "n": 60,
+      "total_bytes": 91710984.0,
+      "certified": 60
+     },
+     "L_zlib": {
+      "cr": [
+       1.0879576977738399,
+       1.0682655964868175,
+       1.1585115293076442
+      ],
+      "encode_s": [
+       0.22800321299999382,
+       0.18375311099998726,
+       0.3207327620000342
+      ],
+      "decode_s": [
+       0.03006485149998639,
+       0.0234290725499946,
+       0.039664381000022786
+      ],
+      "decode_MBps": [
+       280.65705892467884,
+       252.48384298499352,
+       329.5295940985212
+      ],
+      "encode_mem_x": [
+       3.7742716049382716,
+       3.622789535567313,
+       3.8135616296296293
+      ],
+      "decode_mem_x": [
+       3.0500476190476187,
+       3.023401596749811,
+       3.082962962962963
+      ],
+      "ttf_0.1Gbps": [
+       0.6434318165000128,
+       0.49778094799996025,
+       0.8375643730000247
+      ],
+      "ttf_1Gbps": [
+       0.0887301975000222,
+       0.07335793999996024,
+       0.12203550499997312
+      ],
+      "ttf_10Gbps": [
+       0.0353142525999932,
+       0.02823424833498091,
+       0.04729592219999444
+      ],
+      "n": 60,
+      "total_bytes": 594197251.0
+     },
+     "L_zstd": {
+      "cr": [
+       1.2606532665943735,
+       1.1857621148371764,
+       1.4479571466901489
+      ],
+      "encode_s": [
+       0.014977415999936738,
+       0.012647327000024688,
+       0.02290422499993383
+      ],
+      "decode_s": [
+       0.007115400999992971,
+       0.004487507999954232,
+       0.009329904999958671
+      ],
+      "decode_MBps": [
+       1330.8909192100841,
+       1155.6714236499774,
+       1588.4255438104947
+      ],
+      "encode_mem_x": [
+       2.9603762492651384,
+       2.908,
+       3.025875
+      ],
+      "decode_mem_x": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "ttf_0.1Gbps": [
+       0.5386563870000128,
+       0.4393586469999831,
+       0.7586598264999838
+      ],
+      "ttf_1Gbps": [
+       0.05887164300001285,
+       0.04899178299998311,
+       0.08462853200004362
+      ],
+      "ttf_10Gbps": [
+       0.012447334000007308,
+       0.00914477839999698,
+       0.016984086100014166
+      ],
+      "n": 60,
+      "total_bytes": 530823256.0
+     },
+     "M2": {
+      "cr": [
+       5.047930498232046,
+       4.93194057809026,
+       5.193404904125718
+      ],
+      "encode_s": [
+       0.19989736499999822,
+       0.15780676099998914,
+       0.27923000399999864
+      ],
+      "decode_s": [
+       0.2508135619999905,
+       0.20652292600004785,
+       0.3380377270000281
+      ],
+      "decode_MBps": [
+       29.91841600648636,
+       28.227888040108166,
+       32.34219624585964
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.999217372134039,
+       2.998906705539359,
+       2.999416909620991
+      ],
+      "encode_cli_mem_x": [
+       0.011801749271137026,
+       0.006379067401995091,
+       0.016384
+      ],
+      "decode_cli_mem_x": [
+       2.9963966049382718,
+       2.993827160493827,
+       2.9981234567901236
+      ],
+      "ttf_0.1Gbps": [
+       0.37021334050001853,
+       0.3253819229999777,
+       0.5360043699750052
+      ],
+      "ttf_1Gbps": [
+       0.26187418199999046,
+       0.2184581069999777,
+       0.36129426100000217
+      ],
+      "ttf_10Gbps": [
+       0.25191962399999046,
+       0.2077657253999777,
+       0.3399677674000022
+      ],
+      "n": 60,
+      "total_bytes": 134787220.0,
+      "certified": 57
+     },
+     "Q": {
+      "cr": [
+       9.965362667968947,
+       9.138647873357652,
+       10.608805680730693
+      ],
+      "encode_s": [
+       0.18508793500001275,
+       0.151916142999994,
+       0.22080766199997015
+      ],
+      "decode_s": [
+       0.09820601050000732,
+       0.0846970499999884,
+       0.11589574899994659
+      ],
+      "decode_MBps": [
+       80.04656868741091,
+       77.88423509051825,
+       92.51432781194922
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.9990755555555557,
+       2.9988571428571427,
+       2.9994708994708996
+      ],
+      "encode_cli_mem_x": [
+       0.012522045855379188,
+       0.006574955908289241,
+       0.018518518518518517
+      ],
+      "decode_cli_mem_x": [
+       2.9981442901234567,
+       2.9959523809523807,
+       2.999730050750459
+      ],
+      "ttf_0.1Gbps": [
+       0.16337750000001255,
+       0.1398086889999971,
+       0.20616100200002357
+      ],
+      "ttf_1Gbps": [
+       0.10473826400000603,
+       0.0899589459999884,
+       0.12382622099994658
+      ],
+      "ttf_10Gbps": [
+       0.09904187130000733,
+       0.0852232395999884,
+       0.11668879619994658
+      ],
+      "n": 60,
+      "total_bytes": 68409125.0,
+      "certified": 47
+     },
+     "RAW": {
+      "cr": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "decode_s": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_MBps": [
+       NaN,
+       NaN,
+       NaN
+      ],
+      "ttf_0.1Gbps": [
+       0.66895872,
+       0.56623104,
+       0.89915392
+      ],
+      "ttf_1Gbps": [
+       0.066895872,
+       0.056623104,
+       0.089915392
+      ],
+      "ttf_10Gbps": [
+       0.0066895871999999995,
+       0.0056623104,
+       0.0089915392
+      ],
+      "n": 60,
+      "total_bytes": 686169088.0
+     },
+     "SRC": {
+      "cr": [
+       0.5547283998707082,
+       0.5490155779723583,
+       0.5632893626954085
+      ],
+      "decode_s": [
+       0.6094992590000032,
+       0.5278447740000018,
+       0.7848996680000084
+      ],
+      "decode_MBps": [
+       13.596377258442896,
+       13.477265619192355,
+       13.792131521622792
+      ],
+      "ttf_0.1Gbps": [
+       1.806335419499996,
+       1.4704762159999976,
+       2.353551568000017
+      ],
+      "ttf_1Gbps": [
+       0.7446841710000032,
+       0.6214939414999933,
+       0.9391243120000172
+      ],
+      "ttf_10Gbps": [
+       0.6230177502000033,
+       0.5377911188000019,
+       0.7995380256000084
+      ],
+      "n": 60,
+      "total_bytes": 1196133342.0
+     }
+    },
+    "breakeven": {
+     "A3": {
+      "median_breakeven_Gbps": 0.0,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "A6": {
+      "median_breakeven_Gbps": 0.3071588827547073,
+      "n": 60,
+      "A1_dominates": 21
+     },
+     "L_zlib": {
+      "median_breakeven_Gbps": 3.946815377522354,
+      "n": 60,
+      "A1_dominates": 2
+     },
+     "L_zstd": {
+      "median_breakeven_Gbps": 1.347176255216569,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "M2": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     },
+     "Q": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 57
+     },
+     "RAW": {
+      "median_breakeven_Gbps": 1.4164512789012889,
+      "n": 60,
+      "A1_dominates": 0
+     },
+     "SRC": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 60,
+      "A1_dominates": 60
+     }
+    },
+    "paired_decode": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.597818109584143,
+       2.489024666796698,
+       2.69532263634092
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.1344366479490442,
+       1.082222096105843,
+       1.154060572482613
+      ],
+      "ref_better": 45
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.408472934829949,
+       2.3593771476782472,
+       2.554962751450359
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.4177227524407119,
+       0.3712425561286073,
+       0.5769734634520685
+      ],
+      "ref_better": 21
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6952909949727155,
+       0.6730036136674616,
+       0.7198499802916887
+      ],
+      "ref_better": 2
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.15781696973677486,
+       0.14821925796109353,
+       0.16324002656248
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       6.3317190375761285,
+       6.098438136766587,
+       6.60232168614587
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.3745877133674047,
+       2.265163357395867,
+       2.5464562204057364
+      ],
+      "ref_better": 57
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       13.553523323843901,
+       13.123836844932542,
+       13.805662329715062
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_encode": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.1542325494838273,
+       1.1302120253729684,
+       1.1936966402519373
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       29.052824349419055,
+       27.868673769543687,
+       30.881195675175153
+      ],
+      "ref_better": 60
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       29.28190837404806,
+       27.880380176347657,
+       31.062772621554696
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.20979016977612758,
+       0.1788434731379578,
+       0.3601906913415055
+      ],
+      "ref_better": 7
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.608723504601004,
+       1.5140472909467064,
+       1.722318180127125
+      ],
+      "ref_better": 58
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.10356710889084525,
+       0.08270087084374214,
+       0.13804067282527807
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.536302132751129,
+       1.4563535513310308,
+       1.6473080373550417
+      ],
+      "ref_better": 59
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.320072673991442,
+       1.2402105370107637,
+       1.451841998272341
+      ],
+      "ref_better": 53
+     }
+    },
+    "paired_search": {},
+    "paired_ttf_0.1Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.9830533887740978,
+       1.9324947446004854,
+       2.027043006384348
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.0475813170796155,
+       1.0327498820272885,
+       1.062262241783789
+      ],
+      "ref_better": 42
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.8807696962702196,
+       1.805589100642187,
+       1.94431257374556
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.7086893560458938,
+       1.5826858532457937,
+       1.92826256744147
+      ],
+      "ref_better": 59
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       8.009891046292633,
+       6.601572461375258,
+       9.005760578795991
+      ],
+      "ref_better": 60
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       6.079803767824583,
+       5.378003347411881,
+       7.601566798515544
+      ],
+      "ref_better": 59
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       5.646214864077054,
+       5.444147995875609,
+       6.043791250255663
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.2732919849666837,
+       2.1138265654573822,
+       2.443295849158523
+      ],
+      "ref_better": 60
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       9.708125911148478,
+       9.023583417243595,
+       10.603079941032949
+      ],
+      "ref_better": 60
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       24.418653644725495,
+       22.060146668162982,
+       27.489695278821358
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_1Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.4726671061819436,
+       2.4003333761297503,
+       2.573022281194926
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.1190214733670918,
+       1.0743492315716938,
+       1.1386223910998248
+      ],
+      "ref_better": 44
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.3161436644983056,
+       2.2675168815763613,
+       2.4100913825789014
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.6507402776310052,
+       0.5722781967170345,
+       0.8448901483459961
+      ],
+      "ref_better": 21
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.8565727043526041,
+       1.752405626110167,
+       1.9794227991121083
+      ],
+      "ref_better": 58
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.2707391675413653,
+       1.0716618621025589,
+       1.3308618660590088
+      ],
+      "ref_better": 39
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       6.157041899666987,
+       5.98714980776242,
+       6.421329265919323
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.3591948116963515,
+       2.2770853800981934,
+       2.48394110996049
+      ],
+      "ref_better": 57
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.4007694841764762,
+       1.3571169233809248,
+       1.4784620307955647
+      ],
+      "ref_better": 60
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       15.384793237106646,
+       14.64816795135805,
+       15.791006741335254
+      ],
+      "ref_better": 60
+     }
+    },
+    "paired_ttf_10Gbps": {
+     "A1ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.5879437536608325,
+       2.4799420611542824,
+       2.678192389693098
+      ],
+      "ref_better": 60
+     },
+     "A3": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       1.13302347431105,
+       1.0813613651004714,
+       1.152006578985157
+      ],
+      "ref_better": 44
+     },
+     "A3ref": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.393519428953895,
+       2.3426275565160286,
+       2.5350557333058608
+      ],
+      "ref_better": 60
+     },
+     "A6": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.4481450663731555,
+       0.39243310083240446,
+       0.6109103836432195
+      ],
+      "ref_better": 21
+     },
+     "L_zlib": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.8208900537148833,
+       0.7948304097693162,
+       0.852884981546323
+      ],
+      "ref_better": 10
+     },
+     "L_zstd": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.27718545258061356,
+       0.24023450757015416,
+       0.2874560209085279
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       6.312742440335823,
+       6.09759649948211,
+       6.594056839830032
+      ],
+      "ref_better": 60
+     },
+     "Q": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       2.3730265569067566,
+       2.265291390043573,
+       2.5437833515967276
+      ],
+      "ref_better": 57
+     },
+     "RAW": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       0.14553380537673336,
+       0.14329642203134282,
+       0.15226012449901485
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 60,
+      "median_ratio_vs_A1": [
+       13.724755005696556,
+       13.23794823980704,
+       13.97470402073843
+      ],
+      "ref_better": 60
+     }
+    },
+    "ttf_fastest": {
+     "0.1Gbps": {
+      "A1_fastest": 40,
+      "n": 60,
+      "fastest_counts": {
+       "A1": 40,
+       "A3": 18,
+       "L_zstd": 1,
+       "A6": 1
+      }
+     },
+     "1Gbps": {
+      "A1_fastest": 8,
+      "n": 60,
+      "fastest_counts": {
+       "A6": 32,
+       "L_zstd": 11,
+       "A3": 9,
+       "A1": 8
+      }
+     },
+     "10Gbps": {
+      "A1_fastest": 0,
+      "n": 60,
+      "fastest_counts": {
+       "RAW": 52,
+       "L_zstd": 8
+      }
+     }
+    }
+   }
+  },
+  "P3B_CONFIRMATORY": {
+   "0.0001": {
+    "medians": {
+     "A1": {
+      "cr": [
+       1771.012307906265,
+       1433.603112208198,
+       1972.0250584949808
+      ],
+      "encode_s": [
+       0.12104639200000378,
+       0.10188493171249872,
+       0.14323474399998304
+      ],
+      "decode_s": [
+       0.06661789650000571,
+       0.04869846399998323,
+       0.07603234050002072
+      ],
+      "decode_MBps": [
+       189.1130862929213,
+       186.78490366393345,
+       233.14536012382513
+      ],
+      "encode_mem_x": [
+       3.9212301587301583,
+       3.8594824735449738,
+       5.826020408163266
+      ],
+      "decode_mem_x": [
+       5.010791005291005,
+       5.007936507936508,
+       5.015625
+      ],
+      "ttf_0.1Gbps": [
+       0.06744897650000571,
+       0.04972534399998323,
+       0.07652502050002072
+      ],
+      "ttf_1Gbps": [
+       0.06670100450000571,
+       0.048801151999983236,
+       0.07608160850002071
+      ],
+      "ttf_10Gbps": [
+       0.06662620730000571,
+       0.04870873279998323,
+       0.07603726730002072
+      ],
+      "n": 32,
+      "total_bytes": 271671.0,
+      "certified": 32
+     },
+     "A1ref": {
+      "cr": [
+       1771.012307906265,
+       1433.603112208198,
+       1972.0250584949808
+      ],
+      "encode_s": [
+       0.1563876035000007,
+       0.11945187937500672,
+       0.16902608200001623
+      ],
+      "decode_s": [
+       0.17048932200000166,
+       0.139623358999998,
+       0.19510708899997553
+      ],
+      "decode_MBps": [
+       81.05297046606765,
+       75.8136563112597,
+       87.96875854215556
+      ],
+      "encode_mem_x": [
+       8.474045781893004,
+       6.5932098765432094,
+       8.556848781179138
+      ],
+      "decode_mem_x": [
+       11.663493743176282,
+       10.178053240740741,
+       11.93180482069371
+      ],
+      "ttf_0.1Gbps": [
+       0.17111692200000167,
+       0.140311718999998,
+       0.19560276899997553
+      ],
+      "ttf_1Gbps": [
+       0.17055208200000166,
+       0.13969219499999802,
+       0.19515665699997553
+      ],
+      "ttf_10Gbps": [
+       0.17049559800000166,
+       0.139630242599998,
+       0.19511204579997554
+      ],
+      "n": 32,
+      "total_bytes": 271671.0,
+      "certified": 32
+     },
+     "A3": {
+      "cr": [
+       3551.945303321415,
+       2702.4000955318934,
+       4111.772672951799
+      ],
+      "encode_s": [
+       2.845910914000001,
+       1.7437639333374924,
+       3.690394470000001
+      ],
+      "decode_s": [
+       0.04029617349999626,
+       0.029965240500004597,
+       0.045243611000003625
+      ],
+      "decode_MBps": [
+       315.1884076196141,
+       311.3586875192565,
+       378.2922706004097
+      ],
+      "encode_mem_x": [
+       4.298456790123457,
+       3.4869378306878307,
+       4.480123456790124
+      ],
+      "decode_mem_x": [
+       3.347635582010582,
+       3.311545729402872,
+       3.3752893518518516
+      ],
+      "ttf_0.1Gbps": [
+       0.04077449349999626,
+       0.030659440500004596,
+       0.04546349100000363
+      ],
+      "ttf_1Gbps": [
+       0.040344005499996255,
+       0.030034660500004598,
+       0.045265599000003626
+      ],
+      "ttf_10Gbps": [
+       0.040300956699996254,
+       0.0299721825000046,
+       0.04524580980000363
+      ],
+      "n": 32,
+      "total_bytes": 136224.0,
+      "certified": 32
+     },
+     "A3ref": {
+      "cr": [
+       3551.945303321415,
+       2702.4000955318934,
+       4111.772672951799
+      ],
+      "encode_s": [
+       2.831102375999997,
+       1.7499893807750226,
+       3.698922190999994
+      ],
+      "decode_s": [
+       0.14475852400001088,
+       0.10718868100001089,
+       0.16172782049999057
+      ],
+      "decode_MBps": [
+       91.42171919206925,
+       86.86409997356708,
+       112.54674917716738
+      ],
+      "encode_mem_x": [
+       4.4841074577979345,
+       4.2568698979591835,
+       4.937216553287982
+      ],
+      "decode_mem_x": [
+       11.536204412320483,
+       10.01121693121693,
+       11.969479484936832
+      ],
+      "ttf_0.1Gbps": [
+       0.14502560400001088,
+       0.1075194010000109,
+       0.16194122049999057
+      ],
+      "ttf_1Gbps": [
+       0.14478523200001087,
+       0.10722175300001088,
+       0.16174916049999058
+      ],
+      "ttf_10Gbps": [
+       0.14476119480001087,
+       0.10719198820001088,
+       0.16172995449999056
+      ],
+      "n": 32,
+      "total_bytes": 136224.0,
+      "certified": 32
+     },
+     "A6": {
+      "cr": [
+       108.12905795338355,
+       100.21250419416172,
+       120.4104586692466
+      ],
+      "encode_s": [
+       0.017440726000003792,
+       0.01044567499999971,
+       0.027081073999994487
+      ],
+      "decode_s": [
+       0.007641095500019901,
+       0.005437730000011243,
+       0.011192718000017976
+      ],
+      "decode_MBps": [
+       1912.7501961101834,
+       1319.0854812645314,
+       2383.1611788947152
+      ],
+      "encode_mem_x": [
+       0.1750661375661376,
+       0.02337142857142857,
+       1.9064290123456737
+      ],
+      "decode_mem_x": [
+       2.0042390476190475,
+       1.999753086419753,
+       2.829743008314437
+      ],
+      "ttf_0.1Gbps": [
+       0.019140037499990194,
+       0.01627233799997535,
+       0.027769166000018494
+      ],
+      "ttf_1Gbps": [
+       0.008996499000003388,
+       0.006759840999992221,
+       0.012719927000021503
+      ],
+      "ttf_10Gbps": [
+       0.0077395291000199005,
+       0.0055175252000112425,
+       0.011276090000017976
+      ],
+      "n": 32,
+      "total_bytes": 4443873.0,
+      "certified": 31
+     },
+     "L_zlib": {
+      "cr": [
+       1.048587527547058,
+       1.0456510555684022,
+       1.0622407286805131
+      ],
+      "encode_s": [
+       0.3196195730000113,
+       0.28057235650001644,
+       0.3921582094999678
+      ],
+      "decode_s": [
+       0.043502632000013364,
+       0.03896462700004122,
+       0.05252748400005203
+      ],
+      "decode_MBps": [
+       294.67754437418114,
+       253.85318818966948,
+       332.1715356285038
+      ],
+      "encode_mem_x": [
+       3.859072912212504,
+       3.799871315192744,
+       3.904
+      ],
+      "decode_mem_x": [
+       2.9961451247165534,
+       2.976228859599395,
+       3.0289594356261023
+      ],
+      "ttf_0.1Gbps": [
+       0.9990600030000056,
+       0.8117938450000208,
+       1.2050857765000302
+      ],
+      "ttf_1Gbps": [
+       0.13857051800002965,
+       0.11876036500002085,
+       0.16519344200002806
+      ],
+      "ttf_10Gbps": [
+       0.05180260620000421,
+       0.04883175220006327,
+       0.06388363380003337
+      ],
+      "n": 32,
+      "total_bytes": 413636198.0
+     },
+     "L_zstd": {
+      "cr": [
+       1.0476907513233504,
+       1.0460165828636847,
+       1.172356328837425
+      ],
+      "encode_s": [
+       0.016084194999990586,
+       0.013436166087513614,
+       0.01939140199999656
+      ],
+      "decode_s": [
+       0.008035847500025284,
+       0.006673708999983319,
+       0.012191641999947933
+      ],
+      "decode_MBps": [
+       1404.3335080623947,
+       1076.2122296830946,
+       1762.524925755183
+      ],
+      "encode_mem_x": [
+       3.052868804664723,
+       2.9730133333333333,
+       3.11627490281827
+      ],
+      "decode_mem_x": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "ttf_0.1Gbps": [
+       0.9645452660000118,
+       0.5565958155000076,
+       1.146188214499979
+      ],
+      "ttf_1Gbps": [
+       0.10360037000001186,
+       0.06234846750000757,
+       0.12719543449997914
+      ],
+      "ttf_10Gbps": [
+       0.01711344820004343,
+       0.012527850900006934,
+       0.023155456800008436
+      ],
+      "n": 32,
+      "total_bytes": 346242610.0
+     },
+     "M2": {
+      "cr": [
+       195.83309708168056,
+       173.10912343470483,
+       264.4183468397607
+      ],
+      "encode_s": [
+       0.296168398500015,
+       0.22746373000001086,
+       0.33913906099999735
+      ],
+      "decode_s": [
+       0.2818927565000138,
+       0.20943077900000162,
+       0.31149281800001916
+      ],
+      "decode_MBps": [
+       46.432605704420446,
+       44.93087653514097,
+       56.27113419972491
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.99942720143613,
+       2.999393738977072,
+       2.9995464852607707
+      ],
+      "encode_cli_mem_x": [
+       0.0,
+       0.0,
+       0.006826666666666667
+      ],
+      "decode_cli_mem_x": [
+       2.997475014697237,
+       2.9946706172839503,
+       2.999108367626886
+      ],
+      "ttf_0.1Gbps": [
+       0.29350363650001376,
+       0.2109857590000015,
+       0.3203203623250029
+      ],
+      "ttf_1Gbps": [
+       0.2830538445000138,
+       0.2095387390000016,
+       0.31245803000001915
+      ],
+      "ttf_10Gbps": [
+       0.2820088653000138,
+       0.20944157500000163,
+       0.3115893392000192
+      ],
+      "n": 32,
+      "total_bytes": 2914738.0,
+      "certified": 32
+     },
+     "Q": {
+      "cr": [
+       258.36815489059956,
+       198.9517184293099,
+       291.9248725735372
+      ],
+      "encode_s": [
+       0.1751904584999835,
+       0.15080866699999262,
+       0.19603855999997677
+      ],
+      "decode_s": [
+       0.0595552379999873,
+       0.054565221999993696,
+       0.06701641749998544
+      ],
+      "decode_MBps": [
+       246.98305183023228,
+       231.3837291891295,
+       274.14234022757205
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.9994212962962963,
+       2.999397413286302,
+       2.9995993953136812
+      ],
+      "encode_cli_mem_x": [
+       0.007908913124332626,
+       0.005423780329298092,
+       0.009876543209876543
+      ],
+      "decode_cli_mem_x": [
+       2.998771730914588,
+       2.9959318048206938,
+       3.000648148148148
+      ],
+      "ttf_0.1Gbps": [
+       0.06746731749999471,
+       0.059332929999989625,
+       0.07314969049997481
+      ],
+      "ttf_1Gbps": [
+       0.06052167249999309,
+       0.0550516099999937,
+       0.06761328549998544
+      ],
+      "ttf_10Gbps": [
+       0.0596553499999873,
+       0.054613860799993696,
+       0.06707610429998544
+      ],
+      "n": 28,
+      "total_bytes": 1809645.0,
+      "certified": 27
+     },
+     "RAW": {
+      "cr": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "decode_s": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_MBps": [
+       NaN,
+       NaN,
+       NaN
+      ],
+      "ttf_0.1Gbps": [
+       1.13246208,
+       1.0616832,
+       1.2644352
+      ],
+      "ttf_1Gbps": [
+       0.113246208,
+       0.10616832,
+       0.12644352
+      ],
+      "ttf_10Gbps": [
+       0.0113246208,
+       0.010616832,
+       0.012644352
+      ],
+      "n": 32,
+      "total_bytes": 469316608.0
+     },
+     "SRC": {
+      "cr": [
+       0.438967334703565,
+       0.43858127273041675,
+       0.5779599782432964
+      ],
+      "decode_s": [
+       0.29514745349999316,
+       0.27375943200000563,
+       0.43764609100000484
+      ],
+      "decode_MBps": [
+       39.911649496410405,
+       35.65494963755651,
+       48.489451070767736
+      ],
+      "ttf_0.1Gbps": [
+       2.810118085999987,
+       2.5600346505000013,
+       3.008566380500003
+      ],
+      "ttf_1Gbps": [
+       0.5425900005000027,
+       0.5227875219999949,
+       0.689183466000008
+      ],
+      "ttf_10Gbps": [
+       0.3253326062999914,
+       0.2983646609999913,
+       0.4721419197000034
+      ],
+      "n": 32,
+      "total_bytes": 956808149.0
+     }
+    },
+    "breakeven": {
+     "A3": {
+      "median_breakeven_Gbps": 0.0,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "A6": {
+      "median_breakeven_Gbps": 0.020781914755844278,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "L_zlib": {
+      "median_breakeven_Gbps": 5.630691586830936,
+      "n": 32,
+      "A1_dominates": 2
+     },
+     "L_zstd": {
+      "median_breakeven_Gbps": 1.697835094718565,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "M2": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 32
+     },
+     "Q": {
+      "median_breakeven_Gbps": 0.060664634245411825,
+      "n": 28,
+      "A1_dominates": 7
+     },
+     "RAW": {
+      "median_breakeven_Gbps": 1.5120878680759264,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "SRC": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 32
+     }
+    },
+    "paired_decode": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.6200757253688343,
+       2.5205385236528897,
+       2.8715699021306453
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6035002071161879,
+       0.5955942647132648,
+       0.6119435630418313
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1333333886399815,
+       2.0941745503852145,
+       2.265393727211267
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.10714934010818968,
+       0.08635990673555,
+       0.15918910243181741
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.7437405943784384,
+       0.7065938851761538,
+       0.8082769616345109
+      ],
+      "ref_better": 2
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.1699917016496953,
+       0.1456270056286272,
+       0.17511219459000443
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.116043291160756,
+       4.048293270622413,
+       4.23401434107307
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 28,
+      "median_ratio_vs_A1": [
+       0.8569737833154669,
+       0.7865621819483868,
+       0.9608726351218618
+      ],
+      "ref_better": 7
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.307859953868031,
+       3.8555494328190885,
+       6.501791750009147
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_encode": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.1917895234776419,
+       1.1476280706897681,
+       1.2983714094017558
+      ],
+      "ref_better": 30
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       25.89404691167331,
+       18.949232102909917,
+       29.973184633710616
+      ],
+      "ref_better": 32
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       25.53805648836883,
+       19.416511454053936,
+       30.051117427517177
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.10025265471969103,
+       0.08643685799122602,
+       0.24172651521871474
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.9116967211504696,
+       2.6313100742016746,
+       3.0414375421265056
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.14069048636328124,
+       0.12686326414845048,
+       0.15100069826116716
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.246830179703905,
+       2.1005020566947055,
+       2.431094918837163
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 28,
+      "median_ratio_vs_A1": [
+       1.4364606261363173,
+       1.297615349305611,
+       1.5261681400007454
+      ],
+      "ref_better": 22
+     }
+    },
+    "paired_search": {},
+    "paired_ttf_0.1Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.5943369582714717,
+       2.508987602009501,
+       2.8516777035726375
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6030199314353473,
+       0.5945413645812376,
+       0.6117132323802734
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1130599783516795,
+       2.0731538013600312,
+       2.249023707233552
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.31062008277607894,
+       0.24196592350886958,
+       0.3871514216731835
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       15.035512612722137,
+       14.13227272502648,
+       16.50111315231926
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       14.021447145729699,
+       12.234771200513126,
+       14.764976815774366
+      ],
+      "ref_better": 32
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.179686977969032,
+       4.051163212115425,
+       4.340070964040576
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 28,
+      "median_ratio_vs_A1": [
+       0.9414536157138165,
+       0.8215199318203461,
+       1.0080682734960433
+      ],
+      "ref_better": 10
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       15.006457582228123,
+       14.783639728628577,
+       18.37333497034332
+      ],
+      "ref_better": 32
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       37.95997173235263,
+       36.01634565579502,
+       42.99197394318141
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_1Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.6174644879481743,
+       2.5193754798286054,
+       2.869559966044048
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6033699343860284,
+       0.5955025973896642,
+       0.6119457503903611
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.131279128210922,
+       2.0923874474929236,
+       2.2640626908496797
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.13603852015126805,
+       0.10547479732786225,
+       0.1692837581611471
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.200900115099344,
+       2.1008534335635654,
+       2.397057709473814
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.575273612601238,
+       1.3633599566546133,
+       1.6614141648115883
+      ],
+      "ref_better": 23
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.118507498558459,
+       4.047772732024797,
+       4.237131599506467
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 28,
+      "median_ratio_vs_A1": [
+       0.8636748815458904,
+       0.7900933838349031,
+       0.9656542334435392
+      ],
+      "ref_better": 8
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.5116697559617411,
+       1.4927981478864374,
+       1.8620819736150254
+      ],
+      "ref_better": 32
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       8.086302601980893,
+       7.3590421287359575,
+       9.805832149153181
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_10Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.619814222041825,
+       2.5204221391513157,
+       2.871368698838797
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6034871636537675,
+       0.5955850860475977,
+       0.6119437817080118
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1331276890299566,
+       2.09405302894142,
+       2.265260529044624
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.11074137453398301,
+       0.08835154351637275,
+       0.16019931506461227
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8880418813050248,
+       0.8486989769836447,
+       0.9783225372002754
+      ],
+      "ref_better": 9
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.3149153377571904,
+       0.26748919416615613,
+       0.33340856174232425
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.1162900313667405,
+       4.048205054216172,
+       4.2352400744444045
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 28,
+      "median_ratio_vs_A1": [
+       0.8576442837769445,
+       0.7869156605962229,
+       0.961351424472973
+      ],
+      "ref_better": 7
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.15127811057566243,
+       0.1494130972873084,
+       0.18648543315526137
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.428164811327037,
+       4.278746916737398,
+       6.686647509629417
+      ],
+      "ref_better": 32
+     }
+    },
+    "ttf_fastest": {
+     "0.1Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "A6": 27,
+       "A3": 5
+      }
+     },
+     "1Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "A6": 27,
+       "L_zstd": 5
+      }
+     },
+     "10Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "A6": 21,
+       "L_zstd": 7,
+       "RAW": 4
+      }
+     }
+    }
+   },
+   "1e-06": {
+    "medians": {
+     "A1": {
+      "cr": [
+       503.7364823047782,
+       418.20343927031547,
+       619.0149777357981
+      ],
+      "encode_s": [
+       0.11344408300000453,
+       0.10136961299997438,
+       0.1271686270000032
+      ],
+      "decode_s": [
+       0.06516990500001896,
+       0.0501366409999946,
+       0.07375283900000795
+      ],
+      "search_s": [
+       0.6827559724999901,
+       0.4876159794999779,
+       0.8024694909999823
+      ],
+      "decode_MBps": [
+       191.14678736255786,
+       188.08244800878776,
+       237.18630335573656
+      ],
+      "encode_mem_x": [
+       6.581514550264551,
+       6.134394290123456,
+       7.352103242090487
+      ],
+      "decode_mem_x": [
+       5.010697751322752,
+       5.0063673469387755,
+       5.015740740740741
+      ],
+      "ttf_0.1Gbps": [
+       0.06910158500001895,
+       0.05416123058753678,
+       0.07472012899998894
+      ],
+      "ttf_1Gbps": [
+       0.06556307300001896,
+       0.050652528999994596,
+       0.07383980700000796
+      ],
+      "ttf_10Gbps": [
+       0.06520922180001895,
+       0.0501882297999946,
+       0.07376153580000795
+      ],
+      "n": 32,
+      "total_bytes": 1029968.0,
+      "certified": 32
+     },
+     "A1ref": {
+      "cr": [
+       503.7364823047782,
+       418.20343927031547,
+       619.0149777357981
+      ],
+      "encode_s": [
+       0.15251657549998754,
+       0.12477828749999276,
+       0.17067311200003132
+      ],
+      "decode_s": [
+       0.17476699000000906,
+       0.1405083749999818,
+       0.19007582100005038
+      ],
+      "decode_MBps": [
+       80.59481617334306,
+       75.36688795343487,
+       85.73004243683351
+      ],
+      "encode_mem_x": [
+       6.61792,
+       6.541533650793651,
+       8.458035714285714
+      ],
+      "decode_mem_x": [
+       11.420628306878307,
+       9.791586947278912,
+       11.82834270282187
+      ],
+      "ttf_0.1Gbps": [
+       0.17660539000000908,
+       0.1460732549999818,
+       0.1909554210000504
+      ],
+      "ttf_1Gbps": [
+       0.17495083000000905,
+       0.1410648629999818,
+       0.19016378100005038
+      ],
+      "ttf_10Gbps": [
+       0.17478537400000904,
+       0.1405640237999818,
+       0.1900846170000504
+      ],
+      "n": 32,
+      "total_bytes": 1029968.0,
+      "certified": 32
+     },
+     "A3": {
+      "cr": [
+       646.6750760116545,
+       459.2824513826142,
+       883.1463365941306
+      ],
+      "encode_s": [
+       2.843801531500006,
+       1.7465681230250123,
+       3.6988773725000073
+      ],
+      "decode_s": [
+       0.04385915299998544,
+       0.03301727499999174,
+       0.0479649689999917
+      ],
+      "search_s": [
+       3.0442351929999774,
+       2.000929912999993,
+       3.8874342610000667
+      ],
+      "decode_MBps": [
+       302.14086273920896,
+       294.2509569512704,
+       347.10398852692407
+      ],
+      "encode_mem_x": [
+       4.481923868312757,
+       4.345987654320988,
+       4.9751157407407405
+      ],
+      "decode_mem_x": [
+       3.6261408730158733,
+       3.55814706835115,
+       3.696693121693122
+      ],
+      "ttf_0.1Gbps": [
+       0.04615739299998544,
+       0.03669214349997907,
+       0.04935112900000752
+      ],
+      "ttf_1Gbps": [
+       0.044088976999985444,
+       0.03348930699999174,
+       0.048027496999991696
+      ],
+      "ttf_10Gbps": [
+       0.04388213539998544,
+       0.03306447819999174,
+       0.0479712217999917
+      ],
+      "n": 32,
+      "total_bytes": 882173.0,
+      "certified": 32
+     },
+     "A3ref": {
+      "cr": [
+       646.6750760116545,
+       459.2824513826142,
+       883.1463365941306
+      ],
+      "encode_s": [
+       2.901378202499984,
+       1.7565939420749919,
+       3.6529875119999815
+      ],
+      "decode_s": [
+       0.14702527049999503,
+       0.10924677049999332,
+       0.1637840236250151
+      ],
+      "decode_MBps": [
+       88.53056825430411,
+       85.07518899832783,
+       110.6734011787232
+      ],
+      "encode_mem_x": [
+       4.484230324074074,
+       4.462962962962963,
+       4.736896494708995
+      ],
+      "decode_mem_x": [
+       11.592627551020408,
+       10.540851757369614,
+       12.190468289241622
+      ],
+      "ttf_0.1Gbps": [
+       0.15003247949999654,
+       0.11286079500000167,
+       0.16479177662501523
+      ],
+      "ttf_1Gbps": [
+       0.14737337849999504,
+       0.10968627199999664,
+       0.16388479892501512
+      ],
+      "ttf_10Gbps": [
+       0.14706008129999504,
+       0.10927593679999664,
+       0.16379410115501508
+      ],
+      "n": 32,
+      "total_bytes": 882173.0,
+      "certified": 32
+     },
+     "A6": {
+      "cr": [
+       23.286068994427808,
+       20.923840650032403,
+       27.3335842102231
+      ],
+      "encode_s": [
+       0.019027665500004787,
+       0.01427274299997805,
+       0.026008544000035272
+      ],
+      "decode_s": [
+       0.010760775000022704,
+       0.00830549299996619,
+       0.014012499999978445
+      ],
+      "search_s": [
+       32.933633899499995,
+       27.741252248500018,
+       38.60012317099999
+      ],
+      "decode_MBps": [
+       1228.7443210248034,
+       1082.023721600125,
+       1393.1979891185888
+      ],
+      "encode_mem_x": [
+       0.12426697530864197,
+       0.09798157946306095,
+       0.16373771730914588
+      ],
+      "decode_mem_x": [
+       1.9995030864197532,
+       1.9994212962962963,
+       1.9996689747327503
+      ],
+      "ttf_0.1Gbps": [
+       0.056668495499988245,
+       0.044167609499990185,
+       0.07931940800005086
+      ],
+      "ttf_1Gbps": [
+       0.01623265349999169,
+       0.012007858000005533,
+       0.019606483999978445
+      ],
+      "ttf_10Gbps": [
+       0.011345827800022704,
+       0.008706696199966191,
+       0.014573301600004435
+      ],
+      "n": 32,
+      "total_bytes": 19298853.0,
+      "certified": 32
+     },
+     "L_zlib": {
+      "cr": [
+       1.048587527547058,
+       1.0456510555684022,
+       1.0622407286805131
+      ],
+      "encode_s": [
+       0.3196195730000113,
+       0.28057235650001644,
+       0.3921582094999678
+      ],
+      "decode_s": [
+       0.043502632000013364,
+       0.03896462700004122,
+       0.05252748400005203
+      ],
+      "decode_MBps": [
+       294.67754437418114,
+       253.85318818966948,
+       332.1715356285038
+      ],
+      "encode_mem_x": [
+       3.859072912212504,
+       3.799871315192744,
+       3.904
+      ],
+      "decode_mem_x": [
+       2.9961451247165534,
+       2.976228859599395,
+       3.0289594356261023
+      ],
+      "ttf_0.1Gbps": [
+       0.9990600030000056,
+       0.8117938450000208,
+       1.2050857765000302
+      ],
+      "ttf_1Gbps": [
+       0.13857051800002965,
+       0.11876036500002085,
+       0.16519344200002806
+      ],
+      "ttf_10Gbps": [
+       0.05180260620000421,
+       0.04883175220006327,
+       0.06388363380003337
+      ],
+      "n": 32,
+      "total_bytes": 413636198.0
+     },
+     "L_zstd": {
+      "cr": [
+       1.0476907513233504,
+       1.0460165828636847,
+       1.172356328837425
+      ],
+      "encode_s": [
+       0.016084194999990586,
+       0.013436166087513614,
+       0.01939140199999656
+      ],
+      "decode_s": [
+       0.008035847500025284,
+       0.006673708999983319,
+       0.012191641999947933
+      ],
+      "decode_MBps": [
+       1404.3335080623947,
+       1076.2122296830946,
+       1762.524925755183
+      ],
+      "encode_mem_x": [
+       3.052868804664723,
+       2.9730133333333333,
+       3.11627490281827
+      ],
+      "decode_mem_x": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "ttf_0.1Gbps": [
+       0.9645452660000118,
+       0.5565958155000076,
+       1.146188214499979
+      ],
+      "ttf_1Gbps": [
+       0.10360037000001186,
+       0.06234846750000757,
+       0.12719543449997914
+      ],
+      "ttf_10Gbps": [
+       0.01711344820004343,
+       0.012527850900006934,
+       0.023155456800008436
+      ],
+      "n": 32,
+      "total_bytes": 346242610.0
+     },
+     "M2": {
+      "cr": [
+       21.008968647664894,
+       19.80688045931134,
+       23.892187884819513
+      ],
+      "encode_s": [
+       0.3173241220000165,
+       0.2323981700000104,
+       0.34340492049999227
+      ],
+      "decode_s": [
+       0.3091040034999821,
+       0.22436504799998147,
+       0.3358491815000093
+      ],
+      "search_s": [
+       30.543993140499992,
+       22.279293260999992,
+       32.680494819637474
+      ],
+      "decode_MBps": [
+       43.75639734063503,
+       42.220706383281446,
+       52.144472954194946
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_mem_x": [
+       2.9994212962962963,
+       2.9994047619047617,
+       2.9994708994708996
+      ],
+      "encode_cli_mem_x": [
+       0.0,
+       0.0,
+       0.007646137566137566
+      ],
+      "decode_cli_mem_x": [
+       2.9980424461451247,
+       2.9963872354497356,
+       2.999905265810028
+      ],
+      "ttf_0.1Gbps": [
+       0.36225665650000693,
+       0.277971556999993,
+       0.3944338045000248
+      ],
+      "ttf_1Gbps": [
+       0.3147433554999821,
+       0.22984383199998148,
+       0.34188901350000933
+      ],
+      "ttf_10Gbps": [
+       0.3096679386999821,
+       0.22491292639998145,
+       0.3364531647000093
+      ],
+      "n": 32,
+      "total_bytes": 20703100.0,
+      "certified": 32
+     },
+     "Q": {
+      "cr": [
+       46.02945873482898,
+       43.890192876824166,
+       56.659459626234316
+      ],
+      "encode_s": [
+       0.19516588749999642,
+       0.13858201399997938,
+       0.2399424559999943
+      ],
+      "decode_s": [
+       0.07774616300000048,
+       0.04937879199999884,
+       0.08489434750001124
+      ],
+      "search_s": [
+       132.41779197099999,
+       110.31625041400002,
+       152.06680738
+      ],
+      "decode_MBps": [
+       188.78496183639322,
+       175.37286551011292,
+       200.1501657118842
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0002554761904761905
+      ],
+      "decode_mem_x": [
+       2.999393738977072,
+       2.999,
+       2.999506172839506
+      ],
+      "encode_cli_mem_x": [
+       0.007713109935332158,
+       0.00501665686850872,
+       0.010582010582010581
+      ],
+      "decode_cli_mem_x": [
+       2.9980607407407405,
+       2.994212962962963,
+       2.998809523809524
+      ],
+      "ttf_0.1Gbps": [
+       0.092954331500043,
+       0.05977927199999884,
+       0.11758306299999483
+      ],
+      "ttf_1Gbps": [
+       0.0796570354999932,
+       0.05041883999999884,
+       0.08796216350001124
+      ],
+      "ttf_10Gbps": [
+       0.07807410620000048,
+       0.04948279679999884,
+       0.08520112910001124
+      ],
+      "n": 32,
+      "total_bytes": 9838075.0,
+      "certified": 32
+     },
+     "RAW": {
+      "cr": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "decode_s": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_MBps": [
+       NaN,
+       NaN,
+       NaN
+      ],
+      "ttf_0.1Gbps": [
+       1.13246208,
+       1.0616832,
+       1.2644352
+      ],
+      "ttf_1Gbps": [
+       0.113246208,
+       0.10616832,
+       0.12644352
+      ],
+      "ttf_10Gbps": [
+       0.0113246208,
+       0.010616832,
+       0.012644352
+      ],
+      "n": 32,
+      "total_bytes": 469316608.0
+     },
+     "SRC": {
+      "cr": [
+       0.438967334703565,
+       0.43858127273041675,
+       0.5779599782432964
+      ],
+      "decode_s": [
+       0.29514745349999316,
+       0.27375943200000563,
+       0.43764609100000484
+      ],
+      "decode_MBps": [
+       39.911649496410405,
+       35.65494963755651,
+       48.489451070767736
+      ],
+      "ttf_0.1Gbps": [
+       2.810118085999987,
+       2.5600346505000013,
+       3.008566380500003
+      ],
+      "ttf_1Gbps": [
+       0.5425900005000027,
+       0.5227875219999949,
+       0.689183466000008
+      ],
+      "ttf_10Gbps": [
+       0.3253326062999914,
+       0.2983646609999913,
+       0.4721419197000034
+      ],
+      "n": 32,
+      "total_bytes": 956808149.0
+     }
+    },
+    "breakeven": {
+     "A3": {
+      "median_breakeven_Gbps": 0.0,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "A6": {
+      "median_breakeven_Gbps": 0.08918154130262854,
+      "n": 32,
+      "A1_dominates": 3
+     },
+     "L_zlib": {
+      "median_breakeven_Gbps": 5.6584728824432915,
+      "n": 32,
+      "A1_dominates": 3
+     },
+     "L_zstd": {
+      "median_breakeven_Gbps": 1.7310928880878218,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "M2": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 32
+     },
+     "Q": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 23
+     },
+     "RAW": {
+      "median_breakeven_Gbps": 1.5280405038691587,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "SRC": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 32
+     }
+    },
+    "paired_decode": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.6304118024929664,
+       2.5206275801930627,
+       2.793434506373871
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6534316385152392,
+       0.6362265086641259,
+       0.6614003542067108
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.21642199583426,
+       2.136930882891609,
+       2.3030063393602207
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.18599468651129678,
+       0.16539906589792164,
+       0.19398607526381695
+      ],
+      "ref_better": 3
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.745594285004811,
+       0.7103059727624412,
+       0.8140639715989421
+      ],
+      "ref_better": 3
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.17360719914498857,
+       0.15752421608803,
+       0.17814069986594344
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.538080460691281,
+       4.422291889704514,
+       4.604351315548674
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.1673820865945315,
+       1.0185675216271854,
+       1.2814209224254172
+      ],
+      "ref_better": 23
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.539539398277293,
+       3.8774975239863654,
+       6.773530337788378
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_encode": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.3233389898785086,
+       1.3018332654631655,
+       1.361503739861341
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       28.334541167870846,
+       20.238554487277465,
+       31.201891434310255
+      ],
+      "ref_better": 32
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       28.675459130702997,
+       20.249655159210697,
+       31.205938325176124
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.17924940405583734,
+       0.1611276675082972,
+       0.198360976758018
+      ],
+      "ref_better": 2
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       3.1757686582815285,
+       2.7859618867389715,
+       3.302598015342704
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.15480643929585916,
+       0.13991352999417103,
+       0.1619038907535728
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.510543549125143,
+       2.2961072245811622,
+       2.8145573788310236
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.800537222553915,
+       1.5616357927249598,
+       2.0080599230026053
+      ],
+      "ref_better": 25
+     }
+    },
+    "paired_search": {
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.806189502847607,
+       3.3144887872351627,
+       5.893817319997001
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       51.57919734863641,
+       44.95365237983228,
+       56.524259130545644
+      ],
+      "ref_better": 32
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       44.229954108942536,
+       39.28574950525491,
+       46.43225329074029
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       195.5133232790102,
+       180.70341377215226,
+       207.25552648008542
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_0.1Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.5508773780510223,
+       2.486836804439696,
+       2.7217179626448442
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6573513688317847,
+       0.6393960648796941,
+       0.6725311491904693
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.177585513443871,
+       2.0956606908871107,
+       2.227518283172779
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.9149900879225807,
+       0.7329534812651456,
+       1.0061455111680544
+      ],
+      "ref_better": 11
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       14.724776978572656,
+       14.121031284902223,
+       15.89086080594478
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       13.93546472863742,
+       12.50116731217989,
+       14.568788046986615
+      ],
+      "ref_better": 32
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.160525052398327,
+       4.930618080912263,
+       5.280827640762167
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.425828400935485,
+       1.2078322201979164,
+       1.574910165785791
+      ],
+      "ref_better": 26
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       15.044526869780743,
+       14.612475607498679,
+       17.823660879016593
+      ],
+      "ref_better": 32
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       37.35942622872801,
+       35.502926744422695,
+       41.6434243758633
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_1Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.6200708059098625,
+       2.5171406443841176,
+       2.7813902809989797
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6534211093404962,
+       0.6364102235507708,
+       0.662770961763339
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.211490247799774,
+       2.1305590889190205,
+       2.2983945113020963
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.259920404473072,
+       0.22374438880765343,
+       0.28298299259355764
+      ],
+      "ref_better": 3
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1993569908941613,
+       2.120870568578429,
+       2.5156065926842293
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.5988344654404634,
+       1.4318088939788878,
+       1.6726048628069434
+      ],
+      "ref_better": 23
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.59858172684154,
+       4.4720341937337835,
+       4.657325299855938
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.193855834871378,
+       1.034851138516395,
+       1.3089609226567658
+      ],
+      "ref_better": 24
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.527442209662441,
+       1.4990059173208294,
+       1.8886931869931647
+      ],
+      "ref_better": 32
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       8.205945583692248,
+       7.599582676396244,
+       9.981429706359208
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_10Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.6293702194932966,
+       2.520243564979541,
+       2.792222759848033
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.6534305839812711,
+       0.6362449186438756,
+       0.6615307938227695
+      ],
+      "ref_better": 0
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.215927101178556,
+       2.13649102144868,
+       2.302543782800562
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.19238221527940272,
+       0.17157281603830615,
+       0.20171981263363842
+      ],
+      "ref_better": 3
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8896074537934013,
+       0.8490020779644003,
+       0.9916784821591779
+      ],
+      "ref_better": 10
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.3209246449822057,
+       0.28536613527522076,
+       0.3331558137016788
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       4.544426055245258,
+       4.42854587768894,
+       4.609409271414974
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.1700359247598007,
+       1.02020033163644,
+       1.2844474320290646
+      ],
+      "ref_better": 23
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.15290009129396814,
+       0.15038883117293694,
+       0.1896607016721508
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.664545442502987,
+       4.318576644029216,
+       7.001563825477043
+      ],
+      "ref_better": 32
+     }
+    },
+    "ttf_fastest": {
+     "0.1Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "A3": 25,
+       "A6": 6,
+       "Q": 1
+      }
+     },
+     "1Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "A6": 26,
+       "L_zstd": 6
+      }
+     },
+     "10Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "RAW": 12,
+       "A6": 11,
+       "L_zstd": 9
+      }
+     }
+    }
+   },
+   "1e-08": {
+    "medians": {
+     "A1": {
+      "cr": [
+       64.86202278990342,
+       49.56190440353336,
+       97.06940655732049
+      ],
+      "encode_s": [
+       0.14221455449998643,
+       0.12332797900000969,
+       0.16120842700001958
+      ],
+      "decode_s": [
+       0.06663612599999169,
+       0.05179552900000317,
+       0.07396037200001615
+      ],
+      "decode_MBps": [
+       190.7241395084972,
+       185.87764117172102,
+       222.13718533110315
+      ],
+      "encode_mem_x": [
+       6.3501157407407405,
+       4.765102880658437,
+       6.978990740740741
+      ],
+      "decode_mem_x": [
+       5.009375,
+       5.005060846560847,
+       5.018135476190476
+      ],
+      "ttf_0.1Gbps": [
+       0.08353806300002425,
+       0.0719454490000119,
+       0.09056666199998219
+      ],
+      "ttf_1Gbps": [
+       0.07014298599999169,
+       0.055285339999977534,
+       0.07473941949998104
+      ],
+      "ttf_10Gbps": [
+       0.0669868119999917,
+       0.05215543060000317,
+       0.07405204200001615
+      ],
+      "n": 32,
+      "total_bytes": 8132254.0,
+      "certified": 32
+     },
+     "A1ref": {
+      "cr": [
+       64.86202278990342,
+       49.56190440353336,
+       97.06940655732049
+      ],
+      "encode_s": [
+       0.1744061610000074,
+       0.15847245899999507,
+       0.18463682800000925
+      ],
+      "decode_s": [
+       0.17517424350000965,
+       0.14512786600005256,
+       0.19693294249998416
+      ],
+      "decode_MBps": [
+       77.88770888394988,
+       74.13901628046607,
+       85.39772689598314
+      ],
+      "encode_mem_x": [
+       6.492450869236583,
+       6.4790219907407405,
+       6.973871252204585
+      ],
+      "decode_mem_x": [
+       11.400734599395314,
+       9.704926067649282,
+       11.671626984126984
+      ],
+      "ttf_0.1Gbps": [
+       0.1874911265000596,
+       0.17053802850002098,
+       0.20694598599998473
+      ],
+      "ttf_1Gbps": [
+       0.17654722350000965,
+       0.14762072300001128,
+       0.19932313950000694
+      ],
+      "ttf_10Gbps": [
+       0.17531154150000966,
+       0.14546314360005255,
+       0.19698946110000692
+      ],
+      "n": 32,
+      "total_bytes": 8132254.0,
+      "certified": 32
+     },
+     "A3": {
+      "cr": [
+       70.2547313284541,
+       52.11054182904394,
+       106.91002179072848
+      ],
+      "encode_s": [
+       2.887059016999956,
+       1.7654846314000079,
+       3.7599193830000104
+      ],
+      "decode_s": [
+       0.0580499004999524,
+       0.044470664500011026,
+       0.06913396900000635
+      ],
+      "decode_MBps": [
+       221.19320932618592,
+       208.92936866834535,
+       249.20633818866213
+      ],
+      "encode_mem_x": [
+       4.889313271604938,
+       4.482098765432099,
+       4.98408950617284
+      ],
+      "decode_mem_x": [
+       4.975988571428571,
+       4.967466666666667,
+       4.9919188161375665
+      ],
+      "ttf_0.1Gbps": [
+       0.07294957250001706,
+       0.06705027099999385,
+       0.08809500550002225
+      ],
+      "ttf_1Gbps": [
+       0.06011766450002652,
+       0.04747468699997994,
+       0.06952278500000635
+      ],
+      "ttf_10Gbps": [
+       0.0581899736999524,
+       0.04474211759998437,
+       0.06917285060000634
+      ],
+      "n": 32,
+      "total_bytes": 7691416.0,
+      "certified": 32
+     },
+     "A3ref": {
+      "cr": [
+       70.2547313284541,
+       52.11054182904394,
+       106.91002179072848
+      ],
+      "encode_s": [
+       2.88358144099999,
+       1.7790324322499955,
+       3.7288836960000253
+      ],
+      "decode_s": [
+       0.15600191850003853,
+       0.12935505699996952,
+       0.18707594500000368
+      ],
+      "decode_MBps": [
+       83.91330490590317,
+       78.99509550216834,
+       92.83003530342322
+      ],
+      "encode_mem_x": [
+       4.48055619855967,
+       4.298611111111111,
+       4.9684662285052905
+      ],
+      "decode_mem_x": [
+       11.230014880952382,
+       9.548185941043084,
+       12.038800705467374
+      ],
+      "ttf_0.1Gbps": [
+       0.1731179745000116,
+       0.15690854800003878,
+       0.1920448250000037
+      ],
+      "ttf_1Gbps": [
+       0.15785101050003852,
+       0.1335226729999695,
+       0.18757283300000369
+      ],
+      "ttf_10Gbps": [
+       0.15618682770003856,
+       0.1297718185999695,
+       0.1871256338000037
+      ],
+      "n": 32,
+      "total_bytes": 7691416.0,
+      "certified": 32
+     },
+     "A6": {
+      "cr": [
+       9.999584734223717,
+       9.087196851581545,
+       11.371935011757556
+      ],
+      "encode_s": [
+       0.03464831300004789,
+       0.02671032899996817,
+       0.0457120049999844
+      ],
+      "decode_s": [
+       0.020216662000024144,
+       0.017343219825018963,
+       0.02843542900001239
+      ],
+      "decode_MBps": [
+       676.5035422507553,
+       598.9128610409332,
+       766.4449645232563
+      ],
+      "encode_mem_x": [
+       0.4066873177842566,
+       0.3616,
+       0.5486689814814815
+      ],
+      "decode_mem_x": [
+       1.9995733333333334,
+       1.9993937389770724,
+       2.0034391534391536
+      ],
+      "ttf_0.1Gbps": [
+       0.12831631600001675,
+       0.09727568699999284,
+       0.15035621199997357
+      ],
+      "ttf_1Gbps": [
+       0.03281907149998264,
+       0.03016068500008414,
+       0.038600831000003555
+      ],
+      "ttf_10Gbps": [
+       0.021539340400024143,
+       0.018621521902563627,
+       0.029799702199966638
+      ],
+      "n": 32,
+      "total_bytes": 45519205.0,
+      "certified": 32
+     },
+     "L_zlib": {
+      "cr": [
+       1.048587527547058,
+       1.0456510555684022,
+       1.0622407286805131
+      ],
+      "encode_s": [
+       0.3196195730000113,
+       0.28057235650001644,
+       0.3921582094999678
+      ],
+      "decode_s": [
+       0.043502632000013364,
+       0.03896462700004122,
+       0.05252748400005203
+      ],
+      "decode_MBps": [
+       294.67754437418114,
+       253.85318818966948,
+       332.1715356285038
+      ],
+      "encode_mem_x": [
+       3.859072912212504,
+       3.799871315192744,
+       3.904
+      ],
+      "decode_mem_x": [
+       2.9961451247165534,
+       2.976228859599395,
+       3.0289594356261023
+      ],
+      "ttf_0.1Gbps": [
+       0.9990600030000056,
+       0.8117938450000208,
+       1.2050857765000302
+      ],
+      "ttf_1Gbps": [
+       0.13857051800002965,
+       0.11876036500002085,
+       0.16519344200002806
+      ],
+      "ttf_10Gbps": [
+       0.05180260620000421,
+       0.04883175220006327,
+       0.06388363380003337
+      ],
+      "n": 32,
+      "total_bytes": 413636198.0
+     },
+     "L_zstd": {
+      "cr": [
+       1.0476907513233504,
+       1.0460165828636847,
+       1.172356328837425
+      ],
+      "encode_s": [
+       0.016084194999990586,
+       0.013436166087513614,
+       0.01939140199999656
+      ],
+      "decode_s": [
+       0.008035847500025284,
+       0.006673708999983319,
+       0.012191641999947933
+      ],
+      "decode_MBps": [
+       1404.3335080623947,
+       1076.2122296830946,
+       1762.524925755183
+      ],
+      "encode_mem_x": [
+       3.052868804664723,
+       2.9730133333333333,
+       3.11627490281827
+      ],
+      "decode_mem_x": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "ttf_0.1Gbps": [
+       0.9645452660000118,
+       0.5565958155000076,
+       1.146188214499979
+      ],
+      "ttf_1Gbps": [
+       0.10360037000001186,
+       0.06234846750000757,
+       0.12719543449997914
+      ],
+      "ttf_10Gbps": [
+       0.01711344820004343,
+       0.012527850900006934,
+       0.023155456800008436
+      ],
+      "n": 32,
+      "total_bytes": 346242610.0
+     },
+     "M2": {
+      "cr": [
+       8.614587387256115,
+       8.35362918883065,
+       9.217870886387312
+      ],
+      "encode_s": [
+       0.3236473304999947,
+       0.24420990799995934,
+       0.35458823150000285
+      ],
+      "decode_s": [
+       0.3646531830000299,
+       0.2739666275000161,
+       0.395774025999998
+      ],
+      "decode_MBps": [
+       37.352570295002366,
+       35.80628716026715,
+       42.112149006195345
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0001977745383867833
+      ],
+      "decode_mem_x": [
+       2.9994212962962963,
+       2.9994047619047617,
+       2.999510204081633
+      ],
+      "encode_cli_mem_x": [
+       0.004624730550656477,
+       0.0,
+       0.007901234567901235
+      ],
+      "decode_cli_mem_x": [
+       2.9974633487654323,
+       2.9962044595616026,
+       3.0003779289493577
+      ],
+      "ttf_0.1Gbps": [
+       0.4836158630000299,
+       0.4092120425000263,
+       0.5288992259999981
+      ],
+      "ttf_1Gbps": [
+       0.3765494510000299,
+       0.2887745315000161,
+       0.409086545999998
+      ],
+      "ttf_10Gbps": [
+       0.3658428098000299,
+       0.2754474179000161,
+       0.397105277999998
+      ],
+      "n": 32,
+      "total_bytes": 53045914.0,
+      "certified": 31
+     },
+     "Q": {
+      "cr": [
+       18.174562038305996,
+       16.104216102013833,
+       22.348629192619743
+      ],
+      "encode_s": [
+       0.24753365850000364,
+       0.1782505279999782,
+       0.31141011500002946
+      ],
+      "decode_s": [
+       0.11520674049998547,
+       0.07954338100000768,
+       0.14070553433753383
+      ],
+      "decode_MBps": [
+       110.0211103838805,
+       101.17113541764814,
+       120.16029614845152
+      ],
+      "encode_mem_x": [
+       0.0,
+       0.0,
+       0.0002591512795594428
+      ],
+      "decode_mem_x": [
+       2.999443904545945,
+       2.999016866916519,
+       2.99960614404492
+      ],
+      "encode_cli_mem_x": [
+       0.009700176366843033,
+       0.006826666666666667,
+       0.016
+      ],
+      "decode_cli_mem_x": [
+       2.9974074074074073,
+       2.9930857142857143,
+       2.999255339996081
+      ],
+      "ttf_0.1Gbps": [
+       0.18625934349997247,
+       0.11241210100000767,
+       0.21294046642501913
+      ],
+      "ttf_1Gbps": [
+       0.12289456399999546,
+       0.08283025300000768,
+       0.14785706900001205
+      ],
+      "ttf_10Gbps": [
+       0.11592008329998546,
+       0.07987206820000768,
+       0.14140653533751268
+      ],
+      "n": 32,
+      "total_bytes": 24223752.0,
+      "certified": 29
+     },
+     "RAW": {
+      "cr": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "decode_s": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "decode_MBps": [
+       NaN,
+       NaN,
+       NaN
+      ],
+      "ttf_0.1Gbps": [
+       1.13246208,
+       1.0616832,
+       1.2644352
+      ],
+      "ttf_1Gbps": [
+       0.113246208,
+       0.10616832,
+       0.12644352
+      ],
+      "ttf_10Gbps": [
+       0.0113246208,
+       0.010616832,
+       0.012644352
+      ],
+      "n": 32,
+      "total_bytes": 469316608.0
+     },
+     "SRC": {
+      "cr": [
+       0.438967334703565,
+       0.43858127273041675,
+       0.5779599782432964
+      ],
+      "decode_s": [
+       0.29514745349999316,
+       0.27375943200000563,
+       0.43764609100000484
+      ],
+      "decode_MBps": [
+       39.911649496410405,
+       35.65494963755651,
+       48.489451070767736
+      ],
+      "ttf_0.1Gbps": [
+       2.810118085999987,
+       2.5600346505000013,
+       3.008566380500003
+      ],
+      "ttf_1Gbps": [
+       0.5425900005000027,
+       0.5227875219999949,
+       0.689183466000008
+      ],
+      "ttf_10Gbps": [
+       0.3253326062999914,
+       0.2983646609999913,
+       0.4721419197000034
+      ],
+      "n": 32,
+      "total_bytes": 956808149.0
+     }
+    },
+    "breakeven": {
+     "A3": {
+      "median_breakeven_Gbps": 0.0,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "A6": {
+      "median_breakeven_Gbps": 0.19311585156086253,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "L_zlib": {
+      "median_breakeven_Gbps": 5.25855235248508,
+      "n": 32,
+      "A1_dominates": 2
+     },
+     "L_zstd": {
+      "median_breakeven_Gbps": 1.654788388046249,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "M2": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 32
+     },
+     "Q": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 26
+     },
+     "RAW": {
+      "median_breakeven_Gbps": 1.5093820598312813,
+      "n": 32,
+      "A1_dominates": 0
+     },
+     "SRC": {
+      "median_breakeven_Gbps": Infinity,
+      "n": 32,
+      "A1_dominates": 32
+     }
+    },
+    "paired_decode": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.681093456220787,
+       2.539213107641541,
+       2.7864938485360597
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8952353660285004,
+       0.85610884098686,
+       0.9499406581826865
+      ],
+      "ref_better": 8
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.4442504360397628,
+       2.3578658711285794,
+       2.584696545510882
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.3005755925816317,
+       0.2759220706174972,
+       0.3506949686101921
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.7338464149912882,
+       0.7049073619433797,
+       0.7799097972624112
+      ],
+      "ref_better": 2
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.16623657906148692,
+       0.14159287657496505,
+       0.17248424115538316
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.277289079445442,
+       5.135039979099565,
+       5.390376958227051
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.9528908053564533,
+       1.624512846001132,
+       2.1102597679793167
+      ],
+      "ref_better": 26
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.574108261808977,
+       3.867678327429939,
+       6.370257975471841
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_encode": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.224099608653412,
+       1.1715177733826192,
+       1.2882515335324551
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       21.673780266459595,
+       16.642749204824522,
+       24.153989389612665
+      ],
+      "ref_better": 32
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       21.581561384778134,
+       16.472942990769575,
+       24.20450481066916
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.21351720600239812,
+       0.1842548538589932,
+       0.24933793230474577
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.3656257678028982,
+       2.1907227003257415,
+       2.509860945436176
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.11914024666414591,
+       0.10982860655319711,
+       0.12524989379517384
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1270695590559052,
+       1.8495920877057763,
+       2.2824982826839317
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.8566503170210122,
+       1.5399187989800487,
+       1.9495423323796983
+      ],
+      "ref_better": 25
+     }
+    },
+    "paired_search": {},
+    "paired_ttf_0.1Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.2666790764542295,
+       2.1832898881740554,
+       2.3628090978926526
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8972023077573483,
+       0.872120973828606,
+       0.9457601446257208
+      ],
+      "ref_better": 6
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1369731473991305,
+       1.9857636645977494,
+       2.2006378564874245
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.4658331045194464,
+       1.2900428152747934,
+       1.655204846620648
+      ],
+      "ref_better": 31
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       12.025802483126881,
+       11.139820931020214,
+       12.77071361436823
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       10.843905612238256,
+       9.141902747847016,
+       12.041592134203418
+      ],
+      "ref_better": 32
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.742585567299908,
+       5.227477841500068,
+       6.202501610929644
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.1176792075315767,
+       1.8480824985804247,
+       2.4186259839905664
+      ],
+      "ref_better": 26
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       12.734528319066595,
+       12.161048167334208,
+       13.61185770043424
+      ],
+      "ref_better": 32
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       30.856396961183993,
+       26.82630690906398,
+       35.17940647267673
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_1Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.637269499353306,
+       2.5054821202863913,
+       2.7354638969300686
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8954618221463232,
+       0.8587351888307615,
+       0.9496007127096089
+      ],
+      "ref_better": 8
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.4198524496359832,
+       2.3106255693944178,
+       2.501735862353193
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.47986024227500246,
+       0.42726209778282226,
+       0.5275233194320641
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.156024104905872,
+       2.0427277122544747,
+       2.258113438429368
+      ],
+      "ref_better": 32
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.5319456035749122,
+       1.288853706560563,
+       1.5883573712314365
+      ],
+      "ref_better": 23
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.359118143164997,
+       5.207110267003829,
+       5.452282118645547
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.975009165825419,
+       1.6639563867545244,
+       2.137285380367624
+      ],
+      "ref_better": 26
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.5018976121309486,
+       1.4521345135021098,
+       1.6920424006007153
+      ],
+      "ref_better": 32
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       7.521795362227947,
+       7.26187619366738,
+       9.357747831231695
+      ],
+      "ref_better": 32
+     }
+    },
+    "paired_ttf_10Gbps": {
+     "A1ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.6738360157438885,
+       2.536324606147885,
+       2.781276378292693
+      ],
+      "ref_better": 32
+     },
+     "A3": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8952583579793036,
+       0.8563812686697928,
+       0.9499046540920757
+      ],
+      "ref_better": 8
+     },
+     "A3ref": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       2.4417600811389306,
+       2.355806369066994,
+       2.5805433926807044
+      ],
+      "ref_better": 32
+     },
+     "A6": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.31857793695861514,
+       0.29197199614557917,
+       0.3740080000603824
+      ],
+      "ref_better": 0
+     },
+     "L_zlib": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.8741410397297326,
+       0.8497582312058094,
+       0.9450202800808889
+      ],
+      "ref_better": 7
+     },
+     "L_zstd": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.3123373438254077,
+       0.2583230724236707,
+       0.3279478297255222
+      ],
+      "ref_better": 0
+     },
+     "M2": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.287729210026233,
+       5.146725195473894,
+       5.396690871267685
+      ],
+      "ref_better": 32
+     },
+     "Q": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       1.9551812692064514,
+       1.626978245410455,
+       2.113203529166267
+      ],
+      "ref_better": 26
+     },
+     "RAW": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       0.15222732961262986,
+       0.14825948126234254,
+       0.17682091019444937
+      ],
+      "ref_better": 0
+     },
+     "SRC": {
+      "n": 32,
+      "median_ratio_vs_A1": [
+       5.691755607256733,
+       4.2717768104288645,
+       6.537817698416773
+      ],
+      "ref_better": 32
+     }
+    },
+    "ttf_fastest": {
+     "0.1Gbps": {
+      "A1_fastest": 5,
+      "n": 32,
+      "fastest_counts": {
+       "A3": 21,
+       "A1": 5,
+       "Q": 5,
+       "A6": 1
+      }
+     },
+     "1Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "A6": 24,
+       "L_zstd": 7,
+       "A3": 1
+      }
+     },
+     "10Gbps": {
+      "A1_fastest": 0,
+      "n": 32,
+      "fastest_counts": {
+       "RAW": 23,
+       "L_zstd": 9
+      }
+     }
+    }
+   }
+  }
+ },
+ "reproduction": {
+  "streams": 1927,
+  "certified": 1898,
+  "bytes_equal_recorded": 1171,
+  "max_abs_byte_difference": 26338.0,
+  "search_param_mismatch": 0
+ }
+}

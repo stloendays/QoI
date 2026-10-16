@@ -1,0 +1,30 @@
+{
+  "material_id": "nomad-ViaCyatoI3FA",
+  "cohort": "P3B_CONFIRMATORY",
+  "system_type": "slab",
+  "source_bytes": 27182892,
+  "calibration": {
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "nproc": 4,
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "fft96_s": 0.017464099999983773,
+    "zlib16MB_s": 0.4396420850000027,
+    "copy400MB_s": 0.08570854699999586
+  },
+  "source_download_seconds": 5.262271392999992,
+  "loader": "nomad_exact_bytes_decompress_to_baderkit_grid",
+  "shape": [
+    56,
+    140,
+    252
+  ],
+  "npoints": 1975680,
+  "raw_bytes": 15805440,
+  "source_parse_seconds_median": 0.640027678999985,
+  "source_parse_seconds_all": [
+    0.902080221999995,
+    0.640027678999985,
+    0.6391808380000157
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "material_id": "nomad--QPBOSBRk9z4",
+    "arm": "Q",
+    "tau": 0.0001,
+    "op": "encode",
+    "error": "home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (!prev)\\n'\n"
+  },
+  {
+    "material_id": "nomad--QPBOSBRk9z4",
+    "arm": "Q",
+    "tau": 0.0001,
+    "op": "decode",
+    "error": "home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 593, in main\n    print(json.dumps(child(json.loads(a.child))))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 219, in child\n    cli_base = cli_baseline(arm, p, op)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 336, in cli_baseline\n    _, pe = run_cli(comp)\n            ^^^^^^^^^^^^^\n  File \"/home/runner/work/QoI/QoI/repo/analysis/deployment_cost_20261012/run_cost.py\", line 112, in run_cli\n    raise RuntimeError(f\"{Path(cmd[0]).name} rc={rc} stderr={err[-300:]!r}\")\nRuntimeError: hpez rc=-6 stderr='double free or corruption (!prev)\\n'\n"
+  }
+]

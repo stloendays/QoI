@@ -15,7 +15,7 @@ s = re.sub(r"\$[^$]+\$", " MATH ", s)
 
 def words(t):
     t = "\n".join(l for l in t.splitlines() if not l.startswith("|") and not l.startswith("#"))
-    t = re.sub(r"\*\*Table 1[^\n]*", "", t)
+    t = re.sub(r"\*\*Table \d+[^\n]*", "", t)
     return len(re.findall(r"\S+", t.replace("*", "").replace("`", "")))
 
 

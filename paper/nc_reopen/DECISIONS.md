@@ -81,3 +81,14 @@ Request: "你来看看云端最近完成任务的情况，并完善一下本地�
 - **Joint-contract wording (2026-10-12, author: "开始吧").** The Discussion's "two contracts differ in kind" became
   "one stream meets two linear constraints at opposite scales". Under the exact partition, the Bader charges are sums
   over fixed basins, which is also a linear constraint. No number changed.
+
+## Author block (2026-10-16)
+
+Author instruction: "作者是junbotong，单位是nus，ORCID是0009-0006-5158-3471".
+- `MANUSCRIPT.md` and `SUPPLEMENTARY_INFORMATION.md` now carry the author block:
+  - Junbo Tong (the printed form of the account name `junbotong`, as in the CV vault);
+  - National University of Singapore, Singapore;
+  - ORCID 0009-0006-5158-3471 (check digit verified).
+- The same values are kept in the personal skill `junbo-author-profile`.
+- Funding and correspondence are not set. The audit's F1 check now reads the whole title block instead of the first
+  six lines.
