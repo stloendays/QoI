@@ -2,6 +2,10 @@
 
 ## The downstream operator qualifies, predicts and shapes the certified compression of electronic densities
 
+Junbo Tong<sup>1</sup>
+
+<sup>1</sup>National University of Singapore, Singapore.
+
 This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 8 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
 
 Contents:

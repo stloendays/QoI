@@ -505,8 +505,8 @@ def check_final(rep: Report, ms_lines: list[str]) -> None:
             for pat in (r"\[placeholder", r"\[CITATION NEEDED", r"\bTODO\b", r"\bTBD\b"):
                 if re.search(pat, line, re.I):
                     rep.add("F1", f"{rel(f)}:{i}: placeholder matching '{pat}'")
-    head = "\n".join(ms_lines[:6])
-    if not re.search(r"(?i)affiliation|\bauthors?\b|ORCID|\d\s*Department", head):
+    head = "\n".join(next((ms_lines[:i] for i, ln in enumerate(ms_lines) if ln.startswith("## ")), ms_lines[:6]))
+    if not re.search(r"(?i)affiliation|\bauthors?\b|ORCID|\d\s*Department|<sup>\d+</sup>\s*\S.*(University|Institute)", head):
         rep.add("F1", "MANUSCRIPT.md: no author list / affiliations between the title and the Abstract")
 
 

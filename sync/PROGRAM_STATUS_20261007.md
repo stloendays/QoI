@@ -190,7 +190,7 @@ QOAC-HB slabs (32 NOMAD slabs 13/32 FAIL; 32 self-computed VASP slabs 26/32 FAIL
   `paper/nc_reopen/DECISIONS.md` and the Lee et al. row of `PRIOR_ART_ADDENDUM.md`). Cloud
   containers may have egress to publisher sites blocked, so these checks need the author's network (NUS library).
 - **Zenodo DOI** in Data availability and Code availability is a placeholder, to be minted at submission.
-- **Author list, affiliations, ORCID and funding** are absent from the manuscript.
+- **Author block** filled 2026-10-16 (Junbo Tong, National University of Singapore, ORCID 0009-0006-5158-3471; `paper/nc_reopen/DECISIONS.md`). Funding and correspondence are not set.
 - **Joint Hartree + Bader certification on slabs: resolved by Author decision (2026-10-08).** The manuscript states
   joint certification for bulk crystals only (48/48), and slab work stops here.
 - **P3b near-optimality A-H1 FAIL**: on slabs A3/A1 = 1.222 against the pre-registered gate <= 1.15; the manuscript

@@ -1,5 +1,11 @@
 # The downstream operator qualifies, predicts and shapes the certified compression of electronic densities
 
+Junbo Tong<sup>1</sup>
+
+<sup>1</sup>National University of Singapore, Singapore.
+
+ORCID: Junbo Tong, https://orcid.org/0009-0006-5158-3471
+
 ## Abstract
 
 Compressed fields are judged by derived quantities, yet reference analyses may not resolve their tolerance. QoI Stability Qualification (QSQ) screens measurement contracts: across 254 densities, five probes separated fresh Bader exceedance risks of 1.600% (135/8,437) in qualified and 81.325% (5,326/6,549) in rejected materials. QSQ-gated certified storage would shrink the 8.50 TB Materials Project archive 4.4-fold at $10^{-3}\,e$. For linear operators, the reciprocal-space symbol prescribes error allocation and forecasts coding gain. In pre-registered tests on 60 unused bulk crystals and 32 slabs, predicted gains for five operators tracked measurements (Spearman 0.978, 0.979). For the Hartree potential, the closed-form law certified 6.3-fold (60/60) and 9.5-fold (32/32) more than the QoI-preserving compressor QPET and kept slab work-function errors below 0.05 meV. On 48 further crystals, one stream certified Hartree potential and Bader charges together (48/48) with no added bytes and, carrying its own partition, stayed 10.2-fold smaller than pointwise codecs.
