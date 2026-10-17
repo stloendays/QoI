@@ -1,4 +1,13 @@
-# QSQ / General-QOAC program status — 2026-10-08
+# QSQ / General-QOAC program status — 2026-10-12
+
+> **Updated 2026-10-12** for manuscript revision 4 (`paper/nc-rev4-20261012`, PR #16, base revision 3). It
+> supersedes the cloud scientific audit (PR #15). It adds the self-contained joint-storage measurement:
+> - protocol `d084d4a`, results `analysis/hb_selfcontained_bytes_20261012/RESULTS.md`;
+> - R3 self-contained CR 188 at tau_B = 1e-4 e, 10.2-fold the pointwise codecs, highest in 48/48.
+>
+> It also resolves the audit items by definition or committed data (`paper/nc_reopen/SCIENTIFIC_AUDIT_20261009.md`),
+> cites BlockMGARD (ref. 24) and carries the proof `figures/nc/release/NC_manuscript_20261012.{pdf,docx}`.
+> The audit reports 0 failures and 0 warnings.
 
 > **Updated 2026-10-08** for manuscript revision 3 (`paper/nc-revision3-20261008` at `91d53ee`), proposed as the
 > next Nature Communications authority to replace `paper/nc-reopen-20261007` at `87b3a65` (revision 2). Revision 3
