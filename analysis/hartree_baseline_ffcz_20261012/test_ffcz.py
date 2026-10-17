@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import Mock
@@ -76,6 +77,43 @@ class MockedSearch(unittest.TestCase):
         self.assertGreater(runner.call_count, 2)
         self.assertTrue(all(v["hartree_hist"] < 1e-6 and v["hartree_safe"] < 1e-6 for v in seen.values()))
         self.assertAlmostEqual(best, 1e-3, delta=1e-3 * 1e-6)
+
+
+class BaseCodecSubprocess(unittest.TestCase):
+    def test_compress_command_carries_input_and_bound(self):
+        captured = {}
+
+        def fake_run(cmd, cwd=None):
+            captured["cmd"] = [str(x) for x in cmd]
+            return Mock(stdout='{"stream_bytes": 1, "stream_file_bytes": 1}\n')
+
+        original = C._run_process
+        C._run_process = fake_run
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                C.compress_base("sz3", np.zeros((2, 3, 4)), 3.5e-3, Path(tmp))
+        finally:
+            C._run_process = original
+        cmd = captured["cmd"]
+        self.assertEqual(cmd[cmd.index("--abs-bound") + 1], repr(3.5e-3))
+        self.assertTrue(cmd[cmd.index("--input") + 1].endswith("base.input.raw"))
+        self.assertNotIn("--output", cmd)
+
+    def test_subprocess_roundtrip_respects_bound(self):
+        rng = np.random.default_rng(0)
+        array = rng.standard_normal((12, 14, 16))
+        abs_bound = 1e-3
+        for codec, module in (("zfp", "zfpy"), ("sz3", "pysz"), ("sperr", "hdf5plugin")):
+            with self.subTest(codec=codec):
+                try:
+                    __import__(module)
+                except ImportError:
+                    continue
+                with tempfile.TemporaryDirectory() as tmp:
+                    base = C.prepare_base(codec, array, abs_bound, Path(tmp))
+                    self.assertGreater(base.stream_bytes, 0)
+                    decoded = np.fromfile(base.decoded_path, dtype="<f8").reshape(array.shape)
+                    self.assertLessEqual(float(np.max(np.abs(decoded - array))), abs_bound * (1 + 1e-12))
 
 
 if __name__ == "__main__":

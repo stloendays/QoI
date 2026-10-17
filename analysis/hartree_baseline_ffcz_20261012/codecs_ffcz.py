@@ -165,6 +165,7 @@ def _decompress_impl(codec: str, stream_path: Path, output_path: Path, shape: tu
             raise CodecExecutionError(f"SZ3 decompression failed: {last}") from last
     elif codec == "sperr":
         import h5py
+        import hdf5plugin  # noqa: F401  registers the SPERR filter in this fresh process
 
         with h5py.File(stream_path, "r") as h5:
             reconstructed = h5["density"][()]
@@ -225,7 +226,8 @@ def compress_base(codec: str, array: np.ndarray, abs_bound: float, workdir: Path
     if source_raw is None:
         _write_raw(source, array)
     stream = workdir / f"{name}.stream"
-    result = _run_process(_worker_cmd("base-compress", codec, tuple(array.shape), stream, source, abs_bound), workdir)
+    result = _run_process(_worker_cmd("base-compress", codec, tuple(array.shape), stream,
+                                      input_path=source, abs_bound=abs_bound), workdir)
     try:
         metadata = json.loads(result.stdout.strip().splitlines()[-1])
         return stream, int(metadata["stream_bytes"]), int(metadata["stream_file_bytes"])
