@@ -435,8 +435,8 @@ def build_estimates(df: pd.DataFrame, strata: pd.DataFrame) -> pd.DataFrame:
         add("R_L_over_R_P", "R_L_over_R_P", "paired ratio from the same bootstrap resample")
         saving = FRAME_TB * (1.0 - 1.0 / metrics["R_L_vs_json"])
         saving_ci = (
+            FRAME_TB * (1.0 - 1.0 / boot["R_L_vs_json"][0]),  # saving increases with R
             FRAME_TB * (1.0 - 1.0 / boot["R_L_vs_json"][1]),
-            FRAME_TB * (1.0 - 1.0 / boot["R_L_vs_json"][0]),
         ) if np.all(np.isfinite(boot["R_L_vs_json"])) else (np.nan, np.nan)
         rows.append(_estimate_row(tau, "saving_TB_L", saving, saving_ci, note="8.4976 TB frame"))
         for quantity, metric in (
