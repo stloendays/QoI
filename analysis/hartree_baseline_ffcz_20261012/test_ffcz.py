@@ -52,6 +52,9 @@ class FrozenContract(unittest.TestCase):
         command = C.ffcz_command("ffcz_cpu", "REL", 1e-4, (48, 56, 72), 0.01, "rho.raw", "base.raw", "edits")
         at = command.index("-3")
         self.assertEqual(command[at + 1:at + 4], ["48", "56", "72"])
+        # ffcz_cpu rejects the size as the last arguments; it must follow "-d"
+        self.assertEqual(command[1:6], ["-d", "-3", "48", "56", "72"])
+        self.assertLess(at + 4, len(command))
 
 
 class TaskMatrix(unittest.TestCase):
@@ -114,6 +117,32 @@ class BaseCodecSubprocess(unittest.TestCase):
                     self.assertGreater(base.stream_bytes, 0)
                     decoded = np.fromfile(base.decoded_path, dtype="<f8").reshape(array.shape)
                     self.assertLessEqual(float(np.max(np.abs(decoded - array))), abs_bound * (1 + 1e-12))
+
+
+class FfczExecutable(unittest.TestCase):
+    """Real ffcz_cpu correction and decode; runs where FFCZ_CPU or ffcz_cpu is available (Vanda)."""
+
+    def test_ffcz_roundtrip_meets_both_bounds(self):
+        try:
+            exe = C.resolve_ffcz()
+        except C.CodecExecutionError:
+            self.skipTest("ffcz_cpu not available")
+        rng = np.random.default_rng(1)
+        grid = np.linspace(0.0, 2.0 * np.pi, 16, endpoint=False)
+        x, y, z = np.meshgrid(grid, grid, grid, indexing="ij")
+        field = np.ascontiguousarray(2.0 + np.sin(x) * np.cos(2 * y) + 0.3 * np.cos(3 * z) + 0.01 * rng.standard_normal(x.shape))
+        spatial_bound = 1e-3 * float(np.ptp(field))
+        r = 1e-3
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            source = tmp / "original.raw"
+            field.astype("<f8").tofile(source)
+            base = C.prepare_base("zfp", field, spatial_bound, tmp, source_raw=source)
+            reconstructed, base_bytes, edits_bytes, _ = C.run_ffcz_roundtrip(exe, source, base, spatial_bound, "REL", r, tmp)
+        self.assertEqual(reconstructed.shape, field.shape)
+        self.assertGreater(base_bytes + edits_bytes, 0)
+        self.assertLessEqual(P.spatial_bound_ratio(field, reconstructed, spatial_bound), 1.0 + 1e-6)
+        self.assertLessEqual(P.frequency_bound_ratio(field, reconstructed, r, "REL"), 1.0 + 1e-5)
 
 
 if __name__ == "__main__":

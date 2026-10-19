@@ -270,13 +270,14 @@ def remove_ffcz_edits(prefix: Path) -> None:
 
 def ffcz_command(exe: str | Path, mode: str, r: float, shape: tuple[int, int, int], spatial_bound: float,
                  original_raw: Path | None, base_raw: Path, edits_prefix: Path, decoded_raw: Path | None = None) -> list[str]:
-    cmd = [str(exe), "-d"]
+    # ffcz_cpu's parser rejects "-3 Nx Ny Nz" as the last arguments, so the size follows "-d".
+    cmd = [str(exe), "-d", "-3", *[str(v) for v in shape]]
     if original_raw is not None:
         cmd += ["-i", str(original_raw)]
     cmd += ["-e", str(base_raw), "-z", str(edits_prefix)]
     if decoded_raw is not None:
         cmd += ["-o", str(decoded_raw)]
-    cmd += ["-M", "ABS", repr(float(spatial_bound)), "-F", str(mode), repr(float(r)), "-3", *[str(v) for v in shape]]
+    cmd += ["-M", "ABS", repr(float(spatial_bound)), "-F", str(mode), repr(float(r))]
     return cmd
 
 

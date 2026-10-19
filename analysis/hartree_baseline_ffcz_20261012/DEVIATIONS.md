@@ -26,3 +26,12 @@ subprocess did not import `hdf5plugin`, so the SPERR HDF5 filter was unregistere
 `test_ffcz.py` gains a command-construction test and a compress→decompress subprocess round trip for all three base codecs
 that checks the absolute bound. Configurations, eps_b, intervals, r grid, certificate, statistics, population and failure
 rules are unchanged. The failed probe output is kept as `probe_failed_1462110/` in staging.
+
+
+## 4. `ffcz_cpu` argument order (2026-10-19, after the failed probe 1463471, before its rerun)
+
+Implementation bug, not a protocol change. Probe 1463471 (2026-10-18) failed 4/4 synthetic checks and 234/234 shakedown
+evaluations at the FFCz step: `ffcz_command` put `-3 Nx Ny Nz` last, and the `Parsing()` of FFCz `CPU/main.cpp`
+(`96649b3`) rejects a size that ends argv ("Missing size for 1D data"). The size now follows `-d`; flags and values are
+unchanged. `test_ffcz.py` checks the position and gains a real `ffcz_cpu` correction-and-decode round trip (run on
+Vanda: spatial and REL frequency bounds met). The failed probe output is kept as `probe_failed_1463471/` in staging.
