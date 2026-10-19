@@ -58,3 +58,39 @@ Author decisions, in order:
 Defaults adopted by the assistant, flagged for author review:
 - The abstract now leads the Hartree result with the QoI-preserving compressor (QPET; 6.3- and 9.5-fold).
 - The abstract adds the archive-scale result (4.4-fold at 1e-3 e). To stay at 150 words, its near-optimality clause (A3/A1 = 1.105 on bulk crystals) moved to Results only.
+
+## Revision 4 (2026-10-12)
+
+Request: "你来看看云端最近完成任务的情况，并完善一下本地的任务". A cloud agent's scientific audit (PR #15,
+`paper/nc-scientific-audit-20261009`) was reviewed and built on in `paper/nc-rev4-20261012`.
+- **Kept from the audit:**
+  - the corrected QSQ probability statement;
+  - the reworded Introduction;
+  - the MGARD best-smoothness comparison;
+  - the slab near-optimality threshold.
+- **Replaced by definitions or data,** under the standing manuscript rule ("fix it, do not confess it"):
+  - the work-function, QPET, archive-writer and partition-storage caveats;
+  - the Gaussian-bias sentence.
+
+  `SCIENTIFIC_AUDIT_20261009.md` has the resolution table.
+- **New pre-registered measurement:** self-contained joint storage on the 48 P2 confirmatory crystals.
+  - Protocol `d084d4a`, run 38201584592, branch `research/hb-selfcontained-bytes-20261012`.
+  - Implementation by Codex, reviewed and recomputed in the main session.
+- **Abstract:** now ends with the self-contained result ("carrying its own partition, stayed 10.2-fold smaller than
+  pointwise codecs"). 148 words; main text plus Methods 4,994.
+- **Joint-contract wording (2026-10-12, author: "开始吧").** The Discussion's "two contracts differ in kind" became
+  "one stream meets two linear constraints at opposite scales". Under the exact partition, the Bader charges are sums
+  over fixed basins, which is also a linear constraint. No number changed.
+- **CI fix after the Hartree-archive addition (2026-10-19, PR #16 Auto-fix).** Commit `4736fc5` added the
+  Hartree-archive result, which took the text 245 words over budget (5,245 > 5,000), and changed the abstract wording
+  that a test pinned. The research branch `research/archive-hartree-law-20261012` (`81ba218`) is merged here, so that
+  the Table 1 commits and the results files are on this branch. To get back under 5,000 words (now 4,966):
+  - the archive paragraph is condensed, keeping every number;
+  - a forward reference is dropped;
+  - development-history sentences are removed (laptop and runner split, regeneration checks, a numerical-identity
+    check);
+  - a duplicated overhead clause is removed;
+  - two scope sentences are merged.
+
+  The Discussion now names the 356-fold Hartree archive in place of the 0.05 meV slab reprise. A new test reads every
+  archive number back from `results/estimates.csv`.
