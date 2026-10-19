@@ -81,3 +81,16 @@ Request: "你来看看云端最近完成任务的情况，并完善一下本地�
 - **Joint-contract wording (2026-10-12, author: "开始吧").** The Discussion's "two contracts differ in kind" became
   "one stream meets two linear constraints at opposite scales". Under the exact partition, the Bader charges are sums
   over fixed basins, which is also a linear constraint. No number changed.
+- **CI fix after the Hartree-archive addition (2026-10-19, PR #16 Auto-fix).** Commit `4736fc5` added the
+  Hartree-archive result, which took the text 245 words over budget (5,245 > 5,000), and changed the abstract wording
+  that a test pinned. The research branch `research/archive-hartree-law-20261012` (`81ba218`) is merged here, so that
+  the Table 1 commits and the results files are on this branch. To get back under 5,000 words (now 4,966):
+  - the archive paragraph is condensed, keeping every number;
+  - a forward reference is dropped;
+  - development-history sentences are removed (laptop and runner split, regeneration checks, a numerical-identity
+    check);
+  - a duplicated overhead clause is removed;
+  - two scope sentences are merged.
+
+  The Discussion now names the 356-fold Hartree archive in place of the 0.05 meV slab reprise. A new test reads every
+  archive number back from `results/estimates.csv`.

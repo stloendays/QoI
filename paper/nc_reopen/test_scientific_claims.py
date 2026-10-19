@@ -110,7 +110,33 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertEqual(sum(u > 1 for u in util), 48)
         self.assertEqual(f"{median(util):.2f}", "1.17")
         self.assertIn("median compression ratio of 188 (95% CI 172–200), 10.2-fold", MAIN)
-        self.assertIn("stayed 10.2-fold smaller than pointwise codecs", MAIN)
+        self.assertIn("stayed 10.2-fold below pointwise codecs", MAIN)
+
+    def test_hartree_archive(self) -> None:
+        # Every archive number in the text is read back from the committed estimates of the frozen run.
+        import csv
+        path = ROOT / "analysis/archive_hartree_law_20261012/results/estimates.csv"
+        with open(path, encoding="utf-8") as fh:
+            est = {(float(r["tau_H"]), r["quantity"]): r for r in csv.DictReader(fh)}
+
+        def f(tau, q, key="estimate"):
+            return float(est[(tau, q)][key])
+
+        self.assertEqual(f"{f(1e-6, 'R_L_vs_json'):.0f}", "356")
+        self.assertEqual(f"{f(1e-6, 'R_L_vs_json', 'ci_low'):.0f}–{f(1e-6, 'R_L_vs_json', 'ci_high'):.0f}", "327–395")
+        self.assertEqual(f"{f(1e-6, 'R_P_vs_json'):.1f}", "35.0")
+        self.assertEqual(f"{f(1e-6, 'R_P_vs_json', 'ci_low'):.1f}–{f(1e-6, 'R_P_vs_json', 'ci_high'):.1f}", "32.7–37.7")
+        self.assertEqual(f"{f(1e-6, 'R_L_over_R_P'):.1f}", "10.2")
+        self.assertEqual(f"{f(1e-6, 'R_L_over_R_P', 'ci_low'):.2f}", "9.35")
+        self.assertEqual(f"{f(1e-6, 'R_L_over_R_P', 'ci_high'):.1f}", "11.2")
+        self.assertEqual(f"{f(1e-4, 'R_L_vs_json'):,.0f}", "1,751")
+        self.assertEqual(f"{f(1e-4, 'R_P_vs_json'):.0f}", "168")
+        self.assertEqual(f"{f(1e-8, 'R_L_vs_json'):.1f}", "7.8")
+        self.assertEqual(f"{f(1e-8, 'R_P_vs_json'):.1f}", "6.1")
+        self.assertIn("the law shrinks the archive 356-fold (95% CI 327–395)", MAIN)
+        self.assertIn("against 35.0-fold (32.7–37.7) for pointwise codecs", MAIN)
+        self.assertIn("10.2-fold smaller (9.35–11.2)", MAIN)
+        self.assertIn("356-fold for the Hartree potential", MAIN)
 
     def test_work_function_definition_and_window(self) -> None:
         # Definition: electrostatic vacuum level minus the stored Fermi energy, ionic potential exact.
