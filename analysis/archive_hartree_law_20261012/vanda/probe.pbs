@@ -1,0 +1,34 @@
+#!/bin/bash
+#PBS -N qoi_archive_probe
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=120GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-archive-law-20261012/analysis/archive_hartree_law_20261012/vanda/logs/probe.pbs.log
+set -euo pipefail
+
+ROOT=/scratch/junbotong/qoi-archive-law-20261012
+STUDY="$ROOT/analysis/archive_hartree_law_20261012"
+VANDA="$STUDY/vanda"
+cd "$ROOT"
+set +eu
+source /etc/profile >/dev/null 2>&1
+set -eu
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f "$VANDA/INSTALL_COMPLETE"
+test -f "$VANDA/inputs/MANIFEST.tsv"
+test -f "$VANDA/tasks.tsv"
+mkdir -p "$VANDA/checkpoints" "$VANDA/logs"
+
+D01=$(awk -F '\t' '$2 == "D01" {print $1; exit}' "$VANDA/tasks.tsv")
+D10C=$(awk -F '\t' '$2 == "D10c" {print $1; exit}' "$VANDA/tasks.tsv")
+echo "PROBE_D01 $D01"
+echo "PROBE_D10c $D10C"
+for TASK in "$D01" "$D10C"; do
+    "$VANDA/venv/bin/python" "$STUDY/run_archive_law.py" --task-id "$TASK" \
+        --inputs "$VANDA/inputs" --checkpoints "$VANDA/checkpoints" --repo-root "$ROOT" \
+        --frozen-validation-dir "$ROOT/frozen_validation" > "$VANDA/logs/probe_$TASK.log" 2>&1
+done
+echo PROBE_DONE

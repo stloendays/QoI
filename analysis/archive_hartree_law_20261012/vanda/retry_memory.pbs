@@ -1,0 +1,64 @@
+#!/bin/bash
+#PBS -N qoi_archive_retry
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=240GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-archive-law-20261012/analysis/archive_hartree_law_20261012/vanda/logs/retry_memory.pbs.log
+set -euo pipefail
+
+ROOT=/scratch/junbotong/qoi-archive-law-20261012
+STUDY="$ROOT/analysis/archive_hartree_law_20261012"
+VANDA="$STUDY/vanda"
+cd "$ROOT"
+set +eu
+source /etc/profile >/dev/null 2>&1
+set -eu
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f "$VANDA/INSTALL_COMPLETE"
+test -f "$VANDA/tasks_small.txt" && test -f "$VANDA/tasks_large.txt"
+mkdir -p "$VANDA/checkpoints" "$VANDA/logs"
+
+# Missing checkpoints include a worker killed by the scheduler; explicit memory
+# and worker categories cover Python MemoryError and a recorded worker death.
+TASKS=$("$VANDA/venv/bin/python" - "$VANDA/tasks_small.txt" "$VANDA/tasks_large.txt" "$VANDA/checkpoints" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+seen = set()
+for task_file in sys.argv[1:3]:
+    for line in Path(task_file).read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        task_id = line.split("\t", 1)[0]
+        if task_id in seen:
+            continue
+        seen.add(task_id)
+        checkpoint = Path(sys.argv[3]) / f"{task_id}.json"
+        retry = not checkpoint.exists()
+        if checkpoint.exists():
+            try:
+                payload = json.loads(checkpoint.read_text(encoding="utf-8"))
+                retry = any(
+                    failure.get("category") in {"memory", "worker"}
+                    for failure in payload.get("failures", [])
+                )
+            except Exception:
+                retry = False
+        if retry:
+            print(task_id)
+PY
+)
+
+if [ -n "$TASKS" ]; then
+    while IFS= read -r TASK; do
+        [ -z "$TASK" ] && continue
+        "$VANDA/venv/bin/python" "$STUDY/run_archive_law.py" --task-id "$TASK" --force \
+            --inputs "$VANDA/inputs" --checkpoints "$VANDA/checkpoints" --repo-root "$ROOT" \
+            --frozen-validation-dir "$ROOT/frozen_validation" > "$VANDA/logs/retry_$TASK.log" 2>&1
+    done <<< "$TASKS"
+fi
+echo RETRY_MEMORY_DONE
