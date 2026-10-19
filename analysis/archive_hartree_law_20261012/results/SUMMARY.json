@@ -1,0 +1,65 @@
+{
+  "bootstrap": {
+    "interval": "percentile_95",
+    "reps": 2000,
+    "seed": 20261012
+  },
+  "failure_records": 0,
+  "frame_tb": 8.4976,
+  "outputs": [
+    "objects.csv",
+    "estimates.csv",
+    "strata_results.csv",
+    "failures.csv",
+    "SUMMARY.json",
+    "RESULTS_DRAFT.md"
+  ],
+  "primary": {
+    "R_L": {
+      "bootstrap_reps": 2000,
+      "bootstrap_seed": 20261012,
+      "ci_high": 394.6452199440057,
+      "ci_low": 326.61332534098636,
+      "estimate": 356.03798778293486,
+      "note": "",
+      "quantity": "R_L_vs_json",
+      "tau_H": 1e-06
+    },
+    "R_L_over_R_P": {
+      "bootstrap_reps": 2000,
+      "bootstrap_seed": 20261012,
+      "ci_high": 11.178791946848875,
+      "ci_low": 9.352257907507038,
+      "estimate": 10.172857097284135,
+      "note": "paired ratio from the same bootstrap resample",
+      "quantity": "R_L_over_R_P",
+      "tau_H": 1e-06
+    },
+    "R_P": {
+      "bootstrap_reps": 2000,
+      "bootstrap_seed": 20261012,
+      "ci_high": 37.66965310783699,
+      "ci_low": 32.74602979122288,
+      "estimate": 34.99881934623725,
+      "note": "",
+      "quantity": "R_P_vs_json",
+      "tau_H": 1e-06
+    },
+    "saving_TB": {
+      "bootstrap_reps": 2000,
+      "bootstrap_seed": 20261012,
+      "ci_high": 8.476067748827148,
+      "ci_low": 8.471582690414948,
+      "estimate": 8.47373288387311,
+      "note": "8.4976 TB frame",
+      "quantity": "saving_TB_L",
+      "tau_H": 1e-06
+    }
+  },
+  "primary_tau_H": 1e-06,
+  "protocol": "analysis/archive_hartree_law_20261012/PROTOCOL.md",
+  "sample_objects": 300,
+  "status_counts": {
+    "SUCCESS": 300
+  }
+}

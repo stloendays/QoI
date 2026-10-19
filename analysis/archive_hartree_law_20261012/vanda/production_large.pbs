@@ -1,0 +1,37 @@
+#!/bin/bash
+#PBS -N qoi_archive_large
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-archive-law-20261012/analysis/archive_hartree_law_20261012/vanda/logs/production_large.pbs.log
+set -euo pipefail
+
+ROOT=/scratch/junbotong/qoi-archive-law-20261012
+STUDY="$ROOT/analysis/archive_hartree_law_20261012"
+VANDA="$STUDY/vanda"
+cd "$ROOT"
+set +eu
+source /etc/profile >/dev/null 2>&1
+set -eu
+module load Python/3.12.3-GCCcore-13.3.0
+export OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+test -f "$VANDA/INSTALL_COMPLETE"
+test -f "$VANDA/tasks_large.txt"
+test -f "$VANDA/inputs/MANIFEST.tsv"
+mkdir -p "$VANDA/checkpoints" "$VANDA/logs"
+
+run_one() {
+    local task="$1"
+    "$VANDA/venv/bin/python" "$STUDY/run_archive_law.py" --task-id "$task" \
+        --inputs "$VANDA/inputs" --checkpoints "$VANDA/checkpoints" --repo-root "$ROOT" \
+        --frozen-validation-dir "$ROOT/frozen_validation" > "$VANDA/logs/prod_$task.log" 2>&1
+}
+export ROOT STUDY VANDA
+export -f run_one
+
+# D10a-D10c: two workers on the 250 GB node; each object is single-threaded.
+awk -F '\t' '$2 ~ /^D10[abc]$/ {print $1}' "$VANDA/tasks_large.txt" | \
+    xargs -r -P 2 -I{} bash -c 'run_one "$1"' _ {}
+echo PRODUCTION_LARGE_DONE

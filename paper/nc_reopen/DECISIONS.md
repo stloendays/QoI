@@ -81,6 +81,19 @@ Request: "你来看看云端最近完成任务的情况，并完善一下本地�
 - **Joint-contract wording (2026-10-12, author: "开始吧").** The Discussion's "two contracts differ in kind" became
   "one stream meets two linear constraints at opposite scales". Under the exact partition, the Bader charges are sums
   over fixed basins, which is also a linear constraint. No number changed.
+- **CI fix after the Hartree-archive addition (2026-10-19, PR #16 Auto-fix).** Commit `4736fc5` added the
+  Hartree-archive result, which took the text 245 words over budget (5,245 > 5,000), and changed the abstract wording
+  that a test pinned. The research branch `research/archive-hartree-law-20261012` (`81ba218`) is merged here, so that
+  the Table 1 commits and the results files are on this branch. To get back under 5,000 words (now 4,966):
+  - the archive paragraph is condensed, keeping every number;
+  - a forward reference is dropped;
+  - development-history sentences are removed (laptop and runner split, regeneration checks, a numerical-identity
+    check);
+  - a duplicated overhead clause is removed;
+  - two scope sentences are merged.
+
+  The Discussion now names the 356-fold Hartree archive in place of the 0.05 meV slab reprise. A new test reads every
+  archive number back from `results/estimates.csv`.
 
 ## Author block (2026-10-16)
 
@@ -92,3 +105,14 @@ Author instruction: "作者是junbotong，单位是nus，ORCID是0009-0006-5158-
 - The same values are kept in the personal skill `junbo-author-profile`.
 - Funding and correspondence are not set. The audit's F1 check now reads the whole title block instead of the first
   six lines.
+
+## Revision 5 merged with revision 4 (2026-10-19, PR #17 Auto-fix)
+
+- Merging `paper/nc-rev4-20261012` at `5a1bf34` (Hartree archive, 4,966 words) into the deployment-cost revision.
+- Overlapping sentences take the revision-4 wording. The deployment-cost Results subsection, Table 2, Methods paragraph
+  and Table 1 rows are kept. To stay within 5,000 words (now 4,992), the following were condensed or removed:
+  - the textbook-allocation sentence;
+  - the QPET configuration aside, which Methods states;
+  - the Discussion's repeat of the per-operator gains;
+  - the pre-registration clause, which now cites Table 1;
+  - the deployment opening and Methods sentences.

@@ -1,0 +1,140 @@
+{
+ "complete": true,
+ "eligible": {
+  "0.0001": true,
+  "1e-06": true,
+  "1e-08": false
+ },
+ "epsilon": 0.00012192499980301363,
+ "failures": [],
+ "floor_hartree": 1.1387215184450186e-08,
+ "frame_bytes": 7587727,
+ "json_bytes": 7587727,
+ "key": "chgcars/mp-2223078.json.gz",
+ "lossless_bytes": 3918458,
+ "natoms": 10,
+ "npoints": 518400,
+ "peak_rss_bytes": 463949824,
+ "probes": [
+  {
+   "hartree_historical": 8.313181974795338e-09,
+   "hartree_safe": 8.312429901635654e-09,
+   "response": 8.313181974795338e-09,
+   "seed": 20260905
+  },
+  {
+   "hartree_historical": 9.178106205639817e-09,
+   "hartree_safe": 9.177427247614141e-09,
+   "response": 9.178106205639817e-09,
+   "seed": 1
+  },
+  {
+   "hartree_historical": 1.1387215184450186e-08,
+   "hartree_safe": 1.1386654399132678e-08,
+   "response": 1.1387215184450186e-08,
+   "seed": 2
+  },
+  {
+   "hartree_historical": 1.0724010689724813e-08,
+   "hartree_safe": 1.072341676058788e-08,
+   "response": 1.0724010689724813e-08,
+   "seed": 3
+  },
+  {
+   "hartree_historical": 1.0327443672066549e-08,
+   "hartree_safe": 1.0326817968876921e-08,
+   "response": 1.0327443672066549e-08,
+   "seed": 4
+  }
+ ],
+ "raw64_bytes": 4147200,
+ "reference_rms_historical": 353.8059151749436,
+ "reference_rms_safe": 353.80591517494355,
+ "shape": "60x80x108",
+ "size_matches_frame": true,
+ "source_sha256": "2e69f52a376fc35f935af833c64d77564b12f171be48c3240cda5685730c67aa",
+ "status": "SUCCESS",
+ "storage": {
+  "0.0001": {
+   "L": 10683,
+   "P": 85080
+  },
+  "1e-06": {
+   "L": 55604,
+   "P": 309888
+  },
+  "1e-08": {
+   "L": 3918458,
+   "P": 3918458
+  }
+ },
+ "stratum": "D03",
+ "task_id": "mp-2223078",
+ "wall_seconds": 41.62452721595764,
+ "writers": {
+  "0.0001": {
+   "L": {
+    "certified": true,
+    "codec": "",
+    "cr": 388.2055602358888,
+    "density_linf": 7.3084582927272095,
+    "density_rmse": 0.5667492453681592,
+    "hartree_historical": 9.949999818574012e-05,
+    "hartree_safe": 9.949999719424426e-05,
+    "parameter": "alpha_rel=0.202977747",
+    "seconds": 0.3516581058502197,
+    "stream_bytes": 10683,
+    "tau": 0.0001,
+    "writer": "L"
+   },
+   "P": {
+    "certified": true,
+    "codec": "ZFP",
+    "cr": 48.744710860366716,
+    "density_linf": 2.339559943000001,
+    "density_rmse": 0.38442320887065273,
+    "hartree_historical": 9.05659199357069e-05,
+    "hartree_safe": 9.05648528809665e-05,
+    "parameter": "codec=zfp;abs_tol_rel=0.0107460783",
+    "seconds": 3.981269598007202,
+    "stream_bytes": 85080,
+    "tau": 0.0001,
+    "writer": "P"
+   }
+  },
+  "1e-06": {
+   "L": {
+    "certified": true,
+    "codec": "",
+    "cr": 74.58456226170779,
+    "density_linf": 0.5285717891651984,
+    "density_rmse": 0.026545194197299598,
+    "hartree_historical": 9.948849417351578e-07,
+    "hartree_safe": 9.947857757404205e-07,
+    "parameter": "alpha_rel=0.000660010573",
+    "seconds": 0.348675012588501,
+    "stream_bytes": 55604,
+    "tau": 1e-06,
+    "writer": "L"
+   },
+   "P": {
+    "certified": true,
+    "codec": "ZFP",
+    "cr": 13.382899628252789,
+    "density_linf": 0.033764262531249756,
+    "density_rmse": 0.004645186915658502,
+    "hartree_historical": 6.463932755309642e-07,
+    "hartree_safe": 6.463675555575189e-07,
+    "parameter": "codec=zfp;abs_tol_rel=6.97830585e-05",
+    "seconds": 4.061803817749023,
+    "stream_bytes": 309888,
+    "tau": 1e-06,
+    "writer": "P"
+   }
+  },
+  "1e-08": {
+   "L": null,
+   "P": null
+  }
+ }
+}
