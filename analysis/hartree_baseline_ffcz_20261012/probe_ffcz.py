@@ -25,6 +25,7 @@ import run_ffcz as R  # noqa: E402
 SYNTHETIC_SHAPE = (48, 56, 72)
 SYNTHETIC_MODES = ("REL", "PTW")
 SYNTHETIC_R = (1e-2, 1e-4)
+GATING_MODES = ("REL",)
 
 
 def smooth_field(shape: tuple[int, int, int] = SYNTHETIC_SHAPE) -> np.ndarray:
@@ -120,7 +121,13 @@ def synthetic_probe(executable: str | Path, output_dir: Path) -> dict[str, Any]:
                     check.update({"ok": False, "error": f"{type(exc).__name__}: {exc}", "bound_confirmed": False})
                 output["checks"].append(check)
     output["success"] = bool(output["checks"]) and all(c.get("ok") for c in output["checks"])
-    output["all_frequency_bounds_confirmed"] = bool(output["success"] and all(c.get("bound_confirmed") for c in output["checks"]))
+    # DEVIATIONS 5: only REL gates the run. FFCz's PTW bound is not the protocol's |ΔF(k)| <= r|F(k)|, so its ratio is
+    # reported and PTW points are judged by the decoded Hartree certificate alone.
+    output["gating_modes"] = list(GATING_MODES)
+    output["all_frequency_bounds_confirmed"] = bool(output["success"] and all(
+        c.get("bound_confirmed") for c in output["checks"] if c.get("mode") in GATING_MODES))
+    output["ptw_frequency_bounds_confirmed"] = bool(output["success"] and all(
+        c.get("bound_confirmed") for c in output["checks"] if c.get("mode") == "PTW"))
     return output
 
 
@@ -184,7 +191,9 @@ def main() -> int:
         f"axis_order: {C.FFCZ_AXIS_ORDER}",
         f"binary_sha256: {payload['binary_sha256']}",
         f"synthetic_success: {synthetic.get('success')}",
-        f"synthetic_frequency_bounds_confirmed: {synthetic.get('all_frequency_bounds_confirmed')}",
+        f"synthetic_frequency_bounds_confirmed (gating {synthetic.get('gating_modes')}): "
+        f"{synthetic.get('all_frequency_bounds_confirmed')}",
+        f"synthetic_ptw_frequency_bounds_confirmed (reported): {synthetic.get('ptw_frequency_bounds_confirmed')}",
     ]
     for check in synthetic.get("checks", []):
         lines.append(f"synthetic {check.get('mode')} r={check.get('r')}: {check}")

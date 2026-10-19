@@ -35,3 +35,22 @@ evaluations at the FFCz step: `ffcz_command` put `-3 Nx Ny Nz` last, and the `Pa
 (`96649b3`) rejects a size that ends argv ("Missing size for 1D data"). The size now follows `-d`; flags and values are
 unchanged. `test_ffcz.py` checks the position and gains a real `ffcz_cpu` correction-and-decode round trip (run on
 Vanda: spatial and REL frequency bounds met). The failed probe output is kept as `probe_failed_1463471/` in staging.
+
+
+## 5. FFCz PTW semantics and the probe gate (2026-10-19, author decision, before the probe rerun)
+
+The synthetic probe check of §7 found that `-F PTW r` does not deliver the protocol's bound |ΔF(k)| ≤ r·|F(k)|: on the
+48 × 56 × 72 field with an SZ3 base, max_k |ΔF(k)| / (r|F(k)|) was 4,790 at r = 1e-2 and 479,034 at r = 1e-4 (REL: 0.0030
+and 0.30, confirmed). Reading FFCz `CPU/` at `96649b3`:
+- `check_convergence_ptw` accepts a coefficient when |F+ΔF|²/|F|² lies in [√(1−r), √(1+r)], a magnitude-only
+  condition with the phase free, or when both components of the unnormalized error are at most
+  min(1−√(1−r), √(1+r)−1)/√2 + 1e-6 in absolute terms, so coefficients small against that constant are not held to
+  a relative bound;
+- `project_frequency_constraints_ptw` is called with `params_.delta_ptw`, which `ProjectionSolver::initialize` never
+  sets (only `params_.delta`), so a PTW projection step reads an uninitialized value. On the synthetic field the
+  convergence check passed at iteration 0 and no projection ran.
+
+Author decision (2026-10-19): keep all 18 configurations and run PTW with the authors' code unchanged. Every PTW point,
+like every REL point, is accepted or rejected by the decoded Hartree certificate of §2, which does not depend on
+FFCz's own bound. The probe gate uses the REL frequency check only; the PTW ratios are still computed and reported
+(`ptw_frequency_bounds_confirmed` in `probe.json`). The FFCz source and binary are not modified.
