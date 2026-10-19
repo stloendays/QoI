@@ -94,3 +94,25 @@ Request: "你来看看云端最近完成任务的情况，并完善一下本地�
 
   The Discussion now names the 356-fold Hartree archive in place of the 0.05 meV slab reprise. A new test reads every
   archive number back from `results/estimates.csv`.
+
+## Author block (2026-10-16)
+
+Author instruction: "作者是junbotong，单位是nus，ORCID是0009-0006-5158-3471".
+- `MANUSCRIPT.md` and `SUPPLEMENTARY_INFORMATION.md` now carry the author block:
+  - Junbo Tong (the printed form of the account name `junbotong`, as in the CV vault);
+  - National University of Singapore, Singapore;
+  - ORCID 0009-0006-5158-3471 (check digit verified).
+- The same values are kept in the personal skill `junbo-author-profile`.
+- Funding and correspondence are not set. The audit's F1 check now reads the whole title block instead of the first
+  six lines.
+
+## Revision 5 merged with revision 4 (2026-10-19, PR #17 Auto-fix)
+
+- Merging `paper/nc-rev4-20261012` at `5a1bf34` (Hartree archive, 4,966 words) into the deployment-cost revision.
+- Overlapping sentences take the revision-4 wording. The deployment-cost Results subsection, Table 2, Methods paragraph
+  and Table 1 rows are kept. To stay within 5,000 words (now 4,992), the following were condensed or removed:
+  - the textbook-allocation sentence;
+  - the QPET configuration aside, which Methods states;
+  - the Discussion's repeat of the per-operator gains;
+  - the pre-registration clause, which now cites Table 1;
+  - the deployment opening and Methods sentences.

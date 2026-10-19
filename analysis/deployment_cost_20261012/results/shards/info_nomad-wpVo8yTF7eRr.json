@@ -1,0 +1,30 @@
+{
+  "material_id": "nomad-wpVo8yTF7eRr",
+  "cohort": "P3B_CONFIRMATORY",
+  "system_type": "slab",
+  "source_bytes": 35701040,
+  "calibration": {
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "nproc": 4,
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "fft96_s": 0.013953858999997237,
+    "zlib16MB_s": 0.36374290099999484,
+    "copy400MB_s": 0.03606541799999263
+  },
+  "source_download_seconds": 4.763825052000001,
+  "loader": "nomad_exact_bytes_decompress_to_baderkit_grid",
+  "shape": [
+    84,
+    84,
+    384
+  ],
+  "npoints": 2709504,
+  "raw_bytes": 21676032,
+  "source_parse_seconds_median": 0.5982034320000054,
+  "source_parse_seconds_all": [
+    0.8282312030000014,
+    0.5917001759999891,
+    0.5982034320000054
+  ]
+}

@@ -1,6 +1,6 @@
-# Word count — NC revision 4, 2026-10-12
+# Word count — NC revision 5 (deployment cost, merged with the Hartree-archive revision 4), 2026-10-19
 
-Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running text only; section headings, displayed mathematics, tables, figure legends, references and the availability statements are excluded.
+Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running text only; section headings, displayed mathematics, tables and their captions, figure legends, references and the availability statements are excluded.
 
 ## Main text and Methods (target ≤5,000 words including Methods)
 
@@ -8,25 +8,27 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 |---|---:|
 | Introduction | 363 |
 | Results — A tolerance is scored only after the measurement contract resolves it | 474 |
-| Results — The operator symbol explains the codec effect and fixes a closed-form allocation law | 355 |
-| Results — Under equal search, the law certifies more than pointwise and QoI-preserving codecs on bulk crystals and surface slabs | 673 |
+| Results — The operator symbol explains the codec effect and fixes a closed-form allocation law | 340 |
+| Results — Under equal search, the law certifies more than pointwise and QoI-preserving codecs on bulk crystals | 652 |
+| Results — The law's certified streams are the cheapest to produce and fast to retrieve | 123 |
 | Results — The operator metric carries the gain, and the system class sets the optimizer's share | 270 |
-| Results — One stream certifies the Hartree potential and Bader charges together | 389 |
+| Results — One stream certifies the Hartree potential and Bader charges together | 369 |
 | Results — The gain is predicted before compression from the operator symbol and the reference spectrum | 340 |
-| Discussion | 434 |
-| Methods — Measurement contract and QSQ | 185 |
+| Discussion | 398 |
+| Methods — Measurement contract and QSQ | 171 |
 | Methods — Hermitian-orbit representation and certificate | 215 |
-| Methods — Arms and the operational optimum | 140 |
+| Methods — Arms and the operational optimum | 135 |
 | Methods — QoI-preserving baselines and work-function error | 251 |
+| Methods — Deployment cost | 49 |
 | Methods — Archive estimate | 144 |
-| Methods — Single-density diagnostics | 105 |
+| Methods — Single-density diagnostics | 89 |
 | Methods — Gain predictor | 160 |
-| Methods — Populations and pre-registration chronology | 139 |
+| Methods — Populations and pre-registration chronology | 120 |
 | Methods — Joint contract and certify-then-project | 189 |
 | Methods — Statistics | 140 |
-| **Introduction + Results + Discussion** | **3,298** |
-| **Methods (total)** | **1,668** |
-| **Main text + Methods** | **4,966** |
+| **Introduction + Results + Discussion** | **3,329** |
+| **Methods (total)** | **1,663** |
+| **Main text + Methods** | **4,992** |
 
 ## Outside the 5,000-word budget
 
@@ -39,4 +41,4 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 
 ## Display items
 
-8 main figures and Table 1 = 9 display items. Supplementary Fig. 1 is separate.
+8 main figures and Tables 1–2 = 10 display items (Table 2: deployment cost). Supplementary Fig. 1 is separate.

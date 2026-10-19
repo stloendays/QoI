@@ -1,0 +1,30 @@
+{
+  "material_id": "mp-2684290",
+  "cohort": "P1_CONFIRMATORY",
+  "system_type": "bulk",
+  "source_bytes": 6432459,
+  "calibration": {
+    "cpu": "AMD EPYC 7763 64-Core Processor",
+    "nproc": 4,
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "fft96_s": 0.016410651000001053,
+    "zlib16MB_s": 0.4112024369999858,
+    "copy400MB_s": 0.04057587200000512
+  },
+  "source_download_seconds": 1.1701192110000136,
+  "loader": "mp_gzip_json_monty_to_baderkit_grid",
+  "shape": [
+    80,
+    80,
+    80
+  ],
+  "npoints": 512000,
+  "raw_bytes": 4096000,
+  "source_parse_seconds_median": 0.3015299800000264,
+  "source_parse_seconds_all": [
+    0.6209880389999967,
+    0.3015299800000264,
+    0.2963441259999797
+  ]
+}

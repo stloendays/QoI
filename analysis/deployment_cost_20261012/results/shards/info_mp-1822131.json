@@ -1,0 +1,30 @@
+{
+  "material_id": "mp-1822131",
+  "cohort": "P1_CONFIRMATORY",
+  "system_type": "bulk",
+  "source_bytes": 25868502,
+  "calibration": {
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "nproc": 4,
+    "python": "3.12.14",
+    "numpy": "2.4.6",
+    "fft96_s": 0.022862920000008558,
+    "zlib16MB_s": 0.4321243809999942,
+    "copy400MB_s": 0.0903021769999981
+  },
+  "source_download_seconds": 1.7870021199999968,
+  "loader": "mp_gzip_json_monty_to_baderkit_grid",
+  "shape": [
+    112,
+    112,
+    140
+  ],
+  "npoints": 1756160,
+  "raw_bytes": 14049280,
+  "source_parse_seconds_median": 1.0881242300000054,
+  "source_parse_seconds_all": [
+    1.3477541459999998,
+    1.0881242300000054,
+    1.0690899380000047
+  ]
+}
