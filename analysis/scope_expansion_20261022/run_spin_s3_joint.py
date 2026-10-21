@@ -44,6 +44,7 @@ TAUS_MU = (1e-2, 1e-3)         # mu_B
 FIELDS = ["material_id", "formula", "magnetic", "npoints", "natoms", "tau_B_e", "tau_mu_muB", "status", "error",
           "rho_codec", "rho_bytes", "rho_q_err_e", "gross_migrated_charge_e", "migrated_voxels",
           "mu_err_m_exact_muB", "mu_err_joint_muB", "m_codec", "m_bytes", "joint_certified_without_map",
+          "m_codec_decframe", "m_bytes_decframe", "mu_err_joint_decframe_muB", "joint_certified_decframe",
           "bader_solves"]
 
 
@@ -127,6 +128,20 @@ def run_material(meta: dict, bader: Path, frozen: Path) -> dict:
                                        joint_certified_without_map=bool(ej < tau_mu))
                         else:
                             row.update(status="NO_CERTIFIED_M")
+                        # decoded-frame variant: the encoder knows rho' and therefore the partition a user will
+                        # derive, so it certifies m' against the moments read on that partition directly
+                        md = []
+                        for codec in s1.CODECS:
+                            b = search(codec, m, ptp_m, lambda rec: float(np.max(np.abs(
+                                s1.sums(rec, atom_d, n) - mu_ref))) < tau_mu, core, work)
+                            if b is not None:
+                                md.append((b[0], codec, b[1]))
+                        if md:
+                            nb_d, codec_d, rec_d = min(md, key=lambda c: c[0])
+                            mu_jd, _ = B(rec_d, rec_r, f"best{counter[0]}")
+                            ejd = float(np.max(np.abs(mu_jd - mu_ref)))
+                            row.update(m_codec_decframe=codec_d, m_bytes_decframe=nb_d,
+                                       mu_err_joint_decframe_muB=ejd, joint_certified_decframe=bool(ejd < tau_mu))
                     except Exception as e:  # noqa: BLE001
                         row.update(status="FAILED", error=f"{type(e).__name__}: {e}")
                         res["failures"].append({"stage": f"tau_B={tau_b} tau_mu={tau_mu}", "error": row["error"],
@@ -161,6 +176,9 @@ def aggregate(results: list[dict]) -> dict:
                 out["groups"][f"tau_B={tb:g}|tau_mu={tm:g}|magnetic={mag}"] = {
                     "n": len(g),
                     "joint_certified_without_map": sum(bool(r["joint_certified_without_map"]) for r in g),
+                    "joint_certified_decframe": sum(bool(r.get("joint_certified_decframe")) for r in g),
+                    "median_m_bytes_decframe_over_refframe": float(np.median([r["m_bytes_decframe"] / r["m_bytes"]
+                                                                               for r in g if r.get("m_bytes_decframe")])) if any(r.get("m_bytes_decframe") for r in g) else None,
                     "median_mu_err_m_exact_over_tau_mu": float(np.median([r["mu_err_m_exact_muB"] / tm for r in g])),
                     "max_mu_err_m_exact_muB": max(r["mu_err_m_exact_muB"] for r in g),
                     "median_gross_migrated_charge_e": float(np.median([r["gross_migrated_charge_e"] for r in g])),

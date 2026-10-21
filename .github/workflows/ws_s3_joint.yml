@@ -21,7 +21,7 @@ concurrency:
 env:
   MANIFEST: analysis/scope_expansion_20261022/S1_ENGINEERING_MANIFEST.csv
   FROZEN_COMMIT: 893f931b3045b0b628329db81999c2f439d4e830
-  RESULTS: analysis/scope_expansion_20261022/results/s3_joint_contracts
+  RESULTS: analysis/scope_expansion_20261022/results/s3_joint_contracts_v2
 
 jobs:
   preflight:
