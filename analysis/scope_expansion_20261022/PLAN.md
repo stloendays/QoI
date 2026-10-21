@@ -83,3 +83,10 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - 01:05 — WS-H done on side branch `paper/nc-rev5-hartree-archive-si-20261022`: SI Note 3.4 plus the
   SOURCE_FILES row. audit_manuscript.py reports 0 failures and 0 warnings; test_scientific_claims.py 13 passed.
   Main text unchanged. Not merged.
+- 01:20 — WS-B4 engineering read: the bound holds on the compiled binary (144/144, 0 violations), but the byte
+  effect is small (median total ratio ≥ 0.989). Not carried forward (B4 branch `results/real_engineering/RESULTS.md`).
+- 01:25 — S0 census: 210/210 MP objects carry a magnetization block; 87 have an atom with |mu| ≥ 0.1 mu_B.
+- 01:55 — **S0b: the archive estimates omit the magnetization block** (300/300 objects carry it; 52% of the
+  text). Reading the archive ratios as covering the charge-density block only gives Bader 2.10× and Hartree
+  171×. See `FINDING_magnetization_block.md`; the owner decides.
+- 02:00 — WS-S1 spin-channel engineering triggered (run 39633829124).
