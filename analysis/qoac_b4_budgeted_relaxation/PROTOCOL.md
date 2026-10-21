@@ -2,7 +2,7 @@
 
 Date: 2026-10-21
 Branch: `research/qoac-b4-budgeted-relaxation-20261021` (from `research/qoac-b3-design-20261006`)
-Status: **working draft, revisable.** Synthetic study done; real-material engineering prepared, not run.
+Status: **working draft, revisable.** Synthetic study done; real-material engineering done (run 39630018118, `results/real_engineering/RESULTS.md`): bound validated on the compiled binary, byte effect small (median total ratio ≥ 0.989).
 Nothing in this file is frozen. The parameter grid, the reading guides in section 5 and the scope can all be
 changed by the study owner before or after the engineering run. A confirmatory protocol, if one is wanted
 later, would be written separately.
