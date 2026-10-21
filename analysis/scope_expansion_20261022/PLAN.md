@@ -112,3 +112,6 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - 03:00 — WS-S2c (tau_H = 1e-4): map-free 76× (10/300 objects need the map); the hybrid policy (map only where
   needed) gives 1,036× [927, 1,152] (published rho-only 1,751×). Rule: decoded-frame m, with the map as
   fallback.
+- 03:20 — draft Supplementary Fig. Y (spin channel) rendered from committed results.
+- 03:55 — WS-S2d (pointwise A6 at 1e-6, decoded-frame m): whole object 34.6× [32.4, 37.2]. The like-for-like
+  law/pointwise ratio is 9.15× [8.45, 10.0] (published rho-only 10.2×).

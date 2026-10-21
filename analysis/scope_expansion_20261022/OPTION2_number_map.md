@@ -10,12 +10,12 @@ Status: for the owner. `paper/MANUSCRIPT.md` is unchanged.
 | manuscript place (rev5) | current text | whole-object replacement |
 |---|---|---|
 | Abstract | "shrink the 8.50 TB … archive 4.4-fold for Bader charges at 10⁻³ e" | **4.3-fold** (4.34 [3.61, 5.37]) |
-| Abstract | "356-fold for the Hartree potential at 10⁻⁶ (pointwise: 35-fold)" | **316-fold** [290, 350] (pointwise: **33-fold**) |
+| Abstract | "356-fold for the Hartree potential at 10⁻⁶ (pointwise: 35-fold)" | **316-fold** [290, 350] (pointwise: **35-fold**, 34.6 [32.4, 37.2], decoded-frame m, S2d) |
 | Results, archive (Bader) | "shrinks 4.37-fold (95% CI 3.64–5.46), … saving of 6.55 TB" | 4.34-fold (3.61–5.37), 6.54 TB |
 | Results, archive (Bader) | "lossless binary storage accounts for 2.00-fold … certified compression adds 2.66-fold (2.21–3.27)" | lossless binary: **0.99-fold**; certified compression over lossless binary: **5.35-fold (4.49–6.58)** |
 | Results, archive (Bader) | "At 10⁻⁴ and 10⁻² e the archive shrinks 2.36- and 8.99-fold" | 2.35- and 8.88-fold |
-| Results, archive (Hartree) | "356-fold (95% CI 327–395), from 8.50 TB to an estimated 24 GB, against 35.0-fold (32.7–37.7)" | 316-fold (290–350), to an estimated 27 GB, against 33.3-fold (31.2–35.7) |
-| Results, archive (Hartree) | "the law's archive is 10.2-fold smaller (9.35–11.2)" | 9.5-fold (8.79–10.4) |
+| Results, archive (Hartree) | "356-fold (95% CI 327–395), from 8.50 TB to an estimated 24 GB, against 35.0-fold (32.7–37.7)" | 316-fold (290–350), to an estimated 27 GB, against 34.6-fold (32.4–37.2) (S2d, like-for-like m policy) |
+| Results, archive (Hartree) | "the law's archive is 10.2-fold smaller (9.35–11.2)" | **9.2-fold (8.45–10.0)** (S2b/S2d like-for-like) |
 | Results, archive (Hartree) | "The factors are 1,751 and 168 at 10⁻⁴" | law **1,036** (hybrid policy: atom map only for the 10/300 objects that need it; S2c). The pointwise figure is available only under the always-map policy, 134. See note 1 |
 | Results, archive (Hartree) | "and 7.8 and 6.1 at 10⁻⁸" | 7.7 and 6.0 |
 | Discussion | "the law's Hartree-certified store is 356-fold smaller than the public one" | 316-fold, magnetization included |
