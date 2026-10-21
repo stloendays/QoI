@@ -23,8 +23,9 @@
   confirms S2's 317× (reference frame) and S4's engineering result on all 300 archive objects.
 - **At 1e-3 mu_B, keep the map.** Eight objects cannot be certified on the decoded partition and fall back
   to lossless m, which costs most because these objects are large. Carrying the atom map is then far better
-  (164× in S2). The practical rule is to store the map only when decoded-frame certification fails. That
-  hybrid was not computed here; it lies between 164× and 316×.
+  (164× in S2). The practical rule is to store the map only when decoded-frame certification fails. Computed
+  from the S2 and S2b per-object tables (decoded-frame m where certified, otherwise reference-frame m plus
+  the atom map; seed 20261012), this hybrid gives 200× [130, 294] at 1e-3 mu_B and 316× at 1e-2 mu_B.
 - **Recommended headline (if option 2 is taken).** "Certified storage of the whole served objects would
   shrink the 8.50 TB archive 4.4-fold for Bader charges at 10⁻³ e and, with the law, 316-fold for the
   Hartree potential at 10⁻⁶, magnetic moments certified to 10⁻² μB (pointwise: 35-fold)."
