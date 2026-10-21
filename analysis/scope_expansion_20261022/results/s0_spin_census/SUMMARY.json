@@ -1,0 +1,26 @@
+{
+  "objects": 210,
+  "ok": 210,
+  "failed": 0,
+  "spin_polarized": 210,
+  "with_atom_moment_ge_0p1_muB": 87,
+  "by_manifest": {
+    "P1_ENGINEERING_MANIFEST.csv": {
+      "ok": 12,
+      "spin": 12,
+      "moment_ge_0p1": 4
+    },
+    "P2_ENGINEERING_MANIFEST.csv": {
+      "ok": 12,
+      "spin": 12,
+      "moment_ge_0p1": 2
+    },
+    "materials_metadata.csv": {
+      "ok": 186,
+      "spin": 186,
+      "moment_ge_0p1": 81
+    }
+  },
+  "median_M_abs_muB_spin": 0.011521630835038398,
+  "spin_byte_share_note": "raw float64 payload doubles when diff is present; lossless shares not measured here"
+}
