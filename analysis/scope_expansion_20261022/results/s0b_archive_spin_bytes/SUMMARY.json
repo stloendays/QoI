@@ -1,0 +1,149 @@
+{
+  "objects_measured": 300,
+  "objects_failed": 0,
+  "estimates": [
+    {
+      "contract": "bader",
+      "tolerance": "1e-4 e",
+      "objects_unmeasured": 0,
+      "R_current": 2.3620533759209152,
+      "R_current_ci": [
+        2.1836061026578575,
+        2.5874795661413983
+      ],
+      "R_block_only": 1.1349017268641897,
+      "R_block_only_ci": [
+        1.0495213171822046,
+        1.242482732887234
+      ],
+      "R_with_lossless_m": 1.1003241556849728,
+      "R_with_lossless_m_ci": [
+        1.0677495387858629,
+        1.1391855352818232
+      ]
+    },
+    {
+      "contract": "bader",
+      "tolerance": "1e-3 e",
+      "objects_unmeasured": 0,
+      "R_current": 4.367138158609395,
+      "R_current_ci": [
+        3.6691461174285713,
+        5.433543019819977
+      ],
+      "R_block_only": 2.0982898558454264,
+      "R_block_only_ci": [
+        1.7627583779115155,
+        2.6124573841963312
+      ],
+      "R_with_lossless_m": 1.3996868088348324,
+      "R_with_lossless_m_ci": [
+        1.3373069667968263,
+        1.4716263143712947
+      ]
+    },
+    {
+      "contract": "bader",
+      "tolerance": "1e-2 e",
+      "objects_unmeasured": 0,
+      "R_current": 8.98881298029509,
+      "R_current_ci": [
+        6.29072637506899,
+        14.091411266978458
+      ],
+      "R_block_only": 4.318877582441938,
+      "R_block_only_ci": [
+        3.019120334133789,
+        6.775931748223941
+      ],
+      "R_with_lossless_m": 1.6758502514609894,
+      "R_with_lossless_m_ci": [
+        1.5893141437879483,
+        1.7545454992759735
+      ]
+    },
+    {
+      "contract": "hartree",
+      "tolerance": "law 1e-4",
+      "objects_unmeasured": 0,
+      "R_current": 1750.8929492977143,
+      "R_current_ci": [
+        1651.900247034765,
+        1860.6165641945338
+      ],
+      "R_block_only": 841.2559394165191,
+      "R_block_only_ci": [
+        794.560216171039,
+        893.4972804031152
+      ],
+      "R_with_lossless_m": 1.9508111293304915,
+      "R_with_lossless_m_ci": [
+        1.9365449548654607,
+        1.9686947071554861
+      ]
+    },
+    {
+      "contract": "hartree",
+      "tolerance": "law 1e-6",
+      "objects_unmeasured": 0,
+      "R_current": 356.03798778293486,
+      "R_current_ci": [
+        324.90192671576864,
+        390.77530628673793
+      ],
+      "R_block_only": 171.0664675418549,
+      "R_block_only_ci": [
+        156.05374500796447,
+        187.92485361933282
+      ],
+      "R_with_lossless_m": 1.9423327668339485,
+      "R_with_lossless_m_ci": [
+        1.9266209496073181,
+        1.9600693295679057
+      ]
+    },
+    {
+      "contract": "hartree",
+      "tolerance": "law 1e-8",
+      "objects_unmeasured": 0,
+      "R_current": 7.7964885620895,
+      "R_current_ci": [
+        6.23484321226784,
+        10.088697762999209
+      ],
+      "R_block_only": 3.745998470141484,
+      "R_block_only_ci": [
+        2.9919279850057925,
+        4.846899612451311
+      ],
+      "R_with_lossless_m": 1.5617703122045952,
+      "R_with_lossless_m_ci": [
+        1.485496343228394,
+        1.6346501886026017
+      ]
+    },
+    {
+      "contract": "hartree",
+      "tolerance": "pointwise 1e-6",
+      "objects_unmeasured": 0,
+      "R_current": 34.99881934623725,
+      "R_current_ci": [
+        32.854584083128366,
+        37.55611841630455
+      ],
+      "R_block_only": 16.81597076474463,
+      "R_block_only_ci": [
+        15.78119414510986,
+        18.04793384544021
+      ],
+      "R_with_lossless_m": 1.8497672941958903,
+      "R_with_lossless_m_ci": [
+        1.8360031015797402,
+        1.8650368692839419
+      ]
+    }
+  ],
+  "objects_with_diff": 300,
+  "median_diff_share_text": 0.5205916817280853,
+  "median_lossless_diff_over_total": 1.0196443315377717
+}
