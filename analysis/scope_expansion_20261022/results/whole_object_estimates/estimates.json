@@ -1,0 +1,136 @@
+[
+  {
+    "quantity": "Bader archive R at 0.0001 e",
+    "published": 2.3620533759209152,
+    "whole_object": 2.3541369085674444,
+    "whole_object_ci": [
+      2.1847336909113695,
+      2.567788603688352
+    ],
+    "saving_TB_whole": 4.887954371882722
+  },
+  {
+    "quantity": "Bader archive R at 0.001 e",
+    "published": 4.367138158609395,
+    "whole_object": 4.340153802908325,
+    "whole_object_ci": [
+      3.611056458867378,
+      5.368699851165206
+    ],
+    "saving_TB_whole": 6.539697034831858
+  },
+  {
+    "quantity": "format gain: gzipped JSON over lossless float64 (successful objects)",
+    "published": 2.0013127640869657,
+    "whole_object": 0.9889023582566026
+  },
+  {
+    "quantity": "certified compression over lossless binary at 1e-3 e (successful objects)",
+    "published": 2.664201109259906,
+    "whole_object": 5.34895009438521,
+    "whole_object_ci": [
+      4.491821244168452,
+      6.580265511494539
+    ]
+  },
+  {
+    "quantity": "Bader archive R at 0.01 e",
+    "published": 8.98881298029509,
+    "whole_object": 8.875235499428745,
+    "whole_object_ci": [
+      6.421241913136892,
+      13.588868130812816
+    ],
+    "saving_TB_whole": 7.540149349755626
+  },
+  {
+    "quantity": "Hartree archive R_L (law) at 0.0001",
+    "published": 1750.8929492977143,
+    "whole_object": 484.4332225939729,
+    "whole_object_ci": [
+      454.8273586487649,
+      515.2565272030785
+    ],
+    "m_policy": "reference frame + atom map",
+    "archive_GB_whole": 17.541323764910842
+  },
+  {
+    "quantity": "Hartree archive R_P (pointwise) at 0.0001",
+    "published": 168.05656453677534,
+    "whole_object": 134.34525124932975,
+    "whole_object_ci": [
+      124.08234148067595,
+      147.15326469247353
+    ],
+    "m_policy": "reference frame + atom map"
+  },
+  {
+    "quantity": "Hartree R_L / R_P at 0.0001",
+    "published": 10.41847400679532,
+    "whole_object": 3.605882739352797,
+    "whole_object_ci": [
+      3.3892773717982103,
+      3.839440465712273
+    ]
+  },
+  {
+    "quantity": "Hartree archive R_L (law) at 1e-06",
+    "published": 356.03798778293486,
+    "whole_object": 316.407836194927,
+    "whole_object_ci": [
+      290.4258847042225,
+      349.85816753534544
+    ],
+    "m_policy": "decoded frame, no map",
+    "archive_GB_whole": 26.85647770987868
+  },
+  {
+    "quantity": "Hartree archive R_P (pointwise) at 1e-06",
+    "published": 34.99881934623725,
+    "whole_object": 33.26068837665947,
+    "whole_object_ci": [
+      31.18381567660572,
+      35.7157360376263
+    ],
+    "m_policy": "reference frame + atom map"
+  },
+  {
+    "quantity": "Hartree R_L / R_P at 1e-06",
+    "published": 10.172857097284135,
+    "whole_object": 9.512967158459794,
+    "whole_object_ci": [
+      8.78900559141225,
+      10.408514931785833
+    ]
+  },
+  {
+    "quantity": "Hartree archive R_L (law) at 1e-08",
+    "published": 7.7964885620895,
+    "whole_object": 7.706772652599317,
+    "whole_object_ci": [
+      6.107207018081946,
+      9.96100775213804
+    ],
+    "m_policy": "reference frame + atom map",
+    "archive_GB_whole": 1102.61459407836
+  },
+  {
+    "quantity": "Hartree archive R_P (pointwise) at 1e-08",
+    "published": 6.084109223927711,
+    "whole_object": 6.029336493049789,
+    "whole_object_ci": [
+      5.098528690911398,
+      7.188844670119761
+    ],
+    "m_policy": "reference frame + atom map"
+  },
+  {
+    "quantity": "Hartree R_L / R_P at 1e-08",
+    "published": 1.281451117186935,
+    "whole_object": 1.2782123972485468,
+    "whole_object_ci": [
+      1.199982567136853,
+      1.3920434838096734
+    ]
+  }
+]
