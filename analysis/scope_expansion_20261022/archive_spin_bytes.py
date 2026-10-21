@@ -112,6 +112,11 @@ def strat_total(strata: np.ndarray, x: np.ndarray, idx_by_h: dict) -> float:
     return sum(N_FRAME[h] / len(ix) * x[ix].sum() for h, ix in idx_by_h.items())
 
 
+def block_share(json_b, share, idx_by_h) -> float:
+    """Expansion estimate of the fraction of archive bytes attributable to the magnetization block."""
+    return strat_total(None, json_b * share, idx_by_h) / strat_total(None, json_b, idx_by_h)
+
+
 def ratios(json_b, stored, share, lossless_m, idx_by_h):
     tj = strat_total(None, json_b, idx_by_h)
     ts = strat_total(None, stored, idx_by_h)
@@ -120,7 +125,7 @@ def ratios(json_b, stored, share, lossless_m, idx_by_h):
     return tj / ts, tb / ts, tj / (ts + tm)
 
 
-def aggregate(meas_rows: list[dict], wpf_csv: Path, hartree_csv: Path, seed: int = 20261022, B: int = 2000) -> dict:
+def aggregate(meas_rows: list[dict], wpf_csv: Path, hartree_csv: Path, seed: int | None = None, B: int = 2000) -> dict:
     meas = {r["task_id"]: r for r in meas_rows}
     out = {"objects_measured": sum(r["status"] == "OK" for r in meas_rows), "objects_failed":
            sum(r["status"] != "OK" for r in meas_rows), "estimates": []}
@@ -137,8 +142,9 @@ def aggregate(meas_rows: list[dict], wpf_csv: Path, hartree_csv: Path, seed: int
     specs = [("bader", "stored_0.0001", "1e-4 e"), ("bader", "stored_0.001", "1e-3 e"), ("bader", "stored_0.01", "1e-2 e"),
              ("hartree", "stored_L_0.0001", "law 1e-4"), ("hartree", "stored_L_1e-06", "law 1e-6"),
              ("hartree", "stored_L_1e-08", "law 1e-8"), ("hartree", "stored_P_1e-06", "pointwise 1e-6")]
-    rng = np.random.default_rng(seed)
+    seeds = {"bader": 20260930, "hartree": 20261012}  # frozen bootstrap seeds of the two archive protocols
     for contract, col, label in specs:
+        rng = np.random.default_rng(seeds[contract] if seed is None else seed)
         rows = [r for c, r in tables if c == contract]
         strata = np.array([r["stratum"] for r in rows])
         json_b = np.array([float(r["frame_bytes"]) for r in rows])
@@ -162,7 +168,8 @@ def aggregate(meas_rows: list[dict], wpf_csv: Path, hartree_csv: Path, seed: int
         out["estimates"].append({"contract": contract, "tolerance": label, "objects_unmeasured": len(miss),
                                  "R_current": point[0], "R_current_ci": [lo[0], hi[0]],
                                  "R_block_only": point[1], "R_block_only_ci": [lo[1], hi[1]],
-                                 "R_with_lossless_m": point[2], "R_with_lossless_m_ci": [lo[2], hi[2]]})
+                                 "R_with_lossless_m": point[2], "R_with_lossless_m_ci": [lo[2], hi[2]],
+                                 "block_share_of_frame_bytes": block_share(json_b, share, idx)})
     return out
 
 
