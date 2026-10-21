@@ -57,9 +57,10 @@ seeds as the published estimates, with m stored under the moment contract (lossl
 - **Ratios for the whole served object.** Bader 1e-3 e: 4.36× [3.62, 5.40]. Hartree law 1e-6: 317×
   [291, 350]; 232× [216, 252] with the reference atom map (median 17 kB) carried along. Pointwise codecs:
   34.6×.
-- **Map-free reading of the Hartree row** [`results/s4_hartree_decoded_frame/`]. Certifying m on the
-  partition of the law's rho' composed in 16/16 engineering materials at tau_H = 1e-6 and tau_mu = 1e-2
-  mu_B, at the same m bytes. This supports the map-free figure.
+- **Map-free reading of the Hartree row** [`results/s4_hartree_decoded_frame/`,
+  `results/s2b_archive_hartree_decframe/`]. Certifying m on the partition of the law's rho' composed in 16/16
+  engineering materials and in 300/300 archive objects at tau_H = 1e-6 and tau_mu = 1e-2 mu_B. The measured
+  map-free whole-object ratio is 316× [290, 350]. At 1e-3 mu_B, 8 archive objects need the stored map.
 
 ---
 

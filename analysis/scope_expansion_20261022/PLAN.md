@@ -104,3 +104,6 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - 01:35 — WS-A0 bucket census: 26.10 TB in 17 prefixes. Volumetric holdings are about 17.07 TB: chgcars 8.50,
   locpots 2.73, mp-volumetric-chgcars 2.24, AECCAR 0/1/2 3.49, elfcars 0.11. They place the paper's frame in
   context and point to two adjacent contracts (AECCAR → partition, LOCPOT → Hartree part).
+- 02:30 — WS-S2b measured: the map-free whole-object Hartree archive is 316× [290, 350] at 1e-6 with m at
+  1e-2 mu_B (300/300 certified on the decoded partition). Law streams were regenerated within 0.016% of the
+  record. At 1e-3 mu_B the stored map is needed for 8/300 objects.

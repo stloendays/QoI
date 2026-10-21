@@ -79,8 +79,8 @@ With m certified under the per-atom moment contract (`results/s2_archive_whole_o
 archive estimates for the whole served object are:
 
 - Bader 1e-3 e: 4.36× (published 4.37×);
-- Hartree law 1e-6: 317× with m at 1e-2 mu_B, or 232× if the reference atom map is carried as well
-  (published 356×);
+- Hartree law 1e-6: 316× with m at 1e-2 mu_B, measured map-free with decoded-frame moments (S2b), or 232×
+  if the reference atom map is carried as well (published 356×);
 - pointwise codecs: 34.6× (published 35.0×).
 
 Option 2 below is therefore feasible and keeps headline numbers close to the published ones.
