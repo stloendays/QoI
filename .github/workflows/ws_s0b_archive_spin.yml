@@ -1,0 +1,98 @@
+name: WS-S0b archive magnetization bytes
+
+# Sensitivity of the archive estimates to the magnetization block (scope expansion, PLAN.md WS-S).
+# Re-reads the same stratified 300-object archive sample used by WP-F and the Hartree archive run.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/scope-expansion-20261022
+    paths:
+      - analysis/scope_expansion_20261022/RUN_S0B
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ws-s0b-archive-spin-20261022
+  cancel-in-progress: false
+
+env:
+  NSHARDS: '20'
+  RESULTS: analysis/scope_expansion_20261022/results/s0b_archive_spin_bytes
+  OBJECTS: analysis/scope_expansion_20261022/archive_hartree_objects.csv
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.s.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - id: s
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.4.6
+          python -m py_compile analysis/scope_expansion_20261022/archive_spin_bytes.py
+          test "$(($(wc -l < "$OBJECTS") - 1))" -eq 300
+          echo "shards=$(python -c "import json; print(json.dumps(list(range($NSHARDS))))")" >> "$GITHUB_OUTPUT"
+
+  measure:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.preflight.outputs.shards) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - run: python -m pip install -q numpy==2.4.6
+      - run: |
+          set -euo pipefail
+          python analysis/scope_expansion_20261022/archive_spin_bytes.py run --objects "$OBJECTS" \
+            --shard ${{ matrix.shard }} --nshards "$NSHARDS" --out "$RUNNER_TEMP/s0"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s0b-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/s0
+          retention-days: 30
+
+  aggregate:
+    if: always() && needs.preflight.result == 'success'
+    needs: [preflight, measure]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - run: python -m pip install -q numpy==2.4.6
+      - uses: actions/download-artifact@v4
+        with: { pattern: s0b-shard-*, path: shards }
+      - run: |
+          set -euo pipefail
+          rm -rf "$RESULTS"
+          python analysis/scope_expansion_20261022/archive_spin_bytes.py aggregate --inputs shards \
+            --wpf analysis/scope_expansion_20261022/wpf_objects_completed_v2.csv \
+            --hartree analysis/scope_expansion_20261022/archive_hartree_objects.csv --out "$RESULTS"
+          git rev-parse HEAD > "$RESULTS/commit_before_results.txt"
+      - run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$RESULTS"
+          if git diff --cached --quiet; then echo 'No result changes.'; else
+            git commit -m "research: WS-S0b archive magnetization-bytes results"
+            git pull --rebase origin research/scope-expansion-20261022
+            git push origin HEAD:research/scope-expansion-20261022
+          fi
