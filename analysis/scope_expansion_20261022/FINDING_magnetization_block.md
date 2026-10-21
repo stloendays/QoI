@@ -73,6 +73,18 @@ It also raised caveats that the wording must respect:
   same file. A certified, contract-qualified store for m (WS-S1, running) turns the archive estimate into a
   statement about the whole served object, and adds a second physical field to the paper.
 
+## Update: whole-object estimate measured (S2)
+
+With m certified under the per-atom moment contract (`results/s2_archive_whole_object/READING.md`), the
+archive estimates for the whole served object are:
+
+- Bader 1e-3 e: 4.36× (published 4.37×);
+- Hartree law 1e-6: 317× with m at 1e-2 mu_B, or 232× if the reference atom map is carried as well
+  (published 356×);
+- pointwise codecs: 34.6× (published 35.0×).
+
+Option 2 below is therefore feasible and keeps headline numbers close to the published ones.
+
 ## Options (owner's decision)
 
 1. **Reword, smallest change.** Make the archive claims refer to the charge-density content: Bader 2.1×

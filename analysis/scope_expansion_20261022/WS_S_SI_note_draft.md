@@ -50,8 +50,13 @@ the resolved Bader contract, so the partition moves.
     1.6e-3 and 1.9e-3 mu_B, so the partition itself must be stored, or rho' tightened.
 
 **Whole-object archive estimate** [`results/s2_archive_whole_object/`]. Same frame, sample, estimators and
-seeds as the published estimates, with m stored under the moment contract (lossless where not eligible) and
-the reference atom map carried with the object. *pending (S2)*
+seeds as the published estimates, with m stored under the moment contract (lossless where not eligible).
+
+- **Qualification and cost.** The contract qualified in 300/300 objects at 1e-2 mu_B. The certified m streams
+  cost a median 0.05% of lossless rho (maximum 1.0%).
+- **Ratios for the whole served object.** Bader 1e-3 e: 4.36× [3.62, 5.40]. Hartree law 1e-6: 317×
+  [291, 350]; 232× [216, 252] with the reference atom map (median 17 kB) carried along. Pointwise codecs:
+  34.6×.
 
 ---
 

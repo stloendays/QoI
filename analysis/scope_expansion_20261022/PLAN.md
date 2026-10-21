@@ -95,3 +95,6 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
   at 1e-2 e; the misses are budget overruns from migration.
 - 01:10 — WS-S3 v2: decoded-frame certification composes in 60/62 pairs at no byte cost. The 2 exceptions
   are a real limit (migration > tau_mu).
+- 01:20 — WS-S2 measured: whole-object archive ratios are Bader 4.36× and Hartree law 317× (232× with the atom
+  map), against 35× for pointwise codecs. The moment contract qualifies in 300/300 archive objects; m costs a
+  median 0.05% of lossless rho.

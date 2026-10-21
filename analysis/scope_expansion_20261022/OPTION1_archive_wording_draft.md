@@ -43,6 +43,11 @@ in S0b yet.
 
 The ratio between writers stays 10.2× (L/P, unchanged).
 
-## D. Alternative wording that keeps whole-archive numbers
+## D. Alternative wording that keeps whole-archive numbers (now measured, S2)
 
-Only possible after an archive rerun of (rho, m) with m stored under the moment contract (WS-S1 → S2).
+> Certified storage of the whole served objects — density and magnetization — would shrink the 8.50 TB
+> Materials Project archive 4.4-fold for Bader charges at $10^{-3}\,e$ and, with the law, 232-fold for the
+> Hartree potential at $10^{-6}$ (pointwise: 33-fold).
+
+These numbers come from `results/s2_archive_whole_object/` and use the "+ atom map" column, the safe
+reading. A new SI note covers the moment contract (`WS_S_SI_note_draft.md`).
