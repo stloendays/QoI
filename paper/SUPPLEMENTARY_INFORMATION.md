@@ -12,7 +12,7 @@ Contents:
 
 - Supplementary Note 1. QSQ validations
 - Supplementary Note 2. Hartree mechanism, frozen-ladder QOAC-H confirmation, census and strongest baselines
-- Supplementary Note 3. Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error and deployment cost
+- Supplementary Note 3. Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error, deployment cost and archive estimate
 - Supplementary Note 4. Joint certification: engineering cohort and per-tolerance description
 - Supplementary Note 5. Bader contracts under an exact partition: basin projection, partition transcription and storage
 - Supplementary Note 6. Gain-predictor calibration
@@ -204,7 +204,7 @@ Certificate as in the confirmation (historical and Nyquist-safe Hartree relative
 T1 was the best new baseline in 48/48 materials (selected cutoffs $q_c$ = 0.30 in 18, 0.15 in 17, 0.20 in 9, 0.50 in 4); uniform Fourier quantization ($q_c=1$) reached median CR 87.8. Median density $L_\infty$ and RMSE of the certified streams were 1.89 and 0.096 for QOAC-H and 2.82 and 0.148 for T1. These ladder-searched ratios and the equal-search ratios of the main text (A1/A6, A1/A2) answer different questions and are reported separately.
 
 
-## Supplementary Note 3 — Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error and deployment cost
+## Supplementary Note 3 — Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error, deployment cost and archive estimate
 
 Values are rounded from the committed `SUMMARY.json` of each run; bootstrap seed 20261006, 10,000 resamples of the median. Both cohorts ran with zero pipeline failures, and A1 and A3 were certified for every material at every tolerance.
 
@@ -425,6 +425,20 @@ Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 
 **Break-even bandwidth at $\tau=10^{-6}$** (median over materials; below it A1 delivers the field first): bulk: A6 0.171, float64 + zstd-3 1.46, raw float64 1.5 Gbit/s; A1 is both smaller and faster to decode than QPET in 60/60, MGARD in 60/60 and the archived file in 60/60; slabs: A6 0.0892, float64 + zstd-3 1.73, raw float64 1.53 Gbit/s; A1 is both smaller and faster to decode than QPET in 23/32, MGARD in 32/32 and the archived file in 32/32.
 
 **Runners.** AMD EPYC 7763 64-Core Processor (44); AMD EPYC 9V45 96-Core Processor (20); AMD EPYC 9V74 80-Core Processor (17); INTEL(R) XEON(R) PLATINUM 8573C (6); Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz (4); Intel(R) Xeon(R) 6973P-C (1).
+
+### 3.4 Archive estimate under the Hartree contract (protocol `9959c07`)
+
+- **Frame, sample, storage rule and estimators.** As in Supplementary Note 1.12: 415,289 objects, 8.4976 TB as gzipped JSON, the same stratified sample of 300 objects, stratified expansion and a stratified paired bootstrap (2,000 resamples, seed 20261012, 95% percentile).
+- **Writers.** L, the closed-form law (A1), and P, the best of ZFP, SZ3 and SPERR (A6), each with an equal 60-step tolerance bisection and the decoded, Nyquist-safe Hartree certificate.
+- **Execution.** NUS Vanda cluster (jobs 1462245, 1463192, 1463193; 2026-10-17); 300/300 objects evaluated, 0 failures; 301 checkpoint files SHA-256-verified after copy-back. Deviations 1–2 concern infrastructure only.
+
+| $\tau_H$ | $R_L$ vs gzipped JSON [95% CI] | $R_P$ vs gzipped JSON [95% CI] | $R_L/R_P$ [95% CI] | saving with L (TB) | $R_L$ vs lossless float64 | eligible objects |
+|---|---|---|---|---|---|---|
+| $10^{-4}$ | 1,750.9 [1,654.7, 1,865.2] | 168.1 [153.4, 186.2] | 10.42 [9.62, 11.20] | 8.493 | 876.4 | 100.0% |
+| $10^{-6}$ | 356.0 [326.6, 394.6] | 35.0 [32.7, 37.7] | 10.17 [9.35, 11.18] | 8.474 | 178.2 | 100.0% |
+| $10^{-8}$ | 7.8 [6.2, 10.1] | 6.1 [5.1, 7.3] | 1.28 [1.20, 1.40] | 7.408 | 3.9 | 76.7% |
+
+Per-object median certified-stream ratio L/P: 0.1023 at $10^{-6}$ (n = 300), 0.1191 at $10^{-4}$ (n = 300) and 0.2824 at $10^{-8}$ (n = 231). At $10^{-6}$ the law's ratio against gzipped JSON ranges over strata from 248.5 (D01) to 3,439.1 (D10c); the per-stratum table, wall time and memory are in the source file (Supplementary Note 8).
 
 ## Supplementary Note 4 — Joint certification: engineering cohort and per-tolerance description
 
