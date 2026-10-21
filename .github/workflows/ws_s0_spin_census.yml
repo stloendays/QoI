@@ -1,0 +1,99 @@
+name: WS-S0 spin-density census
+
+# Descriptive census of the magnetization block in MP CHGCARs (scope expansion, PLAN.md WS-S).
+# Reads the development panel MP rows and the P1/P2 engineering manifests only.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/scope-expansion-20261022
+    paths:
+      - analysis/scope_expansion_20261022/RUN_S0
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ws-s0-spin-census-20261022
+  cancel-in-progress: false
+
+env:
+  NSHARDS: '14'
+  RESULTS: analysis/scope_expansion_20261022/results/s0_spin_census
+  MANIFESTS: >-
+    --manifest materials_metadata.csv
+    --manifest analysis/fresh_population_20261006/P1_ENGINEERING_MANIFEST.csv
+    --manifest analysis/fresh_population_20261006/P2_ENGINEERING_MANIFEST.csv
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.s.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - id: s
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.4.6
+          python -m py_compile analysis/scope_expansion_20261022/spin_census.py
+          python analysis/scope_expansion_20261022/spin_census.py count $MANIFESTS
+          echo "shards=$(python -c "import json; print(json.dumps(list(range($NSHARDS))))")" >> "$GITHUB_OUTPUT"
+
+  census:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.preflight.outputs.shards) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - run: python -m pip install -q numpy==2.4.6
+      - run: |
+          set -euo pipefail
+          python analysis/scope_expansion_20261022/spin_census.py run $MANIFESTS \
+            --shard ${{ matrix.shard }} --nshards "$NSHARDS" --out "$RUNNER_TEMP/s0"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s0-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/s0
+          retention-days: 30
+
+  aggregate:
+    if: always() && needs.preflight.result == 'success'
+    needs: [preflight, census]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - run: python -m pip install -q numpy==2.4.6
+      - uses: actions/download-artifact@v4
+        with: { pattern: s0-shard-*, path: shards }
+      - run: |
+          set -euo pipefail
+          rm -rf "$RESULTS"
+          python analysis/scope_expansion_20261022/spin_census.py aggregate --inputs shards --out "$RESULTS"
+          git rev-parse HEAD > "$RESULTS/commit_before_results.txt"
+      - run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$RESULTS"
+          if git diff --cached --quiet; then echo 'No result changes.'; else
+            git commit -m "research: WS-S0 spin-density census results"
+            git pull --rebase origin research/scope-expansion-20261022
+            git push origin HEAD:research/scope-expansion-20261022
+          fi
