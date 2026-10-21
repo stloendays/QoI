@@ -39,6 +39,30 @@ published ones.
 - **"m lossless"** is what happens if the archive must still serve the magnetization block and nothing better
   than lossless storage is available for it. Then m dominates, and every writer lands near 2×.
 
+## Independent check and caveats
+
+A separate agent recomputed all of the above from the committed files with its own estimator, without
+importing these scripts. It confirmed all three points:
+
+- **Stores.** Only `grid.total` is stored, in both `run_wpf.py` and `run_archive_law.py`.
+- **Prevalence and share.** 300/300 objects carry the block; the expansion share is 0.5195.
+- **Ratios.** Block-only Bader 2.098 / Hartree 171.07; with m kept losslessly, 1.400 / 1.942.
+
+It also raised caveats that the wording must respect:
+
+1. **Approximate attribution.** The share is measured by re-serializing and gzipping each block on its own.
+   It is not a byte count inside MP's original stream. The three blocks add up to a median 0.87 of the file
+   (minimum 0.59), and the remaining overhead is split in proportion to the share. The block-only ratios are
+   therefore approximate attributions, not measured byte counts.
+2. **Most blocks are near zero.** In 134/300 objects mean |m| < 1e-3 mu_B, probably spin-polarized runs that
+   converged non-magnetic. Their block is still stored at full size, losslessly about the size of rho. The
+   finding is that 300/300 *files* carry a magnetization block, not that 300/300 materials are magnetic.
+3. **The format-gain sentence must change.** The manuscript says lossless binary storage "accounts for
+   2.00-fold". Under the block-only accounting, storing the total block losslessly gives 0.915: lossless
+   float64 of rho is *larger* than its gzipped-text share. So that factor comes entirely from dropping m.
+4. **Intervals.** Bootstrap intervals were recomputed here with the frozen seeds
+   (`results/s0b_archive_spin_bytes_frozen_seeds/`). The independent check verified the point estimates only.
+
 ## Why it matters
 
 - **A reviewer can check this in minutes.** The abstract's "would shrink the 8.50 TB Materials Project archive
