@@ -107,3 +107,8 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - 02:30 — WS-S2b measured: the map-free whole-object Hartree archive is 316× [290, 350] at 1e-6 with m at
   1e-2 mu_B (300/300 certified on the decoded partition). Law streams were regenerated within 0.016% of the
   record. At 1e-3 mu_B the stored map is needed for 8/300 objects.
+- 02:30 — whole-object counterparts of every manuscript archive number (`results/whole_object_estimates/`,
+  `OPTION2_number_map.md`).
+- 03:00 — WS-S2c (tau_H = 1e-4): map-free 76× (10/300 objects need the map); the hybrid policy (map only where
+  needed) gives 1,036× [927, 1,152] (published rho-only 1,751×). Rule: decoded-frame m, with the map as
+  fallback.

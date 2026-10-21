@@ -16,17 +16,17 @@ Status: for the owner. `paper/MANUSCRIPT.md` is unchanged.
 | Results, archive (Bader) | "At 10⁻⁴ and 10⁻² e the archive shrinks 2.36- and 8.99-fold" | 2.35- and 8.88-fold |
 | Results, archive (Hartree) | "356-fold (95% CI 327–395), from 8.50 TB to an estimated 24 GB, against 35.0-fold (32.7–37.7)" | 316-fold (290–350), to an estimated 27 GB, against 33.3-fold (31.2–35.7) |
 | Results, archive (Hartree) | "the law's archive is 10.2-fold smaller (9.35–11.2)" | 9.5-fold (8.79–10.4) |
-| Results, archive (Hartree) | "The factors are 1,751 and 168 at 10⁻⁴" | 484 and 134 with the atom map (ratio 3.6). See note 1 |
+| Results, archive (Hartree) | "The factors are 1,751 and 168 at 10⁻⁴" | law **1,036** (hybrid policy: atom map only for the 10/300 objects that need it; S2c). The pointwise figure is available only under the always-map policy, 134. See note 1 |
 | Results, archive (Hartree) | "and 7.8 and 6.1 at 10⁻⁸" | 7.7 and 6.0 |
 | Discussion | "the law's Hartree-certified store is 356-fold smaller than the public one" | 316-fold, magnetization included |
 | Methods, archive | — | one sentence on the magnetization block and the moment contract, plus a pointer to the new SI note (`WS_S_SI_note_draft.md`) |
 
 ## Notes
 
-1. **Hartree at 10⁻⁴.** The law stream is so small that the 12–17 kB atom map dominates. Decoded-frame m (no
-   map) was measured only at 10⁻⁶ on the archive. On the engineering set it composes in 14/16 materials at
-   10⁻⁴ with m at 10⁻² μB (S4), so a map-free 10⁻⁴ archive figure would be much higher than 484 but is not
-   measured. Either measure it (an S2b run at 10⁻⁴, about 30 min on Actions) or quote 10⁻⁴ with the caveat.
+1. **Hartree at 10⁻⁴** (now measured, S2c).
+   - Map-free, 10/300 objects cannot certify m in the decoded frame, giving 76×.
+   - With the hybrid policy (atom map only for those 10), the law reaches 1,036× [927, 1,152].
+   - A like-for-like pointwise figure under the same hybrid policy was not measured.
 2. **Word budget.** The abstract replacement can keep its length ("Certified storage of whole objects
    would …" = +2 words; cut "unused" and one other word). The Methods sentence needs about 30 words; cut
    them from the deployment paragraph.
