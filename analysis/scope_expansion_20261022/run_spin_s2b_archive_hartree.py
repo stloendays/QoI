@@ -35,7 +35,8 @@ sys.path.insert(0, str(HERE))
 import run_spin_s1 as s1  # noqa: E402
 from run_spin_s3_joint import search  # noqa: E402
 
-TAU_H = 1e-6
+import os
+TAU_H = float(os.environ.get("S2B_TAU_H", "1e-6"))
 TAUS_MU = (1e-2, 1e-3)
 N_FRAME = {"D01": 41527, "D02": 41531, "D03": 41529, "D04": 41529, "D05": 41528, "D06": 41529,
            "D07": 41529, "D08": 41529, "D09": 41529, "D10a": 33105, "D10b": 6741, "D10c": 1683}
@@ -52,7 +53,7 @@ def process(row: dict, bader: Path, frozen: Path, lawrepo: Path) -> dict:
     v02, _ = RC.lazy()
     t0 = time.time()
     out = {"task_id": row["task_id"], "stratum": row["stratum"], "status": "OK", "error": "",
-           "law_bytes_recorded": row.get("writer_L_stream_bytes_1e-06", "")}
+           "law_bytes_recorded": row.get(f"writer_L_stream_bytes_{TAU_H:g}" if TAU_H != 1e-4 else "writer_L_stream_bytes_0.0001", "")}
     try:
         blob = s1.fetch(row["url"])
         if len(blob) != int(row["frame_bytes"]):
@@ -132,10 +133,11 @@ def aggregate(mrows, hartree_csv: Path, B: int = 2000) -> dict:
     strata = np.array([r["stratum"] for r in rows])
     idx = {h: np.flatnonzero(strata == h) for h in N_FRAME}
     json_b = np.array([float(r["frame_bytes"]) for r in rows])
-    stored = np.array([float(r["stored_L_1e-06"]) for r in rows])
+    col = "stored_L_0.0001" if TAU_H == 1e-4 else f"stored_L_{TAU_H:g}"
+    stored = np.array([float(r[col]) for r in rows])
     ok = [r for r in mrows if r["status"] == "OK"]
     rep = [r for r in ok if r.get("law_bytes_recorded")]
-    summ = {"objects_measured": len(ok), "objects_failed": len(mrows) - len(ok),
+    summ = {"tau_H": TAU_H, "objects_measured": len(ok), "objects_failed": len(mrows) - len(ok),
             "law_bytes_equal_recorded": sum(str(r["law_bytes"]) == str(int(float(r["law_bytes_recorded"]))) for r in rep),
             "law_bytes_compared": len(rep), "estimates": []}
     for tm in TAUS_MU:
