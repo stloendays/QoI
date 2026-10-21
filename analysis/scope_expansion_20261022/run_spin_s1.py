@@ -88,18 +88,32 @@ def decode(blob: bytes) -> dict:
             "symbols": [s["species"][0]["element"] for s in st["sites"]]}
 
 
+def _bcore():
+    """The QOAC-B1 helpers (CHGCAR writer, AtIndex reader), loaded by file path so that another module
+    named ``run_engineering`` on sys.path (e.g. qoac_v03_rdo's) cannot shadow them."""
+    import importlib.util
+    name = "qoacb1_run_engineering"
+    if name not in sys.modules:
+        path = REPO / "analysis" / "operator_aware_bader_fixed_partition" / "run_engineering.py"
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[name] = mod
+        spec.loader.exec_module(mod)
+    return sys.modules[name]
+
+
 class Bader:
     """Compiled Henkelman binary on (CHGCAR = integrand, REFCAR = partition field)."""
 
     def __init__(self, exe, lattice, frac, symbols, shape, work: Path):
-        from run_engineering import write_chgcar
+        write_chgcar = _bcore().write_chgcar
         self.exe, self.lattice, self.frac, self.symbols, self.shape, self.work = Path(exe), lattice, frac, symbols, shape, work
         self.write = write_chgcar
         self.n = 0
         self._ref_id = None
 
     def __call__(self, integrand, partition_field, ref_id: str):
-        from run_engineering import read_atindex
+        read_atindex = _bcore().read_atindex
         import qoac_b_core as qb
         w = self.work
         for p in w.glob("*.dat"):
