@@ -90,3 +90,8 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
   text). Reading the archive ratios as covering the charge-density block only gives Bader 2.10× and Hartree
   171×. See `FINDING_magnetization_block.md`; the owner decides.
 - 02:00 — WS-S1 spin-channel engineering triggered (run 39633829124).
+- 02:35 — WS-S1 read (`results/s1_spin_engineering/RESULTS.md`). The moment contract qualifies in 16/16 at
+  1e-2 mu_B and 15/16 at 1e-3. Certified m costs a median 0.3% of lossless rho at 1e-2 mu_B (max 1.1%), and
+  binary verification passes in every case.
+- 02:40 — WS-S2 triggered (run 39634724957): the 300 archive objects with m stored under the moment
+  contract, giving the whole-object archive ratio.
