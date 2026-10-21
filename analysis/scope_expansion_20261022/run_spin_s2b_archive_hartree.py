@@ -37,6 +37,8 @@ from run_spin_s3_joint import search  # noqa: E402
 
 import os
 TAU_H = float(os.environ.get("S2B_TAU_H", "1e-6"))
+WRITER = os.environ.get("S2B_WRITER", "A1")   # A1 = closed-form law (L); A6 = best pointwise codec (P)
+WCOL = "L" if WRITER == "A1" else "P"
 TAUS_MU = (1e-2, 1e-3)
 N_FRAME = {"D01": 41527, "D02": 41531, "D03": 41529, "D04": 41529, "D05": 41528, "D06": 41529,
            "D07": 41529, "D08": 41529, "D09": 41529, "D10a": 33105, "D10b": 6741, "D10c": 1683}
@@ -53,7 +55,7 @@ def process(row: dict, bader: Path, frozen: Path, lawrepo: Path) -> dict:
     v02, _ = RC.lazy()
     t0 = time.time()
     out = {"task_id": row["task_id"], "stratum": row["stratum"], "status": "OK", "error": "",
-           "law_bytes_recorded": row.get(f"writer_L_stream_bytes_{TAU_H:g}" if TAU_H != 1e-4 else "writer_L_stream_bytes_0.0001", "")}
+           "law_bytes_recorded": row.get(f"writer_{WCOL}_stream_bytes_{TAU_H:g}" if TAU_H != 1e-4 else f"writer_{WCOL}_stream_bytes_0.0001", "")}
     try:
         blob = s1.fetch(row["url"])
         if len(blob) != int(row["frame_bytes"]):
@@ -68,18 +70,24 @@ def process(row: dict, bader: Path, frozen: Path, lawrepo: Path) -> dict:
         with tempfile.TemporaryDirectory(prefix="ws_s2b_") as td:
             work = Path(td) / "codec"
             work.mkdir()
-            sr = RC.search("A1", TAU_H, rho, lat, rh, rs, ptp, work)
+            sr = RC.search(WRITER, TAU_H, rho, lat, rh, rs, ptp, work)
             if not sr.get("bytes"):
-                raise RuntimeError("law search returned no certified stream")
-            a_rel = float(sr["param"].split("=")[1])
-            lb = v02.encode_prepared(v02.prepare_field(rho, lat, shell_count=32), alpha=a_rel * ptp, beta=2.0,
-                                     zlib_level=6)[0]
-            rec_r = np.ascontiguousarray(RC.F.decode_law(lb), dtype=np.float64)
+                raise RuntimeError(f"{WRITER} search returned no certified stream")
+            if WRITER == "A1":
+                a_rel = float(sr["param"].split("=")[1])
+                lb = v02.encode_prepared(v02.prepare_field(rho, lat, shell_count=32), alpha=a_rel * ptp, beta=2.0,
+                                         zlib_level=6)[0]
+                rec_r = np.ascontiguousarray(RC.F.decode_law(lb), dtype=np.float64)
+                nbytes = len(lb)
+            else:
+                kv = dict(x.split("=") for x in sr["param"].split(";"))
+                stream = RC.pointwise_encode(kv["codec"], rho, float(kv["abs_tol_rel"]) * ptp, work)
+                nbytes = RC.pointwise_bytes(kv["codec"], stream)
+                rec_r = np.ascontiguousarray(RC.pointwise_decode(kv["codec"], stream, rho.shape), dtype=np.float64)
             eh, es = RC.certify(rec_r, rho, lat, rh, rs)
             if not (eh < TAU_H and es < TAU_H):
-                raise RuntimeError("regenerated law stream not certified")
-            out.update(law_bytes=len(lb), law_param=sr["param"])
-            del lb
+                raise RuntimeError("regenerated stream not certified")
+            out.update(law_bytes=nbytes, law_param=sr["param"])
             B = s1.Bader(bader, lat, d["frac"], d["symbols"], rho.shape, Path(td))
             mu_ref, _ = B(m, rho, "ref")
             e_r, e_m = s1.f32_eps(rho), s1.f32_eps(m)
@@ -133,11 +141,11 @@ def aggregate(mrows, hartree_csv: Path, B: int = 2000) -> dict:
     strata = np.array([r["stratum"] for r in rows])
     idx = {h: np.flatnonzero(strata == h) for h in N_FRAME}
     json_b = np.array([float(r["frame_bytes"]) for r in rows])
-    col = "stored_L_0.0001" if TAU_H == 1e-4 else f"stored_L_{TAU_H:g}"
+    col = f"stored_{WCOL}_0.0001" if TAU_H == 1e-4 else f"stored_{WCOL}_{TAU_H:g}"
     stored = np.array([float(r[col]) for r in rows])
     ok = [r for r in mrows if r["status"] == "OK"]
     rep = [r for r in ok if r.get("law_bytes_recorded")]
-    summ = {"tau_H": TAU_H, "objects_measured": len(ok), "objects_failed": len(mrows) - len(ok),
+    summ = {"tau_H": TAU_H, "writer": WRITER, "objects_measured": len(ok), "objects_failed": len(mrows) - len(ok),
             "law_bytes_equal_recorded": sum(str(r["law_bytes"]) == str(int(float(r["law_bytes_recorded"]))) for r in rep),
             "law_bytes_compared": len(rep), "estimates": []}
     for tm in TAUS_MU:
