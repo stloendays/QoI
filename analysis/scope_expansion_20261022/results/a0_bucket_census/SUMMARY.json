@@ -1,0 +1,110 @@
+{
+  "listed_utc": "2026-10-21T17:32:31Z",
+  "bucket": "https://materialsproject-parsed.s3.amazonaws.com/",
+  "prefixes": 17,
+  "total_TB": 26.096276666946,
+  "rows": [
+    {
+      "prefix": "chgcars/",
+      "objects": 415480,
+      "bytes": 8500821593651,
+      "TB": 8.500821593651
+    },
+    {
+      "prefix": "defects/",
+      "objects": 28589,
+      "bytes": 3189819390029,
+      "TB": 3.189819390029
+    },
+    {
+      "prefix": "/",
+      "objects": 132372,
+      "bytes": 2809761344746,
+      "TB": 2.809761344746
+    },
+    {
+      "prefix": "locpots/",
+      "objects": 158019,
+      "bytes": 2730450066074,
+      "TB": 2.730450066074
+    },
+    {
+      "prefix": "mp-volumetric-chgcars/",
+      "objects": 88237,
+      "bytes": 2241628934361,
+      "TB": 2.241628934361
+    },
+    {
+      "prefix": "bandstructures/",
+      "objects": 705509,
+      "bytes": 1622106982003,
+      "TB": 1.622106982003
+    },
+    {
+      "prefix": "core/",
+      "objects": 1242,
+      "bytes": 1235290906533,
+      "TB": 1.235290906533
+    },
+    {
+      "prefix": "aeccar1s/",
+      "objects": 138832,
+      "bytes": 1176604928484,
+      "TB": 1.176604928484
+    },
+    {
+      "prefix": "aeccar0s/",
+      "objects": 138847,
+      "bytes": 1164154108321,
+      "TB": 1.164154108321
+    },
+    {
+      "prefix": "aeccar2s/",
+      "objects": 138821,
+      "bytes": 1152961861598,
+      "TB": 1.152961861598
+    },
+    {
+      "prefix": "elfcars/",
+      "objects": 107481,
+      "bytes": 108140644017,
+      "TB": 0.108140644017
+    },
+    {
+      "prefix": "dos/",
+      "objects": 691979,
+      "bytes": 67901605218,
+      "TB": 0.067901605218
+    },
+    {
+      "prefix": "tasks-legacy/",
+      "objects": 1557,
+      "bytes": 36782935359,
+      "TB": 0.036782935359
+    },
+    {
+      "prefix": "tasks_atomate2/",
+      "objects": 1298,
+      "bytes": 31157645070,
+      "TB": 0.03115764507
+    },
+    {
+      "prefix": "phonon/",
+      "objects": 104,
+      "bytes": 26909065380,
+      "TB": 0.02690906538
+    },
+    {
+      "prefix": "ph-bandstructures/",
+      "objects": 1515,
+      "bytes": 1706492279,
+      "TB": 0.001706492279
+    },
+    {
+      "prefix": "ph-dos/",
+      "objects": 1514,
+      "bytes": 78163823,
+      "TB": 7.8163823e-05
+    }
+  ]
+}
