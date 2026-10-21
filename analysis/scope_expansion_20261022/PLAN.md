@@ -75,23 +75,19 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - B3 confirmatory and any other run on the 48 P2 confirmation materials (holdout use is irreversible).
 - Any manuscript edit.
 
-## Log
-- 2026-10-22 00:20 SGT — plan written; survey of branches after 10-07 completed.
-- 00:40 — WS-S0 census workflow pushed and triggered (run 39631899375).
-- 00:55 — WS-T SI-note draft written (`WS_T_turbulence_SI_note_draft.md`). The finite-panel bound is already
-  rev5 SI 1.5.
-- 01:05 — WS-H done on side branch `paper/nc-rev5-hartree-archive-si-20261022`: SI Note 3.4 plus the
-  SOURCE_FILES row. audit_manuscript.py reports 0 failures and 0 warnings; test_scientific_claims.py 13 passed.
-  Main text unchanged. Not merged.
-- 01:20 — WS-B4 engineering read: the bound holds on the compiled binary (144/144, 0 violations), but the byte
-  effect is small (median total ratio ≥ 0.989). Not carried forward (B4 branch `results/real_engineering/RESULTS.md`).
-- 01:25 — S0 census: 210/210 MP objects carry a magnetization block; 87 have an atom with |mu| ≥ 0.1 mu_B.
-- 01:55 — **S0b: the archive estimates omit the magnetization block** (300/300 objects carry it; 52% of the
-  text). Reading the archive ratios as covering the charge-density block only gives Bader 2.10× and Hartree
-  171×. See `FINDING_magnetization_block.md`; the owner decides.
-- 02:00 — WS-S1 spin-channel engineering triggered (run 39633829124).
-- 02:35 — WS-S1 read (`results/s1_spin_engineering/RESULTS.md`). The moment contract qualifies in 16/16 at
-  1e-2 mu_B and 15/16 at 1e-3. Certified m costs a median 0.3% of lossless rho at 1e-2 mu_B (max 1.1%), and
-  binary verification passes in every case.
-- 02:40 — WS-S2 triggered (run 39634724957): the 300 archive objects with m stored under the moment
-  contract, giving the whole-object archive ratio.
+## Log (times are SGT, from commit timestamps)
+- 2026-10-22 00:05 — plan written; survey of branches after 10-07 completed.
+- 00:07 — WS-S0 census triggered. 00:10: results in — 210/210 MP objects carry a magnetization block, and 87
+  have an atom with |mu| ≥ 0.1 mu_B.
+- 00:11 — WS-T SI-note draft written. The finite-panel bound is already rev5 SI 1.5.
+- ~00:12 — WS-H on side branch `paper/nc-rev5-hartree-archive-si-20261022`: SI Note 3.4 plus the
+  SOURCE_FILES row. Audit: 0 failures, 0 warnings. Not merged.
+- ~00:13 — WS-B4 engineering read: the bound holds on the compiled binary; the byte effect is small. Not
+  carried forward.
+- 00:19 — **S0b: the archive estimates omit the magnetization block** (300/300; 52% of the text). Read as
+  covering the charge-density block only, the ratios are Bader 2.10× and Hartree 171×. See
+  `FINDING_magnetization_block.md`.
+- 00:23 — WS-S1 results: the moment contract qualifies in 16/16 at 1e-2 mu_B. Certified m costs a median
+  0.3% of lossless rho.
+- 00:27 — WS-S2 (whole-object archive, with the atom map) triggered as run 39635020731.
+- 00:28 — scope v6 storyline draft.
