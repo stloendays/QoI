@@ -85,6 +85,16 @@ archive estimates for the whole served object are:
 
 Option 2 below is therefore feasible and keeps headline numbers close to the published ones.
 
+**Effect on the format-gain split.** The manuscript splits the Bader archive factor into "lossless binary
+2.00×" and "certified compression 2.66× on top". On the whole-object basis the split changes:
+
+- gzipped JSON over lossless float64 is 2.00 for the total block alone (WP-F success-only 2.0001;
+  reproduced from S0b as 1.998);
+- for the whole object (rho plus m, both lossless) it is 0.99, so the format step gains nothing once the
+  magnetization block is kept;
+- the whole-object certified factor, 4.36×, is then almost entirely due to certified compression
+  (≈ 4.4× over lossless binary).
+
 ## Options (owner's decision)
 
 1. **Reword, smallest change.** Make the archive claims refer to the charge-density content: Bader 2.1×
