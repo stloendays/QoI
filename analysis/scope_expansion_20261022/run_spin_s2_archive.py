@@ -21,7 +21,12 @@ of WS-S1 (compiled Henkelman, ``bader CHGCAR(m) -ref REFCAR(rho) -b ongrid
 
 with stratified bootstrap intervals (seed of the respective archive protocol).
 Objects whose charge-density pipeline failed keep their current file, which
-already contains m, so they add no m bytes. Descriptive; no gate.
+already contains m, so they add no m bytes.
+
+The m certificate is evaluated on the reference partition (rho exact). A stored
+rho is lossy, so the moments are well defined only if the reference atom map
+travels with the object; its lossless size (QOAC-B3 arm-L coder) is measured
+and a third ratio, R_whole_with_labels, includes it. Descriptive; no gate.
 """
 from __future__ import annotations
 
@@ -34,6 +39,7 @@ import sys
 import tempfile
 import time
 import traceback
+import lzma
 import zlib
 from pathlib import Path
 
@@ -47,7 +53,7 @@ TAUS_MU = (1e-2, 1e-3)
 N_FRAME = {"D01": 41527, "D02": 41531, "D03": 41529, "D04": 41529, "D05": 41528, "D06": 41529,
            "D07": 41529, "D08": 41529, "D09": 41529, "D10a": 33105, "D10b": 6741, "D10c": 1683}
 FIELDS = ["task_id", "stratum", "status", "error", "npoints", "natoms", "max_abs_moment_muB", "floor_muB",
-          "lossless_m", "lossless_rho"] + [f"{k}_{t:g}" for t in TAUS_MU for k in
+          "lossless_m", "lossless_rho", "label_atom_xz_bytes"] + [f"{k}_{t:g}" for t in TAUS_MU for k in
                                           ("eligible", "m_store", "m_codec", "m_err_binary")] + ["bader_solves",
                                                                                                  "wall_seconds"]
 
@@ -70,6 +76,10 @@ def process(row: dict, bader: Path, frozen: Path) -> dict:
         with tempfile.TemporaryDirectory(prefix="ws_s2_") as td:
             B = s1.Bader(bader, d["lattice"], d["frac"], d["symbols"], rho.shape, Path(td))
             mu_ref, atom_ref = B(m, rho, "ref")
+            # the reference atom map, stored losslessly (QOAC-B3 arm L coder: uint16 C order, xz), makes the
+            # moment contract independent of how rho itself is stored
+            out["label_atom_xz_bytes"] = len(lzma.compress(np.asarray(atom_ref, dtype="<u2").tobytes(),
+                                                           preset=9 | lzma.PRESET_EXTREME))
             e_r, e_m = s1.f32_eps(rho), s1.f32_eps(m)
             floor = 0.0
             for s in s1.SEEDS:
@@ -168,16 +178,21 @@ def aggregate(mrows, wpf_csv: Path, hartree_csv: Path, B: int = 2000) -> dict:
                 ratio = np.nanmedian([float(meas[r["task_id"]]["lossless_m"]) / float(r["frame_bytes"])
                                       for r in rows if r["task_id"] in meas and meas[r["task_id"]]["status"] == "OK"])
                 mstore = np.where(np.isnan(mstore), ratio * json_b, mstore)
+            lab = np.array([0.0 if failed[i] else float((meas.get(r["task_id"]) or {}).get("label_atom_xz_bytes") or 0)
+                            for i, r in enumerate(rows)])
             point = _tot(json_b, idx) / (_tot(stored, idx) + _tot(mstore, idx))
+            point_lab = _tot(json_b, idx) / (_tot(stored, idx) + _tot(mstore, idx) + _tot(lab, idx))
             rng = np.random.default_rng(seed)
-            bs = np.empty(B)
+            bs = np.empty((B, 2))
             for b in range(B):
                 ib = {h: rng.choice(ix, size=len(ix), replace=True) for h, ix in idx.items()}
-                bs[b] = _tot(json_b, ib) / (_tot(stored, ib) + _tot(mstore, ib))
-            lo, hi = np.percentile(bs, [2.5, 97.5])
+                den = _tot(stored, ib) + _tot(mstore, ib)
+                bs[b] = (_tot(json_b, ib) / den, _tot(json_b, ib) / (den + _tot(lab, ib)))
+            (lo, lo2), (hi, hi2) = np.percentile(bs, [2.5, 97.5], axis=0)
             summ["estimates"].append({"contract": label, "tau_mu": tau, "objects_unmeasured": missing,
                                       "R_published": _tot(json_b, idx) / _tot(stored, idx),
-                                      "R_whole": point, "R_whole_ci": [lo, hi]})
+                                      "R_whole": point, "R_whole_ci": [lo, hi],
+                                      "R_whole_with_labels": point_lab, "R_whole_with_labels_ci": [lo2, hi2]})
     return summ
 
 
@@ -222,11 +237,12 @@ def main(argv=None) -> int:
              f"Moment contract eligible: {summ['eligible_fraction_0.01']:.3f} at 1e-2 mu_B, "
              f"{summ['eligible_fraction_0.001']:.3f} at 1e-3 mu_B; certified m stream: "
              f"{summ['certified_fraction_0.01']:.3f} / {summ['certified_fraction_0.001']:.3f}.", "",
-             "| charge-density contract | m contract (mu_B) | R published (rho block only stored) | R whole object (rho + m stored) [95% CI] | unmeasured |",
-             "|---|---|---|---|---|"]
+             "| charge-density contract | m contract (mu_B) | R published (rho block only stored) | R whole object (rho + m) [95% CI] | R whole object + atom label map [95% CI] | unmeasured |",
+             "|---|---|---|---|---|---|"]
     for e in summ["estimates"]:
         lines.append(f"| {e['contract']} | {e['tau_mu']:g} | {e['R_published']:.3g} | {e['R_whole']:.3g} "
-                     f"[{e['R_whole_ci'][0]:.3g}, {e['R_whole_ci'][1]:.3g}] | {e['objects_unmeasured']} |")
+                     f"[{e['R_whole_ci'][0]:.3g}, {e['R_whole_ci'][1]:.3g}] | {e['R_whole_with_labels']:.3g} "
+                     f"[{e['R_whole_with_labels_ci'][0]:.3g}, {e['R_whole_with_labels_ci'][1]:.3g}] | {e['objects_unmeasured']} |")
     (args.out / "RESULTS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
     return 0
