@@ -77,3 +77,9 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 
 ## Log
 - 2026-10-22 00:20 SGT — plan written; survey of branches after 10-07 completed.
+- 00:40 — WS-S0 census workflow pushed and triggered (run 39631899375).
+- 00:55 — WS-T SI-note draft written (`WS_T_turbulence_SI_note_draft.md`). The finite-panel bound is already
+  rev5 SI 1.5.
+- 01:05 — WS-H done on side branch `paper/nc-rev5-hartree-archive-si-20261022`: SI Note 3.4 plus the
+  SOURCE_FILES row. audit_manuscript.py reports 0 failures and 0 warnings; test_scientific_claims.py 13 passed.
+  Main text unchanged. Not merged.
