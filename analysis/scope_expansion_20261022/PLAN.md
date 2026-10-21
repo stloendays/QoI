@@ -91,3 +91,7 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
   0.3% of lossless rho.
 - 00:27 — WS-S2 (whole-object archive, with the atom map) triggered as run 39635020731.
 - 00:28 — scope v6 storyline draft.
+- 00:52 — WS-S3 v1: without a stored map the two contracts compose in all pairs at tau_B = 1e-3 e and in 27/32
+  at 1e-2 e; the misses are budget overruns from migration.
+- 01:10 — WS-S3 v2: decoded-frame certification composes in 60/62 pairs at no byte cost. The 2 exceptions
+  are a real limit (migration > tau_mu).

@@ -42,8 +42,12 @@ the resolved Bader contract, so the partition moves.
 - **m certified on the reference partition.** The two contracts composed without a stored partition:
   - in every material-tolerance pair at tau_B = 1e-3 e;
   - in 27/32 at 1e-2 e, where the five misses are budget overruns by the migration term.
-- **Decoded-frame certification.** The encoder knows rho', so it can certify m' on the decoded partition
-  directly. *pending (S3 v2)*
+- **Decoded-frame certification** [`results/s3_joint_contracts_v2/`]. The encoder knows rho', so it can
+  certify m' against the moments on the decoded partition directly.
+  - The two contracts then compose without a stored partition in 60/62 material-tolerance pairs, at a
+    median byte cost of 1.00× (range 0.97–1.30).
+  - The two exceptions sit at tau_B = 1e-2 e with tau_mu = 1e-3 mu_B. There migration alone moves a moment by
+    1.6e-3 and 1.9e-3 mu_B, so the partition itself must be stored, or rho' tightened.
 
 **Whole-object archive estimate** [`results/s2_archive_whole_object/`]. Same frame, sample, estimators and
 seeds as the published estimates, with m stored under the moment contract (lossless where not eligible) and
