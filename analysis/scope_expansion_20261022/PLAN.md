@@ -101,3 +101,6 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - 01:45 — WS-S4: under the Hartree law at tau_H = 1e-6, decoded-frame moment certification composes in 16/16
   (m at 1e-2 mu_B) at the same bytes, which supports the map-free 317× whole-object figure. At tau_H = 1e-4
   tight moment tolerances need the map (7/16 at 1e-3 mu_B).
+- 01:35 — WS-A0 bucket census: 26.10 TB in 17 prefixes. Volumetric holdings are about 17.07 TB: chgcars 8.50,
+  locpots 2.73, mp-volumetric-chgcars 2.24, AECCAR 0/1/2 3.49, elfcars 0.11. They place the paper's frame in
+  context and point to two adjacent contracts (AECCAR → partition, LOCPOT → Hartree part).
