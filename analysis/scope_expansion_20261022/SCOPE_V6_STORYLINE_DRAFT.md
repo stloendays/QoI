@@ -15,7 +15,7 @@ Status: proposal. All numbers are now measured (S0–S3). Nothing here touches
 | addition | why reviewers care | evidence | status |
 |---|---|---|---|
 | Magnetization block as a second stored field; per-atom moments as a contract | every MP CHGCAR carries it (300/300); it is 52% of the served bytes; rev5 is silent about it | S0, S0b, S1 | measured |
-| Archive estimate for the whole served object (rho + m, plus the atom map) | removes the like-for-like objection to "8.50 TB shrinks 356-fold": whole object 4.36× (Bader) and 232× (Hartree, with the map) | S2 | measured |
+| Archive estimate for the whole served object (rho + m, plus the atom map) | removes the like-for-like objection to "8.50 TB shrinks 356-fold": whole object 4.34× (Bader, with the map) and 316× (Hartree law at 1e-6, map-free, decoded-frame moments; S2b) | S2, S2b | measured |
 | Moment contract qualifies almost everywhere (16/16 engineering and 300/300 archive objects at 1e-2 mu_B) | QSQ generalizes to a second physical field without retuning | S1, S2 | measured |
 | Charge and moment contracts compose when m is certified on the decoded partition (60/62, byte cost 1.00×) | a general rule: certify each quantity in the frame the user computes it in | S3 v2 | measured |
 | Contract-budgeted partition relaxation with a proved per-atom bound | bridges exact topology preservation (B3) and the Bader tolerance; validated on the compiled binary | B4 | measured, byte effect small: SI sentence only |
