@@ -98,3 +98,6 @@ the program uses it yet, although per-atom magnetic moments (Bader-integrated m)
 - 01:20 — WS-S2 measured: whole-object archive ratios are Bader 4.36× and Hartree law 317× (232× with the atom
   map), against 35× for pointwise codecs. The moment contract qualifies in 300/300 archive objects; m costs a
   median 0.05% of lossless rho.
+- 01:45 — WS-S4: under the Hartree law at tau_H = 1e-6, decoded-frame moment certification composes in 16/16
+  (m at 1e-2 mu_B) at the same bytes, which supports the map-free 317× whole-object figure. At tau_H = 1e-4
+  tight moment tolerances need the map (7/16 at 1e-3 mu_B).

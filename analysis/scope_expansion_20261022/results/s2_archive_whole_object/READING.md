@@ -40,7 +40,10 @@ The other tolerances are in `RESULTS.md`.
    strictest reading is the "+ atom map" column. S3 v2 showed that certifying m on the decoded partition
    instead costs the same bytes and removes the need for the map in 60/62 material-tolerance pairs under a
    Bader-certified rho'. For Hartree-law rho' streams, whose partition is not controlled, decoded-frame
-   certification was not tested. The "+ atom map" column is therefore the safe number for the Hartree rows.
+   certification was not tested at first; S4 (`results/s4_hartree_decoded_frame/READING.md`) then tested it
+   on the 16 engineering materials. At tau_H = 1e-6 with m at 1e-2 mu_B it composes in 16/16 at the same
+   m bytes, which supports the 317× column without the map. The "+ atom map" column (232×) stays the bound
+   that needs no further assumption.
 3. **Scope.** The magnetization block adds a second physical field and a routine downstream analysis
    (per-atom moments) to the paper. It does so at a cost below 1% of the density for 300/300 archive objects
    at 1e-2 mu_B.
