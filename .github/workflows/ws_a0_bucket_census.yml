@@ -1,0 +1,45 @@
+name: WS-A0 MP parsed-bucket census
+
+# Descriptive: object count and bytes per top-level prefix of the public Materials Project parsed bucket
+# (anonymous listing, keys and sizes only). Scope expansion PLAN.md.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/scope-expansion-20261022
+    paths:
+      - analysis/scope_expansion_20261022/RUN_A0
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ws-a0-bucket-census-20261022
+  cancel-in-progress: false
+
+env:
+  RESULTS: analysis/scope_expansion_20261022/results/a0_bucket_census
+
+jobs:
+  census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12.14' }
+      - run: |
+          set -euo pipefail
+          rm -rf "$RESULTS"
+          python analysis/scope_expansion_20261022/bucket_census.py "$RESULTS"
+      - run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$RESULTS"
+          if git diff --cached --quiet; then echo 'No result changes.'; else
+            git commit -m "research: WS-A0 MP parsed-bucket census"
+            git pull --rebase origin research/scope-expansion-20261022
+            git push origin HEAD:research/scope-expansion-20261022
+          fi
