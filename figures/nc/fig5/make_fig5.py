@@ -8,7 +8,7 @@ pointwise codecs and beats spectral truncation, on fresh bulk crystals and fresh
   c  median ratios A1/A6 and A1/A2 with bootstrap 95% CIs at tau = 1e-4, 1e-6, 1e-8, per cohort.
   d  certified CR against Hartree tolerance for the three equal-search arms: median (line) and interquartile range
      (band) over materials, bulk and slab.
-  e  A1 vs QoI-preserving baselines QPET (Q) and MGARD s = -2 (M2), at tau = 1e-6.
+  e  A1 vs QoI-preserving baselines QPET (Q), MGARD s = -2 (M2) and FFCz (F, certified materials), at tau = 1e-6.
   f  absolute slab work-function error (electrostatic vacuum level, stored Fermi energy) for the five certified arms at tau = 1e-4 and 1e-6.
 All medians are asserted against run_P1_CONFIRMATORY/SUMMARY.json and run_P3B_CONFIRMATORY/SUMMARY.json.
 
@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(HERE))
 import common as C  # noqa: E402
 from advanced import swarm  # noqa: E402
 import layout  # noqa: E402
-from style import BLUE, DARK_G, INK, MID, PALE, POS_C, Page, grid, log_ticks, note  # noqa: E402
+from style import BLUE, DARK_B, DARK_G, INK, MID, PALE, POS_C, Page, grid, log_ticks, note  # noqa: E402
 
 D = C.part_a()
 S = C.summaries()
@@ -77,6 +77,22 @@ for cohort, n_expected in (("bulk", 60), ("slab", 32)):
         assert _sig3(got_median) == _sig3(doc_median), (cohort, baseline, got_median, doc_median)
         assert int(np.sum(ratios > 1.0)) == doc_wins == doc_n == n_expected
 
+
+FFCZ_RESULTS = os.path.join(C.ROOT, "analysis", "hartree_baseline_ffcz_20261012", "results")
+FF = pd.read_csv(os.path.join(FFCZ_RESULTS, "material.csv"))
+FF["cohort"] = FF.cohort.map({"P1_CONFIRMATORY": "bulk", "P3B_CONFIRMATORY": "slab"})
+FFCZ_SUMMARY = pd.read_json(os.path.join(FFCZ_RESULTS, "SUMMARY.json"), typ="series")["cohorts"]
+FFCZ_EXPECTED = {}
+for cohort, run, n_expected in (("bulk", "P1_CONFIRMATORY", 60), ("slab", "P3B_CONFIRMATORY", 32)):
+    t = FF[(FF.cohort == cohort) & np.isclose(FF.tau, 1e-6)]
+    assert len(t) == n_expected
+    law = B[(B.cohort == cohort) & np.isclose(B.tau, 1e-6)].set_index("material_id").A1
+    assert np.allclose(t.set_index("material_id").A1.loc[law.index], law, rtol=1e-9)  # same law streams
+    want = FFCZ_SUMMARY[run]["tau_1e-06"]["ratios"]["A1_over_F"]
+    ratios = (t.A1 / t.F).dropna().to_numpy()
+    assert len(ratios) == want["n_both_certified"] and int(np.sum(ratios > 1.0)) == want["wins"]
+    assert np.isclose(np.median(ratios), want["median"], rtol=1e-9)
+    FFCZ_EXPECTED[cohort] = (want["median"], want["wins"], want["n_both_certified"], n_expected)
 
 DPHI_SUMMARY = pd.read_csv(os.path.join(C.VACUUM_RESULTS, "summary.csv"))
 F_ARMS = ("A1", "A3", "A5", "A2", "A6")
@@ -218,8 +234,9 @@ for k in (1, 10):
     else:
         axe.text(hi / 1.15, hi / 1.6, "%g×" % k, fontsize=5.3, color=MID,
                  ha="right", va="top")
-for baseline, color in (("Q", Q_COLOR), ("M2", M2_COLOR)):
-    t = B[np.isclose(B.tau, 1e-6)]
+F_COLOR_E = DARK_B
+for baseline, color, frame in (("Q", Q_COLOR, B), ("M2", M2_COLOR, B), ("F", F_COLOR_E, FF)):
+    t = frame[np.isclose(frame.tau, 1e-6)].dropna(subset=[baseline])
     for cohort in ("bulk", "slab"):
         s = t[t.cohort == cohort]
         if cohort == "bulk":
@@ -237,9 +254,13 @@ grid(axe)
 layout.legend(
     axe,
     handles=[Line2D([], [], ls="", marker="o", ms=3.4, color=Q_COLOR, mfc=Q_COLOR, mec="white"),
-             Line2D([], [], ls="", marker="o", ms=3.4, color=M2_COLOR, mfc=M2_COLOR, mec="white")],
+             Line2D([], [], ls="", marker="o", ms=3.4, color=M2_COLOR, mfc=M2_COLOR, mec="white"),
+             Line2D([], [], ls="", marker="o", ms=3.4, color=F_COLOR_E, mfc=F_COLOR_E, mec="white")],
     labels=["QPET (Q): bulk 6.31× (60/60), slab 9.47× (32/32)",
-            "MGARD $s=-2$ (M2): bulk 18.2× (60/60), slab 21.0× (32/32)"],
+            "MGARD $s=-2$ (M2): bulk 18.2× (60/60), slab 21.0× (32/32)",
+            "FFCz (F): bulk %.1f× (%d/%d certified), slab %.1f× (%d/%d)" % (
+                FFCZ_EXPECTED["bulk"][0], FFCZ_EXPECTED["bulk"][2], FFCZ_EXPECTED["bulk"][3],
+                FFCZ_EXPECTED["slab"][0], FFCZ_EXPECTED["slab"][2], FFCZ_EXPECTED["slab"][3])],
     loc="lower right", bbox_to_anchor=(0.97, 0.04), fontsize=4.35,
     handletextpad=0.35, labelspacing=0.25, title="$\\tau$ = 10$^{-6}$")
 

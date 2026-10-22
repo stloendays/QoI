@@ -1,44 +1,39 @@
-# Word count — NC revision 5 (deployment cost, merged with the Hartree-archive revision 4), 2026-10-19
+# Word count — NC revision 8 (writing pass), 2026-10-22
 
 Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running text only; section headings, displayed mathematics, tables and their captions, figure legends, references and the availability statements are excluded.
 
-## Main text and Methods (target ≤5,000 words including Methods)
-
-| Section | Words |
-|---|---:|
-| Introduction | 363 |
-| Results — A tolerance is scored only after the measurement contract resolves it | 474 |
-| Results — The operator symbol explains the codec effect and fixes a closed-form allocation law | 340 |
-| Results — Under equal search, the law certifies more than pointwise and QoI-preserving codecs on bulk crystals | 652 |
-| Results — The law's certified streams are the cheapest to produce and fast to retrieve | 123 |
-| Results — The operator metric carries the gain, and the system class sets the optimizer's share | 270 |
-| Results — One stream certifies the Hartree potential and Bader charges together | 369 |
-| Results — The gain is predicted before compression from the operator symbol and the reference spectrum | 340 |
-| Discussion | 398 |
-| Methods — Measurement contract and QSQ | 171 |
-| Methods — Hermitian-orbit representation and certificate | 215 |
-| Methods — Arms and the operational optimum | 135 |
-| Methods — QoI-preserving baselines and work-function error | 251 |
-| Methods — Deployment cost | 49 |
-| Methods — Archive estimate | 144 |
-| Methods — Single-density diagnostics | 89 |
-| Methods — Gain predictor | 160 |
-| Methods — Populations and pre-registration chronology | 120 |
-| Methods — Joint contract and certify-then-project | 189 |
-| Methods — Statistics | 140 |
-| **Introduction + Results + Discussion** | **3,329** |
-| **Methods (total)** | **1,663** |
-| **Main text + Methods** | **4,992** |
-
-## Outside the 5,000-word budget
-
-| Item | Words |
-|---|---:|
-| Abstract (limit 150) | 150 |
-| Data availability | 90 |
-| Code availability | 43 |
-| Figure legends (Figs. 1–8) | 1384 (216, 163, 145, 170, 228, 120, 196, 146) |
-
-## Display items
-
-8 main figures and Tables 1–2 = 10 display items (Table 2: deployment cost). Supplementary Fig. 1 is separate.
+```
+The downstream operator qualifies, predicts and shapes the certified compression of electronic densities          11
+Abstract                                                                                                         148
+Introduction                                                                                                     356
+Results — A tolerance is scored only after the measurement contract resolves it                                  442
+Results — The operator symbol explains the codec effect and fixes a closed-form allocation law                   342
+Results — Under equal search, the law certifies more than pointwise, QoI-preserving and Fourier-corrected code   661
+Results — The law's certified streams are the cheapest to produce and fast to retrieve                           101
+Results — The operator metric carries the gain, and the system class sets the optimizer's share                  265
+Results — One stream certifies the Hartree potential and Bader charges together                                  373
+Results — The gain is predicted before compression from the operator symbol and the reference spectrum           333
+Discussion                                                                                                       383
+Methods — Measurement contract and QSQ                                                                           171
+Methods — Hermitian-orbit representation and certificate                                                         215
+Methods — Arms and the operational optimum                                                                       135
+Methods — QoI-preserving baselines and work-function error                                                       292
+Methods — Deployment cost                                                                                         49
+Methods — Archive estimate                                                                                       187
+Methods — Single-density diagnostics                                                                              89
+Methods — Gain predictor                                                                                         160
+Methods — Populations and protocol chronology                                                                    108
+Methods — Joint contract and certify-then-project                                                                189
+Methods — Statistics                                                                                             145
+Data availability                                                                                                 99
+Code availability                                                                                                 28
+Legend 1                                                                                                         130
+Legend 2                                                                                                         103
+Legend 3                                                                                                          99
+Legend 4                                                                                                         141
+Legend 5                                                                                                         185
+Legend 6                                                                                                          91
+Legend 7                                                                                                         156
+Legend 8                                                                                                         114
+Intro+Results+Discussion 3256 | Methods 1740 | total 4996 | legends 1019
+```
