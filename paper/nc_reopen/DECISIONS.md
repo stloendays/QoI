@@ -137,3 +137,17 @@ revision 5. Revision 8 builds on revision 7:
   the FFCz configurations and drops the self-limiting closing sentence.
 - Main text plus Methods 4,997 words; abstract 146. `audit_manuscript.py --final`: 0 failures, 0 warnings;
   `test_scientific_claims.py`: 13 passed.
+
+### Revision 8, writing pass and build (2026-10-22)
+
+Request: "你看看有没有什么在论文写作技巧上面的提升，在渲染之前", then the rebuild with a page-by-page check.
+- QoI is defined at first use (abstract and Introduction); the abstract now states the claim and ends on the
+  archive consequence; the Introduction's third paragraph states the second gap instead of a second "Here".
+- Reported precision is cut to what the claim needs (0.0776, 0.376/0.203, 1.60%, 81.3%); the number sweep
+  (`numcheck.py`, now also reading the FFCz and whole-object results) finds all 361 numbers in committed sources.
+- The Table 2 duplicate sentence is removed; the archive and gain-ladder paragraphs open with topic sentences;
+  the Discussion ends on the consequence for archives.
+- Build: equations are MathML in the PDF and native Word equations in the DOCX (`figures/nc/omml.py`, from the
+  Catalyst-Essay builders, plus accents and lower limits): 254 inline and 5 display equations, checked in the
+  Chrome PDF and in a WPS export of the DOCX. Fig. 2a axis label no longer says "frozen".
+- 4,996 words; audit 0 failures; claim tests 13 passed.
