@@ -116,3 +116,24 @@ Author instruction: "作者是junbotong，单位是nus，ORCID是0009-0006-5158-
   - the Discussion's repeat of the per-operator gains;
   - the pre-registration clause, which now cites Table 1;
   - the deployment opening and Methods sentences.
+
+## Revision 8 (2026-10-22)
+
+Request: "你看一下云端最新的稿子（谷歌文档那边等）继续修改吧". The latest cloud draft is revision 7 (PR #18,
+`paper/nc-rev7-whole-object-ffcz-20261022`); the Google Docs "NC Manuscript v6 working source" is a staging copy of
+revision 5. Revision 8 builds on revision 7:
+- **FFCz in Fig. 5e.** The panel now plots the law against FFCz for the materials FFCz certified; `make_fig5.py`
+  asserts the medians and wins against `analysis/hartree_baseline_ffcz_20261012/results/SUMMARY.json`. Methods gains
+  the FFCz configuration sentence; Table 1 gains the FFCz protocol and run rows (`8f98f8b`, `eaf7427`).
+- **Prose.** Revision 7 had compressed the Introduction and Discussion; their revision-5 argument is restored and
+  updated for FFCz and the whole-object archive. The archive paragraphs state the magnetization contract once. The
+  statements the scientific audit requires (QPET read full float64, work-function definition, per-plane bound,
+  5.35-fold attribution, exact-partition Bader contract) are back in the main text.
+- **Vocabulary.** Every `pre-registered`, `pre-registration`, `frozen`, `freeze` and `canonical` is removed from the
+  main text, legends and SI (skill rule of 2026-10-19 and 2026-10-21). Table 1 is now "Protocol chronology".
+- **Legends** rewritten short and descriptive (rule of 2026-10-21): no headline numbers, no commit hashes.
+- **SI order.** The whole-object note moves to Supplementary Note 4 (first cited after Note 3); Notes 4–7 become 5–8.
+  The spin figure becomes Supplementary Fig. 1 and the partition-storage figure Supplementary Fig. 2. Note 3.5 states
+  the FFCz configurations and drops the self-limiting closing sentence.
+- Main text plus Methods 4,997 words; abstract 146. `audit_manuscript.py --final`: 0 failures, 0 warnings;
+  `test_scientific_claims.py`: 13 passed.

@@ -126,7 +126,7 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertIn("9.15-fold", MAIN)
         self.assertIn("20.3-fold", MAIN)
         self.assertIn("22.7-fold", MAIN)
-        self.assertIn("Supplementary Note 8", MAIN)
+        self.assertIn("Supplementary Note 4", MAIN)  # whole-object note, renumbered after Note 3
         self.assertNotIn("356-fold", MAIN)
 
     def test_work_function_definition_and_window(self) -> None:
