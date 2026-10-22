@@ -1,0 +1,42 @@
+{
+  "materials": 16,
+  "failures": 0,
+  "groups": {
+    "tau_H=1e-06|tau_mu=0.01": {
+      "n": 16,
+      "joint_certified_decframe": 16,
+      "median_mu_err_migration_muB": 7.850000000009238e-05,
+      "max_mu_err_migration_muB": 0.009642999999999846,
+      "median_rho_q_err_e": 0.005362500000000381,
+      "median_decframe_over_refframe_bytes": 1.0,
+      "max_decframe_over_refframe_bytes": 1.3272943665696906
+    },
+    "tau_H=1e-06|tau_mu=0.001": {
+      "n": 16,
+      "joint_certified_decframe": 15,
+      "median_mu_err_migration_muB": 7.850000000009238e-05,
+      "max_mu_err_migration_muB": 0.009642999999999846,
+      "median_rho_q_err_e": 0.005362500000000381,
+      "median_decframe_over_refframe_bytes": 1.0,
+      "max_decframe_over_refframe_bytes": 1.3225358630263766
+    },
+    "tau_H=0.0001|tau_mu=0.01": {
+      "n": 16,
+      "joint_certified_decframe": 14,
+      "median_mu_err_migration_muB": 0.0012049999999999284,
+      "max_mu_err_migration_muB": 0.014924000000000003,
+      "median_rho_q_err_e": 0.03876649999999926,
+      "median_decframe_over_refframe_bytes": 1.0,
+      "max_decframe_over_refframe_bytes": 1.026332899869961
+    },
+    "tau_H=0.0001|tau_mu=0.001": {
+      "n": 16,
+      "joint_certified_decframe": 7,
+      "median_mu_err_migration_muB": 0.0012049999999999284,
+      "max_mu_err_migration_muB": 0.014924000000000003,
+      "median_rho_q_err_e": 0.03876649999999926,
+      "median_decframe_over_refframe_bytes": 1.0,
+      "max_decframe_over_refframe_bytes": 1.0
+    }
+  }
+}

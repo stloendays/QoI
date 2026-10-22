@@ -1,0 +1,5 @@
+material_id,formula,magnetic,npoints,natoms,tau_B_e,tau_mu_muB,status,error,rho_codec,rho_bytes,rho_q_err_e,gross_migrated_charge_e,migrated_voxels,mu_err_m_exact_muB,mu_err_joint_muB,m_codec,m_bytes,joint_certified_without_map,m_codec_decframe,m_bytes_decframe,mu_err_joint_decframe_muB,joint_certified_decframe,bader_solves
+mp-1096987,FeCo9,True,460800,10,0.01,0.01,OK,,sz3,763700,0.0054800000000003735,0.017728205315211153,454,0.0005020000000000024,0.008839000000000041,sz3,15124,True,sz3,14887,0.007659000000000082,True,48
+mp-1096987,FeCo9,True,460800,10,0.01,0.001,OK,,sz3,763700,0.0054800000000003735,0.017728205315211153,454,0.0005020000000000024,0.0005079999999999529,sz3,36014,True,sz3,43683,0.0006279999999998509,True,50
+mp-1096987,FeCo9,True,460800,10,0.001,0.01,NO_CERTIFIED_RHO,,,,,,,,,,,,,,,,
+mp-1096987,FeCo9,True,460800,10,0.001,0.001,NO_CERTIFIED_RHO,,,,,,,,,,,,,,,,
