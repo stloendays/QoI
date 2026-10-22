@@ -1,0 +1,2 @@
+material_id,config,codec,eps_b_rel,eps_b,mode,r,error,seconds,bytes,base_stream_bytes,edits_bytes,hartree_hist,hartree_safe,density_Linf,density_RMSE,base_stream_file_bytes,edit_files,stored_bytes,axis_order
+nomad-C-8aMchGaf7P,SPERR_eb1e-2_REL,SPERR,0.01,59.006796395643796,REL,1e-14,,1.1800816990435123,95763,95561,202,0.0002318710178584309,0.00023187091064920946,58.99727883645682,11.209984304188104,100097,"{'.fedits': 28, '.fflags': 28, '.sedits': 61, '.sflags': 53, '.extreme': 32}",95763,"C-order shape (Nx, Ny, Nz) passed directly to -3"

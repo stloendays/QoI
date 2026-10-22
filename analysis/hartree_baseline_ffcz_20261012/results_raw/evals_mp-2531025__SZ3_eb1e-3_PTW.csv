@@ -1,0 +1,2 @@
+material_id,config,codec,eps_b_rel,eps_b,mode,r,error,seconds,bytes,base_stream_bytes,edits_bytes,hartree_hist,hartree_safe,density_Linf,density_RMSE,base_stream_file_bytes,edit_files,stored_bytes,axis_order
+mp-2531025,SZ3_eb1e-3_PTW,SZ3,0.001,0.560835338937,PTW,1e-14,,0.8784306920133531,88504,88266,238,0.0003682663346740617,0.00036826626879180046,0.5608321100150171,0.2485621339978094,88266,"{'.fedits': 28, '.fflags': 28, '.sedits': 61, '.sflags': 89, '.extreme': 32}",88504,"C-order shape (Nx, Ny, Nz) passed directly to -3"

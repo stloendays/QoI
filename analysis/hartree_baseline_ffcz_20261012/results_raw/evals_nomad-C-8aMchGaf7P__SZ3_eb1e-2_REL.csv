@@ -1,0 +1,2 @@
+material_id,config,codec,eps_b_rel,eps_b,mode,r,error,seconds,bytes,base_stream_bytes,edits_bytes,hartree_hist,hartree_safe,density_Linf,density_RMSE,base_stream_file_bytes,edit_files,stored_bytes,axis_order
+nomad-C-8aMchGaf7P,SZ3_eb1e-2_REL,SZ3,0.01,59.006796395643796,REL,1e-14,,0.8740471722558141,29435,29233,202,0.009959419370764219,0.009959419369164073,59.00634482897135,16.700106381009608,29233,"{'.fedits': 28, '.fflags': 28, '.sedits': 61, '.sflags': 53, '.extreme': 32}",29435,"C-order shape (Nx, Ny, Nz) passed directly to -3"

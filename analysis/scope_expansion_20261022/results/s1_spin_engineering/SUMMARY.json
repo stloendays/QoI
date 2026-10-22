@@ -1,0 +1,85 @@
+{
+  "materials": 16,
+  "materials_ok": 16,
+  "python_vs_binary_max_muB": 4.893411244271013e-07,
+  "by_tau": {
+    "tau=0.1|magnetic=True": {
+      "materials": 12,
+      "eligible": 12,
+      "certified_any_codec": 12,
+      "median_best_m_cr": 2113.565316687383,
+      "median_best_m_bytes_over_lossless_rho": 0.0007914827669964013,
+      "codec_wins": {
+        "zfp": 0,
+        "sz3": 9,
+        "sperr": 3
+      },
+      "binary_certified_all": true
+    },
+    "tau=0.1|magnetic=False": {
+      "materials": 4,
+      "eligible": 4,
+      "certified_any_codec": 4,
+      "median_best_m_cr": 1133.592044466291,
+      "median_best_m_bytes_over_lossless_rho": 0.002318539449169466,
+      "codec_wins": {
+        "zfp": 0,
+        "sz3": 3,
+        "sperr": 1
+      },
+      "binary_certified_all": true
+    },
+    "tau=0.01|magnetic=True": {
+      "materials": 12,
+      "eligible": 12,
+      "certified_any_codec": 12,
+      "median_best_m_cr": 706.3799302369355,
+      "median_best_m_bytes_over_lossless_rho": 0.0031982219435087106,
+      "codec_wins": {
+        "zfp": 0,
+        "sz3": 8,
+        "sperr": 4
+      },
+      "binary_certified_all": true
+    },
+    "tau=0.01|magnetic=False": {
+      "materials": 4,
+      "eligible": 4,
+      "certified_any_codec": 4,
+      "median_best_m_cr": 1133.592044466291,
+      "median_best_m_bytes_over_lossless_rho": 0.002318539449169466,
+      "codec_wins": {
+        "zfp": 0,
+        "sz3": 3,
+        "sperr": 1
+      },
+      "binary_certified_all": true
+    },
+    "tau=0.001|magnetic=True": {
+      "materials": 12,
+      "eligible": 11,
+      "certified_any_codec": 12,
+      "median_best_m_cr": 180.33862195171122,
+      "median_best_m_bytes_over_lossless_rho": 0.00837379218569443,
+      "codec_wins": {
+        "zfp": 3,
+        "sz3": 5,
+        "sperr": 4
+      },
+      "binary_certified_all": true
+    },
+    "tau=0.001|magnetic=False": {
+      "materials": 4,
+      "eligible": 4,
+      "certified_any_codec": 4,
+      "median_best_m_cr": 1133.592044466291,
+      "median_best_m_bytes_over_lossless_rho": 0.002318539449169466,
+      "codec_wins": {
+        "zfp": 0,
+        "sz3": 3,
+        "sperr": 1
+      },
+      "binary_certified_all": true
+    }
+  }
+}

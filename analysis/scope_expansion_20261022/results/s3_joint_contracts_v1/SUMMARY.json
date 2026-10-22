@@ -1,0 +1,70 @@
+{
+  "materials": 16,
+  "failures": 0,
+  "groups": {
+    "tau_B=0.01|tau_mu=0.01|magnetic=True": {
+      "n": 12,
+      "joint_certified_without_map": 10,
+      "median_mu_err_m_exact_over_tau_mu": 0.025550000000004736,
+      "max_mu_err_m_exact_muB": 0.001860000000000004,
+      "median_gross_migrated_charge_e": 0.11275654572147133,
+      "max_rho_q_err_e": 0.009878000000000497
+    },
+    "tau_B=0.01|tau_mu=0.01|magnetic=False": {
+      "n": 4,
+      "joint_certified_without_map": 4,
+      "median_mu_err_m_exact_over_tau_mu": 0.0,
+      "max_mu_err_m_exact_muB": 1.0000000000000006e-06,
+      "median_gross_migrated_charge_e": 0.028211703397791357,
+      "max_rho_q_err_e": 0.009281999999998902
+    },
+    "tau_B=0.01|tau_mu=0.001|magnetic=True": {
+      "n": 12,
+      "joint_certified_without_map": 9,
+      "median_mu_err_m_exact_over_tau_mu": 0.25550000000004736,
+      "max_mu_err_m_exact_muB": 0.001860000000000004,
+      "median_gross_migrated_charge_e": 0.11275654572147133,
+      "max_rho_q_err_e": 0.009878000000000497
+    },
+    "tau_B=0.01|tau_mu=0.001|magnetic=False": {
+      "n": 4,
+      "joint_certified_without_map": 4,
+      "median_mu_err_m_exact_over_tau_mu": 0.0,
+      "max_mu_err_m_exact_muB": 1.0000000000000006e-06,
+      "median_gross_migrated_charge_e": 0.028211703397791357,
+      "max_rho_q_err_e": 0.009281999999998902
+    },
+    "tau_B=0.001|tau_mu=0.01|magnetic=True": {
+      "n": 11,
+      "joint_certified_without_map": 11,
+      "median_mu_err_m_exact_over_tau_mu": 0.0018000000000000654,
+      "max_mu_err_m_exact_muB": 0.0002999999999999947,
+      "median_gross_migrated_charge_e": 0.009274327422866567,
+      "max_rho_q_err_e": 0.0009379999999996613
+    },
+    "tau_B=0.001|tau_mu=0.01|magnetic=False": {
+      "n": 4,
+      "joint_certified_without_map": 4,
+      "median_mu_err_m_exact_over_tau_mu": 0.0,
+      "max_mu_err_m_exact_muB": 0.0,
+      "median_gross_migrated_charge_e": 0.0017957422861742008,
+      "max_rho_q_err_e": 0.0009540000000001214
+    },
+    "tau_B=0.001|tau_mu=0.001|magnetic=True": {
+      "n": 11,
+      "joint_certified_without_map": 11,
+      "median_mu_err_m_exact_over_tau_mu": 0.018000000000000654,
+      "max_mu_err_m_exact_muB": 0.0002999999999999947,
+      "median_gross_migrated_charge_e": 0.009274327422866567,
+      "max_rho_q_err_e": 0.0009379999999996613
+    },
+    "tau_B=0.001|tau_mu=0.001|magnetic=False": {
+      "n": 4,
+      "joint_certified_without_map": 4,
+      "median_mu_err_m_exact_over_tau_mu": 0.0,
+      "max_mu_err_m_exact_muB": 0.0,
+      "median_gross_migrated_charge_e": 0.0017957422861742008,
+      "max_rho_q_err_e": 0.0009540000000001214
+    }
+  }
+}

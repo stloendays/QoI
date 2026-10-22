@@ -32,3 +32,7 @@ Every number in the main text and this SI comes from the files below (commit tha
 | joint contract, confirmation | `analysis/qoac_hb_v2/results/P2_CONFIRMATORY_MANIFEST/RESULTS.md` | `56add26` |
 | fresh populations | `analysis/fresh_population_20261006/REPORT.md` | `708dd37` |
 | P3b rule | `analysis/fresh_population_20261006/P3B_SELECTION_RULE.md` | `39ba728` |
+
+| FFCz Hartree comparator (P1/P3b, all three tolerances) | `analysis/hartree_baseline_ffcz_20261012/results/RESULTS.md`; `analysis/hartree_baseline_ffcz_20261012/results/summary.csv`; `analysis/hartree_baseline_ffcz_20261012/DEVIATIONS.md` | `eaf7427` |
+| Whole-object Hartree archive and decoded magnetic-moment certification | `analysis/scope_expansion_20261022/results/s2b_archive_hartree_decframe/SUMMARY.json`; `analysis/scope_expansion_20261022/results/s2d_archive_pointwise_decframe_1e-6/READING.md`; `analysis/scope_expansion_20261022/results/whole_object_estimates/TABLE.md` | `045d917` |
+| Magnetic-moment contract and partition migration | `analysis/scope_expansion_20261022/results/s3_joint_contracts_v2/RESULTS.md`; `analysis/scope_expansion_20261022/results/s1_spin_engineering/RESULTS.md` | `045d917` |

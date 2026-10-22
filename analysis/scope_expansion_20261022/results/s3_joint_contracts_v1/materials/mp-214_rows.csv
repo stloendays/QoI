@@ -1,0 +1,5 @@
+material_id,formula,magnetic,npoints,natoms,tau_B_e,tau_mu_muB,status,error,rho_codec,rho_bytes,rho_q_err_e,gross_migrated_charge_e,migrated_voxels,mu_err_m_exact_muB,mu_err_joint_muB,m_codec,m_bytes,joint_certified_without_map,bader_solves
+mp-214,ZrRu,False,175616,2,0.01,0.01,OK,,sperr,15503,0.009281999999998902,0.01492348208244807,372,0.0,0.0,sperr,749,True,47
+mp-214,ZrRu,False,175616,2,0.01,0.001,OK,,sperr,15503,0.009281999999998902,0.01492348208244807,372,0.0,0.0,sperr,749,True,48
+mp-214,ZrRu,False,175616,2,0.001,0.01,OK,,sperr,62084,0.0005009999999998627,0.0004959261172672194,12,0.0,0.0,sperr,749,True,93
+mp-214,ZrRu,False,175616,2,0.001,0.001,OK,,sperr,62084,0.0005009999999998627,0.0004959261172672194,12,0.0,0.0,sperr,749,True,94

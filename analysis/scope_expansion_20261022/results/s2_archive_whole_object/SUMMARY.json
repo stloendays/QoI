@@ -1,0 +1,170 @@
+{
+  "objects_measured": 300,
+  "objects_failed": 0,
+  "estimates": [
+    {
+      "contract": "Bader 1e-3 e",
+      "tau_mu": 0.01,
+      "objects_unmeasured": 0,
+      "R_published": 4.367138158609395,
+      "R_whole": 4.360696601277685,
+      "R_whole_ci": [
+        3.624700867012587,
+        5.401696985576937
+      ],
+      "R_whole_with_labels": 4.340153802908325,
+      "R_whole_with_labels_ci": [
+        3.611056458867378,
+        5.368699851165206
+      ]
+    },
+    {
+      "contract": "Bader 1e-3 e",
+      "tau_mu": 0.001,
+      "objects_unmeasured": 0,
+      "R_published": 4.367138158609395,
+      "R_whole": 4.32741236298173,
+      "R_whole_ci": [
+        3.6014298329119248,
+        5.355902105306986
+      ],
+      "R_whole_with_labels": 4.307181237672707,
+      "R_whole_with_labels_ci": [
+        3.5878174954533604,
+        5.323753066259616
+      ]
+    },
+    {
+      "contract": "Bader 1e-2 e",
+      "tau_mu": 0.01,
+      "objects_unmeasured": 0,
+      "R_published": 8.98881298029509,
+      "R_whole": 8.961565627941834,
+      "R_whole_ci": [
+        6.464806980929976,
+        13.806947491162678
+      ],
+      "R_whole_with_labels": 8.875235499428745,
+      "R_whole_with_labels_ci": [
+        6.421241913136892,
+        13.588868130812816
+      ]
+    },
+    {
+      "contract": "Bader 1e-2 e",
+      "tau_mu": 0.001,
+      "objects_unmeasured": 0,
+      "R_published": 8.98881298029509,
+      "R_whole": 8.82211797135337,
+      "R_whole_ci": [
+        6.388345180206114,
+        13.427503254576653
+      ],
+      "R_whole_with_labels": 8.73844109948186,
+      "R_whole_with_labels_ci": [
+        6.346216522276192,
+        13.229616685607859
+      ]
+    },
+    {
+      "contract": "Hartree law 1e-6",
+      "tau_mu": 0.01,
+      "objects_unmeasured": 0,
+      "R_published": 356.03798778293486,
+      "R_whole": 316.79782830486647,
+      "R_whole_ci": [
+        290.9102366257011,
+        350.2338911853774
+      ],
+      "R_whole_with_labels": 232.45975431460278,
+      "R_whole_with_labels_ci": [
+        215.90526019377953,
+        252.40757775528107
+      ]
+    },
+    {
+      "contract": "Hartree law 1e-6",
+      "tau_mu": 0.001,
+      "objects_unmeasured": 0,
+      "R_published": 356.03798778293486,
+      "R_whole": 202.6632202647757,
+      "R_whole_ci": [
+        130.76802708375035,
+        297.75965422679076
+      ],
+      "R_whole_with_labels": 164.48647918347473,
+      "R_whole_with_labels_ci": [
+        113.47755267946474,
+        223.76911815169942
+      ]
+    },
+    {
+      "contract": "Hartree law 1e-4",
+      "tau_mu": 0.01,
+      "objects_unmeasured": 0,
+      "R_published": 1750.8929492977143,
+      "R_whole": 1088.0973876070582,
+      "R_whole_ci": [
+        981.75974176827,
+        1199.6371838378786
+      ],
+      "R_whole_with_labels": 484.4332225939728,
+      "R_whole_with_labels_ci": [
+        454.8273586487649,
+        515.2565272030786
+      ]
+    },
+    {
+      "contract": "Hartree law 1e-4",
+      "tau_mu": 0.001,
+      "objects_unmeasured": 0,
+      "R_published": 1750.8929492977143,
+      "R_whole": 370.8177518738955,
+      "R_whole_ci": [
+        186.43446109475397,
+        789.056727003665
+      ],
+      "R_whole_with_labels": 260.28278770620534,
+      "R_whole_with_labels_ci": [
+        153.47119861565335,
+        419.27073305444463
+      ]
+    },
+    {
+      "contract": "Hartree pointwise 1e-6",
+      "tau_mu": 0.01,
+      "objects_unmeasured": 0,
+      "R_published": 34.99881934623725,
+      "R_whole": 34.577799109639,
+      "R_whole_ci": [
+        32.350726432042265,
+        37.226467074173605
+      ],
+      "R_whole_with_labels": 33.260688376659466,
+      "R_whole_with_labels_ci": [
+        31.18381567660572,
+        35.7157360376263
+      ]
+    },
+    {
+      "contract": "Hartree pointwise 1e-6",
+      "tau_mu": 0.001,
+      "objects_unmeasured": 0,
+      "R_published": 34.99881934623725,
+      "R_whole": 32.57541443290279,
+      "R_whole_ci": [
+        29.126795034712384,
+        35.95438931469226
+      ],
+      "R_whole_with_labels": 31.403849027469786,
+      "R_whole_with_labels_ci": [
+        28.189113489816005,
+        34.56109526451843
+      ]
+    }
+  ],
+  "eligible_fraction_0.01": 1.0,
+  "certified_fraction_0.01": 1.0,
+  "eligible_fraction_0.001": 0.9966666666666667,
+  "certified_fraction_0.001": 0.9966666666666667
+}

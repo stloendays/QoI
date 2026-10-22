@@ -1,0 +1,32 @@
+{
+  "tau_H": 1e-06,
+  "writer": "A6",
+  "objects_measured": 299,
+  "objects_failed": 1,
+  "law_bytes_equal_recorded": 269,
+  "law_bytes_compared": 299,
+  "estimates": [
+    {
+      "tau_mu": 0.01,
+      "R_published_rho_only": 34.99881934623725,
+      "R_whole_decframe": 30.80960815789946,
+      "ci": [
+        24.839862614401657,
+        36.374396101318624
+      ],
+      "m_certified_objects": 299,
+      "objects_unmeasured": 1
+    },
+    {
+      "tau_mu": 0.001,
+      "R_published_rho_only": 34.99881934623725,
+      "R_whole_decframe": 24.11385098756357,
+      "ci": [
+        18.83160735482504,
+        31.154299306622192
+      ],
+      "m_certified_objects": 294,
+      "objects_unmeasured": 1
+    }
+  ]
+}

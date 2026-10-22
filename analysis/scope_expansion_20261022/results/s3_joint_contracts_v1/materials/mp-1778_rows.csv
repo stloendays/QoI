@@ -1,0 +1,5 @@
+material_id,formula,magnetic,npoints,natoms,tau_B_e,tau_mu_muB,status,error,rho_codec,rho_bytes,rho_q_err_e,gross_migrated_charge_e,migrated_voxels,mu_err_m_exact_muB,mu_err_joint_muB,m_codec,m_bytes,joint_certified_without_map,bader_solves
+mp-1778,BeO,False,110592,2,0.01,0.01,OK,,sperr,5943,0.0041999999999999815,0.03985496780749105,1847,0.0,0.0,sz3,795,True,47
+mp-1778,BeO,False,110592,2,0.01,0.001,OK,,sperr,5943,0.0041999999999999815,0.03985496780749105,1847,0.0,0.0,sz3,795,True,48
+mp-1778,BeO,False,110592,2,0.001,0.01,OK,,sperr,32635,0.0002789999999999182,0.0024321665119146053,148,0.0,0.0,sz3,795,True,93
+mp-1778,BeO,False,110592,2,0.001,0.001,OK,,sperr,32635,0.0002789999999999182,0.0024321665119146053,148,0.0,0.0,sz3,795,True,94

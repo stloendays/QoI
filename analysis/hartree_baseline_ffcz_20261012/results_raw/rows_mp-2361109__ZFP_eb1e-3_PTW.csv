@@ -1,0 +1,4 @@
+material_id,config,codec,eps_b_rel,eps_b,mode,tau,certified,lo_decades_skipped,n_evals_new,n_passing,search_seconds,param,r,bytes,base_stream_bytes,edits_bytes,hartree_hist,hartree_safe,density_Linf,density_RMSE,seconds,base_stream_file_bytes,edit_files,stored_bytes,axis_order,cr
+mp-2361109,ZFP_eb1e-3_PTW,ZFP,0.001,1.442795094105,PTW,0.0001,True,0,2,2,0.7154771820642054,ZFP_eb1e-3_PTW;r=10,10.0,191048,190904,144,2.5424102246996503e-06,2.5423901488931825e-06,0.21072423999999046,0.02630376638530978,0.16961974184960127,190904,"{'.fedits': 28, '.fflags': 28, '.sedits': 28, '.sflags': 28, '.extreme': 32}",191048,"C-order shape (Nx, Ny, Nz) passed directly to -3",32.41673296763117
+mp-2361109,ZFP_eb1e-3_PTW,ZFP,0.001,1.442795094105,PTW,1e-06,False,0,0,0,9.004957973957062e-06,,,,,,,,,,,,,,,
+mp-2361109,ZFP_eb1e-3_PTW,ZFP,0.001,1.442795094105,PTW,1e-08,False,0,0,0,3.063119947910309e-06,,,,,,,,,,,,,,,
