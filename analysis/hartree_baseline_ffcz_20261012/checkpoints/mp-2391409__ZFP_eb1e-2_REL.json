@@ -1,0 +1,111 @@
+{
+  "complete": true,
+  "config": {
+    "codec": "zfp",
+    "config_id": "ZFP_eb1e-2_REL",
+    "eps_rel": 0.01,
+    "mode": "REL"
+  },
+  "evals": [
+    {
+      "axis_order": "C-order shape (Nx, Ny, Nz) passed directly to -3",
+      "base_stream_bytes": 65968,
+      "base_stream_file_bytes": 65968,
+      "bytes": 66164,
+      "codec": "ZFP",
+      "config": "ZFP_eb1e-2_REL",
+      "density_Linf": 2.4141098429999985,
+      "density_RMSE": 0.32346449802260596,
+      "edit_files": {
+        ".extreme": 32,
+        ".fedits": 28,
+        ".fflags": 28,
+        ".sedits": 55,
+        ".sflags": 53
+      },
+      "edits_bytes": 196,
+      "eps_b": 18.50914603088,
+      "eps_b_rel": 0.01,
+      "error": "",
+      "hartree_hist": 0.00017508575828978798,
+      "hartree_safe": 0.00017508507826083174,
+      "material_id": "mp-2391409",
+      "mode": "REL",
+      "r": 1e-14,
+      "seconds": 0.488114221021533,
+      "stored_bytes": 66164
+    }
+  ],
+  "failures": [],
+  "info": {
+    "config": "ZFP_eb1e-2_REL",
+    "hartree_reference_historical": 261.2507761695986,
+    "hartree_reference_safe": 261.2507761695986,
+    "loader": "mp_gzip_json_monty_to_baderkit_grid",
+    "material_id": "mp-2391409",
+    "npoints": 512000,
+    "phase": "run",
+    "ptp": 1850.914603088,
+    "raw_bytes": 4096000,
+    "seconds": 19.224275588989258,
+    "shape": "80x80x80",
+    "source_bytes": 7467757,
+    "source_sha256_verified": true,
+    "status": "complete"
+  },
+  "material_id": "mp-2391409",
+  "rows": [
+    {
+      "certified": false,
+      "codec": "ZFP",
+      "config": "ZFP_eb1e-2_REL",
+      "cr": "",
+      "eps_b": 18.50914603088,
+      "eps_b_rel": 0.01,
+      "lo_decades_skipped": 0,
+      "material_id": "mp-2391409",
+      "mode": "REL",
+      "n_evals_new": 1,
+      "n_passing": 0,
+      "param": "",
+      "r": "",
+      "search_seconds": 0.48944331891834736,
+      "tau": 0.0001
+    },
+    {
+      "certified": false,
+      "codec": "ZFP",
+      "config": "ZFP_eb1e-2_REL",
+      "cr": "",
+      "eps_b": 18.50914603088,
+      "eps_b_rel": 0.01,
+      "lo_decades_skipped": 0,
+      "material_id": "mp-2391409",
+      "mode": "REL",
+      "n_evals_new": 0,
+      "n_passing": 0,
+      "param": "",
+      "r": "",
+      "search_seconds": 1.4520250260829926e-05,
+      "tau": 1e-06
+    },
+    {
+      "certified": false,
+      "codec": "ZFP",
+      "config": "ZFP_eb1e-2_REL",
+      "cr": "",
+      "eps_b": 18.50914603088,
+      "eps_b_rel": 0.01,
+      "lo_decades_skipped": 0,
+      "material_id": "mp-2391409",
+      "mode": "REL",
+      "n_evals_new": 0,
+      "n_passing": 0,
+      "param": "",
+      "r": "",
+      "search_seconds": 3.41096892952919e-06,
+      "tau": 1e-08
+    }
+  ],
+  "status": "complete"
+}

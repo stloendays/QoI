@@ -1,0 +1,111 @@
+{
+  "complete": true,
+  "config": {
+    "codec": "sz3",
+    "config_id": "SZ3_eb1e-4_REL",
+    "eps_rel": 0.0001,
+    "mode": "REL"
+  },
+  "evals": [
+    {
+      "axis_order": "C-order shape (Nx, Ny, Nz) passed directly to -3",
+      "base_stream_bytes": 215689,
+      "base_stream_file_bytes": 215689,
+      "bytes": 215891,
+      "codec": "SZ3",
+      "config": "SZ3_eb1e-4_REL",
+      "density_Linf": 2.9382360116546806,
+      "density_RMSE": 1.1614982426977793,
+      "edit_files": {
+        ".extreme": 32,
+        ".fedits": 28,
+        ".fflags": 28,
+        ".sedits": 61,
+        ".sflags": 53
+      },
+      "edits_bytes": 202,
+      "eps_b": 2.938248590163,
+      "eps_b_rel": 0.0001,
+      "error": "",
+      "hartree_hist": 0.00024444825237197046,
+      "hartree_safe": 0.00024444825229228236,
+      "material_id": "nomad-vGEh154443lz",
+      "mode": "REL",
+      "r": 1e-14,
+      "seconds": 0.9001885941252112,
+      "stored_bytes": 215891
+    }
+  ],
+  "failures": [],
+  "info": {
+    "config": "SZ3_eb1e-4_REL",
+    "hartree_reference_historical": 228955.13366031167,
+    "hartree_reference_safe": 228955.13366031167,
+    "loader": "nomad_exact_bytes_decompress_to_baderkit_grid",
+    "material_id": "nomad-vGEh154443lz",
+    "npoints": 1548288,
+    "phase": "run",
+    "ptp": 29382.48590163,
+    "raw_bytes": 12386304,
+    "seconds": 23.87386417388916,
+    "shape": "56x64x432",
+    "source_bytes": 28251788,
+    "source_sha256_verified": true,
+    "status": "complete"
+  },
+  "material_id": "nomad-vGEh154443lz",
+  "rows": [
+    {
+      "certified": false,
+      "codec": "SZ3",
+      "config": "SZ3_eb1e-4_REL",
+      "cr": "",
+      "eps_b": 2.938248590163,
+      "eps_b_rel": 0.0001,
+      "lo_decades_skipped": 0,
+      "material_id": "nomad-vGEh154443lz",
+      "mode": "REL",
+      "n_evals_new": 1,
+      "n_passing": 0,
+      "param": "",
+      "r": "",
+      "search_seconds": 0.9002349162474275,
+      "tau": 0.0001
+    },
+    {
+      "certified": false,
+      "codec": "SZ3",
+      "config": "SZ3_eb1e-4_REL",
+      "cr": "",
+      "eps_b": 2.938248590163,
+      "eps_b_rel": 0.0001,
+      "lo_decades_skipped": 0,
+      "material_id": "nomad-vGEh154443lz",
+      "mode": "REL",
+      "n_evals_new": 0,
+      "n_passing": 0,
+      "param": "",
+      "r": "",
+      "search_seconds": 7.797032594680786e-06,
+      "tau": 1e-06
+    },
+    {
+      "certified": false,
+      "codec": "SZ3",
+      "config": "SZ3_eb1e-4_REL",
+      "cr": "",
+      "eps_b": 2.938248590163,
+      "eps_b_rel": 0.0001,
+      "lo_decades_skipped": 0,
+      "material_id": "nomad-vGEh154443lz",
+      "mode": "REL",
+      "n_evals_new": 0,
+      "n_passing": 0,
+      "param": "",
+      "r": "",
+      "search_seconds": 3.1744129955768585e-06,
+      "tau": 1e-08
+    }
+  ],
+  "status": "complete"
+}

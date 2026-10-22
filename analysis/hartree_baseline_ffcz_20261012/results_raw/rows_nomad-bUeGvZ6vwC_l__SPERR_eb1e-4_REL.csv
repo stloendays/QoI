@@ -1,0 +1,4 @@
+material_id,config,codec,eps_b_rel,eps_b,mode,tau,certified,lo_decades_skipped,n_evals_new,n_passing,search_seconds,param,r,bytes,base_stream_bytes,edits_bytes,hartree_hist,hartree_safe,density_Linf,density_RMSE,seconds,base_stream_file_bytes,edit_files,stored_bytes,axis_order,cr
+nomad-bUeGvZ6vwC_l,SPERR_eb1e-4_REL,SPERR,0.0001,1.225236576170366,REL,0.0001,True,0,2,2,1.8752757674083114,SPERR_eb1e-4_REL;r=1,1.0,556437,556293,144,1.883893148944169e-06,1.8838610313183328e-06,1.2252247092828839,0.38838147648742866,0.483076861128211,560829,"{'.fedits': 28, '.fflags': 28, '.sedits': 28, '.sflags': 28, '.extreme': 32}",556437,"C-order shape (Nx, Ny, Nz) passed directly to -3",25.440033642622616
+nomad-bUeGvZ6vwC_l,SPERR_eb1e-4_REL,SPERR,0.0001,1.225236576170366,REL,1e-06,False,0,0,0,1.0127201676368713e-05,,,,,,,,,,,,,,,
+nomad-bUeGvZ6vwC_l,SPERR_eb1e-4_REL,SPERR,0.0001,1.225236576170366,REL,1e-08,False,0,0,0,2.6980414986610413e-06,,,,,,,,,,,,,,,
