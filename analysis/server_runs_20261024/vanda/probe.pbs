@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -N qoi_srv_probe
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=8:mpiprocs=8:ompthreads=1:mem=120GB
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-srv-20261024/analysis/server_runs_20261024/vanda/logs/probe.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-srv-20261024/analysis/server_runs_20261024/vanda/common.sh
+# 1. xc.py against PySCF/libxc on a P1 density
+"$PY" "$V/libxc_check.py" --material mp-2475284 > "$V/probe/libxc.json" 2> "$V/logs/probe_libxc.log" || true
+# 2. writers T (A2) and O (A3) reproduce the law protocol's recorded bytes
+"$PY" "$ROOT/analysis/archive_truncation_20261024/check_writers.py" --repo-root "$ROOT" --frozen-root "$FROZEN" \
+    --cache "$V/inputs/xc" --materials mp-2475284 mp-1790941 --out "$V/probe/writers.json" > "$V/logs/probe_writers.log" 2>&1 || true
+# 3. study objects, counted in the run: smallest D01 and smallest D10c archive objects; smallest bulk and slab material
+for t in $(cat "$V/probe_tasks_arch.txt"); do arch_one "$t" || true; done &
+for m in $(cat "$V/probe_tasks_xc.txt"); do xc_one "$m" || true; done &
+wait
+"$PY" "$V/status.py" --probe > "$V/probe/verdict.json"
+cat "$V/probe/verdict.json"
+echo PROBE_DONE
