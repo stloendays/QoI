@@ -184,3 +184,5 @@ Request: "新意的定位这个加进去 … 先做叙述减数字". Builds on r
   tolerance. `derive_operational_vs_truncation.py` (`02da306`) gives A3/A2 1.29 (bulk, 60/60) and 1.49 (slabs, 32/32)
   at 1e-4, and A3 ahead of truncation in every material at every tolerance. The truncation paragraph now says so, and
   Supplementary Note 3 gains the A3/A2 rows. The archive-scale truncation estimate goes to Vanda.
+- **Build (same day).** `figures/nc/build_nc_manuscript.py` → `figures/nc/release/NC_manuscript_20261024.{pdf,docx}`,
+  17 pages; the revised passages checked in the rendered PDF (pp. 1, 3, 5, 12).
