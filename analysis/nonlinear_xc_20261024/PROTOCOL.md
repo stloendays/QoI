@@ -62,8 +62,8 @@ Bootstrap of the median: seed 20261006, 10,000 resamples (the law protocol's).
 - Shared staging and environment with the archive study (`analysis/server_runs_20261024/`), project `CFP04-CF-046`,
   route queue `auto`.
 - `probe.pbs`: `libxc_check.py` on mp-2475284 (LDA energy density and potential within 1e-8 relative of libxc
-  `LDA,PW`; PBE energy density within 1e-3 relative of libxc `PBE,PBE`, whose PBE correlation uses the PW92 parameters
-  at libxc's precision), and the smallest bulk (mp-2475284) and smallest slab (nomad-deLeLsqokf9I) materials end to
+  `LDA_X,LDA_C_PW`; PBE energy density within 1e-3 relative of libxc `GGA_X_PBE,GGA_C_PBE`, whose PBE correlation uses
+  the PW92 parameters at libxc's precision), and the smallest bulk (mp-2475284) and smallest slab (nomad-deLeLsqokf9I) materials end to
   end, every regenerated stream within max(3 bytes, 0.1%) of the record and Hartree-certified. Their checkpoints count
   in the run.
 - Production after a passing probe: `production_xc.pbs`, one single-threaded worker per material, checkpointed.

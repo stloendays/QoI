@@ -123,11 +123,11 @@ def check_against_libxc(total: np.ndarray, lattice: np.ndarray, n: int = 20000, 
     rng = np.random.default_rng(seed)
     idx = rng.choice(np.flatnonzero(rho > 1e-6), size=min(n, int((rho > 1e-6).sum())), replace=False)
     r, s = rho.ravel()[idx], g2.ravel()[idx]
-    e_l = libxc.eval_xc("LDA,PW", r, spin=0, deriv=1)
+    e_l = libxc.eval_xc("LDA_X,LDA_C_PW", r, spin=0, deriv=1)
     g = np.zeros((4, r.size))
     g[0] = r
     g[1] = np.sqrt(s)                                   # libxc only uses |grad rho|^2 = sum of squares
-    e_p = libxc.eval_xc("PBE,PBE", g, spin=0, deriv=1)
+    e_p = libxc.eval_xc("GGA_X_PBE,GGA_C_PBE", g, spin=0, deriv=1)
     rel = lambda a, b: float(np.max(np.abs(a - b) / np.maximum(np.abs(b), 1e-300)))  # noqa: E731
     return {"points": int(r.size), "lda_exc_maxrel": rel(eps_lda(r), e_l[0]),
             "pbe_exc_maxrel": rel(eps_pbe(r, s), e_p[0]), "lda_vxc_maxrel": rel(_vxc_lda(r), e_l[1][0])}
