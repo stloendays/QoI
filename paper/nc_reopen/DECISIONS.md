@@ -179,3 +179,8 @@ Request: "新意的定位这个加进去 … 先做叙述减数字". Builds on r
   Supplementary Fig. 3. New claim test `test_codec_order_at_matched_distortion`.
 - Final: main text plus Methods 4,980 words; audit 0 failures, 0 warnings; claim tests 14 passed; number sweep 288
   numbers, all found.
+- **Spectral truncation at loose tolerance (same day).** Request: "谱截断 … 之后都用服务器来算". The 92-material
+  part of the comparison needs no new run: the law protocol already certified A2 and A3 for every material at every
+  tolerance. `derive_operational_vs_truncation.py` (`02da306`) gives A3/A2 1.29 (bulk, 60/60) and 1.49 (slabs, 32/32)
+  at 1e-4, and A3 ahead of truncation in every material at every tolerance. The truncation paragraph now says so, and
+  Supplementary Note 3 gains the A3/A2 rows. The archive-scale truncation estimate goes to Vanda.
