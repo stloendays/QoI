@@ -1,0 +1,146 @@
+{
+  "dataset": "Frozen RhoCodec development pairs, retrospective",
+  "sample": "185 selected materials, one SZ3/SPERR pair each, joint density L_inf and RMSE caliper 0.10 dex",
+  "source_SHA256": "fb6e77dc1ca1525918397415c1f3ef7dd17206b5f945ac6df8f9a2dc5f80a480",
+  "statistics": {
+    "all": {
+      "materials": 185,
+      "flips": 109,
+      "flip_fraction": 0.5891891891891892,
+      "flip_wilson95CI": [
+        0.5171820341062585,
+        0.6575677279750314
+      ],
+      "predictors_vs_rederived_error_ratio": {
+        "reassignment_ratio": {
+          "rho": 0.6072248967059627,
+          "bootstrap95CI": [
+            0.5022068566142671,
+            0.6981753404647658
+          ],
+          "asymptotic_p": 5.046910422447036e-20
+        },
+        "fixed_bader_ratio": {
+          "rho": -0.13808801789166447,
+          "bootstrap95CI": [
+            -0.27816869851287446,
+            0.0068252767438951424
+          ],
+          "asymptotic_p": 0.060867064320778944
+        },
+        "density_linf_ratio": {
+          "rho": -0.02695879610325613,
+          "bootstrap95CI": [
+            -0.17446296209787057,
+            0.12952754879818412
+          ],
+          "asymptotic_p": 0.7156637230665035
+        },
+        "density_rmse_ratio": {
+          "rho": -0.0736685493347485,
+          "bootstrap95CI": [
+            -0.20811742588196058,
+            0.06956604466964443
+          ],
+          "asymptotic_p": 0.3189761715518214
+        }
+      },
+      "SZ3_lower_reassignment_fraction": 173
+    },
+    "bulk": {
+      "materials": 117,
+      "flips": 66,
+      "flip_fraction": 0.5641025641025641,
+      "flip_wilson95CI": [
+        0.4736292927903717,
+        0.6505002910990215
+      ],
+      "predictors_vs_rederived_error_ratio": {
+        "reassignment_ratio": {
+          "rho": 0.5541443750093661,
+          "bootstrap95CI": [
+            0.41403211685242597,
+            0.6798922622168447
+          ],
+          "asymptotic_p": 9.087286813840325e-11
+        },
+        "fixed_bader_ratio": {
+          "rho": -0.09429183713228131,
+          "bootstrap95CI": [
+            -0.2711201845191133,
+            0.09547964509862435
+          ],
+          "asymptotic_p": 0.31190793203795947
+        },
+        "density_linf_ratio": {
+          "rho": -0.09186410705989899,
+          "bootstrap95CI": [
+            -0.2867457169852499,
+            0.105752643293699
+          ],
+          "asymptotic_p": 0.32458552066642493
+        },
+        "density_rmse_ratio": {
+          "rho": -0.24684919600173835,
+          "bootstrap95CI": [
+            -0.4004280733397569,
+            -0.07321167015778073
+          ],
+          "asymptotic_p": 0.007295003645388083
+        }
+      },
+      "SZ3_lower_reassignment_fraction": 110
+    },
+    "slab": {
+      "materials": 68,
+      "flips": 43,
+      "flip_fraction": 0.6323529411764706,
+      "flip_wilson95CI": [
+        0.5135563563911616,
+        0.7369953486476433
+      ],
+      "predictors_vs_rederived_error_ratio": {
+        "reassignment_ratio": {
+          "rho": 0.6759170897431003,
+          "bootstrap95CI": [
+            0.5117586622144534,
+            0.7923694954486923
+          ],
+          "asymptotic_p": 2.5428448459472244e-10
+        },
+        "fixed_bader_ratio": {
+          "rho": -0.013551169981295566,
+          "bootstrap95CI": [
+            -0.24397561070147855,
+            0.22556117242054652
+          ],
+          "asymptotic_p": 0.9126639051404961
+        },
+        "density_linf_ratio": {
+          "rho": 0.11165400618391418,
+          "bootstrap95CI": [
+            -0.1498544892180762,
+            0.3511475642111127
+          ],
+          "asymptotic_p": 0.36467585867388835
+        },
+        "density_rmse_ratio": {
+          "rho": 0.3562239951139443,
+          "bootstrap95CI": [
+            0.10582191511602451,
+            0.5706361718365831
+          ],
+          "asymptotic_p": 0.002868340590795546
+        }
+      },
+      "SZ3_lower_reassignment_fraction": 63
+    }
+  },
+  "limitations": [
+    "Associations are descriptive, not causally identified basin migration contributions.",
+    "Per-atom basin coordinates are needed for an exact fixed-domain / domain-migration decomposition.",
+    "No new independent confirmation materials were analyzed.",
+    "Pair selection is not matched on compression size or rate.",
+    "Reassigned voxel fraction is computed relative to the reference Bader partition."
+  ]
+}

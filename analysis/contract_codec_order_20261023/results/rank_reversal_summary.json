@@ -1,0 +1,171 @@
+{
+  "source": "..\\..\\benchmark\\master_benchmark_full.csv",
+  "source_SHA256": "d94839fd8b72e81ee2b06e80edb0e0e8c2967c51239a2d41fc166dbfd5b0b97a",
+  "matches_SHA256": "fb6e77dc1ca1525918397415c1f3ef7dd17206b5f945ac6df8f9a2dc5f80a480",
+  "source_rows": 6343,
+  "source_materials": 254,
+  "independent_pair_selection_verified": 185,
+  "selection": "one pair per material, both realized L_inf/RMSE within 0.10 dex; minimize sum abs log10 mismatch; no Bader input",
+  "cohort": "frozen development; post hoc engineering analysis; NOT independent confirmation",
+  "results_by_system": {
+    "all": {
+      "n": 185,
+      "fixed_SPERR_better": 185,
+      "rederived_SPERR_better": 76,
+      "ranking_reversals": 109,
+      "ranking_reversal_fraction": 0.5891891891891892,
+      "ranking_reversal_Wilson95CI": [
+        0.5171820341062605,
+        0.6575677279750296
+      ],
+      "median_fixed_SZ3_over_SPERR": 14.896022317327585,
+      "median_fixed_ratio_bootstrap95CI": [
+        13.367132381995262,
+        16.490871375107307
+      ],
+      "median_rederived_SZ3_over_SPERR": 0.9361360273678784,
+      "median_rederived_ratio_bootstrap95CI": [
+        0.8703536653168399,
+        0.9877765201919355
+      ],
+      "geomean_fixed_SZ3_over_SPERR": 15.478917802006343,
+      "geomean_rederived_SZ3_over_SPERR": 0.9399756554162559
+    },
+    "bulk": {
+      "n": 117,
+      "fixed_SPERR_better": 117,
+      "rederived_SPERR_better": 51,
+      "ranking_reversals": 66,
+      "ranking_reversal_fraction": 0.5641025641025641,
+      "ranking_reversal_Wilson95CI": [
+        0.47362929279037413,
+        0.6505002910990193
+      ],
+      "median_fixed_SZ3_over_SPERR": 11.608396672993385,
+      "median_fixed_ratio_bootstrap95CI": [
+        10.67987948629126,
+        12.491933076269712
+      ],
+      "median_rederived_SZ3_over_SPERR": 0.9796181778502128,
+      "median_rederived_ratio_bootstrap95CI": [
+        0.916564120903117,
+        1.0439048503958888
+      ],
+      "geomean_fixed_SZ3_over_SPERR": 12.18351097900191,
+      "geomean_rederived_SZ3_over_SPERR": 1.0393080824364596
+    },
+    "slab": {
+      "n": 68,
+      "fixed_SPERR_better": 68,
+      "rederived_SPERR_better": 25,
+      "ranking_reversals": 43,
+      "ranking_reversal_fraction": 0.6323529411764706,
+      "ranking_reversal_Wilson95CI": [
+        0.5135563563911648,
+        0.7369953486476407
+      ],
+      "median_fixed_SZ3_over_SPERR": 22.40623007503776,
+      "median_fixed_ratio_bootstrap95CI": [
+        18.972280999051478,
+        27.897597417424798
+      ],
+      "median_rederived_SZ3_over_SPERR": 0.8289420244810454,
+      "median_rederived_ratio_bootstrap95CI": [
+        0.6801275336662519,
+        0.9713504927754176
+      ],
+      "geomean_fixed_SZ3_over_SPERR": 23.368290557891722,
+      "geomean_rederived_SZ3_over_SPERR": 0.7907720315714613
+    }
+  },
+  "certification_diagnostics": [
+    {
+      "tau_B_e": 0.001,
+      "n_QSQ_eligible": 115,
+      "fixed_basin_disagreement_n": 45,
+      "fixed_basin_disagreement_rate": 0.391304347826087,
+      "fixed_basin_Wilson95CI": [
+        0.3070027043555832,
+        0.48263299813339744
+      ],
+      "rederived_basin_disagreement_n": 2,
+      "rederived_basin_disagreement_rate": 0.017391304347826087,
+      "rederived_basin_Wilson95CI": [
+        0.004782352362605713,
+        0.06120016668846871
+      ],
+      "note": "Fixed-basin classification is a DIAGNOSTIC, not the declared rederived Bader measurement contract."
+    },
+    {
+      "tau_B_e": 0.01,
+      "n_QSQ_eligible": 170,
+      "fixed_basin_disagreement_n": 44,
+      "fixed_basin_disagreement_rate": 0.25882352941176473,
+      "fixed_basin_Wilson95CI": [
+        0.19882720671409065,
+        0.32947863841473085
+      ],
+      "rederived_basin_disagreement_n": 21,
+      "rederived_basin_disagreement_rate": 0.12352941176470589,
+      "rederived_basin_Wilson95CI": [
+        0.08223295365169078,
+        0.1814639753298842
+      ],
+      "note": "Fixed-basin classification is a DIAGNOSTIC, not the declared rederived Bader measurement contract."
+    }
+  ],
+  "caliper_sensitivity": [
+    {
+      "caliper_dex": 0.05,
+      "n_materials": 165,
+      "n_fixed_SPERR_better": 165,
+      "n_rank_reversal": 95,
+      "rank_reversal_fraction": 0.5757575757575758,
+      "median_fixed_ratio": 14.929180692292359,
+      "median_rederived_ratio": 0.9589760546268701
+    },
+    {
+      "caliper_dex": 0.075,
+      "n_materials": 175,
+      "n_fixed_SPERR_better": 175,
+      "n_rank_reversal": 102,
+      "rank_reversal_fraction": 0.5828571428571429,
+      "median_fixed_ratio": 15.35571212565338,
+      "median_rederived_ratio": 0.9361360273678784
+    },
+    {
+      "caliper_dex": 0.1,
+      "n_materials": 185,
+      "n_fixed_SPERR_better": 185,
+      "n_rank_reversal": 109,
+      "rank_reversal_fraction": 0.5891891891891892,
+      "median_fixed_ratio": 14.896022317327585,
+      "median_rederived_ratio": 0.9361360273678784
+    },
+    {
+      "caliper_dex": 0.15,
+      "n_materials": 199,
+      "n_fixed_SPERR_better": 197,
+      "n_rank_reversal": 114,
+      "rank_reversal_fraction": 0.5728643216080402,
+      "median_fixed_ratio": 14.2921479036307,
+      "median_rederived_ratio": 0.9361360273678784
+    },
+    {
+      "caliper_dex": 0.2,
+      "n_materials": 214,
+      "n_fixed_SPERR_better": 205,
+      "n_rank_reversal": 120,
+      "rank_reversal_fraction": 0.5607476635514018,
+      "median_fixed_ratio": 13.455325596277289,
+      "median_rederived_ratio": 0.9615370398686242
+    }
+  ],
+  "interpretation_limits": [
+    "Fixed-basin and re-derived Bader errors refer to different measurement algorithms.",
+    "Codec comparisons are not rate-matched; no compression advantage claim follows.",
+    "The max-per-atom resolved/fixed error ratios are NOT an exact additive migration decomposition.",
+    "A paired statistical association does not uniquely establish local topological mechanism.",
+    "The materials were selected on scalar-error overlap and represent a selected development subpopulation."
+  ]
+}
