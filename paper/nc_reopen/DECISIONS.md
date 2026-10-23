@@ -151,3 +151,21 @@ Request: "你看看有没有什么在论文写作技巧上面的提升，在渲�
   Catalyst-Essay builders, plus accents and lower limits): 254 inline and 5 display equations, checked in the
   Chrome PDF and in a WPS export of the DOCX. Fig. 2a axis label no longer says "frozen".
 - 4,996 words; audit 0 failures; claim tests 13 passed.
+
+## Revision 9 (2026-10-23)
+
+Request: "新意的定位这个加进去 … 先做叙述减数字". Builds on revision 8 (`7721b8d`).
+- **Narrative pass.** Each Results paragraph keeps the number that carries its claim; secondary tolerances,
+  per-stratum values, repeated ladder numbers and secondary intervals move to the SI tables that already hold
+  them (Supplementary Notes 1 and 3). Removed from the main text, among others: the 1e-4 / 1e-2 e QSQ rates, the
+  1,332-reconstruction count, the 6.54 TB saving, the per-tolerance archive folds, the energy and susceptibility
+  centres (shown in Fig. 3c), the uniform-step and per-codec KCN ratios, the per-tolerance law/pointwise and
+  operator-metric lists, the MGARD best-smoothness ratios, the work-function maxima and per-slab folds, the
+  per-arm search-time folds, the A3/A1 per-tolerance list, the projection counts and the slab and
+  per-operator gain values. Number sweep: 284 numbers, all in committed sources (revision 8: 361).
+- **Novelty positioning.** The Introduction's "Here" paragraph states that the measurement contract, not the
+  field, is the object compression must satisfy. The Discussion's second paragraph now names the two ideas:
+  the contract belongs to the quantity of interest (eligibility 3/50 to 50/50 when only the role of the partition
+  reference changes), and for linear analyses the operator is the unit of design.
+- Main text plus Methods 4,831 words; `audit_manuscript.py --final`: 0 failures, 0 warnings;
+  `test_scientific_claims.py`: 13 passed.
