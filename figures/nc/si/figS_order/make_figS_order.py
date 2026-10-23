@@ -9,7 +9,9 @@ Every ratio is SZ3/SPERR within one material; one pair per material, matched in 
 within 0.10 dex without Bader outcomes. Counts and correlations are asserted against the committed summaries.
 Source: analysis/contract_codec_order_20261023/.
 
-    D:/Tools/pur_bridge_env/Scripts/python.exe make_figS_order.py   -> FigS_order.{svg,pdf,png}
+    D:/Tools/pur_bridge_env/Scripts/python.exe make_figS_order.py   -> FigS_order.{svg,pdf,png}, FigS_order.tweak_keys.json
+Editable in the browser figure editor (D:/论文-AI4S/wt-sup20/tools/figure_tweak.cmd); edits are kept in
+FigS_order.tweaks.json and re-applied on every render.
 """
 import json
 import os
@@ -99,4 +101,6 @@ axc.tick_params(axis="y", length=0)
 grid(axc, axis="x")
 
 layout.audit(pg.fig)
+import tweak  # noqa: E402  hand adjustments from FigS_order.tweaks.json (figure editor, figures/composite/tweak.py)
+tweak.apply(pg.fig, HERE, "FigS_order")
 pg.save(HERE, "FigS_order")
