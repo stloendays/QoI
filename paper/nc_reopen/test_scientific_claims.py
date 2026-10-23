@@ -165,6 +165,24 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertIn("Lossless binary storage alone gives 0.99-fold", MAIN)
         self.assertIn("5.35-fold", MAIN)
 
+    def test_codec_order_at_matched_distortion(self) -> None:
+        """Recompute the codec-order counts from the committed matched pairs."""
+        import csv
+        with open(ROOT / "analysis/contract_codec_order_20261023/inputs/matched_real_material_pairs.csv",
+                  encoding="utf-8") as fh:
+            rows = list(csv.DictReader(fh))
+        self.assertEqual(len({r["material_id"] for r in rows}), 185)
+        fixed = [float(r["Bader_fixed_error_SZ3_e"]) / float(r["Bader_fixed_error_SPERR_e"]) for r in rows]
+        rederived = [float(r["Bader_resolved_error_SZ3_e"]) / float(r["Bader_resolved_error_SPERR_e"]) for r in rows]
+        self.assertTrue(all(abs(float(r["log10_Linf_mismatch_abs"])) <= 0.10 and
+                            abs(float(r["log10_RMSE_mismatch_abs"])) <= 0.10 for r in rows))
+        self.assertEqual(sum(f > 1 for f in fixed), 185)
+        self.assertEqual(sum(f > 1 and g < 1 for f, g in zip(fixed, rederived)), 109)
+        self.assertIn("185/185 materials", MAIN)
+        self.assertIn("SZ3 did in 109/185", MAIN)
+        self.assertIn("(Spearman 0.607)", MAIN)
+        self.assertIn("109/185 (58.9%", SI)
+
     def test_manuscript_word_limits(self) -> None:
         out = subprocess.check_output(
             [sys.executable, str(ROOT / "paper/nc_reopen/word_count.py")],

@@ -1,4 +1,4 @@
-# Word count — NC revision 9 (narrative pass), 2026-10-23
+# Word count — NC revision 9 (narrative pass and codec order), 2026-10-23
 
 Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running text only; section headings, displayed mathematics, tables and their captions, figure legends, references and the availability statements are excluded.
 
@@ -6,15 +6,15 @@ Counted on `paper/MANUSCRIPT.md` with `paper/nc_reopen/word_count.py`: running t
 The downstream operator qualifies, predicts and shapes the certified compression of electronic densities          11
 Abstract                                                                                                         148
 Introduction                                                                                                     371
-Results — A tolerance is scored only after the measurement contract resolves it                                  414
+Results — A tolerance is scored only after the measurement contract resolves it                                  514
 Results — The operator symbol explains the codec effect and fixes a closed-form allocation law                   329
 Results — Under equal search, the law certifies more than pointwise, QoI-preserving and Fourier-corrected code   599
 Results — The law's certified streams are the cheapest to produce and fast to retrieve                            87
 Results — The operator metric carries the gain, and the system class sets the optimizer's share                  236
 Results — One stream certifies the Hartree potential and Bader charges together                                  352
 Results — The gain is predicted before compression from the operator symbol and the reference spectrum           262
-Discussion                                                                                                       441
-Methods — Measurement contract and QSQ                                                                           171
+Discussion                                                                                                       459
+Methods — Measurement contract and QSQ                                                                           202
 Methods — Hermitian-orbit representation and certificate                                                         215
 Methods — Arms and the operational optimum                                                                       135
 Methods — QoI-preserving baselines and work-function error                                                       292
@@ -35,5 +35,5 @@ Legend 5                                                                        
 Legend 6                                                                                                          91
 Legend 7                                                                                                         156
 Legend 8                                                                                                         114
-Intro+Results+Discussion 3091 | Methods 1740 | total 4831 | legends 1019
+Intro+Results+Discussion 3209 | Methods 1771 | total 4980 | legends 1019
 ```

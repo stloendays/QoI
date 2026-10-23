@@ -169,3 +169,13 @@ Request: "新意的定位这个加进去 … 先做叙述减数字". Builds on r
   reference changes), and for linear analyses the operator is the unit of design.
 - Main text plus Methods 4,831 words; `audit_manuscript.py --final`: 0 failures, 0 warnings;
   `test_scientific_claims.py`: 13 passed.
+- **Codec order at matched density error (same day).** The contract result from the private RhoCodec mechanism
+  package (`stloendays/Essay-Work_Store`, `research/rhocodec-mechanism-20261023`, `9c83cd5`) is rerun on the committed
+  benchmark (`analysis/contract_codec_order_20261023/`, `0a6ebf6`; identical counts) and enters the paper: one
+  Results paragraph after "Evaluability belongs to the contract" (SPERR better in 185/185 with reference basins, SZ3
+  in 109/185 with re-derived basins; re-derived error ratio vs reassigned-voxel ratio Spearman 0.607), one Discussion
+  clause under the first idea, one Methods sentence, Supplementary Note 1.13 and a new Supplementary Fig. 1
+  (`figures/nc/si/figS_order/`). The spin figure becomes Supplementary Fig. 2 and the partition-storage figure
+  Supplementary Fig. 3. New claim test `test_codec_order_at_matched_distortion`.
+- Final: main text plus Methods 4,980 words; audit 0 failures, 0 warnings; claim tests 14 passed; number sweep 288
+  numbers, all found.

@@ -19,8 +19,9 @@ Contents:
 - Supplementary Note 7. Gain-predictor calibration
 - Supplementary Note 8. Population construction
 - Supplementary Note 9. Source files
-- Supplementary Fig. 1. Magnetic-moment contracts and density reconstruction
-- Supplementary Fig. 2. Bader storage contracts on real materials
+- Supplementary Fig. 1. The contract orders codecs at matched density error
+- Supplementary Fig. 2. Magnetic-moment contracts and density reconstruction
+- Supplementary Fig. 3. Bader storage contracts on real materials
 
 
 ## Supplementary Note 1 — QSQ validations
@@ -138,6 +139,24 @@ The exhaustive oracle costs 38.5, 37.0 and 32.2 solves per eligible material. Th
 | $10^{-2}$ | 8.875 (6.42–13.6) | 7.54 | 11.7% |
 
 For the full two-block object, replacing gzipped JSON with lossless float64 representation alone gives 0.9889-fold. At $10^{-3}\,e$, Bader certification gives a further 5.349-fold reduction (95% CI 4.49–6.58) relative to the corresponding lossless binary representation. The qualifying writer recovered 98.2%, 95.3% and 93.1% of the component-level oracle reduction at the three tolerances, with no misses among eligible evaluated objects in the prospectively tested strata. These writer-efficiency fractions concern the density coder, not a second whole-object archive estimate.
+
+### 1.13 The contract orders codecs at matched density error
+
+**Selection.** From the 6,343 development reconstructions of the 254 materials (`benchmark/master_benchmark_full.csv`), each material contributed at most one SZ3/SPERR pair: among pairs whose realized density $L_\infty$ and root-mean-square error both agree within 0.10 dex, the pair with the smallest summed absolute $\log_{10}$ mismatch. Bader outcomes and QSQ verdicts were not used. This gave 185 materials (117 bulk crystals, 68 slabs). For each pair the maximum atomic-charge error is taken with the reference basins (fixed partition) and with basins re-derived from each decoded density (the QSQ contract of Supplementary Note 1.2); the reassigned-voxel fraction is the fraction of grid points whose basin changes on re-derivation.
+
+**Codec order.** With reference basins SPERR gave the smaller error in 185/185 materials (median SZ3/SPERR error ratio 14.90, 95% CI 13.37–16.49). With re-derived basins the order reversed in 109/185 (58.9%; Wilson 95% CI 51.7–65.8%; bulk 66/117, slabs 43/68), and the median ratio was 0.936 (0.870–0.988). The reversal persisted at every caliper from 0.05 to 0.20 dex (95/165 to 120/214 materials).
+
+| set | pairs | SPERR smaller, reference basins | order reversed, re-derived basins | median SZ3/SPERR, reference basins | median SZ3/SPERR, re-derived basins |
+|---|---|---|---|---|---|
+| all | 185 | 185/185 | 109/185 | 14.90 (13.37–16.49) | 0.936 (0.870–0.988) |
+| bulk crystals | 117 | 117/117 | 66/117 | 11.61 (10.68–12.49) | 0.980 (0.917–1.044) |
+| slabs | 68 | 68/68 | 43/68 | 22.41 (18.97–27.90) | 0.829 (0.680–0.971) |
+
+**Tolerance decisions.** Among QSQ-admitted pairs, the two reconstructions received different decisions in 45/115 pairs at $10^{-3}\,e$ and 44/170 at $10^{-2}\,e$ when scored with reference basins, against 2/115 and 21/170 under the re-derived contract.
+
+**What tracks the re-derived error.** Across the 185 pairs, the $\log_{10}$ SZ3/SPERR ratio of re-derived Bader errors correlated with the ratio of reassigned-voxel fractions (Spearman 0.607, material bootstrap 95% CI 0.502–0.698; bulk 0.554, slabs 0.676), and not with the ratios of density maximum error (−0.027; −0.174 to 0.130), density root-mean-square error (−0.074; −0.208 to 0.070) or reference-basin Bader error (−0.138; −0.278 to 0.007). SZ3 reassigned fewer voxels than SPERR in 173/185 pairs. The per-material table and both summaries are in `analysis/contract_codec_order_20261023/results/`.
+
+**Supplementary Fig. 1 | The contract orders codecs at matched density error.** 185 development materials (117 bulk crystals, 68 slabs), one SZ3/SPERR pair each, matched in realized density $L_\infty$ and root-mean-square error within 0.10 dex without Bader outcomes; every ratio is SZ3/SPERR within one material. **a**, Ratio of maximum Bader errors with reference basins against the ratio with basins re-derived from the decoded density; the shaded half-plane holds the materials whose codec order reverses. **b**, Re-derived error ratio against the ratio of reassigned-voxel fractions. **c**, Spearman correlation of the re-derived error ratio with four diagnostics; bars, material bootstrap 95% confidence intervals.
 
 ## Supplementary Note 2 — Hartree mechanism, fixed-ladder QOAC-H confirmation, census and strongest baselines
 
@@ -461,9 +480,9 @@ The same 300-object stratified sample and expansion estimator were used with bot
 
 The matched law/pointwise ratio at $10^{-6}$ is 9.15-fold (95% CI 8.45–10.0). For the complete object, lossless binary storage alone gives 0.99-fold relative to gzipped JSON, whereas Bader certification contributes 5.35-fold (4.49–6.58). At Hartree $10^{-4}$, the selective atom-map policy is essential for ten objects and no matched pointwise estimate was made under that policy.
 
-The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 9. Supplementary Fig. 1 summarizes magnetic-moment eligibility, partition migration and storage consequences.
+The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 9. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
 
-**Supplementary Fig. 1 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 9.
+**Supplementary Fig. 2 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 9.
 
 ## Supplementary Note 5 — Joint certification: engineering cohort and per-tolerance description
 
@@ -512,7 +531,7 @@ On the 38-material holdout ($\tau_B=10^{-3}\,e$): 38/38 analyzable with zero pip
 
 Henkelman Bader 1.05 (`-b ongrid -vac 0.001`), exact CHGCAR, reference AECCAR0 + AECCAR2. The partition (volnum) was identical voxel for voxel in 11/11 materials with Gate 0 output (0 mismatching voxels); maxima 3,339/3,339 matched; every reference field was regular (0 violations of R1 and R2); the atom map was identical in 9/11 (minimum voxel agreement 97.9%); the literal transcription (run for at most 400,000 points) was identical in 3/3. For one material (mp-2302539) the comparison code exceeded memory (a 74 GiB pairwise maxima array); its arms ran normally.
 
-### 6.3 Storing the partition (Supplementary Fig. 2)
+### 6.3 Storing the partition (Supplementary Fig. 3)
 
 The main-text 48-material joint test assumes the exact all-electron partition is already available, so its compression ratios and unity *incremental* overhead exclude the reference partition's storage. When the partition must travel with the reconstructed density, a self-contained contract can instead store a lossless basin-label map, or compress AECCAR with a correction that recovers the identical Henkelman partition. The following 12-material engineering test quantifies these *partition representations*, not end-to-end total byte savings for all 48 confirmed crystals.
 
@@ -527,7 +546,7 @@ The main-text 48-material joint test assumes the exact all-electron partition is
 
 Before correction the base quantizer alone reassigns a median 45–91% of voxels; after correction no voxel is reassigned. The label map round-trips exactly in 12/12 materials, charges recomputed from it match the binary in 12/12 (maximum difference $5.0\times10^{-7}\,e$), and its median size is 12.9 kB (atom map) and 21.8 kB (volnum map). When only Bader charges are needed, the self-contained contract is therefore a Hartree-certified CHGCAR stream plus a lossless label map (16- to 57-fold smaller than a partition-faithful AECCAR, medians per arm), with basin projection added when the stream's basin sums miss $\tau_B$; a partition-faithful AECCAR serves users who need the partition-defining field itself. On the 48 confirmatory crystals this self-contained storage was measured end to end (Supplementary Note 5).
 
-**Supplementary Fig. 2 | Bader storage contracts on real materials.** **a**, Total stored bytes of the partition-faithful AECCAR arms (A1, A2 at relative bounds $10^{-3}$, $10^{-2}$ and $5\times10^{-2}$) divided by the bytes of the lossless atom label map, per material (12 fresh P2 engineering materials; bar, median; medians 16.3–56.9); every arm gives zero basin reassignment and zero Bader error. **b**, Lossless label-map size per material: atom map (median 12.9 kB) and volnum map (21.8 kB); lines join the two maps of one material. Source: `analysis/qoac_b3_design/results/real_engineering/rows.csv` (columns `arm, delta, total_bytes, label_ctx_bytes_atom, label_ctx_bytes_volnum, reassigned_volnum_frac`).
+**Supplementary Fig. 3 | Bader storage contracts on real materials.** **a**, Total stored bytes of the partition-faithful AECCAR arms (A1, A2 at relative bounds $10^{-3}$, $10^{-2}$ and $5\times10^{-2}$) divided by the bytes of the lossless atom label map, per material (12 fresh P2 engineering materials; bar, median; medians 16.3–56.9); every arm gives zero basin reassignment and zero Bader error. **b**, Lossless label-map size per material: atom map (median 12.9 kB) and volnum map (21.8 kB); lines join the two maps of one material. Source: `analysis/qoac_b3_design/results/real_engineering/rows.csv` (columns `arm, delta, total_bytes, label_ctx_bytes_atom, label_ctx_bytes_volnum, reassigned_volnum_frac`).
 
 
 ## Supplementary Note 7 — Gain-predictor calibration
