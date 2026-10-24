@@ -186,3 +186,26 @@ Request: "新意的定位这个加进去 … 先做叙述减数字". Builds on r
   Supplementary Note 3 gains the A3/A2 rows. The archive-scale truncation estimate goes to Vanda.
 - **Build (same day).** `figures/nc/build_nc_manuscript.py` → `figures/nc/release/NC_manuscript_20261024.{pdf,docx}`,
   17 pages; the revised passages checked in the rendered PDF (pp. 1, 3, 5, 12).
+
+## Revision 10 (2026-10-25)
+
+Request: "写进去吧" — the server results of 2026-10-24 into the manuscript. Branch `paper/nc-rev10-20261025` from
+revision 9 (`c2fe815`), with `research/xc-linearized-law-20261025` merged (it carries the archive-truncation and XC
+studies of `research/server-truncation-xc-20261024`).
+- **Archive.** The archive paragraph, the abstract and the Discussion now use operational allocation (A3): 347-fold
+  (95% CI 317–387) at 1e-6 and 1,371-fold at 1e-4, with the closed-form law (316-fold), truncation (232-fold; 1,142-fold
+  at 1e-4) and the pointwise writer (34.6-fold) as comparisons; Supplementary Notes 3.4 and 4.4 gain the T and O rows.
+  Methods: the Hartree archive applied the design to A1, A2, A3 and A6.
+- **Exchange-correlation energy.** New Results paragraph (prediction section): the linearized allocation from v_xc
+  certifies as much as the closed-form law (X/L 0.99–1.00 bulk, 0.93–0.96 slabs); under an E_xc contract the law
+  certifies 5.4- and 6.9-fold (bulk) and 2.9- and 1.9-fold (slabs) more than pointwise codecs; a Hartree certificate
+  does not carry E_xc on slabs. New Methods subsection, new Supplementary Note 7 (Notes 7–9 become 8–10), new ref. 38
+  (PBE; refs. 38–41 become 39–42), four Table 1 rows. Discussion: the operator is the unit of design "for linear analyses
+  and, through its linearization, for the exchange-correlation energy"; abstract clause added.
+- **Word budget.** To stay at 5,000: implementation details moved from Methods to the SI (seeds and work keys, QPET
+  versions, archive strata, FFCz configurations, A0 ladder) and Results sentences tightened (truncation, QoI-preserving
+  baselines, per-operator gains, archive composition). Claim test `9.15-fold` now reads the SI.
+- Main text plus Methods 4,998 words, abstract 150; `audit_manuscript.py --final` 0 failures, 0 warnings;
+  `test_scientific_claims.py` 17 passed (new: operational archive, XC contract, linearized allocation); number sweep
+  288 numbers, all found. Build `figures/nc/release/NC_manuscript_20261025.{pdf,docx}`, 17 pages; changed pages
+  (1, 8, 11, 12, 14, 15, 17) checked in the rendered PDF.

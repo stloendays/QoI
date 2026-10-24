@@ -6,7 +6,7 @@ Junbo Tong<sup>1</sup>
 
 <sup>1</sup>National University of Singapore, Singapore.
 
-This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 9 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
+This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 10 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
 
 Contents:
 
@@ -16,9 +16,10 @@ Contents:
 - Supplementary Note 4. Whole-object storage and the magnetization contract
 - Supplementary Note 5. Joint certification: engineering cohort and per-tolerance description
 - Supplementary Note 6. Bader contracts under an exact partition: basin projection, partition transcription and storage
-- Supplementary Note 7. Gain-predictor calibration
-- Supplementary Note 8. Population construction
-- Supplementary Note 9. Source files
+- Supplementary Note 7. Exchange-correlation energy: contract, transfer and linearized allocation
+- Supplementary Note 8. Gain-predictor calibration
+- Supplementary Note 9. Population construction
+- Supplementary Note 10. Source files
 - Supplementary Fig. 1. The contract orders codecs at matched density error
 - Supplementary Fig. 2. Magnetic-moment contracts and density reconstruction
 - Supplementary Fig. 3. Bader storage contracts on real materials
@@ -66,7 +67,7 @@ $$
 \Pr(X_1=\cdots=X_n=0,\,X_{n+1}=1)\le\max_{0\le p\le 1}p(1-p)^n=\frac{n^n}{(n+1)^{n+1}},
 $$
 
-with the maximum at $p=1/(n+1)$, the one-sided tolerance-limit argument of Wilks (main-text ref. 38). The inequality holds after averaging over materials with heterogeneous $p$, because independence holds within each pair. Independence is what the bound uses: for a finite exchangeable panel without it, symmetry gives only $\Pr(\sum_{k=1}^{n+1}X_k=1)/(n+1)\le1/(n+1)$, attained when exactly one of the $n+1$ draws exceeds. The bound is a joint probability; the conditional risk among admitted materials is reported separately below.
+with the maximum at $p=1/(n+1)$, the one-sided tolerance-limit argument of Wilks (main-text ref. 39). The inequality holds after averaging over materials with heterogeneous $p$, because independence holds within each pair. Independence is what the bound uses: for a finite exchangeable panel without it, symmetry gives only $\Pr(\sum_{k=1}^{n+1}X_k=1)/(n+1)\le1/(n+1)$, attained when exactly one of the $n+1$ draws exceeds. The bound is a joint probability; the conditional risk among admitted materials is reported separately below.
 
 | panel size $n$ | 5 | 10 | 19 | 37 |
 |---:|---:|---:|---:|---:|
@@ -283,7 +284,7 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 - **Arms.**
   - M2: MGARD (CODARcode/MGARD commit ac53ff9), smoothness $s=-2$.
   - M-best: MGARD, best of $s\in\{\infty,0,-1,-2\}$.
-  - Q: QPET, block average over $b^3$ blocks with $b=4,8,16$, on SZ3, HPEZ and SPERR hosts; best of nine configurations.
+  - Q: QPET (authors' artifact JLiu-1/QPET-Artifact, branches szfamily_qpet_revision at 5d17cb1 and sperr_qpet_revision at 1874108), block average over $b^3$ blocks with $b=4,8,16$, on SZ3, HPEZ and SPERR hosts; best of nine configurations.
 - **QPET quantity.** QPET bounds local and regional quantities; the closest one to a Hartree contract that it supports is the block average of the density over $4^3$, $8^3$ and $16^3$ voxels. Every arm is accepted by the same decoded Hartree certificate.
 - **Search and certificate.** Each configuration used the same certificate and bisection policy as A1/A6; the A arms are the recorded values of the law run.
 - **Input precision.** The SPERR host reads the float64 density, as A1 does; the authors' `hpez` program, which runs the SZ3 and HPEZ hosts, compiles only its float32 path. At $\tau=10^{-6}$ the best QPET configuration was a SPERR (float64) configuration in 60/60 bulk crystals and 26/32 slabs (SZ3 in the other 6), and restricting QPET to the SPERR host leaves the median A1/Q ratios unchanged (6.31 and 9.47). Per material and tolerance: `paper/nc_reopen/derived/qpet_best_host.csv`.
@@ -440,6 +441,15 @@ At $10^{-6}$, decoded-frame moment certification passes on 300/300 law streams a
 
 A selective-map policy gives a further law-only measurement at $10^{-4}$: ten of 300 objects require a lossless atom map to preserve their moments on decoded density partitions. Retaining maps only for those objects yields a **1,036-fold** whole-object reduction (95% CI 927–1,152); omitting them all gives 76-fold. No like-for-like pointwise estimate under this selective-map policy was measured, so no cross-codec ratio is assigned to this 1,036-fold row.
 
+Spectral truncation (A2, best of 32 cutoffs) and operational allocation (A3) were applied to the same 300 objects with the same storage rule, the same moment policy (moments on the decoded partition where they certify, otherwise the reference atom map) and the same estimators; every object was certified by both writers at both tolerances, with decoded-partition moments in 300/300.
+
+| Hartree tolerance | Spectral truncation (95% CI) | Operational allocation (95% CI) | Closed-form law (95% CI) | Operational/truncation | Operational/law |
+|---|---:|---:|---:|---:|---:|
+| $10^{-4}$ | 1,142 (1,018–1,286) | **1,371 (1,209–1,550)** | 1,036 (927–1,152) | 1.20 (1.18–1.23) | 1.32 (1.27–1.39) |
+| $10^{-6}$ | 232.5 (211–260) | **347.2 (317–387)** | 316.4 (290–350) | 1.49 (1.46–1.53) | 1.10 (1.09–1.10) |
+
+At $10^{-6}$ operational allocation stores the archive in about 24 GB and is 10.0-fold smaller than the pointwise writer; at $10^{-4}$ spectral truncation is smaller than the closed-form law (0.91, 0.86–0.94), as on the 92 law-protocol materials.
+
 ### 3.5 Fourier-correction baseline under the Hartree certificate
 
 FFCz<sup>16</sup> (source revision 96649b3 of the authors' repository, unmodified) corrected ZFP, SZ3 and SPERR reconstructions at base bounds $\epsilon_b/\mathrm{ptp}(\rho)\in\{10^{-2},10^{-3},10^{-4}\}$ in its relative (REL) and pointwise (PTW) frequency modes, 18 configurations per material, on the same 60 bulk crystals and 32 slabs. The frequency bound $r$ was searched with the 60-step search of the law protocol, from $r=10^{-14}$ up to 1 (REL) or 10 (PTW); a configuration that fails the decoded Hartree certificate at $r=10^{-14}$ is not certified at that tolerance. Every point was accepted or rejected by the decoded Hartree certificate (historical and Nyquist-safe), recomputed from the decoded density; FFCz's own frequency check plays no role in acceptance. All 1,656 material–configuration tasks completed with no failed evaluation.
@@ -476,15 +486,18 @@ The same 300-object stratified sample and expansion estimator were used with bot
 | Contract and writer | Whole-object archive reduction (95% CI) | Policy |
 |---|---|---|
 | Bader, $10^{-3}\,e$ | 4.34 (3.61–5.37) | Reference atom map included |
+| Operational allocation, $10^{-6}$ | 347 (317–387) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Hartree law, $10^{-6}$ | 316 (290–350) | Magnetization on decoded partition, 300/300 certificates; no map |
+| Spectral truncation, $10^{-6}$ | 232 (211–260) | As above |
 | Best pointwise, $10^{-6}$ | 34.6 (32.4–37.2) | Same moment policy and fallback handling |
+| Operational allocation, $10^{-4}$ | 1,371 (1,209–1,550) | Magnetization on decoded partition, 300/300 |
 | Hartree law, $10^{-4}$ | 1,036 (927–1,152) | Selective atom maps in 10/300 objects |
 
 The matched law/pointwise ratio at $10^{-6}$ is 9.15-fold (95% CI 8.45–10.0). For the complete object, lossless binary storage alone gives 0.99-fold relative to gzipped JSON, whereas Bader certification contributes 5.35-fold (4.49–6.58). At Hartree $10^{-4}$, the selective atom-map policy is essential for ten objects and no matched pointwise estimate was made under that policy.
 
-The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 9. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
+The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 10. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
 
-**Supplementary Fig. 2 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 9.
+**Supplementary Fig. 2 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 10.
 
 ## Supplementary Note 5 — Joint certification: engineering cohort and per-tolerance description
 
@@ -551,7 +564,52 @@ Before correction the base quantizer alone reassigns a median 45–91% of voxels
 **Supplementary Fig. 3 | Bader storage contracts on real materials.** **a**, Total stored bytes of the partition-faithful AECCAR arms (A1, A2 at relative bounds $10^{-3}$, $10^{-2}$ and $5\times10^{-2}$) divided by the bytes of the lossless atom label map, per material (12 fresh P2 engineering materials; bar, median; medians 16.3–56.9); every arm gives zero basin reassignment and zero Bader error. **b**, Lossless label-map size per material: atom map (median 12.9 kB) and volnum map (21.8 kB); lines join the two maps of one material. Source: `analysis/qoac_b3_design/results/real_engineering/rows.csv` (columns `arm, delta, total_bytes, label_ctx_bytes_atom, label_ctx_bytes_volnum, reassigned_volnum_frac`).
 
 
-## Supplementary Note 7 — Gain-predictor calibration
+## Supplementary Note 7 — Exchange-correlation energy: contract, transfer and linearized allocation
+
+### 7.1 Contract and writers
+
+The QoI is the spin-unpolarized PBE exchange-correlation energy of the stored total density, $E_{\text{xc}}[\rho]$ in eV per atom, evaluated on the stored grid with gradients by Fourier transform on the periodic cell (unpaired Nyquist modes dropped); points with $\rho\le10^{-12}$ bohr$^{-3}$ contribute zero. The implementation agrees with libxc to $10^{-8}$ relative for the LDA energy density and potential and to $10^{-3}$ for the PBE energy density. The contract is $|\Delta E_{\text{xc}}|<\tau_x$ per atom, $\tau_x\in\{1,0.1\}$ meV, with the decoded density the only approximate input; QSQ used the five float32-scale probes, and all 92 materials (P1, 60 bulk crystals; P3b, 32 slabs) were eligible at both tolerances.
+
+Five writers received the same 60-step log bisection with the decoded $E_{\text{xc}}$ certificate as predicate, keeping the smallest passing stream: P, the best of ZFP, SZ3 and SPERR; L, the closed-form Hartree law ($\Delta_G\propto|G|^2$); U, uniform reciprocal-space steps (both in the law codec); X, the linearized allocation, and F, flat shell steps (both in the 32-shell container of A3, one step per shell). For X, $v_{\text{xc}}=\delta E_{\text{xc}}/\delta\rho$ is the exact derivative of the discrete energy (complex-step derivatives of the PBE energy density with respect to $\rho$ and $|\nabla\rho|^2$, spectral divergence), $W_s$ is the multiplicity-weighted mean of $|v_{\text{xc}}(G)|^2$ over shell $s$, and shell $s$ is quantized with step $\alpha\,(W_s/W_{\max})^{-1/2}$, the high-rate allocation for a first-order error $\sum_G\overline{v_{\text{xc}}(G)}\,\delta\rho(G)$. Medians carry 95% bootstrap intervals (10,000 resamples, seed 20261006).
+
+### 7.2 Certification under the exchange-correlation contract
+
+Median certified compression ratio (95% CI); every writer certified every material.
+
+| cohort | $\tau_x$ (meV per atom) | P | L | U | X | F |
+|---|---|---:|---:|---:|---:|---:|
+| P1 bulk | 1 | 79.7 (65.2–92.2) | 484.5 (351–629) | 413.5 (346–584) | 484.7 (355–643) | 439.1 (338–577) |
+| P1 bulk | 0.1 | 30.0 (22.8–41.7) | 220.6 (143–299) | 212.6 (135–311) | 210.6 (139–301) | 199.5 (127–279) |
+| P3b slabs | 1 | 61.9 (53.4–98.8) | 271.9 (186–463) | 265.0 (191–444) | 255.4 (178–443) | 256.8 (175–433) |
+| P3b slabs | 0.1 | 30.7 (29.0–35.5) | 80.7 (41.6–155) | 75.6 (43.2–149) | 67.6 (41.2–130) | 74.2 (42.4–157) |
+
+Paired ratios per material, median (95% CI; wins).
+
+| cohort | $\tau_x$ | L/P | U/P | L/U | X/L | X/F | X/U |
+|---|---|---|---|---|---|---|---|
+| P1 | 1 | 5.43 (4.18–7.48; 60/60) | 5.03 (4.13–7.18; 60/60) | 1.03 (0.99–1.09; 35/60) | 1.00 (0.99–1.02; 30/60) | 1.02 (0.98–1.08; 34/60) | 1.05 (0.98–1.09; 35/60) |
+| P1 | 0.1 | 6.89 (5.31–8.65; 59/60) | 5.72 (4.31–8.30; 59/60) | 1.09 (1.05–1.17; 40/60) | 0.99 (0.97–1.01; 26/60) | 1.16 (1.06–1.22; 41/60) | 1.08 (1.03–1.14; 41/60) |
+| P3b | 1 | 2.92 (2.18–4.67; 32/32) | 3.01 (2.07–4.64; 32/32) | 1.04 (1.00–1.07; 22/32) | 0.96 (0.94–1.00; 12/32) | 1.01 (0.99–1.05; 18/32) | 1.01 (0.97–1.06; 18/32) |
+| P3b | 0.1 | 1.91 (1.24–3.93; 25/32) | 1.84 (1.37–4.02; 27/32) | 1.01 (0.94–1.06; 16/32) | 0.93 (0.89–1.00; 10/32) | 0.99 (0.95–1.01; 13/32) | 0.94 (0.91–0.97; 6/32) |
+
+The XC potential's shell weight falls as steeply over the innermost shells as the Hartree weight: median $W_s/W_{\max}$ is $3\times10^{-2}$ at shell 1, $5\times10^{-4}$ at shell 2 and $10^{-6}$ by shell 9 in both cohorts, and the step ratio between the outermost and innermost shell is 5,387 (bulk) and 1,490 (slabs), against 3,969 for $\Delta_G\propto|G|^2$. The XC-certified X streams carry a median Hartree error of $1.4\times10^{-6}$ (bulk) and $1.6\times10^{-8}$ (slabs) at 0.1 meV per atom, against $8.2\times10^{-6}$ and $2.5\times10^{-7}$ for F.
+
+### 7.3 Exchange-correlation error of Hartree-certified streams
+
+The smallest certified stream of each arm of the law protocol was regenerated from its recorded parameter and decoded; median $|\Delta E_{\text{xc}}|$ in meV per atom (materials below 1 meV per atom).
+
+| cohort | $\tau$ | A1 law | A2 truncation | A3 operational | A6 pointwise |
+|---|---|---:|---:|---:|---:|
+| P1 | $10^{-8}$ | 0.0004 (60/60) | 0.0002 (60/60) | 0.0004 (60/60) | 0.0001 (60/60) |
+| P1 | $10^{-6}$ | 0.069 (59/60) | 0.039 (60/60) | 0.052 (59/60) | 0.011 (60/60) |
+| P1 | $10^{-4}$ | 8.9 (9/60) | 4.0 (13/60) | 9.5 (9/60) | 2.2 (17/60) |
+| P3b | $10^{-8}$ | 0.098 (32/32) | 0.006 (32/32) | 0.041 (32/32) | 0.0002 (32/32) |
+| P3b | $10^{-6}$ | 3.9 (3/32) | 0.28 (23/32) | 3.2 (5/32) | 0.061 (32/32) |
+| P3b | $10^{-4}$ | 355 (0/32) | 85 (0/32) | 311 (0/32) | 45 (4/32) |
+
+Of the 1,104 regenerated streams, 1,073 re-passed their Hartree certificate on the run platform; the others are A2 at $10^{-8}$ (17 bulk crystals and 13 slabs, Hartree error 1.007–1.085 times $\tau$) and one SZ3 slab stream at $10^{-4}$. Per-material rows: `analysis/nonlinear_xc_20261024/results/` and `analysis/xc_linearized_law_20261025/results/`.
+
+## Supplementary Note 8 — Gain-predictor calibration
 
 The predictor form was fixed by a retrospective calibration on the 12 QOAC-H engineering materials (commit `f4baa7a`), before the law protocol was fixed (`fe2e08a`); the calibration observations were known when the predictors were written, and the predictor was then tested only on the unused P1 and P3b cohorts. Predictor (a) is the high-rate orbit-only expression, in which every component has error $\Delta^2/12$ and rate $h-\log_2\Delta$; predictor (b) is the finite-rate Laplacian model of the main-text Methods, evaluated on the fixed ladder.
 
@@ -567,7 +625,7 @@ The predictor form was fixed by a retrospective calibration on the 12 QOAC-H eng
 The high-rate expression overstates the Hartree gain about 1.4-fold in every material; the dead zone of the finite-rate model removes most of that bias. Absolute model compression ratios deviate from observation by a median of 0.068 dex, and these errors partly cancel in ratios between policies, which are the quantities predicted.
 
 
-## Supplementary Note 8 — Population construction
+## Supplementary Note 9 — Population construction
 
 **Development and external sets.** 254 development densities (186 Materials Project bulk, 68 NOMAD slabs from five uploads); 65 external stability records (37 AFLOW bulk, 28 NOMAD vacuum-containing 2D); 63 external confirmatory systems. These sets supplied every QSQ result and the fixed-ladder QOAC-H evidence.
 
@@ -590,6 +648,6 @@ The S3 listing (bucket `materialsproject-parsed`, 2026-10-06 14:16–14:38 UTC) 
 Every manifest records material id, task or entry id, source URL, byte count and SHA-256; `PROVENANCE.json` records listing timestamps and the hashes of every index, frame, exclusion file, script and manifest.
 
 
-## Supplementary Note 9 — Source files
+## Supplementary Note 10 — Source files
 
 Numerical results in the main text and this SI are tied to committed scientific files in the research repository (see Data availability). The file-by-file table, with the commit that last changed each file, is `paper/nc_reopen/SOURCE_FILES.md` in that repository; protocols, manifests, per-material tables and the register of every protocol with its outcome are in the same repository.

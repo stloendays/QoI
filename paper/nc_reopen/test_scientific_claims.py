@@ -123,11 +123,56 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertAlmostEqual(law["R_whole_decframe"], 316.407836194927)
         self.assertIn("316-fold", MAIN)
         self.assertIn("34.6-fold", MAIN)
-        self.assertIn("9.15-fold", MAIN)
+        self.assertIn("9.15-fold", SI)                 # law/pointwise ratio, now stated in Supplementary Note 3.4
         self.assertIn("20.3-fold", MAIN)
         self.assertIn("22.7-fold", MAIN)
         self.assertIn("Supplementary Note 4", MAIN)  # whole-object note, renumbered after Note 3
         self.assertNotIn("356-fold", MAIN)
+
+    def test_operational_archive(self) -> None:
+        """The archive under operational allocation and truncation (revision 10) against the committed run."""
+        import json
+        s = json.loads((ROOT / "analysis/archive_truncation_20261024/results/SUMMARY.json").read_text(encoding="utf-8"))
+        e, pr = s["estimates"], s["paired"]
+        self.assertEqual(s["objects_success"], 300)
+        self.assertEqual(round(e["O_1e-06"]["R"]), 347)
+        self.assertEqual([round(v) for v in e["O_1e-06"]["ci95"]], [317, 387])
+        self.assertEqual(round(e["T_1e-06"]["R"]), 232)
+        self.assertEqual(round(e["O_0.0001"]["R"]), 1371)
+        self.assertEqual(round(e["T_0.0001"]["R"]), 1142)
+        self.assertAlmostEqual(pr["L/T_0.0001"]["ratio"], 0.907, places=3)
+        for t in ("347-fold (95% CI 317–387)", "232-fold for truncation", "1,371-fold", "1,142-fold for truncation", "24 GB"):
+            self.assertIn(t, MAIN)
+        self.assertIn("347-fold", MAIN.split("## Introduction")[0])          # abstract
+
+    def test_exchange_correlation_contract(self) -> None:
+        """L/P under the XC contract and the Hartree certificate's XC error on slabs (revision 10)."""
+        import json
+        s = json.loads((ROOT / "analysis/nonlinear_xc_20261024/results/SUMMARY.json").read_text(encoding="utf-8"))
+        pr = {(r["cohort"], r["tau_x_meV_per_atom"], r["ratio"]): r for r in s["paired"]}
+        self.assertEqual(s["success"], 92)
+        self.assertEqual(round(pr[("P1", 1.0, "L/P")]["median"], 1), 5.4)
+        self.assertEqual(round(pr[("P1", 0.1, "L/P")]["median"], 1), 6.9)
+        self.assertEqual(round(pr[("P3B", 1.0, "L/P")]["median"], 1), 2.9)
+        self.assertEqual(round(pr[("P3B", 0.1, "L/P")]["median"], 1), 1.9)
+        a1 = [r for r in s["transfer"] if r["cohort"] == "P3B" and r["arm"] == "A1" and r["tau_H"] == 1e-6][0]
+        self.assertEqual(round(a1["median_dE_pbe_meV_per_atom"], 1), 3.9)
+        self.assertIn("5.4- and 6.9-fold more than the best pointwise codec on bulk crystals and 2.9- and 1.9-fold more on slabs", MAIN)
+        self.assertIn("median error 3.9 meV per atom", MAIN)
+
+    def test_linearized_exchange_correlation_allocation(self) -> None:
+        """X/L medians quoted in Results and Supplementary Note 7 (revision 10)."""
+        import json
+        s = json.loads((ROOT / "analysis/xc_linearized_law_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
+        pr = {(r["cohort"], r["tau_x_meV_per_atom"], r["ratio"]): r["median"] for r in s["paired"]}
+        self.assertEqual(s["success"], 92)
+        bulk = sorted(round(pr[("P1", t, "X/L")], 2) for t in (1.0, 0.1))
+        slab = sorted(round(pr[("P3B", t, "X/L")], 2) for t in (1.0, 0.1))
+        self.assertEqual(bulk, [0.99, 1.0])
+        self.assertEqual(slab, [0.93, 0.96])
+        self.assertIn("(median ratios 0.99–1.00; 0.93–0.96 on slabs)", MAIN)
+        self.assertEqual(round(pr[("P1", 0.1, "X/F")], 2), 1.16)
+        self.assertIn("1.16 (1.06–1.22; 41/60)", SI)
 
     def test_work_function_definition_and_window(self) -> None:
         # Definition: electrostatic vacuum level minus the stored Fermi energy, ionic potential exact.

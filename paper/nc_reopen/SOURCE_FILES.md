@@ -38,3 +38,9 @@ Every number in the main text and this SI comes from the files below (commit tha
 | Magnetic-moment contract and partition migration | `analysis/scope_expansion_20261022/results/s3_joint_contracts_v2/RESULTS.md`; `analysis/scope_expansion_20261022/results/s1_spin_engineering/RESULTS.md` | `045d917` |
 | Codec order at matched density error (Supplementary Note 1.13, Supplementary Fig. 1) | `analysis/contract_codec_order_20261023/RESULTS.md`; `analysis/contract_codec_order_20261023/results/rank_reversal_summary.json`; `analysis/contract_codec_order_20261023/results/migration_coupling_summary.json`; per material `analysis/contract_codec_order_20261023/results/migration_coupling_per_material.csv`; figure `figures/nc/si/figS_order/make_figS_order.py` | `0a6ebf6` |
 | Operational optimum and law against spectral truncation (Results; Supplementary Note 3, A3/A2 rows) | `paper/nc_reopen/derived/operational_vs_truncation.csv` (from `paper/nc_reopen/derive_operational_vs_truncation.py`, reading `analysis/general_qoac_law/results/run_P1_CONFIRMATORY/part_a_material.csv` and `analysis/general_qoac_law/results/run_P3B_CONFIRMATORY/part_a_material.csv`) | `02da306` |
+| archive under truncation and operational allocation | `analysis/archive_truncation_20261024/results/SUMMARY.json` | `534126e` |
+| archive under truncation and operational allocation, summary | `analysis/archive_truncation_20261024/RESULTS.md` | `534126e` |
+| exchange-correlation contract and transfer | `analysis/nonlinear_xc_20261024/results/SUMMARY.json` | `534126e` |
+| exchange-correlation contract, summary | `analysis/nonlinear_xc_20261024/RESULTS.md` | `534126e` |
+| linearized exchange-correlation allocation | `analysis/xc_linearized_law_20261025/results/SUMMARY.json` | `b32e6d7` |
+| linearized exchange-correlation allocation, summary | `analysis/xc_linearized_law_20261025/RESULTS.md` | `b32e6d7` |
