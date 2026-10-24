@@ -5,6 +5,7 @@
 "args": [],
 "python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
 "cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\fig1",
+"tweak_version": "1.1",
 "size_mm": [
 183.0,
 106.0
@@ -58,7 +59,8 @@
 "ELECTRON": "#9daccb",
 "POS_C": "#d8894e",
 "NEG_C": "#4f86b0"
-}
+},
+"cmaps": {}
 },
 "ids": {
 "tw_d68eaea8b80e": {
@@ -657,6 +659,10 @@
 "tw_a3e601c9c53a": {
 "key": "ax@0,0,183,54/line/0",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 2.2,
 "colors": [
 "#5a7ba6"
 ]
@@ -664,6 +670,10 @@
 "tw_ebafe5f6a4fc": {
 "key": "ax@0,0,183,54/line/1",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 2.2,
 "colors": [
 "#5a6480"
 ]
@@ -671,6 +681,10 @@
 "tw_602dae0ed76d": {
 "key": "ax@0,0,183,54/line/2",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 2.2,
 "colors": [
 "#5e7a52"
 ]
@@ -678,6 +692,10 @@
 "tw_1ddfaaf33867": {
 "key": "ax@0,0,183,54/line/3",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 2.2,
 "colors": [
 "#454a52"
 ]
@@ -685,6 +703,10 @@
 "tw_e3c6e6a26eb0": {
 "key": "ax@0,0,183,54/line/4",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 2.2,
 "colors": [
 "#89aa7b"
 ]
@@ -692,6 +714,10 @@
 "tw_e4963a3725d4": {
 "key": "ax@0,0,183,54/line/5",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 1.6,
 "colors": [
 "#eb6969"
 ]
@@ -699,6 +725,10 @@
 "tw_240053916229": {
 "key": "ax@0,0,183,54/line/6",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 1.1,
 "colors": [
 "#ffffff"
 ]
@@ -706,6 +736,7 @@
 "tw_d8970d5b327d": {
 "key": "ax@0,0,183,54/patch/0",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#e3e7f0"
 ]
@@ -713,6 +744,7 @@
 "tw_00de46577884": {
 "key": "ax@0,0,183,54/patch/1",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#e4ecde"
 ]
@@ -720,6 +752,7 @@
 "tw_be5530550a14": {
 "key": "ax@0,0,183,54/patch/2",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#e9ebee"
 ]
@@ -727,6 +760,7 @@
 "tw_8cab692ffc54": {
 "key": "ax@0,0,183,54/patch/3",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#f3f1ee"
 ]
@@ -734,6 +768,7 @@
 "tw_ab8f6911c784": {
 "key": "ax@0,0,183,54/patch/4",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#eb6969"
 ]
@@ -741,6 +776,7 @@
 "tw_3dc4ee754cf6": {
 "key": "ax@0,0,183,54/patch/5",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#b3b8c0"
 ]
@@ -748,6 +784,7 @@
 "tw_d26f1f1ab878": {
 "key": "ax@0,0,183,54/patch/6",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#5a7ba6"
@@ -756,6 +793,7 @@
 "tw_6439c8f9cb54": {
 "key": "ax@0,0,183,54/patch/7",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#5a6480"
@@ -764,6 +802,7 @@
 "tw_ce597fce8d4d": {
 "key": "ax@0,0,183,54/patch/8",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#5a6480"
@@ -772,6 +811,7 @@
 "tw_36607af8e7a4": {
 "key": "ax@0,0,183,54/patch/9",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#5a6480",
 "#ffffff"
@@ -780,6 +820,7 @@
 "tw_5ed0410f9b1b": {
 "key": "ax@0,0,183,54/patch/10",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#5e7a52"
@@ -788,6 +829,7 @@
 "tw_539e0faeb1c6": {
 "key": "ax@0,0,183,54/patch/11",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#5e7a52"
@@ -796,6 +838,7 @@
 "tw_df72de61a204": {
 "key": "ax@0,0,183,54/patch/12",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#454a52"
@@ -804,6 +847,7 @@
 "tw_bb3a01e118f6": {
 "key": "ax@0,0,183,54/patch/13",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#ffffff",
 "#454a52"
@@ -812,6 +856,7 @@
 "tw_e68ace9d4203": {
 "key": "ax@0,0,183,54/patch/14",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#454a52",
 "#ffffff"
@@ -820,6 +865,7 @@
 "tw_ea5d6dd08838": {
 "key": "ax@0,0,183,54/patch/15",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#89aa7b",
 "#ffffff"
@@ -828,6 +874,7 @@
 "tw_1279f799d903": {
 "key": "ax@0,0,183,54/patch/16",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#b3b8c0",
 "#ffffff"
@@ -836,6 +883,7 @@
 "tw_94b8c9afb353": {
 "key": "ax@0,0,183,54/patch/17",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#eb6969",
 "#ffffff"
@@ -1024,6 +1072,7 @@
 "tw_d96a9cca9f47": {
 "key": "ax@0,54,183,52/scatter/0",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#9e80c7"
 ]
@@ -1031,6 +1080,7 @@
 "tw_70dd6c65ef56": {
 "key": "ax@0,54,183,52/scatter/1",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#6b6b70"
 ]
@@ -1038,6 +1088,7 @@
 "tw_3ed69f18fa17": {
 "key": "ax@0,54,183,52/scatter/2",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#5478cc"
 ]
@@ -1045,6 +1096,7 @@
 "tw_f041d70d63ed": {
 "key": "ax@0,54,183,52/scatter/3",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#eb6969"
 ]
@@ -1052,6 +1104,7 @@
 "tw_7aba68c02fad": {
 "key": "ax@0,54,183,52/patch/0",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#d8894e"
 ]
@@ -1059,6 +1112,7 @@
 "tw_d9f2a7f6af8f": {
 "key": "ax@0,54,183,52/patch/1",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#4f86b0"
 ]

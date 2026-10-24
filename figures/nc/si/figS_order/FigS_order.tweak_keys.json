@@ -5,6 +5,7 @@
 "args": [],
 "python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
 "cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\si\\figS_order",
+"tweak_version": "1.1",
 "size_mm": [
 183.0,
 62.0
@@ -46,7 +47,8 @@
 "ELECTRON": "#9daccb",
 "POS_C": "#d8894e",
 "NEG_C": "#4f86b0"
-}
+},
+"cmaps": {}
 },
 "ids": {
 "tw_d68eaea8b80e": {
@@ -95,6 +97,25 @@
 "kind": "axes",
 "panel": "a",
 "background": "#ffffff",
+"frame": "full",
+"tickdir": "in",
+"grid": "both",
+"sides": [
+"bottom",
+"left"
+],
+"xlim": [
+0.0,
+2.3
+],
+"ylim": [
+-1.6,
+2.8
+],
+"xscale": "linear",
+"yscale": "linear",
+"xminor": false,
+"yminor": false,
 "colors": [
 "#fbe3e3",
 "#6b6f76",
@@ -103,6 +124,12 @@
 "#89aa7b",
 "#eb6969",
 "#1b1b1b"
+],
+"box": [
+42.52,
+17.01,
+167.24,
+144.57
 ]
 },
 "tw_04b4fe29bb2b": {
@@ -292,6 +319,7 @@
 "tw_c3545d21dc81": {
 "key": "ax@15,11,44,45/scatter/0",
 "kind": "scatter",
+"ls": "-",
 "name": "bulk crystals (117)",
 "colors": [
 "#7789b7",
@@ -301,6 +329,7 @@
 "tw_a62d561377b4": {
 "key": "ax@15,11,44,45/scatter/1",
 "kind": "scatter",
+"ls": "-",
 "name": "slabs (68)",
 "colors": [
 "#89aa7b",
@@ -310,6 +339,10 @@
 "tw_50786c85e650": {
 "key": "ax@15,11,44,45/line/0",
 "kind": "line",
+"ls": "--",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 0.6,
 "colors": [
 "#6b6f76"
 ]
@@ -317,6 +350,7 @@
 "tw_612050e3e6c2": {
 "key": "ax@15,11,44,45/patch/0",
 "kind": "patch",
+"ls": "-",
 "colors": [
 "#fbe3e3"
 ]
@@ -326,6 +360,25 @@
 "kind": "axes",
 "panel": "b",
 "background": "#ffffff",
+"frame": "full",
+"tickdir": "in",
+"grid": "both",
+"sides": [
+"bottom",
+"left"
+],
+"xlim": [
+-0.75,
+0.2
+],
+"ylim": [
+-1.6,
+2.8
+],
+"xscale": "linear",
+"yscale": "linear",
+"xminor": false,
+"yminor": false,
 "colors": [
 "#6b6f76",
 "#7789b7",
@@ -333,6 +386,12 @@
 "#89aa7b",
 "#1b1b1b",
 "#cccccc"
+],
+"box": [
+215.43,
+17.01,
+340.16,
+144.57
 ]
 },
 "tw_31b01248cf67": {
@@ -525,6 +584,7 @@
 "fontsize": 5.3,
 "weight": "normal",
 "role": "legend",
+"frame": false,
 "colors": [
 "#1b1b1b",
 "#7789b7",
@@ -536,6 +596,7 @@
 "tw_3bb5e9b322d0": {
 "key": "ax@76,11,44,45/scatter/0",
 "kind": "scatter",
+"ls": "-",
 "name": "bulk crystals (117)",
 "colors": [
 "#7789b7",
@@ -545,6 +606,7 @@
 "tw_ebe015187fc7": {
 "key": "ax@76,11,44,45/scatter/1",
 "kind": "scatter",
+"ls": "-",
 "name": "slabs (68)",
 "colors": [
 "#89aa7b",
@@ -554,6 +616,10 @@
 "tw_2f1084f9baf5": {
 "key": "ax@76,11,44,45/line/0",
 "kind": "line",
+"ls": "--",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 0.6,
 "colors": [
 "#6b6f76"
 ]
@@ -561,6 +627,10 @@
 "tw_529ee2930e76": {
 "key": "ax@76,11,44,45/line/1",
 "kind": "line",
+"ls": "--",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 0.6,
 "colors": [
 "#6b6f76"
 ]
@@ -570,12 +640,37 @@
 "kind": "axes",
 "panel": "c",
 "background": "#ffffff",
+"frame": "full",
+"tickdir": "in",
+"grid": "x",
+"sides": [
+"bottom",
+"left"
+],
+"xlim": [
+-0.4,
+0.8
+],
+"ylim": [
+3.5,
+-0.5
+],
+"xscale": "linear",
+"yscale": "linear",
+"xminor": false,
+"yminor": false,
 "colors": [
 "#eb6969",
 "#5a6480",
 "#6b6f76",
 "#1b1b1b",
 "#ffffff"
+],
+"box": [
+430.87,
+17.01,
+510.24,
+144.57
 ]
 },
 "tw_c6e5abf78356": {
@@ -681,6 +776,7 @@
 "tw_32d768d4ec4a": {
 "key": "ax@152,11,28,45/scatter/0",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#eb6969"
 ]
@@ -688,6 +784,7 @@
 "tw_bcf8ce841f7c": {
 "key": "ax@152,11,28,45/scatter/1",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#5a6480"
 ]
@@ -695,6 +792,7 @@
 "tw_658976409d01": {
 "key": "ax@152,11,28,45/scatter/2",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#5a6480"
 ]
@@ -702,6 +800,7 @@
 "tw_b3a7c1d862c7": {
 "key": "ax@152,11,28,45/scatter/3",
 "kind": "scatter",
+"ls": "-",
 "colors": [
 "#5a6480"
 ]
@@ -709,6 +808,10 @@
 "tw_01c4ac25de6f": {
 "key": "ax@152,11,28,45/line/0",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 1.2,
 "colors": [
 "#eb6969"
 ]
@@ -716,6 +819,10 @@
 "tw_b17d0e42510d": {
 "key": "ax@152,11,28,45/line/1",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 1.2,
 "colors": [
 "#5a6480"
 ]
@@ -723,6 +830,10 @@
 "tw_0654cf8f5680": {
 "key": "ax@152,11,28,45/line/2",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 1.2,
 "colors": [
 "#5a6480"
 ]
@@ -730,6 +841,10 @@
 "tw_11f5b00ca510": {
 "key": "ax@152,11,28,45/line/3",
 "kind": "line",
+"ls": "-",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 1.2,
 "colors": [
 "#5a6480"
 ]
@@ -737,6 +852,10 @@
 "tw_7876f2cc277f": {
 "key": "ax@152,11,28,45/line/4",
 "kind": "line",
+"ls": "--",
+"marker": "None",
+"ms": 6.0,
+"lw_pt": 0.6,
 "colors": [
 "#6b6f76"
 ]
