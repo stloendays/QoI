@@ -31,5 +31,25 @@ class XC(unittest.TestCase):
         self.assertAlmostEqual(e["E_pbe_eV_per_atom"], want, places=9)
 
 
+class AlphaFloor(unittest.TestCase):
+    """DEVIATIONS D2: the L/U bracket starts where the v02 encoder can store every coefficient."""
+
+    def test_floor_is_the_encoder_limit(self):
+        import os
+        import sys
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "operator_aware_codec_hartree_v02"))
+        import codec_qoac_h_v02 as v02
+        import run_xc
+        rng = np.random.default_rng(0)
+        z = np.linspace(0, 1, 96, endpoint=False)
+        x = 5e3 * np.exp(-((z - 0.3) / 0.05) ** 2)[None, None, :] + rng.random((12, 12, 96))   # a slab with vacuum
+        prep = v02.prepare_field(x, np.diag([4.0, 4.0, 60.0]))
+        for beta in (2.0, 0.0):
+            f = run_xc.alpha_floor(v02, prep, beta)
+            v02.encode_prepared(prep, alpha=f, beta=beta)                       # representable at the floor
+            with self.assertRaises(OverflowError):                              # and not just below it
+                v02.encode_prepared(prep, alpha=0.5 * f, beta=beta)
+
+
 if __name__ == "__main__":
     unittest.main()

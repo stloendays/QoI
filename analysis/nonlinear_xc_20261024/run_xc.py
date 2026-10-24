@@ -100,6 +100,16 @@ def regenerate(S, arm, param, x, lat, ptp, prep, an, tau, work):
     return np.asarray(rec, float), int(nb)
 
 
+def alpha_floor(v02, prep, beta):
+    """Smallest step scale at which every quantized coefficient fits the v02 encoder's integer range (DEVIATIONS D2):
+    steps are linear in alpha, and the encoder refuses |c / step| above 0.95 of the int64 maximum."""
+    topo = prep.topology
+    s1 = v02.quantization_steps(topo, alpha=1.0, beta=beta)
+    c = prep.spectrum.ravel()[topo.rep_flat]
+    m = max(float(np.max(np.abs(c.real) / s1)), float(np.max(np.abs(c.imag) / s1)))
+    return m / (0.95 * float(np.iinfo(np.int64).max)) * (1.0 + 1e-6)
+
+
 def search_xc(S, writer, x, lat, ptp, prep, ref, natoms, tau_x, work):
     """Equal search under the decoded XC certificate; smallest passing stream. Returns dict or None."""
     eng, v02, core = S["eng"], S["v02"], S["core"]
@@ -127,7 +137,7 @@ def search_xc(S, writer, x, lat, ptp, prep, ref, natoms, tau_x, work):
         def ed(a):
             blob, _ = v02.encode_prepared(prep, alpha=a, beta=beta, zlib_level=6)
             return np.asarray(v02.decode_blob(blob)[0], float), len(blob)
-        run(f"beta={beta:g}", ed, 1e-14 * ptp, 1e3 * ptp)
+        run(f"beta={beta:g}", ed, max(1e-14 * ptp, alpha_floor(v02, prep, beta)), 1e3 * ptp)   # D2
     if not seen:
         return None
     (label, t), (nb, rec, e) = min(seen.items(), key=lambda kvp: kvp[1][0])
