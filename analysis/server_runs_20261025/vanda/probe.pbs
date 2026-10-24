@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -N qoi_xcl_probe
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=4:mpiprocs=4:ompthreads=1:mem=60GB
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-xcl-20261025/analysis/server_runs_20261025/vanda/logs/probe.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-xcl-20261025/analysis/server_runs_20261025/vanda/common.sh
+# the smallest bulk and slab materials end to end; their checkpoints count in the run
+for m in $(cat "$V/probe_tasks_xcl.txt"); do xcl_one "$m" || true; done &
+wait
+"$PY" "$V/status.py" --probe > "$V/probe/verdict.json"
+cat "$V/probe/verdict.json"
+echo PROBE_DONE

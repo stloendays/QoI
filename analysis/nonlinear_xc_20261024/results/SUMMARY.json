@@ -1,0 +1,719 @@
+{
+  "materials": 92,
+  "success": 92,
+  "failed": [],
+  "transfer": [
+    {
+      "cohort": "P1",
+      "arm": "A1",
+      "tau_H": 1e-08,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 0.00042330487382002957,
+      "ci95": [
+        0.00022265916754804493,
+        0.0006143863515717385
+      ],
+      "max_dE_pbe_meV_per_atom": 0.014565282327794193,
+      "median_dE_lda_meV_per_atom": 8.410125929003698e-06,
+      "below_1meV": 60,
+      "below_0.1meV": 60,
+      "median_vxc_lda_rel_rms": 1.1521185428576995e-05
+    },
+    {
+      "cohort": "P1",
+      "arm": "A1",
+      "tau_H": 1e-06,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 0.0686903851701004,
+      "ci95": [
+        0.031797370667163705,
+        0.10764323337753012
+      ],
+      "max_dE_pbe_meV_per_atom": 3.465863838783889,
+      "median_dE_lda_meV_per_atom": 0.002624458161903931,
+      "below_1meV": 59,
+      "below_0.1meV": 37,
+      "median_vxc_lda_rel_rms": 0.00030423097450921145
+    },
+    {
+      "cohort": "P1",
+      "arm": "A1",
+      "tau_H": 0.0001,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 8.928048187023307,
+      "ci95": [
+        5.4183211134954945,
+        16.700327660018388
+      ],
+      "max_dE_pbe_meV_per_atom": 105.55979026935347,
+      "median_dE_lda_meV_per_atom": 1.4443761265781063,
+      "below_1meV": 9,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.006809624512457092
+    },
+    {
+      "cohort": "P1",
+      "arm": "A2",
+      "tau_H": 1e-08,
+      "n": 60,
+      "hartree_certified": 43,
+      "median_dE_pbe_meV_per_atom": 0.00020141069967394287,
+      "ci95": [
+        0.00013405217522688417,
+        0.00029092025499721785
+      ],
+      "max_dE_pbe_meV_per_atom": 0.0026892893174590426,
+      "median_dE_lda_meV_per_atom": 3.50220545897173e-05,
+      "below_1meV": 60,
+      "below_0.1meV": 60,
+      "median_vxc_lda_rel_rms": 5.673569684271298e-06
+    },
+    {
+      "cohort": "P1",
+      "arm": "A2",
+      "tau_H": 1e-06,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 0.03882565731316845,
+      "ci95": [
+        0.01510006245553086,
+        0.05483867511202334
+      ],
+      "max_dE_pbe_meV_per_atom": 0.38129740376291466,
+      "median_dE_lda_meV_per_atom": 0.004105866352688281,
+      "below_1meV": 60,
+      "below_0.1meV": 46,
+      "median_vxc_lda_rel_rms": 0.0001508231207542885
+    },
+    {
+      "cohort": "P1",
+      "arm": "A2",
+      "tau_H": 0.0001,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 4.006430582769838,
+      "ci95": [
+        1.9482134952676597,
+        6.487556424701779
+      ],
+      "max_dE_pbe_meV_per_atom": 47.57467636713386,
+      "median_dE_lda_meV_per_atom": 0.9713806038149642,
+      "below_1meV": 13,
+      "below_0.1meV": 2,
+      "median_vxc_lda_rel_rms": 0.0032210827015179237
+    },
+    {
+      "cohort": "P1",
+      "arm": "A3",
+      "tau_H": 1e-08,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 0.0004234438222283643,
+      "ci95": [
+        0.00026126163277240266,
+        0.0007133834003525408
+      ],
+      "max_dE_pbe_meV_per_atom": 0.011378246171034334,
+      "median_dE_lda_meV_per_atom": 8.676870777435397e-06,
+      "below_1meV": 60,
+      "below_0.1meV": 60,
+      "median_vxc_lda_rel_rms": 1.0896599199802162e-05
+    },
+    {
+      "cohort": "P1",
+      "arm": "A3",
+      "tau_H": 1e-06,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 0.0518864701888333,
+      "ci95": [
+        0.02806399785981739,
+        0.07679508952662673
+      ],
+      "max_dE_pbe_meV_per_atom": 1.8504995514661005,
+      "median_dE_lda_meV_per_atom": 0.00119464242942513,
+      "below_1meV": 59,
+      "below_0.1meV": 42,
+      "median_vxc_lda_rel_rms": 0.0002742905148529808
+    },
+    {
+      "cohort": "P1",
+      "arm": "A3",
+      "tau_H": 0.0001,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 9.465202642964243,
+      "ci95": [
+        4.887944193214366,
+        15.058982494863926
+      ],
+      "max_dE_pbe_meV_per_atom": 99.74803805985744,
+      "median_dE_lda_meV_per_atom": 1.1390012465355426,
+      "below_1meV": 9,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.006409884355228801
+    },
+    {
+      "cohort": "P1",
+      "arm": "A6",
+      "tau_H": 1e-08,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 7.645434862979528e-05,
+      "ci95": [
+        5.8557432680572674e-05,
+        0.0001332280845645073
+      ],
+      "max_dE_pbe_meV_per_atom": 0.0012958582260580442,
+      "median_dE_lda_meV_per_atom": 7.172765492668987e-05,
+      "below_1meV": 60,
+      "below_0.1meV": 60,
+      "median_vxc_lda_rel_rms": 6.212996739256959e-07
+    },
+    {
+      "cohort": "P1",
+      "arm": "A6",
+      "tau_H": 1e-06,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 0.011171569234136314,
+      "ci95": [
+        0.00696049702497703,
+        0.019547420862409126
+      ],
+      "max_dE_pbe_meV_per_atom": 0.16028561886116677,
+      "median_dE_lda_meV_per_atom": 0.01213132918564952,
+      "below_1meV": 60,
+      "below_0.1meV": 58,
+      "median_vxc_lda_rel_rms": 4.094115156607589e-05
+    },
+    {
+      "cohort": "P1",
+      "arm": "A6",
+      "tau_H": 0.0001,
+      "n": 60,
+      "hartree_certified": 60,
+      "median_dE_pbe_meV_per_atom": 2.20527139124016,
+      "ci95": [
+        1.5870789728486658,
+        3.268195995218548
+      ],
+      "max_dE_pbe_meV_per_atom": 43.97969811731173,
+      "median_dE_lda_meV_per_atom": 2.184571525660317,
+      "below_1meV": 17,
+      "below_0.1meV": 4,
+      "median_vxc_lda_rel_rms": 0.0013180176351417663
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A1",
+      "tau_H": 1e-08,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 0.09817395822153685,
+      "ci95": [
+        0.03519105882077156,
+        0.13561922838789542
+      ],
+      "max_dE_pbe_meV_per_atom": 0.461189667660733,
+      "median_dE_lda_meV_per_atom": 0.022054891886114092,
+      "below_1meV": 32,
+      "below_0.1meV": 17,
+      "median_vxc_lda_rel_rms": 0.014219255174451578
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A1",
+      "tau_H": 1e-06,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 3.947981405246992,
+      "ci95": [
+        2.9971164980935328,
+        8.436264815827599
+      ],
+      "max_dE_pbe_meV_per_atom": 32.43247324382992,
+      "median_dE_lda_meV_per_atom": 2.0915268924639463,
+      "below_1meV": 3,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.04890219904011403
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A1",
+      "tau_H": 0.0001,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 354.96031777999804,
+      "ci95": [
+        297.3498586477632,
+        754.2138799516351
+      ],
+      "max_dE_pbe_meV_per_atom": 3132.5891460886764,
+      "median_dE_lda_meV_per_atom": 250.2926874464677,
+      "below_1meV": 0,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.1725208041709528
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A2",
+      "tau_H": 1e-08,
+      "n": 32,
+      "hartree_certified": 19,
+      "median_dE_pbe_meV_per_atom": 0.005941250222463168,
+      "ci95": [
+        0.0023523588836837916,
+        0.012052856476429952
+      ],
+      "max_dE_pbe_meV_per_atom": 0.09462635395607322,
+      "median_dE_lda_meV_per_atom": 0.0007038996514552309,
+      "below_1meV": 32,
+      "below_0.1meV": 32,
+      "median_vxc_lda_rel_rms": 0.004632581836023763
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A2",
+      "tau_H": 1e-06,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 0.2813538242136815,
+      "ci95": [
+        0.13696654350781046,
+        0.5603729920977685
+      ],
+      "max_dE_pbe_meV_per_atom": 7.420622054439718,
+      "median_dE_lda_meV_per_atom": 0.16744601219187416,
+      "below_1meV": 23,
+      "below_0.1meV": 10,
+      "median_vxc_lda_rel_rms": 0.027809368525639037
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A2",
+      "tau_H": 0.0001,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 85.43016419056215,
+      "ci95": [
+        60.71914557111313,
+        117.51888999783944
+      ],
+      "max_dE_pbe_meV_per_atom": 962.8535912287077,
+      "median_dE_lda_meV_per_atom": 44.36617220418526,
+      "below_1meV": 0,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.1116604837836718
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A3",
+      "tau_H": 1e-08,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 0.04137034097695391,
+      "ci95": [
+        0.019819592644410022,
+        0.09506604027365029
+      ],
+      "max_dE_pbe_meV_per_atom": 0.30713138322369105,
+      "median_dE_lda_meV_per_atom": 0.016343306555199888,
+      "below_1meV": 32,
+      "below_0.1meV": 23,
+      "median_vxc_lda_rel_rms": 0.012496336672961
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A3",
+      "tau_H": 1e-06,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 3.199622090122034,
+      "ci95": [
+        2.08155623356987,
+        6.608040171492746
+      ],
+      "max_dE_pbe_meV_per_atom": 33.53414760873363,
+      "median_dE_lda_meV_per_atom": 1.7631514943445836,
+      "below_1meV": 5,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.04589226431673468
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A3",
+      "tau_H": 0.0001,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 311.4183489065283,
+      "ci95": [
+        225.95779955886997,
+        577.683962540938
+      ],
+      "max_dE_pbe_meV_per_atom": 3469.9055735558063,
+      "median_dE_lda_meV_per_atom": 204.68744525959437,
+      "below_1meV": 0,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.1643859754019743
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A6",
+      "tau_H": 1e-08,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 0.00017616699210520892,
+      "ci95": [
+        6.433634780478314e-05,
+        0.0002571289883235295
+      ],
+      "max_dE_pbe_meV_per_atom": 0.0016086291196870661,
+      "median_dE_lda_meV_per_atom": 0.00016696391469395166,
+      "below_1meV": 32,
+      "below_0.1meV": 32,
+      "median_vxc_lda_rel_rms": 0.00021743550130613984
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A6",
+      "tau_H": 1e-06,
+      "n": 32,
+      "hartree_certified": 32,
+      "median_dE_pbe_meV_per_atom": 0.06062810083307113,
+      "ci95": [
+        0.03649991161580601,
+        0.09758644591784105
+      ],
+      "max_dE_pbe_meV_per_atom": 0.7753210812353473,
+      "median_dE_lda_meV_per_atom": 0.03414315190752859,
+      "below_1meV": 32,
+      "below_0.1meV": 22,
+      "median_vxc_lda_rel_rms": 0.013081907186062664
+    },
+    {
+      "cohort": "P3B",
+      "arm": "A6",
+      "tau_H": 0.0001,
+      "n": 32,
+      "hartree_certified": 31,
+      "median_dE_pbe_meV_per_atom": 44.89339234235956,
+      "ci95": [
+        9.23052260636581,
+        80.06693927144681
+      ],
+      "max_dE_pbe_meV_per_atom": 238.74261931786123,
+      "median_dE_lda_meV_per_atom": 2.9392973647333065,
+      "below_1meV": 4,
+      "below_0.1meV": 0,
+      "median_vxc_lda_rel_rms": 0.05569805779805523
+    }
+  ],
+  "xc_contract": [
+    {
+      "cohort": "P1",
+      "writer": "L",
+      "tau_x_meV_per_atom": 0.1,
+      "n": 60,
+      "eligible": 60,
+      "certified": 60,
+      "median_cr": 220.5572849155861,
+      "ci95": [
+        142.75258773916983,
+        299.16750512390536
+      ]
+    },
+    {
+      "cohort": "P1",
+      "writer": "L",
+      "tau_x_meV_per_atom": 1.0,
+      "n": 60,
+      "eligible": 60,
+      "certified": 60,
+      "median_cr": 484.50634195050554,
+      "ci95": [
+        351.37308727494985,
+        629.3000948380978
+      ]
+    },
+    {
+      "cohort": "P1",
+      "writer": "P",
+      "tau_x_meV_per_atom": 0.1,
+      "n": 60,
+      "eligible": 60,
+      "certified": 60,
+      "median_cr": 29.978489108449374,
+      "ci95": [
+        22.823762960051102,
+        41.65494853396116
+      ]
+    },
+    {
+      "cohort": "P1",
+      "writer": "P",
+      "tau_x_meV_per_atom": 1.0,
+      "n": 60,
+      "eligible": 60,
+      "certified": 60,
+      "median_cr": 79.73505184580799,
+      "ci95": [
+        65.17923605629832,
+        92.21692402717727
+      ]
+    },
+    {
+      "cohort": "P1",
+      "writer": "U",
+      "tau_x_meV_per_atom": 0.1,
+      "n": 60,
+      "eligible": 60,
+      "certified": 60,
+      "median_cr": 212.6475095115468,
+      "ci95": [
+        134.83384036599242,
+        311.0807321333637
+      ]
+    },
+    {
+      "cohort": "P1",
+      "writer": "U",
+      "tau_x_meV_per_atom": 1.0,
+      "n": 60,
+      "eligible": 60,
+      "certified": 60,
+      "median_cr": 413.47281337965217,
+      "ci95": [
+        345.95616843142085,
+        583.5578851092272
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "writer": "L",
+      "tau_x_meV_per_atom": 0.1,
+      "n": 32,
+      "eligible": 32,
+      "certified": 32,
+      "median_cr": 80.70565352126735,
+      "ci95": [
+        41.57157226701142,
+        154.8738102010897
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "writer": "L",
+      "tau_x_meV_per_atom": 1.0,
+      "n": 32,
+      "eligible": 32,
+      "certified": 32,
+      "median_cr": 271.87971017985654,
+      "ci95": [
+        185.55185816951428,
+        463.1040808513217
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "writer": "P",
+      "tau_x_meV_per_atom": 0.1,
+      "n": 32,
+      "eligible": 32,
+      "certified": 32,
+      "median_cr": 30.72229343713152,
+      "ci95": [
+        28.98284712795627,
+        35.4741725951129
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "writer": "P",
+      "tau_x_meV_per_atom": 1.0,
+      "n": 32,
+      "eligible": 32,
+      "certified": 32,
+      "median_cr": 61.91001726613751,
+      "ci95": [
+        53.38047143825566,
+        98.7735662543958
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "writer": "U",
+      "tau_x_meV_per_atom": 0.1,
+      "n": 32,
+      "eligible": 32,
+      "certified": 32,
+      "median_cr": 75.56767128242694,
+      "ci95": [
+        43.16955296800155,
+        148.83401545444104
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "writer": "U",
+      "tau_x_meV_per_atom": 1.0,
+      "n": 32,
+      "eligible": 32,
+      "certified": 32,
+      "median_cr": 265.03843907903206,
+      "ci95": [
+        191.2363825004323,
+        444.00526943102693
+      ]
+    }
+  ],
+  "paired": [
+    {
+      "cohort": "P1",
+      "tau_x_meV_per_atom": 0.1,
+      "ratio": "L/P",
+      "n": 60,
+      "wins": 59,
+      "median": 6.887165650504384,
+      "ci95": [
+        5.307721039432261,
+        8.65058173600067
+      ]
+    },
+    {
+      "cohort": "P1",
+      "tau_x_meV_per_atom": 0.1,
+      "ratio": "U/P",
+      "n": 60,
+      "wins": 59,
+      "median": 5.7164275022644375,
+      "ci95": [
+        4.305547926393848,
+        8.300099874469703
+      ]
+    },
+    {
+      "cohort": "P1",
+      "tau_x_meV_per_atom": 0.1,
+      "ratio": "L/U",
+      "n": 60,
+      "wins": 40,
+      "median": 1.0887190924254995,
+      "ci95": [
+        1.051600020715967,
+        1.1660986237542603
+      ]
+    },
+    {
+      "cohort": "P1",
+      "tau_x_meV_per_atom": 1.0,
+      "ratio": "L/P",
+      "n": 60,
+      "wins": 60,
+      "median": 5.428439571822425,
+      "ci95": [
+        4.17775337307813,
+        7.480723370429253
+      ]
+    },
+    {
+      "cohort": "P1",
+      "tau_x_meV_per_atom": 1.0,
+      "ratio": "U/P",
+      "n": 60,
+      "wins": 60,
+      "median": 5.02951854862459,
+      "ci95": [
+        4.132371198013656,
+        7.1809951170137145
+      ]
+    },
+    {
+      "cohort": "P1",
+      "tau_x_meV_per_atom": 1.0,
+      "ratio": "L/U",
+      "n": 60,
+      "wins": 35,
+      "median": 1.0343905041146388,
+      "ci95": [
+        0.9861297059926096,
+        1.0889971219836172
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "tau_x_meV_per_atom": 0.1,
+      "ratio": "L/P",
+      "n": 32,
+      "wins": 25,
+      "median": 1.9075970857975943,
+      "ci95": [
+        1.2365423018369444,
+        3.9319003029045003
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "tau_x_meV_per_atom": 0.1,
+      "ratio": "U/P",
+      "n": 32,
+      "wins": 27,
+      "median": 1.8362358772848517,
+      "ci95": [
+        1.365039967407462,
+        4.016795070395859
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "tau_x_meV_per_atom": 0.1,
+      "ratio": "L/U",
+      "n": 32,
+      "wins": 16,
+      "median": 1.0095297209246399,
+      "ci95": [
+        0.9440048626627368,
+        1.0558297584451928
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "tau_x_meV_per_atom": 1.0,
+      "ratio": "L/P",
+      "n": 32,
+      "wins": 32,
+      "median": 2.9172821251128127,
+      "ci95": [
+        2.1843854723555327,
+        4.665821433337782
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "tau_x_meV_per_atom": 1.0,
+      "ratio": "U/P",
+      "n": 32,
+      "wins": 32,
+      "median": 3.014466866522975,
+      "ci95": [
+        2.068530040494724,
+        4.638857226900026
+      ]
+    },
+    {
+      "cohort": "P3B",
+      "tau_x_meV_per_atom": 1.0,
+      "ratio": "L/U",
+      "n": 32,
+      "wins": 22,
+      "median": 1.0425539491858433,
+      "ci95": [
+        1.0018418241426308,
+        1.0654843110504777
+      ]
+    }
+  ]
+}

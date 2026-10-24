@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N qoi_srv_xc
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-srv-20261024/analysis/server_runs_20261024/vanda/logs/production_xc.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-srv-20261024/analysis/server_runs_20261024/vanda/common.sh
+# 92 materials, largest first, 24 workers
+cut -f1 "$V/tasks_xc.tsv" | xargs -r -P 24 -I{} bash -c 'xc_one "$1"' _ {} || true
+echo PRODUCTION_XC_DONE
