@@ -1,0 +1,587 @@
+{
+"meta": {
+"stem": "FigS1",
+"script": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\si\\figS1\\make_figS1.py",
+"args": [],
+"python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
+"cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\si\\figS1",
+"size_mm": [
+183.0,
+62.0
+],
+"palette": [
+"#1b1b1b",
+"#ffffff",
+"#d3d6da",
+"#5a6480",
+"#7789b7",
+"#6b6f76",
+"#5e7a52",
+"#89aa7b"
+],
+"style_palette": {
+"INK": "#1b1b1b",
+"MID": "#6b6f76",
+"GRID": "#e4e4e4",
+"GREEN": "#89aa7b",
+"BLUE": "#7789b7",
+"PALE": "#9daccb",
+"OTHER": "#b3b8c0",
+"RED": "#eb6969",
+"TINT_G": "#e4ecde",
+"TINT_B": "#e3e7f0",
+"PAPER": "#f0eeef",
+"PALE_B": "#c6ccdc",
+"PALE_G": "#cbd7c3",
+"MID_G": "#acbf9f",
+"LINE": "#d6d6d6",
+"DARK_G": "#5e7a52",
+"DARK_B": "#5a6480",
+"TINT_R": "#fbe3e3",
+"ELIGIBLE": "#5a6480",
+"REJECTED": "#eb6969",
+"HARTREE": "#89aa7b",
+"BADER": "#5a6480",
+"ELECTRON": "#9daccb",
+"POS_C": "#d8894e",
+"NEG_C": "#4f86b0"
+}
+},
+"ids": {
+"tw_d68eaea8b80e": {
+"key": "fig/figure",
+"kind": "figure",
+"background": "#ffffff"
+},
+"tw_baf809446449": {
+"key": "fig/text/a",
+"kind": "text",
+"rotation": 0.0,
+"ha": "left",
+"fontsize": 9.0,
+"weight": "bold",
+"role": "letter",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_d32497f654bd": {
+"key": "fig/text/b",
+"kind": "text",
+"rotation": 0.0,
+"ha": "left",
+"fontsize": 9.0,
+"weight": "bold",
+"role": "letter",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_5209387f182a": {
+"key": "ax@16,12,104,44/axes",
+"kind": "axes",
+"panel": "a",
+"background": "#ffffff",
+"colors": [
+"#5a6480",
+"#ffffff",
+"#1b1b1b",
+"#7789b7",
+"#6b6f76"
+]
+},
+"tw_5b13332cdc23": {
+"key": "ax@16,12,104,44/text/17.3",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_a307d9076a7f": {
+"key": "ax@16,12,104,44/text/16.3",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_31cfeb81b9a8": {
+"key": "ax@16,12,104,44/text/27.1",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_39b90518704c": {
+"key": "ax@16,12,104,44/text/21.1",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_7fe4833dd434": {
+"key": "ax@16,12,104,44/text/29.5",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_b43ed817f3d8": {
+"key": "ax@16,12,104,44/text/56.9",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_ad9255295d83": {
+"key": "ax@16,12,104,44/text/every stream: zero voxels reassigned, zero Bader error (72/72)",
+"kind": "text",
+"rotation": 0.0,
+"ha": "left",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#6b6f76"
+]
+},
+"tw_dbf54931f2a2": {
+"key": "ax@16,12,104,44/text/Partition-faithful AECCAR bytes\n/ lossless label-map bytes",
+"kind": "axislabel",
+"rotation": 90.0,
+"ha": "center",
+"fontsize": 7.0,
+"weight": "normal",
+"role": "axislabel",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_ae0e886414a0_0": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"member": "A2\n10$^{-3}$",
+"group": "tw_ae0e886414a0",
+"axis": "x",
+"side": 1
+},
+"tw_ae0e886414a0_1": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"member": "A2\n10$^{-2}$",
+"group": "tw_ae0e886414a0",
+"axis": "x",
+"side": 1
+},
+"tw_ae0e886414a0_2": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"member": "A2\n5×10$^{-2}$",
+"group": "tw_ae0e886414a0",
+"axis": "x",
+"side": 1
+},
+"tw_ae0e886414a0_3": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"member": "A1\n10$^{-3}$",
+"group": "tw_ae0e886414a0",
+"axis": "x",
+"side": 1
+},
+"tw_ae0e886414a0_4": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"member": "A1\n10$^{-2}$",
+"group": "tw_ae0e886414a0",
+"axis": "x",
+"side": 1
+},
+"tw_ae0e886414a0_5": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"member": "A1\n5×10$^{-2}$",
+"group": "tw_ae0e886414a0",
+"axis": "x",
+"side": 1
+},
+"tw_ae0e886414a0": {
+"key": "ax@16,12,104,44/xticks",
+"kind": "ticks",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "ticks",
+"axis": "x",
+"side": 1,
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_b66e4e6263b4_0": {
+"key": "ax@16,12,104,44/yticks",
+"kind": "ticks",
+"member": "$\\mathdefault{10^{1}}$",
+"group": "tw_b66e4e6263b4",
+"axis": "y",
+"side": 1
+},
+"tw_b66e4e6263b4_1": {
+"key": "ax@16,12,104,44/yticks",
+"kind": "ticks",
+"member": "$\\mathdefault{10^{2}}$",
+"group": "tw_b66e4e6263b4",
+"axis": "y",
+"side": 1
+},
+"tw_b66e4e6263b4": {
+"key": "ax@16,12,104,44/yticks",
+"kind": "ticks",
+"fontsize": 6.5,
+"weight": "normal",
+"role": "ticks",
+"axis": "y",
+"side": 1,
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_e9b2c4298dae": {
+"key": "ax@16,12,104,44/scatter/0",
+"kind": "scatter",
+"colors": [
+"#5a6480",
+"#ffffff"
+]
+},
+"tw_3aed586dd49e": {
+"key": "ax@16,12,104,44/scatter/1",
+"kind": "scatter",
+"colors": [
+"#5a6480",
+"#ffffff"
+]
+},
+"tw_8bbdee346ad8": {
+"key": "ax@16,12,104,44/scatter/2",
+"kind": "scatter",
+"colors": [
+"#5a6480",
+"#ffffff"
+]
+},
+"tw_60ea8caaab89": {
+"key": "ax@16,12,104,44/scatter/3",
+"kind": "scatter",
+"colors": [
+"#7789b7",
+"#ffffff"
+]
+},
+"tw_a67a0e204ff8": {
+"key": "ax@16,12,104,44/scatter/4",
+"kind": "scatter",
+"colors": [
+"#7789b7",
+"#ffffff"
+]
+},
+"tw_e678b1a7a153": {
+"key": "ax@16,12,104,44/scatter/5",
+"kind": "scatter",
+"colors": [
+"#7789b7",
+"#ffffff"
+]
+},
+"tw_608637592a8f": {
+"key": "ax@16,12,104,44/line/0",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_6be9ab8326e4": {
+"key": "ax@16,12,104,44/line/1",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_6e2ae8b70257": {
+"key": "ax@16,12,104,44/line/2",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_2a4902416f3b": {
+"key": "ax@16,12,104,44/line/3",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_1d4af61c33a0": {
+"key": "ax@16,12,104,44/line/4",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_364404e1e6d4": {
+"key": "ax@16,12,104,44/line/5",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_3f1d19b6b75f": {
+"key": "ax@142,12,38,44/axes",
+"kind": "axes",
+"panel": "b",
+"background": "#ffffff",
+"colors": [
+"#5e7a52",
+"#ffffff",
+"#1b1b1b",
+"#89aa7b",
+"#d3d6da"
+]
+},
+"tw_3193db6b3035": {
+"key": "ax@142,12,38,44/text/12.9 kB",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_30dea4a41f16": {
+"key": "ax@142,12,38,44/text/21.8 kB",
+"kind": "text",
+"rotation": 0.0,
+"ha": "center",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "text",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_1e0c4ce8384b": {
+"key": "ax@142,12,38,44/text/Lossless label map (kB)",
+"kind": "axislabel",
+"rotation": 90.0,
+"ha": "center",
+"fontsize": 7.0,
+"weight": "normal",
+"role": "axislabel",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_c1afe518675f_0": {
+"key": "ax@142,12,38,44/xticks",
+"kind": "ticks",
+"member": "atom\nmap",
+"group": "tw_c1afe518675f",
+"axis": "x",
+"side": 1
+},
+"tw_c1afe518675f_1": {
+"key": "ax@142,12,38,44/xticks",
+"kind": "ticks",
+"member": "volnum\nmap",
+"group": "tw_c1afe518675f",
+"axis": "x",
+"side": 1
+},
+"tw_c1afe518675f": {
+"key": "ax@142,12,38,44/xticks",
+"kind": "ticks",
+"fontsize": 5.3,
+"weight": "normal",
+"role": "ticks",
+"axis": "x",
+"side": 1,
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_ed5e2207a1a9_0": {
+"key": "ax@142,12,38,44/yticks",
+"kind": "ticks",
+"member": "$\\mathdefault{10^{1}}$",
+"group": "tw_ed5e2207a1a9",
+"axis": "y",
+"side": 1
+},
+"tw_ed5e2207a1a9_1": {
+"key": "ax@142,12,38,44/yticks",
+"kind": "ticks",
+"member": "$\\mathdefault{10^{2}}$",
+"group": "tw_ed5e2207a1a9",
+"axis": "y",
+"side": 1
+},
+"tw_ed5e2207a1a9": {
+"key": "ax@142,12,38,44/yticks",
+"kind": "ticks",
+"fontsize": 6.5,
+"weight": "normal",
+"role": "ticks",
+"axis": "y",
+"side": 1,
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_77df80468563": {
+"key": "ax@142,12,38,44/scatter/0",
+"kind": "scatter",
+"colors": [
+"#5e7a52",
+"#ffffff"
+]
+},
+"tw_b6ed15876422": {
+"key": "ax@142,12,38,44/scatter/1",
+"kind": "scatter",
+"colors": [
+"#89aa7b",
+"#ffffff"
+]
+},
+"tw_455f69fe382c": {
+"key": "ax@142,12,38,44/line/0",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_b71d668432f0": {
+"key": "ax@142,12,38,44/line/1",
+"kind": "line",
+"colors": [
+"#1b1b1b"
+]
+},
+"tw_15c4f3437ff9": {
+"key": "ax@142,12,38,44/line/2",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_7665168fe56e": {
+"key": "ax@142,12,38,44/line/3",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_8d0016cc069e": {
+"key": "ax@142,12,38,44/line/4",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_3318f28dafb2": {
+"key": "ax@142,12,38,44/line/5",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_5d99e1a6c9c4": {
+"key": "ax@142,12,38,44/line/6",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_30efe719e7f5": {
+"key": "ax@142,12,38,44/line/7",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_e0553f27a654": {
+"key": "ax@142,12,38,44/line/8",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_b7f29a7ac03f": {
+"key": "ax@142,12,38,44/line/9",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_fec3d6a78375": {
+"key": "ax@142,12,38,44/line/10",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_e6a99821a329": {
+"key": "ax@142,12,38,44/line/11",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_7358b97d3880": {
+"key": "ax@142,12,38,44/line/12",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+},
+"tw_5e8acf1d5864": {
+"key": "ax@142,12,38,44/line/13",
+"kind": "line",
+"colors": [
+"#d3d6da"
+]
+}
+}
+}

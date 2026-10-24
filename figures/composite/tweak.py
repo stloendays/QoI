@@ -1,4 +1,4 @@
-# Copied unchanged from stloendays/Catalyst-Essay figures/composite/tweak.py at bdde5fb (figure editor: D:\论文-AI4S\wt-sup20\tools\figure_tweak.cmd).
+# Copied unchanged from the figure-studio skill (assets/tweak.py, editor v5, same as stloendays/Catalyst-Essay figures/composite/tweak.py).
 """Hand adjustments of a finished matplotlib figure, kept as data and re-applied on every render.
 
 Call `apply(fig, here, stem)` just before saving (Page.save does). It reads `<stem>.tweaks.json` next to the figure,
