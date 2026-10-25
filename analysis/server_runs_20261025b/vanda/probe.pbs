@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -N qoi_algo_probe
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=8:mpiprocs=8:ompthreads=1:mem=120GB
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/logs/probe.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/common.sh
+# 1. test suites of both studies
+( cd "$ROOT/analysis/waterfill_writer_20261025" && "$PY" -m pytest -q -p no:warnings test_w1.py ) > "$V/probe/tests_w1.log" 2>&1     && echo OK > "$V/probe/tests_w1.ok" || echo FAIL > "$V/probe/tests_w1.ok"
+( cd "$ROOT/analysis/archive_waterfill_20261025" && "$PY" -m pytest -q -p no:warnings test_archive_w1.py ) > "$V/probe/tests_arch.log" 2>&1     && echo OK > "$V/probe/tests_arch.ok" || echo FAIL > "$V/probe/tests_arch.ok"
+# 2. known answer: the development material at 1e-6 and 1e-4 against the local development run
+"$PY" "$ROOT/analysis/waterfill_writer_20261025/run_w1.py" --material mp-2521964 --inputs "$V/inputs/w1"     --checkpoints "$V/probe/dev" --repo-root "$ROOT" --frozen-root "$FROZEN" --cohorts ENG --taus 1e-6,1e-4     > "$V/logs/probe_dev.log" 2>&1 || true
+# 3. study items, counted in the run: smallest bulk and slab material; smallest D01 and D10c archive objects
+for m in $(cat "$V/probe_tasks_w1.txt"); do w1_one "$m" || true; done &
+for t in $(cat "$V/probe_tasks_arch.txt"); do arch_one "$t" || true; done &
+wait
+"$PY" "$V/status.py" --probe > "$V/probe/verdict.json"
+cat "$V/probe/verdict.json"
+echo PROBE_DONE

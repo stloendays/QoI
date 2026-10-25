@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N qoi_algo_arch_large
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/logs/production_arch_large.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/common.sh
+# D10a/D10b: 4 workers, D10c: 2 workers (largest objects ~22 M points)
+awk -F '\t' '$2 ~ /^D10[ab]$/ {print $1}' "$V/tasks_arch.tsv" | xargs -r -P 4 -I{} bash -c 'arch_one "$1"' _ {} || true
+awk -F '\t' '$2 == "D10c" {print $1}' "$V/tasks_arch.tsv" | xargs -r -P 2 -I{} bash -c 'arch_one "$1"' _ {} || true
+echo PRODUCTION_ARCH_LARGE_DONE

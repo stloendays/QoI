@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N qoi_algo_arch_small
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/logs/production_arch_small.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/common.sh
+# D01-D08: 32 workers; D09: 8 workers (complete checkpoints are skipped)
+awk -F '\t' '$2 ~ /^D0[1-8]$/ {print $1}' "$V/tasks_arch.tsv" | xargs -r -P 32 -I{} bash -c 'arch_one "$1"' _ {} || true
+awk -F '\t' '$2 == "D09" {print $1}' "$V/tasks_arch.tsv" | xargs -r -P 8 -I{} bash -c 'arch_one "$1"' _ {} || true
+echo PRODUCTION_ARCH_SMALL_DONE

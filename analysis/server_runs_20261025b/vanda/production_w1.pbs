@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N qoi_algo_w1
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/logs/production_w1.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-algo-20261025/analysis/server_runs_20261025b/vanda/common.sh
+# 92 materials, largest first, 30 workers (complete checkpoints are skipped)
+cut -f1 "$V/tasks_w1.tsv" | xargs -r -P 30 -I{} bash -c 'w1_one "$1"' _ {} || true
+echo PRODUCTION_W1_DONE
