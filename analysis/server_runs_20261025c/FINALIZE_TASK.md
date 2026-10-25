@@ -53,7 +53,8 @@ memory index `C:\Users\ASUS\.claude\projects\D--Research-QoI\memory\MEMORY.md`.
    the W2M-vs-pointwise moment-stream statistics. They must equal SUMMARY.json.
 3. Check certificates: Hartree values < tau for every certified density stream; every V/VP magnetization certificate's
    binary error < 1e-2 mu_B; failure counts per study.
-4. Write `results/RESULTS.md` for each study, numbers first: criteria with their numbers and "met" / "not met";
+4. Write `results/RESULTS.md` for each study, numbers first (start from `make_results.py` in study 3 and study 4 — the latter also
+   writes study 5's table — then add what they lack): criteria with their numbers and "met" / "not met";
    attribution (density: SFP; magnetization: W2M vs pointwise; partition fix: each writer's change against its
    committed value); per cohort; variants; Porod exponents. Compare with the strongest baseline in every line (O2S /
    operational optimum; for the archive, the corrected O and W). A result that is not better is written as such.
