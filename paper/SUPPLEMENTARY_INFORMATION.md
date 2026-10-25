@@ -205,7 +205,7 @@ T1 was the best new baseline in 48/48 materials (selected cutoffs $q_c$ = 0.30 i
 
 ## Supplementary Note 3 — Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error, deployment cost and archive estimate
 
-Values are rounded from the committed `SUMMARY.json` of each run; bootstrap seed 20261006, 10,000 resamples of the median. Both cohorts ran with zero pipeline failures, and A1 and A3 were certified for every material at every tolerance.
+Values are rounded from the committed `SUMMARY.json` of each run; bootstrap seed 20261006, 10,000 resamples of the median. Acceptance criteria of the law protocol, fixed before the run: near-optimality median $\text{CR}_{A3}/\text{CR}_{A1}\le1.15$ with CI upper bound $\le1.20$; operator metric median $\text{CR}_{A3}/\text{CR}_{A5}>1.5$, CI lower bound $>1.35$, wins $\ge90\%$; pointwise codecs median $>4$, wins $\ge95\%$; truncation median $>1.15$, wins $\ge75\%$; prediction median $|\ln(G_{\text{pred}}/G_{\text{obs}})|\le\ln 1.25$ and Spearman $\ge0.85$ over operator–material pairs, operator ordering preserved, and $G_{\text{obs}}\in[0.90,1.11]$ in $\ge80\%$ of materials for operators with median $G_{\text{pred}}<1.05$. Both cohorts ran with zero pipeline failures, and A1 and A3 were certified for every material at every tolerance.
 
 
 **Part A, P1, 60 Materials Project bulk crystals** (median certified compression-ratio ratio, bootstrap 95% CI, wins/n)
@@ -280,6 +280,8 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 **P1 shakedown cohort** (12 materials run through the identical pipeline; not part of any criterion): A3/A1 1.156, A3/A5 2.26, A1/A6 9.80, A1/A2 1.24 at $\tau=10^{-6}$; Part B median absolute log error 0.024, Spearman 0.979.
 
 ### 3.1 QoI-preserving baselines (P1 and P3b; protocol `16e8890`, run 37620406802)
+
+**Methods.** These analyses and the FFCz comparison follow protocols fixed before execution (Table 1) and use the A1/A6 search and the decoded Hartree certificate on P1 and P3b; the A arms are the recorded values of the law run. MGARD<sup>8</sup> was built from upstream source and run with smoothness $s=-2$; the best of $s\in\{\infty,0,-1,-2\}$ is reported in Supplementary Note 3. QPET<sup>10</sup> (authors' artifact; versions in Supplementary Note 3) bounded the block average of the density over $b^3$ blocks ($b=4,8,16$) on SZ3, HPEZ and SPERR hosts, with its absolute QoI bound as the searched parameter and its pointwise bound set to the value range so that it never binds; the best of the nine configurations is reported. FFCz<sup>16</sup> (authors' code) corrected ZFP, SZ3 and SPERR reconstructions in 18 configurations (Supplementary Note 3), searching its frequency bound; the best is reported. Evaluations that crashed inside a codec count as non-passing points; every QPET and MGARD search certified a point. For each slab, the surface normal and the vacuum window come from the reference density alone: planes whose planar-average density is below $10^{-3}$ of its maximum are vacuum, the normal is the axis with the thickest contiguous vacuum run, slabs with at least 3 Å of vacuum qualify (27 of 32), and the window is the central half of the run. $\Delta\Phi$ is the window mean of the planar-averaged error of $V_H(G)=4\pi k_e\,\rho(G)/|G|^2$, $k_e=14.399645$ eV Å: the change in the electrostatic vacuum level and, with the stored Fermi energy and the exact ionic potential, in the work function read from the stored density. The largest planar-averaged error over the window is recorded with it.
 
 - **Arms.**
   - M2: MGARD (CODARcode/MGARD commit ac53ff9), smoothness $s=-2$.
@@ -450,6 +452,15 @@ Spectral truncation (A2, best of 32 cutoffs) and operational allocation (A3) wer
 
 At $10^{-6}$ operational allocation stores the archive in about 24 GB and is 10.0-fold smaller than the pointwise writer; at $10^{-4}$ spectral truncation is smaller than the closed-form law (0.91, 0.86–0.94), as on the 92 law-protocol materials.
 
+The water-filling writer (Supplementary Note 3.6) with symmetry prediction (W) and operational allocation in the same writer (Q) were applied to the same 300 objects with the same storage rule, moment policy and estimators; every object was certified by both at both tolerances, with decoded-partition moments in 300/300, and 248/300 objects used a symmetry group (median order 4).
+
+| Hartree tolerance | Water-filling writer W (95% CI) | Same writer, operational Q (95% CI) | W / operational allocation A3 | W / law A1 | W / truncation A2 |
+|---|---:|---:|---:|---:|---:|
+| $10^{-4}$ | **1,818 (1,549–2,119)** | 1,813 (1,544–2,113) | 1.33 (1.27–1.39) | 1.75 (1.65–1.88) | 1.59 (1.51–1.69) |
+| $10^{-6}$ | **555.2 (492–635)** | 558.4 (495–639) | 1.60 (1.51–1.70) | 1.75 (1.65–1.87) | 2.39 (2.25–2.54) |
+
+At $10^{-6}$ the writer stores the archive in about 15.3 GB and is 16.1-fold (14.3–18.2) smaller than the pointwise writer. The magnetization stream, written under the same moment policy for every writer, holds 19.4% of the archive-weighted stored bytes under W at $10^{-6}$ and 63.5% at $10^{-4}$.
+
 ### 3.5 Fourier-correction baseline under the Hartree certificate
 
 FFCz<sup>16</sup> (source revision 96649b3 of the authors' repository, unmodified) corrected ZFP, SZ3 and SPERR reconstructions at base bounds $\epsilon_b/\mathrm{ptp}(\rho)\in\{10^{-2},10^{-3},10^{-4}\}$ in its relative (REL) and pointwise (PTW) frequency modes, 18 configurations per material, on the same 60 bulk crystals and 32 slabs. The frequency bound $r$ was searched with the 60-step search of the law protocol, from $r=10^{-14}$ up to 1 (REL) or 10 (PTW); a configuration that fails the decoded Hartree certificate at $r=10^{-14}$ is not certified at that tolerance. Every point was accepted or rejected by the decoded Hartree certificate (historical and Nyquist-safe), recomputed from the decoded density; FFCz's own frequency check plays no role in acceptance. All 1,656 material–configuration tasks completed with no failed evaluation.
@@ -464,6 +475,30 @@ FFCz<sup>16</sup> (source revision 96649b3 of the authors' repository, unmodifie
 | $10^{-8}$ | Slabs (32) | 8/32 | 18.5 | 14.7 (12.7–16.3) | 8/8 |
 
 Where FFCz certified, its median ratio to the best pointwise codec was 0.86 (bulk) and 0.86 (slabs) at $10^{-6}$ and 0.66 and 0.67 at $10^{-4}$: under the Hartree certificate the corrected streams certified less compression than the best uncorrected pointwise codec.
+
+### 3.6 Water-filling writer (P1 and P3b)
+
+- **Writer.** The Hermitian-orbit topology and 32 shells of the law codec. Steps $\Delta_k=\alpha q_k^2$; shell $s$ is written iff $E_s>\alpha^2H_s$ with $E_s=\sum_{k\in s}m_kw_k|c_k|^2$ and $H_s=\sum_{k\in s}m_kp_k/12$, the operator-weighted noise of rounding at the law's steps, which is the same in every orbit because $w_kq_k^4=1$. This is reverse water-filling at shell granularity: a shell whose signal lies below the distortion level receives no rate. Coefficients are rounded to the nearest multiple of their step.
+- **Symmetry prediction.** Space-group operations come from spglib (symprec $10^{-3}$) on the structure; an operation is used if it maps the grid onto itself, $n\mapsto Mn+T \pmod N$, and $\max|\rho(Mn+T)-\rho(n)|\le10^{-5}\,\mathrm{ptp}(\rho)$; the closure of the accepted operations must hold as well (it did in 91/92 materials; the other is coded without symmetry). For such an operation $c(h)=e^{2\pi i\sum_j (h_j/N_j)(M^{-1}T)_j}\,c(h')$ with $h'_j=\sum_i h_i(M^{-1})_{ij}N_j/N_i$. Within each shell the first member of a star in coding order is coded directly and every other member as the rounded residual from its prediction at its own step. The stream stores a generating set of the group.
+- **Entropy coding.** One segment per shell, each from fresh models: a binary range coder with adaptive probabilities, binarizing each integer into a zero flag, a sign, its bit length on a six-level tree and its mantissa, with contexts from the previous orbit's bit length and two model banks (directly coded coefficients and symmetry residuals). Each segment keeps the smaller of this coding and zlib level 6. The binary header holds shape, lattice, the $G=0$ coefficient, the allocation parameters and the generators.
+- **Arms**, every stream decoded from its bytes and certified (historical and Nyquist-safe Hartree relative RMS $<\tau$): L1 law; W1 water-filling law; W1S water-filling law with symmetry; T1S truncation with symmetry (A2 search); O1, O1S operational allocation on the writer's exact per-shell curves without and with symmetry (A3 search). All six arms were certified for 92/92 materials at all three tolerances.
+- **Acceptance criteria**, fixed before the run (bootstrap seed 20261025): O1S/W1S median $\le1.05$ with CI upper bound $\le1.08$ at $10^{-6}$ and $10^{-4}$ (met); W1S > T1S in $\ge90\%$ of materials at both tolerances (met, 92/92 and 92/92); W1S/A3 median $>1.3$ with CI lower bound $>1.2$ at $10^{-6}$ (met).
+
+Median certified compression-ratio ratio over the 92 materials, bootstrap 95% CI, wins/n:
+
+| ratio | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
+|---|---|---|---|
+| O1S/W1S (operational / water-filling, same writer) | 0.979 [0.970, 0.983], 15/92 | 0.999 [0.997, 1.001], 39/92 | 1.003 [1.001, 1.006], 64/92 |
+| W1S/T1S (water-filling / truncation, same writer) | 1.344 [1.301, 1.406], 92/92 | 1.450 [1.415, 1.525], 92/92 | 1.580 [1.552, 1.609], 92/92 |
+| W1S/A3 (writer / operational allocation, zlib container) | 2.684 [2.190, 2.997], 92/92 | 2.337 [2.137, 2.690], 92/92 | 2.413 [2.115, 2.847], 90/92 |
+| W1S/A1 (writer / law, zlib container) | 4.732 [3.778, 5.522], 92/92 | 2.911 [2.362, 3.703], 92/92 | 2.675 [2.197, 3.222], 92/92 |
+| W1S/A6 (writer / pointwise codecs) | 48.081 [42.424, 61.119], 92/92 | 35.656 [28.451, 46.364], 92/92 | 11.218 [8.879, 13.593], 92/92 |
+| L1/A1 (adaptive coder and binary header) | 2.512 [2.267, 2.657], 92/92 | 1.337 [1.292, 1.414], 92/92 | 1.121 [1.085, 1.157], 92/92 |
+| W1/L1 (water-filling) | 1.000 [1.000, 1.008], 43/92 | 1.015 [1.012, 1.019], 73/92 | 1.004 [1.002, 1.011], 70/92 |
+| W1S/W1 (symmetry prediction) | 1.696 [1.619, 1.824], 68/92 | 1.913 [1.829, 2.137], 68/92 | 1.955 [1.888, 2.960], 68/92 |
+| O1/W1 (operational / water-filling, no symmetry) | 0.990 [0.987, 0.993], 23/92 | 1.004 [1.001, 1.011], 60/92 | 1.008 [1.004, 1.015], 72/92 |
+
+By cohort at $\tau=10^{-6}$ (P1 bulk, 60 / P3b slabs, 32): O1S/W1S 0.998 / 1.001; W1S/T1S 1.413 / 1.735; W1S/A3 3.014 / 2.109; W1S/A6 35.656 / 35.698; W1S/W1 2.817 / 1.822. The symmetry factor W1S/W1 at $10^{-6}$ grows with the order of the grid group: 1.000 (one operation, 18 materials), 1.883 (2–8, 49), 3.898 (9–24, 14) and 2.137 (more than 24, 11). Rows: `analysis/waterfill_writer_20261025/results/rows.csv`.
 
 ## Supplementary Note 4 — Whole-object storage and the magnetization contract
 
@@ -486,10 +521,12 @@ The same 300-object stratified sample and expansion estimator were used with bot
 | Contract and writer | Whole-object archive reduction (95% CI) | Policy |
 |---|---|---|
 | Bader, $10^{-3}\,e$ | 4.34 (3.61–5.37) | Reference atom map included |
+| Water-filling writer, $10^{-6}$ | 555 (492–635) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Operational allocation, $10^{-6}$ | 347 (317–387) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Hartree law, $10^{-6}$ | 316 (290–350) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Spectral truncation, $10^{-6}$ | 232 (211–260) | As above |
 | Best pointwise, $10^{-6}$ | 34.6 (32.4–37.2) | Same moment policy and fallback handling |
+| Water-filling writer, $10^{-4}$ | 1,818 (1,549–2,119) | Magnetization on decoded partition, 300/300 |
 | Operational allocation, $10^{-4}$ | 1,371 (1,209–1,550) | Magnetization on decoded partition, 300/300 |
 | Hartree law, $10^{-4}$ | 1,036 (927–1,152) | Selective atom maps in 10/300 objects |
 
@@ -501,7 +538,9 @@ The full per-object archive tables, scripts, checksums and verification evidence
 
 ## Supplementary Note 5 — Joint certification: engineering cohort and per-tolerance description
 
-Protocol and criteria were fixed before any run (commit `8a784a4`); confirmation was authorized only if engineering gates E1, E2 and E4 passed.
+**Contract, bases and post-processors.** The joint contract requires Hartree relative error below $10^{-6}$ (historical and Nyquist-safe) on the final stream and, with Henkelman Bader 1.05 (`-b ongrid -vac 0.001`, exact AECCAR0 + AECCAR2 reference), maximum atomic-charge error at most $\tau_B$ and zero basin reassignment. Bases: R3 (the A3 codec), J (fixed-ladder law), T1 (truncation ladder) and GF (ZFP, SZ3 and SPERR at $\text{abs\_tol}/\mathrm{ptp}=10^{-9}$ to $10^{-1}$, 25 points). Post-processors: none; uniform projection, which adds $d_i/N_i$ on basin $i$ to restore the stored basin sums; Hartree-aware projection, which minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the same sums ($\mu\in\{10^{-4},10^{-2},1\}$); and certify-then-project, which stores a one-byte flag, runs Bader on the unprojected stream and applies a projection only if that stream fails. Bytes include payload, side channel and flag. For each material, $\tau_B$ and base, the best post-processor is the one with the highest certified joint ratio, a choice every base receives. Overhead is $\text{CR}_{\text{Hartree-only}}/\text{CR}_{\text{joint}}$ for R3; utility is the R3 joint ratio over the maximum joint ratio of J, T1 and GF; both count stream bytes. Self-contained storage adds the exact-partition atom-index map, stored losslessly as xz-compressed 16-bit labels, to every base's stream (Table 1).
+
+Protocol and criteria were fixed before any run (commit `8a784a4`): $\ge46/48$ jointly certified; overhead median $\le1.10$ with CI upper bound $\le1.15$; utility $\ge36/48$ wins, median $>1.10$, CI lower bound $>1.00$; confirmation was authorized only if engineering gates E1, E2 and E4 passed.
 
 **Engineering cohort (12 fresh P2 materials; 0 setting failures).** E1: R3 at its best joint post-processor certified at all three $\tau_B$ in 12/12. E2: joint overhead at $10^{-4}\,e$, median 1.000 (1.000 in all 12). E4: R3 over the best of J, T1 and GF at $10^{-4}\,e$, 12/12 wins, median 1.355 (minimum 1.167). Median joint compression ratios at $10^{-4}\,e$: R3 297 (Hartree-only 297), J 224, T1 191, GF 17.1.
 

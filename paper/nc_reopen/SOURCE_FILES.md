@@ -44,3 +44,5 @@ Every number in the main text and this SI comes from the files below (commit tha
 | exchange-correlation contract, summary | `analysis/nonlinear_xc_20261024/RESULTS.md` | `534126e` |
 | linearized exchange-correlation allocation | `analysis/xc_linearized_law_20261025/results/SUMMARY.json` | `b32e6d7` |
 | linearized exchange-correlation allocation, summary | `analysis/xc_linearized_law_20261025/RESULTS.md` | `b32e6d7` |
+| water-filling writer on the law-protocol cohort (Results; Methods; Supplementary Note 3.6) | `analysis/waterfill_writer_20261025/results/SUMMARY.json`; `analysis/waterfill_writer_20261025/results/RESULTS.md`; rows `analysis/waterfill_writer_20261025/results/rows.csv` | `7880324` |
+| archive under the water-filling writer (Results; Supplementary Notes 3.4 and 4.4) | `analysis/archive_waterfill_20261025/results/SUMMARY.json`; `analysis/archive_waterfill_20261025/results/RESULTS.md`; objects `analysis/archive_waterfill_20261025/results/objects.csv` | `7880324` |

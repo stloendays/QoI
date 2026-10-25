@@ -16,3 +16,5 @@ production → collect → finalize). Do not qsub by hand; read the monitor's `S
 | `vanda/production_arch_small.pbs`, `production_arch_large.pbs` | study 2 |
 | `vanda/collect.sh` | tarball of checkpoints, probe and logs with SHA-256 |
 | `FINALIZE_TASK.md` | the headless finalization the monitor starts after collection |
+
+Results recorded at commit `7880324` (2026-10-25 12:48 UTC); protocols, writer and tests fixed at `fd5646d` (09:34 UTC).

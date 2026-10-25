@@ -209,3 +209,30 @@ studies of `research/server-truncation-xc-20261024`).
   `test_scientific_claims.py` 17 passed (new: operational archive, XC contract, linearized allocation); number sweep
   288 numbers, all found. Build `figures/nc/release/NC_manuscript_20261025.{pdf,docx}`, 17 pages; changed pages
   (1, 8, 11, 12, 14, 15, 17) checked in the rendered PDF.
+
+## Revision 11 (2026-10-25)
+
+Request (scheduled task, user 2026-10-25 14:54): 「帮我看看论文算法还可以如何优化和升级，并开始，不需要我审批 … 最终完成就行」.
+Branch `paper/nc-rev11-20261025` from `research/algo-upgrade-20261025` (plan
+`paper/nc_reopen/ALGORITHM_UPGRADE_PLAN_20261025.md`; protocols, writer and tests `fd5646d`; results `7880324`, Vanda
+probe 1491770, production 1491799/1491800/1491801, tarball SHA-256 be574d60b72a, every ratio recomputed independently).
+- **Water-filling writer.** New Methods subsection and Supplementary Note 3.6: the law's steps with reverse
+  water-filling at shell granularity, context-adaptive arithmetic coding (or zlib, per shell), a binary header and
+  space-group symmetry prediction; truncation and operational allocation in the same writer. All study-1 criteria met on
+  the 92 law-protocol materials: operational/water-filling 0.999 (0.997–1.001) at 1e-6 and 0.979 at 1e-4; water-filling
+  over truncation 92/92 at both tolerances; writer over revision-10 A3 2.34-fold (2.14–2.69), 92/92.
+- **Results.** The truncation paragraph now explains the 1e-4 crossover as the zlib container's cost and gives the
+  water-filling result; a new paragraph gives the attribution (coder and header 1.34/2.51, symmetry 1.91) and the
+  writer's gain over A3 and A6; the optimizer-share paragraph states that the share vanishes under the writer (heading
+  now "…, and the closed form needs no search"); the archive paragraph uses the writer: 555-fold (492–635) at 1e-6,
+  15.3 GB, and 1,818-fold at 1e-4, with the revision-10 writers as comparisons and the magnetization share at 1e-4.
+- **Abstract and Discussion:** 347-fold → 555-fold; Discussion "The system class decides the encoder" → "Once zeros
+  are entropy-coded, the closed form is the encoder".
+- **SI:** Note 3.4 and Note 4.4 gain the W/Q rows; Note 3.6 new.
+- **References:** 42 spglib, 43 arithmetic coding (Witten, Neal & Cleary); AFLOW becomes 44.
+- **Word budget:** implementation details moved from Methods to the SI (joint-contract post-processor definitions →
+  Note 5; QoI-preserving-baseline and work-function details → Note 3.1; acceptance-criteria lists → Notes 3 and 5).
+- Table 1: two rows (`fd5646d`, `7880324`). Claim tests: `test_water_filling_writer`, `test_writer_archive`;
+  `test_operational_archive` now checks the revision-10 rows as comparisons.
+- Main text plus Methods 4,998 words, abstract 150; `audit_manuscript.py --final` 0 failures, 0 warnings;
+  `test_scientific_claims.py` 19 passed; number sweep 304 numbers, all found.

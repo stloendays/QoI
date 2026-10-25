@@ -20,7 +20,10 @@ for pat in ["analysis/general_qoac_law/results/**/*.md", "analysis/general_qoac_
             "analysis/fresh_population_20261006/P3B_SELECTION_RULE.md", "figures/nc/fig4/KCN_STATS.json",
             "figures/nc/fig4/data/kcn_law.json", "figures/nc/fig6/LADDER_STATS.json", "figures/nc/fig7/POST_COUNTS.json",
             "analysis/qoac_hb_v2/results/**/*.md", "analysis/archive_truncation_20261024/RESULTS.md",
-            "analysis/nonlinear_xc_20261024/RESULTS.md", "analysis/xc_linearized_law_20261025/RESULTS.md"]:
+            "analysis/nonlinear_xc_20261024/RESULTS.md", "analysis/xc_linearized_law_20261025/RESULTS.md",
+            "analysis/waterfill_writer_20261025/results/RESULTS.md", "analysis/waterfill_writer_20261025/PROTOCOL.md",
+            "analysis/archive_waterfill_20261025/results/RESULTS.md", "analysis/archive_waterfill_20261025/PROTOCOL.md",
+            "analysis/server_runs_20261025b/README.md"]:
     for f in glob.glob(f"{ROOT}/{pat}", recursive=True):
         srcs.append(open(f, encoding="utf-8", errors="ignore").read())
 frozen = subprocess.run(["git", "-C", ROOT, "show", "efd1e2c:paper/MANUSCRIPT.md"], capture_output=True, text=True,

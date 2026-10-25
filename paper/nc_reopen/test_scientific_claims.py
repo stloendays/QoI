@@ -141,9 +141,61 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertEqual(round(e["O_0.0001"]["R"]), 1371)
         self.assertEqual(round(e["T_0.0001"]["R"]), 1142)
         self.assertAlmostEqual(pr["L/T_0.0001"]["ratio"], 0.907, places=3)
-        for t in ("347-fold (95% CI 317–387)", "232-fold for truncation", "1,371-fold", "1,142-fold for truncation", "24 GB"):
+        for t in ("347-fold for operational allocation in the zlib container", "232-fold for truncation",
+                  "against 1,371-fold for operational allocation", "1,142 (1,018–1,286)"):
+            self.assertIn(t, MAIN + SI)
+
+    def test_writer_archive(self) -> None:
+        """The archive under the water-filling writer (revision 11) against the committed run."""
+        import json
+        s = json.loads((ROOT / "analysis/archive_waterfill_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
+        e, pr = s["estimates"], s["paired"]
+        self.assertEqual(s["objects_success"], 300)
+        for w in ("W", "Q"):
+            for k in ("1e-06", "0.0001"):
+                self.assertEqual(s[f"counts_{w}_{k}"]["certified"], 300)
+                self.assertEqual(s[f"counts_{w}_{k}"]["m_decoded_frame"], 300)
+        self.assertEqual(round(e["W_1e-06"]["R"]), 555)
+        self.assertEqual([round(v) for v in e["W_1e-06"]["ci95"]], [492, 635])
+        self.assertEqual(round(e["W_0.0001"]["R"]), 1818)
+        self.assertEqual(round(pr["W/O_1e-06"]["ratio"], 2), 1.60)
+        self.assertEqual(round(pr["W/O_0.0001"]["ratio"], 2), 1.33)
+        self.assertGreater(e["W_1e-06"]["ci95"][0], 387)                     # above the revision-10 O interval
+        self.assertEqual(round(8.4976e12 / e["W_1e-06"]["R"] / 1e9, 1), 15.3)
+        for t in ("15.3 GB, 555-fold (95% CI 492–635)", "it shrinks 1,818-fold", "holds 64% of the stored bytes"):
             self.assertIn(t, MAIN)
-        self.assertIn("347-fold", MAIN.split("## Introduction")[0])          # abstract
+        self.assertIn("555-fold", MAIN.split("## Introduction")[0])          # abstract
+
+    def test_water_filling_writer(self) -> None:
+        """The water-filling writer on the 92 law-protocol materials (revision 11) against the committed run."""
+        import json
+        s = json.loads((ROOT / "analysis/waterfill_writer_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
+        R = s["ratios"]
+        self.assertEqual(s["materials_success"], 92)
+        self.assertTrue(all(v["met"] for v in s["criteria"].values()))
+        g = lambda k, d=2: round(R[k]["median"], d)  # noqa: E731
+        self.assertEqual(g("O1S/W1S_1e-06_all", 3), 0.999)
+        self.assertEqual([round(v, 3) for v in R["O1S/W1S_1e-06_all"]["ci95"]], [0.997, 1.001])
+        self.assertEqual(g("O1S/W1S_1e-06_P1", 3), 0.998)
+        self.assertEqual(g("O1S/W1S_1e-06_P3B", 3), 1.001)
+        self.assertEqual(g("O1S/W1S_0.0001_all", 3), 0.979)
+        for t, v in (("0.0001", 1.34), ("1e-06", 1.45)):
+            self.assertEqual(g(f"W1S/T1S_{t}_all"), v)
+            self.assertEqual(R[f"W1S/T1S_{t}_all"]["wins"], 92)
+        self.assertEqual(g("W1S/A3_1e-06_all"), 2.34)
+        self.assertEqual([round(v, 2) for v in R["W1S/A3_1e-06_all"]["ci95"]], [2.14, 2.69])
+        self.assertEqual(R["W1S/A3_1e-06_all"]["wins"], 92)
+        self.assertEqual(g("L1/A1_1e-06_all"), 1.34)
+        self.assertEqual(g("L1/A1_0.0001_all"), 2.51)
+        self.assertEqual(g("W1S/W1_1e-06_all"), 1.91)
+        self.assertEqual(round(R["W1S/A6_1e-06_all"]["median"], 1), 35.7)
+        self.assertEqual(s["symmetry"]["with_symmetry"], 74)
+        for t in ("92/92 materials at $10^{-4}$ (median 1.34-fold) and $10^{-6}$ (1.45-fold)",
+                  "median ratio 0.999 (95% CI 0.997–1.001)", "(bulk 0.998, slabs 1.001) and 0.979",
+                  "1.34-fold more than the law's zlib container", "2.51-fold more at $10^{-4}$",
+                  "In the 74 of 92 densities", "median 1.91-fold", "2.34-fold more than operational allocation in the zlib "
+                  "container (95% CI 2.14–2.69; 92/92) and 35.7-fold"):
+            self.assertIn(t, MAIN)
 
     def test_exchange_correlation_contract(self) -> None:
         """L/P under the XC contract and the Hartree certificate's XC error on slabs (revision 10)."""
