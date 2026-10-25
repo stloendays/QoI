@@ -6,20 +6,21 @@ Junbo Tong<sup>1</sup>
 
 <sup>1</sup>National University of Singapore, Singapore.
 
-This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 10 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
+This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 11 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
 
 Contents:
 
 - Supplementary Note 1. QSQ validations
 - Supplementary Note 2. Hartree mechanism, fixed-ladder QOAC-H confirmation, census and strongest baselines
 - Supplementary Note 3. Law protocol tables per tolerance and per operator; QoI-preserving baselines, work-function error, deployment cost and archive estimate
-- Supplementary Note 4. Whole-object storage and the magnetization contract
-- Supplementary Note 5. Joint certification: engineering cohort and per-tolerance description
-- Supplementary Note 6. Bader contracts under an exact partition: basin projection, partition transcription and storage
-- Supplementary Note 7. Exchange-correlation energy: contract, transfer and linearized allocation
-- Supplementary Note 8. Gain-predictor calibration
-- Supplementary Note 9. Population construction
-- Supplementary Note 10. Source files
+- Supplementary Note 4. Structure-factor prediction and the magnetization writer
+- Supplementary Note 5. Whole-object storage and the magnetization contract
+- Supplementary Note 6. Joint certification: engineering cohort and per-tolerance description
+- Supplementary Note 7. Bader contracts under an exact partition: basin projection, partition transcription and storage
+- Supplementary Note 8. Exchange-correlation energy: contract, transfer and linearized allocation
+- Supplementary Note 9. Gain-predictor calibration
+- Supplementary Note 10. Population construction
+- Supplementary Note 11. Source files
 - Supplementary Fig. 1. The contract orders codecs at matched density error
 - Supplementary Fig. 2. Magnetic-moment contracts and density reconstruction
 - Supplementary Fig. 3. Bader storage contracts on real materials
@@ -129,7 +130,7 @@ The exhaustive oracle costs 38.5, 37.0 and 32.2 solves per eligible material. Th
 
 ### 1.12 Whole-object Bader archive estimate
 
-**Population and sampling.** The public Materials Project charge-density archive contains 415,289 stored objects (8.4976 TB as gzipped JSON). A size-stratified sample of 300 objects was fixed before processing: 30 objects from each of deciles D01–D09 and 15/10/5 from the top-decile size strata. We used stratified expansion and a 2,000-resample stratified bootstrap (seed 20260930). QSQ and the Bader-certifying writer search ZFP, SZ3 and SPERR on the charge-density block. Every stored object also contains a magnetization block, which is retained under the magnetic-moment contract (Supplementary Note 4).
+**Population and sampling.** The public Materials Project charge-density archive contains 415,289 stored objects (8.4976 TB as gzipped JSON). A size-stratified sample of 300 objects was fixed before processing: 30 objects from each of deciles D01–D09 and 15/10/5 from the top-decile size strata. We used stratified expansion and a 2,000-resample stratified bootstrap (seed 20260930). QSQ and the Bader-certifying writer search ZFP, SZ3 and SPERR on the charge-density block. Every stored object also contains a magnetization block, which is retained under the magnetic-moment contract (Supplementary Note 5).
 
 **Storage accounting.** Eligible objects use certified lossy density streams; non-evaluable objects retain lossless float64 storage and seven incomplete objects retain their original gzipped size. Both volumetric fields, requisite metadata and the moment stream are counted in the whole-object estimate. The Bader writer ran successfully on 293/300 objects; the seven failures receive conservative full-size fallback.
 
@@ -338,6 +339,8 @@ Gradient and Laplacian gains lie close to 1 (medians 1.011–1.068 across cohort
 
 Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 at $10^{-4}$ and 71.7 at $10^{-6}$, with A1 lower in 27/27 slabs at both tolerances. This ratio is computed from `analysis/p3b_vacuum_level_20261007/results/per_slab_dphi.csv`; it was not a pre-declared statistic.
 
+At every plane of every vacuum window the law's error at $\tau=10^{-6}$ was at most 0.45 meV (pointwise: up to 2.8 meV).
+
 **Largest planar-averaged Hartree error over the vacuum window (meV) over 27 slabs: median / maximum** (`analysis/p3b_vacuum_level_20261007/results/summary.csv`)
 
 | arm | $\tau=10^{-4}$ | $\tau=10^{-6}$ | $\tau=10^{-8}$ |
@@ -431,7 +434,7 @@ Median per-slab ratio $|\Delta\Phi|_{\text{A6}}/|\Delta\Phi|_{\text{A1}}$: 33.4 
 
 ### 3.4 Whole-object archive estimate under the Hartree contract
 
-The same 415,289-object (8.4976 TB) frame, 300-object stratified sample and bootstrap design are used as in Supplementary Note 1.12, with bootstrap seed 20261012. The closed-form law (A1) and best pointwise writer (A6) receive equal search and independent decoded Hartree certification at each tolerance. Total density, magnetization density and the necessary partition metadata are included in the estimated stored size. The Hartree charge-density streams were measured on NUS Vanda (300/300 objects; zero pipeline failures); decoded-frame magnetic moments were separately certified on the same objects using the compiled Henkelman binary (Supplementary Note 4).
+The same 415,289-object (8.4976 TB) frame, 300-object stratified sample and bootstrap design are used as in Supplementary Note 1.12, with bootstrap seed 20261012. The closed-form law (A1) and best pointwise writer (A6) receive equal search and independent decoded Hartree certification at each tolerance. Total density, magnetization density and the necessary partition metadata are included in the estimated stored size. The Hartree charge-density streams were measured on NUS Vanda (300/300 objects; zero pipeline failures); decoded-frame magnetic moments were separately certified on the same objects using the compiled Henkelman binary (Supplementary Note 5).
 
 | Hartree tolerance | Law, whole-object reduction (95% CI) | Pointwise, whole-object reduction (95% CI) | Paired law/pointwise advantage (95% CI) | Moment/partition policy |
 |---|---:|---:|---:|---|
@@ -443,23 +446,23 @@ At $10^{-6}$, decoded-frame moment certification passes on 300/300 law streams a
 
 A selective-map policy gives a further law-only measurement at $10^{-4}$: ten of 300 objects require a lossless atom map to preserve their moments on decoded density partitions. Retaining maps only for those objects yields a **1,036-fold** whole-object reduction (95% CI 927–1,152); omitting them all gives 76-fold. No like-for-like pointwise estimate under this selective-map policy was measured, so no cross-codec ratio is assigned to this 1,036-fold row.
 
-Spectral truncation (A2, best of 32 cutoffs) and operational allocation (A3) were applied to the same 300 objects with the same storage rule, the same moment policy (moments on the decoded partition where they certify, otherwise the reference atom map) and the same estimators; every object was certified by both writers at both tolerances, with decoded-partition moments in 300/300.
+Spectral truncation (A2, best of 32 cutoffs) and operational allocation (A3) were applied to the same 300 objects with the same storage rule, the same moment policy (moments on the Bader partition of each decoded density where they certify, otherwise the reference atom map) and the same estimators. Every object was certified by both writers at both tolerances; the moments certified on the decoded partition in 300/300 objects at $10^{-6}$ and in 296/300 (truncation) and 292/300 (operational allocation) at $10^{-4}$.
 
 | Hartree tolerance | Spectral truncation (95% CI) | Operational allocation (95% CI) | Closed-form law (95% CI) | Operational/truncation | Operational/law |
 |---|---:|---:|---:|---:|---:|
-| $10^{-4}$ | 1,142 (1,018–1,286) | **1,371 (1,209–1,550)** | 1,036 (927–1,152) | 1.20 (1.18–1.23) | 1.32 (1.27–1.39) |
-| $10^{-6}$ | 232.5 (211–260) | **347.2 (317–387)** | 316.4 (290–350) | 1.49 (1.46–1.53) | 1.10 (1.09–1.10) |
+| $10^{-4}$ | 1,115 (992–1,255) | **1,325 (1,158–1,511)** | 1,036 (927–1,152) | 1.19 (1.15–1.23) | 1.28 (1.23–1.34) |
+| $10^{-6}$ | 232.5 (211–260) | **347.3 (317–387)** | 316.4 (290–350) | 1.49 (1.46–1.53) | 1.10 (1.09–1.11) |
 
-At $10^{-6}$ operational allocation stores the archive in about 24 GB and is 10.0-fold smaller than the pointwise writer; at $10^{-4}$ spectral truncation is smaller than the closed-form law (0.91, 0.86–0.94), as on the 92 law-protocol materials.
+At $10^{-6}$ operational allocation stores the archive in about 24 GB and is 10.0-fold smaller than the pointwise writer; at $10^{-4}$ spectral truncation is smaller than the closed-form law (law/truncation 0.93, 0.89–0.96), as on the 92 law-protocol materials.
 
-The water-filling writer (Supplementary Note 3.6) with symmetry prediction (W) and operational allocation in the same writer (Q) were applied to the same 300 objects with the same storage rule, moment policy and estimators; every object was certified by both at both tolerances, with decoded-partition moments in 300/300, and 248/300 objects used a symmetry group (median order 4).
+The water-filling writer (Supplementary Note 3.6) with symmetry prediction (W) and operational allocation in the same writer (Q) were applied to the same 300 objects with the same storage rule, moment policy and estimators. Every object was certified by both at both tolerances, the moments certified on the decoded partition in 300/300 objects at $10^{-6}$ and in 292/300 (W) and 294/300 (Q) at $10^{-4}$, and 248/300 objects used a symmetry group (median order 4).
 
 | Hartree tolerance | Water-filling writer W (95% CI) | Same writer, operational Q (95% CI) | W / operational allocation A3 | W / law A1 | W / truncation A2 |
 |---|---:|---:|---:|---:|---:|
-| $10^{-4}$ | **1,818 (1,549–2,119)** | 1,813 (1,544–2,113) | 1.33 (1.27–1.39) | 1.75 (1.65–1.88) | 1.59 (1.51–1.69) |
-| $10^{-6}$ | **555.2 (492–635)** | 558.4 (495–639) | 1.60 (1.51–1.70) | 1.75 (1.65–1.87) | 2.39 (2.25–2.54) |
+| $10^{-4}$ | **1,735 (1,470–2,048)** | 1,726 (1,457–2,041) | 1.31 (1.26–1.37) | 1.67 (1.56–1.81) | 1.56 (1.46–1.66) |
+| $10^{-6}$ | **555.2 (492–635)** | 557.9 (494–638) | 1.60 (1.51–1.70) | 1.75 (1.65–1.87) | 2.39 (2.25–2.54) |
 
-At $10^{-6}$ the writer stores the archive in about 15.3 GB and is 16.1-fold (14.3–18.2) smaller than the pointwise writer. The magnetization stream, written under the same moment policy for every writer, holds 19.4% of the archive-weighted stored bytes under W at $10^{-6}$ and 63.5% at $10^{-4}$.
+At $10^{-6}$ the writer stores the archive in about 15.3 GB and is 16.1-fold (14.3–18.2) smaller than the pointwise writer. The magnetization stream, written under the same moment policy for every writer, holds 19.4% of the archive-weighted stored bytes under W at $10^{-6}$ and 65.2% at $10^{-4}$. The predictive and magnetization writers on the same objects: Supplementary Note 4.4.
 
 ### 3.5 Fourier-correction baseline under the Hartree certificate
 
@@ -500,43 +503,114 @@ Median certified compression-ratio ratio over the 92 materials, bootstrap 95% CI
 
 By cohort at $\tau=10^{-6}$ (P1 bulk, 60 / P3b slabs, 32): O1S/W1S 0.998 / 1.001; W1S/T1S 1.413 / 1.735; W1S/A3 3.014 / 2.109; W1S/A6 35.656 / 35.698; W1S/W1 2.817 / 1.822. The symmetry factor W1S/W1 at $10^{-6}$ grows with the order of the grid group: 1.000 (one operation, 18 materials), 1.883 (2–8, 49), 3.898 (9–24, 14) and 2.137 (more than 24, 11). Rows: `analysis/waterfill_writer_20261025/results/rows.csv`.
 
-## Supplementary Note 4 — Whole-object storage and the magnetization contract
+## Supplementary Note 4 — Structure-factor prediction and the magnetization writer
 
-### 4.1 Two volumetric fields in a served object
+### 4.1 Predictive writer
+
+A crystal density is, to leading order, a superposition of atom-centred densities, so its Fourier coefficients are $\sum_e f_e(|G|)\,S_e(G)$ with the structure factor $S_e(G)=\sum_{a\in e}e^{-2\pi i\,h\cdot x_a}$ of species $e$ ($h$ the Miller index of $G$, $x_a$ the fractional coordinates). In each of the 32 shells $s$ of the water-filling writer the encoder fits $f_{s,e}(q)$, a quadratic polynomial in $q-\bar q_s$ (lower degree in shells with fewer than four orbits per parameter), by least squares weighted with the Hartree metric $m_kw_k$. The parameters (at most three per species) are quantized with one step per shell, chosen so that quantization adds at most 2% of the residual's operator-weighted energy, and a shell's prediction is kept only if it leaves less than half of the shell's operator-weighted energy. The water-filling writer (Supplementary Note 3.6), including its symmetry plan, then codes the residual; the prediction obeys the same star relations as the density, so the residual does too. Every shell, written or not, is decoded as prediction plus residual. The stream stores the species, float32 fractional coordinates, a mask of predicted shells and the integer parameters (median 651 bytes on the 92 materials); the decoder recomputes the prediction with the encoder's function. The writer reports the smallest certified of three streams: no prediction, prediction on every kept shell, and prediction on the kept shells that the water-filling rule writes.
+
+### 4.2 The predictive writer on the 92 law-protocol materials
+
+Arms, every stream decoded from its bytes and certified (historical and Nyquist-safe Hartree relative RMS $<\tau$): W1S, the water-filling writer with symmetry; W2S, the predictive writer with symmetry; W2, the predictive writer without symmetry; O2S, operational allocation (A3 search) on the writer's exact per-shell curves of the residual, with symmetry and prediction on every kept shell. All four arms were certified for 92/92 materials at $10^{-6}$ and $10^{-4}$, and W1S reproduced the water-filling writer's stream bytes of Supplementary Note 3.6 in 92/92 materials at both tolerances. Acceptance criteria, fixed before the run (bootstrap seed 20261025, 10,000 resamples): W2S/W1S median $\ge1.15$ with CI lower bound $\ge1.10$ at $10^{-6}$ (met: 1.95, 1.79); O2S/W2S median $\le1.05$ with CI upper bound $\le1.08$ at $10^{-6}$ and $10^{-4}$ (met).
+
+Median certified compression-ratio ratio, bootstrap 95% CI, wins/n:
+
+| ratio | $\tau=10^{-4}$ | $\tau=10^{-6}$ |
+|---|---|---|
+| W2S/W1S (prediction, with symmetry) | 1.28 (1.12–1.34), 68/92 | 1.95 (1.79–2.07), 89/92 |
+| O2S/W2S (operational / closed form, with prediction) | 0.947 (0.926–0.962), 8/92 | 0.995 (0.993–0.998), 28/92 |
+| W2S/W2 (symmetry, with prediction) | 1.50 (1.23–1.61), 64/92 | 1.76 (1.60–1.85), 68/92 |
+| W2/W1S (prediction without symmetry / symmetry without prediction) | 0.89 (0.68–1.07), 41/92 | 1.00 (0.82–1.29), 46/92 |
+| W2S/A3 (operational allocation, zlib container) | 3.36 (3.13–3.69), 92/92 | 4.47 (3.70–4.86), 92/92 |
+| W2S/A1 (law, zlib container) | 7.03 (5.98–7.49), 92/92 | 5.28 (4.35–5.97), 92/92 |
+| W2S/A2 (truncation, zlib container) | 4.61 (4.20–5.10), 92/92 | 6.84 (6.12–7.96), 92/92 |
+| W2S/A6 (pointwise codecs) | 67.2 (57.5–81.1), 92/92 | 69.4 (54.2–92.5), 92/92 |
+
+By cohort (P1 bulk, 60 / P3b slabs, 32), W2S/W1S is 2.05 / 1.79 at $10^{-6}$ and 1.24 / 1.36 at $10^{-4}$. By the order of the grid group, W2S/W1S at $10^{-6}$ is 2.40 (2.02–2.91; one operation, 18 materials, 18/18), 2.09 (2–8, 49, 49/49), 1.34 (9–24, 14, 12/14) and 1.06 (more than 24, 11, 10/11); at $10^{-4}$ 2.12, 1.30, 0.99 and 0.99. The writer chose prediction on every kept shell in 84/92 materials at $10^{-6}$ (written shells only, 5; none, 3) and in 47/92 at $10^{-4}$ (22; 23). Rows: `analysis/sfp_spin_writer_20261025/results/rows.csv`.
+
+### 4.3 Magnetization writer
+
+A per-atom moment is $\mu_a=\int_{\Omega_a}m$, a linear operator on $m$ whose symbol is the Fourier transform of the basin indicator $\chi_a$; its squared error weight is $\sum_a|\chi_a(G)|^2$. For basins with sharp boundaries the shell-averaged indicator spectrum falls as $q^{-4}$ (Porod's law), the decay of the Hartree weight. On the Bader partitions of the decoded archive densities, the slope of the shell-mean indicator spectrum over shells 2–24 (at most 16 basins per object) had median $-2.96$ (interquartile range $-3.23$ to $-2.72$; 5–95% $-3.37$ to $-2.00$; 299 objects). The magnetization writer is therefore the water-filling writer with the Hartree law's steps $\Delta_G=\alpha q^2$ applied to $m$, with symmetry operations validated on $m$ itself; $\alpha$ is bisected in log space until the largest moment error on the Bader partition of the decoded total density is below $0.995\,\tau_\mu$, and the point is accepted only when the compiled Henkelman binary confirms every moment within $\tau_\mu=10^{-2}\,\mu_\mathrm B$ (otherwise $\alpha$ is reduced by 1% until it does, at most 40 times). In a complete object the magnetization shares the grid and lattice of the density stream, so its sub-stream omits them and stores the 32 shell fields as a mask plus the non-empty fields (84 bytes are charged where the density is stored losslessly). Each decoded density's Bader partition is computed for that density.
+
+### 4.4 Archive under the predictive and magnetization writers
+
+The 300-object sample, storage rule, moment policy and estimators of Supplementary Notes 1.12 and 3.4 (bootstrap seed 20261012, 2,000 resamples). V: predictive writer for the total density and magnetization writer for $m$. VP: the same density streams with $m$ written by the best of ZFP, SZ3 and SPERR (absolute-tolerance search, binary-confirmed) on the same decoded partitions. Every V density stream was certified at both tolerances (300/300); the magnetization writer certified the moments in 300/300 objects at $10^{-6}$ and 293/300 at $10^{-4}$, the remaining seven, whose $10^{-4}$ decoded partitions also fail the moment contract under the water-filling writer, are stored with the reference atom map. The largest binary-confirmed moment error was $0.00995\,\mu_\mathrm B$ (magnetization writer) and $0.00998\,\mu_\mathrm B$ (pointwise).
+
+| writer | $10^{-6}$ (95% CI) | $10^{-4}$ (95% CI) | magnetization share $10^{-6}$ / $10^{-4}$ |
+|---|---:|---:|---:|
+| V, predictive + magnetization writers | **1,401 (1,245–1,594)** | **4,719 (3,585–6,052)** | 3.8% / 34.1% |
+| VP, predictive writer + pointwise magnetization | 966 (862–1,091) | 1,967 (1,641–2,341) | 33.6% / 72.5% |
+| W, water-filling writer | 555 (492–635) | 1,735 (1,470–2,048) | 19.4% / 65.2% |
+| O, operational allocation (zlib container) | 347 (317–387) | 1,325 (1,158–1,511) | 12.0% / 49.4% |
+| L, closed-form law | 316 (290–350) | 1,036 (927–1,152) | – |
+| T, spectral truncation | 232 (211–260) | 1,115 (992–1,255) | 8.1% / 41.1% |
+| P, best pointwise codec | 34.6 (32.4–37.2) | – | – |
+
+Paired ratios (95% CI):
+
+| ratio | $10^{-6}$ | $10^{-4}$ |
+|---|---|---|
+| V/W | 2.52 (2.38–2.68) | 2.72 (2.22–3.31) |
+| V/O | 4.03 (3.72–4.40) | 3.56 (2.87–4.39) |
+| V/L | 4.43 (4.09–4.83) | 4.55 (3.64–5.62) |
+| V/T | 6.03 (5.58–6.55) | 4.23 (3.33–5.25) |
+| V/P | 40.5 (35.9–46.1) | – |
+| density: VP/W | 1.74 (1.66–1.83) | 1.13 (1.10–1.17) |
+| magnetization: V/VP | 1.45 (1.35–1.58) | 2.40 (1.98–2.94) |
+
+The estimated stored size of the 8.50 TB frame is 6.1 GB at $10^{-6}$ and 1.8 GB at $10^{-4}$. Acceptance criteria, fixed before the run: V/W at least 1.15 with CI lower bound at least 1.10 at $10^{-6}$ and at least 1.5 with CI lower bound at least 1.3 at $10^{-4}$ (met); per object, pointwise/magnetization-writer bytes median at least 2 with the magnetization writer smaller in at least 70% of objects at both tolerances (met).
+
+Magnetization streams, objects where both writers certified:
+
+| $\tau$ | objects | pointwise / magnetization writer, median (95% CI) | magnetization writer smaller | median bytes, magnetization writer / pointwise |
+|---|---:|---|---:|---|
+| $10^{-6}$, all | 300 | 30.1 (25.5–35.1) | 298/300 | 63 / 3,189 |
+| $10^{-6}$, magnetic (shells written) | 128 | 11.1 | 126/128 | 532 / 6,103 |
+| $10^{-6}$, zero field | 172 | 51.6 | 172/172 | 26–75 (magnetization writer) |
+| $10^{-4}$, all | 293 | 31.1 (25.6–35.7) | 291/293 | 63 / 3,174 |
+| $10^{-4}$, magnetic | 121 | 10.8 | 119/121 | 614 / 6,933 |
+
+Density bytes of the water-filling writer over the predictive writer, by the order of the grid group: 2.31 (one operation, 52 objects), 1.87 (2–8, 175), 1.47 (9–24, 49) and 1.12 (more than 24, 24) at $10^{-6}$; 1.54, 1.21, 0.99 and 0.99 at $10^{-4}$. Objects: `analysis/archive_w2_20261025/results/objects.csv`.
+
+## Supplementary Note 5 — Whole-object storage and the magnetization contract
+
+### 5.1 Two volumetric fields in a served object
 
 Every sampled Materials Project object includes total charge density $\rho$ and magnetization density $m=\rho_\uparrow-\rho_\downarrow$: 210/210 development/engineering objects and 300/300 archival sample objects. Reserialized magnetization data account for an estimated 51.95% of the served text bytes. The block exists even where moments are negligible (134/300 near-zero magnetization blocks).
 
-### 4.2 Per-atom magnetic-moment contract
+### 5.2 Per-atom magnetic-moment contract
 
 The Henkelman Bader executable integrates $m$ over atomic basins derived from the reference or decoded $\rho$. QSQ moment response has median $1.4\times10^{-5}\,\mu_\mathrm B$ across 16 engineering materials, with 16/16 eligible at $10^{-2}\,\mu_\mathrm B$ and 15/16 eligible at $10^{-3}\,\mu_\mathrm B$. When $\rho$ is exact, certified $m$ costs a median 0.3% of lossless $\rho$ at $10^{-2}\,\mu_\mathrm B$; every certified point was verified with the compiled Bader executable.
 
-### 4.3 Compose charge and moment contracts on decoded partitions
+### 5.3 Compose charge and moment contracts on decoded partitions
 
 With lossy $\rho$, the atomic partition can migrate. Certification of the moment using the actual partition re-derived from decoded $\rho'$ allows the Bader-charge and magnetic-moment contracts to compose without storing a partition map in 60/62 engineering material–tolerance pairs (median byte factor 1.00). In the two remaining pairs, partition migration alone changes the moment by 1.6 and 1.9$\times10^{-3}\,\mu_\mathrm B$ against a moment tolerance of $10^{-3}\,\mu_\mathrm B$. The reference partition must then be stored or the total-density bound tightened.
 
-### 4.4 Whole-object archive estimates
+### 5.4 Whole-object archive estimates
 
 The same 300-object stratified sample and expansion estimator were used with both the density and magnetization payloads counted. The moment contract qualified for 300/300 objects at $10^{-2}\,\mu_\mathrm B$; compressed $m$ costs a median 0.05% of lossless $\rho$ (maximum 1%).
 
 | Contract and writer | Whole-object archive reduction (95% CI) | Policy |
 |---|---|---|
 | Bader, $10^{-3}\,e$ | 4.34 (3.61–5.37) | Reference atom map included |
+| Predictive and magnetization writers, $10^{-6}$ | 1,401 (1,245–1,594) | Magnetization writer on decoded partition, 300/300 certificates; no map |
 | Water-filling writer, $10^{-6}$ | 555 (492–635) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Operational allocation, $10^{-6}$ | 347 (317–387) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Hartree law, $10^{-6}$ | 316 (290–350) | Magnetization on decoded partition, 300/300 certificates; no map |
 | Spectral truncation, $10^{-6}$ | 232 (211–260) | As above |
 | Best pointwise, $10^{-6}$ | 34.6 (32.4–37.2) | Same moment policy and fallback handling |
-| Water-filling writer, $10^{-4}$ | 1,818 (1,549–2,119) | Magnetization on decoded partition, 300/300 |
-| Operational allocation, $10^{-4}$ | 1,371 (1,209–1,550) | Magnetization on decoded partition, 300/300 |
+| Predictive and magnetization writers, $10^{-4}$ | 4,719 (3,585–6,052) | Magnetization writer on decoded partition, 293/300; reference atom map for 7 |
+| Water-filling writer, $10^{-4}$ | 1,735 (1,470–2,048) | Magnetization on decoded partition, 292/300; reference atom map for 8 |
+| Operational allocation, $10^{-4}$ | 1,325 (1,158–1,511) | Magnetization on decoded partition, 292/300; reference atom map for 8 |
 | Hartree law, $10^{-4}$ | 1,036 (927–1,152) | Selective atom maps in 10/300 objects |
 
 The matched law/pointwise ratio at $10^{-6}$ is 9.15-fold (95% CI 8.45–10.0). For the complete object, lossless binary storage alone gives 0.99-fold relative to gzipped JSON, whereas Bader certification contributes 5.35-fold (4.49–6.58). At Hartree $10^{-4}$, the selective atom-map policy is essential for ten objects and no matched pointwise estimate was made under that policy.
 
-The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 10. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
+The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 11. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
 
-**Supplementary Fig. 2 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 10.
+**Supplementary Fig. 2 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 11.
 
-## Supplementary Note 5 — Joint certification: engineering cohort and per-tolerance description
+## Supplementary Note 6 — Joint certification: engineering cohort and per-tolerance description
 
 **Contract, bases and post-processors.** The joint contract requires Hartree relative error below $10^{-6}$ (historical and Nyquist-safe) on the final stream and, with Henkelman Bader 1.05 (`-b ongrid -vac 0.001`, exact AECCAR0 + AECCAR2 reference), maximum atomic-charge error at most $\tau_B$ and zero basin reassignment. Bases: R3 (the A3 codec), J (fixed-ladder law), T1 (truncation ladder) and GF (ZFP, SZ3 and SPERR at $\text{abs\_tol}/\mathrm{ptp}=10^{-9}$ to $10^{-1}$, 25 points). Post-processors: none; uniform projection, which adds $d_i/N_i$ on basin $i$ to restore the stored basin sums; Hartree-aware projection, which minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the same sums ($\mu\in\{10^{-4},10^{-2},1\}$); and certify-then-project, which stores a one-byte flag, runs Bader on the unprojected stream and applies a projection only if that stream fails. Bytes include payload, side channel and flag. For each material, $\tau_B$ and base, the best post-processor is the one with the highest certified joint ratio, a choice every base receives. Overhead is $\text{CR}_{\text{Hartree-only}}/\text{CR}_{\text{joint}}$ for R3; utility is the R3 joint ratio over the maximum joint ratio of J, T1 and GF; both count stream bytes. Self-contained storage adds the exact-partition atom-index map, stored losslessly as xz-compressed 16-bit labels, to every base's stream (Table 1).
 
@@ -573,19 +647,19 @@ Medians are identical at $10^{-3}\,e$ and within 0.3% at $10^{-5}\,e$ (`analysis
 The Hartree-aware projection minimizes $\lVert Hc\rVert^2/s_H+\mu\lVert c\rVert^2/s_\rho$ subject to the basin-sum constraints, with $s_H=\lVert H\rho_{\text{ref}}\rVert^2$ and $s_\rho=\lVert\rho_{\text{ref}}\rVert^2$; it reduces to the uniform shift as $\mu\to\infty$. The constant mode is fixed by the constraints and the zero-mean part is solved from a regularized, Jacobi-scaled Cholesky system; the derivation and unit tests are in the repository (joint-contract code, DERIVATION.md).
 
 
-## Supplementary Note 6 — Bader contracts under an exact partition: basin projection, partition transcription and storage
+## Supplementary Note 7 — Bader contracts under an exact partition: basin projection, partition transcription and storage
 
-### 6.1 Basin-sum projection after generic compression (38-material holdout)
+### 7.1 Basin-sum projection after generic compression (38-material holdout)
 
 With the AECCAR partition reference held exact, the decoded CHGCAR is corrected by the uniform per-basin shift that restores each stored basin sum, the minimum-$L_2$ and minimum-$L_\infty$ correction for disjoint basins, following constraint-satisfaction post-processing (main-text ref. 12). An auxiliary density budget, $L_\infty(P)\le\kappa\,\epsilon^{G1}_m$, where $\epsilon^{G1}_m$ is the realized $L_\infty$ of the best generic Bader-certified row, prevents arbitrary compression followed by projection; $\kappa=4$ was fixed on 12 engineering materials (11/12 wins, median 1.782; maximum side channel 0.7117%).
 
 On the 38-material holdout ($\tau_B=10^{-3}\,e$): 38/38 analyzable with zero pipeline failures; maximum Bader error 0.0 $e$; zero basin reassignment in 38/38; 34/38 wins over the best generic Bader-certified baseline; median compression-ratio ratio 1.865 (bootstrap 95% CI 1.759–1.985); P05 0.999, minimum 0.997; maximum side-channel fraction 0.999%; median $L_\infty$ ratio 3.09.
 
-### 6.2 Transcription of the Henkelman partition (12 fresh P2 engineering materials)
+### 7.2 Transcription of the Henkelman partition (12 fresh P2 engineering materials)
 
 Henkelman Bader 1.05 (`-b ongrid -vac 0.001`), exact CHGCAR, reference AECCAR0 + AECCAR2. The partition (volnum) was identical voxel for voxel in 11/11 materials with Gate 0 output (0 mismatching voxels); maxima 3,339/3,339 matched; every reference field was regular (0 violations of R1 and R2); the atom map was identical in 9/11 (minimum voxel agreement 97.9%); the literal transcription (run for at most 400,000 points) was identical in 3/3. For one material (mp-2302539) the comparison code exceeded memory (a 74 GiB pairwise maxima array); its arms ran normally.
 
-### 6.3 Storing the partition (Supplementary Fig. 3)
+### 7.3 Storing the partition (Supplementary Fig. 3)
 
 The main-text 48-material joint test assumes the exact all-electron partition is already available, so its compression ratios and unity *incremental* overhead exclude the reference partition's storage. When the partition must travel with the reconstructed density, a self-contained contract can instead store a lossless basin-label map, or compress AECCAR with a correction that recovers the identical Henkelman partition. The following 12-material engineering test quantifies these *partition representations*, not end-to-end total byte savings for all 48 confirmed crystals.
 
@@ -598,20 +672,20 @@ The main-text 48-material joint test assumes the exact all-electron partition is
 | A1, $10^{-2}$ | 12/12 | 0 | 1.35 | 29.5 |
 | A1, $5\times10^{-2}$ | 12/12 | 0 | 5.20 | 56.9 |
 
-Before correction the base quantizer alone reassigns a median 45–91% of voxels; after correction no voxel is reassigned. The label map round-trips exactly in 12/12 materials, charges recomputed from it match the binary in 12/12 (maximum difference $5.0\times10^{-7}\,e$), and its median size is 12.9 kB (atom map) and 21.8 kB (volnum map). When only Bader charges are needed, the self-contained contract is therefore a Hartree-certified CHGCAR stream plus a lossless label map (16- to 57-fold smaller than a partition-faithful AECCAR, medians per arm), with basin projection added when the stream's basin sums miss $\tau_B$; a partition-faithful AECCAR serves users who need the partition-defining field itself. On the 48 confirmatory crystals this self-contained storage was measured end to end (Supplementary Note 5).
+Before correction the base quantizer alone reassigns a median 45–91% of voxels; after correction no voxel is reassigned. The label map round-trips exactly in 12/12 materials, charges recomputed from it match the binary in 12/12 (maximum difference $5.0\times10^{-7}\,e$), and its median size is 12.9 kB (atom map) and 21.8 kB (volnum map). When only Bader charges are needed, the self-contained contract is therefore a Hartree-certified CHGCAR stream plus a lossless label map (16- to 57-fold smaller than a partition-faithful AECCAR, medians per arm), with basin projection added when the stream's basin sums miss $\tau_B$; a partition-faithful AECCAR serves users who need the partition-defining field itself. On the 48 confirmatory crystals this self-contained storage was measured end to end (Supplementary Note 6).
 
 **Supplementary Fig. 3 | Bader storage contracts on real materials.** **a**, Total stored bytes of the partition-faithful AECCAR arms (A1, A2 at relative bounds $10^{-3}$, $10^{-2}$ and $5\times10^{-2}$) divided by the bytes of the lossless atom label map, per material (12 fresh P2 engineering materials; bar, median; medians 16.3–56.9); every arm gives zero basin reassignment and zero Bader error. **b**, Lossless label-map size per material: atom map (median 12.9 kB) and volnum map (21.8 kB); lines join the two maps of one material. Source: `analysis/qoac_b3_design/results/real_engineering/rows.csv` (columns `arm, delta, total_bytes, label_ctx_bytes_atom, label_ctx_bytes_volnum, reassigned_volnum_frac`).
 
 
-## Supplementary Note 7 — Exchange-correlation energy: contract, transfer and linearized allocation
+## Supplementary Note 8 — Exchange-correlation energy: contract, transfer and linearized allocation
 
-### 7.1 Contract and writers
+### 8.1 Contract and writers
 
 The QoI is the spin-unpolarized PBE exchange-correlation energy of the stored total density, $E_{\text{xc}}[\rho]$ in eV per atom, evaluated on the stored grid with gradients by Fourier transform on the periodic cell (unpaired Nyquist modes dropped); points with $\rho\le10^{-12}$ bohr$^{-3}$ contribute zero. The implementation agrees with libxc to $10^{-8}$ relative for the LDA energy density and potential and to $10^{-3}$ for the PBE energy density. The contract is $|\Delta E_{\text{xc}}|<\tau_x$ per atom, $\tau_x\in\{1,0.1\}$ meV, with the decoded density the only approximate input; QSQ used the five float32-scale probes, and all 92 materials (P1, 60 bulk crystals; P3b, 32 slabs) were eligible at both tolerances.
 
 Five writers received the same 60-step log bisection with the decoded $E_{\text{xc}}$ certificate as predicate, keeping the smallest passing stream: P, the best of ZFP, SZ3 and SPERR; L, the closed-form Hartree law ($\Delta_G\propto|G|^2$); U, uniform reciprocal-space steps (both in the law codec); X, the linearized allocation, and F, flat shell steps (both in the 32-shell container of A3, one step per shell). For X, $v_{\text{xc}}=\delta E_{\text{xc}}/\delta\rho$ is the exact derivative of the discrete energy (complex-step derivatives of the PBE energy density with respect to $\rho$ and $|\nabla\rho|^2$, spectral divergence), $W_s$ is the multiplicity-weighted mean of $|v_{\text{xc}}(G)|^2$ over shell $s$, and shell $s$ is quantized with step $\alpha\,(W_s/W_{\max})^{-1/2}$, the high-rate allocation for a first-order error $\sum_G\overline{v_{\text{xc}}(G)}\,\delta\rho(G)$. Medians carry 95% bootstrap intervals (10,000 resamples, seed 20261006).
 
-### 7.2 Certification under the exchange-correlation contract
+### 8.2 Certification under the exchange-correlation contract
 
 Median certified compression ratio (95% CI); every writer certified every material.
 
@@ -633,7 +707,7 @@ Paired ratios per material, median (95% CI; wins).
 
 The XC potential's shell weight falls as steeply over the innermost shells as the Hartree weight: median $W_s/W_{\max}$ is $3\times10^{-2}$ at shell 1, $5\times10^{-4}$ at shell 2 and $10^{-6}$ by shell 9 in both cohorts, and the step ratio between the outermost and innermost shell is 5,387 (bulk) and 1,490 (slabs), against 3,969 for $\Delta_G\propto|G|^2$. The XC-certified X streams carry a median Hartree error of $1.4\times10^{-6}$ (bulk) and $1.6\times10^{-8}$ (slabs) at 0.1 meV per atom, against $8.2\times10^{-6}$ and $2.5\times10^{-7}$ for F.
 
-### 7.3 Exchange-correlation error of Hartree-certified streams
+### 8.3 Exchange-correlation error of Hartree-certified streams
 
 The smallest certified stream of each arm of the law protocol was regenerated from its recorded parameter and decoded; median $|\Delta E_{\text{xc}}|$ in meV per atom (materials below 1 meV per atom).
 
@@ -648,7 +722,7 @@ The smallest certified stream of each arm of the law protocol was regenerated fr
 
 Of the 1,104 regenerated streams, 1,073 re-passed their Hartree certificate on the run platform; the others are A2 at $10^{-8}$ (17 bulk crystals and 13 slabs, Hartree error 1.007–1.085 times $\tau$) and one SZ3 slab stream at $10^{-4}$. Per-material rows: `analysis/nonlinear_xc_20261024/results/` and `analysis/xc_linearized_law_20261025/results/`.
 
-## Supplementary Note 8 — Gain-predictor calibration
+## Supplementary Note 9 — Gain-predictor calibration
 
 The predictor form was fixed by a retrospective calibration on the 12 QOAC-H engineering materials (commit `f4baa7a`), before the law protocol was fixed (`fe2e08a`); the calibration observations were known when the predictors were written, and the predictor was then tested only on the unused P1 and P3b cohorts. Predictor (a) is the high-rate orbit-only expression, in which every component has error $\Delta^2/12$ and rate $h-\log_2\Delta$; predictor (b) is the finite-rate Laplacian model of the main-text Methods, evaluated on the fixed ladder.
 
@@ -664,7 +738,7 @@ The predictor form was fixed by a retrospective calibration on the 12 QOAC-H eng
 The high-rate expression overstates the Hartree gain about 1.4-fold in every material; the dead zone of the finite-rate model removes most of that bias. Absolute model compression ratios deviate from observation by a median of 0.068 dex, and these errors partly cancel in ratios between policies, which are the quantities predicted.
 
 
-## Supplementary Note 9 — Population construction
+## Supplementary Note 10 — Population construction
 
 **Development and external sets.** 254 development densities (186 Materials Project bulk, 68 NOMAD slabs from five uploads); 65 external stability records (37 AFLOW bulk, 28 NOMAD vacuum-containing 2D); 63 external confirmatory systems. These sets supplied every QSQ result and the fixed-ladder QOAC-H evidence.
 
@@ -687,6 +761,6 @@ The S3 listing (bucket `materialsproject-parsed`, 2026-10-06 14:16–14:38 UTC) 
 Every manifest records material id, task or entry id, source URL, byte count and SHA-256; `PROVENANCE.json` records listing timestamps and the hashes of every index, frame, exclusion file, script and manifest.
 
 
-## Supplementary Note 10 — Source files
+## Supplementary Note 11 — Source files
 
 Numerical results in the main text and this SI are tied to committed scientific files in the research repository (see Data availability). The file-by-file table, with the commit that last changed each file, is `paper/nc_reopen/SOURCE_FILES.md` in that repository; protocols, manifests, per-material tables and the register of every protocol with its outcome are in the same repository.

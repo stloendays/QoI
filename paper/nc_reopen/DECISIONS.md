@@ -236,3 +236,46 @@ probe 1491770, production 1491799/1491800/1491801, tarball SHA-256 be574d60b72a,
   `test_operational_archive` now checks the revision-10 rows as comparisons.
 - Main text plus Methods 4,998 words, abstract 150; `audit_manuscript.py --final` 0 failures, 0 warnings;
   `test_scientific_claims.py` 19 passed; number sweep 304 numbers, all found.
+
+## Revision 12 (2026-10-26)
+
+Request (2026-10-25 21:08): 「再看看有啥能继续升级研究的开始完善！」 (and 14:54: 「…不需要我审批…最终完成就行」).
+Branch `paper/nc-rev12-20261025` from `research/algo-upgrade2-20261025` (plan
+`paper/nc_reopen/ALGORITHM_UPGRADE2_PLAN_20261025.md`; protocols, writer, runners and tests `4102390`; results, review
+recomputation and RESULTS.md `c68c605`). Vanda (CFP04-CF-046): probe 1492816, production 1492899 (study 3),
+1492900/1492901 (study 4), 1492902/1492903 (study 5); tarball SHA-256 ed7e01c1d117…; both aggregators re-run
+byte-identical and every estimate recomputed independently (`review_recompute.py` in studies 3 and 4).
+
+- **Correction of the archive moment certificates (study 5, mandatory).** In revision 10's archive run (writers T, O)
+  and revision 11's (W, Q), the Bader partition used for the moment certificate was cached under one id for every
+  decoded density, so every (writer, tolerance) pair after the first used the first writer's 1e-6 decoded partition.
+  The rerun rebuilds each decoded density's own partition. Old → new (whole-object reduction): T 1e-6 232.5 → 232.5,
+  1e-4 1,142 → 1,115 (992–1,255); O 1e-6 347.2 → 347.3 (317–387), 1e-4 1,371 → 1,325 (1,158–1,511); W 1e-6 555.2 →
+  555.2 (492–635), 1e-4 1,818 → 1,735 (1,470–2,048); Q 1e-6 558.4 → 557.9 (494–638), 1e-4 1,813 → 1,726
+  (1,457–2,041). At 1e-4, 4 (T), 8 (O), 8 (W) and 6 (Q) objects no longer certify the moments on the decoded partition
+  and are stored with the reference atom map. Magnetization share of W at 1e-4 63.5% → 65.2%; L/T at 1e-4
+  0.907 → 0.929; W/O at 1e-4 1.33 → 1.31. Density streams, Hartree certificates, L and P are unchanged. The
+  manuscript and SI state the corrected numbers (main text archive paragraph; Supplementary Notes 3.4 and 5.4); the
+  committed revision-10/11 result files are kept unchanged and SOURCE_FILES.md points to the rebuilt-partition files.
+- **Predictive writer (study 3; G1, G2, validity met).** Structure-factor prediction in the water-filling writer on the
+  92 law-protocol materials: 1.95-fold (1.79–2.07; 89/92) over the water-filling writer at 1e-6, 1.28 at 1e-4; 2.40 on
+  cells with one symmetry operation, 1.06 above 24; operational allocation on the residual 0.995 / 0.947 of the closed
+  form; W1S reproduced revision 11's bytes 92/92. New Results paragraph after the writer attribution, Methods paragraph
+  in "Water-filling and predictive writers", Supplementary Note 4.1–4.2.
+- **Archive under the predictive and magnetization writers (study 4; A1, M1, validity met).** V 1,401-fold
+  (1,245–1,594) at 1e-6 (6.1 GB) and 4,719 (3,585–6,052) at 1e-4; V/W 2.52 and 2.72. Attribution (defines the claim):
+  density prediction VP/W 1.74 (1e-6) and 1.13 (1e-4), magnetization writer V/VP 1.45 and 2.40. Magnetization stream:
+  pointwise/W2M median 30.1 (298/300) and 31.1 (291/293). Porod exponent of the decoded partitions −2.96 (IQR −3.23 to
+  −2.72), stated as measured next to Porod's −4. Abstract and Discussion: 555-fold → 1,401-fold; Discussion's
+  60/62 composition sentence replaced by the magnetization-operator sentence.
+- **Supplementary Information.** New Supplementary Note 4 (predictive writer, its cohort table, magnetization writer,
+  archive tables); former Notes 4–10 renumbered 5–11 in manuscript, SI, SOURCE_FILES.md and claim tests (first-cited
+  order). The QPET float64-host count, the work-function per-plane bound and the MGARD smoothness pointer moved from
+  the main text to Supplementary Notes 3.1–3.2.
+- **Word budget (5,000 / 150).** Shortened: writer attribution paragraph, Discussion (evaluability numbers, the
+  Bader-at-no-cost repetition), Methods (Nyquist alias wording, A5 definition, deployment-cost streaming decoder,
+  single-density codec list, spectral-audit matching, codec-order pair selection, dead-zone sentence), abstract
+  (Spearman 0.978/0.979 → 0.98; "QSQ" abbreviation, used once, dropped).
+- Table 1: two rows (`4102390`, `c68c605`). Claim tests: `test_operational_archive` and `test_writer_archive` read the
+  rebuilt-partition SUMMARY.json; new `test_predictive_writer`, `test_predictive_archive`. `numcheck.py` reads the new
+  RESULTS.md files and `analysis/server_runs_20261025c/README.md` (commit line added).

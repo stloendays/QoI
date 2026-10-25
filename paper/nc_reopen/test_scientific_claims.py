@@ -126,45 +126,123 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertIn("9.15-fold", SI)                 # law/pointwise ratio, now stated in Supplementary Note 3.4
         self.assertIn("20.3-fold", MAIN)
         self.assertIn("22.7-fold", MAIN)
-        self.assertIn("Supplementary Note 4", MAIN)  # whole-object note, renumbered after Note 3
+        self.assertIn("Supplementary Note 5", MAIN)  # whole-object note, renumbered after Note 3
         self.assertNotIn("356-fold", MAIN)
 
     def test_operational_archive(self) -> None:
-        """The archive under operational allocation and truncation (revision 10) against the committed run."""
+        """Truncation and operational allocation in the archive, with every decoded partition rebuilt (study 5)."""
         import json
-        s = json.loads((ROOT / "analysis/archive_truncation_20261024/results/SUMMARY.json").read_text(encoding="utf-8"))
+        s = json.loads((ROOT / "analysis/archive_w2_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
         e, pr = s["estimates"], s["paired"]
-        self.assertEqual(s["objects_success"], 300)
+        self.assertEqual(s["objects_success"]["T"], 300)
         self.assertEqual(round(e["O_1e-06"]["R"]), 347)
         self.assertEqual([round(v) for v in e["O_1e-06"]["ci95"]], [317, 387])
         self.assertEqual(round(e["T_1e-06"]["R"]), 232)
-        self.assertEqual(round(e["O_0.0001"]["R"]), 1371)
-        self.assertEqual(round(e["T_0.0001"]["R"]), 1142)
-        self.assertAlmostEqual(pr["L/T_0.0001"]["ratio"], 0.907, places=3)
+        self.assertEqual(round(e["O_0.0001"]["R"]), 1325)
+        self.assertEqual([round(v) for v in e["O_0.0001"]["ci95"]], [1158, 1511])
+        self.assertEqual(round(e["T_0.0001"]["R"]), 1115)
+        self.assertEqual(round(pr["L/T_0.0001"]["ratio"], 2), 0.93)
+        self.assertEqual(round(pr["O/T_0.0001"]["ratio"], 2), 1.19)
+        self.assertEqual(round(pr["O/L_0.0001"]["ratio"], 2), 1.28)
         for t in ("347-fold for operational allocation in the zlib container", "232-fold for truncation",
-                  "against 1,371-fold for operational allocation", "1,142 (1,018–1,286)"):
-            self.assertIn(t, MAIN + SI)
+                  "1,325-fold for operational allocation"):
+            self.assertIn(t, MAIN)
+        for t in ("1,115 (992–1,255)", "**1,325 (1,158–1,511)**", "(law/truncation 0.93, 0.89–0.96)",
+                  "| 1.19 (1.15–1.23) | 1.28 (1.23–1.34) |"):
+            self.assertIn(t, SI)
+        for old in ("1,371", "1,142", "1,818", "1,813", "558.4"):
+            self.assertNotIn(old, MAIN + SI)
 
     def test_writer_archive(self) -> None:
-        """The archive under the water-filling writer (revision 11) against the committed run."""
+        """The water-filling writer W and its operational variant Q in the archive, partitions rebuilt (study 5)."""
         import json
-        s = json.loads((ROOT / "analysis/archive_waterfill_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
+        s = json.loads((ROOT / "analysis/archive_w2_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
         e, pr = s["estimates"], s["paired"]
-        self.assertEqual(s["objects_success"], 300)
-        for w in ("W", "Q"):
-            for k in ("1e-06", "0.0001"):
-                self.assertEqual(s[f"counts_{w}_{k}"]["certified"], 300)
-                self.assertEqual(s[f"counts_{w}_{k}"]["m_decoded_frame"], 300)
+        self.assertEqual(s["objects_success"]["W"], 300)
         self.assertEqual(round(e["W_1e-06"]["R"]), 555)
         self.assertEqual([round(v) for v in e["W_1e-06"]["ci95"]], [492, 635])
-        self.assertEqual(round(e["W_0.0001"]["R"]), 1818)
+        self.assertEqual(round(e["W_0.0001"]["R"]), 1735)
+        self.assertEqual([round(v) for v in e["W_0.0001"]["ci95"]], [1470, 2048])
+        self.assertEqual(round(e["Q_0.0001"]["R"]), 1726)
         self.assertEqual(round(pr["W/O_1e-06"]["ratio"], 2), 1.60)
-        self.assertEqual(round(pr["W/O_0.0001"]["ratio"], 2), 1.33)
-        self.assertGreater(e["W_1e-06"]["ci95"][0], 387)                     # above the revision-10 O interval
+        self.assertEqual(round(pr["W/O_0.0001"]["ratio"], 2), 1.31)
+        self.assertEqual(round(100 * s["m_share"]["W_0.0001"]), 65)
         self.assertEqual(round(8.4976e12 / e["W_1e-06"]["R"] / 1e9, 1), 15.3)
-        for t in ("15.3 GB, 555-fold (95% CI 492–635)", "it shrinks 1,818-fold", "holds 64% of the stored bytes"):
+        self.assertIn("the water-filling writer's 555-fold", MAIN)
+        self.assertIn("against 1,735-fold for the water-filling writer", MAIN)
+        self.assertIn("**1,735 (1,470–2,048)** | 1,726 (1,457–2,041) | 1.31 (1.26–1.37)", SI)
+        self.assertIn("65.2% at $10^{-4}$", SI)
+        # the committed revision-10/11 records stay unchanged; the corrected values come from the rebuilt partitions
+        c = s["committed"]
+        self.assertEqual(round(c["W_0.0001"]["committed_R"]), 1818)
+        self.assertAlmostEqual(c["W_1e-06"]["change"], 0.0, places=9)
+
+    def test_predictive_archive(self) -> None:
+        """The archive under the predictive and magnetization writers (V) and its attribution (study 4)."""
+        import json
+        s = json.loads((ROOT / "analysis/archive_w2_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
+        e, pr, ms = s["estimates"], s["paired"], s["moment_stream"]
+        self.assertEqual(s["objects_success"]["V"], 300)
+        self.assertEqual(round(e["V_1e-06"]["R"]), 1401)
+        self.assertEqual([round(v) for v in e["V_1e-06"]["ci95"]], [1245, 1594])
+        self.assertEqual(round(e["V_0.0001"]["R"]), 4719)
+        self.assertEqual([round(v) for v in e["V_0.0001"]["ci95"]], [3585, 6052])
+        self.assertEqual(round(8.4976e12 / e["V_1e-06"]["R"] / 1e9, 1), 6.1)
+        self.assertEqual(round(pr["V/W_1e-06"]["ratio"], 2), 2.52)
+        self.assertEqual([round(v, 2) for v in pr["V/W_1e-06"]["ci95"]], [2.38, 2.68])
+        self.assertGreaterEqual(pr["V/W_1e-06"]["ci95"][0], 1.10)                 # criterion A1
+        self.assertGreaterEqual(pr["V/W_0.0001"]["ci95"][0], 1.3)
+        self.assertEqual(round(pr["VP/W_1e-06"]["ratio"], 2), 1.74)
+        self.assertEqual(round(pr["V/VP_1e-06"]["ratio"], 2), 1.45)
+        self.assertEqual(round(pr["V/VP_0.0001"]["ratio"], 2), 2.40)
+        self.assertAlmostEqual(pr["VP/W_1e-06"]["ratio"] * pr["V/VP_1e-06"]["ratio"], pr["V/W_1e-06"]["ratio"])
+        for k in ("1e-06", "0.0001"):                                              # criterion M1
+            x = ms[k]["pw_over_w2m"]
+            self.assertGreaterEqual(x["median"], 2)
+            self.assertGreaterEqual(x["wins"], 0.7 * x["n"])
+        self.assertEqual((ms["0.0001"]["pw_over_w2m"]["wins"], ms["0.0001"]["pw_over_w2m"]["n"]), (291, 293))
+        self.assertEqual((ms["0.0001"]["w2m_bytes_median"], ms["0.0001"]["pw_bytes_median"]), (63.0, 3174.0))
+        self.assertEqual(round(100 * s["m_share"]["W_0.0001"]), 65)
+        self.assertEqual(round(100 * s["m_share"]["V_0.0001"]), 34)
+        self.assertEqual(round(s["porod_exponent"]["median"], 2), -2.96)
+        self.assertEqual(s["porod_exponent"]["n"], 299)
+        for t in ("6.1 GB, 1,401-fold (95% CI 1,245–1,594) and 2.52-fold (2.38–2.68)",
+                  "Density prediction contributed 1.74-fold and the magnetization writer 1.45-fold",
+                  "4,719-fold (3,585–6,052)", "carries the gain (2.40-fold)", "median 63 bytes per object against 3,174",
+                  "(smaller in 291/293)", "fell from 65% to 34%", "$q^{-2.96}$ (median over 299 objects"):
             self.assertIn(t, MAIN)
-        self.assertIn("555-fold", MAIN.split("## Introduction")[0])          # abstract
+        self.assertIn("1,401-fold", MAIN.split("## Introduction")[0])                # abstract
+        self.assertIn("1,401-fold smaller than the public one", MAIN)               # Discussion
+        self.assertIn("a median 30-fold smaller than pointwise codecs", MAIN)
+        self.assertEqual(round(ms["1e-06"]["pw_over_w2m"]["median"]), 30)
+        for old in ("555-fold (95% CI 492–635)", "15.3 GB"):
+            self.assertNotIn(old, MAIN)
+
+    def test_predictive_writer(self) -> None:
+        """Structure-factor prediction on the 92 law-protocol materials (study 3)."""
+        import json
+        s = json.loads((ROOT / "analysis/sfp_spin_writer_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
+        R = s["ratios"]
+        self.assertEqual(s["materials_success"], 92)
+        self.assertTrue(all(v["met"] for v in s["criteria"].values()))
+        self.assertEqual(s["reproduction"]["W1S_equals_rev11_1e-06"]["equal"], 92)
+        self.assertEqual(s["reproduction"]["W1S_equals_rev11_0.0001"]["equal"], 92)
+        g = lambda k, d=2: round(R[k]["median"], d)  # noqa: E731
+        self.assertEqual(g("W2S/W1S_1e-06_all"), 1.95)
+        self.assertEqual([round(v, 2) for v in R["W2S/W1S_1e-06_all"]["ci95"]], [1.79, 2.07])
+        self.assertEqual(R["W2S/W1S_1e-06_all"]["wins"], 89)
+        self.assertEqual(g("W2S/W1S_0.0001_all"), 1.28)
+        self.assertEqual(g("W2S/W1S_1e-06_ops1"), 2.40)
+        self.assertEqual(R["W2S/W1S_1e-06_ops1"]["n"], 18)
+        self.assertEqual(g("W2S/W1S_1e-06_ops>24"), 1.06)
+        self.assertEqual(g("O2S/W2S_1e-06_all", 3), 0.995)
+        self.assertEqual(g("O2S/W2S_0.0001_all", 3), 0.947)
+        self.assertEqual(g("W2S/A3_1e-06_all"), 4.47)
+        for t in ("1.95-fold more than the water-filling writer at $10^{-6}$ (95% CI 1.79–2.07; 89/92) and 1.28-fold",
+                  "2.40-fold on the 18 cells with one symmetry operation, 1.06-fold above 24 operations",
+                  "(median ratio 0.995 at $10^{-6}$, 0.947 at $10^{-4}$)", "4.47-fold more than operational allocation"):
+            self.assertIn(t, MAIN)
+        self.assertIn("## Supplementary Note 4 — Structure-factor prediction and the magnetization writer", SI)
 
     def test_water_filling_writer(self) -> None:
         """The water-filling writer on the 92 law-protocol materials (revision 11) against the committed run."""
@@ -192,8 +270,8 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertEqual(s["symmetry"]["with_symmetry"], 74)
         for t in ("92/92 materials at $10^{-4}$ (median 1.34-fold) and $10^{-6}$ (1.45-fold)",
                   "median ratio 0.999 (95% CI 0.997–1.001)", "(bulk 0.998, slabs 1.001) and 0.979",
-                  "1.34-fold more than the law's zlib container", "2.51-fold more at $10^{-4}$",
-                  "In the 74 of 92 densities", "median 1.91-fold", "2.34-fold more than operational allocation in the zlib "
+                  "added 1.34-fold at $10^{-6}$ (2.51-fold at $10^{-4}$)",
+                  "a further median 1.91-fold", "2.34-fold more than operational allocation in the zlib "
                   "container (95% CI 2.14–2.69; 92/92) and 35.7-fold"):
             self.assertIn(t, MAIN)
 
@@ -213,7 +291,7 @@ class ScientificClaimTests(unittest.TestCase):
         self.assertIn("median error 3.9 meV per atom", MAIN)
 
     def test_linearized_exchange_correlation_allocation(self) -> None:
-        """X/L medians quoted in Results and Supplementary Note 7 (revision 10)."""
+        """X/L medians quoted in Results and Supplementary Note 8 (revision 10)."""
         import json
         s = json.loads((ROOT / "analysis/xc_linearized_law_20261025/results/SUMMARY.json").read_text(encoding="utf-8"))
         pr = {(r["cohort"], r["tau_x_meV_per_atom"], r["ratio"]): r["median"] for r in s["paired"]}
@@ -238,7 +316,7 @@ class ScientificClaimTests(unittest.TestCase):
         wmax = {(r["arm"], float(r["tau"])): float(r["max_max_abs_dV_window_meV"]) for r in rows}
         self.assertEqual(f"{wmax[('A1', 1e-6)]:.2f}", "0.45")
         self.assertEqual(f"{wmax[('A6', 1e-6)]:.1f}", "2.8")
-        self.assertIn("at most 0.45 meV (pointwise: up to 2.8 meV)", MAIN)
+        self.assertIn("at most 0.45 meV (pointwise: up to 2.8 meV)", SI)
         self.assertIn("| A1 law | 15.3 / 59.0 | 0.090 / 0.45 |", SI)
         self.assertIn("27/27", MAIN)
 
@@ -254,9 +332,8 @@ class ScientificClaimTests(unittest.TestCase):
                 self.assertFalse(any(r["best_host"] == "hpez" for r in sel))
                 self.assertEqual(f"{median(float(r['A1_over_Q_sperr']) for r in sel):.2f}", ratio)
                 self.assertEqual(f"{median(float(r['A1_over_Q']) for r in sel):.2f}", ratio)
-        self.assertIn("60/60 bulk crystals and 26/32 slabs", MAIN)
         self.assertIn("60/60 bulk crystals and 26/32 slabs", SI)
-        self.assertIn(r"the best of $s\in\{\infty,0,-1,-2\}$", MAIN)
+        self.assertIn(r"the best of $s\in\{\infty,0,-1,-2\}$", SI)
 
     def test_archive_attribution(self) -> None:
         self.assertIn("Lossless binary storage alone gives 0.99-fold", MAIN)
