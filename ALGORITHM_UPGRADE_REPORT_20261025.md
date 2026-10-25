@@ -97,4 +97,5 @@
   - 0 个失败。
 - 收回的 tarball SHA-256 为 be574d60b72a…，已核对。
 - 清理：`/scratch/junbotong/qoi-algo-20261025`（11 GB）已删除，`ls /scratch/junbotong` 确认已不存在。
+- 删除暂存目录后，监控在收尾判定之前仍检查暂存标记，因此重新暂存了一次并启动了安装（20:59–21:01，没有提交任何作业）。该安装进程（按 PID 核对 cwd 后）已结束，重建的目录已删除。监控已修复为回收后只判定收尾，回放 35/35。
 - 前两轮的暂存目录 `/scratch/junbotong/qoi-srv-20261024`（13 GB）和 `/scratch/junbotong/qoi-xcl-20261025`（4.0 GB）仍在服务器上，本次未动。
