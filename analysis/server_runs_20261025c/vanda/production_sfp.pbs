@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N qoi_algo2_sfp
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=36:mpiprocs=36:ompthreads=1:mem=250GB
+#PBS -l walltime=72:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-algo2-20261025/analysis/server_runs_20261025c/vanda/logs/production_sfp.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-algo2-20261025/analysis/server_runs_20261025c/vanda/common.sh
+# 92 materials, largest first, 30 workers (complete checkpoints are skipped)
+cut -f1 "$V/tasks_sfp.tsv" | xargs -r -P 30 -I{} bash -c 'sfp_one "$1"' _ {} || true
+echo PRODUCTION_SFP_DONE

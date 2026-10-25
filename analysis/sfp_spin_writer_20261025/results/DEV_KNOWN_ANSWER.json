@@ -1,0 +1,32 @@
+{
+ "material_id": "mp-2521964",
+ "cohort": "ENG",
+ "source": "local development run 2026-10-25 (laptop, numpy 2.3.5)",
+ "tolerance": "max(3 bytes, 0.5%)",
+ "bytes": {
+  "W1S_1e-06": 2373,
+  "W2S_1e-06": 1777,
+  "W2_1e-06": 3617,
+  "O2S_1e-06": 1820,
+  "W1S_0.0001": 579,
+  "W2S_0.0001": 585,
+  "W2_0.0001": 932,
+  "O2S_0.0001": 796
+ },
+ "variants": {
+  "W2S_1e-06": "all",
+  "W2_1e-06": "all",
+  "W2S_0.0001": "none",
+  "W2_0.0001": "none"
+ },
+ "symmetry": {
+  "status": "OK",
+  "spacegroup": "Cmmm (65)",
+  "ops": 8,
+  "spglib_ops": 8,
+  "classes": 49320,
+  "orbits": 186627
+ },
+ "sfp_shells": 19,
+ "sfp_block_bytes": 287
+}

@@ -1,0 +1,24 @@
+#!/bin/bash
+#PBS -N qoi_algo2_probe
+#PBS -P CFP04-CF-046
+#PBS -q auto
+#PBS -l select=1:ncpus=8:mpiprocs=8:ompthreads=1:mem=120GB
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -o /scratch/junbotong/qoi-algo2-20261025/analysis/server_runs_20261025c/vanda/logs/probe.pbs.log
+set -euo pipefail
+source /scratch/junbotong/qoi-algo2-20261025/analysis/server_runs_20261025c/vanda/common.sh
+# 1. test suite of the W2 writer
+( cd "$ROOT/analysis/sfp_spin_writer_20261025" && "$PY" -m pytest -q -p no:warnings test_w2.py ../archive_w2_20261025/test_archive_w2.py ) > "$V/probe/tests_w2.log" 2>&1 \
+    && echo OK > "$V/probe/tests_w2.ok" || echo FAIL > "$V/probe/tests_w2.ok"
+# 2. known answer: the development material at 1e-6 and 1e-4 against the local development run
+"$PY" "$ROOT/analysis/sfp_spin_writer_20261025/run_sfp.py" --material mp-2521964 --inputs "$V/inputs/sfp" \
+    --checkpoints "$V/probe/dev" --repo-root "$ROOT" --frozen-root "$FROZEN" --cohorts ENG > "$V/logs/probe_dev.log" 2>&1 || true
+# 3. study items, counted in the run: smallest bulk and slab material; two archive objects through V and the fix
+for m in $(cat "$V/probe_tasks_sfp.txt"); do sfp_one "$m" || true; done &
+for t in $(cat "$V/probe_tasks_arch.txt"); do v_one "$t" || true; done &
+for t in $(cat "$V/probe_tasks_arch.txt"); do fix_one "$t" || true; done &
+wait
+"$PY" "$V/status.py" --probe > "$V/probe/verdict.json"
+cat "$V/probe/verdict.json"
+echo PROBE_DONE
