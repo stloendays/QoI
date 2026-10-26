@@ -70,8 +70,8 @@ axa = pg.ax(13.0, TOP, 40.0, 40.0)
 lo, hi = 30.0, 3000.0
 axa.plot([lo, hi], [lo, hi], color=INK, lw=0.5, zorder=1)
 axa.plot([lo, hi], [1.5 * lo, 1.5 * hi], color=MID, lw=0.5, ls=(0, (3, 2)), zorder=1)
-axa.text(hi / 1.12, hi / 1.25, "1×", fontsize=5.3, color=MID, ha="right", va="top")
-axa.text(hi / 1.5 / 1.12, hi / 1.12, "1.5×", fontsize=5.3, color=MID, ha="right", va="top")
+axa.text(hi / 1.12, hi / 1.25, "1×", fontsize=5.3, color=INK, ha="right", va="top")
+axa.text(hi / 1.5 / 1.45, hi / 1.12, "1.5×", fontsize=5.3, color=INK, ha="right", va="top")   # left of and above the dashed line
 for b in ("J", "T1"):
     ids = oth_base.index[oth_base == b]
     axa.scatter(oth.reindex(ids), t4.best_joint_cr.reindex(ids), s=8, color=BASE_C[b], edgecolor="white", lw=0.25,
@@ -127,7 +127,7 @@ axc.set_xticks(range(3))
 axc.set_xticklabels(TB_LAB)
 axc.set_xlabel("$\\tau_\\mathrm{B}$ (e)")
 axc.set_ylabel("Max atomic-charge error (e)")
-axc.text(2.55, FLOOR * 1.4, "0", fontsize=5.3, color=MID, ha="right", va="bottom")
+axc.text(2.55, FLOOR * 1.4, "0", fontsize=5.3, color=INK, ha="right", va="bottom")
 log_ticks(axc, axis="y")
 grid(axc, axis="y")
 axc.text(0.5, 0.97, "0 voxels reassigned", transform=axc.transAxes, fontsize=5.0, ha="center", va="top")
@@ -141,7 +141,7 @@ for i, tb in enumerate(TB):
     axd.plot([i - 0.24, i + 0.24], [np.median(v)] * 2, color=INK, lw=1.0, zorder=3)
     p, n = proj[tb]
     axd.text(i, 1.042, "%d/%d" % (p, n), fontsize=5.3, ha="center", va="center", color=INK)
-axd.text(1.0, 1.053, "certify-then-project: projected", fontsize=5.0, ha="center", va="center", color=MID)
+axd.text(1.0, 1.053, "certify-then-project: projected", fontsize=5.3, ha="center", va="center", color=INK)
 axd.set_ylim(0.995, 1.06)
 axd.set_xlim(-0.6, 2.6)
 axd.set_xticks(range(3))
@@ -192,7 +192,8 @@ axe.set_xlim(0, 48)
 axe.set_xticks([0, 12, 24, 36, 48])
 axe.set_xlabel("Materials (of 48) by best joint post-processor")
 for j, b in enumerate(("R3", "J", "T1", "GF")):
-    axe.text(-5.0, j * 3.6 + 1.0, b, fontsize=5.6, fontweight="bold", ha="right", va="center", color=BASE_C[b],
+    axe.text(-5.0, j * 3.6 + 1.0, b, fontsize=5.6, fontweight="bold", ha="right", va="center",
+             color="#5F646B" if b == "GF" else BASE_C[b],  # the pointwise grey, darkened for text
              clip_on=False)
 for sp in ("top", "right", "left"):
     axe.spines[sp].set_visible(False)

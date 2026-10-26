@@ -64,8 +64,8 @@ ax.axvline(1e-3, color=INK, lw=0.7, ls="dashed", zorder=2)
 ax.set_xscale("log"); log_ticks(ax, "x")
 ax.set_xlim(1e-8, 10.0); ax.set_ylim(-0.05, 1.05)
 ax.set_yticks([0, 0.25, 0.5, 0.75, 1.0]); ax.set_yticklabels(["0", "25", "50", "75", "100%"])
-ax.set_xlabel("five-probe QSQ stability floor (e)")
-ax.set_ylabel(r"fresh perturbations reaching $\tau$")
+ax.set_xlabel("Five-probe QSQ stability floor (e)")
+ax.set_ylabel(r"Fresh perturbations reaching $\tau$")
 open_frame(ax); grid(ax)
 ax.text(1e-3 / 1.3, 1.035, r"$\tau = 10^{-3}$ e", fontsize=5.6, color=INK, ha="right", va="top")
 note(ax, 0.02, 0.86, "eligible  %d materials\n%s / %s fresh trials  (%.2f%%)"
@@ -109,8 +109,8 @@ axh.set_yscale("log"); axh.set_ylim(0.8, 300)
 axh.set_yticks([1, 10, 100]); axh.set_yticklabels(["1", "10", "100"])
 axh.set_xlim(-0.02, 1.02)
 axh.set_xticks([0, 0.25, 0.5, 0.75, 1.0]); axh.set_xticklabels(["0", "25", "50", "75", "100%"])
-axh.set_xlabel(r"material fresh exceedance fraction $p$ at $10^{-3}$ e")
-axh.set_ylabel("materials", labelpad=4.5)
+axh.set_xlabel(r"Material fresh exceedance fraction $p$ at $10^{-3}$ e")
+axh.set_ylabel("Materials", labelpad=4.5)
 open_frame(axh); grid(axh, "y")
 n0, n1 = int((phat == 0).sum()), int((phat == 1).sum())
 axh.text(0.035, 1.0, "%d at 0" % n0, transform=axh.transAxes, fontsize=5.4, ha="left", va="top", color=INK)
@@ -131,15 +131,15 @@ for y, (_, r) in zip(ys, p1.iterrows()):
 ax.set_yticks(ys); ax.set_yticklabels([thr_label(t) for t in p1.tau_e])
 ax.set_ylim(-0.6, 2.6); ax.set_xlim(0, 1.0)
 ax.set_xticks([0, 0.2, 0.4, 0.6, 0.8, 1.0]); ax.set_xticklabels(["0", "20", "40", "60", "80", "100%"])
-ax.set_xlabel("material\u2013codec pairs with no numerical pass")
+ax.set_xlabel("Material\u2013codec pairs with no numerical pass")
 ax.set_ylabel(r"Bader threshold $\tau$")
 open_frame(ax); grid(ax, "x")
 ax.text(0.0, 1.03, "equal search: 1,332 / 1,332 added reconstructions; 762 decisions per $\\tau$",
-        transform=ax.transAxes, ha="left", va="bottom", fontsize=5.4, color=MID)
+        transform=ax.transAxes, ha="left", va="bottom", fontsize=5.4, color=INK)
 
 # ---- d: fresh exceedance risk with CIs -------------------------------------------------------------------
 pg.letter("d", 106.0, 57.0)
-ax = pg.ax(118.0, 12.0, 63.0, 36.0)
+ax = pg.ax(116.0, 12.0, 62.0, 36.0)          # ends at 178 mm: the "100%" tick label stays inside the page
 for y, tau in zip(ys, (1e-4, 1e-3, 1e-2)):
     e = p2[(p2.tau_e == tau) & (p2.gate_group == "eligible")].iloc[0]
     r = p2[(p2.tau_e == tau) & (p2.gate_group == "screen_rejected")].iloc[0]
@@ -153,10 +153,10 @@ for y, tau in zip(ys, (1e-4, 1e-3, 1e-2)):
 ax.set_yticks(ys); ax.set_yticklabels([thr_label(t) for t in (1e-4, 1e-3, 1e-2)])
 ax.set_ylim(-0.6, 2.6); ax.set_xlim(0, 1.0)
 ax.set_xticks([0, 0.2, 0.4, 0.6, 0.8, 1.0]); ax.set_xticklabels(["0", "20", "40", "60", "80", "100%"])
-ax.set_xlabel("fresh-trial exceedance risk")
+ax.set_xlabel("Fresh-trial exceedance risk")
 open_frame(ax); grid(ax, "x")
 ax.text(0.0, 1.03, "14,986 fresh trials; intervals resample materials",
-        transform=ax.transAxes, ha="left", va="bottom", fontsize=5.4, color=MID)
+        transform=ax.transAxes, ha="left", va="bottom", fontsize=5.4, color=INK)
 handles = [Line2D([], [], marker="o", ls="none", color=c, ms=4, label=l)
            for c, l in ((ELIGIBLE, "eligible"), (REJECTED, "screen-rejected"))]
 layout.legend(ax, handles=handles, labels=[h.get_label() for h in handles], loc="center",

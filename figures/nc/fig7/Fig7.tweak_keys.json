@@ -1,10 +1,10 @@
 {
 "meta": {
 "stem": "Fig7",
-"script": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\fig7\\make_fig7.py",
+"script": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\nc\\fig7\\make_fig7.py",
 "args": [],
 "python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
-"cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\fig7",
+"cwd": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\nc\\fig7",
 "tweak_version": "1.1",
 "size_mm": [
 183.0,
@@ -17,13 +17,14 @@
 "#6f7380",
 "#e4ecde",
 "#5e7a52",
-"#6b6f76",
 "#89aa7b",
 "#5a6480",
+"#6b6f76",
 "#eb6969",
 "#cccccc",
+"#d6d6d6",
 "#9aa0a8",
-"#d6d6d6"
+"#5f646b"
 ],
 "style_palette": {
 "INK": "#1b1b1b",
@@ -169,7 +170,7 @@
 "weight": "normal",
 "role": "text",
 "colors": [
-"#6b6f76"
+"#1b1b1b"
 ]
 },
 "tw_a02d3374890a": {
@@ -181,7 +182,7 @@
 "weight": "normal",
 "role": "text",
 "colors": [
-"#6b6f76"
+"#1b1b1b"
 ]
 },
 "tw_3622e0499397": {
@@ -652,7 +653,7 @@
 "weight": "normal",
 "role": "text",
 "colors": [
-"#6b6f76"
+"#1b1b1b"
 ]
 },
 "tw_4dc8c1c032aa": {
@@ -893,8 +894,7 @@
 "colors": [
 "#5e7a52",
 "#ffffff",
-"#1b1b1b",
-"#6b6f76"
+"#1b1b1b"
 ],
 "box": [
 45.35,
@@ -944,11 +944,11 @@
 "kind": "text",
 "rotation": 0.0,
 "ha": "center",
-"fontsize": 5.0,
+"fontsize": 5.3,
 "weight": "normal",
 "role": "text",
 "colors": [
-"#6b6f76"
+"#1b1b1b"
 ]
 },
 "tw_38b3f261337a": {
@@ -1148,7 +1148,7 @@
 "#5e7a52",
 "#89aa7b",
 "#5a6480",
-"#9aa0a8",
+"#5f646b",
 "#6b6f76",
 "#cccccc"
 ],
@@ -1432,7 +1432,7 @@
 "weight": "bold",
 "role": "text",
 "colors": [
-"#9aa0a8"
+"#5f646b"
 ]
 },
 "tw_63622602d02a": {

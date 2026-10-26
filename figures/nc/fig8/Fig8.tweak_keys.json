@@ -1,10 +1,10 @@
 {
 "meta": {
 "stem": "Fig8",
-"script": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\fig8\\make_fig8.py",
+"script": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\nc\\fig8\\make_fig8.py",
 "args": [],
 "python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
-"cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\fig8",
+"cwd": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\nc\\fig8",
 "tweak_version": "1.1",
 "size_mm": [
 183.0,
@@ -623,13 +623,13 @@
 "tw_d72ab300168f_0": {
 "key": "ax@10,0,170,4/legend/0",
 "kind": "legend",
-"member": "Density gradient",
+"member": "density gradient",
 "group": "tw_d72ab300168f"
 },
 "tw_d72ab300168f_1": {
 "key": "ax@10,0,170,4/legend/0",
 "kind": "legend",
-"member": "Density Laplacian",
+"member": "density Laplacian",
 "group": "tw_d72ab300168f"
 },
 "tw_d72ab300168f_2": {
@@ -802,7 +802,7 @@
 "tw_de65b64fe26a_4": {
 "key": "ax@148,57,32,50/yticks",
 "kind": "ticks",
-"member": "Gradient",
+"member": "gradient",
 "group": "tw_de65b64fe26a",
 "axis": "y",
 "side": 1
@@ -810,7 +810,7 @@
 "tw_de65b64fe26a_5": {
 "key": "ax@148,57,32,50/yticks",
 "kind": "ticks",
-"member": "Density (control)",
+"member": "density (control)",
 "group": "tw_de65b64fe26a",
 "axis": "y",
 "side": 1

@@ -43,13 +43,13 @@ assert SP["tau_1e-06"]["pairs"] == 460 and SP["tau_1e-06"]["materials"] == 92
 
 GAUSS = "gaussian_smoothed_density(sigma_angstrom=0.5)"
 OPS = [  # key, label, colour   (ordered by predicted gain, low to high)
-    ("density_gradient", "Density gradient", PALE),
-    ("density_laplacian", "Density Laplacian", BLUE),
+    ("density_gradient", "density gradient", PALE),
+    ("density_laplacian", "density Laplacian", BLUE),
     ("hartree_field", "Hartree field", DARK_G),
     ("hartree_potential", "Hartree potential", GREEN),
     (GAUSS, "Gaussian-smoothed density (σ = 0.5 Å)", DARK_B),
 ]
-SHORT = {"density": "Density (control)", "density_gradient": "Gradient", "density_laplacian": "Laplacian",
+SHORT = {"density": "density (control)", "density_gradient": "gradient", "density_laplacian": "Laplacian",
          "hartree_field": "Hartree field", "hartree_potential": "Hartree potential", GAUSS: "Gaussian, σ 0.5 Å"}
 COL = {k: c for k, _, c in OPS}
 LAB = {k: lab for k, lab, _ in OPS}
@@ -112,7 +112,7 @@ pg.letter("c", 123.0, 111.0)
 axc = pg.ax(148.0, 57.0, 32.0, 50.0)
 t6 = pd.concat([P1, P3])
 t6 = t6[np.isclose(t6.tau, 1e-6)]
-order = [("density", "Density (control)", OTHER)] + OPS
+order = [("density", "density (control)", OTHER)] + OPS
 axc.axvspan(0.90, 1.11, color=PAPER, lw=0, zorder=0)
 for i, (key, lab, c) in enumerate(order):
     y = len(order) - 1 - i

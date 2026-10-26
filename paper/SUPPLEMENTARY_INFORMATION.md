@@ -22,7 +22,7 @@ Contents:
 - Supplementary Note 10. Population construction
 - Supplementary Note 11. Source files
 - Supplementary Fig. 1. The contract orders codecs at matched density error
-- Supplementary Fig. 2. Magnetic-moment contracts and density reconstruction
+- Supplementary Fig. 2. Magnetic-moment contracts and the magnetization writer
 - Supplementary Fig. 3. Bader storage contracts on real materials
 
 
@@ -608,7 +608,7 @@ The matched law/pointwise ratio at $10^{-6}$ is 9.15-fold (95% CI 8.45–10.0). 
 
 The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 11. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
 
-**Supplementary Fig. 2 | Magnetic-moment contracts and density reconstruction.** The original magnetization field is compressed against per-atom moments computed by Henkelman Bader integration. The engineering tests compare moment tolerance with migration-induced changes in the partition of reconstructed total density. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The associated figure file is `figures/nc/si/figS2/spin_contracts.svg`; quantitative sources are indexed in Supplementary Note 11.
+**Supplementary Fig. 2 | Magnetic-moment contracts and the magnetization writer.** **a**, Share of each archive object's text taken by the magnetization block (300 objects). **b**, Certified magnetization stream relative to the lossless density against the moment tolerance (12 magnetic engineering materials; bars, medians; diamonds, archive medians). **c**, Moment shift caused by partition migration alone, for Bader-certified and Hartree-law density reconstructions (cumulative fractions; dashed lines, moment tolerances $10^{-2}$ and $10^{-3}\,\mu_\mathrm{B}$). **d**, Archive reduction with the density block only and with the whole served object (bars, 95% CIs). **e**, Per archive object at $\tau_\mathrm{H}=10^{-6}$, magnetization bytes of the magnetization writer against the best pointwise codec on the same decoded partition; lines, equal size and 10- and 100-fold smaller. **f**, Exponent of the shell-averaged basin-indicator spectrum of each decoded partition (shells 2–24); dashed line, Porod's law for sharp basins. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The figure file is `figures/nc/si/figS2/FigS2.svg`; quantitative sources are indexed in Supplementary Note 11.
 
 ## Supplementary Note 6 — Joint certification: engineering cohort and per-tolerance description
 

@@ -1,10 +1,10 @@
 {
 "meta": {
 "stem": "Fig3",
-"script": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\composite\\fig3\\make_fig3.py",
+"script": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\composite\\fig3\\make_fig3.py",
 "args": [],
 "python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
-"cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\composite\\fig3",
+"cwd": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\composite\\fig3",
 "tweak_version": "1.1",
 "size_mm": [
 183.0,
@@ -16,8 +16,8 @@
 "#eb6969",
 "#ffffff",
 "#d6d6d6",
-"#6b6f76",
-"#b3b8c0"
+"#b3b8c0",
+"#6b6f76"
 ],
 "style_palette": {
 "INK": "#1b1b1b",
@@ -194,8 +194,8 @@
 "#1b1b1b"
 ]
 },
-"tw_6e721bbdb590": {
-"key": "ax@14,68,84,44/text/five-probe QSQ stability floor (e)",
+"tw_54194876f466": {
+"key": "ax@14,68,84,44/text/Five-probe QSQ stability floor (e)",
 "kind": "axislabel",
 "rotation": 0.0,
 "ha": "center",
@@ -206,8 +206,8 @@
 "#1b1b1b"
 ]
 },
-"tw_ae0fa9a2666c": {
-"key": "ax@14,68,84,44/text/fresh perturbations reaching $\\tau$",
+"tw_da930b7a16d8": {
+"key": "ax@14,68,84,44/text/Fresh perturbations reaching $\\tau$",
 "kind": "axislabel",
 "rotation": 90.0,
 "ha": "center",
@@ -614,8 +614,8 @@
 "#1b1b1b"
 ]
 },
-"tw_161120f5ad74": {
-"key": "ax@118,68,63,15/text/material fresh exceedance fraction $p$ at $10^{-3}$ e",
+"tw_d91d884e5c0f": {
+"key": "ax@118,68,63,15/text/Material fresh exceedance fraction $p$ at $10^{-3}$ e",
 "kind": "axislabel",
 "rotation": 0.0,
 "ha": "center",
@@ -626,8 +626,8 @@
 "#1b1b1b"
 ]
 },
-"tw_1e5ddc6917ce": {
-"key": "ax@118,68,63,15/text/materials",
+"tw_07d261eb30ec": {
+"key": "ax@118,68,63,15/text/Materials",
 "kind": "axislabel",
 "rotation": 90.0,
 "ha": "center",
@@ -1075,7 +1075,6 @@
 "#5a6480",
 "#eb6969",
 "#1b1b1b",
-"#6b6f76",
 "#ffffff"
 ],
 "box": [
@@ -1130,11 +1129,11 @@
 "weight": "normal",
 "role": "text",
 "colors": [
-"#6b6f76"
+"#1b1b1b"
 ]
 },
-"tw_6f05d93e476f": {
-"key": "ax@26,12,62,36/text/material–codec pairs with no numerical pass",
+"tw_1f45ae8eb726": {
+"key": "ax@26,12,62,36/text/Material–codec pairs with no numerical pass",
 "kind": "axislabel",
 "rotation": 0.0,
 "ha": "center",
@@ -1334,8 +1333,8 @@
 "#b3b8c0"
 ]
 },
-"tw_41b7234650aa": {
-"key": "ax@118,12,63,36/axes",
+"tw_60bdb2cca438": {
+"key": "ax@116,12,62,36/axes",
 "kind": "axes",
 "panel": "d",
 "background": "#ffffff",
@@ -1362,19 +1361,18 @@
 "#5a6480",
 "#eb6969",
 "#1b1b1b",
-"#6b6f76",
 "#ffffff",
 "#d6d6d6"
 ],
 "box": [
-334.49,
+328.82,
 204.09,
-513.07,
+504.57,
 306.14
 ]
 },
-"tw_73726e4e9822": {
-"key": "ax@118,12,63,36/text/21.65×",
+"tw_c1c18dd9317b": {
+"key": "ax@116,12,62,36/text/21.65×",
 "kind": "text",
 "rotation": 0.0,
 "ha": "right",
@@ -1385,8 +1383,8 @@
 "#1b1b1b"
 ]
 },
-"tw_740db03a21c4": {
-"key": "ax@118,12,63,36/text/50.83×",
+"tw_9a62df768939": {
+"key": "ax@116,12,62,36/text/50.83×",
 "kind": "text",
 "rotation": 0.0,
 "ha": "right",
@@ -1397,8 +1395,8 @@
 "#1b1b1b"
 ]
 },
-"tw_aac8e95c4395": {
-"key": "ax@118,12,63,36/text/537.69×",
+"tw_f95ed752e18d": {
+"key": "ax@116,12,62,36/text/537.69×",
 "kind": "text",
 "rotation": 0.0,
 "ha": "right",
@@ -1409,8 +1407,8 @@
 "#1b1b1b"
 ]
 },
-"tw_28eb171e12fb": {
-"key": "ax@118,12,63,36/text/14,986 fresh trials; intervals resample materials",
+"tw_5ca19700bc96": {
+"key": "ax@116,12,62,36/text/14,986 fresh trials; intervals resample materials",
 "kind": "text",
 "rotation": 0.0,
 "ha": "left",
@@ -1418,11 +1416,11 @@
 "weight": "normal",
 "role": "text",
 "colors": [
-"#6b6f76"
+"#1b1b1b"
 ]
 },
-"tw_470648a07ee2": {
-"key": "ax@118,12,63,36/text/fresh-trial exceedance risk",
+"tw_eab8e8b76fa1": {
+"key": "ax@116,12,62,36/text/Fresh-trial exceedance risk",
 "kind": "axislabel",
 "rotation": 0.0,
 "ha": "center",
@@ -1433,56 +1431,56 @@
 "#1b1b1b"
 ]
 },
-"tw_c8867852521b_0": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17_0": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "member": "0",
-"group": "tw_c8867852521b",
+"group": "tw_d50854256e17",
 "axis": "x",
 "side": 1
 },
-"tw_c8867852521b_1": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17_1": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "member": "20",
-"group": "tw_c8867852521b",
+"group": "tw_d50854256e17",
 "axis": "x",
 "side": 1
 },
-"tw_c8867852521b_2": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17_2": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "member": "40",
-"group": "tw_c8867852521b",
+"group": "tw_d50854256e17",
 "axis": "x",
 "side": 1
 },
-"tw_c8867852521b_3": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17_3": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "member": "60",
-"group": "tw_c8867852521b",
+"group": "tw_d50854256e17",
 "axis": "x",
 "side": 1
 },
-"tw_c8867852521b_4": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17_4": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "member": "80",
-"group": "tw_c8867852521b",
+"group": "tw_d50854256e17",
 "axis": "x",
 "side": 1
 },
-"tw_c8867852521b_5": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17_5": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "member": "100%",
-"group": "tw_c8867852521b",
+"group": "tw_d50854256e17",
 "axis": "x",
 "side": 1
 },
-"tw_c8867852521b": {
-"key": "ax@118,12,63,36/xticks",
+"tw_d50854256e17": {
+"key": "ax@116,12,62,36/xticks",
 "kind": "ticks",
 "fontsize": 6.5,
 "weight": "normal",
@@ -1493,32 +1491,32 @@
 "#1b1b1b"
 ]
 },
-"tw_9d2df0f174ce_0": {
-"key": "ax@118,12,63,36/yticks",
+"tw_c9ab9b57e0f1_0": {
+"key": "ax@116,12,62,36/yticks",
 "kind": "ticks",
 "member": "$10^{-4}$ e",
-"group": "tw_9d2df0f174ce",
+"group": "tw_c9ab9b57e0f1",
 "axis": "y",
 "side": 1
 },
-"tw_9d2df0f174ce_1": {
-"key": "ax@118,12,63,36/yticks",
+"tw_c9ab9b57e0f1_1": {
+"key": "ax@116,12,62,36/yticks",
 "kind": "ticks",
 "member": "$10^{-3}$ e",
-"group": "tw_9d2df0f174ce",
+"group": "tw_c9ab9b57e0f1",
 "axis": "y",
 "side": 1
 },
-"tw_9d2df0f174ce_2": {
-"key": "ax@118,12,63,36/yticks",
+"tw_c9ab9b57e0f1_2": {
+"key": "ax@116,12,62,36/yticks",
 "kind": "ticks",
 "member": "$10^{-2}$ e",
-"group": "tw_9d2df0f174ce",
+"group": "tw_c9ab9b57e0f1",
 "axis": "y",
 "side": 1
 },
-"tw_9d2df0f174ce": {
-"key": "ax@118,12,63,36/yticks",
+"tw_c9ab9b57e0f1": {
+"key": "ax@116,12,62,36/yticks",
 "kind": "ticks",
 "fontsize": 6.5,
 "weight": "normal",
@@ -1529,20 +1527,20 @@
 "#1b1b1b"
 ]
 },
-"tw_dfade74c222b_0": {
-"key": "ax@118,12,63,36/legend/0",
+"tw_f0501b9f4424_0": {
+"key": "ax@116,12,62,36/legend/0",
 "kind": "legend",
 "member": "eligible",
-"group": "tw_dfade74c222b"
+"group": "tw_f0501b9f4424"
 },
-"tw_dfade74c222b_1": {
-"key": "ax@118,12,63,36/legend/0",
+"tw_f0501b9f4424_1": {
+"key": "ax@116,12,62,36/legend/0",
 "kind": "legend",
 "member": "screen-rejected",
-"group": "tw_dfade74c222b"
+"group": "tw_f0501b9f4424"
 },
-"tw_dfade74c222b": {
-"key": "ax@118,12,63,36/legend/0",
+"tw_f0501b9f4424": {
+"key": "ax@116,12,62,36/legend/0",
 "kind": "legend",
 "fontsize": 5.4,
 "weight": "normal",
@@ -1556,56 +1554,56 @@
 "#d6d6d6"
 ]
 },
-"tw_ae78c98cb9f7": {
-"key": "ax@118,12,63,36/scatter/0",
+"tw_497be435ad19": {
+"key": "ax@116,12,62,36/scatter/0",
 "kind": "scatter",
 "ls": "-",
 "colors": [
 "#5a6480"
 ]
 },
-"tw_36f9283be805": {
-"key": "ax@118,12,63,36/scatter/1",
+"tw_d38e77e6f308": {
+"key": "ax@116,12,62,36/scatter/1",
 "kind": "scatter",
 "ls": "-",
 "colors": [
 "#eb6969"
 ]
 },
-"tw_3d07e6cfeeed": {
-"key": "ax@118,12,63,36/scatter/2",
+"tw_c9e3942e52f0": {
+"key": "ax@116,12,62,36/scatter/2",
 "kind": "scatter",
 "ls": "-",
 "colors": [
 "#5a6480"
 ]
 },
-"tw_c59c26419062": {
-"key": "ax@118,12,63,36/scatter/3",
+"tw_4ba2d13268a7": {
+"key": "ax@116,12,62,36/scatter/3",
 "kind": "scatter",
 "ls": "-",
 "colors": [
 "#eb6969"
 ]
 },
-"tw_c07a1dea6cb8": {
-"key": "ax@118,12,63,36/scatter/4",
+"tw_493fb9e6aad9": {
+"key": "ax@116,12,62,36/scatter/4",
 "kind": "scatter",
 "ls": "-",
 "colors": [
 "#5a6480"
 ]
 },
-"tw_6db5484f30ed": {
-"key": "ax@118,12,63,36/scatter/5",
+"tw_c80bcf03b8f6": {
+"key": "ax@116,12,62,36/scatter/5",
 "kind": "scatter",
 "ls": "-",
 "colors": [
 "#eb6969"
 ]
 },
-"tw_9ff0ca6e7f63": {
-"key": "ax@118,12,63,36/line/0",
+"tw_acad5402929c": {
+"key": "ax@116,12,62,36/line/0",
 "kind": "line",
 "ls": "-",
 "marker": "None",
@@ -1615,8 +1613,8 @@
 "#5a6480"
 ]
 },
-"tw_f73cac2a11ca": {
-"key": "ax@118,12,63,36/line/1",
+"tw_f871d847ee74": {
+"key": "ax@116,12,62,36/line/1",
 "kind": "line",
 "ls": "-",
 "marker": "None",
@@ -1626,8 +1624,8 @@
 "#eb6969"
 ]
 },
-"tw_f8d6811ef54b": {
-"key": "ax@118,12,63,36/line/2",
+"tw_2d7b178db9d6": {
+"key": "ax@116,12,62,36/line/2",
 "kind": "line",
 "ls": "-",
 "marker": "None",
@@ -1637,8 +1635,8 @@
 "#5a6480"
 ]
 },
-"tw_204dc0d7579e": {
-"key": "ax@118,12,63,36/line/3",
+"tw_f37f25acb617": {
+"key": "ax@116,12,62,36/line/3",
 "kind": "line",
 "ls": "-",
 "marker": "None",
@@ -1648,8 +1646,8 @@
 "#eb6969"
 ]
 },
-"tw_be6b89b6bb81": {
-"key": "ax@118,12,63,36/line/4",
+"tw_f593f62dfb00": {
+"key": "ax@116,12,62,36/line/4",
 "kind": "line",
 "ls": "-",
 "marker": "None",
@@ -1659,8 +1657,8 @@
 "#5a6480"
 ]
 },
-"tw_16fc48cb38ff": {
-"key": "ax@118,12,63,36/line/5",
+"tw_639a9c53c0d7": {
+"key": "ax@116,12,62,36/line/5",
 "kind": "line",
 "ls": "-",
 "marker": "None",

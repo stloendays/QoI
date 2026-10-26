@@ -1,10 +1,10 @@
 {
 "meta": {
 "stem": "FigS_order",
-"script": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\si\\figS_order\\make_figS_order.py",
+"script": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\nc\\si\\figS_order\\make_figS_order.py",
 "args": [],
 "python": "D:\\Tools\\pur_bridge_env\\Scripts\\python.exe",
-"cwd": "D:\\Research\\QoI-nc-rev9-20261023\\figures\\nc\\si\\figS_order",
+"cwd": "D:\\Research\\QoI-nc-rev12-20261025\\figures\\nc\\si\\figS_order",
 "tweak_version": "1.1",
 "size_mm": [
 183.0,
@@ -12,12 +12,10 @@
 ],
 "palette": [
 "#1b1b1b",
-"#ffffff",
 "#5a6480",
+"#ffffff",
 "#6b6f76",
 "#eb6969",
-"#7789b7",
-"#89aa7b",
 "#fbe3e3",
 "#cccccc"
 ],
@@ -119,9 +117,8 @@
 "colors": [
 "#fbe3e3",
 "#6b6f76",
-"#7789b7",
+"#5a6480",
 "#ffffff",
-"#89aa7b",
 "#eb6969",
 "#1b1b1b"
 ],
@@ -322,7 +319,7 @@
 "ls": "-",
 "name": "bulk crystals (117)",
 "colors": [
-"#7789b7",
+"#5a6480",
 "#ffffff"
 ]
 },
@@ -330,10 +327,9 @@
 "key": "ax@15,11,44,45/scatter/1",
 "kind": "scatter",
 "ls": "-",
-"name": "slabs (68)",
+"name": "surface slabs (68)",
 "colors": [
-"#89aa7b",
-"#ffffff"
+"#5a6480"
 ]
 },
 "tw_50786c85e650": {
@@ -381,9 +377,8 @@
 "yminor": false,
 "colors": [
 "#6b6f76",
-"#7789b7",
+"#5a6480",
 "#ffffff",
-"#89aa7b",
 "#1b1b1b",
 "#cccccc"
 ],
@@ -575,7 +570,7 @@
 "tw_dc705218fc40_1": {
 "key": "ax@76,11,44,45/legend/0",
 "kind": "legend",
-"member": "slabs (68)",
+"member": "surface slabs (68)",
 "group": "tw_dc705218fc40"
 },
 "tw_dc705218fc40": {
@@ -587,9 +582,8 @@
 "frame": false,
 "colors": [
 "#1b1b1b",
-"#7789b7",
+"#5a6480",
 "#ffffff",
-"#89aa7b",
 "#cccccc"
 ]
 },
@@ -599,7 +593,7 @@
 "ls": "-",
 "name": "bulk crystals (117)",
 "colors": [
-"#7789b7",
+"#5a6480",
 "#ffffff"
 ]
 },
@@ -607,10 +601,9 @@
 "key": "ax@76,11,44,45/scatter/1",
 "kind": "scatter",
 "ls": "-",
-"name": "slabs (68)",
+"name": "surface slabs (68)",
 "colors": [
-"#89aa7b",
-"#ffffff"
+"#5a6480"
 ]
 },
 "tw_2f1084f9baf5": {

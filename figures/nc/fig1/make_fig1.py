@@ -156,8 +156,8 @@ for i, (xc, name, title, l1, l2, l3) in enumerate(slots):
     place_render(pg, name, xc - 20.0, RY, 40.0, RH, anchor="S")
     fy = RY - 1.2
     pg.fig.text(xc / W, fy / (HB + HA), title, fontsize=6.2, fontweight="bold", ha="center", va="top")
-    pg.fig.text(xc / W, (fy - 3.1) / (HB + HA), l1, fontsize=5.4, color=MID, ha="center", va="top")
-    pg.fig.text(xc / W, (fy - 5.7) / (HB + HA), l2, fontsize=5.4, color=MID, ha="center", va="top")
+    pg.fig.text(xc / W, (fy - 3.1) / (HB + HA), l1, fontsize=5.4, color=INK, ha="center", va="top")
+    pg.fig.text(xc / W, (fy - 5.7) / (HB + HA), l2, fontsize=5.4, color=INK, ha="center", va="top")
     pg.fig.text(xc / W, (fy - 8.3) / (HB + HA), l3, fontsize=5.4, color=INK, ha="center", va="top")
 ta = pg.canvas(0, HB, W, HA)
 for (x0, x1, lab) in ((40.0, 48.0, "Bader"), (86.0, 96.0, "compress,\ndecode"), (135.0, 142.0, "re-derive\nQ")):

@@ -63,7 +63,7 @@ for j, k in enumerate(("law", "uniform", "trunc")):
         hole[gx.shape[0] // 2, gx.shape[1] // 2] = np.nan
         ax.pcolormesh(gx, gy, np.ma.masked_invalid(hole), cmap=mcolors.ListedColormap(["#E6E6E6"]),
                       shading="nearest", rasterized=True)
-        ax.text(0.97, 0.03, "not stored", transform=ax.transAxes, fontsize=5.0, ha="right", va="bottom", color=MID)
+        ax.text(0.97, 0.03, "not stored", transform=ax.transAxes, fontsize=5.3, ha="right", va="bottom", color=INK)
     ax.plot(0, 0, marker="+", ms=3.5, mew=0.6, color=INK)
     ax.set_aspect("equal")
     ax.set_xlim(*XL)

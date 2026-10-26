@@ -64,7 +64,7 @@ def spectrum(ax, med, lo, hi, ylabel):
 pg.letter("a", 2.0, 119.0 + OFF)
 ax = pg.ax(LX, TOP, PW, PH)
 spectrum(ax, "median_error_energy_fraction", "p25_error_energy_fraction", "p75_error_energy_fraction",
-         "error-energy fraction per radial bin")
+         "Error-energy fraction per radial bin")
 ax.set_ylim(5e-6, 0.4)
 log_ticks(ax, "y", subs=())
 handles = [Line2D([], [], color=TWO[c], lw=1.1, label=c) for c in ("ZFP", "SZ3")]
@@ -102,7 +102,7 @@ ax.set_yticks([2, 1, 0]); ax.set_yticklabels([r[1] for r in rows]); ax.set_ylim(
 ax.set_xlabel("ZFP / SZ3 factor")
 open_frame(ax); grid(ax, "x")
 ax.text(0.0, 1.02, "material-level centres, 95%% material-bootstrap CI (n = %d materials)" % int(M.loc["nyquist_safe_hartree_ratio"].n_materials),
-        transform=ax.transAxes, fontsize=5.4, color=MID, va="bottom")
+        transform=ax.transAxes, fontsize=5.4, color=INK, va="bottom")
 # bottom-right is empty: the lowest row's point sits near 0.08 on the left
 ax.text(0.97, 0.04, "$R_H = (E_{ZFP}/E_{SZ3})^{1/2}\\,(S_{H,ZFP}/S_{H,SZ3})^{1/2}$\nholds pairwise", transform=ax.transAxes,
         ha="right", va="bottom", fontsize=5.4, color=INK, linespacing=1.3)
@@ -114,8 +114,8 @@ ax.hist(share.values, bins=np.arange(0, 1.0001, 0.05), color=PALE_B, edgecolor="
 ax.axvline(0.5, color=OTHER, lw=0.6, ls=(0, (4, 2)), zorder=3)
 ax.axvline(med_share, color=RED, lw=1.0, zorder=4)
 ax.set_xlim(0, 1); ax.set_xticks([0, 0.2, 0.4, 0.6, 0.8, 1.0]); ax.set_xticklabels(["0", "20", "40", "60", "80", "100%"])
-ax.set_xlabel("share of |log codec effect| from spectral susceptibility")
-ax.set_ylabel("materials")
+ax.set_xlabel("Share of |log codec effect| from spectral susceptibility")
+ax.set_ylabel("Materials")
 open_frame(ax); grid(ax, "y")
 note(ax, 0.03, 0.96,
      "median %.1f%%\nZFP lower susceptibility: %.1f%% of materials\nZFP higher centroid: %.1f%%\nZFP lower low-$G$ fraction: %.1f%%"
@@ -157,7 +157,7 @@ for (xa, xb, lab) in ((6.0, 88.0, r"decoded error $\Delta\rho$, isosurfaces $\pm
 ce.text(91.5, RY + RH * 0.55, "ZFP / SZ3\nHartree error\n%.3f" % ratio, fontsize=5.6, ha="center", va="center",
         color=INK, linespacing=1.15)
 ce.text(91.5, RY + RH * 0.18, "matched pair 266\n$L_\\infty$ %.2f dex apart" % pair.distance_dex, fontsize=5.2,
-        ha="center", va="center", color=MID, linespacing=1.15)
+        ha="center", va="center", color=INK, linespacing=1.15)
 ky = 2.0
 for j, (s, cc) in enumerate(ELEM.items()):
     ce.scatter([8.0 + 7.0 * j], [ky], s=9, color=cc, lw=0)

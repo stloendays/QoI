@@ -42,15 +42,17 @@ assert int(rev.sum()) == RR["results_by_system"]["all"]["ranking_reversals"] == 
 STATS = MC["statistics"]["all"]["predictors_vs_rederived_error_ratio"]
 assert abs(spearmanr(reassign, rederived).statistic - STATS["reassignment_ratio"]["rho"]) < 1e-12
 bulk = P.system_type.eq("bulk").to_numpy()
-COL = {"bulk": BLUE, "slab": GREEN}
+# cohort is the marker, as in the main figures: filled circle = bulk crystal, open triangle = slab
+COL = DARK_B
 
 pg = Page(183.0, 62.0)
 
 
 def scatter(ax, x, y):
-    for kind, m in (("bulk", bulk), ("slab", ~bulk)):
-        ax.scatter(x[m], y[m], s=6, color=COL[kind], edgecolor="white", lw=0.25, zorder=3,
-                   label="%s (%d)" % ("bulk crystals" if kind == "bulk" else "slabs", int(m.sum())))
+    ax.scatter(x[bulk], y[bulk], s=6, marker="o", color=COL, edgecolor="white", lw=0.25, zorder=3,
+               label="bulk crystals (%d)" % int(bulk.sum()))
+    ax.scatter(x[~bulk], y[~bulk], s=8, marker="^", facecolor="none", edgecolor=COL, lw=0.5, zorder=3,
+               label="surface slabs (%d)" % int((~bulk).sum()))
 
 
 pg.letter("a", 2.0, 61.0)

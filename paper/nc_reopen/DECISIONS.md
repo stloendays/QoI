@@ -279,3 +279,27 @@ byte-identical and every estimate recomputed independently (`review_recompute.py
 - Table 1: two rows (`4102390`, `c68c605`). Claim tests: `test_operational_archive` and `test_writer_archive` read the
   rebuilt-partition SUMMARY.json; new `test_predictive_writer`, `test_predictive_archive`. `numcheck.py` reads the new
   RESULTS.md files and `analysis/server_runs_20261025c/README.md` (commit line added).
+
+### Revision 12, figure pass (2026-10-26)
+
+Request: 「你把最新的论文的图表再优化一下，风格统一」; the requirements table (default rows) was approved: unify the style,
+redraw Supplementary Fig. 2, add Fig. 6d.
+- **One style across Figs. 1-8 and Supplementary Figs. 1-3** (all scripts share `figures/composite/style.py`): every
+  annotation that was grey (`MID`) is now ink (renders' subtitles in Fig. 1, panel subtitles of Figs. 2c,d, 3c,e, 7d,
+  reference-line labels of Figs. 5, 7, step names of Fig. 6a, Supplementary Fig. 3), the smallest annotations are
+  5.3 pt, axis titles and in-panel titles are in sentence case (Figs. 2, 3, 5d, 6a), legend entries and category
+  labels in lower case (Fig. 8), Fig. 2d no longer clips its "100%" tick, Fig. 7a's "1.5×" sits off its line.
+- **Colours**: the QoI-preserving and Fourier-corrected baselines of Fig. 5e form one warm family
+  (`common.QOI_BASE`): FFCz no longer shares the navy of spectral truncation in Fig. 5d. Supplementary Fig. 1 marks
+  the cohort by marker (filled circle bulk, open triangle slab) as the main figures do. The two writers get a teal
+  family (`common.WRITER`).
+- **Fig. 6d** (new): per material, A3 in the zlib container → water-filling writer → predictive writer at $10^{-6}$,
+  and the archive under every writer at $10^{-6}$ and $10^{-4}$ with CIs; medians and archive estimates asserted
+  against the committed SUMMARY.json files. Legend extended; Fig. 6d cited in Results (two places; "therefore" removed
+  to stay at 5,000 words).
+- **Supplementary Fig. 2** redrawn in the house style (`figures/nc/si/figS2/make_figS2.py`, 183 × 104 mm): panels a-d
+  are the former draft's data; e (magnetization writer against the best pointwise codec per object) and f (basin-
+  indicator spectrum exponents) added. Legend rewritten; the old `spin_contracts.svg` stays as provenance.
+- The user's figure edits (`*.tweaks.json`, including the seven of Fig. 3) all still apply; Supplementary Fig. 2 takes
+  the same figure-wide open frame as the other figures.
+

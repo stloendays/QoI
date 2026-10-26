@@ -76,3 +76,10 @@ def check_median(df, num, den, coh, tau, summ, key):
 ARM = {"A1": "#89AA7B", "A3": "#5E7A52", "A5": "#7789B7", "A2": "#5A6480", "A6": "#9AA0A8"}
 ARM_NAME = {"A6": "pointwise\ncodecs", "A5": "blind\noptimum", "A1": "closed-form\nlaw", "A3": "operational\noptimum",
             "A2": "spectral\ntruncation"}
+
+# External QoI-preserving and Fourier-corrected baselines (Fig. 5e): one warm family, so that none of them shares a
+# colour with an allocation arm of Figs. 4-7 (FFCz was navy, the colour of spectral truncation in Fig. 5d).
+QOI_BASE = {"Q": "#E2B57E", "M2": "#D8894E", "F": "#9B5E34"}
+
+# The writers of the algorithm upgrades (Fig. 6d): one teal family, darker for the later writer.
+WRITER = {"W1S": "#6FA9A4", "W2S": "#2F6F6A"}

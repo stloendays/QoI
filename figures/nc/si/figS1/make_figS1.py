@@ -56,7 +56,7 @@ log_ticks(axa, axis="y")
 grid(axa, axis="y")
 axa.set_ylabel("Partition-faithful AECCAR bytes\n/ lossless label-map bytes")
 axa.text(0.01, 0.04, "every stream: zero voxels reassigned, zero Bader error (72/72)", transform=axa.transAxes,
-         fontsize=5.3, ha="left", va="bottom", color=MID)
+         fontsize=5.3, ha="left", va="bottom", color=INK)
 
 pg.letter("b", 128.0, 61.0)
 axb = pg.ax(142.0, 12.0, 38.0, 44.0)

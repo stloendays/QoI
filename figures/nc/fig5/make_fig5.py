@@ -124,7 +124,7 @@ def pair(ax, den, lines):
     for k in lines:
         ax.plot(xs, xs * k, color=MID if k != 1 else INK, lw=0.5, ls="-" if k == 1 else (0, (3, 2)), zorder=1)
         ax.text(hi / 1.15 / (k if k > 1 else 1), hi / 1.15 if k > 1 else hi / 1.6,
-                "%g×" % k, fontsize=5.3, color=MID, ha="right", va="top")
+                "%g×" % k, fontsize=5.3, color=INK, ha="right", va="top")
     for coh in ("bulk", "slab"):
         s = t[t.cohort == coh]
         if coh == "bulk":
@@ -189,7 +189,7 @@ axc.legend(handles=hand, loc="upper center", fontsize=5.0, handletextpad=0.4, fr
 
 # ---- d: certified CR against tolerance, three equal-search arms --------------------------------------------------
 pg.letter("d", 2.0, 96.0)
-for j, (coh, title, x0) in enumerate((("bulk", "bulk crystals (60)", 13.0), ("slab", "surface slabs (32)", 102.0))):
+for j, (coh, title, x0) in enumerate((("bulk", "Bulk crystals (60)", 13.0), ("slab", "Surface slabs (32)", 102.0))):
     ax = pg.ax(x0, 61.0, 78.0, 30.0)
     for arm in ("A6", "A2", "A1"):
         med, q1, q3 = [], [], []
@@ -220,7 +220,7 @@ hand += [Patch(facecolor=MID, alpha=0.22, lw=0, label="interquartile range"),
          Line2D([], [], ls="", marker="^", ms=3.2, mfc="none", mec=MID, mew=0.6, label="surface slab (P3b)")]
 
 # ---- e: equal-search law versus QoI-preserving baselines --------------------------------------------------------
-Q_COLOR, M2_COLOR = PALE, POS_C
+Q_COLOR, M2_COLOR = C.QOI_BASE["Q"], C.QOI_BASE["M2"]
 pg.letter("e", 2.0, 49.0)
 axe = pg.ax(13.0, 14.0, 78.0, 30.0)
 lo, hi = 5.0, 5000.0
@@ -229,12 +229,12 @@ for k in (1, 10):
     axe.plot(xs, xs * k, color=MID if k != 1 else INK, lw=0.5,
              ls="-" if k == 1 else (0, (3, 2)), zorder=1)
     if k == 10:
-        axe.text(hi / 10.0 * 1.08, hi / 1.15, "%g×" % k, fontsize=5.3, color=MID,
+        axe.text(hi / 10.0 * 1.08, hi / 1.15, "%g×" % k, fontsize=5.3, color=INK,
                  ha="left", va="top", bbox=dict(fc="white", ec="none", pad=0.3), zorder=7)
     else:
-        axe.text(hi / 1.15, hi / 1.6, "%g×" % k, fontsize=5.3, color=MID,
+        axe.text(hi / 1.15, hi / 1.6, "%g×" % k, fontsize=5.3, color=INK,
                  ha="right", va="top")
-F_COLOR_E = DARK_B
+F_COLOR_E = C.QOI_BASE["F"]
 for baseline, color, frame in (("Q", Q_COLOR, B), ("M2", M2_COLOR, B), ("F", F_COLOR_E, FF)):
     t = frame[np.isclose(frame.tau, 1e-6)].dropna(subset=[baseline])
     for cohort in ("bulk", "slab"):
@@ -294,7 +294,7 @@ log_ticks(axf, axis="y")
 grid(axf, axis="y")
 for y, label in ((1.0, "1 meV"), (10.0, "10 meV")):
     axf.axhline(y, color=MID, lw=0.45, ls=(0, (3, 2)), zorder=1)
-    axf.text(1.015, y * 1.08, label, transform=axf.get_yaxis_transform(), color=MID,
+    axf.text(1.015, y * 1.08, label, transform=axf.get_yaxis_transform(), color=INK,
              fontsize=4.8, ha="left", va="bottom", clip_on=False,
              bbox=dict(facecolor="white", edgecolor="none", pad=0.1), zorder=6)
 axf.text(2.0, 1.02, r"$\tau = 10^{-4}$", transform=axf.get_xaxis_transform(),
