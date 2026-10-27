@@ -303,3 +303,18 @@ redraw Supplementary Fig. 2, add Fig. 6d.
 - The user's figure edits (`*.tweaks.json`, including the seven of Fig. 3) all still apply; Supplementary Fig. 2 takes
   the same figure-wide open frame as the other figures.
 
+
+## Revision 13 (2026-10-27)
+
+Request: 「对比表可以做一下，文章语言可以优化压缩一下，根据写作skill的思路来」, together with the next-step plan
+(`paper/nc_reopen/NEXT_STEPS_PRACTICAL_VALUE_20261027.md`, practical value first). Branch `paper/nc-rev13-20261027` from
+revision 12 (`e3bf40f`); the full revision 12 is kept as tag `nc-rev12-full-20261027`.
+- **Language pass** (writing skill: fewer semicolons, short table captions, no repeated qualifiers): connecting
+  semicolons outside parentheses rewritten as two sentences or one clause (Introduction, Results, Methods, Data
+  availability); the Introduction list of prior methods keeps its semicolons. Table 2 caption cut to what reads the
+  columns. The KCN walkthrough, the QPET/MGARD and joint-contract sentences tightened. Every number is kept; the
+  archive attribution (5.35-fold over lossless binary) stays because it defines the claim.
+- **Comparison table**: new Supplementary Note 9 (former Notes 9–11 become 10–12) compares the QoI-preserving approaches of refs. 2–19 with this work
+  (guarantee, reference qualification, operator-set allocation, gain forecast, several contracts on one stream, the
+  certified-CR ratios measured here). Cited from the Discussion.
+- Main text plus Methods 4,985 words (revision 12: 5,000).

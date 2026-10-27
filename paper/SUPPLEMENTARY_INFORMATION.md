@@ -6,7 +6,7 @@ Junbo Tong<sup>1</sup>
 
 <sup>1</sup>National University of Singapore, Singapore.
 
-This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 11 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
+This Supplementary Information (SI) holds the evidence that the main text cites but does not display. Every number is copied from, or rounded from, the committed repository file named in the note; Supplementary Note 12 lists those files with the commit that last changed them. Notation follows the main text: $\tau$ is the Hartree relative root-mean-square potential tolerance, $\tau_B$ the Bader charge tolerance, A0–A6 the arms of the law protocol, R3, J, T1 and GF the base codecs of the joint contract.
 
 Contents:
 
@@ -18,9 +18,10 @@ Contents:
 - Supplementary Note 6. Joint certification: engineering cohort and per-tolerance description
 - Supplementary Note 7. Bader contracts under an exact partition: basin projection, partition transcription and storage
 - Supplementary Note 8. Exchange-correlation energy: contract, transfer and linearized allocation
-- Supplementary Note 9. Gain-predictor calibration
-- Supplementary Note 10. Population construction
-- Supplementary Note 11. Source files
+- Supplementary Note 9. Comparison with QoI-preserving compression
+- Supplementary Note 10. Gain-predictor calibration
+- Supplementary Note 11. Population construction
+- Supplementary Note 12. Source files
 - Supplementary Fig. 1. The contract orders codecs at matched density error
 - Supplementary Fig. 2. Magnetic-moment contracts and the magnetization writer
 - Supplementary Fig. 3. Bader storage contracts on real materials
@@ -606,9 +607,9 @@ The same 300-object stratified sample and expansion estimator were used with bot
 
 The matched law/pointwise ratio at $10^{-6}$ is 9.15-fold (95% CI 8.45–10.0). For the complete object, lossless binary storage alone gives 0.99-fold relative to gzipped JSON, whereas Bader certification contributes 5.35-fold (4.49–6.58). At Hartree $10^{-4}$, the selective atom-map policy is essential for ten objects and no matched pointwise estimate was made under that policy.
 
-The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 11. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
+The full per-object archive tables, scripts, checksums and verification evidence are indexed in Supplementary Note 12. Supplementary Fig. 2 summarizes magnetic-moment eligibility, partition migration and storage consequences.
 
-**Supplementary Fig. 2 | Magnetic-moment contracts and the magnetization writer.** **a**, Share of each archive object's text taken by the magnetization block (300 objects). **b**, Certified magnetization stream relative to the lossless density against the moment tolerance (12 magnetic engineering materials; bars, medians; diamonds, archive medians). **c**, Moment shift caused by partition migration alone, for Bader-certified and Hartree-law density reconstructions (cumulative fractions; dashed lines, moment tolerances $10^{-2}$ and $10^{-3}\,\mu_\mathrm{B}$). **d**, Archive reduction with the density block only and with the whole served object (bars, 95% CIs). **e**, Per archive object at $\tau_\mathrm{H}=10^{-6}$, magnetization bytes of the magnetization writer against the best pointwise codec on the same decoded partition; lines, equal size and 10- and 100-fold smaller. **f**, Exponent of the shell-averaged basin-indicator spectrum of each decoded partition (shells 2–24); dashed line, Porod's law for sharp basins. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The figure file is `figures/nc/si/figS2/FigS2.svg`; quantitative sources are indexed in Supplementary Note 11.
+**Supplementary Fig. 2 | Magnetic-moment contracts and the magnetization writer.** **a**, Share of each archive object's text taken by the magnetization block (300 objects). **b**, Certified magnetization stream relative to the lossless density against the moment tolerance (12 magnetic engineering materials; bars, medians; diamonds, archive medians). **c**, Moment shift caused by partition migration alone, for Bader-certified and Hartree-law density reconstructions (cumulative fractions; dashed lines, moment tolerances $10^{-2}$ and $10^{-3}\,\mu_\mathrm{B}$). **d**, Archive reduction with the density block only and with the whole served object (bars, 95% CIs). **e**, Per archive object at $\tau_\mathrm{H}=10^{-6}$, magnetization bytes of the magnetization writer against the best pointwise codec on the same decoded partition; lines, equal size and 10- and 100-fold smaller. **f**, Exponent of the shell-averaged basin-indicator spectrum of each decoded partition (shells 2–24); dashed line, Porod's law for sharp basins. At $10^{-2}\,\mu_\mathrm{B}$, decoded-frame moments are certified in 300/300 archival objects under the Hartree-law $10^{-6}$ density contract, permitting a map-free whole-object estimate of 316-fold (95% CI 290–350). The figure file is `figures/nc/si/figS2/FigS2.svg`; quantitative sources are indexed in Supplementary Note 12.
 
 ## Supplementary Note 6 — Joint certification: engineering cohort and per-tolerance description
 
@@ -722,7 +723,26 @@ The smallest certified stream of each arm of the law protocol was regenerated fr
 
 Of the 1,104 regenerated streams, 1,073 re-passed their Hartree certificate on the run platform; the others are A2 at $10^{-8}$ (17 bulk crystals and 13 slabs, Hartree error 1.007–1.085 times $\tau$) and one SZ3 slab stream at $10^{-4}$. Per-material rows: `analysis/nonlinear_xc_20261024/results/` and `analysis/xc_linearized_law_20261025/results/`.
 
-## Supplementary Note 9 — Gain-predictor calibration
+## Supplementary Note 9 — Comparison with QoI-preserving compression
+
+The table compares the approaches that control quantities derived from compressed scientific data with the present work. Columns: what each approach guarantees, how; whether it tests if the reference analysis resolves the tolerance before a reconstruction is scored (reference qualification); whether a physical downstream operator sets the allocation; whether the gain is forecast before compression; whether one stream meets several contracts; and the comparison made in this paper on the 92 law-protocol materials at a Hartree tolerance of $10^{-6}$ (median certified-CR ratio of the closed-form law to the approach, bulk crystals / slabs). References are those of the main text.
+
+| approach | guarantee and mechanism | reference qualification | operator-set allocation | gain forecast | several contracts on one stream | compared here |
+|---|---|---|---|---|---|---|
+| Pointwise error-bounded codecs: ZFP, SZ3, SPERR (refs. 2–4) | pointwise bound on the field; transform, prediction or wavelet coding | no | no | no | no | 10.2 / 18.5 (best of the three) |
+| MGARD with QoI norms (ref. 8) | derived linear quantities through multilevel norms; smoothness $s$ chosen by the user | no | through a norm, not the operator's symbol | no | through the norm | 18.2 / 21.0 ($s=-2$) |
+| QoI-aware bounds (ref. 9) and QPET (ref. 10) | local and differentiable QoIs mapped to pointwise bounds inside error-bounded codecs | no | no | no | several local QoIs | 6.31 / 9.47 (QPET, block average) |
+| Constrained reconstruction (refs. 11–13) | several QoIs restored by constraint satisfaction after decoding (ref. 12: Bregman divergence of $x\log x$) | no | no | no | yes | Euclidean counterpart used as a post-processor of the joint contract |
+| TOPIQ (ref. 14) | statistical prediction of QoI bias and uncertainty | no | no | uncertainty, not gain | no | – |
+| Compression Safeguards (ref. 15) | pointwise and stencil QoI bounds enforced by stored corrections, composable | no | no | no | yes, by composition | – |
+| FFCz (ref. 16) | spatial and frequency-domain error bounds by correction after decoding | no | frequency bounds without a physical weight | no | spatial and spectral bounds | 20.3 / 22.7 (24/60 and 27/32 certified) |
+| Progressive retrieval (ref. 17) | error on derivable QoIs composed from a basis, during retrieval | no | no | no | yes | – |
+| Topology preservation (refs. 18, 19) | critical points and contour or merge trees | no | no | no | no | – |
+| This work | the measurement contract: QoI, algorithm, input roles and tolerance, with a certificate on the decoded stream | QSQ (Supplementary Note 1) | step $\Delta_G\propto w(G)^{-1/2}$ from the operator symbol on each material's reciprocal lattice | Spearman 0.978 / 0.979 (Fig. 8) | Hartree potential and Bader charges; magnetic moments | – |
+
+Entries for refs. 15, 12 and 16 follow the full texts; for refs. 8–11, 13, 14 and 17–19, the published method descriptions. "No" means the capability is not part of the published method, not that it could not be added.
+
+## Supplementary Note 10 — Gain-predictor calibration
 
 The predictor form was fixed by a retrospective calibration on the 12 QOAC-H engineering materials (commit `f4baa7a`), before the law protocol was fixed (`fe2e08a`); the calibration observations were known when the predictors were written, and the predictor was then tested only on the unused P1 and P3b cohorts. Predictor (a) is the high-rate orbit-only expression, in which every component has error $\Delta^2/12$ and rate $h-\log_2\Delta$; predictor (b) is the finite-rate Laplacian model of the main-text Methods, evaluated on the fixed ladder.
 
@@ -738,7 +758,7 @@ The predictor form was fixed by a retrospective calibration on the 12 QOAC-H eng
 The high-rate expression overstates the Hartree gain about 1.4-fold in every material; the dead zone of the finite-rate model removes most of that bias. Absolute model compression ratios deviate from observation by a median of 0.068 dex, and these errors partly cancel in ratios between policies, which are the quantities predicted.
 
 
-## Supplementary Note 10 — Population construction
+## Supplementary Note 11 — Population construction
 
 **Development and external sets.** 254 development densities (186 Materials Project bulk, 68 NOMAD slabs from five uploads); 65 external stability records (37 AFLOW bulk, 28 NOMAD vacuum-containing 2D); 63 external confirmatory systems. These sets supplied every QSQ result and the fixed-ladder QOAC-H evidence.
 
@@ -761,6 +781,6 @@ The S3 listing (bucket `materialsproject-parsed`, 2026-10-06 14:16–14:38 UTC) 
 Every manifest records material id, task or entry id, source URL, byte count and SHA-256; `PROVENANCE.json` records listing timestamps and the hashes of every index, frame, exclusion file, script and manifest.
 
 
-## Supplementary Note 11 — Source files
+## Supplementary Note 12 — Source files
 
 Numerical results in the main text and this SI are tied to committed scientific files in the research repository (see Data availability). The file-by-file table, with the commit that last changed each file, is `paper/nc_reopen/SOURCE_FILES.md` in that repository; protocols, manifests, per-material tables and the register of every protocol with its outcome are in the same repository.
